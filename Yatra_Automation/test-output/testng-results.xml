@@ -11,6 +11,7 @@
       <![CDATA[<div class="test-result"><br><font color="red"><strong> Test case has been failed check log for details!! </strong></font> </div>&emsp;]]>
     </line>
   </reporter-output>
+<<<<<<< HEAD
   <suite name="Suite" duration-ms="402" started-at="2017-02-21T08:44:44Z" finished-at="2017-02-21T08:44:45Z">
     <groups>
     </groups>
@@ -24,6 +25,21 @@
           </reporter-output>
         </test-method> <!-- Test01 -->
         <test-method status="FAIL" signature="Test02()[pri:0, instance:testScript.DemoTestClass@3c5a99da]" name="Test02" duration-ms="6" started-at="2017-02-21T14:14:45Z" finished-at="2017-02-21T14:14:45Z">
+=======
+  <suite name="Suite" duration-ms="424" started-at="2017-02-20T08:38:55Z" finished-at="2017-02-20T08:38:56Z">
+    <groups>
+    </groups>
+    <test name="Test" duration-ms="424" started-at="2017-02-20T08:38:55Z" finished-at="2017-02-20T08:38:56Z">
+      <class name="testScript.DemoTestClass">
+        <test-method status="PASS" signature="Test01()[pri:0, instance:testScript.DemoTestClass@3c5a99da]" name="Test01" duration-ms="399" started-at="2017-02-20T14:08:55Z" finished-at="2017-02-20T14:08:56Z">
+          <reporter-output>
+            <line>
+              <![CDATA[<div class="test-result"><br><font color="green"><strong> test case has passed  </strong></font> </div>&emsp;]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- Test01 -->
+        <test-method status="FAIL" signature="Test02()[pri:0, instance:testScript.DemoTestClass@3c5a99da]" name="Test02" duration-ms="6" started-at="2017-02-20T14:08:56Z" finished-at="2017-02-20T14:08:56Z">
+>>>>>>> branch 'master' of https://github.com/Harveer-Singh/Yatra_Automation.git
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[Test case has been failed check log for details!!]]>
