@@ -111,7 +111,7 @@ public class ExtentReporter {
 	private static ExtentTest startTest(String description) {
 		ExtentTest test = null;
 		String testName = getTestName(Reporter.getCurrentTestResult());
-		if (tests.containsKey(testName)) {
+		if (tests.containsKey(testName)) { 
 			test = tests.get(testName);
 			if (description != null && !description.isEmpty()) {
 				test.setDescription(description);

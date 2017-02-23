@@ -2,9 +2,7 @@ package com.Yatra.TestScript;
 
 import org.testng.annotations.Test;
 
-import com.Yatra.Utils.ExtentReporter;
 import com.Yatra.Utils.Log;
-import com.Yatra.Utils.ScreenshotManager;
 
 public class DemoTestClass
 {

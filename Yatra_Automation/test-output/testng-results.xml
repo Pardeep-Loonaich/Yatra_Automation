@@ -1,91 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" total="2" passed="1">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
     <line>
-      <![CDATA[<div class="test-result"><br><font color="green"><strong> test case has passed  </strong></font> </div>&emsp;]]>
+      <![CDATA[&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080"> BUGID: COMMENTS:</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;]]>
     </line>
     <line>
-      <![CDATA[<!--FAIL-->]]>
+      <![CDATA[<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-result"><br><font color="red"><strong> Test case has been failed check log for details!! </strong></font> </div>&emsp;]]>
+      <![CDATA[<div class="test-message">&emsp;2. Navigated to Search Result Page for searchKey: </div>]]>
+    </line>
+    <line>
+      <![CDATA[<div class="test-message">&emsp;3. Navigated to Flights description Page</div>]]>
+    </line>
+    <line>
+      <![CDATA[<div class="test-message">&emsp;4.Click on add to cart</div>]]>
+    </line>
+    <line>
+      <![CDATA[<div class="test-message">&emsp;5.Click on Booking cart</div>]]>
+    </line>
+    <line>
+      <![CDATA[<div class="test-message">&emsp;<b>Expected Result:</b> User should be on Home Page after clicking 'Continue Booking flights' link on Flights Bag Page</div>]]>
+    </line>
+    <line>
+      <![CDATA[<div class="test-result"><br><font color="green"><strong> Test Passed. </strong></font> </div>&emsp;]]>
     </line>
   </reporter-output>
-<<<<<<< HEAD
-  <suite name="Suite" duration-ms="402" started-at="2017-02-21T08:44:44Z" finished-at="2017-02-21T08:44:45Z">
+  <suite name=" Yatra Test Automation " duration-ms="8083" started-at="2017-02-22T13:55:29Z" finished-at="2017-02-22T13:55:37Z">
     <groups>
+      <group name="desktop">
+        <method signature="SampleExtentReport.TC_Yatra_001(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@27c20538]" name="TC_Yatra_001" class="com.Yatra.TestScript.SampleExtentReport"/>
+      </group> <!-- desktop -->
     </groups>
-    <test name="Test" duration-ms="402" started-at="2017-02-21T08:44:44Z" finished-at="2017-02-21T08:44:45Z">
-      <class name="testScript.DemoTestClass">
-        <test-method status="PASS" signature="Test01()[pri:0, instance:testScript.DemoTestClass@3c5a99da]" name="Test01" duration-ms="361" started-at="2017-02-21T14:14:44Z" finished-at="2017-02-21T14:14:45Z">
+    <test name="Verify HomePage" duration-ms="8083" started-at="2017-02-22T13:55:29Z" finished-at="2017-02-22T13:55:37Z">
+      <class name="com.Yatra.TestScript.SampleExtentReport">
+        <test-method status="PASS" signature="init(org.testng.ITestContext)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@27c20538]" name="init" is-config="true" duration-ms="13" started-at="2017-02-22T19:25:29Z" finished-at="2017-02-22T19:25:29Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@71437eff]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method status="PASS" signature="TC_Yatra_001(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@27c20538]" name="TC_Yatra_001" duration-ms="8024" started-at="2017-02-22T19:25:29Z" description="To verify the Yatra Home Page and other Pages" data-provider="parallelTestDataProvider" finished-at="2017-02-22T19:25:37Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome_windows]]>
+              </value>
+            </param>
+          </params>
           <reporter-output>
             <line>
-              <![CDATA[<div class="test-result"><br><font color="green"><strong> test case has passed  </strong></font> </div>&emsp;]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- Test01 -->
-        <test-method status="FAIL" signature="Test02()[pri:0, instance:testScript.DemoTestClass@3c5a99da]" name="Test02" duration-ms="6" started-at="2017-02-21T14:14:45Z" finished-at="2017-02-21T14:14:45Z">
-=======
-  <suite name="Suite" duration-ms="424" started-at="2017-02-20T08:38:55Z" finished-at="2017-02-20T08:38:56Z">
-    <groups>
-    </groups>
-    <test name="Test" duration-ms="424" started-at="2017-02-20T08:38:55Z" finished-at="2017-02-20T08:38:56Z">
-      <class name="testScript.DemoTestClass">
-        <test-method status="PASS" signature="Test01()[pri:0, instance:testScript.DemoTestClass@3c5a99da]" name="Test01" duration-ms="399" started-at="2017-02-20T14:08:55Z" finished-at="2017-02-20T14:08:56Z">
-          <reporter-output>
-            <line>
-              <![CDATA[<div class="test-result"><br><font color="green"><strong> test case has passed  </strong></font> </div>&emsp;]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- Test01 -->
-        <test-method status="FAIL" signature="Test02()[pri:0, instance:testScript.DemoTestClass@3c5a99da]" name="Test02" duration-ms="6" started-at="2017-02-20T14:08:56Z" finished-at="2017-02-20T14:08:56Z">
->>>>>>> branch 'master' of https://github.com/Harveer-Singh/Yatra_Automation.git
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[Test case has been failed check log for details!!]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Test case has been failed check log for details!!
-	at org.testng.Assert.fail(Assert.java:94)
-	at utils.Log.fail(Log.java:551)
-	at testScript.DemoTestClass.Test02(DemoTestClass.java:32)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:659)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:845)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1153)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
-	at org.testng.TestRunner.privateRun(TestRunner.java:771)
-	at org.testng.TestRunner.run(TestRunner.java:621)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:357)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:352)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:310)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:259)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1199)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1124)
-	at org.testng.TestNG.run(TestNG.java:1032)
-	at org.testng.remote.RemoteTestNG.run(RemoteTestNG.java:111)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:204)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:175)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-            <line>
-              <![CDATA[<!--FAIL-->]]>
+              <![CDATA[&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080"> BUGID: COMMENTS:</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;]]>
             </line>
             <line>
-              <![CDATA[<div class="test-result"><br><font color="red"><strong> Test case has been failed check log for details!! </strong></font> </div>&emsp;]]>
+              <![CDATA[<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-message">&emsp;2. Navigated to Search Result Page for searchKey: </div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-message">&emsp;3. Navigated to Flights description Page</div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-message">&emsp;4.Click on add to cart</div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-message">&emsp;5.Click on Booking cart</div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-message">&emsp;<b>Expected Result:</b> User should be on Home Page after clicking 'Continue Booking flights' link on Flights Bag Page</div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-result"><br><font color="green"><strong> Test Passed. </strong></font> </div>&emsp;]]>
             </line>
           </reporter-output>
-        </test-method> <!-- Test02 -->
-      </class> <!-- testScript.DemoTestClass -->
-    </test> <!-- Test -->
-  </suite> <!-- Suite -->
+        </test-method> <!-- TC_Yatra_001 -->
+      </class> <!-- com.Yatra.TestScript.SampleExtentReport -->
+    </test> <!-- Verify HomePage -->
+  </suite> <!--  Yatra Test Automation  -->
 </testng-results>

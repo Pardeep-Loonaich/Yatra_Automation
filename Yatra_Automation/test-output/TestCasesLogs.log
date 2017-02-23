@@ -1,7 +1,11 @@
-<<<<<<< HEAD
-21-Feb-2017 14:14:45:008 INFO  [main] test case has passed  
-21-Feb-2017 14:14:45:240 ERROR [main] Test case has been failed check log for details!! 
-=======
-20-Feb-2017 14:08:55:879 INFO  [main] test case has passed  
-20-Feb-2017 14:08:56:132 ERROR [main] Test case has been failed check log for details!! 
->>>>>>> branch 'master' of https://github.com/Harveer-Singh/Yatra_Automation.git
+22-Feb-2017 19:25:37:501 INFO  [PoolService-0]  
+22-Feb-2017 19:25:37:507 INFO  [PoolService-0] ****                          ***** 
+22-Feb-2017 19:25:37:508 INFO  [PoolService-0]  
+22-Feb-2017 19:25:37:745 INFO  [PoolService-0] 1. Navigated to 'Yatra' Home Page! 
+22-Feb-2017 19:25:37:747 INFO  [PoolService-0] 2. Navigated to Search Result Page for searchKey:  
+22-Feb-2017 19:25:37:747 INFO  [PoolService-0] 3. Navigated to Flights description Page 
+22-Feb-2017 19:25:37:748 INFO  [PoolService-0] 4.Click on add to cart 
+22-Feb-2017 19:25:37:748 INFO  [PoolService-0] 5.Click on Booking cart 
+22-Feb-2017 19:25:37:749 INFO  [PoolService-0] <b>Expected Result:</b> User should be on Home Page after clicking 'Continue Booking flights' link on Flights Bag Page 
+22-Feb-2017 19:25:37:750 INFO  [PoolService-0] Test Passed. 
+22-Feb-2017 19:25:37:750 INFO  [PoolService-0] ****             -E---N---D-             ***** 

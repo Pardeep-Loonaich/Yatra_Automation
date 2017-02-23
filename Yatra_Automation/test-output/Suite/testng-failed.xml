@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
   <test name="Test(failed)">
     <classes>
-      <class name="testScript.DemoTestClass">
+      <class name="com.Yatra.TestScript.SampleExtentReport">
         <methods>
-          <include name="Test02"/>
+          <include name="init"/>
+          <include name="TC_Yatra_001"/>
         </methods>
-      </class> <!-- testScript.DemoTestClass -->
+      </class> <!-- com.Yatra.TestScript.SampleExtentReport -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
