@@ -2,78 +2,78 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
     <line>
-      <![CDATA[&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080"> BUGID: COMMENTS:</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 18:52:10 551 - TestCaseID:: TC_Yatra_001</small> </font> </div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div>]]>
+      <![CDATA[&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">To verify the Yatra Home Page</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;]]>
     </line>
     <line>
-      <![CDATA[<div class="test-message">&emsp;2. Navigated to Search Result Page for searchKey: </div>]]>
+      <![CDATA[<div class="test-message">&emsp;1.Verified Yatra Title text</div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-message">&emsp;3. Navigated to Flights description Page</div>]]>
+      <![CDATA[<div class="test-message">&emsp;2.Successfully entered Origin Place in Yatra Homepage: New Delhi</div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-message">&emsp;4.Click on add to cart</div>]]>
+      <![CDATA[<div class="test-message">&emsp;3.Successfully entered Destination Place in Yatra Homepage: Chennai</div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-message">&emsp;5.Click on Booking cart</div>]]>
+      <![CDATA[<div class="test-message">&emsp;4.Successfully clicked 'Search' in Yatra Homepage </div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-message">&emsp;<b>Expected Result:</b> User should be on Home Page after clicking 'Continue Booking flights' link on Flights Bag Page</div>]]>
+      <![CDATA[<div class="test-message">&emsp;<b>Expected Result:</b> Successfully searched Flights</div>]]>
     </line>
     <line>
       <![CDATA[<div class="test-result"><br><font color="green"><strong> Test Passed. </strong></font> </div>&emsp;]]>
     </line>
   </reporter-output>
-  <suite name=" Yatra Test Automation " duration-ms="8083" started-at="2017-02-22T13:55:29Z" finished-at="2017-02-22T13:55:37Z">
+  <suite name=" Yatra Web Automation Test" duration-ms="27623" started-at="2017-02-27T13:22:09Z" finished-at="2017-02-27T13:22:37Z">
     <groups>
       <group name="desktop">
-        <method signature="SampleExtentReport.TC_Yatra_001(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@27c20538]" name="TC_Yatra_001" class="com.Yatra.TestScript.SampleExtentReport"/>
+        <method signature="SampleExtentReport.TC_Yatra_001(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@5702b3b1]" name="TC_Yatra_001" class="com.Yatra.TestScript.SampleExtentReport"/>
       </group> <!-- desktop -->
     </groups>
-    <test name="Verify HomePage" duration-ms="8083" started-at="2017-02-22T13:55:29Z" finished-at="2017-02-22T13:55:37Z">
+    <test name="Verify HomePage" duration-ms="27623" started-at="2017-02-27T13:22:09Z" finished-at="2017-02-27T13:22:37Z">
       <class name="com.Yatra.TestScript.SampleExtentReport">
-        <test-method status="PASS" signature="init(org.testng.ITestContext)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@27c20538]" name="init" is-config="true" duration-ms="13" started-at="2017-02-22T19:25:29Z" finished-at="2017-02-22T19:25:29Z">
+        <test-method status="PASS" signature="init(org.testng.ITestContext)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@5702b3b1]" name="init" is-config="true" duration-ms="15" started-at="2017-02-27T18:52:09Z" finished-at="2017-02-27T18:52:09Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@71437eff]]>
+                <![CDATA[org.testng.TestRunner@614902f3]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="TC_Yatra_001(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@27c20538]" name="TC_Yatra_001" duration-ms="8024" started-at="2017-02-22T19:25:29Z" description="To verify the Yatra Home Page and other Pages" data-provider="parallelTestDataProvider" finished-at="2017-02-22T19:25:37Z">
+        <test-method status="PASS" signature="TC_Yatra_001(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@5702b3b1]" name="TC_Yatra_001" duration-ms="21569" started-at="2017-02-27T18:52:15Z" description="To verify the Yatra Home Page" data-provider="parallelTestDataProvider" finished-at="2017-02-27T18:52:37Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[chrome_windows]]>
+                <![CDATA[, chrome_WIN8_1]]>
               </value>
             </param>
           </params>
           <reporter-output>
             <line>
-              <![CDATA[&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080"> BUGID: COMMENTS:</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 18:52:10 551 - TestCaseID:: TC_Yatra_001</small> </font> </div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div>]]>
+              <![CDATA[&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">To verify the Yatra Home Page</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;]]>
             </line>
             <line>
-              <![CDATA[<div class="test-message">&emsp;2. Navigated to Search Result Page for searchKey: </div>]]>
+              <![CDATA[<div class="test-message">&emsp;1.Verified Yatra Title text</div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-message">&emsp;3. Navigated to Flights description Page</div>]]>
+              <![CDATA[<div class="test-message">&emsp;2.Successfully entered Origin Place in Yatra Homepage: New Delhi</div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-message">&emsp;4.Click on add to cart</div>]]>
+              <![CDATA[<div class="test-message">&emsp;3.Successfully entered Destination Place in Yatra Homepage: Chennai</div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-message">&emsp;5.Click on Booking cart</div>]]>
+              <![CDATA[<div class="test-message">&emsp;4.Successfully clicked 'Search' in Yatra Homepage </div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-message">&emsp;<b>Expected Result:</b> User should be on Home Page after clicking 'Continue Booking flights' link on Flights Bag Page</div>]]>
+              <![CDATA[<div class="test-message">&emsp;<b>Expected Result:</b> Successfully searched Flights</div>]]>
             </line>
             <line>
               <![CDATA[<div class="test-result"><br><font color="green"><strong> Test Passed. </strong></font> </div>&emsp;]]>
@@ -82,5 +82,5 @@
         </test-method> <!-- TC_Yatra_001 -->
       </class> <!-- com.Yatra.TestScript.SampleExtentReport -->
     </test> <!-- Verify HomePage -->
-  </suite> <!--  Yatra Test Automation  -->
+  </suite> <!--  Yatra Web Automation Test -->
 </testng-results>

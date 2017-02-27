@@ -4,13 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicInteger;
-//import org.apache.commons.io.FileUtils;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -19,12 +20,10 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.SkipException;
-
-
-
 
 /**
  * Log class consists capturing and printing screenshots,methods for writing log
@@ -146,7 +145,7 @@ public class Log {
 	 * 
 	 * @param driver
 	 */
-	/*public static void addTestRunMachineInfo(WebDriver driver) {
+	public static void addTestRunMachineInfo(WebDriver driver) {
 
 		Object params[] = Reporter.getCurrentTestResult().getParameters();
 		String testMachine = "";
@@ -172,7 +171,7 @@ public class Log {
 		Reporter.getCurrentTestResult().setParameters(params);
 		ExtentReporter.addAttribute(params[0].toString());
 	}
-*/
+
 	/**
 	 * lsLog4j returns name of the logger from the current thread
 	 */
@@ -766,7 +765,7 @@ public class Log {
 	}
 
 	/**
-	 * addSauceJobUrlToReportÂ will add the sauce lab job URL( video, selenium
+	 * addSauceJobUrlToReport will add the sauce lab job URL( video, selenium
 	 * log, commands and meta data details)
 	 * 
 	 * @param driver

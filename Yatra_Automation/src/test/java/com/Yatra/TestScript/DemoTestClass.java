@@ -19,15 +19,6 @@ public class DemoTestClass
   @Test
   public void Test02() 
   {
-	  if (1==2)
-	  {
-		  Log.pass("test case has passed ");
-		  
-	  }
-	  else
-	  {
-		  
-		  Log.fail("Test case has been failed check log for details!!");
-	  }
+	  Log.fail("Test case has been failed check log for details!!");
   }
 }

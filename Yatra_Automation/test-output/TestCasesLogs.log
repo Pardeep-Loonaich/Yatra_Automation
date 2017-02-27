@@ -1,11 +1,10 @@
-22-Feb-2017 19:25:37:501 INFO  [PoolService-0]  
-22-Feb-2017 19:25:37:507 INFO  [PoolService-0] ****                          ***** 
-22-Feb-2017 19:25:37:508 INFO  [PoolService-0]  
-22-Feb-2017 19:25:37:745 INFO  [PoolService-0] 1. Navigated to 'Yatra' Home Page! 
-22-Feb-2017 19:25:37:747 INFO  [PoolService-0] 2. Navigated to Search Result Page for searchKey:  
-22-Feb-2017 19:25:37:747 INFO  [PoolService-0] 3. Navigated to Flights description Page 
-22-Feb-2017 19:25:37:748 INFO  [PoolService-0] 4.Click on add to cart 
-22-Feb-2017 19:25:37:748 INFO  [PoolService-0] 5.Click on Booking cart 
-22-Feb-2017 19:25:37:749 INFO  [PoolService-0] <b>Expected Result:</b> User should be on Home Page after clicking 'Continue Booking flights' link on Flights Bag Page 
-22-Feb-2017 19:25:37:750 INFO  [PoolService-0] Test Passed. 
-22-Feb-2017 19:25:37:750 INFO  [PoolService-0] ****             -E---N---D-             ***** 
+27-Feb-2017 18:52:15:922 INFO  [PoolService-0]  
+27-Feb-2017 18:52:15:940 INFO  [PoolService-0] ****             To verify the Yatra Home Page             ***** 
+27-Feb-2017 18:52:15:941 INFO  [PoolService-0]  
+27-Feb-2017 18:52:30:622 INFO  [PoolService-0] 1.Verified Yatra Title text 
+27-Feb-2017 18:52:30:866 INFO  [PoolService-0] 2.Successfully entered Origin Place in Yatra Homepage: New Delhi 
+27-Feb-2017 18:52:34:070 INFO  [PoolService-0] 3.Successfully entered Destination Place in Yatra Homepage: Chennai 
+27-Feb-2017 18:52:37:457 INFO  [PoolService-0] 4.Successfully clicked 'Search' in Yatra Homepage  
+27-Feb-2017 18:52:37:458 INFO  [PoolService-0] <b>Expected Result:</b> Successfully searched Flights 
+27-Feb-2017 18:52:37:459 INFO  [PoolService-0] Test Passed. 
+27-Feb-2017 18:52:37:459 INFO  [PoolService-0] ****             -E---N---D-             ***** 
