@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
-  <test name="Default test(failed)">
+<suite thread-count="500" guice-stage="DEVELOPMENT" verbose="3" name="Failed suite [ Yatra Web Automation Test]" parallel="tests">
+  <parameter name="webSite" value="https://www.yatra.com/"/>
+  <parameter name="browserName" value="iexplorer_windows"/>
+  <test name="Verify HomePage(failed)" parallel="true">
+    <groups>
+      <run>
+        <include name="desktop"/>
+      </run>
+    </groups>
     <classes>
       <class name="com.Yatra.TestScript.SampleExtentReport">
         <methods>
           <include name="init"/>
-          <include name="TC_Yatra_001"/>
+          <include name="TC_Yatra_001" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.Yatra.TestScript.SampleExtentReport -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Verify HomePage(failed) -->
+</suite> <!-- Failed suite [ Yatra Web Automation Test] -->
