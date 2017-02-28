@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="500" guice-stage="DEVELOPMENT" verbose="3" name="Failed suite [ Yatra Web Automation Test]" parallel="tests">
   <parameter name="webSite" value="https://www.yatra.com/"/>
-  <parameter name="browserName" value="iexplorer_windows"/>
+  <parameter name="browserName" value="chrome_windows"/>
   <test name="Verify HomePage(failed)" parallel="true">
     <groups>
       <run>
@@ -13,7 +13,7 @@
       <class name="com.Yatra.TestScript.SampleExtentReport">
         <methods>
           <include name="init"/>
-          <include name="TC_Yatra_001" invocation-numbers="0"/>
+          <include name="TC_Yatra_002" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.Yatra.TestScript.SampleExtentReport -->
     </classes>

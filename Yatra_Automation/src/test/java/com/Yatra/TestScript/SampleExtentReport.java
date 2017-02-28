@@ -93,29 +93,32 @@ public class SampleExtentReport {
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 			
-			
-		    LoginPage loginPage = new LoginPage(driver);
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-
 			// step2: verify Yatra title bar text
 			if (driver.getTitle().contains("Flight")) {
 				Log.message("2.Verified Yatra Title text");
 			}
+			
 
-			// step3: enter Origin place in Yatra Home page
+		    LoginPage loginPage = new LoginPage(driver);
+			Log.message("3. Navigated to 'Yatra' Login Page!");
+			
+			//click Login button in HomePage
+			//TODO
+
+			// step: enter Origin place in Yatra Home page
 			loginPage.enterEmailID(emailId);
-			Log.message("3.Successfully entered Origin Place in Yatra Homepage: " + emailId);
+			Log.message("4.Successfully entered Emai Id in Emai Textbox: " + emailId);
 
-			// step4: enter Destination place in Yatra Home page
+			// step: enter Destination place in Yatra Home page
 			loginPage.enterPassword(password);
-			Log.message("4.Successfully entered Destination Place in Yatra Homepage: " + password);
+			Log.message("5.Successfully entered Password in Password textbox " + password);
 			Thread.sleep(3000);
 
-			// step5: click 'Search' button in Yatra Home page
+			// step: click 'Search' button in Yatra Home page
 			loginPage.clickBtnSignIn();
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("6.Successfully clicked 'SignIn' ");
 
-			Log.message("<b>Expected Result:</b> Successfully searched Flights");
+			Log.message("<b>Expected Result:</b> Successfully Logged in Yatra acct");
 
 			Log.testCaseResult();
 		} catch (Exception e) {
