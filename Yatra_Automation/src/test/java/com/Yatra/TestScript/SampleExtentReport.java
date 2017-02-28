@@ -56,11 +56,11 @@ public class SampleExtentReport {
 
 			// step3: enter Origin place in Yatra Home page
 			homePage.enterOrgion(origin);
-			Log.message("3.Successfully entered Origin Place in Yatra Homepage: " + origin);
+			Log.message("3.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
 
 			// step4: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("4.Successfully entered Destination Place in Yatra Homepage: " + destination);
+			Log.message("4.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
 			Thread.sleep(3000);
 
 			// step5: click 'Search' button in Yatra Home page
@@ -107,11 +107,11 @@ public class SampleExtentReport {
 
 			// step: enter Origin place in Yatra Home page
 			loginPage.enterEmailID(emailId);
-			Log.message("4.Successfully entered Emai Id in Emai Textbox: " + emailId);
+			Log.message("4.Successfully entered '"+ emailId+"' Id in Emai Textbox ");
 
 			// step: enter Destination place in Yatra Home page
 			loginPage.enterPassword(password);
-			Log.message("5.Successfully entered Password in Password textbox " + password);
+			Log.message("5.Successfully entered '"+ password +"' Password in Password textbox " );
 			Thread.sleep(3000);
 
 			// step: click 'Search' button in Yatra Home page
