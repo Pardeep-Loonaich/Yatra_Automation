@@ -17,7 +17,7 @@
 			<class name="com.Yatra.TestScript.SampleExtentReport">
 				<methods>
 					<include name="TC_Yatra_001" />
-					<include name="TC_Yatra_002" />
+					<!-- <include name="TC_Yatra_002" /> -->
 				</methods>
 			</class>
 		</classes>
