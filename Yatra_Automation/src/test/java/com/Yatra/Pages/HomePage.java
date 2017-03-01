@@ -1,5 +1,9 @@
 package com.Yatra.Pages;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -56,6 +60,28 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(css = "div[class='be-ddn-footer'] span")
 	WebElement submitPassengerClassInfo;
+	
+	@FindBy(xpath = "//form[@id='BE_flight_form']//li[1]/a")
+	public WebElement lnkOneWay;
+
+	@FindBy(xpath = "//form[@id='BE_flight_form']//li[2]/a")
+	WebElement lnkRoundTrip;
+
+	@FindBy(xpath = "//form[@id='BE_flight_form']//li[3]/a")
+	WebElement lnkMultiCity;
+	
+	@FindBy(xpath = "//a[@id='a_2017_2_22']/span[1]")
+	WebElement lnkDeptDate;
+	
+	@FindBy(id = "BE_flight_depart_date")
+	WebElement txtDeptDate;
+	
+	@FindBy(xpath = "//form[@id='BE_flight_form']//li[3]/i")
+	WebElement txtDeptDatePicker;
+	
+	@FindBy(xpath = "//form[@id='BE_flight_form']//li[4]/i")
+	WebElement txtReturnDatePicker;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -184,4 +210,135 @@ public class HomePage extends LoadableComponent<HomePage> {
 		driver.findElements(By.cssSelector(passengerClassLocator)).get(passengerClass).click();
 		BrowserActions.clickOnElement(submitPassengerClassInfo, driver, "Done Button");
 	}
+	
+
+	/**
+	 * To click OneWay link on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void selectOneWayTrip() throws Exception {		
+		BrowserActions.clickOnElement(lnkOneWay, driver, "One Way");
+		Utils.waitForPageLoad(driver);	
+	}
+	
+	
+	/**
+	 * To click Round Trip link on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void selectRoundTrip() throws Exception {		
+		BrowserActions.clickOnElement(lnkRoundTrip, driver, "Round Trip");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click MultiCity link on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void selectMultiCity() throws Exception {	
+		BrowserActions.clickOnElement(lnkMultiCity, driver, "Multicity");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	
+	public static String getSystemDate(){	
+		String currentDate = null;
+		DateFormat dateFormat = new SimpleDateFormat("yyy/MM/dd");
+		Date date = new Date();
+		currentDate = dateFormat.format(date); //2016/11/16 
+		return currentDate;
+	}
+	
+	/**
+	 * To select Depart date on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void selectDeptCurrentDate() throws Exception {
+		//get the dataformat from system
+		String dateFormat = getSystemDate();
+		
+		String[] currentDate = dateFormat.split("/");
+		String date1 = currentDate[2]; // DD
+		String month = currentDate[1]; // MM		
+		String year = currentDate[0]; // yyyy		
+		String month1 = month.replace("0", ""); 
+		String date2 = date1.replace("0", ""); 
+		String date = year +"_"+month1+"_"+date2;
+		System.out.println("Date after one week : " + date);		
+		WebElement linkDateformat =  driver.findElement(By.xpath("//a[@id='a_"+date+"']/span"));
+		BrowserActions.clickOnElement(linkDateformat, driver, "select Date");
+		Utils.waitForPageLoad(driver);
+	}
+	
+	/**
+	 * To select Date after one week in Depart date on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void selectDeptDateAfterOneWeek() throws Exception {
+		Calendar now = Calendar.getInstance();
+		now.add(Calendar.WEEK_OF_YEAR, 1);
+		String date = now.get(Calendar.YEAR) + "_" + now.get(Calendar.DATE) + "_" +(now.get(Calendar.MONTH) + 1);
+		System.out.println("Date after one week : " + date );
+
+		WebElement linkDateformat =  driver.findElement(By.xpath("//a[@id='a_"+date+"']/span"));
+		BrowserActions.clickOnElement(linkDateformat, driver, "select Date");
+		Utils.waitForPageLoad(driver);
+	}
+	
+	/**
+	 * To select Date after one week in Depart date on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void selectReturnDateAfterTwoWeek() throws Exception {
+		Calendar now = Calendar.getInstance();
+		now.add(Calendar.WEEK_OF_YEAR, 1);
+		String date = now.get(Calendar.YEAR) + "_" + now.get(Calendar.DATE) + "_" +(now.get(Calendar.MONTH) + 2);
+		System.out.println("Date after Two weeks : " + date );
+
+		WebElement linkDateformat =  driver.findElement(By.xpath("//a[@id='a_"+date+"']/span"));
+		BrowserActions.clickOnElement(linkDateformat, driver, "select Date");
+		Utils.waitForPageLoad(driver);
+	}
+	
+	
+	/**
+	 * To click Depart Date textbox on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickDeptdate() throws Exception {		
+		BrowserActions.clickOnElement(txtDeptDate, driver, "Depart Date Textbox");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	
+	/**
+	 * To click Depart Date picker on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickDeptDatePicker() throws Exception {
+		//final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(txtDeptDatePicker, driver, "Depart Date Picker");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	
+	/**
+	 * To click Depart Date picker on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickReturnDatePicker() throws Exception {		
+		BrowserActions.clickOnElement(txtReturnDatePicker, driver, "Return Date Picker");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	
 }// HomePage
