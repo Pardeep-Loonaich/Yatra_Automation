@@ -371,7 +371,6 @@ public class WebDriverFactory {
 				ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 						true);
 				ieCapabilities.setPlatform(Platform.fromString(platform));
-
 				if (proxy != null)
 					ieCapabilities.setCapability(CapabilityType.PROXY, proxy);
 

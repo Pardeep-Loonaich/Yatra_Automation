@@ -93,7 +93,7 @@ public class GlobalNavigation extends LoadableComponent<GlobalNavigation> {
 	}// load
 
 /**
-  @Method Name: clickMainMenu
+  @Method Name: clickMainMenu(String sMainMenu)
   @Description: use this method to click on main navigation panel, based on option available
  * @param sMainMenu- have to pass option as string
  * 
@@ -106,7 +106,7 @@ public class GlobalNavigation extends LoadableComponent<GlobalNavigation> {
 	}
 	
 	/**
-	  @Method Name: clickSubMenu
+	  @Method Name: clickSubMenu(String sSubMenu)
 	  @Description: use this method to click on sub menu option, based on option available(it will not woerk for recent search)
 	 * @param sMainMenu- have to pass sub option as string
 	 * 
