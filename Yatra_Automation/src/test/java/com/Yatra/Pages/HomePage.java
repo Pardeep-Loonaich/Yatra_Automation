@@ -68,10 +68,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	WebElement lnkRoundTrip;
 
 	@FindBy(xpath = "//form[@id='BE_flight_form']//li[3]/a")
-	WebElement lnkMultiCity;
-	
-	@FindBy(xpath = "//a[@id='a_2017_2_22']/span[1]")
-	WebElement lnkDeptDate;
+	WebElement lnkMultiCity;	
 	
 	@FindBy(id = "BE_flight_depart_date")
 	WebElement txtDeptDate;
@@ -243,7 +240,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);		
 	}
 	
-	
+	/**
+	 * To get System Date
+	 * 
+	 * @throws Exception
+	 */
 	public static String getSystemDate(){	
 		String currentDate = null;
 		DateFormat dateFormat = new SimpleDateFormat("yyy/MM/dd");
@@ -259,8 +260,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public void selectDeptCurrentDate() throws Exception {
 		//get the dataformat from system
-		String dateFormat = getSystemDate();
-		
+		String dateFormat = getSystemDate();		
 		String[] currentDate = dateFormat.split("/");
 		String date1 = currentDate[2]; // DD
 		String month = currentDate[1]; // MM		
@@ -282,28 +282,26 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void selectDeptDateAfterOneWeek() throws Exception {
 		Calendar now = Calendar.getInstance();
 		now.add(Calendar.WEEK_OF_YEAR, 1);
-		String date = now.get(Calendar.YEAR) + "_" + now.get(Calendar.DATE) + "_" +(now.get(Calendar.MONTH) + 1);
-		System.out.println("Date after one week : " + date );
-
+		String date = now.get(Calendar.YEAR) + "_" + (now.get(Calendar.MONTH)+1) + "_" +(now.get(Calendar.DATE));		
 		WebElement linkDateformat =  driver.findElement(By.xpath("//a[@id='a_"+date+"']/span"));
 		BrowserActions.clickOnElement(linkDateformat, driver, "select Date");
 		Utils.waitForPageLoad(driver);
+		Log.event("Selected Depart Date after One weeks : " + date);
 	}
 	
 	/**
-	 * To select Date after one week in Depart date on Home page
+	 * To select Date after Two week in Return date on Home page
 	 * 
 	 * @throws Exception
 	 */
 	public void selectReturnDateAfterTwoWeek() throws Exception {
 		Calendar now = Calendar.getInstance();
-		now.add(Calendar.WEEK_OF_YEAR, 1);
-		String date = now.get(Calendar.YEAR) + "_" + now.get(Calendar.DATE) + "_" +(now.get(Calendar.MONTH) + 2);
-		System.out.println("Date after Two weeks : " + date );
-
+		now.add(Calendar.WEEK_OF_YEAR, 2);
+		String date = now.get(Calendar.YEAR) + "_" + (now.get(Calendar.MONTH)+1) + "_" +(now.get(Calendar.DATE));
 		WebElement linkDateformat =  driver.findElement(By.xpath("//a[@id='a_"+date+"']/span"));
 		BrowserActions.clickOnElement(linkDateformat, driver, "select Date");
 		Utils.waitForPageLoad(driver);
+		Log.event("Selected Return Date after Two weeks : " + date);
 	}
 	
 	
@@ -323,22 +321,21 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickDeptDatePicker() throws Exception {
-		//final long startTime = StopWatch.startTime();
+	public void clickDeptDatePicker() throws Exception {	
 		BrowserActions.clickOnElement(txtDeptDatePicker, driver, "Depart Date Picker");
 		Utils.waitForPageLoad(driver);		
 	}
 	
 	
 	/**
-	 * To click Depart Date picker on Home page
+	 * To click Return Date picker on Home page
 	 * 
 	 * @throws Exception
 	 */
 	public void clickReturnDatePicker() throws Exception {		
 		BrowserActions.clickOnElement(txtReturnDatePicker, driver, "Return Date Picker");
 		Utils.waitForPageLoad(driver);		
-	}
-	
+	}	
+
 	
 }// HomePage
