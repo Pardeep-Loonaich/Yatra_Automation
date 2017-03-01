@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Web Automation Test" verbose="3" parallel="tests" thread-count="500">
-	<parameter name="browserName" value="chrome_windows" />
+    <!-- parameter for device host and port -->
+    <parameter name="deviceHost" value="localhost" />
+	<parameter name="devicePort" value="4444" />
+	<parameter name="browserName" value="firefox_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
 	<test name="Verify HomePage" parallel="true">
@@ -15,6 +18,7 @@
 			<class name="com.Yatra.TestScript.SampleExtentReport">
 				<methods>
 					<include name="TC_Yatra_001" />
+
 				</methods>
 			</class>
 		</classes>
