@@ -1,50 +1,26 @@
-27-Feb-2017 20:56:04:838 INFO  [PoolService-0]  
-27-Feb-2017 20:56:04:839 INFO  [PoolService-0]  
-27-Feb-2017 20:56:05:087 INFO  [PoolService-0] ****             To verify the Yatra Home Page             ***** 
-27-Feb-2017 20:56:05:089 INFO  [PoolService-0]  
-27-Feb-2017 20:56:05:088 INFO  [PoolService-0] ****             Login to Yatra             ***** 
-27-Feb-2017 20:56:05:090 INFO  [PoolService-0]  
-27-Feb-2017 20:56:26:911 DEBUG [PoolService-0] Page URL:: https://www.yatra.com/ 
-27-Feb-2017 20:56:27:132 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (5c68f4ef-035c-416d-9db5-e0c28390dd7e)] -> id: BE_flight_flsearch_btn] 
-27-Feb-2017 20:56:27:133 INFO  [PoolService-0] 1. Navigated to 'Yatra' Home Page! 
-27-Feb-2017 20:56:27:136 DEBUG [PoolService-0] Page URL:: https://www.yatra.com/ 
-27-Feb-2017 20:56:27:172 INFO  [PoolService-0] 1. Navigated to 'Yatra' Home Page! 
-27-Feb-2017 20:56:27:186 INFO  [PoolService-0] 2.Verified Yatra Title text 
-27-Feb-2017 20:56:27:295 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_flsearch_btn] 
-27-Feb-2017 20:56:27:296 INFO  [PoolService-0] 1. Navigated to 'Yatra' Home Page! 
-27-Feb-2017 20:56:27:312 INFO  [PoolService-0] 2.Verified Yatra Title text 
-27-Feb-2017 20:56:27:462 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_origin_city] 
-27-Feb-2017 20:56:27:729 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_origin_city] 
-27-Feb-2017 20:56:30:625 DEBUG [PoolService-0] Entered the Orgion: New Delhi 
-27-Feb-2017 20:56:30:625 INFO  [PoolService-0] 3.Successfully entered Origin Place in Yatra Homepage: New Delhi 
-27-Feb-2017 20:56:31:644 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_arrival_city] 
-27-Feb-2017 20:56:31:761 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_arrival_city] 
-27-Feb-2017 20:56:32:448 DEBUG [PoolService-0] Entered the Destination: Chennai 
-27-Feb-2017 20:56:32:449 INFO  [PoolService-0] 4.Successfully entered Destination Place in Yatra Homepage: Chennai 
-27-Feb-2017 20:56:35:625 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_flsearch_btn] 
-27-Feb-2017 20:56:37:982 DEBUG [PoolService-0] Page URL:: https://www.yatra.com/ 
-27-Feb-2017 20:56:37:982 INFO  [PoolService-0] 5.Successfully clicked 'Search' in Yatra Homepage  
-27-Feb-2017 20:56:37:983 INFO  [PoolService-0] <b>Expected Result:</b> Successfully searched Flights 
-27-Feb-2017 20:56:37:984 INFO  [PoolService-0] Test Passed. 
-27-Feb-2017 20:56:37:984 INFO  [PoolService-0] ****             -E---N---D-             ***** 
-27-Feb-2017 20:56:47:297 FATAL [PoolService-0] Email id field not found in page!! 
-java.lang.Exception: Email id field not found in page!!
-	at com.Yatra.Utils.BrowserActions.typeOnTextField(BrowserActions.java:49)
-	at com.Yatra.Pages.LoginPage.enterEmailID(LoginPage.java:83)
-	at com.Yatra.TestScript.SampleExtentReport.TC_Yatra_002(SampleExtentReport.java:106)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
-	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-27-Feb-2017 20:56:47:951 INFO  [PoolService-0] ****             -E---N---D-             ***** 
+28-Feb-2017 17:48:48:254 INFO  [PoolService-0]  
+28-Feb-2017 17:48:48:259 INFO  [PoolService-0] ****             To verify the Yatra Home Page             ***** 
+28-Feb-2017 17:48:48:259 INFO  [PoolService-0]  
+28-Feb-2017 17:48:56:829 DEBUG [PoolService-0] Page URL:: https://www.yatra.com/ 
+28-Feb-2017 17:48:56:926 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_flsearch_btn] 
+28-Feb-2017 17:48:56:927 INFO  [PoolService-0] 1. Navigated to 'Yatra' Home Page! 
+28-Feb-2017 17:48:56:938 INFO  [PoolService-0] 2.Verified Yatra Title text 
+28-Feb-2017 17:48:57:027 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_origin_city] 
+28-Feb-2017 17:48:57:109 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_origin_city] 
+28-Feb-2017 17:48:57:298 DEBUG [PoolService-0] Entered the Orgion: New Delhi 
+28-Feb-2017 17:48:57:298 INFO  [PoolService-0] 3.Successfully entered Origin Place in Yatra Homepage: New Delhi 
+28-Feb-2017 17:48:57:494 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_arrival_city] 
+28-Feb-2017 17:48:57:631 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_arrival_city] 
+28-Feb-2017 17:48:57:903 DEBUG [PoolService-0] Entered the Destination: Chennai 
+28-Feb-2017 17:48:57:903 INFO  [PoolService-0] 4.Successfully entered Destination Place in Yatra Homepage: Chennai 
+28-Feb-2017 17:49:01:016 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_depart_date] 
+28-Feb-2017 17:49:01:874 INFO  [PoolService-0] 5. Successfully cliked the departure date 
+28-Feb-2017 17:49:02:260 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> css selector: div[id='BE_flight_paxInfoBox']] 
+28-Feb-2017 17:49:02:695 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> css selector: div[class='be-ddn-footer'] span] 
+28-Feb-2017 17:49:02:761 INFO  [PoolService-0] 6. Passenger Info successfully specified 
+28-Feb-2017 17:49:02:847 DEBUG [PoolService-0] Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_flsearch_btn] 
+28-Feb-2017 17:49:03:056 DEBUG [PoolService-0] Page URL:: https://www.yatra.com/ 
+28-Feb-2017 17:49:03:056 INFO  [PoolService-0] 7 .Successfully clicked 'Search' in Yatra Homepage  
+28-Feb-2017 17:49:03:057 INFO  [PoolService-0] <b>Expected Result:</b> Successfully searched Flights 
+28-Feb-2017 17:49:03:057 INFO  [PoolService-0] Test Passed. 
+28-Feb-2017 17:49:04:433 INFO  [PoolService-0] ****             -E---N---D-             ***** 

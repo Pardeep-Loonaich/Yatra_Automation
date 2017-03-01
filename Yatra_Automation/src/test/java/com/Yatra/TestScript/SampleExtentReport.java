@@ -63,9 +63,15 @@ public class SampleExtentReport {
 			Log.message("4.Successfully entered Destination Place in Yatra Homepage: " + destination);
 			Thread.sleep(3000);
 
-			// step5: click 'Search' button in Yatra Home page
+			
+			homePage.selectDepartureDate(testData.get("Date"));
+			Log.message("5. Successfully cliked the departure date");
+			
+			homePage.specifyPassengerInfo(testData.get("PassengerInfo"));
+			Log.message("6. Passenger Info successfully specified");
+			
 			homePage.clickBtnSearch();
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("7 .Successfully clicked 'Search' in Yatra Homepage ");
 
 			Log.message("<b>Expected Result:</b> Successfully searched Flights");
 
@@ -73,6 +79,7 @@ public class SampleExtentReport {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
+			driver.quit();
 			Log.endTestCase();
 		}
 	}

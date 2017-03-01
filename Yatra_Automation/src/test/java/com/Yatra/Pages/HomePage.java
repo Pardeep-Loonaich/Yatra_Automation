@@ -1,5 +1,8 @@
 package com.Yatra.Pages;
 
+import java.util.List;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,8 +22,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	private String appURL;
 	private WebDriver driver;
 	private boolean isPageLoaded;
-	
-
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -35,9 +36,26 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(id = "BE_flight_flsearch_btn")
 	WebElement btnSearch;
 	
+	@FindBy(id= "BE_flight_depart_date")
+	WebElement departureDate;
 	
+	@FindBy(id= "BE_flight_return_date")
+	WebElement returnDate;
 	
+	@FindBy(css ="div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']" )
+	List<WebElement> selectMonth;
+	
+	@FindBy(css= "div[id='BE_flight_paxInfoBox']")
+	WebElement passengerInfo;
 
+	String dateLocator="div[class='month-box'] table tbody td[class*='activeTD clsDateCell'] a[id='";	
+	
+	String passengersLocator="span[class='ddSpinnerPlus']";
+	
+	String passengerClassLocator="div[id='flight_class_select_child'] ul li";
+	
+	@FindBy(css = "div[class='be-ddn-footer'] span")
+	WebElement submitPassengerClassInfo;
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -51,6 +69,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @param url
 	 *            : UAT URL
 	 */
+	
 	public HomePage(WebDriver driver, String url) {
 		appURL = url;
 		this.driver = driver;
@@ -137,6 +156,32 @@ public class HomePage extends LoadableComponent<HomePage> {
 		//Log.event("Clicked 'Login' button on SignIn page",	StopWatch.elapsedTime(startTime));
 	}
 	
+	public void selectDepartureDate(String day) throws Exception{
+		int month=Integer.parseInt(day.split("_")[2]);
+		BrowserActions.clickOnElement(departureDate, driver, "clicking on departure date icon");
+		selectMonth.get(month-2).click();
+		List<WebElement> datePicker =driver.findElements(By.cssSelector(dateLocator+day+"']"));
+		datePicker.get(0).click();
+	}
 	
-	
+	public void specifyPassengerInfo(String passengers) throws Exception{
+		BrowserActions.clickOnElement(passengerInfo, driver, "Passenger Info");
+		List<WebElement> updatePassengers =driver.findElements(By.cssSelector(passengersLocator));
+		int adult = Integer.parseInt(passengers.split("_")[0]);
+		int child = Integer.parseInt(passengers.split("_")[1]);
+		int infant = Integer.parseInt(passengers.split("_")[2]);
+		int  passengerClass= Integer.parseInt(passengers.split("_")[3]);
+		for(int i=1;i<adult;i++){
+			updatePassengers.get(0).click();
+		}
+		
+		for(int i=0;i<child ; i++){
+			updatePassengers.get(1).click();
+		}
+		for(int i=0;i<infant ; i++){
+			updatePassengers.get(2).click();
+		}
+		driver.findElements(By.cssSelector(passengerClassLocator)).get(passengerClass).click();
+		BrowserActions.clickOnElement(submitPassengerClassInfo, driver, "Done Button");
+	}
 }// HomePage

@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="1" total="2" passed="1">
+<testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
     <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:55:24 894 - TestCaseID:: TC_Yatra_001</small> </font> </div>]]>
-    </line>
-    <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:55:24 894 - TestCaseID:: TC_Yatra_002</small> </font> </div>]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:44 186 - TestCaseID:: TC_Yatra_001</small> </font> </div>]]>
     </line>
     <line>
       <![CDATA[&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">To verify the Yatra Home Page</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;]]>
     </line>
     <line>
-      <![CDATA[&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">Login to Yatra</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:56 829 - Page URL:: https://www.yatra.com/</small> </font> </div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:26 911 - Page URL:: https://www.yatra.com/</small> </font> </div>]]>
-    </line>
-    <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:27 132 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (5c68f4ef-035c-416d-9db5-e0c28390dd7e)] -> id: BE_flight_flsearch_btn]</small> </font> </div>]]>
-    </line>
-    <line>
-      <![CDATA[<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div>]]>
-    </line>
-    <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:27 136 - Page URL:: https://www.yatra.com/</small> </font> </div>]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:56 926 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_flsearch_btn]</small> </font> </div>]]>
     </line>
     <line>
       <![CDATA[<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div>]]>
@@ -32,46 +20,52 @@
       <![CDATA[<div class="test-message">&emsp;2.Verified Yatra Title text</div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:27 294 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_flsearch_btn]</small> </font> </div>]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 027 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_origin_city]</small> </font> </div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div>]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 108 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_origin_city]</small> </font> </div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-message">&emsp;2.Verified Yatra Title text</div>]]>
-    </line>
-    <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:27 462 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_origin_city]</small> </font> </div>]]>
-    </line>
-    <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:27 728 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_origin_city]</small> </font> </div>]]>
-    </line>
-    <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:30 624 - Entered the Orgion: New Delhi</small> </font> </div>]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 297 - Entered the Orgion: New Delhi</small> </font> </div>]]>
     </line>
     <line>
       <![CDATA[<div class="test-message">&emsp;3.Successfully entered Origin Place in Yatra Homepage: New Delhi</div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:31 644 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_arrival_city]</small> </font> </div>]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 494 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_arrival_city]</small> </font> </div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:31 761 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_arrival_city]</small> </font> </div>]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 631 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_arrival_city]</small> </font> </div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:32 448 - Entered the Destination: Chennai</small> </font> </div>]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 903 - Entered the Destination: Chennai</small> </font> </div>]]>
     </line>
     <line>
       <![CDATA[<div class="test-message">&emsp;4.Successfully entered Destination Place in Yatra Homepage: Chennai</div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:35 624 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_flsearch_btn]</small> </font> </div>]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:49:01 016 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_depart_date]</small> </font> </div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:37 981 - Page URL:: https://www.yatra.com/</small> </font> </div>]]>
+      <![CDATA[<div class="test-message">&emsp;5. Successfully cliked the departure date</div>]]>
     </line>
     <line>
-      <![CDATA[<div class="test-message">&emsp;5.Successfully clicked 'Search' in Yatra Homepage </div>]]>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:49:02 260 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> css selector: div[id='BE_flight_paxInfoBox']]</small> </font> </div>]]>
+    </line>
+    <line>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:49:02 695 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> css selector: div[class='be-ddn-footer'] span]</small> </font> </div>]]>
+    </line>
+    <line>
+      <![CDATA[<div class="test-message">&emsp;6. Passenger Info successfully specified</div>]]>
+    </line>
+    <line>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:49:02 847 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_flsearch_btn]</small> </font> </div>]]>
+    </line>
+    <line>
+      <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:49:03 056 - Page URL:: https://www.yatra.com/</small> </font> </div>]]>
+    </line>
+    <line>
+      <![CDATA[<div class="test-message">&emsp;7 .Successfully clicked 'Search' in Yatra Homepage </div>]]>
     </line>
     <line>
       <![CDATA[<div class="test-message">&emsp;<b>Expected Result:</b> Successfully searched Flights</div>]]>
@@ -79,53 +73,46 @@
     <line>
       <![CDATA[<div class="test-result"><br><font color="green"><strong> Test Passed. </strong></font> </div>&emsp;]]>
     </line>
-    <line>
-      <![CDATA[<!--FAIL-->]]>
-    </line>
-    <line>
-      <![CDATA[<div class="test-result"><br><font color="red"><strong> Email id field not found in page!! </strong></font> </div>&emsp;]]>
-    </line>
   </reporter-output>
-  <suite name=" Yatra Web Automation Test" duration-ms="87866" started-at="2017-02-27T15:25:20Z" finished-at="2017-02-27T15:26:47Z">
+  <suite name=" Yatra Web Automation Test" duration-ms="20655" started-at="2017-02-28T12:18:43Z" finished-at="2017-02-28T12:19:04Z">
     <groups>
       <group name="desktop">
-        <method signature="SampleExtentReport.TC_Yatra_001(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@4566e5bd]" name="TC_Yatra_001" class="com.Yatra.TestScript.SampleExtentReport"/>
-        <method signature="SampleExtentReport.TC_Yatra_002(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@4566e5bd]" name="TC_Yatra_002" class="com.Yatra.TestScript.SampleExtentReport"/>
+        <method signature="SampleExtentReport.TC_Yatra_001(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@72d818d1]" name="TC_Yatra_001" class="com.Yatra.TestScript.SampleExtentReport"/>
       </group> <!-- desktop -->
     </groups>
-    <test name="Verify HomePage" duration-ms="87866" started-at="2017-02-27T15:25:20Z" finished-at="2017-02-27T15:26:47Z">
+    <test name="Verify HomePage" duration-ms="20655" started-at="2017-02-28T12:18:43Z" finished-at="2017-02-28T12:19:04Z">
       <class name="com.Yatra.TestScript.SampleExtentReport">
-        <test-method status="PASS" signature="init(org.testng.ITestContext)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@4566e5bd]" name="init" is-config="true" duration-ms="13" started-at="2017-02-27T20:55:20Z" finished-at="2017-02-27T20:55:20Z">
+        <test-method status="PASS" signature="init(org.testng.ITestContext)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@72d818d1]" name="init" is-config="true" duration-ms="7" started-at="2017-02-28T17:48:43Z" finished-at="2017-02-28T17:48:43Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@68269724]]>
+                <![CDATA[org.testng.TestRunner@76b9de59]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method status="PASS" signature="TC_Yatra_001(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@4566e5bd]" name="TC_Yatra_001" duration-ms="34599" started-at="2017-02-27T20:56:03Z" description="To verify the Yatra Home Page" data-provider="parallelTestDataProvider" finished-at="2017-02-27T20:56:37Z">
+        <test-method status="PASS" signature="TC_Yatra_001(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@72d818d1]" name="TC_Yatra_001" duration-ms="16200" started-at="2017-02-28T17:48:48Z" description="To verify the Yatra Home Page" data-provider="parallelTestDataProvider" finished-at="2017-02-28T17:49:04Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[, chrome_WIN8_1]]>
+                <![CDATA[, chrome_XP]]>
               </value>
             </param>
           </params>
           <reporter-output>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:55:24 894 - TestCaseID:: TC_Yatra_001</small> </font> </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:44 186 - TestCaseID:: TC_Yatra_001</small> </font> </div>]]>
             </line>
             <line>
               <![CDATA[&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">To verify the Yatra Home Page</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;]]>
             </line>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:27 136 - Page URL:: https://www.yatra.com/</small> </font> </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:56 829 - Page URL:: https://www.yatra.com/</small> </font> </div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:27 294 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_flsearch_btn]</small> </font> </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:56 926 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_flsearch_btn]</small> </font> </div>]]>
             </line>
             <line>
               <![CDATA[<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div>]]>
@@ -134,37 +121,52 @@
               <![CDATA[<div class="test-message">&emsp;2.Verified Yatra Title text</div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:27 462 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_origin_city]</small> </font> </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 027 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_origin_city]</small> </font> </div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:27 728 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_origin_city]</small> </font> </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 108 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_origin_city]</small> </font> </div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:30 624 - Entered the Orgion: New Delhi</small> </font> </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 297 - Entered the Orgion: New Delhi</small> </font> </div>]]>
             </line>
             <line>
               <![CDATA[<div class="test-message">&emsp;3.Successfully entered Origin Place in Yatra Homepage: New Delhi</div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:31 644 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_arrival_city]</small> </font> </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 494 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_arrival_city]</small> </font> </div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:31 761 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_arrival_city]</small> </font> </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 631 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_arrival_city]</small> </font> </div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:32 448 - Entered the Destination: Chennai</small> </font> </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:48:57 903 - Entered the Destination: Chennai</small> </font> </div>]]>
             </line>
             <line>
               <![CDATA[<div class="test-message">&emsp;4.Successfully entered Destination Place in Yatra Homepage: Chennai</div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:35 624 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (54465cc4-9028-4f77-b3bd-3855d20c78e6)] -> id: BE_flight_flsearch_btn]</small> </font> </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:49:01 016 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_depart_date]</small> </font> </div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:37 981 - Page URL:: https://www.yatra.com/</small> </font> </div>]]>
+              <![CDATA[<div class="test-message">&emsp;5. Successfully cliked the departure date</div>]]>
             </line>
             <line>
-              <![CDATA[<div class="test-message">&emsp;5.Successfully clicked 'Search' in Yatra Homepage </div>]]>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:49:02 260 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> css selector: div[id='BE_flight_paxInfoBox']]</small> </font> </div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:49:02 695 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> css selector: div[class='be-ddn-footer'] span]</small> </font> </div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-message">&emsp;6. Passenger Info successfully specified</div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:49:02 847 - Element is displayed:: [[RemoteWebDriver: chrome on XP (600f60c9-e1a1-41e2-b63f-338dcf7062c0)] -> id: BE_flight_flsearch_btn]</small> </font> </div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 28 Feb 17:49:03 056 - Page URL:: https://www.yatra.com/</small> </font> </div>]]>
+            </line>
+            <line>
+              <![CDATA[<div class="test-message">&emsp;7 .Successfully clicked 'Search' in Yatra Homepage </div>]]>
             </line>
             <line>
               <![CDATA[<div class="test-message">&emsp;<b>Expected Result:</b> Successfully searched Flights</div>]]>
@@ -174,71 +176,6 @@
             </line>
           </reporter-output>
         </test-method> <!-- TC_Yatra_001 -->
-        <test-method status="FAIL" signature="TC_Yatra_002(java.lang.String)[pri:0, instance:com.Yatra.TestScript.SampleExtentReport@4566e5bd]" name="TC_Yatra_002" duration-ms="44561" started-at="2017-02-27T20:56:03Z" description="Login to Yatra" data-provider="parallelTestDataProvider" finished-at="2017-02-27T20:56:47Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[, chrome_WIN8_1]]>
-              </value>
-            </param>
-          </params>
-          <exception class="java.lang.Exception">
-            <message>
-              <![CDATA[Email id field not found in page!!]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.Exception: Email id field not found in page!!
-	at com.Yatra.Utils.BrowserActions.typeOnTextField(BrowserActions.java:49)
-	at com.Yatra.Pages.LoginPage.enterEmailID(LoginPage.java:83)
-	at com.Yatra.TestScript.SampleExtentReport.TC_Yatra_002(SampleExtentReport.java:106)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
-	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:75)
-	at org.testng.internal.TestMethodWithDataProviderMethodWorker.call(TestMethodWithDataProviderMethodWorker.java:14)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source)
-	at java.util.concurrent.FutureTask.run(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
-	at java.lang.Thread.run(Unknown Source)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.Exception -->
-          <reporter-output>
-            <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:55:24 894 - TestCaseID:: TC_Yatra_002</small> </font> </div>]]>
-            </line>
-            <line>
-              <![CDATA[&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">Login to Yatra</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;]]>
-            </line>
-            <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:26 911 - Page URL:: https://www.yatra.com/</small> </font> </div>]]>
-            </line>
-            <line>
-              <![CDATA[<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 27 Feb 20:56:27 132 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (5c68f4ef-035c-416d-9db5-e0c28390dd7e)] -> id: BE_flight_flsearch_btn]</small> </font> </div>]]>
-            </line>
-            <line>
-              <![CDATA[<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div>]]>
-            </line>
-            <line>
-              <![CDATA[<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div>]]>
-            </line>
-            <line>
-              <![CDATA[<div class="test-message">&emsp;2.Verified Yatra Title text</div>]]>
-            </line>
-            <line>
-              <![CDATA[<!--FAIL-->]]>
-            </line>
-            <line>
-              <![CDATA[<div class="test-result"><br><font color="red"><strong> Email id field not found in page!! </strong></font> </div>&emsp;]]>
-            </line>
-          </reporter-output>
-        </test-method> <!-- TC_Yatra_002 -->
       </class> <!-- com.Yatra.TestScript.SampleExtentReport -->
     </test> <!-- Verify HomePage -->
   </suite> <!--  Yatra Web Automation Test -->
