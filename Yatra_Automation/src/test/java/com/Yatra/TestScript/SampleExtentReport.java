@@ -58,10 +58,6 @@ public class SampleExtentReport {
 			homePage.enterOrgion(origin);
 			Log.message("3.Successfully entered Origin Place in Yatra Homepage: " + origin);
 
-			// step4: enter Destination place in Yatra Home page
-			homePage.enterDestination(destination);
-			Log.message("4.Successfully entered Destination Place in Yatra Homepage: " + destination);
-			Thread.sleep(3000);
 
 			// step5: click 'Search' button in Yatra Home page
 			homePage.clickBtnSearch();
@@ -96,6 +92,8 @@ public class SampleExtentReport {
 			
 		    LoginPage loginPage = new LoginPage(driver);
 			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			loginPage.clickBtnSignIn();
 
 			// step2: verify Yatra title bar text
 			if (driver.getTitle().contains("Flight")) {
