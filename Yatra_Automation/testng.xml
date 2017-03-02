@@ -6,7 +6,6 @@
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="firefox_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
-
 	<test name="Verify HomePage" parallel="true">
 		<groups>
 			<run>
