@@ -4,10 +4,10 @@
     <!-- parameter for device host and port -->
     <parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="firefox_windows" />
+	<parameter name="browserName" value="iexplorer_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
-	<test name="Verify HomePage" parallel="true">
+	<test name="Verify HomePage" thread-count="10" parallel="true">
 		<groups>
 			<run>
 				<include name="desktop" />
@@ -16,9 +16,8 @@
 
 		<classes>
 			<class name="com.Yatra.TestScript.SampleExtentReport">
-				<methods>
-					<include name="TC_Yatra_001" />
-
+				<methods>				
+				<include name="TC_Yatra_004" />
 				</methods>
 			</class>
 		</classes>

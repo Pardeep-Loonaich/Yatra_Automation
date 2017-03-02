@@ -79,6 +79,31 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(xpath = "//form[@id='BE_flight_form']//li[4]/i")
 	WebElement txtReturnDatePicker;
 	
+	@FindBy(css = "a#booking_engine_flights")
+	WebElement lnkFlights;
+	
+	@FindBy(css = "a#booking_engine_hotels")
+	WebElement lnkHotels;
+	
+	@FindBy(css = "a#booking_engine_homestays")
+	WebElement lnkHomeStays;
+	
+	@FindBy(css = "a#booking_engine_holidays")
+	WebElement lnkHolidays;
+	
+	@FindBy(css = "a#booking_engine_activities")
+	WebElement lnkActivities;
+	
+	@FindBy(css = "a#booking_engine_buses")
+	WebElement lnkBuses;
+	
+	@FindBy(css = "a#booking_engine_trains")
+	WebElement lnkTrains;
+	
+	@FindBy(css = "a#booking_engine_cruise")
+	WebElement lnkCruise;	
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -336,6 +361,87 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(txtReturnDatePicker, driver, "Return Date Picker");
 		Utils.waitForPageLoad(driver);		
 	}	
+	
+	/**
+	 * To click Flights on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickFlights() throws Exception {		
+		BrowserActions.clickOnElement(lnkFlights, driver, "Flights");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click Hotels on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickHotels() throws Exception {		
+		BrowserActions.clickOnElement(lnkHotels, driver, "Hotels");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click HomeStays on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickHomeStays() throws Exception {		
+		BrowserActions.clickOnElement(lnkHomeStays, driver, "HomeStays");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click Holidays on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickHolidays() throws Exception {		
+		BrowserActions.clickOnElement(lnkHolidays, driver, "Holidays");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click Buses on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickBuses() throws Exception {		
+		BrowserActions.clickOnElement(lnkBuses, driver, "Buses");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click Trains on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickTrains() throws Exception {		
+		BrowserActions.clickOnElement(lnkTrains, driver, "Trains");
+		Utils.waitForPageLoad(driver);		
+	}
 
+	/**
+	 * To click Cruise on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickCruise() throws Exception {		
+		BrowserActions.clickOnElement(lnkCruise, driver, "Cruise");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click Activities on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickActivities() throws Exception {		
+		BrowserActions.clickOnElement(lnkActivities, driver, "Activities");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	
 	
 }// HomePage
