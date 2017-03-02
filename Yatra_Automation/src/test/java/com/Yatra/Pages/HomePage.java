@@ -35,7 +35,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(id = "BE_flight_flsearch_btn")
 	WebElement btnSearch;
 	
-	
+	@FindBy(id="BE_flight_depart_date")
+	WebElement txtDepartDate;
 	
 
 	/**********************************************************************************************

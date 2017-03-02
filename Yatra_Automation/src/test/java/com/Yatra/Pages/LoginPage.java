@@ -22,7 +22,8 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	 ********************************* WebElements of Login Page ***********************************
 	 **********************************************************************************************/
 
-	@FindBy(xpath = "//div[@id='main-container']/div/div[1]")
+	//@FindBy(xpath = "//div[@id='main-container']/div/div[1]")
+	@FindBy(xpath = "//div[@class='user-drop-ddn-out header-dropdown']/ul/li[@id='signInBtn']")
 	WebElement divLoginBox;
 
 	@FindBy(id = "emailId")
