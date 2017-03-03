@@ -31,20 +31,20 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 
-	@FindBy(id = "BE_flight_origin_city")
-	public WebElement txtOrgion;
+	@FindBy(css = "input#BE_flight_origin_city")
+	public WebElement txtOrigin;
 
-	@FindBy(id = "BE_flight_arrival_city")
+	@FindBy(css = "input#BE_flight_arrival_city")
 	WebElement txtDestination;
 
-	@FindBy(id = "BE_flight_flsearch_btn")
+	@FindBy(css = "input#BE_flight_flsearch_btn")
 	WebElement btnSearch;
 	
-	@FindBy(id= "BE_flight_depart_date")
-	WebElement departureDate;
+	@FindBy(css= "input#BE_flight_depart_date")
+	WebElement dateDeparture;
 	
-	@FindBy(id= "BE_flight_return_date")
-	WebElement returnDate;
+	@FindBy(css= "input#BE_flight_return_date")
+	WebElement dateReturn;
 	
 	@FindBy(css ="div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']" )
 	List<WebElement> selectMonth;
@@ -61,17 +61,17 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "div[class='be-ddn-footer'] span")
 	WebElement submitPassengerClassInfo;
 	
-	@FindBy(xpath = "//form[@id='BE_flight_form']//li[1]/a")
+	@FindBy(css = "a[title='One Way']")
 	public WebElement lnkOneWay;
 
-	@FindBy(xpath = "//form[@id='BE_flight_form']//li[2]/a")
+	@FindBy(css = "a[title='Round Trip']")
 	WebElement lnkRoundTrip;
 
-	@FindBy(xpath = "//form[@id='BE_flight_form']//li[3]/a")
+	@FindBy(css = "a[title='Multicity']")
 	WebElement lnkMultiCity;	
 	
-	@FindBy(id = "BE_flight_depart_date")
-	WebElement txtDeptDate;
+	@FindBy(css = "#BE_flight_depart_date")
+	WebElement txtDateDepart;
 	
 	@FindBy(xpath = "//form[@id='BE_flight_form']//li[3]/i")
 	WebElement txtDeptDatePicker;
@@ -134,11 +134,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
-
-		/*headers = new Headers(driver).get();
-		footers = new Footers(driver).get();
-		minicart = new MiniCartPage(driver).get();
-		elementLayer = new ElementLayer(driver);*/
 	}// HomePage
 
 	@Override
@@ -150,9 +145,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnSearch))) {
 			Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
-		/*headers = new Headers(driver).get();
-		footers = new Footers(driver).get();
-		elementLayer = new ElementLayer(driver);*/
 
 	}// isLoaded
 
@@ -165,16 +157,16 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 
 	/**
-	 * Enter Orgion
+	 * Enter Origin
 	 * 
-	 * @param orgion
+	 * @param origin
 	 *            as string
 	 * @throws Exception
 	 */
-	public void enterOrgion(String orgion) throws Exception {
-		Utils.waitForElement(driver, txtOrgion);
-		BrowserActions.typeOnTextField(txtOrgion, orgion, driver, "Select Orgion");
-		Log.event("Entered the Orgion: " + orgion);
+	public void enterOrigin(String origin) throws Exception {
+		Utils.waitForElement(driver, txtOrigin);
+		BrowserActions.typeOnTextField(txtOrigin, origin, driver, "Select Origin");
+		Log.event("Entered the Origin: " + origin);
 	}
 	
 	
@@ -206,7 +198,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	public void selectDepartureDate(String day) throws Exception{
 		int month=Integer.parseInt(day.split("_")[2]);
-		BrowserActions.clickOnElement(departureDate, driver, "clicking on departure date icon");
+		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
 		selectMonth.get(month-2).click();
 		List<WebElement> datePicker =driver.findElements(By.cssSelector(dateLocator+day+"']"));
 		datePicker.get(0).click();
@@ -335,8 +327,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickDeptdate() throws Exception {		
-		BrowserActions.clickOnElement(txtDeptDate, driver, "Depart Date Textbox");
+	public void clickDateDepart() throws Exception {		
+		BrowserActions.clickOnElement(txtDateDepart, driver, "Depart Textbox");
 		Utils.waitForPageLoad(driver);		
 	}
 	
@@ -347,7 +339,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void clickDeptDatePicker() throws Exception {	
-		BrowserActions.clickOnElement(txtDeptDatePicker, driver, "Depart Date Picker");
+		BrowserActions.clickOnElement(txtDeptDatePicker, driver, "Depart DatePicker");
 		Utils.waitForPageLoad(driver);		
 	}
 	
@@ -358,7 +350,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void clickReturnDatePicker() throws Exception {		
-		BrowserActions.clickOnElement(txtReturnDatePicker, driver, "Return Date Picker");
+		BrowserActions.clickOnElement(txtReturnDatePicker, driver, "Return DatePicker");
 		Utils.waitForPageLoad(driver);		
 	}	
 	

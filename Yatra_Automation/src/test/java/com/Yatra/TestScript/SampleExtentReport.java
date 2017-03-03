@@ -55,7 +55,7 @@ public class SampleExtentReport {
 			}
 
 			// step3: enter Origin place in Yatra Home page
-			homePage.enterOrgion(origin);
+			homePage.enterOrigin(origin);
 			Log.message("3.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
 
 			// step4: enter Destination place in Yatra Home page
@@ -131,7 +131,7 @@ public class SampleExtentReport {
 			Log.message("7.Successfully clicked 'One Way ' option in search Home Page ");
 			
 			// step: enter Origin place in Yatra Home page
-			homePage.enterOrgion(origin);
+			homePage.enterOrigin(origin);
 			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
 
 			// step: enter Destination place in Yatra Home page
@@ -139,7 +139,7 @@ public class SampleExtentReport {
 			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
 			Thread.sleep(3000);	
 			
-			homePage.clickDeptdate();
+			homePage.clickDateDepart();
 			//homePage.selectDeptCurrentDate(); //TODO
 			homePage.selectDeptDateAfterOneWeek();
 			Log.message("10. selected Depart Date");			
@@ -154,6 +154,7 @@ public class SampleExtentReport {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -204,7 +205,7 @@ public class SampleExtentReport {
 			Log.message("7.Successfully clicked 'Round Trip' option in search Home Page ");
 			
 			// step: enter Origin place in Yatra Home page
-			homePage.enterOrgion(origin);
+			homePage.enterOrigin(origin);
 			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
 
 			// step: enter Destination place in Yatra Home page
@@ -230,6 +231,7 @@ public class SampleExtentReport {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
+			driver.quit();
 			Log.endTestCase();
 		}
 	}	
