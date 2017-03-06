@@ -41,10 +41,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 	WebElement btnSearch;
 	
 	@FindBy(id= "BE_flight_depart_date")
-	WebElement departureDate;
+	WebElement dateDeparture;
 	
 	@FindBy(id= "BE_flight_return_date")
-	WebElement returnDate;
+	WebElement dateReturn;
 	
 	@FindBy(css ="div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']" )
 	List<WebElement> selectMonth;
@@ -181,7 +181,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	public void selectDepartureDate(String day) throws Exception{
 		int month=Integer.parseInt(day.split("_")[2]);
-		BrowserActions.clickOnElement(departureDate, driver, "clicking on departure date icon");
+		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
 		selectMonth.get(month-2).click();
 		List<WebElement> datePicker =driver.findElements(By.cssSelector(dateLocator+day+"']"));
 		datePicker.get(0).click();
