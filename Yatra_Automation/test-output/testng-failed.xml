@@ -2,7 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite thread-count="500" guice-stage="DEVELOPMENT" verbose="3" name="Failed suite [ Yatra Web Automation Test]" parallel="tests">
   <parameter name="webSite" value="https://www.yatra.com/"/>
-  <parameter name="browserName" value="iexplorer_windows"/>
+  <parameter name="deviceHost" value="localhost"/>
+  <parameter name="devicePort" value="4444"/>
+  <parameter name="browserName" value="chrome"/>
   <test name="Verify HomePage(failed)" parallel="true">
     <groups>
       <run>
