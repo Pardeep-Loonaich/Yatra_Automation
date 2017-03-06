@@ -23,30 +23,32 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	 **********************************************************************************************/
 	
 	@FindBy(id = "signInBtn")
-	public WebElement signInBtn;
+	public WebElement btnSignIn;
 
 	@FindBy(id = "emailId")
-	public WebElement emailIdTxtBox;
+	public WebElement txtMailId;
 	
 	@FindBy(id = "password")
-	public WebElement passwordTxtBox;
+	public WebElement txtPassword;
 	
 	@FindBy(css = "p a[href*='forgotpassword']")
-	public WebElement forgotPasswordLink;
+	public WebElement lnkForgotPassword;
 	
 	@FindBy(css = "button[id='b2bSignUp']")
-	public WebElement registerHereBtn;
+	public WebElement btnRegisterHere;
+
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
+
 
 	@Override
 	protected void isLoaded() throws Error {
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, signInBtn))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnSignIn))) {
 			Log.fail("Agent Login Page did not open up. Site might be down.", driver);
 		}	
 	}
@@ -67,19 +69,19 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	public void signIn(String loginId , String password) 
 			throws Exception{
 		BrowserActions.typeOnTextField(
-					emailIdTxtBox, loginId, driver,
+				txtMailId, loginId, driver,
 						"Email Id");
 		BrowserActions.typeOnTextField(
-					passwordTxtBox, password, driver,
+				txtPassword, password, driver,
 						"Password");
 		BrowserActions.clickOnElement(
-					signInBtn, driver, 
+				btnSignIn, driver, 
 						"SignIn buttom");
 	}// the return type needs to be chnaged because the sinin action returns the homepage of the user
 	
 	public AgentRegister clickOnAgentRegsiter() throws Exception{
 		BrowserActions.clickOnElement(
-					registerHereBtn, driver,
+				btnRegisterHere, driver,
 						"Agent Register Btn");
 		return new AgentRegister(driver).get();
 	}

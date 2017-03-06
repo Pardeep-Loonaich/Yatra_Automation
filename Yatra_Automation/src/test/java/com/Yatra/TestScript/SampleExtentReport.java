@@ -103,7 +103,6 @@ public class SampleExtentReport {
 			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1.Navigated to 'Yatra' Home Page!");
-			
 
 			// step2: verify Yatra title bar text
 			if (driver.getTitle().contains("Flight")) {

@@ -1,3 +1,7 @@
 /target/
 /test-output/
 /bin/
+
+test-output/
+*.html
+.setting

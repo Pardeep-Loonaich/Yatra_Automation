@@ -44,12 +44,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	WebElement txtDepartDate;
 
 	@FindBy(id= "BE_flight_depart_date")
-	WebElement departureDate;
-	
+	WebElement departureDate;	
+
 	@FindBy(id= "BE_flight_return_date")
 	WebElement returnDate;
 
-	
 	@FindBy(css ="div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']" )
 	List<WebElement> selectMonth;
 	
@@ -96,7 +95,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @param url
 	 *            : UAT URL
 	 */
-	
+
 	public HomePage(WebDriver driver, String url) {
 		appURL = url;
 		this.driver = driver;
@@ -104,21 +103,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		PageFactory.initElements(finder, this);
 	}// HomePage
 
-	/**
-	 * 
-	 * @param driver
-	 *            : webdriver
-	 */
-	public HomePage(WebDriver driver) {
-		this.driver = driver;
-		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
-		PageFactory.initElements(finder, this);
+	
 
-		/*headers = new Headers(driver).get();
-		footers = new Footers(driver).get();
-		minicart = new MiniCartPage(driver).get();
-		elementLayer = new ElementLayer(driver);*/
-	}// HomePage
 
 	@Override
 	protected void isLoaded() {
