@@ -18,8 +18,6 @@ public class FlightsCancellationCharges extends LoadableComponent<FlightsCancell
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	
-
-
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
