@@ -22,14 +22,13 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 	
-	@FindBy(id = "signInBtn")
+	@FindBy(xpath = "//*[@id='signInBtn']")
 	public WebElement btnSignIn;
 
-	@FindBy(id = "emailId")
+	@FindBy(xpath = "//*[@id='emailId']")
 	public WebElement txtMailId;
 	
-	
-	@FindBy(id = "password")
+	@FindBy(xpath = "//*[@id='password']")
 	public WebElement txtPassword;
 	
 	@FindBy(css = "p a[href*='forgotpassword']")
