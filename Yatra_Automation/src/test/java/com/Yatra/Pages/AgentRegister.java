@@ -21,7 +21,7 @@ public class AgentRegister extends LoadableComponent<AgentRegister> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 	
-	@FindBy(id = "submitbutton")
+	@FindBy(xpath = "//*[@id='submitbutton']")
 
 	
 	public WebElement btnSubmit;
