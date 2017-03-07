@@ -28,6 +28,7 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	@FindBy(id = "emailId")
 	public WebElement txtMailId;
 	
+	
 	@FindBy(id = "password")
 	public WebElement txtPassword;
 	
