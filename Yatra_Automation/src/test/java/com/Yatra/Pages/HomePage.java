@@ -441,6 +441,4 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);		
 	}
 	
-	
-	
 }// HomePage
