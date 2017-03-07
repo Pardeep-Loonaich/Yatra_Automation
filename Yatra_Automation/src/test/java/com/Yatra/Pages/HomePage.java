@@ -44,8 +44,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 	WebElement dateDeparture;
 	
 	@FindBy(css= "input#BE_flight_return_date")
-	WebElement dateReturn;
+    WebElement dateReturn;
 	
+
+	WebElement departureDate;	
+
+	@FindBy(id= "BE_flight_return_date")
+	WebElement returnDate;
+
+
 	@FindBy(css ="div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']" )
 	List<WebElement> selectMonth;
 	
@@ -117,7 +124,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @param url
 	 *            : UAT URL
 	 */
-	
+
 	public HomePage(WebDriver driver, String url) {
 		appURL = url;
 		this.driver = driver;

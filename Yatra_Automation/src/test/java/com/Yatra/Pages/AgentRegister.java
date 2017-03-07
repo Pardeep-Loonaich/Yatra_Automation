@@ -21,8 +21,15 @@ public class AgentRegister extends LoadableComponent<AgentRegister> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 	
-	@FindBy(id = "submitbutton")
-	public WebElement submitBtn;
+	@FindBy(xpath = "//*[@id='submitbutton']")
+
+	
+	public WebElement btnSubmit;
+	
+	/**********************************************************************************************
+	 ********************************* WebElements of Home Page - Ends ****************************
+	 **********************************************************************************************/
+
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -32,7 +39,8 @@ public class AgentRegister extends LoadableComponent<AgentRegister> {
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, submitBtn))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnSubmit))) {
+
 			Log.fail("Agent Login Page did not open up. Site might be down.", driver);
 		}	
 	}

@@ -22,7 +22,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	 ********************************* WebElements of Login Page ***********************************
 	 **********************************************************************************************/
 
-	@FindBy(css = ".row.nopadding")
+	@FindBy(xpath = "//div[@class='user-drop-ddn-out header-dropdown']/ul/li[@id='signInBtn']")
 	WebElement divLoginBox;
 
 	@FindBy(css = "#emailId")

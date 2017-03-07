@@ -58,10 +58,12 @@ public class SampleExtentReport {
 			homePage.enterOrigin(origin);
 			Log.message("3.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
 
+
 			// step4: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
 			Log.message("4.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
 			Thread.sleep(3000);
+
 
 			
 			homePage.selectDepartureDate(testData.get("Date"));
@@ -101,7 +103,7 @@ public class SampleExtentReport {
 			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1.Navigated to 'Yatra' Home Page!");
-			
+
 			// step2: verify Yatra title bar text
 			if (driver.getTitle().contains("Flight")) {
 				Log.message("2.Verified Yatra Title text");

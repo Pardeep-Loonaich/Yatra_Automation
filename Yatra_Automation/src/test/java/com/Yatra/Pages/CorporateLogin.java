@@ -22,13 +22,13 @@ public class CorporateLogin extends LoadableComponent<CorporateLogin>{
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 	
-	@FindBy(id = "signInBtn")
+	@FindBy(xpath = "//*[@id='signInBtn']")
 	public WebElement signInBtn;
 
-	@FindBy(id = "emailId")
+	@FindBy(xpath = "//*[@id='emailId']")
 	public WebElement emailIdTxtBox;
 	
-	@FindBy(id = "password")
+	@FindBy(xpath = "//*[@id='password']")
 	public WebElement passwordTxtBox;
 	
 	@FindBy(css = "p a[href*='forgotpassword']")

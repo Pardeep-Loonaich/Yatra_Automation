@@ -19,41 +19,41 @@ public class Bookings extends LoadableComponent<Bookings>  {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 	
-	@FindBy(id = "signInBtn")
-	public WebElement signInBtn;
+	@FindBy(xpath = "//*[@id='signInBtn']")
+	public WebElement btnSignIn;
 	
-	@FindBy(id = "signUp")
-	public WebElement signUpBtn;
+	@FindBy(xpath = "//*[@id='signUp']")
+	public WebElement btnSignUp;
 
-	@FindBy(id = "emailId")
-	public WebElement emailIdTxtBox;
+	@FindBy(xpath = "//*[@id='emailId']")
+	public WebElement txtEmailId;
 	
-	@FindBy(id = "password")
-	public WebElement passwordTxtBox;
+	@FindBy(xpath = "//*[@id='password']")
+	public WebElement txtPassword;
 	
 	@FindBy(css = "p a[href='javascript:;']")
-	public WebElement forgotPasswordLink;
+	public WebElement lnkForgotPassword;
 	
 	@FindBy(css = "button[id='b2bSignUp']")
-	public WebElement registerHereBtn;
+	public WebElement btnRegisterHere;
 	
 	@FindBy(css = "button[class='yt-btn btn-facebook btn-block']")
-	public WebElement loginWithFacebookBtn;
+	public WebElement btnLoginWithFacebook;
 	
-	@FindBy(id = "emailId_guest")
-	public WebElement guestEmailtxtBox;
+	@FindBy(xpath = "//*[@id='emailId_guest']")
+	public WebElement txtGuestEmail;
 	
-	@FindBy(id = "book-num")
-	public WebElement bookingReferenceNumTxtBox;
+	@FindBy(xpath = "//*[@id='book-num']")
+	public WebElement txtBookingReferenceNum;
 	
 	@FindBy(css = "button[class='yt-btn btn-blue btn-block']")
-	public WebElement submitBtn;
+	public WebElement btnSubmit;
 	
-	@FindBy(id = "DYNPMessage")
+	@FindBy(xpath = "//*[@id='DYNPMessage']")
 	public WebElement DYNPMessage;
 	
 	@FindBy(css = "a[href*='customer-support']")
-	public WebElement customerCareLink;
+	public WebElement lnkCustomerCare;
 	
 	@FindBy(css = "span[class='closeDYNPMessage']")
 	public WebElement closeDYNPMessage;
@@ -64,8 +64,8 @@ public class Bookings extends LoadableComponent<Bookings>  {
 	@FindBy(css = "a[class='refNo rotate']")
 	public WebElement howDoIFindMyReferenceNumberLinkRotatedState;
 	
-	@FindBy(id = "diyLink")
-	public WebElement knowMoreLink;
+	@FindBy(xpath = "//*[@id='diyLink']")
+	public WebElement lnkKnowMore;
 	
 	
 	
@@ -77,7 +77,7 @@ public class Bookings extends LoadableComponent<Bookings>  {
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, submitBtn))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnSubmit))) {
 			Log.fail("Agent Login Page did not open up. Site might be down.", driver);
 		}	
 	}
@@ -88,27 +88,28 @@ public class Bookings extends LoadableComponent<Bookings>  {
 		isPageLoaded = true;
 	}
 	 public void signIn(String loginId , String password) throws Exception{
-		    BrowserActions.typeOnTextField(emailIdTxtBox, loginId, driver, "Email Id");
-			BrowserActions.typeOnTextField(passwordTxtBox, password, driver, "Password");
-			BrowserActions.clickOnElement(signInBtn, driver, "SignIn buttom");
+		    BrowserActions.typeOnTextField(txtEmailId, loginId, driver, "Email Id");
+			BrowserActions.typeOnTextField(txtPassword, password, driver, "Password");
+			BrowserActions.clickOnElement(btnSignIn, driver, "SignIn buttom");
 	 }
 
 	 public void submitBookingDetails(String email , String bookingReferenceNum) throws Exception{
-		 BrowserActions.typeOnTextField(guestEmailtxtBox, email, driver, "Email Address");
-		 BrowserActions.typeOnTextField(bookingReferenceNumTxtBox, bookingReferenceNum, driver, "Booking Reference Number");
-		 BrowserActions.clickOnElement(submitBtn, driver, "Submit Button");
+		 BrowserActions.typeOnTextField(txtGuestEmail, email, driver, "Email Address");
+		 BrowserActions.typeOnTextField(txtBookingReferenceNum, bookingReferenceNum, driver, "Booking Reference Number");
+		 BrowserActions.clickOnElement(btnSignIn, driver, "Submit Button");
 	 }
 	 
 	 public void loginWithFacebook() throws Exception{
-		 BrowserActions.clickOnElement(loginWithFacebookBtn, driver, "Login With Facebook Button");
+		 BrowserActions.clickOnElement(btnLoginWithFacebook, driver, "Login With Facebook Button");
 	 }
 	 
 	 public void signUp() throws Exception{
-		 BrowserActions.clickOnElement(signUpBtn, driver, "SignUp Button");
+		 BrowserActions.clickOnElement(btnSignUp, driver, "SignUp Button");
 	 }
 	 
 	 public void navigateToCustomerCarePage() throws Exception{
-		 BrowserActions.clickOnElement(customerCareLink, driver, "Customer Care Link");
+		 BrowserActions.clickOnElement(lnkCustomerCare, driver, "Customer Care Link");
+
 	 }
 	 
 	 public void closeDYNPMessage() throws Exception{
