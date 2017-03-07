@@ -22,7 +22,14 @@ public class AgentRegister extends LoadableComponent<AgentRegister> {
 	 **********************************************************************************************/
 	
 	@FindBy(id = "submitbutton")
+
+	
 	public WebElement btnSubmit;
+	
+	/**********************************************************************************************
+	 ********************************* WebElements of Home Page - Ends ****************************
+	 **********************************************************************************************/
+
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -33,6 +40,7 @@ public class AgentRegister extends LoadableComponent<AgentRegister> {
 			Assert.fail();
 		}
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnSubmit))) {
+
 			Log.fail("Agent Login Page did not open up. Site might be down.", driver);
 		}	
 	}

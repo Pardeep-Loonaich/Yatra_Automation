@@ -17,8 +17,6 @@ public class MakePayment extends LoadableComponent<CompleteBooking> {
 
 	private WebDriver driver;
 	private boolean isPageLoaded;
-	
-
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************

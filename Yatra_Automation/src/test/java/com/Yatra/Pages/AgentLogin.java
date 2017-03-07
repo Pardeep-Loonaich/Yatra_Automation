@@ -36,10 +36,12 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	
 	@FindBy(css = "button[id='b2bSignUp']")
 	public WebElement btnRegisterHere;
+
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
+
 
 	@Override
 	protected void isLoaded() throws Error {

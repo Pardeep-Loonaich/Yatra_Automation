@@ -109,6 +109,7 @@ public class Bookings extends LoadableComponent<Bookings>  {
 	 
 	 public void navigateToCustomerCarePage() throws Exception{
 		 BrowserActions.clickOnElement(lnkCustomerCare, driver, "Customer Care Link");
+
 	 }
 	 
 	 public void closeDYNPMessage() throws Exception{

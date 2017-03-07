@@ -25,7 +25,7 @@ public class CompleteBooking extends LoadableComponent<CompleteBooking> {
 	 **********************************************************************************************/
 	
 	@FindBy(xpath = "*//table/tbody/tr[@id='homeId']/td[2]")
-	public WebElement txtbookingRefNo;
+	public WebElement txtBookingRefNo;
 	
 	@FindBy(xpath = "*//table/tbody/tr[@id='submitId']/td[2]")
 	public WebElement btnSubmit;
@@ -33,7 +33,6 @@ public class CompleteBooking extends LoadableComponent<CompleteBooking> {
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
-	
 	/**
 	 * constructor of the class
 	 * 
@@ -57,7 +56,7 @@ public class CompleteBooking extends LoadableComponent<CompleteBooking> {
 			Assert.fail();
 		}
 
-		if (isPageLoaded && !(Utils.waitForElement(driver, txtbookingRefNo))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, txtBookingRefNo))) {
 			Log.fail("Complete Booking page didn't open up", driver);
 		}
 	}
@@ -80,9 +79,9 @@ public class CompleteBooking extends LoadableComponent<CompleteBooking> {
 	 */
 	
 	public void enterBookingDetail(String bookingrefno) throws Exception {
-		Utils.waitForElement(driver, txtbookingRefNo);		
+		Utils.waitForElement(driver, txtBookingRefNo);		
 		
-		BrowserActions.typeOnTextField(txtbookingRefNo, bookingrefno, driver, "booking ref no");
+		BrowserActions.typeOnTextField(txtBookingRefNo, bookingrefno, driver, "booking ref no");
 		Log.event("Entered the Booking No: " + bookingrefno);
 		
 		BrowserActions.clickOnElement(btnSubmit, driver, "Submit");
