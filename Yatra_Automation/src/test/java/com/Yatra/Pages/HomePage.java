@@ -92,7 +92,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @param url
 	 *            : UAT URL
 	 */
-	
+
 	public HomePage(WebDriver driver, String url) {
 		appURL = url;
 		this.driver = driver;
