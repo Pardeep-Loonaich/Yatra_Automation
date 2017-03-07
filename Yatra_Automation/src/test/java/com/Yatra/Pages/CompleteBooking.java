@@ -24,10 +24,10 @@ public class CompleteBooking extends LoadableComponent<CompleteBooking> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 	
-	@FindBy(xpath = "*//table/tbody/tr[@id='homeId']/td[2]")
+	@FindBy(css = "td [id='ref']")
 	public WebElement txtBookingRefNo;
 	
-	@FindBy(xpath = "*//table/tbody/tr[@id='submitId']/td[2]")
+	@FindBy(css = "td [id='submitBtn']")
 	public WebElement btnSubmit;
 	
 	/**********************************************************************************************
