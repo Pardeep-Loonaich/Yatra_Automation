@@ -52,7 +52,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(id= "BE_flight_return_date")
 	WebElement returnDate;
 
-
 	@FindBy(css ="div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']" )
 	List<WebElement> selectMonth;
 	
@@ -360,6 +359,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(txtReturnDatePicker, driver, "Return DatePicker");
 		Utils.waitForPageLoad(driver);		
 	}	
+
 	
 	/**
 	 * To click Flights on Home page
@@ -440,5 +440,5 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(lnkActivities, driver, "Activities");
 		Utils.waitForPageLoad(driver);		
 	}
-	
+
 }// HomePage

@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import org.openqa.selenium.WebDriver;
@@ -38,8 +39,6 @@ public class SearchResult extends LoadableComponent<SearchResult>{
 	 * @param url
 	 *            : UAT URL
 	 */
-	
-	
 	
 	public SearchResult(WebDriver driver) {
 		this.driver = driver;

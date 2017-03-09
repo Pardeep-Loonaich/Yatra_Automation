@@ -27,7 +27,7 @@ public class CompleteBooking extends LoadableComponent<CompleteBooking> {
 	@FindBy(css = "td [id='ref']")
 	public WebElement txtBookingRefNo;
 	
-	@FindBy(css = "td [id='submitBtn']")
+	@FindBy(css =  "td [id='submitBtn']")
 	public WebElement btnSubmit;
 	
 	/**********************************************************************************************

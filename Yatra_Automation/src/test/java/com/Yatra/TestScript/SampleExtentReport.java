@@ -88,7 +88,7 @@ public class SampleExtentReport {
 
 	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for One Way", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_002(String browser) throws Exception {
+	public void TC_Yatra_004(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -141,7 +141,10 @@ public class SampleExtentReport {
 			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
 			Thread.sleep(3000);	
 			
-			homePage.clickDateDepart();
+
+			homePage.clickDeptDatePicker();
+
+
 			//homePage.selectDeptCurrentDate(); //TODO
 			homePage.selectDeptDateAfterOneWeek();
 			Log.message("10. selected Depart Date");			
