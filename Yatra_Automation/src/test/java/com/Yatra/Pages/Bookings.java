@@ -19,16 +19,16 @@ public class Bookings extends LoadableComponent<Bookings>  {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 	
-	@FindBy(id = "signInBtn")
+	@FindBy(xpath = "//*[@id='signInBtn']")
 	public WebElement btnSignIn;
 	
-	@FindBy(id = "signUp")
+	@FindBy(xpath = "//*[@id='signUp']")
 	public WebElement btnSignUp;
 
-	@FindBy(id = "emailId")
+	@FindBy(xpath = "//*[@id='emailId']")
 	public WebElement txtEmailId;
 	
-	@FindBy(id = "password")
+	@FindBy(xpath = "//*[@id='password']")
 	public WebElement txtPassword;
 	
 	@FindBy(css = "p a[href='javascript:;']")
@@ -40,16 +40,16 @@ public class Bookings extends LoadableComponent<Bookings>  {
 	@FindBy(css = "button[class='yt-btn btn-facebook btn-block']")
 	public WebElement btnLoginWithFacebook;
 	
-	@FindBy(id = "emailId_guest")
+	@FindBy(xpath = "//*[@id='emailId_guest']")
 	public WebElement txtGuestEmail;
 	
-	@FindBy(id = "book-num")
+	@FindBy(xpath = "//*[@id='book-num']")
 	public WebElement txtBookingReferenceNum;
 	
 	@FindBy(css = "button[class='yt-btn btn-blue btn-block']")
 	public WebElement btnSubmit;
 	
-	@FindBy(id = "DYNPMessage")
+	@FindBy(xpath = "//*[@id='DYNPMessage']")
 	public WebElement DYNPMessage;
 	
 	@FindBy(css = "a[href*='customer-support']")
@@ -64,7 +64,7 @@ public class Bookings extends LoadableComponent<Bookings>  {
 	@FindBy(css = "a[class='refNo rotate']")
 	public WebElement howDoIFindMyReferenceNumberLinkRotatedState;
 	
-	@FindBy(id = "diyLink")
+	@FindBy(xpath = "//*[@id='diyLink']")
 	public WebElement lnkKnowMore;
 	
 	
