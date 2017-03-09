@@ -29,7 +29,7 @@ public class FlightsCancellationCharges extends LoadableComponent<FlightsCancell
 	@FindBy(xpath = "//input[@id ='mobileNumber']")
 	public WebElement txtMobileNo;
 	
-	@FindBy(xpath = "//input[@type='submit']")
+	@FindBy(xpath =  "//input[@type='submit']")
 	public WebElement btnSubmit;
 	
 	/**********************************************************************************************

@@ -31,7 +31,7 @@ public class MakePayment extends LoadableComponent<CompleteBooking> {
 	@FindBy(xpath= "//input[@id ='super_pnr']")
 	public WebElement txtBookingRefNo;
 	
-	@FindBy(xpath = "//input[@id ='login-button']")
+	@FindBy(xpath =  "//input[@id ='login-button']")
 	public WebElement btnLogin;
 	
 	/**********************************************************************************************
