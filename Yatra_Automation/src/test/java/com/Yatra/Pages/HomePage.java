@@ -51,14 +51,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(id= "BE_flight_return_date")
 	WebElement returnDate;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
-=======
-
->>>>>>> refs/remotes/origin/Framework_Development
->>>>>>> branch 'Framework_Development' of https://github.com/Harveer-Singh/Yatra_Automation.git
 
 	@FindBy(css ="div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']" )
 	List<WebElement> selectMonth;
