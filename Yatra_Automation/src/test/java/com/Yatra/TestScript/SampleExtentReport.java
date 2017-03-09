@@ -141,7 +141,10 @@ public class SampleExtentReport {
 			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
 			Thread.sleep(3000);	
 			
+
 			homePage.clickDeptDatePicker();
+
+
 			//homePage.selectDeptCurrentDate(); //TODO
 			homePage.selectDeptDateAfterOneWeek();
 			Log.message("10. selected Depart Date");			
@@ -156,6 +159,7 @@ public class SampleExtentReport {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -232,6 +236,7 @@ public class SampleExtentReport {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
+			driver.quit();
 			Log.endTestCase();
 		}
 	}	
