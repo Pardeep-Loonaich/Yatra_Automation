@@ -88,7 +88,7 @@ public class SampleExtentReport {
 
 	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for One Way", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_004(String browser) throws Exception {
+	public void TC_Yatra_002(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -240,5 +240,153 @@ public class SampleExtentReport {
 			Log.endTestCase();
 		}
 	}	
+	@Test(groups = {"desktop" }, description = "Searching Fligts for One Way-International", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	public void TC_Yatra_004(String browser) throws Exception {
 
+		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String date = testData.get("Date");
+		
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1.Navigated to 'Yatra' Home Page!");
+
+			// step2: verify Yatra title bar text
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("2.Verified Yatra Title text");
+			}			
+
+		    LoginPage loginPage = new LoginPage(driver);
+			Log.message("3. Navigated to 'Yatra' Login Page!");
+			
+			//click Login button in HomePage
+			loginPage.clickBtnSignIn();
+
+			// step: enter Origin place in Yatra Home page
+			loginPage.enterEmailID(emailId);
+			Log.message("4.Successfully entered '"+ emailId+"' Id in Emai Textbox ");
+
+			// step: enter Destination place in Yatra Home page
+			loginPage.enterPassword(password);
+			Log.message("5.Successfully entered '"+ password +"' Password in Password textbox " );
+			Thread.sleep(3000);
+
+			// step: click 'Search' button in Yatra Home page
+			loginPage.clickBtnSignIn();
+			Log.message("6.Successfully clicked 'SignIn' ");			
+			Log.message("Successfully Logged in Yatra acct");			
+			
+			homePage.selectOneWayTrip();
+			Log.message("7.Successfully clicked 'One Way ' option in search Home Page ");
+			
+			// step: enter Origin place in Yatra Home page
+			homePage.enterOrigin(origin);
+			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterDestination(destination);
+			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
+			Thread.sleep(3000);	
+			
+			//step: enter depart date
+			homePage.selectDepartureDate(date);
+			Log.message("10. selected Depart Date");			
+			Thread.sleep(5000);	
+			
+			// step5: click 'Search' button in Yatra Home page
+			homePage.clickBtnSearch();
+			Log.message("11.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-International", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	public void TC_Yatra_005(String browser) throws Exception {
+
+		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1.Navigated to 'Yatra' Home Page!");
+			
+			// step2: verify Yatra title bar text
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("2.Verified Yatra Title text");
+			}			
+
+		    LoginPage loginPage = new LoginPage(driver);
+			Log.message("3. Navigated to 'Yatra' Login Page!");
+			
+			//click Login button in HomePage
+			loginPage.clickBtnSignIn();
+
+			// step: enter Origin place in Yatra Home page
+			loginPage.enterEmailID(emailId);
+			Log.message("4.Successfully entered '"+ emailId+"' Id in Emai Textbox ");
+
+			// step: enter Destination place in Yatra Home page
+			loginPage.enterPassword(password);
+			Log.message("5.Successfully entered '"+ password +"' Password in Password textbox " );
+			Thread.sleep(3000);
+
+			// step: click 'Search' button in Yatra Home page
+			loginPage.clickBtnSignIn();
+			Log.message("6.Successfully clicked 'SignIn' ");			
+			Log.message("Successfully Logged in Yatra acct");			
+			
+			homePage.selectRoundTrip();
+			Log.message("7.Successfully clicked 'Round Trip' option in search Home Page ");
+			
+			// step: enter Origin place in Yatra Home page
+			homePage.enterOrigin(origin);
+			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterDestination(destination);
+			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
+			Thread.sleep(3000);	
+			
+			homePage.clickDeptDatePicker();		
+			homePage.selectDeptDateAfterOneWeek();
+			Log.message("10. selected Depart Date");	
+			
+			homePage.clickReturnDatePicker();
+			homePage.selectReturnDateAfterTwoWeek();
+			Log.message("11. selected Return Date");	
+			
+			Thread.sleep(5000);			
+			// step5: click 'Search' button in Yatra Home page
+			homePage.clickBtnSearch();
+			Log.message("12.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}	
 }
