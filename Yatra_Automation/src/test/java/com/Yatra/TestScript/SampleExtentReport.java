@@ -55,7 +55,7 @@ public class SampleExtentReport {
 			}
 
 			// step3: enter Origin place in Yatra Home page
-			homePage.enterOrgion(origin);
+			homePage.enterOrigin(origin);
 			Log.message("3.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
 
 
@@ -88,7 +88,7 @@ public class SampleExtentReport {
 
 	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for One Way", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_002(String browser) throws Exception {
+	public void TC_Yatra_004(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -133,7 +133,7 @@ public class SampleExtentReport {
 			Log.message("7.Successfully clicked 'One Way ' option in search Home Page ");
 			
 			// step: enter Origin place in Yatra Home page
-			homePage.enterOrgion(origin);
+			homePage.enterOrigin(origin);
 			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
 
 			// step: enter Destination place in Yatra Home page
@@ -141,7 +141,7 @@ public class SampleExtentReport {
 			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
 			Thread.sleep(3000);	
 			
-			homePage.clickDeptdate();
+			homePage.clickDeptDatePicker();
 			//homePage.selectDeptCurrentDate(); //TODO
 			homePage.selectDeptDateAfterOneWeek();
 			Log.message("10. selected Depart Date");			
@@ -206,7 +206,7 @@ public class SampleExtentReport {
 			Log.message("7.Successfully clicked 'Round Trip' option in search Home Page ");
 			
 			// step: enter Origin place in Yatra Home page
-			homePage.enterOrgion(origin);
+			homePage.enterOrigin(origin);
 			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
 
 			// step: enter Destination place in Yatra Home page
