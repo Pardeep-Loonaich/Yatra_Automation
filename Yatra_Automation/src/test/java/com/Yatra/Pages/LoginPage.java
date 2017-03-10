@@ -22,17 +22,16 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	 ********************************* WebElements of Login Page ***********************************
 	 **********************************************************************************************/
 
-	//@FindBy(xpath = "//div[@id='main-container']/div/div[1]")
 	@FindBy(xpath = "//div[@class='user-drop-ddn-out header-dropdown']/ul/li[@id='signInBtn']")
 	WebElement divLoginBox;
 
-	@FindBy(id = "emailId")
+	@FindBy(css = "#emailId")
 	WebElement txtUserName;
 
-	@FindBy(id = "password")
+	@FindBy(css = "#password")
 	WebElement txtPassWord;
 
-	@FindBy(id = "signInBtn")
+	@FindBy(css = "#signInBtn")
 	WebElement btnSignIn;
 
 	/**********************************************************************************************
@@ -103,11 +102,9 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickBtnSignIn() throws Exception {
-		// final long startTime = StopWatch.startTime();
+	public void clickBtnSignIn() throws Exception {		
 		BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
-		Utils.waitForPageLoad(driver);
-		// Log.event("Clicked 'Login' button on SignIn page", StopWatch.elapsedTime(startTime));
+		Utils.waitForPageLoad(driver);		
 	}
 
 }

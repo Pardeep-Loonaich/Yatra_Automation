@@ -45,9 +45,9 @@ import org.testng.Reporter;
 import org.testng.SkipException;
 import org.testng.xml.XmlTest;
 
-/*import com.saucelabs.selenium.client.factory.SeleniumFactory;
+import com.saucelabs.selenium.client.factory.SeleniumFactory;
 
-import net.lightbody.bmp.core.har.Har;
+/*import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.core.har.HarEntry;
 import net.lightbody.bmp.core.har.HarLog;*/
 
@@ -277,13 +277,15 @@ public class WebDriverFactory {
 						platform = driverInitializeInfo[2];
 					}
 
-					System.setProperty("SELENIUM_DRIVER", "sauce-ondemand:?os=" + platform + "&browser=" + browser + "&browser-version="
+					System.setProperty("SELENIUM_DRIVER",
+							"sauce-ondemand:?os=" + platform + "&browser=" + browser + "&browser-version="
 									+ browserVersion + "&username=" + sauceUserName + "&access-key=" + sauceAuthKey);
 					System.setProperty("SAUCE_USER_NAME", sauceUserName);
 					System.setProperty("SAUCE_API_KEY", sauceAuthKey);
 
 					// From local to sauce lab for device test
-					if (configProperty.hasProperty("runUserAgentDeviceTest") && configProperty.getProperty("runUserAgentDeviceTest").equalsIgnoreCase("true")) {
+					if (configProperty.hasProperty("runUserAgentDeviceTest")
+							&& configProperty.getProperty("runUserAgentDeviceTest").equalsIgnoreCase("true")) {
 						deviceName = driverInitializeInfo[3];
 						System.setProperty("runUserAgentDeviceTest", "true");
 						System.setProperty("deviceName", deviceName);
@@ -312,7 +314,8 @@ public class WebDriverFactory {
 					
 					
 
-					driver = new RemoteWebDriver(new URL("http://" + sauceUserName + ":" + sauceAuthKey + "@ondemand.saucelabs.com:80/wd/hub"),
+					driver = new RemoteWebDriver(new URL(
+							"http://" + sauceUserName + ":" + sauceAuthKey + "@ondemand.saucelabs.com:80/wd/hub"),
 							iOSDeviceCapabilities);
 					
 					String saucelabsSessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
@@ -371,6 +374,7 @@ public class WebDriverFactory {
 				ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
 						true);
 				ieCapabilities.setPlatform(Platform.fromString(platform));
+
 				if (proxy != null)
 					ieCapabilities.setCapability(CapabilityType.PROXY, proxy);
 
@@ -477,7 +481,8 @@ public class WebDriverFactory {
 		// right now we only support sauce labs
 
 		if (System.getenv("SAUCE_USER_NAME") != null || System.getProperty("SAUCE_USER_NAME") != null) {
-			/*SauceLabsCapabilitiesConfiguration caps = new SauceLabsCapabilitiesConfiguration(testName,	System.getenv("BUILD_ID"));
+			SauceLabsCapabilitiesConfiguration caps = new SauceLabsCapabilitiesConfiguration(testName,
+					System.getenv("BUILD_ID"));
 			String screenResolution = configProperty.hasProperty("screenResolution")
 					? configProperty.getProperty("screenResolution") : null;
 			String seleniumVersion = configProperty.hasProperty("seleniumVersion")
@@ -523,7 +528,7 @@ public class WebDriverFactory {
 			if (System.getProperty("runUserAgentDeviceTest") != null) {
 				if (System.getProperty("runUserAgentDeviceTest").equalsIgnoreCase("true")) {
 					deviceName = System.getProperty("deviceName") != null ? System.getProperty("deviceName") : null;
-					userAgent = mobEmuUA.getUserAgent(deviceName) != null ? mobEmuUA.getUserAgent(deviceName) : null;
+					//userAgent = mobEmuUA.getUserAgent(deviceName) != null ? mobEmuUA.getUserAgent(deviceName) : null;
 
 					if (deviceName != null && userAgent != null) {
 						driver = SeleniumFactory
@@ -542,12 +547,11 @@ public class WebDriverFactory {
 			String sauceLink = "http://saucelabs.com/jobs/" + saucelabsSessionId + "?auth=" + newHMACMD5Digest(
 					System.getenv("SAUCE_USER_NAME") + ":" + System.getenv("SAUCE_API_KEY"), saucelabsSessionId);
 			logger.debug("Saucelab link for " + testName + ":: " + sauceLink);
-			Log.addSauceJobUrlToReport(driver, sauceLink);*/
-			//return driver;
+			Log.addSauceJobUrlToReport(driver, sauceLink);
+			return driver;
 		} else {
 			return null;
 		}
-		return null;
 
 	}
 
@@ -664,7 +668,7 @@ public class WebDriverFactory {
 		int height = 0;
 		Double pixRatio = null;
 
-	/*	width = Integer.valueOf(mobEmuUA.getDeviceWidth(deviceName));
+		/*width = Integer.valueOf(mobEmuUA.getDeviceWidth(deviceName));
 		height = Integer.valueOf(mobEmuUA.getDeviceHeight(deviceName));
 		pixRatio = Double.valueOf(mobEmuUA.getDevicePixelRatio(deviceName));*/
 

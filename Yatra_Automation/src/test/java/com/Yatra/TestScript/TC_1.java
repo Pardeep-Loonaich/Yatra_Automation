@@ -31,7 +31,7 @@ public class TC_1 {
 			HomePage homePage = new HomePage(driver , webSite).get();
 			Log.message("1. Successfully navigate to Yatra HomePage");
 			
-			homePage.enterOrgion("New Delhi");
+			homePage.enterOrigin("New Delhi");
 			Log.message("2. Successfully Entered DEL in the origin field");
 		}
 		catch(Exception e){

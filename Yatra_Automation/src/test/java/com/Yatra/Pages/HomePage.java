@@ -31,27 +31,25 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 
-	@FindBy(id = "BE_flight_origin_city")
-	public WebElement txtOrgion;
+	@FindBy(css = "input#BE_flight_origin_city")
+	public WebElement txtOrigin;
 
-	@FindBy(id = "BE_flight_arrival_city")
+	@FindBy(css = "input#BE_flight_arrival_city")
 	WebElement txtDestination;
 
-	@FindBy(id = "BE_flight_flsearch_btn")
+	@FindBy(css = "input#BE_flight_flsearch_btn")
 	WebElement btnSearch;
 	
-	@FindBy(id= "BE_flight_depart_date")
+	@FindBy(css= "input#BE_flight_depart_date")
 	WebElement dateDeparture;
 	
-	@FindBy(id= "BE_flight_return_date")
-	WebElement dateReturn;
+	@FindBy(css= "input#BE_flight_return_date")
+    WebElement dateReturn;
 	
-
 	WebElement departureDate;	
 
 	@FindBy(id= "BE_flight_return_date")
 	WebElement returnDate;
-
 
 	@FindBy(css ="div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']" )
 	List<WebElement> selectMonth;
@@ -68,23 +66,48 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "div[class='be-ddn-footer'] span")
 	WebElement submitPassengerClassInfo;
 	
-	@FindBy(xpath = "//form[@id='BE_flight_form']//li[1]/a")
+	@FindBy(css = "a[title='One Way']")
 	public WebElement lnkOneWay;
 
-	@FindBy(xpath = "//form[@id='BE_flight_form']//li[2]/a")
+	@FindBy(css = "a[title='Round Trip']")
 	WebElement lnkRoundTrip;
 
-	@FindBy(xpath = "//form[@id='BE_flight_form']//li[3]/a")
+	@FindBy(css = "a[title='Multicity']")
 	WebElement lnkMultiCity;	
 	
-	@FindBy(id = "BE_flight_depart_date")
-	WebElement txtDeptDate;
+	@FindBy(css = "#BE_flight_depart_date")
+	WebElement txtDateDepart;
 	
 	@FindBy(xpath = "//form[@id='BE_flight_form']//li[3]/i")
 	WebElement txtDeptDatePicker;
 	
 	@FindBy(xpath = "//form[@id='BE_flight_form']//li[4]/i")
 	WebElement txtReturnDatePicker;
+	
+	@FindBy(css = "a#booking_engine_flights")
+	WebElement lnkFlights;
+	
+	@FindBy(css = "a#booking_engine_hotels")
+	WebElement lnkHotels;
+	
+	@FindBy(css = "a#booking_engine_homestays")
+	WebElement lnkHomeStays;
+	
+	@FindBy(css = "a#booking_engine_holidays")
+	WebElement lnkHolidays;
+	
+	@FindBy(css = "a#booking_engine_activities")
+	WebElement lnkActivities;
+	
+	@FindBy(css = "a#booking_engine_buses")
+	WebElement lnkBuses;
+	
+	@FindBy(css = "a#booking_engine_trains")
+	WebElement lnkTrains;
+	
+	@FindBy(css = "a#booking_engine_cruise")
+	WebElement lnkCruise;	
+	
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -107,8 +130,16 @@ public class HomePage extends LoadableComponent<HomePage> {
 		PageFactory.initElements(finder, this);
 	}// HomePage
 
-	
-
+	/**
+	 * 
+	 * @param driver
+	 *            : webdriver
+	 */
+	public HomePage(WebDriver driver) {
+		this.driver = driver;
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
+		PageFactory.initElements(finder, this);
+	}// HomePage
 
 	@Override
 	protected void isLoaded() {
@@ -119,9 +150,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnSearch))) {
 			Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
-		/*headers = new Headers(driver).get();
-		footers = new Footers(driver).get();
-		elementLayer = new ElementLayer(driver);*/
 
 	}// isLoaded
 
@@ -134,16 +162,16 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 
 	/**
-	 * Enter Orgion
+	 * Enter Origin
 	 * 
-	 * @param orgion
+	 * @param origin
 	 *            as string
 	 * @throws Exception
 	 */
-	public void enterOrgion(String orgion) throws Exception {
-		Utils.waitForElement(driver, txtOrgion);
-		BrowserActions.typeOnTextField(txtOrgion, orgion, driver, "Select Orgion");
-		Log.event("Entered the Orgion: " + orgion);
+	public void enterOrigin(String origin) throws Exception {
+		Utils.waitForElement(driver, txtOrigin);
+		BrowserActions.typeOnTextField(txtOrigin, origin, driver, "Select Origin");
+		Log.event("Entered the Origin: " + origin);
 	}
 	
 	
@@ -304,8 +332,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickDeptdate() throws Exception {		
-		BrowserActions.clickOnElement(txtDeptDate, driver, "Depart Date Textbox");
+	public void clickDateDepart() throws Exception {		
+		BrowserActions.clickOnElement(txtDateDepart, driver, "Depart Textbox");
 		Utils.waitForPageLoad(driver);		
 	}
 	
@@ -316,7 +344,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void clickDeptDatePicker() throws Exception {	
-		BrowserActions.clickOnElement(txtDeptDatePicker, driver, "Depart Date Picker");
+		BrowserActions.clickOnElement(txtDeptDatePicker, driver, "Depart DatePicker");
 		Utils.waitForPageLoad(driver);		
 	}
 	
@@ -327,9 +355,89 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void clickReturnDatePicker() throws Exception {		
-		BrowserActions.clickOnElement(txtReturnDatePicker, driver, "Return Date Picker");
+		BrowserActions.clickOnElement(txtReturnDatePicker, driver, "Return DatePicker");
 		Utils.waitForPageLoad(driver);		
 	}	
 
 	
+	/**
+	 * To click Flights on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickFlights() throws Exception {		
+		BrowserActions.clickOnElement(lnkFlights, driver, "Flights");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click Hotels on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickHotels() throws Exception {		
+		BrowserActions.clickOnElement(lnkHotels, driver, "Hotels");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click HomeStays on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickHomeStays() throws Exception {		
+		BrowserActions.clickOnElement(lnkHomeStays, driver, "HomeStays");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click Holidays on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickHolidays() throws Exception {		
+		BrowserActions.clickOnElement(lnkHolidays, driver, "Holidays");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click Buses on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickBuses() throws Exception {		
+		BrowserActions.clickOnElement(lnkBuses, driver, "Buses");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click Trains on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickTrains() throws Exception {		
+		BrowserActions.clickOnElement(lnkTrains, driver, "Trains");
+		Utils.waitForPageLoad(driver);		
+	}
+
+	/**
+	 * To click Cruise on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickCruise() throws Exception {		
+		BrowserActions.clickOnElement(lnkCruise, driver, "Cruise");
+		Utils.waitForPageLoad(driver);		
+	}
+	
+	/**
+	 * To click Activities on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickActivities() throws Exception {		
+		BrowserActions.clickOnElement(lnkActivities, driver, "Activities");
+		Utils.waitForPageLoad(driver);		
+	}
+
 }// HomePage
