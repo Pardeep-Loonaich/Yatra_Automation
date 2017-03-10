@@ -24,7 +24,6 @@ public class SampleExtentReport {
 	String webSite;
 	private String workbookName = "testdata\\data\\Regression.xls";
 	private String sheetName = "SampleTest";
-	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
 	public void init(ITestContext context) {
