@@ -46,7 +46,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css= "input#BE_flight_return_date")
     WebElement dateReturn;
 	
-
 	WebElement departureDate;	
 
 	@FindBy(id= "BE_flight_return_date")
