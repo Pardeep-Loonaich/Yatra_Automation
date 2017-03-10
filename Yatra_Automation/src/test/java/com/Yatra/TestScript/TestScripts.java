@@ -18,7 +18,7 @@ import com.Yatra.Utils.TestDataExtractor;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
-public class SampleExtentReport {
+public class TestScripts {
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	String webSite;
@@ -33,7 +33,7 @@ public class SampleExtentReport {
 	}
 
 	@Test(groups = {"desktop" }, description = "To verify the Yatra Home Page", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_001(String browser) throws Exception {
+	public void TC_Yatra_Flight_001(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String email = testData.get("EmailAddress");
@@ -87,7 +87,7 @@ public class SampleExtentReport {
 
 	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for One Way-Domestic", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_002(String browser) throws Exception {
+	public void TC_Yatra_Flight_002(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -162,7 +162,7 @@ public class SampleExtentReport {
 	}
 	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-Domestic", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_003(String browser) throws Exception {
+	public void TC_Yatra_Flight_003(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -238,7 +238,7 @@ public class SampleExtentReport {
 		}
 	}	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for One Way-International", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_004(String browser) throws Exception {
+	public void TC_Yatra_Flight_004(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -311,7 +311,7 @@ public class SampleExtentReport {
 		}
 	}
 	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-International", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_005(String browser) throws Exception {
+	public void TC_Yatra_Flight_005(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -387,7 +387,7 @@ public class SampleExtentReport {
 		}
 	}	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-International with Chioce seat Booking", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_006(String browser) throws Exception {
+	public void TC_Yatra_Flight_006(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -468,7 +468,7 @@ public class SampleExtentReport {
 		}
 	}	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-Domestic with Chioce seat Booking", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_007(String browser) throws Exception {
+	public void TC_Yatra_Flight_007(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
