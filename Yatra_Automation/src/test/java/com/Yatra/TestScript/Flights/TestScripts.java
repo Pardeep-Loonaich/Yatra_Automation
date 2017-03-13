@@ -23,7 +23,7 @@ public class TestScripts {
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	String webSite;
 	private String workbookName = "testdata\\data\\Flights.xls";
-	private String sheetName = "FlightSearch";
+	private String sheetName = "Flights";
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
@@ -32,15 +32,12 @@ public class TestScripts {
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
+	@SuppressWarnings("unused")
 	@Test(groups = {"desktop" }, description = "To verify the Yatra Home Page", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_Yatra_Flight_001(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
-		String email = testData.get("EmailAddress");
-		String password = testData.get("Password");
-		String origin = testData.get("Origin");
-		String destination = testData.get("Destination");
-
+		
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
@@ -53,28 +50,8 @@ public class TestScripts {
 			if (driver.getTitle().contains("Flight")) {
 				Log.message("2.Verified Yatra Title text");
 			}
-
-			// step3: enter Origin place in Yatra Home page
-			homePage.enterOrigin(origin);
-			Log.message("3.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
-
-
-			// step4: enter Destination place in Yatra Home page
-			homePage.enterDestination(destination);
-			Log.message("4.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
-			Thread.sleep(3000);
-
 			
-			homePage.selectDepartureDate(testData.get("Date"));
-			Log.message("5. Successfully cliked the departure date");
-			
-			homePage.specifyPassengerInfo(testData.get("PassengerInfo"));
-			Log.message("6. Passenger Info successfully specified");
-			
-			homePage.clickBtnSearch();
-			Log.message("7 .Successfully clicked 'Search' in Yatra Homepage ");
-
-			Log.message("<b>Expected Result:</b> Successfully searched Flights");
+			Log.message("<b>Expected Result:</b> Successfully verified Yatra HomePage");
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -94,6 +71,8 @@ public class TestScripts {
 		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
 		
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -116,11 +95,11 @@ public class TestScripts {
 
 			// step: enter Origin place in Yatra Home page
 			loginPage.enterEmailID(emailId);
-			Log.message("4.Successfully entered '"+ emailId+"' Id in Emai Textbox ");
+			Log.message("4.Successfully entered '<b>"+ emailId+"</b>' Id in Emai Textbox ");
 
 			// step: enter Destination place in Yatra Home page
 			loginPage.enterPassword(password);
-			Log.message("5.Successfully entered '"+ password +"' Password in Password textbox " );
+			Log.message("5.Successfully entered '<b>"+ password +"</b>' Password in Password textbox " );
 			Thread.sleep(3000);
 
 			// step: click 'Search' button in Yatra Home page
@@ -133,30 +112,29 @@ public class TestScripts {
 			
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
+			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
-			Thread.sleep(3000);	
-			
-
-			homePage.clickDeptDatePicker();
-			//homePage.selectDeptCurrentDate(); //TODO
-			homePage.selectDeptDateAfterOneWeek();
-			Log.message("10. selected Depart Date");			
+			Log.message("9.Successfully entered Destination '<b>"+ destination+"</b>' in Yatra Homepage" );
+						
+			homePage.selectDepartureDate(departureDate);
+			Log.message("10. Successfully selected the departure date: <b>"+ departureDate+"</b>(YY/MM/DD)");
+					
+			homePage.specifyPassengerInfo(passengerInfo);
+			Log.message("11. Passenger Info successfully specified");
 			
 			Thread.sleep(5000);			
-			// step5: click 'Search' button in Yatra Home page
+			// step: click 'Search' button in Yatra Home page
 			homePage.clickBtnSearch();
-			Log.message("11.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("12.Successfully clicked 'Search' in Yatra Homepage ");
 			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
 
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -169,6 +147,9 @@ public class TestScripts {
 		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
 		
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -191,11 +172,11 @@ public class TestScripts {
 
 			// step: enter Origin place in Yatra Home page
 			loginPage.enterEmailID(emailId);
-			Log.message("4.Successfully entered '"+ emailId+"' Id in Emai Textbox ");
+			Log.message("4.Successfully entered '<b>"+ emailId+"</b>' Id in Emai Textbox ");
 
 			// step: enter Destination place in Yatra Home page
 			loginPage.enterPassword(password);
-			Log.message("5.Successfully entered '"+ password +"' Password in Password textbox " );
+			Log.message("5.Successfully entered '<b>"+ password +"</b>' Password in Password textbox " );
 			Thread.sleep(3000);
 
 			// step: click 'Search' button in Yatra Home page
@@ -208,20 +189,20 @@ public class TestScripts {
 			
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
+			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
-			Thread.sleep(3000);	
-			
-			homePage.clickDeptDatePicker();		
-			homePage.selectDeptDateAfterOneWeek();
-			Log.message("10. selected Depart Date");	
-			
-			homePage.clickReturnDatePicker();
-			homePage.selectReturnDateAfterTwoWeek();
-			Log.message("11. selected Return Date");	
+			Log.message("9.Successfully entered Destination '<b>"+ destination+"</b>' in Yatra Homepage" );
+						
+			homePage.selectDepartureDate(departureDate);
+			Log.message("10. Successfully selected the departure date: <b>"+ departureDate+"</b>(YY/MM/DD)");
+				
+			homePage.selectReturnDate(returnDate);
+			Log.message("11. Successfully selected the departure date: <b>"+ returnDate+"</b>(YY/MM/DD)");
+					
+			homePage.specifyPassengerInfo(passengerInfo);
+			Log.message("12. Passenger Info successfully specified");
 			
 			Thread.sleep(5000);			
 			// step5: click 'Search' button in Yatra Home page
@@ -245,7 +226,7 @@ public class TestScripts {
 		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
-		String date = testData.get("Date");
+		String departureDate = testData.get("DepartureDate");
 		
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -285,15 +266,15 @@ public class TestScripts {
 			
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
+			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
+			Log.message("9.Successfully entered Destination '<b>"+ destination+"</b>' in Yatra Homepage" );
 			Thread.sleep(3000);	
 			
 			//step: enter depart date
-			homePage.selectDepartureDate(date);
+			homePage.selectDepartureDate(departureDate);
 			Log.message("10. selected Depart Date");			
 			Thread.sleep(5000);	
 			
@@ -357,11 +338,11 @@ public class TestScripts {
 			
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
+			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
+			Log.message("9.Successfully entered Destination '<b>"+ destination+"</b>' in Yatra Homepage" );
 			Thread.sleep(3000);	
 			
 			homePage.clickDeptDatePicker();		
@@ -434,11 +415,11 @@ public class TestScripts {
 			
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
+			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
+			Log.message("9.Successfully entered Destination '<b>"+ destination+"</b>' in Yatra Homepage" );
 			Thread.sleep(3000);	
 			
 			homePage.clickDeptDatePicker();		
@@ -516,11 +497,11 @@ public class TestScripts {
 			
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("8.Successfully entered Origin '"+ origin +"' in Yatra Homepage " );
+			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
+			Log.message("9.Successfully entered Destination '<b>"+ destination+"</b>' in Yatra Homepage" );
 			Thread.sleep(3000);	
 			
 			homePage.clickDeptDatePicker();		

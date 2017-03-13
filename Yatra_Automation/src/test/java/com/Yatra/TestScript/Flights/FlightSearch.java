@@ -16,7 +16,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
-import com.Yatra.Pages.LoginPage;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -39,6 +38,7 @@ public class FlightSearch {
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
+	@SuppressWarnings("unused")
 	@Test(groups = { "desktop" }, description = "Searching Fligts for One Way", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_FlightSearch_001(String browser) throws Exception {
 
