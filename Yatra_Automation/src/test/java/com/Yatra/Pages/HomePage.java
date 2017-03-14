@@ -164,8 +164,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	/**
 	 * Enter Origin
 	 * 
-	 * @param origin
-	 *            as string
+	 * @param origin: Pass origin as city Name
 	 * @throws Exception
 	 */
 	public void enterOrigin(String origin) throws Exception {
@@ -178,8 +177,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	/**
 	 * Enter Destination
 	 * 
-	 * @param destination
-	 *            as string
+	 * @param destination: Destination city
 	 * @throws Exception
 	 */
 	public void enterDestination(String destination) throws Exception {
@@ -438,6 +436,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void clickActivities() throws Exception {		
 		BrowserActions.clickOnElement(lnkActivities, driver, "Activities");
 		Utils.waitForPageLoad(driver);		
+	}
+	
+	
+	
+	public void searchFlight() throws Exception 
+	{		
+				
 	}
 
 }// HomePage
