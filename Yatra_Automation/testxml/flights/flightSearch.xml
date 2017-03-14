@@ -18,7 +18,7 @@
 			<class name="com.Yatra.TestScript.Flights.TestScripts">
 				<methods>
 					<!-- <include name="TC_Yatra_Flight_001" /> -->
-					<include name="TC_Yatra_Flight_002" />
+					<include name="TC_Yatra_Flight_004" />
 					<!-- <include name="TC_Yatra_Flight_003" /> -->
 				</methods>
 			</class>

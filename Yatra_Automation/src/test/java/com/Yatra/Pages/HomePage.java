@@ -196,11 +196,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickBtnSearch() throws Exception {
+	public SearchResult clickBtnSearch() throws Exception {
 		//final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 		Utils.waitForPageLoad(driver);
 		//Log.event("Clicked 'Login' button on SignIn page",	StopWatch.elapsedTime(startTime));
+		return new SearchResult(driver).get();
 		
 	}
 	
