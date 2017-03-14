@@ -231,6 +231,7 @@ public class WebDriverFactory {
 	 * @return driver: WebDriver Instance
 	 * @throws MalformedURLException
 	 */
+	@SuppressWarnings("unused")
 	public static WebDriver get(String browserWithPlatform, Proxy proxy) throws MalformedURLException {
 		String browser = null;
 		String platform = null;
@@ -477,6 +478,7 @@ public class WebDriverFactory {
 	 *            name of the test to pass to the grid
 	 * @return remote WebDriver instance
 	 */
+	@SuppressWarnings("unused")
 	public static WebDriver newWebDriverInstanceFromEnvironment(String testName) {
 		// right now we only support sauce labs
 
