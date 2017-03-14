@@ -17,21 +17,15 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch">
 				<methods>
-<<<<<<< HEAD
 					<include name="TC_Yatra_Flight_001" />					
 					<include name="TC_Yatra_Flight_002" />
+					<include name="TC_Yatra_Flight_007" />					
+					<include name="TC_Yatra_Flight_008" />
+					<include name="TC_Yatra_Flight_009" />
+					<include name="TC_Yatra_Flight_010" />		
 					<include name="TC_Yatra_Flight_011" />					
 					<include name="TC_Yatra_Flight_012" />
 					<include name="TC_FlightSearch_014" />
-=======
-					<!-- <include name="TC_Yatra_Flight_001" /> -->
-<<<<<<< HEAD
-					<include name="TC_Yatra_Flight_004" />
-=======
-					<include name="TC_FlightSearch_014" />
->>>>>>> branch 'Framework_Development' of https://github.com/Harveer-Singh/Yatra_Automation.git
-					<!-- <include name="TC_Yatra_Flight_003" /> -->
->>>>>>> 984e4b39551dd44b83c998c8a0548e321b6b0aa7
 				</methods>
 			</class>
 		</classes>
