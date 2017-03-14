@@ -15,9 +15,9 @@
 		</groups>
 
 		<classes>
-			<class name="com.Yatra.TestScript.SampleExtentReport">
+			<class name="com.Yatra.TestScript.TestScripts">
 				<methods>				
-				<include name="TC_Yatra_003" />
+				<include name="TC_Yatra_Flight_004" />
 				</methods>
 			</class>
 		</classes>
