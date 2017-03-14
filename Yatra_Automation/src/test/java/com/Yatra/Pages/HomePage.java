@@ -58,7 +58,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css= "div[id='BE_flight_paxInfoBox']")
 	WebElement passengerInfo;
 
-	String dateLocator="div[class='month-box'] table tbody td[class*='activeTD clsDateCell'] a[id='";	
+	String dateLocator="div[class='month-box'] table tbody td[class*='activeTD clsDateCell'] a[id='a_";	
 	
 	String passengersLocator="span[class='ddSpinnerPlus']";
 	
@@ -204,12 +204,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 		
 	}
 	
-	public void selectDepartureDate(String day) throws Exception{
-		int month=Integer.parseInt(day.split("_")[2]);
+	public void selectDepartureDate(String date) throws Exception{
+		int month=Integer.parseInt(date.split("_")[2]);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
 		selectMonth.get(month-2).click();
-		List<WebElement> datePicker =driver.findElements(By.cssSelector(dateLocator+day+"']"));
+		List<WebElement> datePicker =driver.findElements(By.cssSelector(dateLocator+date+"']"));
 		datePicker.get(0).click();
+		Log.event("Selected Departure Date: " + date+"(YY/MM/DD)");
 	}
 	
 	public void specifyPassengerInfo(String passengers) throws Exception{
@@ -217,7 +218,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		List<WebElement> updatePassengers =driver.findElements(By.cssSelector(passengersLocator));
 		int adult = Integer.parseInt(passengers.split("_")[0]);
 		int child = Integer.parseInt(passengers.split("_")[1]);
-		int infant = Integer.parseInt(passengers.split("_")[2]);
+		int infant = Integer.parseInt(passengers.split("_")[2]); 
 		int  passengerClass= Integer.parseInt(passengers.split("_")[3]);
 		for(int i=1;i<adult;i++){
 			updatePassengers.get(0).click();
@@ -441,6 +442,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void clickActivities() throws Exception {		
 		BrowserActions.clickOnElement(lnkActivities, driver, "Activities");
 		Utils.waitForPageLoad(driver);		
+	}
+	
+	public void selectReturnDate(String date) throws Exception{
+		int month=Integer.parseInt(date.split("_")[1]); 
+		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
+		selectMonth.get(month-2).click();
+		List<WebElement> datePicker =driver.findElements(By.cssSelector(dateLocator+date+"']"));
+		datePicker.get(0).click();
+		Log.event("Selected Return Date: " + date+"(YY/MM/DD)");
 	}
 
 }// HomePage

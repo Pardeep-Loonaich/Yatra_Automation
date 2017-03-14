@@ -10,7 +10,6 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
-import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
