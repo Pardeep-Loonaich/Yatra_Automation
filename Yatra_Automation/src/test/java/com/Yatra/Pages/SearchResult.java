@@ -9,6 +9,7 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
+import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -17,14 +18,17 @@ public class SearchResult extends LoadableComponent<SearchResult>{
 	
 	private WebDriver driver;
 	private boolean isPageLoaded;
-	public ElementLayer elementLayer;
+	//public ElementLayer elementLayer;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 
-	@FindBy(xpath = "//*[@title='Modify Search']")
-	public WebElement BtnModifySearch;
+	@FindBy(css = "[class ='ico-newHeaderLogo']")
+	public WebElement logoYatra;
+	
+	@FindBy(xpath ="//ul[@class='matrix-slide-list tabs matrix-ul']/li[2]")
+	public WebElement matrixStrip;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -54,17 +58,26 @@ public class SearchResult extends LoadableComponent<SearchResult>{
 			Assert.fail();
 		}
 
-		if (isPageLoaded && !(Utils.waitForElement(driver, BtnModifySearch))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, logoYatra))) {
 			Log.fail("Search Result page didn't open up", driver);
 			
 		}
-		elementLayer = new ElementLayer(driver);
+		//elementLayer = new ElementLayer(driver);
 	}
 
 	@Override
 	protected void load() {
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
+	}
+	
+	public void clickAirlineMatrix() throws Exception {
+		//final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(matrixStrip, driver, "Airline Matrix Strip");
+		Utils.waitForPageLoad(driver);
+		
+		//Log.event("Clicked 'Login' button on SignIn page",	StopWatch.elapsedTime(startTime));
+		
 	}
 	
 }
