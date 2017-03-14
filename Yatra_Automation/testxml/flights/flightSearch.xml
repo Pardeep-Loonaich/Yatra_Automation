@@ -15,10 +15,14 @@
 		</groups>
 
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.TestScripts">
+			<class name="com.Yatra.TestScript.Flights.FlightSearch">
 				<methods>
 					<!-- <include name="TC_Yatra_Flight_001" /> -->
+<<<<<<< HEAD
 					<include name="TC_Yatra_Flight_004" />
+=======
+					<include name="TC_FlightSearch_014" />
+>>>>>>> branch 'Framework_Development' of https://github.com/Harveer-Singh/Yatra_Automation.git
 					<!-- <include name="TC_Yatra_Flight_003" /> -->
 				</methods>
 			</class>

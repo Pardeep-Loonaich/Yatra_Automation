@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.time.StopWatch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +20,6 @@ import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-
 
 public class HomePage extends LoadableComponent<HomePage> {
 
@@ -109,6 +109,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "a#booking_engine_cruise")
 	WebElement lnkCruise;	
 	
+	@FindBy(css = "#signInBtn")
+	WebElement btnSignIn;
+	
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -137,6 +140,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 *            : webdriver
 	 */
 	public HomePage(WebDriver driver) {
+		appURL = "https://www.yatra.com/";
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
@@ -196,13 +200,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
+
 	public SearchResult clickBtnSearch() throws Exception {
 		//final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 		Utils.waitForPageLoad(driver);
-		//Log.event("Clicked 'Login' button on SignIn page",	StopWatch.elapsedTime(startTime));
 		return new SearchResult(driver).get();
-		
+	
 	}
 	
 	public void selectDepartureDate(String date) throws Exception{
@@ -444,7 +448,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(lnkActivities, driver, "Activities");
 		Utils.waitForPageLoad(driver);		
 	}
-	
+
+	/**
+	 * To select Return Date
+	 * 
+	 * @throws Exception
+	 */
 	public void selectReturnDate(String date) throws Exception{
 		int month=Integer.parseInt(date.split("_")[1]); 
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
@@ -453,5 +462,69 @@ public class HomePage extends LoadableComponent<HomePage> {
 		datePicker.get(0).click();
 		Log.event("Selected Return Date: " + date+"(YY/MM/DD)");
 	}
+	
+	/**
+	 * To navigate to SignIn Page
+	 * 
+	 * @throws Exception
+	 */
+	public LoginPage navigateToSignIn() throws Exception {
+		// click Login button on signin page
+		BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
+		Utils.waitForPageLoad(driver);
+		return new LoginPage(driver).get();
+	}
+	
+	/**
+	 * To select Trip Type
+	 * 
+	 * @throws Exception
+	 */
+	public void selectTripType(String tripType) throws Exception {
+		if (tripType == "ONEWAY") {
+			BrowserActions.clickOnElement(lnkOneWay, driver, "One Way");
+			Utils.waitForPageLoad(driver);
+			Log.event("Successfully selected OneWay option in Search Fields");
+		} else if (tripType == "ROUNDTRIP") {
+			BrowserActions.clickOnElement(lnkRoundTrip, driver, "Round Trip");
+			Utils.waitForPageLoad(driver);
+			Log.event("Successfully selected RoundTrip option in Search Fields");
+		}else if (tripType == "MULTICITY") {
+			BrowserActions.clickOnElement(lnkMultiCity, driver, "Multicity");
+			Utils.waitForPageLoad(driver);
+			Log.event("Successfully selected Multicity option in Search Fields");
+		}
+	}
 
+	/**
+	 * To select OneWay Flight search Fields
+	 * 
+	 * @throws Exception
+	 */
+	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,	String passengerInfo) throws Exception {
+		enterOrigin(origin); // enter Origin value
+		enterDestination(destination); // enter Destination value
+		selectDepartureDate(departureDate); // select Departure Date
+		specifyPassengerInfo(passengerInfo); // select Passengers with class	
+		clickBtnSearch();  // click Search button
+		Log.event("Successfully selected OneWay Flight Search fields");
+
+	}
+
+	/**
+	 * To select Round Trip Flight search Fields
+	 * 
+	 * @throws Exception
+	 */
+	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate, String returnDate, String passengerInfo) throws Exception {
+		enterOrigin(origin); // enter Origin value
+		enterDestination(destination); // enter Destination value
+		selectDepartureDate(departureDate); // select Departure Date
+		selectReturnDate(returnDate); // select Return Date
+		specifyPassengerInfo(passengerInfo); // select Passengers with class
+		clickBtnSearch();  // click Search button
+		Log.event("Successfully selected RoundTrip Flight Search fields");
+	}
+
+	
 }// HomePage
