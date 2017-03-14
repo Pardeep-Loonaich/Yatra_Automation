@@ -9,7 +9,6 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
-import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -18,10 +17,12 @@ public class SearchResult extends LoadableComponent<SearchResult>{
 	
 	private WebDriver driver;
 	private boolean isPageLoaded;
+	public ElementLayer elementLayer;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
+
 	@FindBy(xpath = "//*[@title='Modify Search']")
 	public WebElement BtnModifySearch;
 	
@@ -40,6 +41,7 @@ public class SearchResult extends LoadableComponent<SearchResult>{
 	 */
 	
 	public SearchResult(WebDriver driver) {
+		Utils.waitForPageLoad(driver);
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
@@ -54,7 +56,9 @@ public class SearchResult extends LoadableComponent<SearchResult>{
 
 		if (isPageLoaded && !(Utils.waitForElement(driver, BtnModifySearch))) {
 			Log.fail("Search Result page didn't open up", driver);
+			
 		}
+		elementLayer = new ElementLayer(driver);
 	}
 
 	@Override
