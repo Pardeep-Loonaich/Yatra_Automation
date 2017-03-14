@@ -1,6 +1,9 @@
 package com.Yatra.TestScript;
 
+import java.security.PublicKey;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -10,6 +13,7 @@ import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.LoginPage;
+import com.Yatra.Pages.SearchResult;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -19,6 +23,7 @@ import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
 public class SampleExtentReport {
+
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	String webSite;
@@ -33,13 +38,14 @@ public class SampleExtentReport {
 	}
 
 	@Test(groups = {"desktop" }, description = "To verify the Yatra Home Page", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_001(String browser) throws Exception {
+	public void TC_Yatra_Flight_001(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String email = testData.get("EmailAddress");
 		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
+		
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -74,7 +80,7 @@ public class SampleExtentReport {
 			homePage.clickBtnSearch();
 			Log.message("7 .Successfully clicked 'Search' in Yatra Homepage ");
 
-			Log.message("<b>Expected Result:</b> Successfully searched Flights");
+			
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -87,7 +93,7 @@ public class SampleExtentReport {
 
 	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for One Way-Domestic", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_002(String browser) throws Exception {
+	public void TC_Yatra_Flight_002(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -162,7 +168,7 @@ public class SampleExtentReport {
 	}
 	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-Domestic", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_003(String browser) throws Exception {
+	public void TC_Yatra_Flight_003(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -237,8 +243,9 @@ public class SampleExtentReport {
 			Log.endTestCase();
 		}
 	}	
+	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for One Way-International", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_004(String browser) throws Exception {
+	public void TC_Yatra_Flight_004(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -246,6 +253,7 @@ public class SampleExtentReport {
 		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
 		String date = testData.get("Date");
+		List<String> element = Arrays.asList("lnkAirLines");
 		
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -300,8 +308,10 @@ public class SampleExtentReport {
 			// step5: click 'Search' button in Yatra Home page
 			homePage.clickBtnSearch();
 			Log.message("11.Successfully clicked 'Search' in Yatra Homepage ");
-			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
-
+			Log.message("<b>Expected Result:</b> Successfully searched Flights");
+			
+			
+			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -311,7 +321,7 @@ public class SampleExtentReport {
 		}
 	}
 	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-International", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_005(String browser) throws Exception {
+	public void TC_Yatra_Flight_005(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -387,7 +397,7 @@ public class SampleExtentReport {
 		}
 	}	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-International with Chioce seat Booking", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_006(String browser) throws Exception {
+	public void TC_Yatra_Flight_006(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -468,7 +478,7 @@ public class SampleExtentReport {
 		}
 	}	
 	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-Domestic with Chioce seat Booking", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_Yatra_007(String browser) throws Exception {
+	public void TC_Yatra_Flight_007(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String emailId = testData.get("EmailAddress");
@@ -476,6 +486,9 @@ public class SampleExtentReport {
 		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
 		String passangerInfo = testData.get("PassengerInfo");
+		List<String> element = Arrays.asList("returnDate");
+		List<String> elements = Arrays.asList("BtnModifySearch");
+
 		
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -522,6 +535,9 @@ public class SampleExtentReport {
 			Log.message("9.Successfully entered Destination '"+ destination+"' in Yatra Homepage" );
 			Thread.sleep(3000);	
 			
+			Log.message("<b>Expected Result:</b> Successfully searched Flights");
+			Log.assertThat(homePage.elementLayer.verifyPageElements(element, homePage), "Pass", "Fail");
+			
 			homePage.clickDeptDatePicker();		
 			homePage.selectDeptDateAfterOneWeek();
 			Log.message("10. selected Depart Date");	
@@ -532,14 +548,14 @@ public class SampleExtentReport {
 			Thread.sleep(5000);	
 			
 			homePage.specifyPassengerInfo(passangerInfo);
-			Log.message("12. Select Choice Of booking Seat");	
+			Log.message("12. Select Choice Of booking Seat",driver);	
 
 			// step5: click 'Search' button in Yatra Home page
 			homePage.clickBtnSearch();
 			Log.message("13.Successfully clicked 'Search' in Yatra Homepage ");
+		
+			Log.message("<b>Expected Result:</b> Successfully searched Flights");
 			
-			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
-
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
