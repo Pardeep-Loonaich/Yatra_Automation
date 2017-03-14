@@ -23,7 +23,6 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	 **********************************************************************************************/
 
 	//@FindBy(xpath = "//div[@class='user-drop-ddn-out header-dropdown']/ul/li[@id='signInBtn']")
-	//button[@id='signInBtn']
 	@FindBy(xpath = "//button[@id='signInBtn']")
 	WebElement divLoginBox;
 
@@ -104,27 +103,22 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickBtnSignIn() throws Exception {		
+	public void clickBtnSignIn() throws Exception {
 		BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
-		Utils.waitForPageLoad(driver);		
+		Utils.waitForPageLoad(driver);
 	}
-	
-	
+
 	/**
 	 * To Login to Yatra Account
 	 * 
 	 * @throws Exception
 	 */
-	public HomePage loginYatraAccount(String emailId , String password )throws Exception {
+	public HomePage loginYatraAccount(String emailId, String password) throws Exception {
 		enterEmailID(emailId); // enter email address
-		enterPassword(password); //enter password
-		clickBtnSignIn();	 // click signin button		
+		enterPassword(password); // enter password
+		clickBtnSignIn(); // click signin button
 		return new HomePage(driver).get();
-		
+
 	}
-
-
-	
-	
 
 }
