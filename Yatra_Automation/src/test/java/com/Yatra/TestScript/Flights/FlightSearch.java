@@ -16,6 +16,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
+import com.Yatra.Pages.LoginPage;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -27,6 +28,7 @@ import com.Yatra.Utils.WebDriverFactory;
 public class FlightSearch {
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
+	HomePage homePage;
 	String webSite;
 	private String workbookName = "testdata\\data\\Flights.xls";
 	private String sheetName = "FlightSearch";
@@ -37,26 +39,85 @@ public class FlightSearch {
 		webSite = (System.getProperty("webSite") != null ? System.getProperty("webSite")
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
-
-	@SuppressWarnings("unused")
-	@Test(groups = { "desktop" }, description = "Searching Fligts for One Way", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_FlightSearch_001(String browser) throws Exception {
+	
+	@Test(groups = { "desktop" }, description = "Flight Search DOM - OW with  Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	public void TC_Yatra_Flight_001(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
-		String email = testData.get("EmailAddress");
+		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
 		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
 			// step1: Navigate to Yatra Home Page
-			HomePage homePage = new HomePage(driver, webSite).get();
+			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
+						
+			LoginPage loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId , password);
+			Log.message("2.Successfully Logged in Yatra account");	
+				
+			//step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			
+			//step:  select OneWay Flight Search fields
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
+			Log.message("4.Successfully selected OneWay Flight Search Fields ");
+			
+			//TODO : Verify the SRP page is loaded
+			Log.message("<b>Expected Result:</b> Successfully verified Search Result Page");
+			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Flight Search DOM - RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	public void TC_Yatra_Flight_002(String browser) throws Exception {
 
-			// TODO : Steps
+		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+						
+			LoginPage loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId , password);
+			Log.message("2.Successfully Logged in Yatra account");	
+				
+			//step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'RoundTrip ' option in search Home Page ");
+			
+			//step:  select OneWay Flight Search fields
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
+			Log.message("4.Successfully selected RoundTrip Flight Search Fields ");
+			
+			//TODO : Verify the SRP page is loaded
+			Log.message("<b>Expected Result:</b> Successfully verified Search Result Page");	
 
 		} catch (Exception e) {
 			Log.exception(e);
