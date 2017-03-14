@@ -28,6 +28,17 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 ********************************* WebElements of Yatra Search Page ***********************************
 	 **********************************************************************************************/
 
+
+	@FindBy(css = ".ico-newHeaderLogo")
+	public WebElement headerLogo;
+	
+	
+	@FindBy(css = ".filter-list.filter-list-with-clear:nth-child(1)>label>div>span")
+	 WebElement chkChooseFlightFirst;
+	
+	@FindBy(css = ".filter-list.filter-list-with-clear:nth-child(1)>label>span:nth-child(2)")
+	 WebElement preferredFlightName;
+
 	@FindBy(css = "[class ='ico-newHeaderLogo']")
 	public WebElement logoYatra;
 
@@ -45,6 +56,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "div[ng-controller='productFareDetailsController']")
 	WebElement moduleFareDetails;
+
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -85,7 +97,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, logoYatra))) {
+
+
+		if (isPageLoaded && !(Utils.waitForElement(driver, headerLogo))) {
 			Log.fail("Search Result page didn't open up", driver);
 		}
 		// elementLayer = new ElementLayer(driver);
@@ -104,11 +118,18 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	}
 
+	
+	public String preferredFlightFirst() throws Exception {
+		Utils.waitForElement(driver, chkChooseFlightFirst);
+		BrowserActions.scrollToView(chkChooseFlightFirst, driver);
+		BrowserActions.javascriptClick(chkChooseFlightFirst, driver, "Choosed Preferred Flight");
+		Utils.waitForPageLoad(driver);
+		String name = BrowserActions.getText(driver, preferredFlightName, "Flight Name");
+		return name;
+	}
 	public void clickAirlineMatrix() throws Exception {
 		BrowserActions.clickOnElement(matrixStrip, driver, "Airline Matrix Strip");
 		Utils.waitForPageLoad(driver);
-		// Log.event("Clicked 'Login' button on SignIn page",
-		// StopWatch.elapsedTime(startTime));
+		
 	}
-
-}
+	}

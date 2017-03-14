@@ -208,7 +208,7 @@ public class TestScripts {
 			
 			Thread.sleep(5000);			
 			// step5: click 'Search' button in Yatra Home page
-			homePage.clickBtnSearch();
+			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("12.Successfully clicked 'Search' in Yatra Homepage ");
 			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
 
@@ -281,7 +281,7 @@ public class TestScripts {
 			Thread.sleep(5000);	
 			
 			// step5: click 'Search' button in Yatra Home page
-			homePage.clickBtnSearch();
+			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("11.Successfully clicked 'Search' in Yatra Homepage ");
 			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
 
@@ -289,7 +289,7 @@ public class TestScripts {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -359,17 +359,16 @@ public class TestScripts {
 			// step5: click 'Search' button in Yatra Home page
 			homePage.clickBtnSearch();
 			Log.message("12.Successfully clicked 'Search' in Yatra Homepage ");
-			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
-
+			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}	
-	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-International with Chioce seat Booking", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-International with Preferred Flight Booking", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_Yatra_Flight_006(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
@@ -437,10 +436,11 @@ public class TestScripts {
 			Log.message("12. Select Choice Of booking Seat");	
 
 			// step5: click 'Search' button in Yatra Home page
-			homePage.clickBtnSearch();
-			Log.message("13.Successfully clicked 'Search' in Yatra Homepage ");
+			SearchResult searchResult  =homePage.clickBtnSearch();
+			Log.message("13. Successfully clicked 'Search' in Yatra Homepage ");
 			
-			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
+			String name =searchResult.preferredFlightFirst();
+			Log.message("14. Selected Flight is:" + name);				
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -451,7 +451,7 @@ public class TestScripts {
 			Log.endTestCase();
 		}
 	}	
-	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-Domestic with Chioce seat Booking", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	@Test(groups = {"desktop" }, description = "Searching Fligts for Round Trip-Domestic with Preferred Flight Booking", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_Yatra_Flight_007(String browser) throws Exception {
 
 		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
@@ -519,10 +519,13 @@ public class TestScripts {
 			Log.message("12. Select Choice Of booking Seat");	
 
 			// step5: click 'Search' button in Yatra Home page
-			homePage.clickBtnSearch();
-			Log.message("13.Successfully clicked 'Search' in Yatra Homepage ");
+			SearchResult searchResult = homePage.clickBtnSearch();
+			Log.message("13.Successfully clicked 'Search' in Yatra Homepage");
 			
-			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
+			searchResult.preferredFlightFirst();
+			Log.message("14. Selected Prefered Flight");
+			
+									
 
 			Log.testCaseResult();
 		} catch (Exception e) {

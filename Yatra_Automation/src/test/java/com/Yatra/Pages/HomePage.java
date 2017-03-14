@@ -200,12 +200,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	
+
 	public SearchResult clickBtnSearch() throws Exception {
 		//final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 		Utils.waitForPageLoad(driver);
 		return new SearchResult(driver).get();
+	
 	}
 	
 	public void selectDepartureDate(String date) throws Exception{
