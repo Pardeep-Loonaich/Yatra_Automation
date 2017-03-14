@@ -82,9 +82,16 @@ public class FlightSearch {
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
 			Log.message("4.Successfully selected OneWay Flight Search Fields ");
 			
+			// step: click 'Search' button in Yatra Home page
+			searchResult =	homePage.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");							
+
+				
 			//TODO : Verify the SRP page is loaded
-			Log.message("<b>Expected Result:</b> Successfully verified Search Result Page");
 			
+			
+			Log.message("<b>Expected Result:</b> Successfully verified Search Result Page");
+			Log.testCaseResult();	
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -126,9 +133,16 @@ public class FlightSearch {
 			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
 			Log.message("4.Successfully selected RoundTrip Flight Search Fields ");
 			
-			//TODO : Verify the SRP page is loaded
-			Log.message("<b>Expected Result:</b> Successfully verified Search Result Page");	
+			// step: click 'Search' button in Yatra Home page
+			searchResult =	homePage.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");							
 
+							
+			//TODO : Verify the SRP page is loaded
+						
+						
+			Log.message("<b>Expected Result:</b> Successfully verified Search Result Page");
+			Log.testCaseResult();	
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {

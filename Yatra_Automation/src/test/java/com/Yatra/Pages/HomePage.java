@@ -505,7 +505,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
 		specifyPassengerInfo(passengerInfo); // select Passengers with class	
-		clickBtnSearch();  // click Search button
+		//clickBtnSearch();  // click Search button
 		Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
@@ -521,7 +521,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectDepartureDate(departureDate); // select Departure Date
 		selectReturnDate(returnDate); // select Return Date
 		specifyPassengerInfo(passengerInfo); // select Passengers with class
-		clickBtnSearch();  // click Search button
+		//clickBtnSearch();  // click Search button
 		Log.event("Successfully selected RoundTrip Flight Search fields");
 	}
 
