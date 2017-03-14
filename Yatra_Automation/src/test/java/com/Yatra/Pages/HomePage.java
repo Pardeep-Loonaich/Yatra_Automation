@@ -26,6 +26,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	private String appURL;
 	private WebDriver driver;
 	private boolean isPageLoaded;
+	public ElementLayer elementLayer;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -149,6 +150,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnSearch))) {
 			Log.fail("Home Page did not open up. Site might be down.", driver);
+			
 		}
 
 	}// isLoaded
@@ -194,12 +196,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public SearchResult clickBtnSearch() throws Exception {
+	public void clickBtnSearch() throws Exception {
 		//final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 		Utils.waitForPageLoad(driver);
-		return new SearchResult(driver).get();
 		//Log.event("Clicked 'Login' button on SignIn page",	StopWatch.elapsedTime(startTime));
+		
 	}
 	
 	public void selectDepartureDate(String date) throws Exception{
