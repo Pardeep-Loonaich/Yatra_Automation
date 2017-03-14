@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.time.StopWatch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,7 +20,6 @@ import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-
 
 public class HomePage extends LoadableComponent<HomePage> {
 
@@ -196,10 +196,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickBtnSearch() throws Exception {
-		//final long startTime = StopWatch.startTime();
+	public SearchResult clickBtnSearch() throws Exception {
+		
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 		Utils.waitForPageLoad(driver);
+		return new  SearchResult(driver).get();
+
 		//Log.event("Clicked 'Login' button on SignIn page",	StopWatch.elapsedTime(startTime));
 		
 	}
@@ -453,4 +455,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Log.event("Selected Return Date: " + date+"(YY/MM/DD)");
 	}
 
+
+	
 }// HomePage
