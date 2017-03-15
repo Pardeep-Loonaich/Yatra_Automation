@@ -62,6 +62,7 @@ public class FlightSearch {
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo"); 
+		String passengerClass = testData.get("Class");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -80,8 +81,8 @@ public class FlightSearch {
 			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
 			
 			//step:  select OneWay Flight Search fields
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
-			Log.message("4.Successfully selected OneWay Flight Search Fields ");
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
+			Log.message("4.Successfully filled the search details for 'ONE WAY' trip. ");
 			
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();
@@ -113,6 +114,7 @@ public class FlightSearch {
 		String departureDate = testData.get("DepartureDate");
 		String returnDate = testData.get("ReturnDate");
 		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -131,8 +133,8 @@ public class FlightSearch {
 			Log.message("3.Successfully clicked 'RoundTrip ' option in search Home Page ");
 			
 			//step:  select OneWay Flight Search fields
-			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
-			Log.message("4.Successfully selected RoundTrip Flight Search Fields ");
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+			Log.message("4.Successfully filled the search details for 'Round Trip' trip. ");
 			
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();
