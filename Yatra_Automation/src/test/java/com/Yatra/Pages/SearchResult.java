@@ -53,6 +53,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "p[class='new-blue-button fr book-button js-bookNow relative tc']")
 	WebElement btnBookNow;
+	
+	@FindBy(css = "p[class='new-blue-button .js-bookNow book-btn']")
+	WebElement btnBookNowINT;
 
 	@FindBy(css = "div[ng-controller='productFareDetailsController']")
 	WebElement moduleFareDetails;
@@ -117,7 +120,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.clickOnElement(btnBookNow, driver, "To click on Book now button.");
          return new ReviewPage(driver).get();
 	}
-
+	
+	public ReviewPage clickOnBookNowINT() throws Exception {
+		BrowserActions.scrollToView(btnBookNowINT, driver);
+		BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button.");
+         return new ReviewPage(driver).get();
+	}
 	
 	public String preferredFlightFirst() throws Exception {
 		Utils.waitForElement(driver, chkChooseFlightFirst);

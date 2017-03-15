@@ -480,21 +480,21 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void selectTripType(String tripType) throws Exception {
-		if (tripType == "ONEWAY") {
-			BrowserActions.clickOnElement(lnkOneWay, driver, "One Way");
-			Utils.waitForPageLoad(driver);
-			Log.event("Successfully selected OneWay option in Search Fields");
-		} else if (tripType == "ROUNDTRIP") {
-			BrowserActions.clickOnElement(lnkRoundTrip, driver, "Round Trip");
-			Utils.waitForPageLoad(driver);
-			Log.event("Successfully selected RoundTrip option in Search Fields");
-		}else if (tripType == "MULTICITY") {
-			BrowserActions.clickOnElement(lnkMultiCity, driver, "Multicity");
-			Utils.waitForPageLoad(driver);
-			Log.event("Successfully selected Multicity option in Search Fields");
-		}
-	}
+	public void selectTripType(String tripType) throws Exception { 
+        if (tripType.equalsIgnoreCase("ONEWAY")) { 
+                BrowserActions.clickOnElement(lnkOneWay, driver, "One Way"); 
+                Utils.waitForPageLoad(driver); 
+                Log.event("Successfully selected OneWay option in Search Fields"); 
+        } else if (tripType.equalsIgnoreCase("ROUNDTRIP")) { 
+                BrowserActions.clickOnElement(lnkRoundTrip, driver, "Round Trip"); 
+                Utils.waitForPageLoad(driver); 
+                Log.event("Successfully selected RoundTrip option in Search Fields"); 
+        }else if (tripType.equalsIgnoreCase("MULTICITY")) { 
+                BrowserActions.clickOnElement(lnkMultiCity, driver, "Multicity"); 
+                Utils.waitForPageLoad(driver); 
+                Log.event("Successfully selected Multicity option in Search Fields"); 
+        } 
+}
 
 	/**
 	 * To select OneWay Flight search Fields
@@ -504,7 +504,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,	String passengerInfo) throws Exception {
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
-		selectDepartureDate(departureDate); // select Departure Date
+		selectDepartureDate(departureDate); // select Departure Date		
 		specifyPassengerInfo(passengerInfo); // select Passengers with class	
 		//clickBtnSearch();  // click Search button
 		Log.event("Successfully selected OneWay Flight Search fields");

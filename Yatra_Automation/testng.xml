@@ -15,9 +15,9 @@
 		</groups>
 
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightSearch">
+			<class name="com.Yatra.TestScript.Flights.FlightPricing">
 				<methods>				
-				<include name="TC_Yatra_Flight_011" />
+				<include name="TC_Yatra_Flight_022" />
 				</methods>
 			</class>
 		</classes>
