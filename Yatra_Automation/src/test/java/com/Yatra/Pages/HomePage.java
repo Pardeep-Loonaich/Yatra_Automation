@@ -2,7 +2,6 @@ package com.Yatra.Pages;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -171,7 +170,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	/**
 	 * Enter Origin
 	 * 
-	 * @param origin: Pass origin as city Name
+	 * @param origin
+	 *            as string
 	 * @throws Exception
 	 */
 	public void enterOrigin(String origin) throws Exception {
@@ -184,7 +184,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	/**
 	 * Enter Destination
 	 * 
-	 * @param destination: Destination city
+	 * @param destination
+	 *            as string
 	 * @throws Exception
 	 */
 	public void enterDestination(String destination) throws Exception {
@@ -460,7 +461,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		List<WebElement> datePicker =driver.findElements(By.cssSelector(dateLocator+date+"']"));
 		datePicker.get(0).click();
 		Log.event("Selected Return Date: " + date+"(YY/MM/DD)");
-
 	}
 	
 	/**
@@ -525,7 +525,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		//clickBtnSearch();  // click Search button
 		Log.event("Successfully selected RoundTrip Flight Search fields");
 	}
-
 
 	
 }// HomePage
