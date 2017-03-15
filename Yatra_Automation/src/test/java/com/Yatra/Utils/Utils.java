@@ -495,7 +495,7 @@ public class Utils {
 	 * 
 	 *              for current date: iDay should be 0 (Zero ) 
 	 *              for future date: iDay should be +ve (1,2,3,4 ..etc.)
-	 *              for past date: iDay should be +ve (-1,-2,-3,-4 ..etc.)
+	 *              for past date: iDay should be -ve (-1,-2,-3,-4 ..etc.)
 	 * @return : it will return date in as string
 	 */
 	public static String dateGenerator(String sDateFormat,int iDay)
