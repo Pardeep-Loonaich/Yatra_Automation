@@ -19,6 +19,7 @@ import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.LoginPage;
+import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
@@ -111,40 +112,28 @@ public class FlightPricing {
 
 			// step: click 'Search' button in Yatra Home page
 			loginPage.clickBtnSignIn();
-			Log.message("6.Successfully clicked 'SignIn' ");			
-			Log.message("Successfully Logged in Yatra acct");			
+			Log.message("6.Successfully Logged in Yatra acct");			
 			
-			//Step: Selected trip as one way trip.
-			homePage.selectOneWayTrip();
-			Log.message("7.Successfully clicked 'One Way ' option in search Home Page ");
-			
-			// step: enter Origin place in Yatra Home page
-			homePage.enterOrigin(origin);
-			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
+			Log.message("7.Successfully filled the search details for 'ONE WAY' trip.");			
 
-			//step: enter Destination place in Yatra Home page
-			homePage.enterDestination(destination);
-			Log.message("9.Successfully entered Destination '<b>"+ destination+"</b>' in Yatra Homepage" );
-					
-			//step: enter Destination place in Yatra Home page
-			
-			homePage.clickDeptDatePicker();		
-			homePage.selectDeptDateAfterOneWeek();
-			Log.message("10. Successfully selected the departure date: <b>"+ departureDate+"</b>(YY/MM/DD)");
-			
-			//step: enter Passenger info in Yatra Home page
-            homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("11. Passenger Info successfully specified as class as 'Economic' class.");
 			
 			Thread.sleep(5000);			
 			// step: click 'Search' button in Yatra Home page
 		    SearchResult searchResult = homePage.clickBtnSearch();
-			Log.message("12.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("8.Successfully clicked 'Search' in Yatra Homepage ");
 			
-			searchResult.clickOnBookNow();
-			Log.message("13.Clicked on 'Book Now' button in Search Result Page ");
+			ReviewPage reviewPage = searchResult.clickOnBookNow();
+			Log.message("9.Clicked on 'Book Now' button in Search Result Page ");
 			
-						
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Check to price calculation for DOM flight-one way.");
+			Thread.sleep(5000);			
+
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareDetails"), reviewPage),
+					"<b>Actual Result:</b> The Fare details module is displayed on Review Page.",
+					"<b>Actual Result:</b> The Fare details module is not displayed on Review Page.",driver);
+		
 		  
 			
 

@@ -112,10 +112,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForPageLoad(driver);
 	}// load
 
-	public void clickOnBookNow() throws Exception {
+	public ReviewPage clickOnBookNow() throws Exception {
 		BrowserActions.scrollToView(btnBookNow, driver);
 		BrowserActions.clickOnElement(btnBookNow, driver, "To click on Book now button.");
-
+         return new ReviewPage(driver).get();
 	}
 
 	

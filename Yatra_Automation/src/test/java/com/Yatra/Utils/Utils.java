@@ -1,7 +1,6 @@
 package com.Yatra.Utils;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
@@ -61,7 +60,7 @@ public class Utils {
 					|| url.contains("/error/") || url.toLowerCase().contains("/errorpage/")) {
 				Assert.fail("Site is down. [Title: " + title + ", URL:" + url + "]");
 			}
-
+			
 		} catch (TimeoutException e) {
 			driver.navigate().refresh();
 			wait.until(WebDriverFactory.documentLoad);
@@ -104,7 +103,7 @@ public class Utils {
 			if (checkDeviceExecution) {
 				dataToBeReturned = configProperty.hasProperty("deviceOrientation")
 						? configProperty.getProperty("deviceOrientation")
-								: "no local run config variable: deviceOrientation ";
+						: "no local run config variable: deviceOrientation ";
 			} else {
 				dataToBeReturned = "local browser test: no orientation";
 			}
@@ -380,7 +379,7 @@ public class Utils {
 		});
 		return isNotDisplayed;
 	}
-
+	
 	/**
 	 * Wait until element disappears in the page
 	 * 
@@ -446,10 +445,10 @@ public class Utils {
 			rand = random.nextInt(max);
 		else
 			rand = ThreadLocalRandom.current().nextInt(min, max);
-
+				
 		return rand;
 	}
-
+	
 	/**
 	 * To verify the page url contains the given word
 	 * @param driver
@@ -471,61 +470,18 @@ public class Utils {
 		if(url.contains(hostURL.split("https://")[1]) && url.contains(stringContains)) {
 			status = true;
 		}
-
+		
 		return status;
 	}
-
-	/**
-	 * Round to certain number of decimals
-	 * 
-	 * @param d
-	 * @param decimalPlace the numbers of decimals
-	 * @return
-	 */
-	public static float round(double d, int decimalPlace)
-
-	{
-		return BigDecimal.valueOf(d).setScale(decimalPlace,BigDecimal.ROUND_HALF_UP).floatValue();
-	}
-
-
-	/**
-	 * 
-	 * @param iDay: provide No of which you want to decrease/increase
-	 * 
-	 *              for current date: iDay should be 0 (Zero ) 
-	 *              for future date: iDay should be +ve (1,2,3,4 ..etc.)
-	 *              for past date: iDay should be +ve (-1,-2,-3,-4 ..etc.)
-	 * @return : it will return date in as string
-	 */
-	public static String dateGenerator(String sDateFormat,int iDay)
-
-	{
-		String dataToBeReturn="";
-		SimpleDateFormat simpleDateFormat;
-		if(sDateFormat.equalsIgnoreCase("") ||sDateFormat.equalsIgnoreCase(null))
-		{
-			simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		}
-
-		Calendar cal=Calendar.getInstance();
-		simpleDateFormat = new SimpleDateFormat(sDateFormat);
-
-		if(!(iDay==0))
-
-		{
-			cal.add(Calendar.DATE, iDay);
-			dataToBeReturn=simpleDateFormat.format(cal.getTime()).toString();
-			//System.out.println(simpleDateFormat.format(cal.getTime()));
-		}
-		else 
-		{
-			dataToBeReturn=simpleDateFormat.format(new Date());
-			//System.out.println(simpleDateFormat.format(cal.getTime()));
-		}
-		return dataToBeReturn;
-
-	}
-
-
+	
+	 /**
+     * Round to certain number of decimals
+     * 
+     * @param d
+     * @param decimalPlace the numbers of decimals
+     * @return
+     */
+    public static float round(double d, int decimalPlace) {
+         return BigDecimal.valueOf(d).setScale(decimalPlace,BigDecimal.ROUND_HALF_UP).floatValue();
+    }
 }
