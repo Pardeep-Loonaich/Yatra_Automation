@@ -71,7 +71,7 @@
 						</suiteXmlFiles>
 					</configuration>
 				</plugin>
-				<plugin>
+				 <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.5.1</version>
@@ -79,7 +79,7 @@
             		<fork>true</fork>
             		<executable>C:\Program Files\Java\jdk1.8.0_60\bin\javac.exe</executable>
        			 </configuration>
-			</plugin>
+			</plugin> 
 			</plugins>
 		</pluginManagement>
 	</build>

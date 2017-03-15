@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Web Automation Test" verbose="3" parallel="tests" thread-count="500">
@@ -16,9 +15,9 @@
 		</groups>
 
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.TestScripts">
+			<class name="com.Yatra.TestScript.Flights.FlightSearch">
 				<methods>				
-				<include name="TC_Yatra_Flight_002" />
+				<include name="TC_Yatra_Flight_011" />
 				</methods>
 			</class>
 		</classes>
