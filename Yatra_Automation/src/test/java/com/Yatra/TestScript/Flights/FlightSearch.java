@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 //import javax.naming.directory.SearchResult;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
@@ -21,9 +20,6 @@ import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.LoginPage;
-
-import com.Yatra.Pages.SearchResult;
-
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Utils.BrowserActions;
 
@@ -63,7 +59,7 @@ public class FlightSearch {
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
-		String passengerInfo = testData.get("PassengerInfo");
+		String passengerInfo = testData.get("PassengerInfo"); 
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -159,7 +155,10 @@ public class FlightSearch {
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
 		String origin = testData.get("Origin");
+		//String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
+		//String departureDate = testData.get("DepartureDate");
+		//String returnDate = testData.get("ReturnDate");
 		String passangerInfo = testData.get("PassengerInfo");
 
 		// Get the web driver instance
@@ -172,6 +171,7 @@ public class FlightSearch {
 
 			// step2: verify Yatra title bar text
 			if (driver.getTitle().contains("Flight")) {
+
 				Log.message("2.Verified Yatra Title text");
 			}
 
@@ -180,6 +180,9 @@ public class FlightSearch {
 
 			// click Login button in HomePage
 			loginPage.clickBtnSignIn();
+	
+			 //click Login button in HomePage
+			 loginPage.clickBtnSignIn();
 
 			// step: enter Origin place in Yatra Home page
 			loginPage.enterEmailID(emailId);
@@ -192,8 +195,13 @@ public class FlightSearch {
 
 			// step: click 'Search' button in Yatra Home page
 			loginPage.clickBtnSignIn();
+
 			Log.message("6.Successfully clicked 'SignIn' ");
 			Log.message("Successfully Logged in Yatra acct");
+
+
+			Log.message("6.Successfully clicked 'SignIn' ");			
+			Log.message("Successfully Logged in Yatra acct");			
 
 			homePage.selectRoundTrip();
 			Log.message("7.Successfully clicked 'Round Trip' option in search Home Page ");
@@ -213,9 +221,13 @@ public class FlightSearch {
 
 			homePage.clickReturnDatePicker();
 			homePage.selectReturnDateAfterTwoWeek();
+
 			Log.message("11. selected Return Date");
 			Thread.sleep(20000);
 
+			Log.message("11. selected Return Date");	
+			Thread.sleep(10000);	
+			
 			homePage.specifyPassengerInfo(passangerInfo);
 			Log.message("12. Select Choice Of booking Seat");
 
@@ -226,11 +238,14 @@ public class FlightSearch {
 
 			Log.message("<b>Expected Result:</b> Successfully searched Flights");
 			Log.testCaseResult();
+
 			Thread.sleep(10000);
+
+			BrowserActions.nap(10);
 
 			searchResult.clickAirlineMatrix();
 			Log.message("Successfully clicked Airline Matrix");
-			Thread.sleep(3000);
+			Thread.sleep(3000);			
 		} catch (Exception e) {
 			Log.exception(e);
 

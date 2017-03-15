@@ -27,6 +27,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	Utils utils = new Utils();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -209,7 +210,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	}
 	
-	public void selectDepartureDate(String date) throws Exception{
+	public void selectDepartureDate_old(String date) throws Exception{
 		int month=Integer.parseInt(date.split("_")[2]);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
 		selectMonth.get(month-2).click();
@@ -454,7 +455,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void selectReturnDate(String date) throws Exception{
+	public void selectReturnDate_old(String date) throws Exception{
 		int month=Integer.parseInt(date.split("_")[1]); 
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
 		selectMonth.get(month-2).click();
@@ -480,21 +481,21 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void selectTripType(String tripType) throws Exception {
-		if (tripType == "ONEWAY") {
-			BrowserActions.clickOnElement(lnkOneWay, driver, "One Way");
-			Utils.waitForPageLoad(driver);
-			Log.event("Successfully selected OneWay option in Search Fields");
-		} else if (tripType == "ROUNDTRIP") {
-			BrowserActions.clickOnElement(lnkRoundTrip, driver, "Round Trip");
-			Utils.waitForPageLoad(driver);
-			Log.event("Successfully selected RoundTrip option in Search Fields");
-		}else if (tripType == "MULTICITY") {
-			BrowserActions.clickOnElement(lnkMultiCity, driver, "Multicity");
-			Utils.waitForPageLoad(driver);
-			Log.event("Successfully selected Multicity option in Search Fields");
-		}
-	}
+	public void selectTripType(String tripType) throws Exception { 
+        if (tripType.equalsIgnoreCase("ONEWAY")) { 
+                BrowserActions.clickOnElement(lnkOneWay, driver, "One Way"); 
+                Utils.waitForPageLoad(driver); 
+                Log.event("Successfully selected OneWay option in Search Fields"); 
+        } else if (tripType.equalsIgnoreCase("ROUNDTRIP")) { 
+                BrowserActions.clickOnElement(lnkRoundTrip, driver, "Round Trip"); 
+                Utils.waitForPageLoad(driver); 
+                Log.event("Successfully selected RoundTrip option in Search Fields"); 
+        }else if (tripType.equalsIgnoreCase("MULTICITY")) { 
+                BrowserActions.clickOnElement(lnkMultiCity, driver, "Multicity"); 
+                Utils.waitForPageLoad(driver); 
+                Log.event("Successfully selected Multicity option in Search Fields"); 
+        } 
+}
 
 	/**
 	 * To select OneWay Flight search Fields
@@ -505,8 +506,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
+		specifyPassengerInfo(passengerInfo); // select Passengers with class
+		selectDepartureDate(departureDate); // select Departure Date		
 		specifyPassengerInfo(passengerInfo); // select Passengers with class	
-		//clickBtnSearch();  // click Search button
 		Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
@@ -521,9 +523,42 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
 		selectReturnDate(returnDate); // select Return Date
-		specifyPassengerInfo(passengerInfo); // select Passengers with class
-		//clickBtnSearch();  // click Search button
+		specifyPassengerInfo(passengerInfo); // select Passengers with class		
 		Log.event("Successfully selected RoundTrip Flight Search fields");
+	}
+	
+	/**
+	 * To select Departure Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public void selectDepartureDate(String departureDate) throws Exception{
+		int iDay = Integer.parseInt(departureDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay); 
+		int month=Integer.parseInt(date.split("_")[1]);
+		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
+		selectMonth.get(month-2).click();
+		List<WebElement> datePicker =driver.findElements(By.cssSelector(dateLocator+date+"']"));
+		datePicker.get(0).click();
+		Log.event("Selected Departure Date: " + date+"(YY/MM/DD)");
+	}
+	
+	/**
+	 * To select Return Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public void selectReturnDate(String returnDate) throws Exception{
+		int iDay = Integer.parseInt(returnDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);		
+		int month=Integer.parseInt(date.split("_")[1]); 
+		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
+		selectMonth.get(month-2).click();
+		List<WebElement> datePicker =driver.findElements(By.cssSelector(dateLocator+date+"']"));
+		datePicker.get(0).click();
+		Log.event("Selected Return Date: " + date+"(YY/MM/DD)");
 	}
 
 	

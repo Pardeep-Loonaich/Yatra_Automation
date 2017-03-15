@@ -19,6 +19,7 @@ import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.LoginPage;
+import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
@@ -26,11 +27,15 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.TestDataExtractor;
 import com.Yatra.Utils.WebDriverFactory;
+import com.Yatra.Utils.Utils;
 
 @Listeners(EmailReport.class)
 public class FlightPricing {
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
+	HomePage homePage;
+	LoginPage loginPage;
+	SearchResult searchResult;
 	String webSite;
 	private String workbookName = "testdata\\data\\Flights.xls";
 	private String sheetName = "FlightPricing";
@@ -111,40 +116,28 @@ public class FlightPricing {
 
 			// step: click 'Search' button in Yatra Home page
 			loginPage.clickBtnSignIn();
-			Log.message("6.Successfully clicked 'SignIn' ");			
-			Log.message("Successfully Logged in Yatra acct");			
+			Log.message("6.Successfully Logged in Yatra acct");			
 			
-			//Step: Selected trip as one way trip.
-			homePage.selectOneWayTrip();
-			Log.message("7.Successfully clicked 'One Way ' option in search Home Page ");
-			
-			// step: enter Origin place in Yatra Home page
-			homePage.enterOrigin(origin);
-			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
+			Log.message("7.Successfully filled the search details for 'ONE WAY' trip.");			
 
-			//step: enter Destination place in Yatra Home page
-			homePage.enterDestination(destination);
-			Log.message("9.Successfully entered Destination '<b>"+ destination+"</b>' in Yatra Homepage" );
-					
-			//step: enter Destination place in Yatra Home page
-			
-			homePage.clickDeptDatePicker();		
-			homePage.selectDeptDateAfterOneWeek();
-			Log.message("10. Successfully selected the departure date: <b>"+ departureDate+"</b>(YY/MM/DD)");
-			
-			//step: enter Passenger info in Yatra Home page
-            homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("11. Passenger Info successfully specified as class as 'Economic' class.");
 			
 			Thread.sleep(5000);			
 			// step: click 'Search' button in Yatra Home page
 		    SearchResult searchResult = homePage.clickBtnSearch();
-			Log.message("12.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("8.Successfully clicked 'Search' in Yatra Homepage ");
 			
-			searchResult.clickOnBookNow();
-			Log.message("13.Clicked on 'Book Now' button in Search Result Page ");
+			ReviewPage reviewPage = searchResult.clickOnBookNow();
+			Log.message("9.Clicked on 'Book Now' button in Search Result Page ");
 			
-						
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Check to price calculation for DOM flight-one way.");
+			Thread.sleep(5000);			
+
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareDetails"), reviewPage),
+					"<b>Actual Result:</b> The Fare details module is displayed on Review Page.",
+					"<b>Actual Result:</b> The Fare details module is not displayed on Review Page.",driver);
+		
 		  
 			
 
@@ -217,6 +210,7 @@ public class FlightPricing {
 			//step: enter Destination place in Yatra Home page
 			
 			homePage.clickDeptDatePicker();		
+			
 			homePage.selectDeptDateAfterOneWeek();
 			Log.message("10. Successfully selected the departure date: <b>"+ departureDate+"</b>(YY/MM/DD)");
 			
@@ -232,10 +226,7 @@ public class FlightPricing {
 			// step: click 'Search' button in Yatra Home page
 		    SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("13.Successfully clicked 'Search' in Yatra Homepage ");
-			
-	
-		  
-			
+					
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -244,5 +235,130 @@ public class FlightPricing {
 			Log.endTestCase();
 		}
 	}
+	
+	@Test(groups = { "desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	public void TC_Yatra_Flight_022(String browser) throws Exception {
+
+		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId , password);
+			Log.message("2.Successfully Logged in Yatra account");	
+			
+			//step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			
+			//step:  select OneWay Flight Search fields
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
+			Thread.sleep(15000);
+			
+			// step: click 'Search' button in Yatra Home page
+			searchResult =	homePage.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");	
+			Thread.sleep(15000);
+			/*homePage.clickReturnDatePicker();
+			homePage.selectReturnDateAfterTwoWeek();
+			Log.message("11. Successfully selected the return date: <b>"+ returnDate +"</b>(YY/MM/DD)");*/
+			
+			ReviewPage reviewPage = searchResult.clickOnBookNow();
+			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
+			Thread.sleep(15000);
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Check Change Flight link.");
+			Thread.sleep(5000);			
+
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> The Change Flight link is displayed on Review page.",
+					"<b>Actual Result:</b> The Change Flight link is not displayed on Review Page.",driver);
+		
+		  
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Change flight link verification on Review page - INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	public void TC_Yatra_Flight_023(String browser) throws Exception {
+
+		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId , password);
+			Log.message("2.Successfully Logged in Yatra account");	
+			
+			//step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			
+			//step:  select OneWay Flight Search fields
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
+			Log.message("4.Successfully selected OneWay Flight Search Fields ");
+			Thread.sleep(5000);
+			
+			// step: click 'Search' button in Yatra Home page
+			searchResult =	homePage.clickBtnSearch();
+			Thread.sleep(15000);
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");							
+
+			
+			/*homePage.clickReturnDatePicker();
+			homePage.selectReturnDateAfterTwoWeek();
+			Log.message("11. Successfully selected the return date: <b>"+ returnDate +"</b>(YY/MM/DD)");*/
+			
+			ReviewPage reviewPage = searchResult.clickOnBookNowINT();
+			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Check Change Flight link.");
+			Thread.sleep(5000);			
+
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> The Change Flight link is displayed on Review page.",
+					"<b>Actual Result:</b> The Change Flight link is not displayed on Review Page.",driver);
+			  
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
 	
 }

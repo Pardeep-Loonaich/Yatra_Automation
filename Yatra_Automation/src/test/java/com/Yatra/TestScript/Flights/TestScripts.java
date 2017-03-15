@@ -17,7 +17,9 @@ import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.TestDataExtractor;
+import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
+import com.steadystate.css.parser.SACParserCSS1;
 
 @Listeners(EmailReport.class)
 public class TestScripts {
@@ -619,5 +621,16 @@ public class TestScripts {
 			driver.quit();
 			Log.endTestCase();
 		}
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		//String sDateFormat = "09/04/2017";
+		String sDateFormat = "";
+		int iDay = -65;
+		Utils utils = new Utils();
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		System.out.println(date);
 	}
 }
