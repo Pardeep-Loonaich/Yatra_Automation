@@ -77,19 +77,11 @@ public class FlightSearch {
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
-<<<<<<< HEAD
-			
+
 			//step:  select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
 			Log.message("4.Successfully filled the search details for 'ONE WAY' trip. ");
 			
-=======
-
-			// step: select OneWay Flight Search fields
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);
-			Log.message("4.Successfully selected OneWay Flight Search Fields ");
-
->>>>>>> 0c0b235657a1452fe0799dfbeaafca6956477022
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");
@@ -136,19 +128,11 @@ public class FlightSearch {
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("3.Successfully clicked 'RoundTrip ' option in search Home Page ");
-<<<<<<< HEAD
-			
+
 			//step:  select OneWay Flight Search fields
 			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
 			Log.message("4.Successfully filled the search details for 'Round Trip' trip. ");
 			
-=======
-
-			// step: select OneWay Flight Search fields
-			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
-			Log.message("4.Successfully selected RoundTrip Flight Search Fields ");
-
->>>>>>> 0c0b235657a1452fe0799dfbeaafca6956477022
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");
