@@ -51,13 +51,34 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='full']>div[class='matrix-wrapper day-matrix new-theme day-matrix-responsive']")
 	WebElement weeklyStrip;
 
-	@FindBy(css = "p[class='new-blue-button fr book-button js-bookNow relative tc']")
+	@FindBy(css = "div[class='show-result multi-1']>div>div[class='results']>div:nth-child(1)>article>div[class='my-res-info full']>ul>li[class='book-now']>div>p:nth-child(2)")
 	WebElement btnBookNow;
 
 	@FindBy(css = "div[ng-controller='productFareDetailsController']")
 	WebElement moduleFareDetails;
 
+	@FindBy(css = "div[class='show-result multi-1']>div>div[class='results']>div:nth-child(1)>article>div[class='my-res-info full']>ul>li>small:nth-child(2)")
+	WebElement firstAirlineName_OW_DOM;
+	
+	@FindBy(css = "div[class='js-flightItem']:nth-child(2)>article>div[class='full airlines-deals-holder bxs hidden-sm']>div[class='ib airlines-info hidden-sm']>p")
+	WebElement firstAirlineName_RT_INTL;
 
+	@FindBy(css = "div[class='js-flightItem']:nth-child(2)>article>div[class='full result-card-content']>ul>li:nth-child(1)>div>p[class='full airline-name']")
+	WebElement firstAirlineName_OW_INTL;
+	
+	@FindBy(css = "#resultBoxSlider>div[id='resultList_0']>div[class='results']>div:nth-child(1)>article>div[class='my-res-info full']>ul>li:nth-child(1)")
+	WebElement firstAirlineName_RT_DOM_Left;
+	
+	@FindBy(css = "#resultBoxSlider>div[id='resultList_0']>div[class='results']>div:nth-child(1)>article>div[class='my-res-info full']>ul>li:nth-child(1)")
+	WebElement firstAirlineName_RT_DOM_Right;
+	
+	@FindBy(css = "div[class='js-flightItem']:nth-child(2)>article>div[class='full lob-inclusions bxs hidden-md']>div[class='inc-rgt']>ul>li>a[title='Flight Details']")
+	WebElement lnkFlightDetails_INTL;
+	
+	@FindBy(css = "#resultBoxSlider>div[id='resultList_0']>div[class='results']>div:nth-child(1)>article>footer>ul[class='res-footer-list fl uprcse']")
+	WebElement lnkFlightDetails_DOM;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -132,4 +153,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForPageLoad(driver);
 		
 	}
+	
+	public String firstFlightNameOW() throws Exception {
+		Utils.waitForPageLoad(driver);
+		Utils.waitForElement(driver, firstAirlineName_OW_DOM);
+		BrowserActions.scrollToView(firstAirlineName_OW_DOM, driver);
+		String name1 = BrowserActions.getText(driver, firstAirlineName_OW_DOM, "Flight Name in Result");
+		return name1;
+	
+	}
+	
 	}
