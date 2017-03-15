@@ -488,6 +488,7 @@ public class Utils {
 
 
 	/**
+<<<<<<< HEAD
 	 * 
 	 * @param iDay:
 	 *            provide No of which you want to decrease/increase
@@ -495,6 +496,14 @@ public class Utils {
 	 *            for current date: iDay should be 0 (Zero ) for future date:
 	 *            iDay should be +ve (1,2,3,4 ..etc.) for past date: iDay should
 	 *            be +ve (-1,-2,-3,-4 ..etc.)
+=======
+	 * @author harveer.singh
+	 * @param iDay: provide No of which you want to decrease/increase
+	 * 
+	 *              for current date: iDay should be 0 (Zero ) 
+	 *              for future date: iDay should be +ve (1,2,3,4 ..etc.)
+	 *              for past date: iDay should be -ve (-1,-2,-3,-4 ..etc.)
+>>>>>>> 7f9bc9662798277f097d65f266c309ed96d8b457
 	 * @return : it will return date in as string
 	 */
 	public static String dateGenerator(String sDateFormat, int iDay){
