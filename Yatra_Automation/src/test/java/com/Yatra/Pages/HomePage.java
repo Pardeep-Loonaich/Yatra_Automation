@@ -481,23 +481,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-<<<<<<< HEAD
-	public void selectTripType(String tripType) throws Exception {
-		if (tripType.equalsIgnoreCase("ONEWAY")) {
-			BrowserActions.clickOnElement(lnkOneWay, driver, "One Way");
-			Utils.waitForPageLoad(driver);
-			Log.event("Successfully selected OneWay option in Search Fields");
-		} else if (tripType.equalsIgnoreCase("ROUNDTRIP")) {
-			BrowserActions.clickOnElement(lnkRoundTrip, driver, "Round Trip");
-			Utils.waitForPageLoad(driver);
-			Log.event("Successfully selected RoundTrip option in Search Fields");
-		}else if (tripType.equalsIgnoreCase("MULTICITY")) {
-			BrowserActions.clickOnElement(lnkMultiCity, driver, "Multicity");
-			Utils.waitForPageLoad(driver);
-			Log.event("Successfully selected Multicity option in Search Fields");
-		}
-	}
-=======
 	public void selectTripType(String tripType) throws Exception { 
         if (tripType.equalsIgnoreCase("ONEWAY")) { 
                 BrowserActions.clickOnElement(lnkOneWay, driver, "One Way"); 
@@ -513,7 +496,6 @@ public class HomePage extends LoadableComponent<HomePage> {
                 Log.event("Successfully selected Multicity option in Search Fields"); 
         } 
 }
->>>>>>> 7f9bc9662798277f097d65f266c309ed96d8b457
 
 	/**
 	 * To select OneWay Flight search Fields
@@ -523,14 +505,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,	String passengerInfo) throws Exception {
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
-<<<<<<< HEAD
 		selectDepartureDate(departureDate); // select Departure Date
-		specifyPassengerInfo(passengerInfo); // select Passengers with class		
-=======
+		specifyPassengerInfo(passengerInfo); // select Passengers with class
 		selectDepartureDate(departureDate); // select Departure Date		
 		specifyPassengerInfo(passengerInfo); // select Passengers with class	
-		//clickBtnSearch();  // click Search button
->>>>>>> 7f9bc9662798277f097d65f266c309ed96d8b457
 		Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
