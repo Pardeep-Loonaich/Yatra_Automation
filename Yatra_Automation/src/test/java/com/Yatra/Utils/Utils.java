@@ -482,48 +482,39 @@ public class Utils {
 	 * @param decimalPlace the numbers of decimals
 	 * @return
 	 */
-	public static float round(double d, int decimalPlace)
-
-	{
+	public static float round(double d, int decimalPlace){
 		return BigDecimal.valueOf(d).setScale(decimalPlace,BigDecimal.ROUND_HALF_UP).floatValue();
 	}
 
 
 	/**
 	 * 
-	 * @param iDay: provide No of which you want to decrease/increase
+	 * @param iDay:
+	 *            provide No of which you want to decrease/increase
 	 * 
-	 *              for current date: iDay should be 0 (Zero ) 
-	 *              for future date: iDay should be +ve (1,2,3,4 ..etc.)
-	 *              for past date: iDay should be +ve (-1,-2,-3,-4 ..etc.)
+	 *            for current date: iDay should be 0 (Zero ) for future date:
+	 *            iDay should be +ve (1,2,3,4 ..etc.) for past date: iDay should
+	 *            be +ve (-1,-2,-3,-4 ..etc.)
 	 * @return : it will return date in as string
 	 */
-	public static String dateGenerator(String sDateFormat,int iDay)
-
-	{
-		String dataToBeReturn="";
-		if(sDateFormat.equalsIgnoreCase("") ||sDateFormat.equalsIgnoreCase(null))
-		{
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	public static String dateGenerator(String sDateFormat, int iDay){
+		String dataToBeReturn = "";
+		if (sDateFormat.equalsIgnoreCase("") || sDateFormat.equalsIgnoreCase(null)) {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD/MM/YYYY");
 		}
 
-		Calendar cal=Calendar.getInstance();
+		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDateFormat);
 
-		if(!(iDay==0))
-
-		{
+		if (!(iDay == 0)){
 			cal.add(Calendar.DATE, iDay);
-			dataToBeReturn=simpleDateFormat.format(cal.getTime()).toString();
-			//System.out.println(simpleDateFormat.format(cal.getTime()));
-		}
-		else 
-		{
-			dataToBeReturn=simpleDateFormat.format(new Date());
-			//System.out.println(simpleDateFormat.format(cal.getTime()));
+			dataToBeReturn = simpleDateFormat.format(cal.getTime()).toString();
+			// System.out.println(simpleDateFormat.format(cal.getTime()));
+		} else {
+			dataToBeReturn = simpleDateFormat.format(new Date());
+			// System.out.println(simpleDateFormat.format(cal.getTime()));
 		}
 		return dataToBeReturn;
-
 	}
 
 

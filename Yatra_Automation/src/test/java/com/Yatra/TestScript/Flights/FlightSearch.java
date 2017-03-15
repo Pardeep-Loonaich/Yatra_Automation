@@ -61,7 +61,7 @@ public class FlightSearch {
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
-		String passengerInfo = testData.get("PassengerInfo");
+		String passengerInfo = testData.get("PassengerInfo"); 
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
