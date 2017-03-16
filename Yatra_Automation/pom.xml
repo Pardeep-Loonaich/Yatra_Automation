@@ -83,8 +83,8 @@
 			<artifactId>selenium-client-factory</artifactId>
 			<version>2.13</version>
 			<scope>test</scope>
-		</dependency>		
-		 -->
+		</dependency>		 -->
+		
 	</dependencies>
 
 	<build>
