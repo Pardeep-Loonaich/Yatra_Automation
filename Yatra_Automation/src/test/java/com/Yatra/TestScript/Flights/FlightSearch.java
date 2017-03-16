@@ -112,29 +112,6 @@ public class FlightSearch {
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
 
 			Log.testCaseResult();
-=======
-			loginPage.loginYatraAccount(emailId , password);
-			Log.message("2.Successfully Logged in Yatra account");	
-				
-			//step: Select Trip Type
-			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
-			
-			//step:  select OneWay Flight Search fields
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
-			Log.message("4.Successfully selected OneWay Flight Search Fields ");
-			
-			// step: click 'Search' button in Yatra Home page
-			searchResult =	homePage.clickBtnSearch();
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");							
-
-				
-			//TODO : Verify the SRP page is loaded
-			
-			
-			Log.message("<b>Expected Result:</b> Successfully verified Search Result Page");
-			Log.testCaseResult();	
->>>>>>> b2fff7a00a8ff4ecf123c06b102bdf30310f031c
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -142,11 +119,7 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> b2fff7a00a8ff4ecf123c06b102bdf30310f031c
 	@Test(groups = { "desktop" }, description = "Flight Search DOM - RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_Yatra_Flight_002(String browser) throws Exception {
 
@@ -159,6 +132,7 @@ public class FlightSearch {
 		String departureDate = testData.get("DepartureDate");
 		String returnDate = testData.get("ReturnDate");
 		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -174,7 +148,6 @@ public class FlightSearch {
 				
 			//step: Select Trip Type
 			homePage.selectTripType(tripType);
-<<<<<<< HEAD
 			Log.message("3.Successfully clicked 'RoundTrip' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
@@ -210,24 +183,6 @@ public class FlightSearch {
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
 
 			Log.testCaseResult();
-=======
-			Log.message("3.Successfully clicked 'RoundTrip ' option in search Home Page ");
-			
-			//step:  select OneWay Flight Search fields
-			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
-			Log.message("4.Successfully selected RoundTrip Flight Search Fields ");
-			
-			// step: click 'Search' button in Yatra Home page
-			searchResult =	homePage.clickBtnSearch();
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");							
-
-							
-			//TODO : Verify the SRP page is loaded
-						
-						
-			Log.message("<b>Expected Result:</b> Successfully verified Search Result Page");
-			Log.testCaseResult();	
->>>>>>> b2fff7a00a8ff4ecf123c06b102bdf30310f031c
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -258,7 +213,6 @@ public class FlightSearch {
 			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1.Navigated to 'Yatra' Home Page!");
-<<<<<<< HEAD
 
 			// step2: verify Yatra title bar text
 			if (driver.getTitle().contains("Flight")) {
@@ -274,19 +228,6 @@ public class FlightSearch {
 
 			// click Login button in HomePage
 			loginPage.clickBtnSignIn();
-=======
-						
-			// step2: verify Yatra title bar text
-			if (driver.getTitle().contains("Flight")) {
-			Log.message("2.Verified Yatra Title text");
-			}			
-
-		    LoginPage loginPage = new LoginPage(driver);
-			Log.message("3. Navigated to 'Yatra' Login Page!");
-						
-			 //click Login button in HomePage
-			 loginPage.clickBtnSignIn();
->>>>>>> b2fff7a00a8ff4ecf123c06b102bdf30310f031c
 
 			// step: enter Origin place in Yatra Home page
 			loginPage.enterEmailID(emailId);
@@ -299,7 +240,6 @@ public class FlightSearch {
 
 			// step: click 'Search' button in Yatra Home page
 			loginPage.clickBtnSignIn();
-<<<<<<< HEAD
 
 			Log.message("6.Successfully clicked 'SignIn' ");
 			Log.message("Successfully Logged in Yatra acct");
@@ -310,14 +250,6 @@ public class FlightSearch {
 			homePage.selectRoundTrip();
 			Log.message("7.Successfully clicked 'Round Trip' option in search Home Page ");
 
-=======
-			Log.message("6.Successfully clicked 'SignIn' ");			
-			Log.message("Successfully Logged in Yatra acct");			
-						
-			homePage.selectRoundTrip();
-			Log.message("7.Successfully clicked 'Round Trip' option in search Home Page ");
-						
->>>>>>> b2fff7a00a8ff4ecf123c06b102bdf30310f031c
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
 			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
@@ -333,7 +265,6 @@ public class FlightSearch {
 			
 			homePage.clickReturnDatePicker();
 			homePage.selectReturnDateAfterTwoWeek();
-<<<<<<< HEAD
 
 			Log.message("11. selected Return Date");
 			Thread.sleep(20000);
@@ -341,11 +272,6 @@ public class FlightSearch {
 			Log.message("11. selected Return Date");
 			Thread.sleep(10000);
 
-=======
-			Log.message("11. selected Return Date");	
-			Thread.sleep(10000);	
-			
->>>>>>> b2fff7a00a8ff4ecf123c06b102bdf30310f031c
 			homePage.specifyPassengerInfo(passangerInfo);
 			Log.message("12. Select Choice Of booking Seat");	
 
@@ -356,15 +282,8 @@ public class FlightSearch {
 			
 			Log.message("<b>Expected Result:</b> Successfully searched Flights");						
 			Log.testCaseResult();
-<<<<<<< HEAD
-
 			Thread.sleep(10000);
-
 			BrowserActions.nap(10);
-
-=======
-			BrowserActions.nap(10);
->>>>>>> b2fff7a00a8ff4ecf123c06b102bdf30310f031c
 			searchResult.clickAirlineMatrix();
 			Log.message("Successfully clicked Airline Matrix");
 			Thread.sleep(3000);
@@ -857,11 +776,6 @@ public class FlightSearch {
 			
 			String name = searchResult.preferredFlightFirst();
 			Log.message("14. Selected Prefered Flight is : " + name);
-<<<<<<< HEAD
-
-=======
-			
->>>>>>> b2fff7a00a8ff4ecf123c06b102bdf30310f031c
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -870,7 +784,7 @@ public class FlightSearch {
 			driver.quit();
 			Log.endTestCase();
 		}
-<<<<<<< HEAD
+
 	}
 
 	@Test(groups = { "desktop" }, description = "Flight Search INTL- OW with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
@@ -1011,7 +925,4 @@ public class FlightSearch {
 		}
 	}
 
-=======
-	}	
->>>>>>> b2fff7a00a8ff4ecf123c06b102bdf30310f031c
 }

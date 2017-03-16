@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -27,6 +28,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	Utils utils;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -455,7 +457,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void selectReturnDate(String date) throws Exception{
+	public void selectReturnDate_old(String date) throws Exception{
 		int month=Integer.parseInt(date.split("_")[1]); 
 		Utils.waitForElement(driver, dateReturn);
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
@@ -476,22 +478,22 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
 	}
-	
+
 	/**
 	 * To select Trip Type
 	 * 
 	 * @throws Exception
 	 */
 	public void selectTripType(String tripType) throws Exception {
-		if (tripType == "ONEWAY") {
+		if (tripType.equals(Constants.C_ONEWAY)) {
 			BrowserActions.clickOnElement(lnkOneWay, driver, "One Way");
 			Utils.waitForPageLoad(driver);
 			Log.event("Successfully selected OneWay option in Search Fields");
-		} else if (tripType == "ROUNDTRIP") {
+		} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
 			BrowserActions.clickOnElement(lnkRoundTrip, driver, "Round Trip");
 			Utils.waitForPageLoad(driver);
 			Log.event("Successfully selected RoundTrip option in Search Fields");
-		}else if (tripType == "MULTICITY") {
+		} else if (tripType.equals(Constants.C_MULTICITY)) {
 			BrowserActions.clickOnElement(lnkMultiCity, driver, "Multicity");
 			Utils.waitForPageLoad(driver);
 			Log.event("Successfully selected Multicity option in Search Fields");
@@ -503,13 +505,14 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,	String passengerInfo) throws Exception {
+	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,	String passengerInfo, String passengerClass) throws Exception {
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
-		specifyPassengerInfo(passengerInfo); // select Passengers with class	
+		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
+		selectPassengerClass(passengerClass); // select Passengers class type
+		clickDoneButtonInPassengerBox(); // click Done button
 		Log.event("Successfully selected OneWay Flight Search fields");
-		Utils.waitForPageLoad(driver);
 
 	}
 
@@ -518,20 +521,19 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate, String returnDate, String passengerInfo) throws Exception {
-
-		selectRoundTrip();
-		enterOrigin(origin); // enter Origin value
+	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate, String returnDate, String passengerInfo, String passengerClass) throws Exception {
+		enterOrigin(origin);   // enter Origin value
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
 		selectReturnDate(returnDate); // select Return Date
-		specifyPassengerInfo(passengerInfo); // select Passengers with class
+		specifyPassengerInfo(passengerInfo); // select Passengers details (Adult, Child, Infant)
+		selectPassengerClass(passengerClass); // select Passengers class type
+		clickDoneButtonInPassengerBox(); // click Done button
 		Log.event("Successfully selected RoundTrip Flight Search fields");
 	}
 
 	/**
 	 * To select Departure Date
-	 * @return 
 	 * 
 	 * @throws Exception
 	 */
@@ -550,7 +552,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	/**
 	 * To select Return Date
-	 * @return 
 	 * 
 	 * @throws Exception
 	 */
@@ -588,8 +589,37 @@ public class HomePage extends LoadableComponent<HomePage> {
 			updatePassengers.get(2).click();
 		}
 	}
+
+	/**
+	 * To select Passenger Class Type (Economy, Premium Economy, Business, First
+	 * Class )
+	 * 
+	 * @throws Exception
+	 */
+	public void selectPassengerClass(String passengerClass) throws Exception {
+		if (passengerClass.equals(Constants.C_ECONOMY)) {
+			driver.findElements(By.cssSelector(passengerClassLocator)).get(0).click();
+			Log.event("Selected 'Economy' Class ");
+		} else if (passengerClass.equals(Constants.C_PREMIUM_ECONOMY)) {
+			driver.findElements(By.cssSelector(passengerClassLocator)).get(1).click();
+			Log.event("Selected 'Premium Economy' Class ");
+		} else if (passengerClass.equals(Constants.C_BUSINESS)) {
+			driver.findElements(By.cssSelector(passengerClassLocator)).get(2).click();
+			Log.event("Selected 'Business' Class ");
+		} else if (passengerClass.equals(Constants.C_FIRST_CLASS)) {
+			driver.findElements(By.cssSelector(passengerClassLocator)).get(3).click();
+			Log.event("Selected 'First Class'");
+		}
 	}
 
-	
+	/**
+	 * To click Done button in Passenger Drop Down Box
+	 * 
+	 * @throws Exception
+	 */
+	public void clickDoneButtonInPassengerBox() throws Exception {
+		BrowserActions.clickOnElement(submitPassengerClassInfo, driver, "Done Button");
+		Log.event("Successfully clicked Done button in Passenger DropDown box");
+	}
 
 }// HomePage

@@ -97,7 +97,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		Utils.waitForPageLoad(driver);
 	}// load
 
-
 	/**
 	 * to click on View fare rules link in fare details module
 	 * @throws Exception
