@@ -218,6 +218,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Log.event("Selected Departure Date: " + date+"(YY/MM/DD)");
 	}
 	
+	
 	public void specifyPassengerInfo(String passengers) throws Exception{
 		BrowserActions.clickOnElement(passengerInfo, driver, "Passenger Info");
 		List<WebElement> updatePassengers =driver.findElements(By.cssSelector(passengersLocator));

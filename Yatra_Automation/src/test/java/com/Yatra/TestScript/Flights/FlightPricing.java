@@ -176,7 +176,7 @@ public class FlightPricing {
 			// step: enter EmailId in Yatra Home page
 		    loginPage.loginYatraAccount(emailId, password);
 		    Log.message("4.Successfully login after entering the valid credentials.");
-
+            Thread.sleep(1000);
 		 
 			//step: enter search details in Yatra Home page
 		   homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo);

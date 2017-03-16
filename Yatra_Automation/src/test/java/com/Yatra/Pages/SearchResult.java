@@ -151,7 +151,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
         return new ReviewPage(driver).get();
 	}
 
-	
 	public String preferredFlightFirst() throws Exception {
 		Utils.waitForElement(driver, chkChooseFlightFirst);
 		BrowserActions.scrollToView(chkChooseFlightFirst, driver);
