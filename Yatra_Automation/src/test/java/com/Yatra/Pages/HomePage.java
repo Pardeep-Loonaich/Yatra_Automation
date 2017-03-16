@@ -522,11 +522,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	/**
 	 * To select Departure Date
+	 * @return 
 	 * 
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-access")
-	public void selectDepartureDate(String departureDate) throws Exception {
+	public String selectDepartureDate(String departureDate) throws Exception {
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
@@ -535,15 +536,17 @@ public class HomePage extends LoadableComponent<HomePage> {
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
 		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
+		return date;
 	}
 
 	/**
 	 * To select Return Date
+	 * @return 
 	 * 
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-access")
-	public void selectReturnDate(String returnDate) throws Exception {
+	public String selectReturnDate(String returnDate) throws Exception {
 		int iDay = Integer.parseInt(returnDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
@@ -552,6 +555,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
 		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
+		return date;
 	}
 
 	/**

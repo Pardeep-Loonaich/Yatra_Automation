@@ -128,6 +128,8 @@ public class FlightPricing {
 		    SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("8.Successfully clicked 'Search' in Yatra Homepage ");
 			
+			
+			// 
 			ReviewPage reviewPage = searchResult.clickOnBookNow();
 			Log.message("9.Clicked on 'Book Now' button in Search Result Page ");
 			
