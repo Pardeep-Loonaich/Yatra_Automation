@@ -78,7 +78,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnChngeFlight))) {
-			Log.fail("Search Result page didn't open up", driver);
+			Log.fail("Review page didn't open up", driver);
 		}
 		// elementLayer = new ElementLayer(driver);
 	}
