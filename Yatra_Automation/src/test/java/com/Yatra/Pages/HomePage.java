@@ -506,8 +506,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
 		specifyPassengerInfo(passengerInfo); // select Passengers with class	
-		//clickBtnSearch();  // click Search button
 		Log.event("Successfully selected OneWay Flight Search fields");
+		Utils.waitForPageLoad(driver);
 
 	}
 
@@ -517,14 +517,17 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate, String returnDate, String passengerInfo) throws Exception {
+		selectRoundTrip();
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
 		selectReturnDate(returnDate); // select Return Date
 		specifyPassengerInfo(passengerInfo); // select Passengers with class
-		//clickBtnSearch();  // click Search button
 		Log.event("Successfully selected RoundTrip Flight Search fields");
+		Utils.waitForPageLoad(driver);
+
 	}
 
 	
+
 }// HomePage

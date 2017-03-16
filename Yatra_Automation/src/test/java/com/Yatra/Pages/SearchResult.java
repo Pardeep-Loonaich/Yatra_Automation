@@ -45,19 +45,25 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "//ul[@class='matrix-slide-list tabs matrix-ul']/li[2]")
 	public WebElement matrixStrip;
 
-	@FindBy(css = ".ico-newHeaderLogo")
-	public WebElement BtnModifySearch;
+	@FindBy(css = "[class='ico fl ico-gray-modify-search']")
+	public WebElement BtnModifySearchIcon;
 
 	@FindBy(css = "div[class='full']>div[class='matrix-wrapper day-matrix new-theme day-matrix-responsive']")
 	WebElement weeklyStrip;
 
-	@FindBy(css = "p[class='new-blue-button fr book-button js-bookNow relative tc']")
-	WebElement btnBookNow;
+	@FindBy(css = "[class='js-flightRow js-flightItem']")
+	List<WebElement> btnBookNow;
 
 	@FindBy(css = "div[ng-controller='productFareDetailsController']")
 	WebElement moduleFareDetails;
 
-
+	
+	@FindBy(css ="div[class='new-green-button fr relative tc']")
+	WebElement btnBookNowRoundTrip;
+	
+	
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -99,7 +105,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 
 
-		if (isPageLoaded && !(Utils.waitForElement(driver, headerLogo))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, BtnModifySearchIcon))) {
 			Log.fail("Search Result page didn't open up", driver);
 		}
 		// elementLayer = new ElementLayer(driver);
@@ -111,11 +117,38 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 		Utils.waitForPageLoad(driver);
 	}// load
+	
+	
+     /**
+      * to click on Book now button in Round Trip for Domestic flights
+      * @param index
+      * @return
+      * @throws Exception
+      */
+	public ReviewPage clickOnBookNowInRound(int list1,int index1,int list2,int index2) throws Exception {
+		WebElement e1=  driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child("+list1+")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("+index1+")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
+		WebElement e2=  driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child("+list2+")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("+index2+")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
 
-	public ReviewPage clickOnBookNow() throws Exception {
-		BrowserActions.scrollToView(btnBookNow, driver);
-		BrowserActions.clickOnElement(btnBookNow, driver, "To click on Book now button.");
-         return new ReviewPage(driver).get();
+		BrowserActions.scrollToView(e1, driver);
+		BrowserActions.clickOnElement(e1,driver,"To select Flight from one list.");
+		BrowserActions.scrollToView(e2, driver);
+		BrowserActions.clickOnElement(e2,driver,"To select Flight from second list.");
+		
+		BrowserActions.clickOnElement(btnBookNowRoundTrip, driver, "Click on Book Now for RoundTrip.");
+        return new ReviewPage(driver).get();
+	}
+
+	 /**
+     * to click on Book now button in OneWay Trip for Domestic flights
+     * @param index
+     * @return
+     * @throws Exception
+     */
+	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
+		WebElement e= driver.findElement(By.cssSelector("div[id='resultBoxSlider']>div>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("+index+")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
+		BrowserActions.scrollToView(e, driver);
+		BrowserActions.clickOnElement(e,driver,"To click on Book now button.");
+        return new ReviewPage(driver).get();
 	}
 
 	
