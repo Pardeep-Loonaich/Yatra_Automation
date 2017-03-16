@@ -28,6 +28,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	Utils utils;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -210,7 +211,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	}
 	
-	public void selectDepartureDate(String date) throws Exception{
+	public void selectDepartureDate_old(String date) throws Exception{
 		int month=Integer.parseInt(date.split("_")[2]);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
 		selectMonth.get(month-2).click();
@@ -220,7 +221,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 	
 	
-	public void specifyPassengerInfo(String passengers) throws Exception{
+	public void specifyPassengerInfo_old(String passengers) throws Exception{
 		BrowserActions.clickOnElement(passengerInfo, driver, "Passenger Info");
 		List<WebElement> updatePassengers =driver.findElements(By.cssSelector(passengersLocator));
 		int adult = Integer.parseInt(passengers.split("_")[0]);
@@ -484,7 +485,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	public void selectReturnDate(String date) throws Exception{
+	public void selectReturnDate_old(String date) throws Exception{
 		int month=Integer.parseInt(date.split("_")[1]); 
 		Utils.waitForElement(driver, dateReturn);
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
@@ -505,22 +506,22 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
 	}
-	
+
 	/**
 	 * To select Trip Type
 	 * 
 	 * @throws Exception
 	 */
 	public void selectTripType(String tripType) throws Exception {
-		if (tripType == "ONEWAY") {
+		if (tripType.equals(Constants.C_ONEWAY)) {
 			BrowserActions.clickOnElement(lnkOneWay, driver, "One Way");
 			Utils.waitForPageLoad(driver);
 			Log.event("Successfully selected OneWay option in Search Fields");
-		} else if (tripType == "ROUNDTRIP") {
+		} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
 			BrowserActions.clickOnElement(lnkRoundTrip, driver, "Round Trip");
 			Utils.waitForPageLoad(driver);
 			Log.event("Successfully selected RoundTrip option in Search Fields");
-		}else if (tripType == "MULTICITY") {
+		} else if (tripType.equals(Constants.C_MULTICITY)) {
 			BrowserActions.clickOnElement(lnkMultiCity, driver, "Multicity");
 			Utils.waitForPageLoad(driver);
 			Log.event("Successfully selected Multicity option in Search Fields");
@@ -533,17 +534,16 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	
-	
 	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,	String passengerInfo,String passengerClass) throws Exception {
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
+
 		clickDoneButtonInPassengerBox(); // click Done button
 		specifyPassengerInfo(passengerInfo); // select Passengers with class	
-		Log.event("Successfully selected OneWay Flight Search fields");
-		Utils.waitForPageLoad(driver);
+        Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
 
@@ -551,6 +551,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * To select Round Trip Flight search Fields
 	 * 
 	 * @throws Exception
+<<<<<<< HEAD
 	 */
 	
 
@@ -562,11 +563,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectReturnDate(returnDate); // select Return Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details (Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
+
 		clickDoneButtonInPassengerBox(); // click Done button
 		specifyPassengerInfo(passengerInfo); // select Passengers with class
-		Log.event("Successfully selected RoundTrip Flight Search fields");
-		Utils.waitForPageLoad(driver);
 
+		Log.event("Successfully selected RoundTrip Flight Search fields");
 	}
 	
     
@@ -577,11 +578,71 @@ public class HomePage extends LoadableComponent<HomePage> {
         * @throws Exception
        */
 
+
        public void clickDoneButtonInPassengerBox() throws Exception {
      	  BrowserActions.clickOnElement(submitPassengerClassInfo, driver ,"Done Button");
      	  Log.event("Successfully clicked Done button in Passenger DropDown box");
  	 
        }
 	
+
+	/**
+	 * To select Departure Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public String selectDepartureDate(String departureDate) throws Exception {
+		int iDay = Integer.parseInt(departureDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
+		selectMonth.get(month - 2).click();
+		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(0).click();
+		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
+		return date;
+	}
+
+	/**
+	 * To select Return Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public String selectReturnDate(String returnDate) throws Exception {
+		int iDay = Integer.parseInt(returnDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
+		selectMonth.get(month - 2).click();
+		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(0).click();
+		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
+		return date;
+	}
+
+	/**
+	 * To select Passenger Information (Adults, Child, Infants)
+	 * 
+	 * @throws Exception
+	 */
+	public void specifyPassengerInfo(String passengers) throws Exception {
+		BrowserActions.clickOnElement(passengerInfo, driver, "Passenger Info");
+		List<WebElement> updatePassengers = driver.findElements(By.cssSelector(passengersLocator));
+		int adult = Integer.parseInt(passengers.split("_")[0]);
+		int child = Integer.parseInt(passengers.split("_")[1]);
+		int infant = Integer.parseInt(passengers.split("_")[2]);
+		for (int i = 1; i < adult; i++) {
+			updatePassengers.get(0).click();
+		}
+		for (int i = 0; i < child; i++) {
+			updatePassengers.get(1).click();
+		}
+		for (int i = 0; i < infant; i++) {
+			updatePassengers.get(2).click();
+		}
+	}
+
 
 }// HomePage

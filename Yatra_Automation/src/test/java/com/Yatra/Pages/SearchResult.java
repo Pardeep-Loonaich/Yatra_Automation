@@ -54,6 +54,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "[class='js-flightRow js-flightItem']")
 	List<WebElement> btnBookNow;
 
+	@FindBy(css = "p[class='new-blue-button .js-bookNow book-btn']")
+    WebElement btnBookNowINT;
+ 
 	@FindBy(css = "div[ng-controller='productFareDetailsController']")
 	WebElement moduleFareDetails;
 
@@ -156,6 +159,19 @@ public class SearchResult extends LoadableComponent<SearchResult> {
         return new ReviewPage(driver).get();
 	}
 
+	 /**
+     * to click on Book now button in OneWay Trip for International flights
+     * @param index
+     * @return
+     * @throws Exception
+     */
+   public ReviewPage clickOnBookNowINT() throws Exception {
+        BrowserActions.scrollToView(btnBookNowINT, driver);
+        BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button.");
+   return new ReviewPage(driver).get();
+	}
+
+		
 	 /**
      * to click on Book now button in OneWay Trip for Domestic flights
      * @param index

@@ -132,6 +132,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 
 
+
 	public void clickOnContinue() throws Exception {
 		BrowserActions.nap(6);
 		Utils.waitForElement(driver, btnContinueReviewPage);
@@ -186,7 +187,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
         BrowserActions.typeOnTextField(userSecondName, randomLastName, driver, "Second Name");
 				
 	}
-	
+
 	/**
 	 * to click on View fare rules link in fare details module
 	 * @throws Exception

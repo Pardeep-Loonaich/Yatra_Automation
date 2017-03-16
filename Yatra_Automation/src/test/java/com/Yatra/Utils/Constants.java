@@ -14,6 +14,4 @@ public class Constants {
 	public static final String C_FIRST_CLASS = "First Class";
 
 	// <<<<<<<< #end region
-	
-
 }
