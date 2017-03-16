@@ -71,7 +71,7 @@
 			<version>20160212</version>
 		</dependency>
 		
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.saucelabs.selenium</groupId>
 			<artifactId>sauce-ondemand-driver</artifactId>
 			<version>2.13</version>
@@ -84,7 +84,7 @@
 			<version>2.13</version>
 			<scope>test</scope>
 		</dependency>		
-		 -->
+		
 	</dependencies>
 
 	<build>

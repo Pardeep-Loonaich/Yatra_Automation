@@ -45,7 +45,7 @@ import org.testng.Reporter;
 import org.testng.SkipException;
 import org.testng.xml.XmlTest;
 
-//import com.saucelabs.selenium.client.factory.SeleniumFactory;
+import com.saucelabs.selenium.client.factory.SeleniumFactory;
 
 /*import net.lightbody.bmp.core.har.Har;
 import net.lightbody.bmp.core.har.HarEntry;
@@ -533,8 +533,8 @@ public class WebDriverFactory {
 					//userAgent = mobEmuUA.getUserAgent(deviceName) != null ? mobEmuUA.getUserAgent(deviceName) : null;
 
 					if (deviceName != null && userAgent != null) {
-						//driver = SeleniumFactory.createWebDriver(caps.getUserAgentDesiredCapabilities(caps, deviceName, userAgent));
-								
+						driver = SeleniumFactory
+								.createWebDriver(caps.getUserAgentDesiredCapabilities(caps, deviceName, userAgent));
 					} else {
 						logger.error("Invalid mobile emulation configuration, check the parameters(deviceName) value: "
 								+ deviceName);
@@ -543,7 +543,7 @@ public class WebDriverFactory {
 					logger.error("runUserAgentDeviceTest value has been set as false");
 				}
 			} else {
-				//driver = SeleniumFactory.createWebDriver(caps.getDesiredCapabilities());
+				driver = SeleniumFactory.createWebDriver(caps.getDesiredCapabilities());
 			}
 			String saucelabsSessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
 			String sauceLink = "http://saucelabs.com/jobs/" + saucelabsSessionId + "?auth=" + newHMACMD5Digest(
