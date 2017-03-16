@@ -28,14 +28,21 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 ********************************* WebElements of Yatra Search Page ***********************************
 	 **********************************************************************************************/
 
-
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	public WebElement btnChngeFlight;
-	
-	@FindBy(css = "div[ng-show='showFareDetails']")
-	WebElement moduleFareDetails;
-	
 
+	@FindBy(css = "[ng-controller='productFareDetailsController']>div>div[ng-show='showFareDetails']")
+	WebElement moduleFareDetails;
+
+	@FindBy(css="span[class='pull-left cursor-pointer ng-binding under-link']>a")
+	WebElement lnkFeeSurchrge;
+
+	@FindBy(css="[ng-click='showFareRulesPopup()']")
+	WebElement lnkFareRules;
+
+
+	@FindBy(css="div[class='fareBox']>ul[class='list review-title']")
+	WebElement moduleFeeSurchrge;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -91,5 +98,22 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	}// load
 
 
+	/**
+	 * to click on View fare rules link in fare details module
+	 * @throws Exception
+	 */
+	public void clickOnFareRulesLink() throws Exception{
+		BrowserActions.javascriptClick(lnkFareRules, driver, "Clicked on View Fare Rules link.");
+	}
+
+
+	/**
+	 *to click on Fee & surcharge link in fare detail module
+	 * @throws Exception
+	 */
+
+	public void clickOnFeeSurchrgeLink() throws Exception{
+		BrowserActions.javascriptClick(lnkFeeSurchrge, driver, "Clicked on Fees & Surcharge link.");
+	}
 
 }
