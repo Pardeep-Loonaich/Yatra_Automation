@@ -456,6 +456,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public void selectReturnDate(String date) throws Exception{
 		int month=Integer.parseInt(date.split("_")[1]); 
+		Utils.waitForElement(driver, dateReturn);
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
 		selectMonth.get(month-2).click();
 		List<WebElement> datePicker =driver.findElements(By.cssSelector(dateLocator+date+"']"));
@@ -517,6 +518,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate, String returnDate, String passengerInfo) throws Exception {
+
 		selectRoundTrip();
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value

@@ -26,6 +26,7 @@ import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.TestDataExtractor;
+import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
@@ -175,7 +176,7 @@ public class FlightPricing {
 			// step: enter EmailId in Yatra Home page
 		    loginPage.loginYatraAccount(emailId, password);
 		    Log.message("4.Successfully login after entering the valid credentials.");
-			
+
 		 
 			//step: enter search details in Yatra Home page
 		   homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
