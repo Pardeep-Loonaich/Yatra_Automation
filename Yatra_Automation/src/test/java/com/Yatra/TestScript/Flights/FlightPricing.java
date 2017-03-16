@@ -119,7 +119,7 @@ public class FlightPricing {
 			loginPage.clickBtnSignIn();
 			Log.message("6.Successfully Logged in Yatra acct");			
 			
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
 			Log.message("7.Successfully filled the search details for 'ONE WAY' trip.");			
 
 			
@@ -267,7 +267,7 @@ public class FlightPricing {
 			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
 			
 			//step:  select OneWay Flight Search fields
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
 			Thread.sleep(15000);
 			
 			// step: click 'Search' button in Yatra Home page
@@ -329,7 +329,7 @@ public class FlightPricing {
 			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
 			
 			//step:  select OneWay Flight Search fields
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo);		
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
 			Log.message("4.Successfully selected OneWay Flight Search Fields ");
 			Thread.sleep(5000);
 			
