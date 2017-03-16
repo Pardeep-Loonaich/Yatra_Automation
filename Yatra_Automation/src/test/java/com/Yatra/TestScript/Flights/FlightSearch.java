@@ -20,6 +20,7 @@ import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.LoginPage;
+import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Utils.BrowserActions;
 
@@ -948,4 +949,184 @@ public class FlightSearch {
 		}
 	}
 
+	@Test(groups = {
+			"desktop" }, description = "Add Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	public void TC_Yatra_Flight_031(String browser) throws Exception {
+
+		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			LoginPage loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2.Successfully Logged in Yatra account!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Flight Search fields
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4.Successfully filled the search details for 'ONE WAY' trip!");
+
+			// step: click 'Search' button in Yatra Home page
+			SearchResult searchResult = homePage.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage!");
+			
+			ReviewPage reviewPage =  searchResult.clickOnBookNow();
+			Log.message("6. Clicked On Book Now Button!");
+
+			reviewPage.clickOnContinue();
+			Log.message("7. Clicked On Continue Button on Review Page!");
+			
+			reviewPage.selectMeal();
+			Log.message("8. Selected Meal!");
+			
+			
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	@Test(groups = {
+	"desktop" }, description = "Remove Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+public void TC_Yatra_Flight_032(String browser) throws Exception {
+
+HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+String emailId = testData.get("EmailAddress");
+String password = testData.get("Password");
+String origin = testData.get("Origin");
+String tripType = testData.get("TripType");
+String destination = testData.get("Destination");
+String departureDate = testData.get("DepartureDate");
+String passengerInfo = testData.get("PassengerInfo");
+String passengerClass = testData.get("Class");
+
+// Get the web driver instance
+final WebDriver driver = WebDriverFactory.get(browser);
+Log.testCaseInfo(testData);
+try {
+	// step1: Navigate to Yatra Home Page
+	homePage = new HomePage(driver, webSite).get();
+	Log.message("1. Navigated to 'Yatra' Home Page!");
+
+	LoginPage loginPage = homePage.navigateToSignIn();
+	loginPage.loginYatraAccount(emailId, password);
+	Log.message("2.Successfully Logged in Yatra account!");
+
+	// step: Select Trip Type
+	homePage.selectTripType(tripType);
+	Log.message("3.Successfully clicked 'One Way' option in search Home Page!");
+
+	// step: select OneWay Flight Search fields
+	homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+	Log.message("4.Successfully filled the search details for 'ONE WAY' trip!");
+
+	// step: click 'Search' button in Yatra Home page
+	SearchResult searchResult = homePage.clickBtnSearch();
+	Log.message("5.Successfully clicked 'Search' in Yatra Homepage!");
+	
+	ReviewPage reviewPage =  searchResult.clickOnBookNow();
+	Log.message("6. Clicked On Book Now Button!");
+
+	reviewPage.clickOnContinue();
+	Log.message("7. Clicked On Continue Button on Review Page!");
+	
+	reviewPage.enterUserDeatils();
+	Log.message("8. Enter User Details!");
+	
+	reviewPage.clickOnAddMeal();
+	Log.message("9. Clicked On Add Baggage!");
+	
+	reviewPage.selectMeal();
+	Log.message("10. Selected Meal!");
+	
+	
+	Log.testCaseResult();
+} catch (Exception e) {
+	Log.exception(e);
+} finally {
+	//driver.quit();
+	Log.endTestCase();
+}
+}
+	@Test(groups = {
+	"desktop" }, description = "Add Baggage on pax page", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+public void TC_Yatra_Flight_034(String browser) throws Exception {
+
+HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+String emailId = testData.get("EmailAddress");
+String password = testData.get("Password");
+String origin = testData.get("Origin");
+String tripType = testData.get("TripType");
+String destination = testData.get("Destination");
+String departureDate = testData.get("DepartureDate");
+String passengerInfo = testData.get("PassengerInfo");
+String passengerClass = testData.get("Class");
+
+// Get the web driver instance
+final WebDriver driver = WebDriverFactory.get(browser);
+Log.testCaseInfo(testData);
+try {
+	// step1: Navigate to Yatra Home Page
+	homePage = new HomePage(driver, webSite).get();
+	Log.message("1. Navigated to 'Yatra' Home Page!");
+
+	LoginPage loginPage = homePage.navigateToSignIn();
+	loginPage.loginYatraAccount(emailId, password);
+	Log.message("2.Successfully Logged in Yatra account!");
+
+	// step: Select Trip Type
+	homePage.selectTripType(tripType);
+	Log.message("3.Successfully clicked 'One Way' option in search Home Page!");
+
+	// step: select OneWay Flight Search fields
+	homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+	Log.message("4.Successfully filled the search details for 'ONE WAY' trip!");
+
+	// step: click 'Search' button in Yatra Home page
+	SearchResult searchResult = homePage.clickBtnSearch();
+	Log.message("5.Successfully clicked 'Search' in Yatra Homepage!");
+	
+	ReviewPage reviewPage =  searchResult.clickOnBookNow();
+	Log.message("6. Clicked On Book Now Button!");
+
+	reviewPage.clickOnContinue();
+	Log.message("7. Clicked On Continue Button on Review Page!");
+	
+	reviewPage.enterUserDeatils();
+	Log.message("8. Enter User Details!");
+	
+	reviewPage.clickOnAddBaggage();
+	Log.message("9. Clicked On Add Baggage!");
+	
+	reviewPage.selectBaggage();
+	Log.message("10. Selected Baggage Type!");
+	
+	
+	Log.testCaseResult();
+} catch (Exception e) {
+	Log.exception(e);
+} finally {
+	//driver.quit();
+	Log.endTestCase();
+}
+}
 }

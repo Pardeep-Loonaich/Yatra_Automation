@@ -2,6 +2,7 @@ package com.Yatra.Pages;
 
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,7 +36,35 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "div[ng-show='showFareDetails']")
 	WebElement moduleFareDetails;
 	
-
+	@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
+	WebElement btnContinueReviewPage;
+	
+	@FindBy(css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='button-group']>button:nth-child(1)")
+	WebElement btnAddMeal;
+	
+	@FindBy(css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='button-group']>button:nth-child(2)")
+	WebElement btnAddBaggage;
+	
+	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span/select/option[2]")
+	WebElement drpSelectMeal;
+	
+	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span/select/option[3]")
+	WebElement selectMeal;
+	
+	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
+	WebElement drpAddBaggage;
+	
+	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select/option[2]")
+	WebElement selectBaggage;
+	
+	@FindBy(xpath = ".//*[@id='travellerf0']")
+	WebElement userFirstName;
+	
+	@FindBy(xpath = ".//*[@id='travellerl0']")
+	WebElement userSecondName;
+	
+	@FindBy(xpath = ".//*[@id='traveller-dom']/div[1]/div[1]/div/article[2]/div[2]/input")
+	WebElement userEmail;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -91,5 +120,60 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	}// load
 
 
+	public void clickOnContinue() throws Exception {
+		BrowserActions.nap(6);
+		Utils.waitForElement(driver, btnContinueReviewPage);
+		BrowserActions.scrollToView(btnContinueReviewPage, driver);
+		BrowserActions.javascriptClick(btnContinueReviewPage, driver, "Continue Button");
+		Utils.waitForPageLoad(driver);
+	}
+	
+	public void clickOnAddMeal() throws Exception {
+		Utils.waitForElement(driver, btnAddMeal);
+		BrowserActions.scrollToView(btnAddMeal, driver);
+		BrowserActions.javascriptClick(btnAddMeal, driver, "Add Meal Button");
+		Utils.waitForPageLoad(driver);
+	}
+	
+	public void clickOnAddBaggage() throws Exception {
+		Utils.waitForElement(driver, btnAddBaggage);
+		BrowserActions.scrollToView(btnAddBaggage, driver);
+		BrowserActions.javascriptClick(btnAddBaggage, driver, "Add Baggage Button");
+		Utils.waitForPageLoad(driver);
+	}
+	
+	
+	
+	public void selectMeal() throws Exception {
+		Utils.waitForElement(driver, drpSelectMeal);
+		BrowserActions.scrollToView(drpSelectMeal, driver);
+		BrowserActions.javascriptClick(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
+		Utils.waitForElement(driver, selectMeal);
+		BrowserActions.javascriptClick(selectMeal, driver, "Select Meal");
+		Utils.waitForPageLoad(driver);
+	}
+	
+	
+	public void selectBaggage() throws Exception {
+		Utils.waitForElement(driver, drpAddBaggage);
+		BrowserActions.scrollToView(drpAddBaggage, driver);
+		BrowserActions.javascriptClick(drpAddBaggage, driver, "Clicked On Drop Down Of Baggage");
+		Utils.waitForElement(driver, selectBaggage);
+		BrowserActions.javascriptClick(selectBaggage, driver, "Select Baggage");
+		Utils.waitForPageLoad(driver);
+	}
+	
+	public void enterUserDeatils() throws Exception {
+		Utils.waitForElement(driver, userFirstName);
+		BrowserActions.nap(5);
+		String randomFirstName = RandomStringUtils.randomAlphabetic(5)
+                .toLowerCase();
+        String randomLastName = RandomStringUtils.randomAlphabetic(5)
+                .toLowerCase();
+        BrowserActions.typeOnTextField(userFirstName, randomFirstName, driver, "First Name");
+        BrowserActions.typeOnTextField(userSecondName, randomLastName, driver, "Second Name");
+				
+	}
+	
 
 }
