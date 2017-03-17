@@ -9,7 +9,6 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -530,6 +529,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public LoginPage navigateToSignIn() throws Exception {
 		// click Login button on signin page
+		/*Actions action= new Actions(driver);
+		action.contextClick(lnkMyaccount).build().perform();
+
+		Actions action1 = new Actions(driver).contextClick(lnkMyaccount);
+		action1.build().perform();*/
 		BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
@@ -650,6 +654,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void specifyPassengerInfo(String passengers) throws Exception {
+		Thread.sleep(8000);
 		BrowserActions.clickOnElement(passengerInfo, driver, "Passenger Info");
 		List<WebElement> updatePassengers = driver.findElements(By.cssSelector(passengersLocator));
 		int adult = Integer.parseInt(passengers.split("_")[0]);

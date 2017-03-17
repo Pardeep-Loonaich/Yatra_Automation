@@ -149,14 +149,6 @@ public class FlightSearch {
 			homePage.selectTripType(tripType);
 			Log.message("3.Successfully clicked 'RoundTrip ' option in search Home Page ");
 									
-			// step: click 'Search' button in Yatra Home page
-			searchResult =	homePage.clickBtnSearch();
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");							
-
-			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'RoundTrip' option in search Home Page ");
-
-
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
 			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
