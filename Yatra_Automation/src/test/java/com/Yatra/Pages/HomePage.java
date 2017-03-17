@@ -542,7 +542,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectPassengerClass(passengerClass); // select Passengers class type
 
 		clickDoneButtonInPassengerBox(); // click Done button
-		specifyPassengerInfo(passengerInfo); // select Passengers with class	
+		//specifyPassengerInfo(passengerInfo); // select Passengers with class	
         Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
