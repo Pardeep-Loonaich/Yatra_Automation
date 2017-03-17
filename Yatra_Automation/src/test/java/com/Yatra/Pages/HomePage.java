@@ -564,9 +564,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectDepartureDate(departureDate); // select Departure Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
-
-		clickDoneButtonInPassengerBox(); // click Done button
-		specifyPassengerInfo(passengerInfo); // select Passengers with class	
+		clickDoneButtonInPassengerBox(); // click Done button	
         Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
@@ -575,7 +573,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * To select Round Trip Flight search Fields
 	 * 
 	 * @throws Exception
-<<<<<<< HEAD
 	 */
 	
 
@@ -587,10 +584,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectReturnDate(returnDate); // select Return Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details (Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
-
 		clickDoneButtonInPassengerBox(); // click Done button
-		specifyPassengerInfo(passengerInfo); // select Passengers with class
-
 		Log.event("Successfully selected RoundTrip Flight Search fields");
 	}
 	
