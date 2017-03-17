@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.time.StopWatch;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -113,6 +112,31 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(css = "#signInBtn")
 	WebElement btnSignIn;
+	
+	@FindBy(css = "input#BE_flight_origin_city_1")
+	public WebElement txtMulticity_Origin1;
+	
+	@FindBy(css = "input#BE_flight_origin_city_2")
+	public WebElement txtMulticity_Origin2;
+
+	@FindBy(css = "input#BE_flight_arrival_city_1")
+	WebElement txtMulticity_Destination1;
+	
+	@FindBy(css = "input#BE_flight_arrival_city_2")
+	WebElement txtMulticity_Destination2;
+	
+	@FindBy(css= "input#BE_flight_depart_date_1")
+	WebElement dateMulticity_Departure1;
+	
+	@FindBy(css= "input#BE_flight_depart_date_2")
+    WebElement dateMulticity_Departure2;
+	
+	@FindBy(css ="div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month-']" )
+	List<WebElement> selectMonth_MultiDepart1;
+	
+	@FindBy(css ="div[id='PegasusCal-8'] li a[href*='#PegasusCal-8-month-']" )
+	List<WebElement> selectMonth_MultiDepart2;
+	
 	
 	
 	/**********************************************************************************************
@@ -644,5 +668,116 @@ public class HomePage extends LoadableComponent<HomePage> {
 		}
 	}
 
+	/**
+	 * To select OneWay Flight search Fields
+	 * 
+	 * @throws Exception
+	 */
+	
+	public void selectMultiCityFlightSearchFields(String origin1, String destination1, String origin2, String destination2, String departureDate1, String departureDate2, String passengerInfo,String passengerClass) throws Exception {
+		enterMultiCityOrigin1(origin1); // enter Multicity Origin1 value
+		enterMultiCityDestination1( destination1); // enter Multicity Destination2 value
+		
+		enterMultiCityOrigin2(origin2); // enter Multicity Origin2 value
+		enterMultiCityDestination2(destination2); // enter Multicity Destination2 value
+		
+		selectMultiCityDepartureDate1(departureDate1); // select Multicity Departure1 Date
+		selectMultiCityDepartureDate2(departureDate1);  // select Multicity Departure2 Date
+		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
+		
+		selectPassengerClass(passengerClass); // select Passengers class type
+		clickDoneButtonInPassengerBox(); // click Done button
+		specifyPassengerInfo(passengerInfo); // select Passengers with class	
+        Log.event("Successfully selected 'Multicity' Flight Search fields");
+
+	}
+	
+	/**
+	 * Enter MultiCity Origin1
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterMultiCityOrigin1(String origin) throws Exception {
+		Utils.waitForElement(driver, txtMulticity_Origin1);
+		BrowserActions.typeOnTextField(txtMulticity_Origin1, origin, driver, "Select MultiCity Origin1");
+		Log.event("Entered the Origin: " + origin);
+	}
+	
+	/**
+	 * Enter MultiCity Origin2
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterMultiCityOrigin2(String origin) throws Exception {
+		Utils.waitForElement(driver, txtMulticity_Origin2);
+		BrowserActions.typeOnTextField(txtMulticity_Origin2, origin, driver, "Select MultiCity Origin2");
+		Log.event("Entered the Origin: " + origin);
+	}
+	
+	
+	/**
+	 * Enter MultiCity Destination1
+	 * 
+	 * @param destination
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterMultiCityDestination1(String destination) throws Exception {
+		Utils.waitForElement(driver, txtMulticity_Destination1);
+		BrowserActions.typeOnTextField(txtMulticity_Destination1, destination, driver, "Select MultiCity Destination1");
+		Log.event("Entered the Destination: " + destination);
+	}
+	
+	/** Enter MultiCity Destination2
+	 * 
+	 * @param destination
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterMultiCityDestination2(String destination) throws Exception {
+		Utils.waitForElement(driver, txtMulticity_Destination2);
+		BrowserActions.typeOnTextField(txtMulticity_Destination2, destination, driver, "Select MultiCity Destination2");
+		Log.event("Entered the Destination: " + destination);
+	}
+	
+	/**
+	 * To select Departure Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public String selectMultiCityDepartureDate1(String departureDate) throws Exception {
+		int iDay = Integer.parseInt(departureDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.clickOnElement(dateMulticity_Departure1, driver, "clicking on MultiCity departure1 date icon");
+		selectMonth_MultiDepart1.get(month - 3).click();
+		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(7).click();
+		Log.event("Selected MultiCity Departure1 Date: " + date + "(YY/MM/DD)");
+		return date;
+	}
+
+	/**
+	 * To select Return Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public String selectMultiCityDepartureDate2(String returnDate) throws Exception {
+		int iDay = Integer.parseInt(returnDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.clickOnElement(dateMulticity_Departure2, driver, "clicking on MultiCity Departure2 date icon");
+		selectMonth_MultiDepart2.get(month - 3).click();
+		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(8).click();
+		Log.event("Selected MultiCity Departure2 Date: " + date + "(YY/MM/DD)");
+		return date;
+	}
 
 }// HomePage
