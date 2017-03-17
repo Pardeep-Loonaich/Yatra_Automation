@@ -9,6 +9,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -136,6 +137,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(css ="div[id='PegasusCal-8'] li a[href*='#PegasusCal-8-month-']" )
 	List<WebElement> selectMonth_MultiDepart2;
+	
+	@FindBy(css ="#userSignInStrip" )
+	WebElement lnkMyaccount;
 	
 	
 	

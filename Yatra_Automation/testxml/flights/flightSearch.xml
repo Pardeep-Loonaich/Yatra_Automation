@@ -4,7 +4,7 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="chrome_windows" />
+	<parameter name="browserName" value="iexplorer_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
 	<test name="Flight Search" thread-count="10" parallel="true">
@@ -23,8 +23,8 @@
 					<include name="TC_Yatra_Flight_004" />	
 					<include name="TC_Yatra_Flight_005" />						
 					<include name="TC_Yatra_Flight_006" />									
-					<!-- <include name="TC_Yatra_Flight_012" />
-					<include name="TC_FlightSearch_014" /> -->
+					<include name="TC_Yatra_Flight_012" />
+					<include name="TC_FlightSearch_014" />
 				</methods>
 			</class>
 		</classes>
