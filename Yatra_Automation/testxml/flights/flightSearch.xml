@@ -23,8 +23,8 @@
 					<include name="TC_Yatra_Flight_004" />	
 					<include name="TC_Yatra_Flight_005" />						
 					<include name="TC_Yatra_Flight_006" />									
-					<include name="TC_Yatra_Flight_012" />
-					<include name="TC_FlightSearch_014" />
+					<!-- <include name="TC_Yatra_Flight_012" />
+					<include name="TC_FlightSearch_014" /> -->
 				</methods>
 			</class>
 		</classes>

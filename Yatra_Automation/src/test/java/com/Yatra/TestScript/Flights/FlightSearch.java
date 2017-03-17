@@ -26,8 +26,6 @@ import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Utils.BrowserActions;
 
-import com.Yatra.Pages.SearchResult;
-import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -67,7 +65,6 @@ public class FlightSearch {
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("passengerClass");
 
-
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
@@ -83,12 +80,6 @@ public class FlightSearch {
 			/// step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
-
-			
-			//step:  select OneWay Flight Search fields
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo,passengerClass);		
-			Log.message("4.Successfully selected OneWay Flight Search Fields ");
-
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
@@ -107,7 +98,6 @@ public class FlightSearch {
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
 			Log.message("8.Successfully selected Passenger class and clicked Done button");
-
 			
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
@@ -157,14 +147,9 @@ public class FlightSearch {
 			Log.message("2.Successfully Logged in Yatra account");	
 				
 			//step: Select Trip Type
-
 			homePage.selectTripType(tripType);
 			Log.message("3.Successfully clicked 'RoundTrip ' option in search Home Page ");
-			
-			//step:  select OneWay Flight Search fields
-			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo,passengerClass);
-			Log.message("4.Successfully selected RoundTrip Flight Search Fields ");
-			
+									
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();
 			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");							
@@ -1341,7 +1326,7 @@ try {
 			homePage.enterMultiCityDestination1(destination1);
 			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 			
-			String departDate = homePage.selectMultiCityDepartureDate1(departureDate);
+			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
 			Log.message("6.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
 			
 			homePage.enterMultiCityOrigin2(origin2);
@@ -1351,7 +1336,7 @@ try {
 			homePage.enterMultiCityDestination2(destination2);
 			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
-			String returndate = homePage.selectMultiCityDepartureDate2(returnDate);
+			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
 			Log.message("7.Successfully selected the Multicity Departure2 date: <b>" + returndate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
@@ -1421,7 +1406,7 @@ try {
 			homePage.enterMultiCityDestination1(destination1);
 			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 			
-			String departDate = homePage.selectMultiCityDepartureDate1(departureDate);
+			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
 			Log.message("6.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
 			
 			homePage.enterMultiCityOrigin2(origin2);
@@ -1431,7 +1416,7 @@ try {
 			homePage.enterMultiCityDestination2(destination2);
 			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
-			String returndate = homePage.selectMultiCityDepartureDate2(returnDate);
+			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
 			Log.message("7.Successfully selected the Multicity Departure1 date: <b>" + returndate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);

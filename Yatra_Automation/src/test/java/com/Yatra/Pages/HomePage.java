@@ -663,7 +663,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 
 	/**
-	 * To select OneWay Flight search Fields
+	 * To select Multicity Flight search Fields
 	 * 
 	 * @throws Exception
 	 */
@@ -675,8 +675,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterMultiCityOrigin2(origin2); // enter Multicity Origin2 value
 		enterMultiCityDestination2(destination2); // enter Multicity Destination2 value
 		
-		selectMultiCityDepartureDate1(departureDate1); // select Multicity Departure1 Date
-		selectMultiCityDepartureDate2(departureDate1);  // select Multicity Departure2 Date
+		selectMultiCityDateDeparture1(departureDate1); // select Multicity Departure1 Date
+		selectMultiCityDateDeparture2(departureDate1);  // select Multicity Departure2 Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
 		
 		selectPassengerClass(passengerClass); // select Passengers class type
@@ -739,12 +739,14 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 	
 	/**
-	 * To select Departure Date
+	 * To select Multicity Date Departure1 
 	 * 
+	 * @param departureDate
+	 *            as string
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-access")
-	public String selectMultiCityDepartureDate1(String departureDate) throws Exception {
+	public String selectMultiCityDateDeparture1(String departureDate) throws Exception {
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
@@ -757,13 +759,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 
 	/**
-	 * To select Return Date
+	 * To select Multicity Date Departure2 
 	 * 
+	 * @param departureDate
+	 *            as string
 	 * @throws Exception
 	 */
 	@SuppressWarnings("static-access")
-	public String selectMultiCityDepartureDate2(String returnDate) throws Exception {
-		int iDay = Integer.parseInt(returnDate);
+	public String selectMultiCityDateDeparture2(String departureDate) throws Exception {
+		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.clickOnElement(dateMulticity_Departure2, driver, "clicking on MultiCity Departure2 date icon");
