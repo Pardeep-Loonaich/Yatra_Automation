@@ -4,10 +4,10 @@
     <!-- parameter for device host and port -->
     <parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="Chrome_windows" />
+	<parameter name="browserName" value="firefox" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
-	<test name="Verify HomePage" thread-count="10" parallel="true">
+	<test name="Verify HomePage" thread-count="10" parallel="false">
 		<groups>
 			<run>
 				<include name="desktop" />
@@ -15,12 +15,9 @@
 		</groups>
 
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightSearch">
+			<class name="com.Yatra.TestScript.Flights.FlightPricing">
 				<methods>				
-
-				<include name="TC_Yatra_Flight_032" />
-
-
+				<include name="TC_Yatra_Flight_026" />
 				</methods>
 			</class>
 		</classes>
