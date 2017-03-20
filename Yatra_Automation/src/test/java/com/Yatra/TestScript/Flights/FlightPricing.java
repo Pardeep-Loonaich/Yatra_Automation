@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -26,8 +25,8 @@ import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
-import com.Yatra.Utils.WebDriverFactory;
 import com.Yatra.Utils.Utils;
+import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
 public class FlightPricing {
@@ -38,8 +37,8 @@ public class FlightPricing {
 	ReviewPage reviewPage;
 	SearchResult searchResult;
 	String webSite;
-	private String workbookName = "testdata\\data\\Flights.xls";
-	private String sheetName = "FlightPricing";
+	//private String workbookName = "testdata\\data\\Flights.xls";
+	//private String sheetName = "FlightPricing";
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
@@ -48,24 +47,25 @@ public class FlightPricing {
 		webSite = (System.getProperty("webSite") != null ? System.getProperty("webSite")
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
-
-	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_FlightPricing_015(HashMap<String, String> testData) throws Exception {
 		
 
+
 		
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
+
+		String browser=testData.get("browser");
+
+
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
+
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("passengerClass");
-		String browser=testData.get("browser");
-		System.out.println("for Current Execution Email ID is :"+emailId);
-
-
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
@@ -79,20 +79,18 @@ public class FlightPricing {
 				Log.message("2.Verified Yatra Title text");
 			}			
 
-			//step: Navigate to Yatra Login
-			LoginPage loginPage = new LoginPage(driver);
-			Log.message("3. Navigated to 'Yatra' Login Page!");
+			//navigated to sign in page
+			loginPage = homePage.navigateToSignIn();
+			Log.message("3.Navigated to 'SignIn' Page.");			
 
-			//click Login button in HomePage
-			loginPage.clickBtnSignIn();
-
-			// step: enter EmailId in Yatra Home page
+			// login using valid credentials
 			loginPage.loginYatraAccount(emailId, password);
-			Log.message("4. Successfully login after entering the valid credentials.");
+			Log.message("4.Successfully Logged in Yatra account");	
 
 
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo,passengerClass);		
-
+			//selected trip as one way and enter the search fields
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
 			Log.message("5.Successfully filled the search details for 'ONE WAY' trip.");			
 
 
@@ -105,6 +103,7 @@ public class FlightPricing {
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.",driver);
 
 
+			//clicked on book now buuton
 			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(10);
 			Log.message("7.Clicked on 'Book Now' button in Search Result Page ");
 
@@ -126,10 +125,11 @@ public class FlightPricing {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-round trip", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-round trip", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_FlightPricing_016(HashMap<String, String> testData) throws Exception {
 
 		String browser=testData.get("browser");
+
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
 		String origin = testData.get("Origin");
@@ -137,8 +137,7 @@ public class FlightPricing {
 		String departureDate = testData.get("DepartureDate");
 		String returnDate = testData.get("ReturnDate");
 		String passengerInfo = testData.get("PassengerInfo");
-
-		String passengerClass = testData.get("passengerClass");
+		String passengerClass = testData.get("Class");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -154,21 +153,14 @@ public class FlightPricing {
 			}			
 
 			//step: Navigate to Yatra Login
-			LoginPage loginPage = new LoginPage(driver);
-			Log.message("3.Navigated to 'Yatra' Login Page!");
+			loginPage = homePage.navigateToSignIn();
+			Log.message("3.Navigated to 'SignIn' Page.");			
 
-			//click Login button in HomePage
-			loginPage.clickBtnSignIn();
-
-			// step: enter EmailId in Yatra Home page
 			loginPage.loginYatraAccount(emailId, password);
-			Log.message("4.Successfully login after entering the valid credentials.");
-			Thread.sleep(1000);
+			Log.message("4.Successfully Logged in Yatra account");	
 
 			//step: enter search details in Yatra Home page
-
-			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo,passengerClass);
-
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
 			Log.message("5.Successfully filled the search details for 'ROUND' trip.");			
 
 			// step: click 'Search' button in Yatra Home page
@@ -180,9 +172,15 @@ public class FlightPricing {
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.",driver);
 
 
+			// clicked on book now
 			ReviewPage reviewPage = searchResult.clickOnBookNowInRound(1,2,2,7);
 			Log.message("7.Clicked on 'Book Now' button in Search Result Page.");
 
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.",driver);
+
+			//clicked on fees & surcharge link
 			reviewPage.clickOnFeeSurchrgeLink();
 			Log.message("8.Clicked on 'Fees & Surcharge' details link in Review Page.");
 
@@ -195,7 +193,88 @@ public class FlightPricing {
 					"<b>Actual Result:</b> The Fare details module is not displayed on Review Page.",driver);
 
 
-			reviewPage.clickOnFareRulesLink();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+
+@Test(groups = { "desktop" }, description = "Insurance added on pax page ", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	public void TC_FlightPricing_028(HashMap<String, String> testData) throws Exception {
+
+		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String browser=testData.get("browser");
+
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: verify Yatra title bar text
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("2.Verified Yatra Title text");
+			}			
+
+			//step: Navigate to Yatra Login
+			loginPage = homePage.navigateToSignIn();
+			Log.message("3.Navigated to 'SignIn' Page.");			
+
+			//enter the email and password details
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("4.Successfully Logged in Yatra account");	
+
+			//selected trip as one way
+			homePage.selectOneWayTrip();
+			//entered the search details
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate,passengerInfo, passengerClass);
+			Log.message("5.Successfully filled the search details for 'ONE WAY' trip.");			
+
+			// step: click 'Search' button in Yatra Home page
+			SearchResult searchResult = homePage.clickBtnSearch();
+			Log.message("6.Clicked on 'Search' in Yatra Homepage.");
+
+
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.",driver);
+
+
+			//clicked on book now button 
+			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("7.Clicked on 'Book Now' button in Search Result Page.");
+
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.",driver);
+
+			// clicked on continue button in review page
+			reviewPage.clickOnContinue();
+			Log.message("8.Clicked on Continue button in Review Page Step-1.");
+
+
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Travel Assistance and Insurance amount should be inculded in the Fare Detail.");
+
+
+			Log.assertThat(reviewPage.getTextFromFareDetails().contains("Travel Assistance and Insurance"),
+					"<b>Actual Result:</b> Travel Assistance and Insurance amount included in the Fare details and is displayed as:",
+					"<b>Actual Result:</b> Travel Assistance and Insurance amount not included in the Fare details",driver);
+
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -204,6 +283,95 @@ public class FlightPricing {
 			Log.endTestCase();
 		}
 	}
+
+	@Test(groups = { "desktop" }, description = "Insurance verification on pax page removed", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	public void TC_FlightPricing_029(HashMap<String, String> testData) throws Exception {
+
+		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String browser=testData.get("browser");
+
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: verify Yatra title bar text
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("2.Verified Yatra Title text");
+			}			
+
+			//step: Navigate to Yatra Login
+			loginPage = homePage.navigateToSignIn();
+			Log.message("3.Navigated to 'SignIn' Page.");			
+
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("4.Successfully Logged in Yatra account");	
+
+			//selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+		    homePage.selectOneWayFlightSearchFields(origin, destination, departureDate,passengerInfo, passengerClass);
+			Log.message("5.Successfully filled the search details for 'ONE WAY' trip.");			
+
+			// step: click 'Search' button in Yatra Home page
+			SearchResult searchResult = homePage.clickBtnSearch();
+			Log.message("6.Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.",driver);
+
+
+			// clicked on book now button in one way
+			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("7.Clicked on 'Book Now' button in Search Result Page.");
+		
+			  Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+						"<b>Actual Result:</b> Successfully navigated on Review Page.",
+						"<b>Actual Result:</b> Unable to navigated on Review Page.",driver);
+			   
+			  //clicke on continue button
+			reviewPage.clickOnContinue();
+			Log.message("8.Clicked on Continue button in Review Page Step-1.");
+
+    
+			Log.message("<br>");
+			
+			Log.message("<b>Expected Result:</b> Travel Assistance and Insurance amount should be inculded in the Fare Detail.");
+
+
+			Log.assertThat(reviewPage.verifyInsuranceCheckbox()&&reviewPage.getTextFromFareDetails().contains("Travel Assistance and Insurance"),
+							"<b>Actual Result:</b> Insurance checkbox is checked and Travel Assistance and Insurance amount is included in the Fare Details. ",
+							"<b>Actual Result:</b> Insurance checkbox is not checked and the Travel Assistance and Insurance amount is not displayed in Fare Details.",driver);
+
+			 
+			//clicked on Insurance
+			reviewPage.uncheckingInsuranceCheckbox();
+			Log.message("9. Unchecking on Insurance checkbox. ");
+			
+			Log.assertThat(!reviewPage.verifyInsuranceCheckbox()&&(!reviewPage.getTextFromFareDetails().contains("Travel Assistance and Insurance")),
+					"<b>Actual Result:</b> Insurance checkbox is unchecked and Travel Assistance and Insurance amount not included in the Fare Details. ",
+					"<b>Actual Result:</b> Insurance checkbox is not unchecked and the Travel Assistance and Insurance amount is displayed in Fare Details.",driver);
+
+			 
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
 
 
 	@Test(groups = { "desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")

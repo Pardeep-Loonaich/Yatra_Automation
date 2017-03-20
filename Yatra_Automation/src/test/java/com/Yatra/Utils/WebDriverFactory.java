@@ -534,6 +534,7 @@ public class WebDriverFactory {
 
 					if (deviceName != null && userAgent != null) {
 						//driver = SeleniumFactory.createWebDriver(caps.getUserAgentDesiredCapabilities(caps, deviceName, userAgent));
+
 					} else {
 						logger.error("Invalid mobile emulation configuration, check the parameters(deviceName) value: "
 								+ deviceName);

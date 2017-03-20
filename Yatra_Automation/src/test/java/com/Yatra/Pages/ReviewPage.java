@@ -96,6 +96,14 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css="div[class='fareBox']>ul[class='list review-title']")
 	WebElement moduleFeeSurchrge;
 
+	@FindBy(xpath= "//div[@ng-show='showLoginRegister']/form/div[@class='row']/button")
+	WebElement btnBookAsGuest;
+	
+	 @FindBy(xpath=".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label/span[1]/input")
+	 WebElement chkInsurance;
+	    
+	 @FindBy(xpath=".//*[@id='checkoutBase']/div[3]/main/div/aside/div[1]/div[1]/div/ul[1]")
+	 WebElement fldContentInsurance;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -156,6 +164,18 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		Utils.waitForPageLoad(driver);
 	}// load
 	
+	
+	/**
+	 * To click Book as Guest button on Review Page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickOnBookAsGuestBtn() throws Exception {
+		BrowserActions.scrollToView(btnBookAsGuest, driver);
+		BrowserActions.clickOnElement(btnBookAsGuest, driver, "To click on Book as Guest button.");
+	}
+	
 	/**
 	 * To click promo drop down on Review page
 	 * 
@@ -166,9 +186,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.scrollToView(drpPromoCode, driver);
 		BrowserActions.clickOnElement(drpPromoCode, driver, "To click on Promo code Dropdown.");
 	}
-
-
-
+	
 	/**
 	 * To click promo drop down on Review page
 	 * 	 fetch coupon text from the dropdown 
@@ -289,5 +307,38 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.javascriptClick(lnkFeeSurchrge, driver, "Clicked on Fees & Surcharge link.");
 	}
 
+	/**
+	 * verifying insurance checbox is checked on unchecked
+	 * @return
+	 * @throws Exception
+	 */
+   
+    public boolean verifyInsuranceCheckbox() throws Exception{	
+    	boolean status = BrowserActions.isRadioOrCheckBoxSelected(chkInsurance);
+    	return status;
+    }
+    
+    /**
+     * clicking on insurance checkbox
+     * @throws Exception
+     */
+    public void uncheckingInsuranceCheckbox() throws Exception{
+    	WebElement e =driver.findElement(By.xpath(".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label"));
+    	BrowserActions.clickOnElement(e, driver, "Clicked on Insurance CheckBox.");
+    }
+    
+    /**
+     * Getting the text from the fare details panel
+     * @return
+     * @throws Exception
+     */
+   
+    
+    public String getTextFromFareDetails() throws Exception{
+    	String txtDetails = BrowserActions.getText(driver, fldContentInsurance, "Getting text from the fare details.");
+    	return txtDetails;
+    	
+    }
+   
 
 }

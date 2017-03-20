@@ -7,7 +7,7 @@
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
-	<test name="Verify HomePage" thread-count="10" parallel="true">
+	<test name="Verify HomePage" thread-count="10" parallel="false">
 		<groups>
 			<run>
 				<include name="desktop" />
@@ -15,9 +15,9 @@
 		</groups>
 
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightPricing">
+			<class name="com.Yatra.TestScript.Flights.FlightSearch">
 				<methods>				
-				<include name="TC_Yatra_Flight_027" />
+				<include name="TC_Yatra_Flight_001" />
 				</methods>
 			</class>
 		</classes>
