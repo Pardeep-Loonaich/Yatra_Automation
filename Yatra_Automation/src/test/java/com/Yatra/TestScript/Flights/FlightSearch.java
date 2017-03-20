@@ -401,6 +401,7 @@ public class FlightSearch {
 
 			//step:  select OneWay Flight Search fields
 			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);		
+			Log.message("4.Successfully filled the search details for 'TWO WAY' trip.");
 			Thread.sleep(5000);
 
 			// step: click 'Search' button in Yatra Home page
@@ -497,6 +498,7 @@ public class FlightSearch {
 
 			//step:  select OneWay Flight Search fields
 			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);		
+			Log.message("4.Successfully filled the search details for 'TWO WAY' trip.");
 			Thread.sleep(5000);
 
 			// step: click 'Search' button in Yatra Home page
@@ -1428,15 +1430,12 @@ public class FlightSearch {
 	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_039(HashMap<String, String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
-		String returnDate =  testData.get("ReturnDate");
+		//String returnDate =  testData.get("ReturnDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
 
@@ -1448,17 +1447,15 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId , password);
-			Log.message("2.Successfully Logged in Yatra account");	
-
 			//step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
-
+			Thread.sleep(3000);
+			
 			//step:  select OneWay Flight Search fields
-			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);	
-			Thread.sleep(5000);
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);	
+			Log.message("4.Successfully filled the search details for 'ONE WAY' trip.");
+			Thread.sleep(3000);
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();
@@ -1468,7 +1465,7 @@ public class FlightSearch {
 			//step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();			
 			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
 			
 			reviewPage.clickOnContinue();
 			Log.message("<br>");
@@ -1476,6 +1473,71 @@ public class FlightSearch {
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnBookAsGuest"), reviewPage),
 					"<b>Actual Result:</b> The Book as Guest button is displayed on Review Page.",
 					"<b>Actual Result:</b> The Book as Guest button is not displayed on Review Page.",driver);  
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_040(HashMap<String, String> testData) throws Exception {
+
+		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String browser=testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String mobile = testData.get("Mobile");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		//String returnDate =  testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			//step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Thread.sleep(3000);
+			
+			//step:  select OneWay Flight Search fields
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);	
+			Log.message("4.Successfully filled the search details for 'ONE WAY' trip.");
+			Thread.sleep(3000);
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult =	homePage.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");	
+
+			//step: Click on 'Book Now' button in Yatra Home page
+			reviewPage = searchResult.clickOnBookNowINT();			
+			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
+				
+			//step: Click on 'Continue' button in Yatra Review Matrix
+			reviewPage.clickOnContinue();
+			Log.message("7.Clicked on 'Continue' button in Review Page ");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Check Book as Guest button.");	
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtGuestEmail","txtGuestMobile"), reviewPage),
+					"<b>Actual Result:</b> The Book as button/Guest Email/Guest Mobile text field is displayed on Review Page.",
+					"<b>Actual Result:</b> The Book as button/Guest Email/Guest Mobile text field is not displayed on Review Page.",driver);  
+			
+			reviewPage.loginYatraGuestAccount(emailId , mobile);
+			
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);

@@ -99,6 +99,12 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath= "//div[@ng-show='showLoginRegister']/form/div[@class='row']/button")
 	WebElement btnBookAsGuest;
 	
+	@FindBy(xpath= "//div[@ng-show='showLoginRegister']/form/div[@class='row']/input[@name = 'email']")
+	WebElement txtGuestEmail;
+	
+	@FindBy(css = "div[class='align-width']>input[name='mobile']")
+	WebElement txtGuestMobile;
+	
 	 @FindBy(xpath=".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label/span[1]/input")
 	 WebElement chkInsurance;
 	    
@@ -174,6 +180,41 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	public void clickOnBookAsGuestBtn() throws Exception {
 		BrowserActions.scrollToView(btnBookAsGuest, driver);
 		BrowserActions.clickOnElement(btnBookAsGuest, driver, "To click on Book as Guest button.");
+	}
+	
+	
+	/**
+	 * Enter email id
+	 * 
+	 * @param emailid
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterEmailID(String emailid) throws Exception {
+		Utils.waitForElement(driver, txtGuestEmail);
+		BrowserActions.typeOnTextField(txtGuestEmail, emailid, driver, "Email id");
+		Log.event("Entered the Email Id: " + emailid);
+	}
+
+	/**
+	 * Enter mobile
+	 * 
+	 * @param mobile
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterMobile(String mobile) throws Exception {
+		Utils.waitForElement(driver, txtGuestMobile);
+		BrowserActions.typeOnTextField(txtGuestMobile, mobile, driver, "Mobile");
+		Log.event("Entered the Mobile no: " + mobile);
+	}
+	
+	public ReviewPage loginYatraGuestAccount(String emailId, String mobile) throws Exception {
+		enterEmailID(emailId); // enter email address
+		enterMobile(mobile); // enter password
+		clickOnBookAsGuestBtn(); // click signin button
+		return new ReviewPage(driver).get();
+
 	}
 	
 	/**
