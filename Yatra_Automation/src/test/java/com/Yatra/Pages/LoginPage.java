@@ -106,7 +106,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 	public void clickBtnSignIn() throws Exception {
 		BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
 		Utils.waitForPageLoad(driver);
-		
+		//return new LoginPage(driver).get();
 	}
 
 	/**

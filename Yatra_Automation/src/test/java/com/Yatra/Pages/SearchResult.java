@@ -46,7 +46,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public WebElement matrixStrip;
 
 	@FindBy(css = "[class='ico fl ico-gray-modify-search']")
-	public WebElement BtnModifySearchIcon;
+	public WebElement btnModifySearchIcon;
 
 	@FindBy(css = "div[class='full']>div[class='matrix-wrapper day-matrix new-theme day-matrix-responsive']")
 	WebElement weeklyStrip;
@@ -126,7 +126,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 
 
-		if (isPageLoaded && !(Utils.waitForElement(driver, BtnModifySearchIcon))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnModifySearchIcon))) {
 			Log.fail("Search Result page didn't open up", driver);
 		}
 		// elementLayer = new ElementLayer(driver);
@@ -198,35 +198,4 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForPageLoad(driver);
 		
 	}
-
-	
-	@FindBy(css=".multi-prev.ico.ico-arr-right.ico-right>span")
-	WebElement btnSlider;
-	public void clickOnSliderInMulticity() throws Exception {
-		Utils.waitForElement(driver, btnSlider);
-		BrowserActions.javascriptClick(btnSlider, driver, "Clicked on Slidder in Multicity Search Page.");
-		Utils.waitForPageLoad(driver);
-		
-	}
-	
-	
-    /**
-     * to click on Book now button in Multicity Trip for Domestic flights
-     * @param index
-     * @return
-     * @throws Exception
-     */
-	public ReviewPage clickOnBookNowInMulticity(int list1,int index1,int list2,int index2) throws Exception {
-		WebElement e1=  driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child("+list1+")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("+index1+")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>p[class='new-blue-button fr book-button']"));
-		WebElement e2=  driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child("+list2+")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("+index2+")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>p[class='new-blue-button fr book-button']"));
-
-		BrowserActions.scrollToView(e1, driver);
-		BrowserActions.clickOnElement(e1,driver,"To select Flight from one list.");
-		BrowserActions.scrollToView(e2, driver);
-		BrowserActions.clickOnElement(e2,driver,"To select Flight from second list.");
-		
-		BrowserActions.clickOnElement(btnBookNowRoundTrip, driver, "Click on Book Now for RoundTrip.");
-       return new ReviewPage(driver).get();
-}
-
 	}

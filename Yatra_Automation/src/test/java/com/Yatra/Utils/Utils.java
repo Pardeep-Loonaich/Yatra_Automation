@@ -10,6 +10,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
+import org.testng.ITestContext;
+import org.testng.ITestNGMethod;
+import org.testng.SkipException;
 
 /**
  * Util class consists wait for page load,page load with user defined max time
@@ -525,6 +528,43 @@ public class Utils {
 		return dataToBeReturn;
 
 	}
+	/**
+	 * 
+	 * @param sExecute: a string flag YES/No
+	 * @return: it will return boolean
+	 */
+
+	public static boolean testCaseConditionalSkip(String sExecute){
+		boolean dataToBeReturn=false;
+
+		if("YES".equalsIgnoreCase(sExecute))
+		{
+			dataToBeReturn=true;
+			throw new SkipException("Skipping the test case");
+
+		}
+		return dataToBeReturn;
+	}
+
+
+	public static String getTestCaseID(ITestContext context){
+
+		String testCaseID="";
+		System.out.println("@@@@@12"+context.getName());
+		for(ITestNGMethod TestNGMethod:context.getAllTestMethods())
+		{
+			if(!(TestNGMethod.getMethodName()=="init"))
+			{
+			testCaseID=TestNGMethod.getMethodName();
+			System.out.println(testCaseID);
+			break;
+			}
+		}
+
+		return testCaseID;
+	}
+
+
 
 
 }

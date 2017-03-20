@@ -1,5 +1,6 @@
 package com.Yatra.Utils;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Arrays;
 import java.io.BufferedReader;
@@ -8,13 +9,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderUtils {
+	/*private static String workbookName = "testdata\\data\\Flights.xls";
+	private static String sheetName = "FlightPricing";*/
+	private static boolean doFilePathMapping=true;
+
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 
 	@DataProvider(parallel = true)
@@ -155,4 +162,52 @@ public class DataProviderUtils {
 		return lines;
 	}
 
+
+	/**
+	 * @author harveer.singh
+	 * @return :Hashmap obj with all data
+	 */
+
+	@DataProvider
+	public static Object[][] multipleExecutionData(Method method,ITestContext context)
+
+	{   
+		String sWorkBooName=context.getCurrentXmlTest().getParameter("workBookName");
+		String sheetNameP=context.getCurrentXmlTest().getParameter("sheetName");
+		String browserName=context.getCurrentXmlTest().getParameter("browserName");
+		//String browserName=context.getCurrentXmlTest().getParameter("browserName").split("_")[0].trim();
+		String operating_System_Name=context.getCurrentXmlTest().getParameter("browserName").split("_")[1].trim();
+		
+		
+		String testCaseId = method.getName();
+		//System.out.println("test case Name is :"+testCaseId);for debugging
+		ExcelUtils readTestData=new ExcelUtils();
+		// initializing excel connection 
+		HSSFSheet sheet=readTestData.initiateExcelConnection(sheetNameP, sWorkBooName, doFilePathMapping);
+
+		//HSSFSheet sheet=readTestData.initiateExcelConnection(sheetName, workbookName, doFilePathMapping);//don't remove this 
+		HashMap<String, String> ObjHmap=new HashMap<String, String>();
+		ObjHmap.put("os", operating_System_Name);
+		ObjHmap.put("browser", browserName);
+		
+		ArrayList<Integer> ObjArrayOfTestCaseRow=readTestData.getRowNumbers(sheet,testCaseId);
+		ArrayList<String> ObjArrayOf_Headers=readTestData.getHeaders(sheet);
+		int executionCount=ObjArrayOfTestCaseRow.size();
+		int totalData=ObjArrayOf_Headers.size();
+
+		Object[][] obj=new Object[executionCount][1];
+
+		for(int row=0;row<executionCount;row++)
+
+		{
+			for(int cell=0;cell<totalData;cell++)
+			{		  
+				String tempValue=sheet.getRow(ObjArrayOfTestCaseRow.get(row)).getCell(cell).getStringCellValue().trim();
+				ObjHmap.put(ObjArrayOf_Headers.get(cell), tempValue);  
+			}
+			obj[row][0]=ObjHmap;  	  
+		}
+		return obj;	
+
+	}//multipleExecutionData
 }

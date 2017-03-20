@@ -20,7 +20,6 @@ import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
-import com.Yatra.Utils.TestDataExtractor;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
@@ -39,10 +38,10 @@ public class HotelSearchTest {
 	}
 
 	@SuppressWarnings("unused")
-	@Test(groups = { "desktop" }, description = "Searching Hotels for Domestic & International Hotels", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_HotelSearch_001(String browser) throws Exception {
+	@Test(groups = { "desktop" }, description = "Searching Hotels for Domestic & International Hotels", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_HotelSearch_001(HashMap<String, String> testData) throws Exception {
 
-		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String browser=testData.get("browser");
 		String email = testData.get("EmailAddress");
 		String password = testData.get("Password");
 		String origin = testData.get("Origin");
@@ -55,7 +54,7 @@ public class HotelSearchTest {
 			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
-			
+
 			// TODO : Steps
 
 		} catch (Exception e) {

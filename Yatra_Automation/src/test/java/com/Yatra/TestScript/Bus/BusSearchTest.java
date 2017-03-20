@@ -20,7 +20,6 @@ import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
-import com.Yatra.Utils.TestDataExtractor;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
@@ -39,11 +38,12 @@ public class BusSearchTest {
 	}
 
 	@SuppressWarnings("unused")
-	@Test(groups = { "desktop" }, description = "Searching Buses for One Way", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
-	public void TC_BusSearch_001(String browser) throws Exception {
+	@Test(groups = { "desktop" }, description = "Searching Buses for One Way", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_BusSearch_001(HashMap<String, String> testData) throws Exception {
 
-		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String email = testData.get("EmailAddress");
+		String browser = testData.get("browser");
 		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
