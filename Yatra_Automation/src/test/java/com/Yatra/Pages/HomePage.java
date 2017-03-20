@@ -576,7 +576,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * To select Round Trip Flight search Fields
 	 * 
 	 * @throws Exception
-<<<<<<< HEAD
 	 */
 	
 
