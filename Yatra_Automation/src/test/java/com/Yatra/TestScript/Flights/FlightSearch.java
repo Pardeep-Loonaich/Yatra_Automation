@@ -1369,7 +1369,7 @@ public class FlightSearch {
 	}
 
 	
-	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_039(HashMap<String, String> testData) throws Exception {
 
 		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
