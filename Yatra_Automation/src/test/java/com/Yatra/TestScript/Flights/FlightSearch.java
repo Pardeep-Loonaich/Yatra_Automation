@@ -37,8 +37,8 @@ public class FlightSearch {
 	LoginPage loginPage;
 	SearchResult searchResult;
 	String webSite;
-	private String workbookName = "testdata\\data\\Flights.xls";
-	private String sheetName = "FlightSearch";
+	//private String workbookName = "testdata\\data\\Flights.xls";
+	//private String sheetName = "FlightSearch";
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)

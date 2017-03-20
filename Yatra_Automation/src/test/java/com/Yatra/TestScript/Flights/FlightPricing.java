@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -27,7 +26,6 @@ import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.WebDriverFactory;
-import com.Yatra.Utils.Utils;
 
 @Listeners(EmailReport.class)
 public class FlightPricing {
@@ -38,8 +36,8 @@ public class FlightPricing {
 	ReviewPage reviewPage;
 	SearchResult searchResult;
 	String webSite;
-	private String workbookName = "testdata\\data\\Flights.xls";
-	private String sheetName = "FlightPricing";
+	//private String workbookName = "testdata\\data\\Flights.xls";
+	//private String sheetName = "FlightPricing";
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
