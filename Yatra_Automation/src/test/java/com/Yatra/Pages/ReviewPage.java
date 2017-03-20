@@ -24,7 +24,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	public ElementLayer elementLayer;
 
 	/**********************************************************************************************
-	 ********************************* WebElements of Yatra Search Page ***********************************
+	 ********************************* WebElements of Yatra Review Page ***********************************
 	 **********************************************************************************************/
 
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
@@ -106,7 +106,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	WebElement btnContinueFlghtChngeAlert;
 
 	/**********************************************************************************************
-	 ********************************* WebElements of Yatra Search Page - Ends ****************************
+	 ********************************* WebElements of Yatra Review Page - Ends ****************************
 	 **********************************************************************************************/
 
 	/**
@@ -152,7 +152,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			e.printStackTrace();
 		}
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnChngeFlight))) {
-			Log.fail("Search Result page didn't open up", driver);
+			Log.fail("Review  page didn't open up", driver);
 		}
 		// elementLayer = new ElementLayer(driver);
 	}

@@ -190,8 +190,6 @@ public class FlightPricing {
 					"<b>Actual Result:</b> The Fare details module is not displayed on Review Page.",driver);
 		
 		  
-			reviewPage.clickOnFareRulesLink();
-
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -714,6 +712,99 @@ public class FlightPricing {
 		}
 	}
 	
+	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	public void TC_Yatra_Flight_017(String browser) throws Exception {
+
+		HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin1 = testData.get("Origin");
+		String origin2 = testData.get("Origin_Multicity");
+		String tripType = testData.get("TripType");
+		String destination1 = testData.get("Destination");
+		String destination2 = testData.get("Destination_Multicity");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			LoginPage loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2.Successfully Logged in Yatra account");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'Multicity' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			homePage.enterMultiCityOrigin1(origin1);
+			Log.message("4.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterMultiCityDestination1(destination1);
+			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+
+			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
+			Log.message("6.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			homePage.enterMultiCityOrigin2(origin2);
+			Log.message("7.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterMultiCityDestination2(destination2);
+			Log.message("8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+
+			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
+			Log.message("9.Successfully selected the Multicity Departure2 date: <b>" + returndate + "</b>(YY/MM/DD)");
+
+			homePage.specifyPassengerInfo(passengerInfo);
+			Log.message("10.Passenger Info successfully specified");
+
+			homePage.selectPassengerClass(passengerClass);
+			homePage.clickDoneButtonInPassengerBox();
+			Log.message("11.Successfully selected Passenger class and clicked Done button");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("12.Successfully clicked 'Search' button in Yatra Homepage ");
+
+		
+			Thread.sleep(6000);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> User navigated on SearchResult page with DOM-Multicity flight result",
+					"<b>Actual Result:</b> User is not navigated on SearchResult page with DOM-Multicity flight result",
+					driver);
+			
+		//	searchResult.clickOnSliderInMulticity();
+			Log.message("Clicked on Slidder In MultiCity Search Resut Page.");
+			ReviewPage reviewPage = searchResult.clickOnBookNowInRound(1, 2, 2, 4);
+			Log.message("Selected the Flights and clicked on book now.");
+			
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> User navigated on Review page with DOM-Multicity flight result",
+					"<b>Actual Result:</b> User is not navigated on Review page with DOM-Multicity flight result",
+					driver);
+			
 	
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with DOM-Multicity flight result");
+
+			
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 	
 }
