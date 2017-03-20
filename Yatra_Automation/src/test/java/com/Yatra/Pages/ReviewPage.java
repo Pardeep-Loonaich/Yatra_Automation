@@ -75,7 +75,11 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	@FindBy(css="div[class='fareBox']>ul[class='list review-title']")
 	WebElement moduleFeeSurchrge;
-
+	
+	@FindBy(css="ul[class='list list-border']>li:nth-child(5)>span[class='pull-right tr alignment']>a[class='remove-btn']")
+	WebElement btnRemove;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -205,6 +209,15 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	public void clickOnFeeSurchrgeLink() throws Exception{
 		BrowserActions.javascriptClick(lnkFeeSurchrge, driver, "Clicked on Fees & Surcharge link.");
 	}
+	/**
+	 *to click on Remove Button On Pax/Review Pages
+	 * @throws Exception
+	 */
+
+	public void clickOnRemoveButton() throws Exception{
+		BrowserActions.javascriptClick(btnRemove, driver, "Remove Button");
+	}
+
 
 
 }

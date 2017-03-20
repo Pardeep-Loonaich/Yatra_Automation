@@ -1094,7 +1094,12 @@ public class FlightSearch {
 
 			reviewPage.selectMeal();
 			Log.message("10. Selected Meal!");
-
+			
+			reviewPage.clickOnRemoveButton();
+			Log.message("11. clicked On Remove Meal Button!");
+			
+		
+			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
