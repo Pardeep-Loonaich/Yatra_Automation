@@ -47,7 +47,7 @@ public class FlightPricing {
 		webSite = (System.getProperty("webSite") != null ? System.getProperty("webSite")
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
-	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_015(HashMap<String, String> testData) throws Exception {
 		
 
