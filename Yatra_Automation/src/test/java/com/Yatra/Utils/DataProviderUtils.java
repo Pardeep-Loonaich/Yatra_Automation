@@ -178,7 +178,6 @@ public class DataProviderUtils {
 		//String browserName=context.getCurrentXmlTest().getParameter("browserName").split("_")[0].trim();
 		String operating_System_Name=context.getCurrentXmlTest().getParameter("browserName").split("_")[1].trim();
 		
-		
 		String testCaseId = method.getName();
 		//System.out.println("test case Name is :"+testCaseId);for debugging
 		ExcelUtils readTestData=new ExcelUtils();
@@ -186,9 +185,7 @@ public class DataProviderUtils {
 		HSSFSheet sheet=readTestData.initiateExcelConnection(sheetNameP, sWorkBooName, doFilePathMapping);
 
 		//HSSFSheet sheet=readTestData.initiateExcelConnection(sheetName, workbookName, doFilePathMapping);//don't remove this 
-		HashMap<String, String> ObjHmap=new HashMap<String, String>();
-		ObjHmap.put("os", operating_System_Name);
-		ObjHmap.put("browser", browserName);
+		
 		
 		ArrayList<Integer> ObjArrayOfTestCaseRow=readTestData.getRowNumbers(sheet,testCaseId);
 		ArrayList<String> ObjArrayOf_Headers=readTestData.getHeaders(sheet);
@@ -200,11 +197,17 @@ public class DataProviderUtils {
 		for(int row=0;row<executionCount;row++)
 
 		{
+			HashMap<String, String> ObjHmap=new HashMap<String, String>();
+			ObjHmap.put("os", operating_System_Name);
+			ObjHmap.put("browser", browserName);
+			ObjHmap.put("testCaseId", testCaseId.trim());
+			
 			for(int cell=0;cell<totalData;cell++)
 			{		  
 				String tempValue=sheet.getRow(ObjArrayOfTestCaseRow.get(row)).getCell(cell).getStringCellValue().trim();
 				ObjHmap.put(ObjArrayOf_Headers.get(cell), tempValue);  
 			}
+			
 			obj[row][0]=ObjHmap;  	  
 		}
 		return obj;	
