@@ -1380,6 +1380,7 @@ public class FlightSearch {
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
+		String returnDate =  testData.get("ReturnDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
 
@@ -1400,7 +1401,7 @@ public class FlightSearch {
 			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
 
 			//step:  select OneWay Flight Search fields
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);	
 			Thread.sleep(5000);
 
 			// step: click 'Search' button in Yatra Home page
