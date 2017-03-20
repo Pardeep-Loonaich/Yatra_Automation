@@ -46,7 +46,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public WebElement matrixStrip;
 
 	@FindBy(css = "[class='ico fl ico-gray-modify-search']")
-	public WebElement btnModifySearchIcon;
+	public WebElement BtnModifySearchIcon;
 
 	@FindBy(css = "div[class='full']>div[class='matrix-wrapper day-matrix new-theme day-matrix-responsive']")
 	WebElement weeklyStrip;
@@ -126,7 +126,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 
 
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnModifySearchIcon))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, BtnModifySearchIcon))) {
 			Log.fail("Search Result page didn't open up", driver);
 		}
 		// elementLayer = new ElementLayer(driver);

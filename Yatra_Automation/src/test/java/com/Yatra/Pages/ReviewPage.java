@@ -1,5 +1,7 @@
 package com.Yatra.Pages;
 
+import java.util.List;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +17,8 @@ import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
+import test.abstractconfmethod.B;
+
 public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	private String appURL;
@@ -27,20 +31,15 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 ********************************* WebElements of Yatra Review Page ***********************************
 	 **********************************************************************************************/
 
+	@FindBy(css="ul[class='list list-border']>li:nth-child(5)>span[class='pull-right tr alignment']>a[class='remove-btn']")
+    WebElement btnRemove;
+
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	public WebElement btnChngeFlight;
 
-	@FindBy(css = "div[ng-show='showFareDetails']")
+
+	@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/aside")
 	WebElement moduleFareDetails;
-
-	@FindBy(xpath = "//i[@class = 'arrow-down']")
-	WebElement drpPromoCode;
-
-	@FindBy(xpath = "//ul[@class = 'promo-options']/li/label/span/span[@class='promo-key ng-binding']")
-	WebElement fldContentpromo;
-
-	@FindBy(xpath = "//ul[@class = 'promo-options']/li[@class='ng-scope']")
-	WebElement lnkPromoCoupon;
 
 	@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
 	WebElement btnContinueReviewPage;
@@ -72,38 +71,51 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath = ".//*[@id='traveller-dom']/div[1]/div[1]/div/article[2]/div[2]/input")
 	WebElement userEmail;
 
-	@FindBy(css = "span[class='pull-left cursor-pointer ng-binding under-link']>a")
+	@FindBy(css="span[class='pull-left cursor-pointer ng-binding under-link']>a")
 	WebElement lnkFeeSurchrge;
 
-	@FindBy(css = "span[class='pull-left w85perc ng-binding']")
-	WebElement msgPromoApplied;
-
-	@FindBy(css = "span[ng-show='selectPromo && promoListEnable']")
-	WebElement lnkHavePromoCode;
-
-	@FindBy(xpath = "//input[@id='promoListInput']")
-	WebElement txtPromoCode;
-
-	@FindBy(css = "button[ng-show='!selectPromo']")
-	WebElement btnApply;
-
-	@FindBy(css = "[ng-click='showFareRulesPopup()']")
+	@FindBy(css="[ng-click='showFareRulesPopup()']")
 	WebElement lnkFareRules;
 
-	@FindBy(css = "div[class='fareBox']>ul[class='list review-title']")
+
+	@FindBy(css="div[class='fareBox']>ul[class='list review-title']")
 	WebElement moduleFeeSurchrge;
 
-	@FindBy(xpath = ".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label/span[1]/input")
+	@FindBy(xpath=".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label/span[1]/input")
 	WebElement chkInsurance;
 
-	@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/aside/div[1]/div[1]/div/ul[1]")
+	@FindBy(xpath=".//*[@id='checkoutBase']/div[3]/main/div/aside/div[1]/div[1]/div/ul[1]")
 	WebElement fldContentInsurance;
 
-	@FindBy(css = "div[class='overlay priceChange-modal']")
-	WebElement modFlghtChngeAlert;
-
-	@FindBy(css = "[ng-click='continueSameFlight()']")
+	@FindBy(css="[ng-click='continueSameFlight()']")
 	WebElement btnContinueFlghtChngeAlert;
+
+	@FindBy(css="div[class='overlay priceChange-modal']")
+	WebElement modFlghtChngeAlert;
+	
+	@FindBy(xpath = "//i[@class = 'arrow-down']")
+    WebElement drpPromoCode;
+    
+    @FindBy(xpath ="//ul[@class = 'promo-options']/li/label/span/span[@class='promo-key ng-binding']")
+    WebElement fldContentpromo;
+    
+    @FindBy(xpath = "//ul[@class = 'promo-options']/li[@class='ng-scope']")
+    WebElement lnkPromoCoupon;
+
+    @FindBy(css ="span[class='pull-left w85perc ng-binding']")
+    WebElement msgPromoApplied;
+    
+    @FindBy(css = "span[ng-show='selectPromo && promoListEnable']")
+    WebElement lnkHavePromoCode;
+    
+    @FindBy(xpath="//input[@id='promoListInput']")
+    WebElement txtPromoCode;
+    
+    @FindBy(css= "button[ng-show='!selectPromo']")
+    WebElement btnApply;
+
+	
+	
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Review Page - Ends ****************************
@@ -145,14 +157,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			Assert.fail();
 		}
 
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnChngeFlight))) {
-			Log.fail("Review  page didn't open up", driver);
+			Log.fail("Review page didn't open up", driver);
 		}
 		// elementLayer = new ElementLayer(driver);
 	}
@@ -164,66 +171,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		Utils.waitForPageLoad(driver);
 	}// load
 
-	/**
-	 * To click promo drop down on Review page
-	 * 
-	 * @throws Exception
-	 */
 
-	public void clickOnPromoDrpDwn() throws Exception {
-		BrowserActions.scrollToView(drpPromoCode, driver);
-		BrowserActions.clickOnElement(drpPromoCode, driver, "To click on Promo code Dropdown.");
-	}
 
-	/**
-	 * To click promo drop down on Review page fetch coupon text from the
-	 * dropdown submit the received coupon and click on Apply button on Review
-	 * page
-	 * 
-	 * @throws Exception
-	 */
-
-	public boolean getPromoCode() throws Exception {
-		BrowserActions.scrollToView(drpPromoCode, driver);
-		BrowserActions.clickOnElement(drpPromoCode, driver, "To click on Promo code Dropdown.");
-		String promoCode = BrowserActions.getText(driver, fldContentpromo, "Promo Code Content");
-		BrowserActions.clickOnElement(lnkHavePromoCode, driver, "To click on Hava a Promo code link.");
-		BrowserActions.typeOnTextField(txtPromoCode, promoCode, driver, "Entered Applicable Promo Code");
-		BrowserActions.clickOnElement(btnApply, driver, "To click on Apply button.");
-		String promoAppliedMessage = BrowserActions.getText(driver, msgPromoApplied,
-				"Successful Promo Code applied message");
-		promoAppliedMessage.startsWith("Congrats");
-		return true;
-	}
-
-	/**
-	 * To click promo drop down on Review page click on a coupon from the
-	 * dropdown on Review page
-	 * 
-	 * @throws Exception
-	 */
-
-	public boolean clickOnPromoCoupon() throws Exception {
-		BrowserActions.scrollToView(drpPromoCode, driver);
-		BrowserActions.clickOnElement(drpPromoCode, driver, "To click on Promo coupon link.");
-		BrowserActions.clickOnElement(lnkPromoCoupon, driver, "To click on Promo Coupon");
-		String promoAppliedMessage = BrowserActions.getText(driver, msgPromoApplied,
-				"Successful Promo Code applied message");
-		promoAppliedMessage.startsWith("Congrats");
-		return true;
-	}
-
-	/**
-	 * To click Have a promo code link on Review page
-	 * 
-	 * @throws Exception
-	 */
-
-	public void clickOnHavePromoCode() throws Exception {
-		BrowserActions.scrollToView(lnkHavePromoCode, driver);
-		BrowserActions.clickOnElement(lnkHavePromoCode, driver, "To click on Hava a Promo code link.");
-
-	}
 
 	public void clickOnContinue() throws Exception {
 		BrowserActions.nap(6);
@@ -247,6 +196,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		Utils.waitForPageLoad(driver);
 	}
 
+
+
 	public void selectMeal() throws Exception {
 		Utils.waitForElement(driver, drpSelectMeal);
 		BrowserActions.scrollToView(drpSelectMeal, driver);
@@ -255,6 +206,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.javascriptClick(selectMeal, driver, "Select Meal");
 		Utils.waitForPageLoad(driver);
 	}
+
 
 	public void selectBaggage() throws Exception {
 		Utils.waitForElement(driver, drpAddBaggage);
@@ -268,8 +220,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	public void enterUserDeatils() throws Exception {
 		Utils.waitForElement(driver, userFirstName);
 		BrowserActions.nap(5);
-		String randomFirstName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
-		String randomLastName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
+		String randomFirstName = RandomStringUtils.randomAlphabetic(5)
+				.toLowerCase();
+		String randomLastName = RandomStringUtils.randomAlphabetic(5)
+				.toLowerCase();
 		BrowserActions.typeOnTextField(userFirstName, randomFirstName, driver, "First Name");
 		BrowserActions.typeOnTextField(userSecondName, randomLastName, driver, "Second Name");
 
@@ -277,68 +231,136 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	/**
 	 * to click on View fare rules link in fare details module
-	 * 
 	 * @throws Exception
 	 */
-	public void clickOnFareRulesLink() throws Exception {
+	public void clickOnFareRulesLink() throws Exception{
 		BrowserActions.javascriptClick(lnkFareRules, driver, "Clicked on View Fare Rules link.");
 	}
 
+
 	/**
-	 * to click on Fee & surcharge link in fare detail module
-	 * 
+	 *to click on Fee & surcharge link in fare detail module
 	 * @throws Exception
 	 */
 
-	public void clickOnFeeSurchrgeLink() throws Exception {
+	public void clickOnFeeSurchrgeLink() throws Exception{
 		BrowserActions.javascriptClick(lnkFeeSurchrge, driver, "Clicked on Fees & Surcharge link.");
 	}
 
 	/**
 	 * verifying insurance checbox is checked on unchecked
-	 * 
 	 * @return
 	 * @throws Exception
 	 */
 
-	public boolean verifyInsuranceCheckbox() throws Exception {
+	public boolean verifyInsuranceCheckbox() throws Exception{	
 		boolean status = BrowserActions.isRadioOrCheckBoxSelected(chkInsurance);
 		return status;
 	}
 
 	/**
 	 * clicking on insurance checkbox
-	 * 
 	 * @throws Exception
 	 */
-	public void uncheckingInsuranceCheckbox() throws Exception {
-		WebElement e = driver.findElement(By.xpath(".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label"));
+	public void uncheckingInsuranceCheckbox() throws Exception{
+		WebElement e =driver.findElement(By.xpath(".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label"));
 		BrowserActions.clickOnElement(e, driver, "Clicked on Insurance CheckBox.");
 	}
 
 	/**
 	 * Getting the text from the fare details panel
-	 * 
 	 * @return
 	 * @throws Exception
 	 */
 
-	public String getTextFromFareDetails() throws Exception {
+
+	public String getTextFromFareDetails() throws Exception{
 		String txtDetails = BrowserActions.getText(driver, fldContentInsurance, "Getting text from the fare details.");
 		return txtDetails;
 
 	}
 
-	public boolean verifyChngeFlightModule() throws Exception {
+
+
+	public boolean verifyChngeFlightModule() throws Exception{
 
 		boolean status = Utils.waitForElement(driver, modFlghtChngeAlert);
 		return status;
 
 	}
 
+	/**
+     *to click on Remove Button On Pax/Review Pages
+     * @throws Exception
+     */
+
+     public void clickOnRemoveButton() throws Exception{
+            BrowserActions.javascriptClick(btnRemove, driver, "Remove Button");
+     }
+
+
+
+
 	public void clickOnContInFlightChngeAlertPopup() throws Exception {
-		BrowserActions.clickOnElement(btnContinueFlghtChngeAlert, driver,
-				"Clicked on Continue button in Flight Chnage alert popup.");
+		BrowserActions.clickOnElement(btnContinueFlghtChngeAlert, driver, "Clicked on Continue button in Flight Chnage alert popup.");
+	}
+
+	/**
+	 * To click promo drop down on Review page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickOnPromoDrpDwn() throws Exception {
+		BrowserActions.scrollToView(drpPromoCode, driver);
+		BrowserActions.clickOnElement(drpPromoCode, driver, "To click on Promo code Dropdown.");
+	}
+
+	/**
+	 * To click promo drop down on Review page
+	 *             fetch coupon text from the dropdown 
+	 *            submit the received coupon and click on Apply button on Review page
+	 * @throws Exception
+	 */
+
+	public boolean getPromoCode() throws Exception {
+		BrowserActions.scrollToView(drpPromoCode, driver);
+		BrowserActions.clickOnElement(drpPromoCode, driver, "To click on Promo code Dropdown.");
+		String promoCode = BrowserActions.getText(driver, fldContentpromo, "Promo Code Content");
+		BrowserActions.clickOnElement(lnkHavePromoCode, driver, "To click on Hava a Promo code link.");
+		BrowserActions.typeOnTextField(txtPromoCode, promoCode, driver, "Entered Applicable Promo Code");
+		BrowserActions.clickOnElement(btnApply, driver, "To click on Apply button.");
+		String promoAppliedMessage = BrowserActions.getText(driver, msgPromoApplied, "Successful Promo Code applied message");
+		promoAppliedMessage.startsWith("Congrats") ;
+		return true;
+	}
+
+	/**
+	 * To click promo drop down on Review page
+	 * click on a coupon from the dropdown on Review page
+	 * @throws Exception
+	 */
+
+	public boolean clickOnPromoCoupon() throws Exception {
+		BrowserActions.scrollToView(drpPromoCode, driver);
+		BrowserActions.clickOnElement(drpPromoCode, driver, "To click on Promo coupon link.");
+		BrowserActions.clickOnElement(lnkPromoCoupon,driver,"To click on Promo Coupon");
+		String promoAppliedMessage = BrowserActions.getText(driver, msgPromoApplied, "Successful Promo Code applied message");
+		promoAppliedMessage.startsWith("Congrats") ;
+		return true;
+	}
+
+	/**
+	 * To click Have a promo code link on Review page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickOnHavePromoCode() throws Exception {
+		BrowserActions.scrollToView(lnkHavePromoCode, driver);
+		BrowserActions.clickOnElement(lnkHavePromoCode, driver, "To click on Hava a Promo code link.");
+
 	}
 
 }
+//review page

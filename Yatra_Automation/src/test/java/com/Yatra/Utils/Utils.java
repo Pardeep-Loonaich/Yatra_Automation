@@ -18,7 +18,7 @@ import org.testng.Assert;
  */
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
-	public static int maxElementWait = 30;
+	public static int maxElementWait = 10;
 
 	/**
 	 * waitForPageLoad waits for the page load with default page load wait time
