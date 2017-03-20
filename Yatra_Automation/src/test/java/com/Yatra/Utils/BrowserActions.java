@@ -224,7 +224,7 @@ public class BrowserActions {
 	 */
 	public static String getText(WebDriver driver,
 			WebElement fromWhichTxtShldExtract, String elementDescription)
-			throws Exception {
+					throws Exception {
 
 		String textFromHTMLAttribute = "";
 
@@ -233,7 +233,7 @@ public class BrowserActions {
 
 			if (textFromHTMLAttribute.isEmpty())
 				textFromHTMLAttribute = fromWhichTxtShldExtract
-						.getAttribute("textContent");
+				.getAttribute("textContent");
 
 		} catch (NoSuchElementException e) {
 			throw new Exception(elementDescription + " not found in page!!");
@@ -258,7 +258,7 @@ public class BrowserActions {
 	 */
 	public static String getText(WebDriver driver,
 			String fromWhichTxtShldExtract, String elementDescription)
-			throws Exception {
+					throws Exception {
 
 		String textFromHTMLAttribute = "";
 
@@ -445,14 +445,20 @@ public class BrowserActions {
 	}
 
 	public static boolean isRadioOrCheckBoxSelected(WebElement element) {
-		if (element.getAttribute("class").contains("active")) {
-			return true;
-		}
+		if(element.getAttribute("type").contains("radio")){
+			if (element.getAttribute("class").contains("active")) {
+				return true;
+			}
 
-		if (null != element.getAttribute("checked")) {
-			return true;
+			if (null != element.getAttribute("checked")) {
+				return true;
+			}
 		}
-
+		else if(element.getAttribute("type").contains("checkbox")){
+			if(true==element.isSelected()){
+				return true;
+			}
+		}
 		for (WebElement childElement : element.findElements(By.xpath(".//*"))) {
 			if (childElement.getAttribute("class").contains("active")) {
 				return true;
@@ -493,16 +499,16 @@ public class BrowserActions {
 		if (locator.startsWith("//")) {
 			elements = (new WebDriverWait(driver, 10).pollingEvery(500,
 					TimeUnit.MILLISECONDS).ignoring(
-					NoSuchElementException.class,
-					StaleElementReferenceException.class)
+							NoSuchElementException.class,
+							StaleElementReferenceException.class)
 					.withMessage("Couldn't find " + locator))
 					.until(ExpectedConditions
 							.visibilityOfAllElementsLocatedBy(By.xpath(locator)));
 		} else {
 			elements = (new WebDriverWait(driver, 10).pollingEvery(500,
 					TimeUnit.MILLISECONDS).ignoring(
-					NoSuchElementException.class,
-					StaleElementReferenceException.class)
+							NoSuchElementException.class,
+							StaleElementReferenceException.class)
 					.withMessage("Couldn't find " + locator))
 					.until(ExpectedConditions
 							.visibilityOfAllElementsLocatedBy(By
@@ -523,16 +529,16 @@ public class BrowserActions {
 		if (locator.startsWith("//")) {
 			element = (new WebDriverWait(driver, 10).pollingEvery(500,
 					TimeUnit.MILLISECONDS).ignoring(
-					NoSuchElementException.class,
-					StaleElementReferenceException.class)
+							NoSuchElementException.class,
+							StaleElementReferenceException.class)
 					.withMessage("Couldn't find " + locator))
 					.until(ExpectedConditions.visibilityOfElementLocated(By
 							.xpath(locator)));
 		} else {
 			element = (new WebDriverWait(driver, 10).pollingEvery(500,
 					TimeUnit.MILLISECONDS).ignoring(
-					NoSuchElementException.class,
-					StaleElementReferenceException.class)
+							NoSuchElementException.class,
+							StaleElementReferenceException.class)
 					.withMessage("Couldn't find " + locator))
 					.until(ExpectedConditions.visibilityOfElementLocated(By
 							.cssSelector(locator)));
@@ -563,14 +569,14 @@ public class BrowserActions {
 	 */
 	public static WebElement getMachingTextElementFromList(
 			List<WebElement> elements, String contenttext, String condition)
-			throws Exception {
+					throws Exception {
 		WebElement elementToBeReturned = null;
 		boolean found = false;
 		if (elements.size() > 0) {
 			for (WebElement element : elements) {
 				if (condition.toLowerCase().equals("equals")
 						&& element.getText().trim().replaceAll("\\s+", " ")
-								.equalsIgnoreCase(contenttext)) {
+						.equalsIgnoreCase(contenttext)) {
 					elementToBeReturned = element;
 					found = true;
 					break;
@@ -578,7 +584,7 @@ public class BrowserActions {
 
 				if (condition.toLowerCase().equals("contains")
 						&& element.getText().trim().replaceAll("\\s+", " ")
-								.contains(contenttext)) {
+						.contains(contenttext)) {
 					elementToBeReturned = element;
 					found = true;
 					break;
@@ -626,4 +632,4 @@ public class BrowserActions {
 		selectByIndex.selectByIndex(0);
 
 	}
-}// BrowserActions
+}// BrowserActions page
