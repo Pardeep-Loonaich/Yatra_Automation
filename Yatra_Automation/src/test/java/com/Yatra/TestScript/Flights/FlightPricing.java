@@ -119,7 +119,7 @@ public class FlightPricing {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-round trip", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-round trip", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_016(HashMap<String, String> testData) throws Exception {
 
 		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
@@ -197,7 +197,7 @@ public class FlightPricing {
 	}
 
 
-@Test(groups = { "desktop" }, description = "Insurance added on pax page ", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+@Test(groups = { "desktop" }, description = "Insurance added on pax page ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_028(HashMap<String, String> testData) throws Exception {
 
 		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
@@ -243,7 +243,7 @@ public class FlightPricing {
 			Log.message("6.Clicked on 'Search' in Yatra Homepage.");
 
 
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearchIcon"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.",driver);
 
@@ -279,7 +279,7 @@ public class FlightPricing {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Insurance verification on pax page removed", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	@Test(groups = { "desktop" }, description = "Insurance verification on pax page removed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_029(HashMap<String, String> testData) throws Exception {
 
 		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
@@ -322,7 +322,8 @@ public class FlightPricing {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("6.Clicked on 'Search' in Yatra Homepage.");
 
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearchIcon"), searchResult),
+			Thread.sleep(6000);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.",driver);
 
@@ -369,7 +370,7 @@ public class FlightPricing {
 
 
 
-	@Test(groups = { "desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+	@Test(groups = { "desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_022(HashMap<String, String> testData) throws Exception {
 
 		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
@@ -724,5 +725,107 @@ public class FlightPricing {
 			Log.endTestCase();
 		}
 	}	
+	@Test(groups = {"desktop" }, description = "Check to price calculation for DOM flight-multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_FlightPricing_017(HashMap <String,String> testData) throws Exception {
+
+		String browser=testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin1 = testData.get("Origin");
+		String origin2 = testData.get("Origin_Multicity");
+		String tripType = testData.get("TripType");
+		String destination1 = testData.get("Destination");
+		String destination2 = testData.get("Destination_Multicity");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			LoginPage loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2.Successfully Logged in Yatra account");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'Multicity' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			homePage.enterMultiCityOrigin1(origin1);
+			Log.message("4.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterMultiCityDestination1(destination1);
+			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+
+			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
+			Log.message("6.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			homePage.enterMultiCityOrigin2(origin2);
+			Log.message("7.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterMultiCityDestination2(destination2);
+			Log.message("8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+
+			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
+			Log.message("9.Successfully selected the Multicity Departure1 date: <b>" + returndate + "</b>(YY/MM/DD)");
+
+			homePage.specifyPassengerInfo(passengerInfo);
+			Log.message("10.Passenger Info successfully specified");
+
+			homePage.selectPassengerClass(passengerClass);
+			homePage.clickDoneButtonInPassengerBox();
+			Log.message("11.Successfully selected Passenger class and clicked Done button");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("12.Successfully clicked 'Search' button in Yatra Homepage ");
+
+			
+			Thread.sleep(2000);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> User should navigated on SearchResult page with DOM-Multicity flight result",
+					"<b>Actual Result:</b> User not navigated on SearchResult page with DOM-Multicity flight result",
+					driver);
+
+			
+			reviewPage = searchResult.clickOnBookNowInMulticity(1,1,2,4);
+			Log.message("13.Clicked on 'Book Now' button in Search Result Page ");
+
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.",driver);
+
+			//clicked on fees & surcharge link
+			reviewPage.clickOnFareRulesLink();
+			Log.message("14.Clicked on 'Fare Rules' details link in Review Page.");
+
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Fare Rules popup as Signed User should be displayed after clicking on View Fare Rules Link in Fare Details module.");
+
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareRules"), reviewPage),
+					"<b>Actual Result:</b> The Fare Rules module is displayed on Review Page.",
+					"<b>Actual Result:</b> The Fare Rules module is not displayed on Review Page.",driver);
+
+			
+		
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
 
 }

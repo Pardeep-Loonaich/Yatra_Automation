@@ -32,6 +32,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	public WebElement btnChngeFlight;
 
+	@FindBy(css="div:nth-child(3)>main>div>aside[class='col-lg-3 col-md-3']>div>div[id='fareRulesPopup']>div")
+    WebElement moduleFareRules;
+	
 	@FindBy(css = "div[ng-show='showFareDetails']")
 	WebElement moduleFareDetails;
 
@@ -55,6 +58,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select")
 	WebElement drpSelectMeal;
+	
+	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select>option:nth-child(2)")
+	WebElement selectMeal;
 	
 	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
 	WebElement drpAddBaggage;
@@ -95,17 +101,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath= "//div[@ng-show='showLoginRegister']/form/div[@class='row']/button")
 	WebElement btnBookAsGuest;
 	
-	@FindBy(xpath= "//div[@ng-show='showLoginRegister']/form/div[@class='row']/input[@name = 'email']")
-	WebElement txtGuestEmail;
-	
-	@FindBy(css = "div[class='align-width']>input[name='mobile']")
-	WebElement txtGuestMobile;
-	
 	 @FindBy(xpath=".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label/span[1]/input")
 	 WebElement chkInsurance;
-	 
-	 @FindBy(css = "div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select>option:nth-child(2)")
-	 WebElement selectMeal;
 	    
 	 @FindBy(xpath=".//*[@id='checkoutBase']/div[3]/main/div/aside/div[1]/div[1]/div/ul[1]")
 	 WebElement fldContentInsurance;
@@ -122,6 +119,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "ul[class='list list-border']>li:nth-child(6)")
 	 WebElement BaggageDetails;
 	
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -191,41 +189,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	public void clickOnBookAsGuestBtn() throws Exception {
 		BrowserActions.scrollToView(btnBookAsGuest, driver);
 		BrowserActions.clickOnElement(btnBookAsGuest, driver, "To click on Book as Guest button.");
-	}
-	
-	
-	/**
-	 * Enter email id
-	 * 
-	 * @param emailid
-	 *            as string
-	 * @throws Exception
-	 */
-	public void enterEmailID(String emailid) throws Exception {
-		Utils.waitForElement(driver, txtGuestEmail);
-		BrowserActions.typeOnTextField(txtGuestEmail, emailid, driver, "Email id");
-		Log.event("Entered the Email Id: " + emailid);
-	}
-
-	/**
-	 * Enter mobile
-	 * 
-	 * @param mobile
-	 *            as string
-	 * @throws Exception
-	 */
-	public void enterMobile(String mobile) throws Exception {
-		Utils.waitForElement(driver, txtGuestMobile);
-		BrowserActions.typeOnTextField(txtGuestMobile, mobile, driver, "Mobile");
-		Log.event("Entered the Mobile no: " + mobile);
-	}
-	
-	public ReviewPage loginYatraGuestAccount(String emailId, String mobile) throws Exception {
-		enterEmailID(emailId); // enter email address
-		enterMobile(mobile); // enter password
-		clickOnBookAsGuestBtn(); // click signin button
-		return new ReviewPage(driver).get();
-
 	}
 	
 	/**
@@ -312,18 +275,22 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	public void selectMeal() throws Exception {
 		Utils.waitForElement(driver, drpSelectMeal);
+
 		BrowserActions.clickOnElement(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
 		Utils.waitForElement(driver, selectMeal);
 		BrowserActions.clickOnElement(selectMeal, driver, "Select Meal");
+		String tct = BrowserActions.getText(driver, selectMeal, "getkf");
+		Log.message("Text"+tct);
 		Utils.waitForPageLoad(driver);
 	}
 	
 	
 	public void selectBaggage() throws Exception {
 		Utils.waitForElement(driver, drpAddBaggage);
-		BrowserActions.clickOnElement(drpAddBaggage, driver, "Clicked On Drop Down Of Baggage");
+		BrowserActions.scrollToView(drpAddBaggage, driver);
+		BrowserActions.javascriptClick(drpAddBaggage, driver, "Clicked On Drop Down Of Baggage");
 		Utils.waitForElement(driver, selectBaggage);
-		BrowserActions.clickOnElement(selectBaggage, driver, "Select Baggage");
+		BrowserActions.javascriptClick(selectBaggage, driver, "Select Baggage");
 		Utils.waitForPageLoad(driver);
 	}
 	
@@ -389,7 +356,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
     	return txtDetails;
     	
     }
-    
+
     
     /**
      * clicking on Remove Meal Button
@@ -431,5 +398,5 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
     	return txtDetails;
     	
     }
-    
+
 }

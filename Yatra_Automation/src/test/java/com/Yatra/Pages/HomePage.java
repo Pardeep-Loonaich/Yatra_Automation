@@ -230,7 +230,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public SearchResult clickBtnSearch() throws Exception {
-		//final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 		Utils.waitForPageLoad(driver);
 		return new SearchResult(driver).get();
@@ -563,10 +562,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,	String passengerInfo,String passengerClass) throws Exception {
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
-		BrowserActions.nap(3);
 		selectDepartureDate(departureDate); // select Departure Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
+
 		clickDoneButtonInPassengerBox(); // click Done button
         Log.event("Successfully selected OneWay Flight Search fields");
 
@@ -580,13 +579,16 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 
 	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate, String returnDate, String passengerInfo,String passengerClass) throws Exception {
+		selectRoundTrip();
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
 		selectReturnDate(returnDate); // select Return Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details (Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
-		clickDoneButtonInPassengerBox(); // click Done button	
+
+		clickDoneButtonInPassengerBox(); // click Done button
+
 		Log.event("Successfully selected RoundTrip Flight Search fields");
 	}
 	
@@ -621,7 +623,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
 		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
-		return date;  
+		return date;
 	}
 
 	/**
