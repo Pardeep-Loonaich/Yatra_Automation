@@ -10,11 +10,11 @@
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
 	<test name="Flight Pricing" thread-count="10" parallel="false">
-		<groups>
+		<!--<groups>
 			<run>
-				<include name="desktop" />
+				< include name="desktop" />
 			</run>
-		</groups>
+		</groups> -->
 
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing">
