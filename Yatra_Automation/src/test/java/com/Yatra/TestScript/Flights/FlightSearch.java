@@ -965,14 +965,15 @@ public class FlightSearch {
 			
 			reviewPage.selectMeal();
 			Log.message("10. Selected Meal!");
-
+			
+			String mealCharges = reviewPage.getTextMealDetails();
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> User should See 'Add Meal' Button on Review Page!");
+			Log.message("<b>Expected Result:</b> User should be able to see the Meal Charges inculded in the Fare Detail!");
 			Thread.sleep(5000);
 			Log.assertThat(
-					reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnAddMeal"), reviewPage),
-					"<b>Actual Result:</b> 'Add Meal' Button is visible to the User On Review Page",
-					"<b>Actual Result:</b> 'Add Meal' Button is not visible to the User On Review Page", driver);
+					reviewPage.elementLayer.verifyPageElements(Arrays.asList("mealDetails"), reviewPage),
+					"<b>Actual Result:</b> Meal Charges are included In Total Fare and Meal Charges is :" + mealCharges,
+					"<b>Actual Result:</b> Meal Charges are not included In Total Fare", driver);
 
 
 			Log.testCaseResult(); 
@@ -1035,18 +1036,20 @@ public class FlightSearch {
 
 			reviewPage.selectMeal();
 			Log.message("10. Selected Meal!");
-
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> User should See 'Remove Meal' Button on Review Page!");
-			Thread.sleep(5000);
-			Log.assertThat(
-					reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnRemoveMeal"), reviewPage),
-					"<b>Actual Result:</b> 'Remove Meal' Button is visible to the User On Review Page",
-					"<b>Actual Result:</b> 'Remove Meal' Button is not visible to the User On Review Page", driver);
-
+			String mealCharges = reviewPage.getTextMealDetails();
+			
+			Thread.sleep(3000);
 			reviewPage.clickOnRemoveMealButton();
 			Log.message("11. Clicked On Remove Button In Review Page!");
-
+			String mealChargesAfterRemovingMeal = reviewPage.getTextMealDetails();
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User should be able to Remove the Meal Charges On Review Page!");
+			Thread.sleep(5000);
+			Log.assertThat(
+					reviewPage.elementLayer.verifyPageElements(Arrays.asList("mealDetails"), reviewPage),
+					"<b>Actual Result:</b> Meal Charges : "+ mealCharges + "Meal Charges after Removing the Meal :" + mealChargesAfterRemovingMeal,
+					"<b>Actual Result:</b> Meal Charges Can Not Be Removed From Review Page", driver);
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1108,13 +1111,14 @@ public class FlightSearch {
 			reviewPage.selectBaggage();
 			Log.message("10. Selected Baggage Type!");
 
+			String BaggageFare = reviewPage.getTextBaggageDetails();
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> User should See 'Add Baggage' Button on Review Page!");
+			Log.message("<b>Expected Result:</b> User should be able to see the Baggage Charges inculded in the Fare Detail!");
 			Thread.sleep(5000);
 			Log.assertThat(
 					reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnAddBaggage"), reviewPage),
-					"<b>Actual Result:</b> 'Add Baggage' Button is visible to the User On Review Page",
-					"<b>Actual Result:</b> 'Add Baggage' Button is not visible to the User On Review Page", driver);
+					"<b>Actual Result:</b> Baggage Charges are included In Total Fare and Baggage Charges is :" + BaggageFare,
+					"<b>Actual Result:</b> Baggage Charges are not included In Total Fare", driver);
 
 
 			Log.testCaseResult();
@@ -1178,17 +1182,23 @@ public class FlightSearch {
 
 			reviewPage.selectBaggage();
 			Log.message("10. Selected Baggage Type!");
-
+			String BaggageFare = reviewPage.getTextBaggageDetails();
+			
+			Thread.sleep(3000);
+			reviewPage.clickOnRemoveBaggageButton();
+			Log.message("11. Clicked On Remove Baggage Button!");
+			String BaggageFareAfterRemoving = reviewPage.getTextBaggageDetails();
+			
+			
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> User should See 'Add Baggage' Button on Review Page!");
+			Log.message("<b>Expected Result:</b> User should be able to Remove the Meal Charges On Review Page!");
 			Thread.sleep(5000);
 			Log.assertThat(
 					reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnRemoveBaggage"), reviewPage),
-					"<b>Actual Result:</b> 'Add Baggage' Button is visible to the User On Review Page",
-					"<b>Actual Result:</b> 'Add Baggage' Button is not visible to the User On Review Page", driver);
+					"<b>Actual Result:</b> Baggage Charges : "+ BaggageFare + "Baggage Charges after Removing the Baggage :" + BaggageFareAfterRemoving,
+					"<b>Actual Result:</b> Baggage Charges can not be Removed from Review Page", driver);
 
-			reviewPage.clickOnRemoveBaggageButton();
-			Log.message("11. Clicked On Remove Baggage Button!");
+			
 			
 			Log.testCaseResult();
 		} catch (Exception e) {

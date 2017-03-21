@@ -115,6 +115,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	  
 	 @FindBy(css = "ul[class='list list-border']>li:nth-child(6)>span[class='pull-right tr alignment']>a[class='remove-btn']")
 	 WebElement btnRemoveBaggage;
+	   
+	@FindBy(css = "ul[class='list list-border']>li:nth-child(5)")
+	 WebElement mealDetails;
+	
+	@FindBy(css = "ul[class='list list-border']>li:nth-child(6)")
+	 WebElement BaggageDetails;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -400,4 +407,29 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
         BrowserActions.javascriptClick(btnRemoveBaggage, driver, "Remove Baggage Button");
  }
 
+    /**
+     * Getting meal fare details 
+     * @return
+     * @throws Exception
+     */
+   
+    public String getTextMealDetails() throws Exception{
+    	String txtDetails = BrowserActions.getText(driver, mealDetails, "Getting the Meal fare details.");
+    	return txtDetails;
+    	
+    }
+    
+   
+    /**
+     * Getting Baggage fare details 
+     * @return
+     * @throws Exception
+     */
+    
+    public String getTextBaggageDetails() throws Exception{
+    	String txtDetails = BrowserActions.getText(driver, BaggageDetails, "Getting the Baggage fare details.");
+    	return txtDetails;
+    	
+    }
+    
 }
