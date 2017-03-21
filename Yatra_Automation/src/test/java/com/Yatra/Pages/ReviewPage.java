@@ -321,7 +321,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	}
 	
 	public void enterUserDeatils() throws Exception {
-		Utils.waitForElement(driver, userFirstName);
+		Utils.waitForElement(driver, userFirstName);		
 		BrowserActions.nap(5);
 		String randomFirstName = RandomStringUtils.randomAlphabetic(5)
                 .toLowerCase();

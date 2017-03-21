@@ -793,14 +793,14 @@ public class HomePage extends LoadableComponent<HomePage> {
 		boolean searchIconPresence = driver.findElement(By.cssSelector("#signInBtn")).isDisplayed();
 		boolean searchIconEnabled = driver.findElement(By.cssSelector("#signInBtn")).isEnabled();
 		if (searchIconPresence == true && searchIconEnabled == true) {
-			System.out.println("True");
+			 BrowserActions.moveToElementJS(driver, lnkMyaccount);
+			 BrowserActions.mouseHover(driver, lnkMyaccount);			
 			// click on the search button
 			BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
 		} else {
-			 //BrowserActions.moveToElementJS(driver, lnkMyaccount);
-			// BrowserActions.mouseHover(driver, lnkMyaccount);			
-			 System.out.println("False");		
-
+			BrowserActions.moveToElementJS(driver, lnkMyaccount);
+			 BrowserActions.mouseHover(driver, lnkMyaccount);	
+			 
 			// click Login button on signin page
 			Actions action = new Actions(driver);
 			action.contextClick(lnkMyaccount).build().perform();		

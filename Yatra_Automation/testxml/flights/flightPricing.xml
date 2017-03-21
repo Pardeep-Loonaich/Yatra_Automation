@@ -19,7 +19,7 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing">
 				<methods>
-					<include name="TC_FlightPricing_027" />
+					<include name="TC_FlightPricing_015" />
 				</methods>
 			</class>
 		</classes>
