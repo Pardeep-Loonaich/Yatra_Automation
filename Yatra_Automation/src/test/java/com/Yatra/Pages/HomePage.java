@@ -9,6 +9,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -649,6 +650,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void specifyPassengerInfo(String passengers) throws Exception {
+		BrowserActions.nap(10);
 		BrowserActions.clickOnElement(passengerInfo, driver, "Passenger Info");
 		List<WebElement> updatePassengers = driver.findElements(By.cssSelector(passengersLocator));
 		int adult = Integer.parseInt(passengers.split("_")[0]);
@@ -780,5 +782,33 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	}
 
+	/**
+	 * To navigate to SignIn Page
+	 * 
+	 * @throws Exception
+	 */
+	public LoginPage navigateToSignIn_IE() throws Exception {		
+		boolean searchIconPresence = driver.findElement(By.cssSelector("#signInBtn")).isDisplayed();
+		boolean searchIconEnabled = driver.findElement(By.cssSelector("#signInBtn")).isEnabled();
+		if (searchIconPresence == true && searchIconEnabled == true) {
+			System.out.println("True");
+			// click on the search button
+			BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
+		} else {
+			 //BrowserActions.moveToElementJS(driver, lnkMyaccount);
+			// BrowserActions.mouseHover(driver, lnkMyaccount);			
+			 System.out.println("False");		
+
+			// click Login button on signin page
+			Actions action = new Actions(driver);
+			action.contextClick(lnkMyaccount).build().perform();		
+			BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
+			Log.event("Successfully selected RoundTrip option in Search Fields");
+			System.out.println("False");
+		}	
+		Utils.waitForPageLoad(driver);
+		return new LoginPage(driver).get();
+	}
+	
 
 }// HomePage

@@ -69,7 +69,7 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn();
+			LoginPage loginPage = homePage.navigateToSignIn_IE();
 			loginPage.loginYatraAccount(emailId, password);
 			Log.message("2.Successfully Logged in Yatra account");
 
