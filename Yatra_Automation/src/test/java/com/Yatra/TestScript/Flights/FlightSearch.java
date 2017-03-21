@@ -478,6 +478,7 @@ public class FlightSearch {
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -492,53 +493,19 @@ public class FlightSearch {
 				Log.message("2.Verified Yatra Title text");
 			}			
 
-			//step: Navigate to Yatra Login
-			LoginPage loginPage = new LoginPage(driver);
-			Log.message("3. Navigated to 'Yatra' Login Page!");
+			
+			loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId , password);
+			Log.message("3.Successfully Logged in Yatra account");	
 
-			//click Login button in HomePage
-			loginPage.clickBtnSignIn();
-
-			// step: enter EmailId in Yatra Home page
-			loginPage.enterEmailID(emailId);
-			Log.message("4.Successfully entered '<b>"+ emailId+"</b>' Id in Emai Textbox ");
-
-			// step: enter password in Yatra Home page
-			loginPage.enterPassword(password);
-			Log.message("5.Successfully entered '<b>"+ password +"</b>' Password in Password textbox " );
-			Thread.sleep(3000);
-
-			// step: click 'Search' button in Yatra Home page
-			loginPage.clickBtnSignIn();
-			Log.message("6.Successfully clicked 'SignIn' ");			
-			Log.message("Successfully Logged in Yatra acct");			
-
-			//Step: Selected trip as one way trip.
-			homePage.selectOneWayTrip();
-			Log.message("7.Successfully clicked 'One Way ' option in search Home Page ");
-
-			// step: enter Origin place in Yatra Home page
-			homePage.enterOrigin(origin);
-			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
-
-			//step: enter Destination place in Yatra Home page
-			homePage.enterDestination(destination);
-			Log.message("9.Successfully entered Destination '<b>"+ destination+"</b>' in Yatra Homepage" );
-
-			//step: enter Destination place in Yatra Home page
-
-			homePage.clickDeptDatePicker();		
-			homePage.selectDeptDateAfterOneWeek();
-			Log.message("10. Successfully selected the departure date: <b>"+ departureDate+"</b>(YY/MM/DD)");
-
-			//step: enter Passenger info in Yatra Home page
-			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("11. Passenger Info successfully specified");
+			Thread.sleep(3000);		
+            homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4.Successfully entered OneWay Flight Search Fields ");
 
 			Thread.sleep(5000);			
 			// step: click 'Search' button in Yatra Home page
 			SearchResult searchResult = homePage.clickBtnSearch();
-			Log.message("12.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> The Weekly strip should be displayed on the SRP page for domestic flights.");
 			Thread.sleep(5000);			
@@ -1100,7 +1067,7 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1162,7 +1129,7 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}

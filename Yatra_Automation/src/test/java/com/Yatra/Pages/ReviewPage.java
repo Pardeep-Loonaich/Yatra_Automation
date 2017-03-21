@@ -32,6 +32,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	public WebElement btnChngeFlight;
 
+	@FindBy(css="div:nth-child(3)>main>div>aside[class='col-lg-3 col-md-3']>div>div[id='fareRulesPopup']>div")
+    WebElement moduleFareRules;
 	
 	@FindBy(css = "div[ng-show='showFareDetails']")
 	WebElement moduleFareDetails;
@@ -54,10 +56,14 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='button-group']>button:nth-child(2)")
 	WebElement btnAddBaggage;
 	
-	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span/select/option[2]")
+	//@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span")
+	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select")
+
 	WebElement drpSelectMeal;
 	
-	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span/select/option[3]")
+//@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span/select/option[3]")
+	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select>option:nth-child(2)")
+
 	WebElement selectMeal;
 	
 	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
@@ -260,10 +266,12 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	public void selectMeal() throws Exception {
 		Utils.waitForElement(driver, drpSelectMeal);
-		BrowserActions.scrollToView(drpSelectMeal, driver);
-		BrowserActions.javascriptClick(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
+
+		BrowserActions.clickOnElement(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
 		Utils.waitForElement(driver, selectMeal);
-		BrowserActions.javascriptClick(selectMeal, driver, "Select Meal");
+		BrowserActions.clickOnElement(selectMeal, driver, "Select Meal");
+		String tct = BrowserActions.getText(driver, selectMeal, "getkf");
+		Log.message("Text"+tct);
 		Utils.waitForPageLoad(driver);
 	}
 	
@@ -339,6 +347,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
     	return txtDetails;
     	
     }
-   
+    
+    
 
 }
