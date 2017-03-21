@@ -186,7 +186,10 @@ public class WebDriverFactory {
 			opt.addArguments("--allow-running-insecure-content");
 			opt.addArguments("--test-type");
 			opt.addArguments("--enable-npapi");
+			// to handle Chrome driver 2.28 “Chrome is being controlled by automated test software” notification
+			opt.addArguments("disable-infobars");
 			chromeCapabilities.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
+			chromeCapabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 
 			try {
 				hubURL = new URL("http://" + driverHost + ":" + driverPort + "/wd/hub");
