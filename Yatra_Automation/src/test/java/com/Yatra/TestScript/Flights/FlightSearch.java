@@ -69,7 +69,7 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn_IE();
+			LoginPage loginPage = homePage.navigateToSignIn();
 			loginPage.loginYatraAccount(emailId, password);
 			Log.message("2.Successfully Logged in Yatra account");
 
@@ -86,7 +86,7 @@ public class FlightSearch {
 			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
 			Log.message("7.Passenger Info successfully specified");
@@ -154,10 +154,10 @@ public class FlightSearch {
 			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			String returndate = homePage.selectReturnDate(returnDate);
-			Log.message("7.Successfully selected the departure date: <b>" + returndate + "</b>(YY/MM/DD)");
+			Log.message("7.Successfully selected the Return date: <b>" + returndate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
 			Log.message("8.Passenger Info successfully specified");
@@ -1303,7 +1303,7 @@ public class FlightSearch {
 			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
 			Log.message("7.Passenger Info successfully specified");
@@ -1319,7 +1319,7 @@ public class FlightSearch {
 			Log.message("<br>"); 
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
 			Thread.sleep(6000);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearch"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
 
@@ -1371,10 +1371,10 @@ public class FlightSearch {
 			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			String returndate = homePage.selectReturnDate(returnDate);
-			Log.message("7.Successfully selected the departure date: <b>" + returndate + "</b>(YY/MM/DD)");
+			Log.message("7.Successfully selected the Return date: <b>" + returndate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
 			Log.message("8.Passenger Info successfully specified");
@@ -1390,7 +1390,7 @@ public class FlightSearch {
 			Log.message("<br>"); 
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
 			Thread.sleep(6000);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearch"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
 
