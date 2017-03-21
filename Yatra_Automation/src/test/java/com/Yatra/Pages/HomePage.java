@@ -564,11 +564,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,	String passengerInfo,String passengerClass) throws Exception {
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
+		BrowserActions.nap(3);
 		selectDepartureDate(departureDate); // select Departure Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
 		clickDoneButtonInPassengerBox(); // click Done button
-			
         Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
@@ -581,14 +581,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 
 	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate, String returnDate, String passengerInfo,String passengerClass) throws Exception {
-		selectRoundTrip();
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
 		selectReturnDate(returnDate); // select Return Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details (Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
-		clickDoneButtonInPassengerBox(); // click Done button		
+		clickDoneButtonInPassengerBox(); // click Done button	
 		Log.event("Successfully selected RoundTrip Flight Search fields");
 	}
 	
@@ -619,11 +618,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
-		selectMonth.get(month - 2).click();
+		selectMonth.get(month - 3).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
 		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
-		return date;
+		return date;  
 	}
 
 	/**
@@ -637,7 +636,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
-		selectMonth.get(month - 2).click();
+		selectMonth.get(month - 3).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
 		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
