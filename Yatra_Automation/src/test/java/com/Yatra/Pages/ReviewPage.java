@@ -37,6 +37,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	WebElement moduleFareRules;
 
 	@FindBy(css = "[id='checkoutBase']>div:nth-child(3)>main>div>aside>div[ng-controller='productFareDetailsController']")
+	
 	WebElement moduleFareDetails;
 
 	@FindBy(xpath = "//i[@class = 'arrow-down']")
@@ -57,14 +58,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='button-group']>button:nth-child(2)")
 	WebElement btnAddBaggage;
 
+
 	//@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span")
 	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select")
-
 	WebElement drpSelectMeal;
 
 	//@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span/select/option[3]")
 	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select>option:nth-child(2)")
-
 	WebElement selectMeal;
 
 	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
@@ -111,6 +111,16 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	@FindBy(xpath=".//*[@id='checkoutBase']/div[3]/main/div/aside/div[1]/div[1]/div/ul[1]")
 	WebElement fldContentInsurance;
+	
+	@FindBy(xpath= "//div[@ng-show='showLoginRegister']/form/div[@class='row']/input[@name = 'email']")
+	WebElement txtGuestEmail;
+	
+	@FindBy(css = "div[class='align-width']>input[name='mobile']")
+	WebElement txtGuestMobile;
+	
+	 
+	    
+	
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -181,6 +191,41 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	public void clickOnBookAsGuestBtn() throws Exception {
 		BrowserActions.scrollToView(btnBookAsGuest, driver);
 		BrowserActions.clickOnElement(btnBookAsGuest, driver, "To click on Book as Guest button.");
+	}
+	
+	
+	/**
+	 * Enter email id
+	 * 
+	 * @param emailid
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterEmailID(String emailid) throws Exception {
+		Utils.waitForElement(driver, txtGuestEmail);
+		BrowserActions.typeOnTextField(txtGuestEmail, emailid, driver, "Email id");
+		Log.event("Entered the Email Id: " + emailid);
+	}
+
+	/**
+	 * Enter mobile
+	 * 
+	 * @param mobile
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterMobile(String mobile) throws Exception {
+		Utils.waitForElement(driver, txtGuestMobile);
+		BrowserActions.typeOnTextField(txtGuestMobile, mobile, driver, "Mobile");
+		Log.event("Entered the Mobile no: " + mobile);
+	}
+	
+	public ReviewPage loginYatraGuestAccount(String emailId, String mobile) throws Exception {
+		enterEmailID(emailId); // enter email address
+		enterMobile(mobile); // enter password
+		clickOnBookAsGuestBtn(); // click signin button
+		return new ReviewPage(driver).get();
+
 	}
 
 	/**
@@ -267,12 +312,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	public void selectMeal() throws Exception {
 		Utils.waitForElement(driver, drpSelectMeal);
-
-		BrowserActions.clickOnElement(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
+		BrowserActions.scrollToView(drpSelectMeal, driver);
+		BrowserActions.javascriptClick(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
 		Utils.waitForElement(driver, selectMeal);
-		BrowserActions.clickOnElement(selectMeal, driver, "Select Meal");
-		String tct = BrowserActions.getText(driver, selectMeal, "getkf");
-		Log.message("Text"+tct);
+		BrowserActions.javascriptClick(selectMeal, driver, "Select Meal");
 		Utils.waitForPageLoad(driver);
 	}
 
@@ -287,7 +330,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	}
 
 	public void enterUserDeatils() throws Exception {
-		Utils.waitForElement(driver, userFirstName);
+		Utils.waitForElement(driver, userFirstName);		
 		BrowserActions.nap(5);
 		String randomFirstName = RandomStringUtils.randomAlphabetic(5)
 				.toLowerCase();
@@ -322,31 +365,32 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @throws Exception
 	 */
 
-	public boolean verifyInsuranceCheckbox() throws Exception{	
-		boolean status = BrowserActions.isRadioOrCheckBoxSelected(chkInsurance);
-		return status;
-	}
-
-	/**
-	 * clicking on insurance checkbox
-	 * @throws Exception
-	 */
-	public void uncheckingInsuranceCheckbox() throws Exception{
-		WebElement e =driver.findElement(By.xpath(".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label"));
-		BrowserActions.clickOnElement(e, driver, "Clicked on Insurance CheckBox.");
-	}
-
-	/**
-	 * Getting the text from the fare details panel
-	 * @return
-	 * @throws Exception
-	 */
-
-
-	public String getTextFromFareDetails() throws Exception{
-		String txtDetails = BrowserActions.getText(driver, fldContentInsurance, "Getting text from the fare details.");
-		return txtDetails;
-
-	}
+    public boolean verifyInsuranceCheckbox() throws Exception{	
+    	boolean status = BrowserActions.isRadioOrCheckBoxSelected(chkInsurance);
+    	return status;
+    }
+    
+    /**
+     * clicking on insurance checkbox
+     * @throws Exception
+     */
+    public void uncheckingInsuranceCheckbox() throws Exception{
+    	WebElement e =driver.findElement(By.xpath(".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label"));
+    	BrowserActions.clickOnElement(e, driver, "Clicked on Insurance CheckBox.");
+    }
+    
+    /**
+     * Getting the text from the fare details panel
+     * @return
+     * @throws Exception
+     */
+   
+    
+    public String getTextFromFareDetails() throws Exception{
+    	String txtDetails = BrowserActions.getText(driver, fldContentInsurance, "Getting text from the fare details.");
+    	return txtDetails;
+    	
+    }
+   
 
 }

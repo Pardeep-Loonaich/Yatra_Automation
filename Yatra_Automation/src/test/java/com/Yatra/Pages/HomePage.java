@@ -9,6 +9,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -230,6 +231,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public SearchResult clickBtnSearch() throws Exception {
+		//final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 		Utils.waitForPageLoad(driver);
 		return new SearchResult(driver).get();
@@ -566,8 +568,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectDepartureDate(departureDate); // select Departure Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
-
 		clickDoneButtonInPassengerBox(); // click Done button
+			
         Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
@@ -587,9 +589,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectReturnDate(returnDate); // select Return Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details (Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
-
-		clickDoneButtonInPassengerBox(); // click Done button
-
+		clickDoneButtonInPassengerBox(); // click Done button		
 		Log.event("Successfully selected RoundTrip Flight Search fields");
 	}
 	
@@ -620,7 +620,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
-		selectMonth.get(month - 3).click();
+		selectMonth.get(month - 2).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
 		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
@@ -638,7 +638,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
-		selectMonth.get(month - 3).click();
+		selectMonth.get(month - 2).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
 		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
@@ -780,6 +780,35 @@ public class HomePage extends LoadableComponent<HomePage> {
 		clickDoneButtonInPassengerBox(); // click Done button		
         Log.event("Successfully selected 'Multicity' Flight Search fields");
 
+	}
+
+
+	/**
+	 * To navigate to SignIn Page  -- In Progress 
+	 * 
+	 * @throws Exception
+	 */
+	public LoginPage navigateToSignIn_IE() throws Exception {		
+		boolean searchIconPresence = btnSignIn.isDisplayed();
+		boolean searchIconEnabled = btnSignIn.isEnabled();
+		if (searchIconPresence == true && searchIconEnabled == true) {
+			BrowserActions.moveToElementJS(driver, lnkMyaccount);
+			BrowserActions.mouseHover(driver, lnkMyaccount);
+			// click on the search button
+			BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
+		} else {
+			BrowserActions.moveToElementJS(driver, lnkMyaccount);
+			BrowserActions.mouseHover(driver, lnkMyaccount);
+
+			// click Login button on signin page
+			Actions action = new Actions(driver);
+			action.contextClick(lnkMyaccount).build().perform();
+			BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
+			Log.event("Successfully selected RoundTrip option in Search Fields");
+			System.out.println("False");
+		}
+		Utils.waitForPageLoad(driver);
+		return new LoginPage(driver).get();
 	}
 
 
