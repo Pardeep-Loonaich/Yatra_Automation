@@ -127,6 +127,7 @@ public class FlightPricing {
 
 	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-round trip", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_FlightPricing_016(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
 		String browser=testData.get("browser");
 
@@ -205,7 +206,7 @@ public class FlightPricing {
 @Test(groups = { "desktop" }, description = "Insurance added on pax page ", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_FlightPricing_028(HashMap<String, String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+	Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser=testData.get("browser");
 
 		String emailId = testData.get("EmailAddress");
@@ -287,7 +288,7 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Insurance verification on pax page removed", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_FlightPricing_029(HashMap<String, String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
+		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser=testData.get("browser");
 
 		String emailId = testData.get("EmailAddress");
@@ -376,7 +377,9 @@ public class FlightPricing {
 
 	@Test(groups = { "desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
 	public void TC_Yatra_Flight_022(HashMap<String, String> testData) throws Exception {
-
+	
+		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
+		
 		String browser=testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -436,6 +439,8 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Change flight link verification on Review page - INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_023(HashMap<String, String> testData) throws Exception {
 
+		
+		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser=testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -492,6 +497,9 @@ public class FlightPricing {
 
 	@Test(groups = { "desktop" }, description = "Applying promo code on review page- Promo dropdown Validation", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_024(HashMap<String, String> testData) throws Exception {
+		
+		
+		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
 		String browser=testData.get("browser");
 		String emailId = testData.get("EmailAddress");
@@ -555,6 +563,8 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Applying promo code on review page- Promo Coupon Selection", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_025(HashMap<String, String> testData) throws Exception {
 
+		
+		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser=testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -610,6 +620,8 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Applying promo code on review page- Have a Promo Code Validation", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_026(HashMap<String, String> testData) throws Exception {
 
+		
+		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser=testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -669,6 +681,8 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Applying promo code on review page-  Have a Promo Code submission", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_027(HashMap<String, String> testData) throws Exception {
 
+		
+		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser=testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
