@@ -32,6 +32,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	public WebElement btnChngeFlight;
 
+	
 	@FindBy(css = "div[ng-show='showFareDetails']")
 	WebElement moduleFareDetails;
 
@@ -53,8 +54,11 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='button-group']>button:nth-child(2)")
 	WebElement btnAddBaggage;
 	
-	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select")
+	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span/select/option[2]")
 	WebElement drpSelectMeal;
+	
+	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span/select/option[3]")
+	WebElement selectMeal;
 	
 	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
 	WebElement drpAddBaggage;
@@ -103,18 +107,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	 @FindBy(xpath=".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label/span[1]/input")
 	 WebElement chkInsurance;
-	 
-	 @FindBy(css = "div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select>option:nth-child(2)")
-	 WebElement selectMeal;
 	    
 	 @FindBy(xpath=".//*[@id='checkoutBase']/div[3]/main/div/aside/div[1]/div[1]/div/ul[1]")
 	 WebElement fldContentInsurance;
-	 
-	 @FindBy(css = "ul[class='list list-border']>li:nth-child(5)>span[class='pull-right tr alignment']>a[class='remove-btn']")
-     WebElement btnRemoveMeal;
-	  
-	 @FindBy(css = "ul[class='list list-border']>li:nth-child(6)>span[class='pull-right tr alignment']>a[class='remove-btn']")
-	 WebElement btnRemoveBaggage;
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -305,18 +301,20 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	public void selectMeal() throws Exception {
 		Utils.waitForElement(driver, drpSelectMeal);
-		BrowserActions.clickOnElement(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
+		BrowserActions.scrollToView(drpSelectMeal, driver);
+		BrowserActions.javascriptClick(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
 		Utils.waitForElement(driver, selectMeal);
-		BrowserActions.clickOnElement(selectMeal, driver, "Select Meal");
+		BrowserActions.javascriptClick(selectMeal, driver, "Select Meal");
 		Utils.waitForPageLoad(driver);
 	}
 	
 	
 	public void selectBaggage() throws Exception {
 		Utils.waitForElement(driver, drpAddBaggage);
-		BrowserActions.clickOnElement(drpAddBaggage, driver, "Clicked On Drop Down Of Baggage");
+		BrowserActions.scrollToView(drpAddBaggage, driver);
+		BrowserActions.javascriptClick(drpAddBaggage, driver, "Clicked On Drop Down Of Baggage");
 		Utils.waitForElement(driver, selectBaggage);
-		BrowserActions.clickOnElement(selectBaggage, driver, "Select Baggage");
+		BrowserActions.javascriptClick(selectBaggage, driver, "Select Baggage");
 		Utils.waitForPageLoad(driver);
 	}
 	
@@ -382,22 +380,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
     	return txtDetails;
     	
     }
-    
-    
-    /**
-     * clicking on Remove Meal Button
-     * @throws Exception
-     */
-    public void clickOnRemoveMealButton() throws Exception{
-        BrowserActions.javascriptClick(btnRemoveMeal, driver, "Remove Meal Button");
- }
-    
-    /**
-     * clicking on Remove Baggage Button
-     * @throws Exception
-     */
-    public void clickOnRemoveBaggageButton() throws Exception{
-        BrowserActions.javascriptClick(btnRemoveBaggage, driver, "Remove Baggage Button");
- }
+   
 
 }

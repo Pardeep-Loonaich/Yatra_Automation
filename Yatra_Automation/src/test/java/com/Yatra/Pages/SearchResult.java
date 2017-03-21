@@ -60,7 +60,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[ng-controller='productFareDetailsController']")
 	WebElement moduleFareDetails;
 
-	@FindBy(css = ".fs-sm.gray.fl.ml5.name.carrier-name")
+	@FindBy(css = "div[class='show-result multi-1']>div>div[class='results']>div:nth-child(1)>article>div[class='my-res-info full']>ul>li>small:nth-child(2)")
 	WebElement firstAirlineName_OW_DOM;
 //	
 //	@FindBy(css = "div[class='js-flightItem']:nth-child(2)>article>div[class='full airlines-deals-holder bxs hidden-sm']>div[class='ib airlines-info hidden-sm']>p")

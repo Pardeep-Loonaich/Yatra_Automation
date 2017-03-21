@@ -230,7 +230,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 
-	public SearchResult clickBtnSearch() throws Exception {		
+	public SearchResult clickBtnSearch() throws Exception {
+		//final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 		Utils.waitForPageLoad(driver);
 		return new SearchResult(driver).get();
@@ -563,11 +564,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,	String passengerInfo,String passengerClass) throws Exception {
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
-		BrowserActions.nap(3);
 		selectDepartureDate(departureDate); // select Departure Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
 		clickDoneButtonInPassengerBox(); // click Done button
+			
         Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
@@ -580,13 +581,14 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 
 	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate, String returnDate, String passengerInfo,String passengerClass) throws Exception {
+		selectRoundTrip();
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
 		selectReturnDate(returnDate); // select Return Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details (Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
-		clickDoneButtonInPassengerBox(); // click Done button	
+		clickDoneButtonInPassengerBox(); // click Done button		
 		Log.event("Successfully selected RoundTrip Flight Search fields");
 	}
 	
@@ -616,13 +618,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
-		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
-		selectMonth.get(month - 3).click();
+		selectMonth.get(month - 2).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
 		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
-		return date;  
+		return date;
 	}
 
 	/**
@@ -635,9 +636,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int iDay = Integer.parseInt(returnDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
-		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
-		selectMonth.get(month - 3).click();
+		selectMonth.get(month - 2).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
 		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
@@ -650,7 +650,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void specifyPassengerInfo(String passengers) throws Exception {
-		BrowserActions.nap(3);
 		BrowserActions.clickOnElement(passengerInfo, driver, "Passenger Info");
 		List<WebElement> updatePassengers = driver.findElements(By.cssSelector(passengersLocator));
 		int adult = Integer.parseInt(passengers.split("_")[0]);
@@ -731,7 +730,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
-		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateMulticity_Departure1, driver, "clicking on MultiCity departure1 date icon");
 		selectMonth_MultiDepart1.get(month - 3).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
@@ -752,7 +750,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
-		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateMulticity_Departure2, driver, "clicking on MultiCity Departure2 date icon");
 		selectMonth_MultiDepart2.get(month - 3).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
@@ -784,33 +781,34 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	}
 
+
 	/**
 	 * To navigate to SignIn Page  -- In Progress 
 	 * 
 	 * @throws Exception
 	 */
 	public LoginPage navigateToSignIn_IE() throws Exception {		
-		boolean searchIconPresence = driver.findElement(By.cssSelector("#signInBtn")).isDisplayed();
-		boolean searchIconEnabled = driver.findElement(By.cssSelector("#signInBtn")).isEnabled();
+		boolean searchIconPresence = btnSignIn.isDisplayed();
+		boolean searchIconEnabled = btnSignIn.isEnabled();
 		if (searchIconPresence == true && searchIconEnabled == true) {
-			 BrowserActions.moveToElementJS(driver, lnkMyaccount);
-			 BrowserActions.mouseHover(driver, lnkMyaccount);			
+			BrowserActions.moveToElementJS(driver, lnkMyaccount);
+			BrowserActions.mouseHover(driver, lnkMyaccount);
 			// click on the search button
 			BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
 		} else {
 			BrowserActions.moveToElementJS(driver, lnkMyaccount);
-			 BrowserActions.mouseHover(driver, lnkMyaccount);	
-			 
+			BrowserActions.mouseHover(driver, lnkMyaccount);
+
 			// click Login button on signin page
 			Actions action = new Actions(driver);
-			action.contextClick(lnkMyaccount).build().perform();		
+			action.contextClick(lnkMyaccount).build().perform();
 			BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
 			Log.event("Successfully selected RoundTrip option in Search Fields");
 			System.out.println("False");
-		}	
+		}
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
 	}
-	
+
 
 }// HomePage
