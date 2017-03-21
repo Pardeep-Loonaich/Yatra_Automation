@@ -1115,7 +1115,7 @@ public class FlightSearch {
 			reviewPage.clickOnContinue();
 			Log.message("7. Clicked On Continue Button on Review Page!");
 
-			reviewPage.enterUserDeatils();
+			//reviewPage.enterUserDeatils();
 			Log.message("8. Enter User Details!");
 
 			reviewPage.clickOnAddMeal();
@@ -1177,7 +1177,7 @@ public class FlightSearch {
 			reviewPage.clickOnContinue();
 			Log.message("7. Clicked On Continue Button on Review Page!");
 
-			reviewPage.enterUserDeatils();
+			//reviewPage.enterUserDeatils();
 			Log.message("8. Enter User Details!");
 
 			reviewPage.clickOnAddBaggage();

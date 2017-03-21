@@ -92,7 +92,7 @@ public class FlightPricing {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("6.Successfully clicked 'Search' in Yatra Homepage ");
 
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearchIcon"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.",driver);
 
@@ -162,7 +162,7 @@ public class FlightPricing {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("6.Clicked on 'Search' in Yatra Homepage.");
 
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearchIcon"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.",driver);
 
@@ -826,6 +826,7 @@ public class FlightPricing {
 			Log.endTestCase();
 		}
 	}
+	
 
 
 }
