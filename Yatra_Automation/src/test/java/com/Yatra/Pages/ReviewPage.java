@@ -56,14 +56,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='button-group']>button:nth-child(2)")
 	WebElement btnAddBaggage;
 	
-	//@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span")
 	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select")
-
 	WebElement drpSelectMeal;
 	
-//@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[3]/div[5]/div/div/ul/li[2]/span/select/option[3]")
 	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select>option:nth-child(2)")
-
 	WebElement selectMeal;
 	
 	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
@@ -110,6 +106,19 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	    
 	 @FindBy(xpath=".//*[@id='checkoutBase']/div[3]/main/div/aside/div[1]/div[1]/div/ul[1]")
 	 WebElement fldContentInsurance;
+	 
+	 @FindBy(css = "ul[class='list list-border']>li:nth-child(5)>span[class='pull-right tr alignment']>a[class='remove-btn']")
+     WebElement btnRemoveMeal;
+	  
+	 @FindBy(css = "ul[class='list list-border']>li:nth-child(6)>span[class='pull-right tr alignment']>a[class='remove-btn']")
+	 WebElement btnRemoveBaggage;
+	   
+	@FindBy(css = "ul[class='list list-border']>li:nth-child(5)")
+	 WebElement mealDetails;
+	
+	@FindBy(css = "ul[class='list list-border']>li:nth-child(6)")
+	 WebElement BaggageDetails;
+	
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -347,7 +356,47 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
     	return txtDetails;
     	
     }
+
     
+    /**
+     * clicking on Remove Meal Button
+     * @throws Exception
+     */
+    public void clickOnRemoveMealButton() throws Exception{
+        BrowserActions.javascriptClick(btnRemoveMeal, driver, "Remove Meal Button");
+ }
     
+    /**
+     * clicking on Remove Baggage Button
+     * @throws Exception
+     */
+    public void clickOnRemoveBaggageButton() throws Exception{
+        BrowserActions.javascriptClick(btnRemoveBaggage, driver, "Remove Baggage Button");
+ }
+
+    /**
+     * Getting meal fare details 
+     * @return
+     * @throws Exception
+     */
+   
+    public String getTextMealDetails() throws Exception{
+    	String txtDetails = BrowserActions.getText(driver, mealDetails, "Getting the Meal fare details.");
+    	return txtDetails;
+    	
+    }
+    
+   
+    /**
+     * Getting Baggage fare details 
+     * @return
+     * @throws Exception
+     */
+    
+    public String getTextBaggageDetails() throws Exception{
+    	String txtDetails = BrowserActions.getText(driver, BaggageDetails, "Getting the Baggage fare details.");
+    	return txtDetails;
+    	
+    }
 
 }

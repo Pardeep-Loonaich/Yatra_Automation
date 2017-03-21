@@ -1060,8 +1060,16 @@ public class FlightSearch {
 			Log.message("7. Clicked On Continue Button on Review Page!");
 
 			reviewPage.selectMeal();
-			Log.message("8. Selected Meal!");
-
+			Log.message("10. Selected Meal!");
+			
+			String mealCharges = reviewPage.getTextMealDetails();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User should be able to see the Meal Charges inculded in the Fare Detail!");
+			Thread.sleep(5000);
+			Log.assertThat(
+					reviewPage.elementLayer.verifyPageElements(Arrays.asList("mealDetails"), reviewPage),
+					"<b>Actual Result:</b> Meal Charges are included In Total Fare and Meal Charges is :" + mealCharges,
+					"<b>Actual Result:</b> Meal Charges are not included In Total Fare", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -1124,6 +1132,20 @@ public class FlightSearch {
 			reviewPage.selectMeal();
 			Log.message("10. Selected Meal!");
 
+			String mealCharges = reviewPage.getTextMealDetails();
+			
+			Thread.sleep(3000);
+			reviewPage.clickOnRemoveMealButton();
+			Log.message("11. Clicked On Remove Button In Review Page!");
+			String mealChargesAfterRemovingMeal = reviewPage.getTextMealDetails();
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User should be able to Remove the Meal Charges On Review Page!");
+			Thread.sleep(5000);
+			Log.assertThat(
+					reviewPage.elementLayer.verifyPageElements(Arrays.asList("mealDetails"), reviewPage),
+					"<b>Actual Result:</b> Meal Charges : "+ mealCharges + "Meal Charges after Removing the Meal :" + mealChargesAfterRemovingMeal,
+					"<b>Actual Result:</b> Meal Charges Can Not Be Removed From Review Page", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -1187,11 +1209,166 @@ public class FlightSearch {
 			Log.message("10. Selected Baggage Type!");
 
 
+			String BaggageFare = reviewPage.getTextBaggageDetails();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User should be able to see the Baggage Charges inculded in the Fare Detail!");
+			Thread.sleep(5000);
+			Log.assertThat(
+					reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnAddBaggage"), reviewPage),
+					"<b>Actual Result:</b> Baggage Charges are included In Total Fare and Baggage Charges is :" + BaggageFare,
+					"<b>Actual Result:</b> Baggage Charges are not included In Total Fare", driver);
+
+
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
 			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = {
+	"desktop" }, description = "Remove Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_035(HashMap<String, String> testData) throws Exception {
+
+		String browser=testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			LoginPage loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2.Successfully Logged in Yatra account!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Flight Search fields
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4.Successfully filled the search details for 'ONE WAY' trip!");
+
+			// step: click 'Search' button in Yatra Home page
+			SearchResult searchResult = homePage.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage!");
+
+			ReviewPage reviewPage =  searchResult.clickOnBookNowInOneWay(1);
+			Log.message("6. Clicked On Book Now Button!");
+
+			reviewPage.clickOnContinue();
+			Log.message("7. Clicked On Continue Button on Review Page!");
+
+			reviewPage.enterUserDeatils();
+			Log.message("8. Enter User Details!");
+
+			reviewPage.clickOnAddBaggage();
+			Log.message("9. Clicked On Add Baggage!");
+
+			reviewPage.selectBaggage();
+			Log.message("10. Selected Baggage Type!");
+			String BaggageFare = reviewPage.getTextBaggageDetails();
+			
+			Thread.sleep(3000);
+			reviewPage.clickOnRemoveBaggageButton();
+			Log.message("11. Clicked On Remove Baggage Button!");
+			String BaggageFareAfterRemoving = reviewPage.getTextBaggageDetails();
+			
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User should be able to Remove the Meal Charges On Review Page!");
+			Thread.sleep(5000);
+			Log.assertThat(
+					reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnRemoveBaggage"), reviewPage),
+					"<b>Actual Result:</b> Baggage Charges : "+ BaggageFare + "Baggage Charges after Removing the Baggage :" + BaggageFareAfterRemoving,
+					"<b>Actual Result:</b> Baggage Charges can not be Removed from Review Page", driver);
+
+			
+			
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+	"desktop" }, description = "Verify Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_033(HashMap<String, String> testData) throws Exception {
+
+		String browser=testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			LoginPage loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2.Successfully Logged in Yatra account!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Flight Search fields
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4.Successfully filled the search details for 'ONE WAY' trip!");
+
+			// step: click 'Search' button in Yatra Home page
+			SearchResult searchResult = homePage.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage!");
+
+			ReviewPage reviewPage =  searchResult.clickOnBookNowInOneWay(1);
+			Log.message("6. Clicked On Book Now Button!");
+
+			reviewPage.clickOnContinue();
+			Log.message("7. Clicked On Continue Button on Review Page!");
+
+			reviewPage.enterUserDeatils();
+			Log.message("8. Enter User Details!");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User should See 'Add Baggage' Button on Review Page!");
+			Thread.sleep(5000);
+			Log.assertThat(
+					reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnAddBaggage"), reviewPage),
+					"<b>Actual Result:</b> 'Add Baggage' Button is visible to the User On Review Page",
+					"<b>Actual Result:</b> 'Add Baggage' Button is not visible to the User On Review Page", driver);
+
+			
+			
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
