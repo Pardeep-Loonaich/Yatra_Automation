@@ -198,4 +198,23 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForPageLoad(driver);
 		
 	}
+	/**
+     * to click on Book now button in Multicity Trip for Domestic flights
+     * @param index
+     * @return
+     * @throws Exception
+     */
+	public ReviewPage clickOnBookNowInMulticity(int list1,int index1,int list2,int index2) throws Exception {
+		WebElement e1=  driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child("+list1+")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("+index1+")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>p"));
+		WebElement e2=  driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child("+list2+")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("+index2+")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>p"));
+
+		BrowserActions.scrollToView(e1, driver);
+		BrowserActions.clickOnElement(e1,driver,"To select Flight from one list.");
+		BrowserActions.scrollToView(e2, driver);
+		BrowserActions.clickOnElement(e2,driver,"To select Flight from second list.");
+		
+		BrowserActions.clickOnElement(btnBookNowRoundTrip, driver, "Click on Book Now for RoundTrip.");
+       return new ReviewPage(driver).get();
+}
+
 	}
