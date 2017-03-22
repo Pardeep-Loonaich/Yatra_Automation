@@ -197,7 +197,7 @@ public class DataProviderUtils {
 		{
 			HashMap<String, String> ObjHmap=new HashMap<String, String>();
 			//ObjHmap.put("os", operating_System_Name);
-			//ObjHmap.put("browser", browserName);
+			ObjHmap.put("browser", browserName);
 			ObjHmap.put("testCaseId", testCaseId.trim());
 			
 			for(int cell=0;cell<totalData;cell++)

@@ -24,6 +24,7 @@ import org.testng.annotations.ITestAnnotation;
 public class Utils {
 	private static String workBookName="";
 	private static String sheetName="";
+	public static String testCaseId="";
 	public static ITestAnnotation annotation;
 	public static Method testMethod;
 	public static ITestContext context;
@@ -558,23 +559,4 @@ public class Utils {
 		return dataToBeReturn;
 	}
 
-	public static void conditionalTestSkip(ITestContext context)
-
-	{
-		//reading woorkBookName from current xml file.
-		workBookName=context.getCurrentXmlTest().getParameter("workBookName");
-		//reading sheetName from current xml file.
-		sheetName=context.getCurrentXmlTest().getParameter("sheetName");
-		
-		HashMap<String, String> testData=TestDataExtractor.initTestData(workBookName, sheetName,testMethod.getName());	
-		String invoke=testData.get("RunMode");
-		
-		if(invoke.equalsIgnoreCase("No"))
-		{
-			
-			annotation.setEnabled(false);
-			System.out.println("disabled test case: \""+testMethod.getName()+"\", Now it will not be executed  !!");
-
-		}
-	}
 }

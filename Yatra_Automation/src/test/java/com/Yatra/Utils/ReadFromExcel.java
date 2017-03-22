@@ -305,5 +305,17 @@ public class ReadFromExcel {
 			}
 			return listOfRowNumber;
 		}
+		
+		public static String getData(HSSFSheet sheet, int row, int column)
+		
+		{	
+			
+			String dataToBeReturned="";
+			
+			dataToBeReturned=sheet.getRow(row).getCell(column).getStringCellValue();
+			
+			return dataToBeReturned;
+			
+		}
 
 }
