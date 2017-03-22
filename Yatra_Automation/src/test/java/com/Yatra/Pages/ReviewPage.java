@@ -37,7 +37,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	WebElement moduleFareRules;
 
 	@FindBy(css = "[id='checkoutBase']>div:nth-child(3)>main>div>aside>div[ng-controller='productFareDetailsController']")
-	
+
 	WebElement moduleFareDetails;
 
 	@FindBy(xpath = "//i[@class = 'arrow-down']")
@@ -111,17 +111,22 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	@FindBy(xpath=".//*[@id='checkoutBase']/div[3]/main/div/aside/div[1]/div[1]/div/ul[1]")
 	WebElement fldContentInsurance;
-	
+
 	@FindBy(xpath= "//div[@ng-show='showLoginRegister']/form/div[@class='row']/input[@name = 'email']")
 	WebElement txtGuestEmail;
-	
+
 	@FindBy(css = "div[class='align-width']>input[name='mobile']")
 	WebElement txtGuestMobile;
-	
-	 
-	    
-	
 
+	@FindBy(xpath= "//*[@ng-repeat='traveller in travellerDetails']")
+	List<WebElement> modTravellerDetails ;   
+
+	@FindBy(css="[id='redeem-applied-id']>h4")
+	WebElement msgEcashRedeemBalance;
+	
+	@FindBy(css="[id='redeem-applied-id']>h3")
+	WebElement msgEcashRedeem;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -192,8 +197,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.scrollToView(btnBookAsGuest, driver);
 		BrowserActions.clickOnElement(btnBookAsGuest, driver, "To click on Book as Guest button.");
 	}
-	
-	
+
+
 	/**
 	 * Enter email id
 	 * 
@@ -219,7 +224,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.typeOnTextField(txtGuestMobile, mobile, driver, "Mobile");
 		Log.event("Entered the Mobile no: " + mobile);
 	}
-	
+
 	public ReviewPage loginYatraGuestAccount(String emailId, String mobile) throws Exception {
 		enterEmailID(emailId); // enter email address
 		enterMobile(mobile); // enter password
@@ -365,32 +370,94 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @throws Exception
 	 */
 
-    public boolean verifyInsuranceCheckbox() throws Exception{	
-    	boolean status = BrowserActions.isRadioOrCheckBoxSelected(chkInsurance);
-    	return status;
-    }
-    
-    /**
-     * clicking on insurance checkbox
-     * @throws Exception
-     */
-    public void uncheckingInsuranceCheckbox() throws Exception{
-    	WebElement e =driver.findElement(By.xpath(".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label"));
-    	BrowserActions.clickOnElement(e, driver, "Clicked on Insurance CheckBox.");
-    }
-    
-    /**
-     * Getting the text from the fare details panel
-     * @return
-     * @throws Exception
-     */
-   
-    
-    public String getTextFromFareDetails() throws Exception{
-    	String txtDetails = BrowserActions.getText(driver, fldContentInsurance, "Getting text from the fare details.");
-    	return txtDetails;
-    	
-    }
-   
+	public boolean verifyInsuranceCheckbox() throws Exception{	
+		boolean status = BrowserActions.isRadioOrCheckBoxSelected(chkInsurance);
+		return status;
+	}
+
+	/**
+	 * clicking on insurance checkbox
+	 * @throws Exception
+	 */
+	public void uncheckingInsuranceCheckbox() throws Exception{
+		WebElement e =driver.findElement(By.xpath(".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label"));
+		BrowserActions.clickOnElement(e, driver, "Clicked on Insurance CheckBox.");
+	}
+
+	/**
+	 * Getting the text from the fare details panel
+	 * @return
+	 * @throws Exception
+	 */
+
+
+	public String getTextFromFareDetails() throws Exception{
+		String txtDetails = BrowserActions.getText(driver, fldContentInsurance, "Getting text from the fare details.");
+		return txtDetails;
+
+	}
+	
+
+
+	/**
+	 * Getting the ecash redeem successful messages
+	 * @return
+	 * @throws Exception
+	 */
+
+
+	public String getMsgFromEcashRedeemSuccess() throws Exception{
+		String txtRedeemMsg = BrowserActions.getText(driver, msgEcashRedeem, "Getting text for ecash Redeem message.").replace("Cancel Redemption", "");
+		return txtRedeemMsg;
+
+	}
+	
+	
+	
+	/**
+	 * Getting the ecash redeem Balance successful messages
+	 * @return
+	 * @throws Exception
+	 */
+
+
+	public String getMsgFromEcashBalanceDeduction() throws Exception{
+		String txtRedeemMsg = BrowserActions.getText(driver, msgEcashRedeemBalance, "Getting text for ecash Redeem Balance deduction message.");
+		return txtRedeemMsg;
+
+	}
+
+	public void fillTravellerDetailsFormDom() throws Exception{
+
+		for(int i=0;i<modTravellerDetails.size();i++)
+		{
+
+			String formPaxDetail = "//*[@id='paxNum"+i+"']/div[@class='col-md-1 col-xs-3 min-width70']";
+			WebElement Firstname =  driver.findElement(By.xpath("//*[@id='paxNum"+i+"']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input"));
+			WebElement Lastname =  driver.findElement(By.xpath("//*[@id='paxNum"+i+"']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input"));
+
+			WebElement drptitle  = driver.findElement(By.xpath(formPaxDetail));
+			BrowserActions.clickOnElement(drptitle, driver, "Title Dropdown Clicked");
+
+			List<WebElement> titleOptions = driver.findElements(By.xpath("//*[@id='paxNum"+i+"']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option"));
+
+			if(titleOptions.size() != 0){                    
+				int rand = Utils.getRandom(1, titleOptions.size()); 
+				BrowserActions.clickOnElement(titleOptions.get(rand), driver, "title selected");
+				Utils.waitForPageLoad(driver); 
+			}
+
+			String randomFirstName = RandomStringUtils.randomAlphabetic(5)
+					.toLowerCase();
+			String randomLastName = RandomStringUtils.randomAlphabetic(5)
+					.toLowerCase();
+			BrowserActions.typeOnTextField(Firstname, randomFirstName, driver, "First Name");
+			BrowserActions.typeOnTextField(Lastname, randomLastName, driver, "Last Name");
+
+			Thread.sleep(1000);
+
+		}
+	}
+
 
 }
