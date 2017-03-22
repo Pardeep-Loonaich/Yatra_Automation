@@ -36,8 +36,6 @@ public class FlightPricing {
 	ReviewPage reviewPage;
 	SearchResult searchResult;
 	String webSite;
-	//private String workbookName = "testdata\\data\\Flights.xls";
-	//private String sheetName = "FlightPricing";
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
@@ -49,7 +47,6 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_015(HashMap<String, String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser=testData.get("browser");
 
 		String emailId = testData.get("EmailAddress");
@@ -373,10 +370,7 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_022(HashMap<String, String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -392,13 +386,9 @@ public class FlightPricing {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId , password);
-			Log.message("2.Successfully Logged in Yatra account");	
-
 			//step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 
 			//step:  select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
@@ -406,14 +396,14 @@ public class FlightPricing {
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");	
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 
 
 			//step: Click on 'Book Now' button in Yatra Home page
 
 			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(1);
 
-			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
+			Log.message("4.Clicked on 'Book Now' button in Search Result Page ");
 			Thread.sleep(5000);
 
 			Log.message("<br>");
@@ -433,10 +423,7 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Change flight link verification on Review page - INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_023(HashMap<String, String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -452,26 +439,22 @@ public class FlightPricing {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId , password);
-			Log.message("2.Successfully Logged in Yatra account");	
-
 			//step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 
 			//step:  select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
-			Log.message("4.Successfully selected OneWay Flight Search Fields ");
+			Log.message("3.Successfully selected OneWay Flight Search Fields ");
 			Thread.sleep(5000);
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();
 			//Thread.sleep(5000);
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");							
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");							
 
 			ReviewPage reviewPage = searchResult.clickOnBookNowINT();
-			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
+			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
 			Thread.sleep(5000);
 
 			Log.message("<br>");
@@ -491,10 +474,7 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Applying promo code on review page- Promo dropdown Validation", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_024(HashMap<String, String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -510,30 +490,26 @@ public class FlightPricing {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId , password);
-			Log.message("2.Successfully Logged in Yatra account");
-
 			//step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 
 			//step:  select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
-			Log.message("4.Successfully selected OneWay Flight Search Fields ");
+			Log.message("3.Successfully selected OneWay Flight Search Fields ");
 			Thread.sleep(5000);
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();			
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");	
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");	
 
 			//step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();
-			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
+			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
 
 			//step: Click on 'Promo Drop Down' in Review page
 			reviewPage.clickOnPromoDrpDwn();			
-			Log.message("7. Clicked  on 'Promo Drop Down' in Review page");
+			Log.message("6. Clicked  on 'Promo Drop Down' in Review page");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check Promo Code Dropdown.");
@@ -554,10 +530,7 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Applying promo code on review page- Promo Coupon Selection", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_025(HashMap<String, String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -573,30 +546,26 @@ public class FlightPricing {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId , password);
-			Log.message("2.Successfully Logged in Yatra account");	
-
 			//step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 
 			//step:  select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
-			Log.message("4.Successfully selected OneWay Flight Search Fields ");
+			Log.message("3.Successfully selected OneWay Flight Search Fields ");
 			Thread.sleep(5000);
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();			
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");	
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");	
 
 			//step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();
-			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");	
+			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");	
 
 			//step: Click on 'Promo Drop Down' in Review page and select Promo Coupon
 			reviewPage.clickOnPromoCoupon();	
-			Log.message("7. Clicked  on 'Promo Drop Down' in Review page and selected coupon");
+			Log.message("6. Clicked  on 'Promo Drop Down' in Review page and selected coupon");
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -610,10 +579,7 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Applying promo code on review page- Have a Promo Code Validation", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_026(HashMap<String, String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -628,35 +594,31 @@ public class FlightPricing {
 			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
-
-			loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId , password);
-			Log.message("2.Successfully Logged in Yatra account");	
-
+			
 			//step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 
 			//step:  select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
-			Log.message("4.Successfully selected OneWay Flight Search Fields ");
-			Thread.sleep(15000);
+			Log.message("3.Successfully selected OneWay Flight Search Fields ");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();
-			Thread.sleep(5000);
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");							
-
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");	
+			Thread.sleep(4000);
+									
 			//step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();
-			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
+			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("lnkHavePromoCode"), reviewPage),
 					"<b>Actual Result:</b> Hava a Promo code link is displayed on Review page.",
 					"<b>Actual Result:</b> Hava a Promo code link is not displayed on Review Page.",driver);
 
 			//step: Click on 'Have a coupon' link in Review page 
-			reviewPage.clickOnHavePromoCode();		
+			reviewPage.clickOnHavePromoCode();	
+			Log.message("6.Clicked on 'Have a Promo Code' link in Review Page ");
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -670,10 +632,7 @@ public class FlightPricing {
 	@Test(groups = { "desktop" }, description = "Applying promo code on review page-  Have a Promo Code submission", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_027(HashMap<String, String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -689,26 +648,22 @@ public class FlightPricing {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId , password);
-			Log.message("2.Successfully Logged in Yatra account");	
-
 			//step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 
 			//step:  select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);		
-			Log.message("4.Successfully selected OneWay Flight Search Fields ");
+			Log.message("3.Successfully selected OneWay Flight Search Fields ");
 			Thread.sleep(5000);
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();			
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");							
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");							
 
 			//step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();
-			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
+			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
 
 			/*
 			 * Click on 'Promo Drop Down' in Review page and select Promo Coupon
@@ -716,7 +671,7 @@ public class FlightPricing {
 			 * Click on 'Apply' button
 			 */
 			reviewPage.getPromoCode();		
-			Log.message("7.Successfully Applied the Promo Code.");
+			Log.message("6.Successfully Applied the Promo Code.");
 
 		} catch (Exception e) {
 			Log.exception(e);

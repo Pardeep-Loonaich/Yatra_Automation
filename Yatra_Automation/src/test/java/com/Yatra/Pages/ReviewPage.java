@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
@@ -101,6 +102,18 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath= "//div[@ng-show='showLoginRegister']/form/div[@class='row']/button")
 	WebElement btnBookAsGuest;
 	
+	@FindBy(xpath= "//div[@ng-show='showLoginRegister']/form/div[@class='row']/input[@name = 'email']")
+	WebElement txtGuestEmail;
+	
+	@FindBy(xpath ="//div[@id='regUserDiv']/input[@type='password']")
+	WebElement txtGuestPassword;
+	
+	@FindBy(css = "div[class='align-width']>input[name='mobile']")
+	WebElement txtGuestMobile;
+	
+	@FindBy(xpath ="//span[@class='account-msg ui-checkbox']")
+	WebElement chkExistingUser;
+	
 	 @FindBy(xpath=".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label/span[1]/input")
 	 WebElement chkInsurance;
 	    
@@ -118,6 +131,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	@FindBy(css = "ul[class='list list-border']>li:nth-child(6)")
 	 WebElement BaggageDetails;
+	
+	@FindBy(xpath= "//*[@ng-repeat='traveller in travellerDetails']")
+	List<WebElement> modTravellerDetails ;
 	
 
 	/**********************************************************************************************
@@ -191,6 +207,83 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.clickOnElement(btnBookAsGuest, driver, "To click on Book as Guest button.");
 	}
 	
+
+	/**
+	 * Enter email id
+	 * 
+	 * @param emailid
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterEmailID(String emailid) throws Exception {
+		Utils.waitForElement(driver, txtGuestEmail);
+		BrowserActions.typeOnTextField(txtGuestEmail, emailid, driver, "Email id");
+		Log.event("Entered the Email Id: " + emailid);
+	}
+
+	/**
+	 * Enter mobile
+	 * 
+	 * @param mobile
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterMobile(String mobile) throws Exception {
+		Utils.waitForElement(driver, txtGuestMobile);
+		BrowserActions.typeOnTextField(txtGuestMobile, mobile, driver, "Mobile");
+		Log.event("Entered the Mobile no: " + mobile);
+	}
+	
+	/**
+	 * Enter mobile
+	 * 
+	 * @param mobile
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterPassword(String password) throws Exception {
+		Utils.waitForElement(driver, txtGuestPassword);
+		BrowserActions.typeOnTextField(txtGuestPassword, password, driver, "Password");
+		Log.event("Entered the Password : " + password);
+	}
+	
+	
+	
+	public TravellerPage loginYatraGuestAccount(String emailId, String mobile) throws Exception {
+		enterEmailID(emailId); // enter email address
+		enterMobile(mobile); // enter mobile no
+		clickOnBookAsGuestBtn(); // click Login button
+		return new TravellerPage(driver).get();
+
+	}
+	
+	public TravellerPage loginYatraGuestAccountExisting(String emailId, String password) throws Exception {
+		enterEmailID(emailId); // enter email address
+		enterPassword(password); // enter password
+		clickOnBookAsGuestBtn(); // click Login button
+		return new TravellerPage(driver).get();
+	}
+	
+	/**
+	 * verifying ExistingUse checkbox is checked on unchecked
+	 * @return
+	 * @throws Exception
+	 */
+   
+    public boolean verifyExistingUser() throws Exception{	
+    	boolean status = BrowserActions.isRadioOrCheckBoxSelected(chkExistingUser);
+    	return status;
+    }
+    
+    /**
+     * clicking on ExistingUser checkbox
+     * @throws Exception
+     */
+    public void clickOnExistingUser() throws Exception{
+    	BrowserActions.clickOnElement(chkExistingUser, driver, "Clicked on Existing User CheckBox.");
+    }
+	
+	
 	/**
 	 * To click promo drop down on Review page
 	 * 
@@ -249,12 +342,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	}
 
 
-	public void clickOnContinue() throws Exception {
+	public TravellerPage clickOnContinue() throws Exception {
 		BrowserActions.nap(6);
 		Utils.waitForElement(driver, btnContinueReviewPage);
 		BrowserActions.scrollToView(btnContinueReviewPage, driver);
 		BrowserActions.javascriptClick(btnContinueReviewPage, driver, "Continue Button");
 		Utils.waitForPageLoad(driver);
+		return new TravellerPage(driver).get();
 	}
 	
 	public void clickOnAddMeal() throws Exception {
@@ -398,5 +492,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
     	return txtDetails;
     	
     }
+    }
 
-}
+
