@@ -1,5 +1,6 @@
 package com.Yatra.Utils;
 
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -10,7 +11,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.SkipException;
+import org.testng.annotations.ITestAnnotation;
 
 
 /**
@@ -19,6 +22,12 @@ import org.testng.SkipException;
  * 
  */
 public class Utils {
+	private static String workBookName="";
+	private static String sheetName="";
+	public static ITestAnnotation annotation;
+	public static Method testMethod;
+	public static ITestContext context;
+	
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 	public static int maxElementWait = 10;
 
@@ -549,10 +558,23 @@ public class Utils {
 		return dataToBeReturn;
 	}
 
+	public static void conditionalTestSkip(ITestContext context)
 
+	{
+		//reading woorkBookName from current xml file.
+		workBookName=context.getCurrentXmlTest().getParameter("workBookName");
+		//reading sheetName from current xml file.
+		sheetName=context.getCurrentXmlTest().getParameter("sheetName");
+		
+		HashMap<String, String> testData=TestDataExtractor.initTestData(workBookName, sheetName,testMethod.getName());	
+		String invoke=testData.get("RunMode");
+		
+		if(invoke.equalsIgnoreCase("No"))
+		{
+			
+			annotation.setEnabled(false);
+			System.out.println("disabled test case: \""+testMethod.getName()+"\", Now it will not be executed  !!");
 
-
-
-
-
+		}
+	}
 }

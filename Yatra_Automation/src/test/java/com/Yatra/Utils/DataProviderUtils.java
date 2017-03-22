@@ -18,8 +18,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderUtils {
-	/*private static String workbookName = "testdata\\data\\Flights.xls";
-	private static String sheetName = "FlightPricing";*/
+
 	private static boolean doFilePathMapping=true;
 
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
@@ -176,17 +175,16 @@ public class DataProviderUtils {
 		String sheetNameP=context.getCurrentXmlTest().getParameter("sheetName");
 		String browserName=context.getCurrentXmlTest().getParameter("browserName");
 		//String browserName=context.getCurrentXmlTest().getParameter("browserName").split("_")[0].trim();
-		String operating_System_Name=context.getCurrentXmlTest().getParameter("browserName").split("_")[1].trim();
+		//String operating_System_Name=context.getCurrentXmlTest().getParameter("browserName").split("_")[1].trim();
 		
 		String testCaseId = method.getName();
 		//System.out.println("test case Name is :"+testCaseId);for debugging
-		ExcelUtils readTestData=new ExcelUtils();
+		ReadFromExcel readTestData=new ReadFromExcel();
 		// initializing excel connection 
 		HSSFSheet sheet=readTestData.initiateExcelConnection(sheetNameP, sWorkBooName, doFilePathMapping);
 
 		//HSSFSheet sheet=readTestData.initiateExcelConnection(sheetName, workbookName, doFilePathMapping);//don't remove this 
-		
-		
+				
 		ArrayList<Integer> ObjArrayOfTestCaseRow=readTestData.getRowNumbers(sheet,testCaseId);
 		ArrayList<String> ObjArrayOf_Headers=readTestData.getHeaders(sheet);
 		int executionCount=ObjArrayOfTestCaseRow.size();
@@ -198,8 +196,8 @@ public class DataProviderUtils {
 
 		{
 			HashMap<String, String> ObjHmap=new HashMap<String, String>();
-			ObjHmap.put("os", operating_System_Name);
-			ObjHmap.put("browser", browserName);
+			//ObjHmap.put("os", operating_System_Name);
+			//ObjHmap.put("browser", browserName);
 			ObjHmap.put("testCaseId", testCaseId.trim());
 			
 			for(int cell=0;cell<totalData;cell++)
