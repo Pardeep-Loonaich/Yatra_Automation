@@ -35,7 +35,7 @@
 				    <include name="TC_Yatra_Flight_034" />
 				    <include name="TC_Yatra_Flight_039" />									
 					<include name="TC_Yatra_Flight_040" />
-					<include name="TC_FlightSearch_046" /> 
+					<!-- <include name="TC_FlightSearch_046" />  -->
 				</methods>
 			</class>
 		</classes>
