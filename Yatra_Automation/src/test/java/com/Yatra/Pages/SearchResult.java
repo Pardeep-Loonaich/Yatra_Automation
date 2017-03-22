@@ -32,7 +32,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = ".ico-newHeaderLogo")
 	public WebElement headerLogo;
 	
-	
 	@FindBy(css = ".filter-list.filter-list-with-clear:nth-child(1)>label>div>span")
 	 WebElement chkChooseFlightFirst;
 	
@@ -84,7 +83,29 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css ="div[class='new-green-button fr relative tc']")
 	WebElement btnBookNowRoundTrip;
 	
+	@FindBy(css ="div[class='show-result multi-1']>div>div[class='results']>div:nth-child(1)>article>footer>ul[class='res-footer-list fl uprcse']>li:nth-child(1)")
+	WebElement lnkFlightDetails;
 	
+	@FindBy(css ="div[class='short-details']>h3>p")
+	WebElement btnBookNowFlightDeatilPopUp;
+	
+	@FindBy(css ="div[class='short-details']>div")
+	WebElement fldContentFlightDetails;
+	
+	@FindBy(css ="div[class='my-fare-grid']>ul[class='tab fs-md']>li[ng-hide='isBYOPPage']")
+	WebElement lnkFareSummaryandRules;
+	
+	@FindBy(css = ".one-fourth")
+	WebElement fldContentFareDeatilAndRulesDetails;
+	
+	@FindBy(css = "div[class*='disclaimer']>span")
+	WebElement txtDisclaimer;
+	
+	@FindBy(css = "div[class='my-fare-grid']>ul[class='tab fs-md']>li:nth-child(3)")
+	WebElement lnkBaggage;
+	
+	@FindBy(css = "div[class='row baggage-summary']")
+	WebElement fldContentBaggageDetail;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -200,7 +221,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	
-	
+	public void clickOnFlightLink() throws Exception {
+		BrowserActions.clickOnElement(lnkFlightDetails, driver, "Flight Link");
+		Utils.waitForPageLoad(driver);
+		
+	}
 	
 	
     /**
@@ -222,4 +247,85 @@ public class SearchResult extends LoadableComponent<SearchResult> {
        return new ReviewPage(driver).get();
 }
 
+	/**
+     * Getting the text from the flight Deatil Pop Up 
+     * @return
+     * @throws Exception
+     */
+    public String getTextFlightDetails() throws Exception{
+    	String txtDetails = BrowserActions.getText(driver, fldContentFlightDetails, "Getting text from the Flight Deatil pop Up");
+    	return txtDetails;
+    	
+    }
+	
+	
+    /**
+     * to click on Book now button in OneWay Trip for International flights
+     * @param index
+     * @return
+     * @throws Exception
+     */
+   public void clickOnlnkFareandRule() throws Exception {
+        BrowserActions.scrollToView(lnkFareSummaryandRules, driver);
+        BrowserActions.clickOnElement(lnkFareSummaryandRules, driver, "Link Fare And Rule In Flight Detail Pop Up");
+ 
+	}
+   
+   /**
+    * Getting the text from the flight fare and rules Deatil Pop Up 
+    * @return
+    * @throws Exception
+    */
+   public String getTextFareDetailsandRuleInPopUp() throws Exception{
+   	String txtDetails = BrowserActions.getText(driver, fldContentFareDeatilAndRulesDetails, "Getting text from the Flight Fare and Rules Deatil pop Up");
+   	return txtDetails;
+   	
+   } 
+	
+   /**
+    * Getting the text from the flight fare and rules Deatil Pop Up 
+    * @return
+    * @throws Exception
+    */
+   public String getTextDisclamierMessage() throws Exception{
+   	String txtDetails = BrowserActions.getText(driver, txtDisclaimer, "Getting text from the Disclaimer Message In Pop up");
+   	return txtDetails;
+   }  
+   /**
+    * to click on Flight Details Link in OneWay Trip for International flights
+    * @param index
+    * @return
+    * @throws Exception
+    */
+  public void clickOnlnkFlightDetails_INTL() throws Exception {
+       BrowserActions.scrollToView(lnkFlightDetails_INTL, driver);
+       BrowserActions.clickOnElement(lnkFlightDetails_INTL, driver, "Link Flight Details For International One Way");
+
+	}
+  //
+  
+  /**
+   * to click on Baggage Details Link in OneWay Trip for International flight
+   * @param index
+   * @return
+   * @throws Exception
+   */
+ public void clickOnlnkBaggage() throws Exception {
+      BrowserActions.scrollToView(lnkBaggage, driver);
+      BrowserActions.clickOnElement(lnkBaggage, driver, "Link Baggage Details");
+
+	}
+  //
+ /**
+  * Getting the text from the flight fare and rules Deatil Pop Up 
+  * @return
+  * @throws Exception
+  */
+ public String getTextBaggageDetails() throws Exception{
+ 	String txtDetails = BrowserActions.getText(driver, fldContentBaggageDetail, "Getting text from the Baggage Details In Pop up");
+ 	return txtDetails;
+ }  
+  
+  
+  
 	}

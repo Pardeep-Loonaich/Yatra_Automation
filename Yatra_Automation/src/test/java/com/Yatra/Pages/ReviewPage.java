@@ -74,6 +74,12 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath = ".//*[@id='travellerl0']")
 	WebElement userSecondName;
 	
+	@FindBy(css = ".col-md-1.col-xs-3.min-width70>span[class='ui-select']>select>option:nth-child(2)")
+	WebElement userTitle;
+	
+	@FindBy(xpath = ".//*[@id='paxNum0']/div[2]/span[1]")
+	WebElement drpuserTitle;
+	
 	@FindBy(xpath = ".//*[@id='traveller-dom']/div[1]/div[1]/div/article[2]/div[2]/input")
 	WebElement userEmail;
 	
@@ -119,7 +125,14 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "ul[class='list list-border']>li:nth-child(6)")
 	 WebElement BaggageDetails;
 	
+	 @FindBy(css = ".update-fare.pt10.ico-right")
+	 WebElement PricePopUp;
 
+	 @FindBy(css = ".overlay-content>p[class='text-center']>button[class='button primary rounded']")
+	 WebElement ContinueInPopUp;
+	 
+	 @FindBy(css = " div[class='center-block text-center mt-1 mb-1 sticky-sm-bottom hide-under-overlay']>button[ng-disabled='isContinueBtnDisabled']")
+	 WebElement ContinueInTravellerPage;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -275,32 +288,30 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	public void selectMeal() throws Exception {
 		Utils.waitForElement(driver, drpSelectMeal);
-
 		BrowserActions.clickOnElement(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
 		Utils.waitForElement(driver, selectMeal);
 		BrowserActions.clickOnElement(selectMeal, driver, "Select Meal");
-		String tct = BrowserActions.getText(driver, selectMeal, "getkf");
-		Log.message("Text"+tct);
 		Utils.waitForPageLoad(driver);
 	}
 	
 	
 	public void selectBaggage() throws Exception {
 		Utils.waitForElement(driver, drpAddBaggage);
-		BrowserActions.scrollToView(drpAddBaggage, driver);
-		BrowserActions.javascriptClick(drpAddBaggage, driver, "Clicked On Drop Down Of Baggage");
+		BrowserActions.clickOnElement(drpAddBaggage, driver, "Clicked On Drop Down Of Baggage");
 		Utils.waitForElement(driver, selectBaggage);
-		BrowserActions.javascriptClick(selectBaggage, driver, "Select Baggage");
+		BrowserActions.clickOnElement(selectBaggage, driver, "Select Baggage");
 		Utils.waitForPageLoad(driver);
 	}
 	
 	public void enterUserDeatils() throws Exception {
-		Utils.waitForElement(driver, userFirstName);
-		BrowserActions.nap(5);
+		Utils.waitForElement(driver, drpuserTitle);
+		BrowserActions.nap(3);
 		String randomFirstName = RandomStringUtils.randomAlphabetic(5)
                 .toLowerCase();
         String randomLastName = RandomStringUtils.randomAlphabetic(5)
                 .toLowerCase();
+        BrowserActions.clickOnElement(drpuserTitle, driver, "Title Drop Down");
+        BrowserActions.clickOnElement(userTitle, driver, "Select Title");
         BrowserActions.typeOnTextField(userFirstName, randomFirstName, driver, "First Name");
         BrowserActions.typeOnTextField(userSecondName, randomLastName, driver, "Second Name");
 				
@@ -385,6 +396,11 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
     	return txtDetails;
     	
     }
+    public PaymentPage clickOnContinueBtnInTravellerPage() throws Exception {
+		BrowserActions.clickOnElement(ContinueInTravellerPage, driver, "Continue in Traveller Page");
+		Utils.waitForPageLoad(driver);
+		return new PaymentPage(driver).get();
+		}
     
    
     /**
@@ -399,4 +415,17 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
     	
     }
 
+    /**
+     * Clicking Continue In Price Increase Pop Up
+     * @return
+     * @throws Exception
+     */
+    
+    public void popUpAppear() throws Exception{
+    	if(PricePopUp.isDisplayed()){
+    		BrowserActions.clickOnElement(ContinueInPopUp, driver, "Continue in pop Up");	
+    	}
+    }
+    
+    
 }
