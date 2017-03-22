@@ -10,9 +10,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
-import org.testng.ITestContext;
-import org.testng.ITestNGMethod;
 import org.testng.SkipException;
+
 
 /**
  * Util class consists wait for page load,page load with user defined max time
@@ -528,42 +527,27 @@ public class Utils {
 		return dataToBeReturn;
 
 	}
-	/**
+	/** 
 	 * 
 	 * @param sExecute: a string flag YES/No
+	 * @param testCaseId: test case ID
 	 * @return: it will return boolean
 	 */
 
-	public static boolean testCaseConditionalSkip(String sExecute){
+	public static boolean testCaseConditionalSkip(String sExecute,String testCaseId)
+	{
 		boolean dataToBeReturn=false;
 
-		if("YES".equalsIgnoreCase(sExecute))
+		if("yes".equalsIgnoreCase(sExecute.toLowerCase().trim()))
 		{
 			dataToBeReturn=true;
-			throw new SkipException("Skipping the test case");
-
+			Log.message("\""+testCaseId+"\"has marked Run as \"NO\" in Excel data !!");
+			Log.message("\""+testCaseId+"\" has been skipped !!");
+			throw new SkipException("\""+testCaseId+"\" has been skipped !!");
+		
 		}
 		return dataToBeReturn;
 	}
-
-
-	public static String getTestCaseID(ITestContext context){
-
-		String testCaseID="";
-		System.out.println("@@@@@12"+context.getName());
-		for(ITestNGMethod TestNGMethod:context.getAllTestMethods())
-		{
-			if(!(TestNGMethod.getMethodName()=="init"))
-			{
-			testCaseID=TestNGMethod.getMethodName();
-			System.out.println(testCaseID);
-			break;
-			}
-		}
-
-		return testCaseID;
-	}
-
 
 
 

@@ -16,19 +16,7 @@ public class ExcelUtils
 	String sheetName;
 	HSSFSheet sheet;
 	String testCaseId;
-	public ExcelUtils(String workBookName,String sheetName)
-
-	{
-		this.sheetName=sheetName;
-		this.workBookName=workBookName;
-
-	}
-	public ExcelUtils()
-
-	{
-
-		//just to get object
-	}
+	
 	public HSSFSheet initiateExcelConnection(String workSheet, String workBookName, boolean doFilePathMapping) 
 	{
 		try {
@@ -122,4 +110,3 @@ public class ExcelUtils
 	}//getHeaders
 
 }
-
