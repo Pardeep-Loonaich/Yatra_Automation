@@ -72,35 +72,35 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn();
+			/*LoginPage loginPage = homePage.navigateToSignIn();
 			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
+			Log.message("2.Successfully Logged in Yatra account");*/
 
 			/// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 			
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("7.Passenger Info successfully specified");
+			Log.message("6.Passenger Info successfully specified");
 
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("8.Successfully selected Passenger class and clicked Done button");
+			Log.message("7.Successfully selected Passenger class and clicked Done button");
 			
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("9.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
@@ -139,38 +139,38 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			loginPage = homePage.navigateToSignIn();
+			/*loginPage = homePage.navigateToSignIn();
 			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
+			Log.message("2.Successfully Logged in Yatra account");*/
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'RoundTrip ' option in search Home Page ");
+			Log.message("2.Successfully clicked 'RoundTrip ' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			String returndate = homePage.selectReturnDate(returnDate);
-			Log.message("7.Successfully selected the Return date: <b>" + returndate + "</b>(YY/MM/DD)");
+			Log.message("6.Successfully selected the Return date: <b>" + returndate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("8.Passenger Info successfully specified");
+			Log.message("7.Passenger Info successfully specified");
 
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("9.Successfully selected Passenger class and clicked Done button");
+			Log.message("8.Successfully selected Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("10.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("9.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
@@ -212,45 +212,45 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn();
+			/*LoginPage loginPage = homePage.navigateToSignIn();
 			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
+			Log.message("2.Successfully Logged in Yatra account");*/
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'Multicity' option in search Home Page ");
+			Log.message("2.Successfully clicked 'Multicity' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterMultiCityOrigin1(origin1);
-			Log.message("4.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination1(destination1);
-			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
-			Log.message("6.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			homePage.enterMultiCityOrigin2(origin2);
-			Log.message("7.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
+			Log.message("6.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination2(destination2);
-			Log.message("8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+			Log.message("7.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
 			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
-			Log.message("9.Successfully selected the Multicity Departure2 date: <b>" + returndate + "</b>(YY/MM/DD)");
+			Log.message("8.Successfully selected the Multicity Departure2 date: <b>" + returndate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("10.Passenger Info successfully specified");
+			Log.message("9.Passenger Info successfully specified");
 
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("11.Successfully selected Passenger class and clicked Done button");
+			Log.message("10.Successfully selected Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("12.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with DOM-Multicity flight result");
@@ -293,45 +293,45 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn();
+			/*LoginPage loginPage = homePage.navigateToSignIn();
 			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
+			Log.message("2.Successfully Logged in Yatra account");*/
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'Multicity' option in search Home Page ");
+			Log.message("2.Successfully clicked 'Multicity' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterMultiCityOrigin1(origin1);
-			Log.message("4.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination1(destination1);
-			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
-			Log.message("6.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			homePage.enterMultiCityOrigin2(origin2);
-			Log.message("7.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
+			Log.message("6.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination2(destination2);
-			Log.message("8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+			Log.message("7.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
 			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
-			Log.message("9.Successfully selected the Multicity Departure1 date: <b>" + returndate + "</b>(YY/MM/DD)");
+			Log.message("8.Successfully selected the Multicity Departure1 date: <b>" + returndate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("10.Passenger Info successfully specified");
+			Log.message("9.Passenger Info successfully specified");
 
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("11.Successfully selected Passenger class and clicked Done button");
+			Log.message("10.Successfully selected Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("12.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result");
@@ -970,35 +970,35 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn();
+			/*LoginPage loginPage = homePage.navigateToSignIn();
 			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
+			Log.message("2.Successfully Logged in Yatra account");*/
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("7.Passenger Info successfully specified");
+			Log.message("6.Passenger Info successfully specified");
 
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("8.successfully selectd Passenger class and clicked Done button");
+			Log.message("7.successfully selectd Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("9.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>"); 
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
@@ -1038,38 +1038,38 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn();
+			/*LoginPage loginPage = homePage.navigateToSignIn();
 			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
+			Log.message("2.Successfully Logged in Yatra account");*/
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'RoundTrip' option in search Home Page ");
+			Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			String returndate = homePage.selectReturnDate(returnDate);
-			Log.message("7.Successfully selected the Return date: <b>" + returndate + "</b>(YY/MM/DD)");
+			Log.message("6.Successfully selected the Return date: <b>" + returndate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("8.Passenger Info successfully specified");
+			Log.message("7.Passenger Info successfully specified");
 
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("9.successfully selectd Passenger class and clicked Done button");
+			Log.message("8.successfully selectd Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("10.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("9.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>"); 
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
