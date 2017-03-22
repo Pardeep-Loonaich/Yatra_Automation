@@ -843,6 +843,92 @@ public class FlightPricing {
 		}
 	}
 	
+	@Test(groups = { "desktop" }, description = "eCash redemption on payswift page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_FlightPricing_036(HashMap<String, String> testData) throws Exception {
+
+		String browser=testData.get("browser");
+
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: verify Yatra title bar text
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("2.Verified Yatra Title text");
+			}			
+
+			//step: Navigate to Yatra Login
+			loginPage = homePage.navigateToSignIn();
+			Log.message("3.Navigated to 'SignIn' Page.");			
+
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("4.Successfully Logged in Yatra account");	
+
+			//selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+		    homePage.selectOneWayFlightSearchFields(origin, destination, departureDate,passengerInfo, passengerClass);
+			Log.message("5.Successfully filled the search details for 'ONE WAY' trip.");			
+
+			// step: click 'Search' button in Yatra Home page
+			SearchResult searchResult = homePage.clickBtnSearch();
+			Log.message("6.Clicked on 'Search' in Yatra Homepage.");
+
+			Thread.sleep(6000);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.",driver);
+
+
+			// clicked on book now button in one way
+			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("7.Clicked on 'Book Now' button in Search Result Page.");
+		
+			  Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+						"<b>Actual Result:</b> Successfully navigated on Review Page.",
+						"<b>Actual Result:</b> Unable to navigated on Review Page.",driver);
+			   
+			  //clicke on continue button
+			reviewPage.clickOnContinue();
+			Log.message("8.Clicked on Continue button in Review Page Step-1.");
+			
+			reviewPage.fillTravellerDetailsFormDom();
+		    Log.message("9. Filled Traveller Details for domestic Flights.");
+		    
+		    reviewPage.clickOnContinue();
+			Log.message("10.Clicked on Continue button in Review Page Step-2.");
+
+			Log.message("<br>");
+			
+			Log.message("<b>Expected Result:</b> Ecash should be applied and balance amount should be deducted from the total payment under Payment method.");
+
+
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("msgEcashRedeem"), reviewPage),
+							"<b>Actual Result1:</b> Ecash is applied successfully and the message is displayed under Payment method."+reviewPage.getMsgFromEcashRedeemSuccess(),
+							"<b>Actual Result1:</b> Ecash is not applied and the message is not displayed under Payment method.",driver);
+
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("msgEcashRedeemBalance"), reviewPage),
+					"<b>Actual Result2:</b> Balance is successfully deducted and the message is displayed under Payment method."+reviewPage.getMsgFromEcashBalanceDeduction(),
+					"<b>Actual Result2:</b> Balance is not deducted and the message is not displayed under Payment method.",driver);
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 
 
 }
