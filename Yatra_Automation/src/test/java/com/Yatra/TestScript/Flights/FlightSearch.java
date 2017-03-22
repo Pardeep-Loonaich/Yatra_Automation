@@ -43,8 +43,7 @@ public class FlightSearch {
 	TravellerPage travellerPage;
 	PaymentPage paymentPage;
 	String webSite;
-	//private String workbookName = "testdata\\data\\Flights.xls";
-	//private String sheetName = "FlightSearch";
+
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
@@ -53,12 +52,12 @@ public class FlightSearch {
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
+
 	@Test(groups = { "desktop" }, description = "Flight Search DOM - OW with  Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+
 	public void TC_Yatra_Flight_001(HashMap<String, String> testData) throws Exception {
 		
-		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
+		String browser=testData.get("browser");		
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -70,39 +69,38 @@ public class FlightSearch {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
+			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
+			Log.message("1. Navigated to 'Yatra' Home Page!");		
 
-			LoginPage loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
-
-			/// step: Select Trip Type
+			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
-
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+			
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
+			// step: select Departure date
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
+			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("7.Passenger Info successfully specified");
+			Log.message("6.Passenger Info successfully specified");
 
+			// step: select Passengers class
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("8.Successfully selected Passenger class and clicked Done button");
-
+			Log.message("7.Successfully selected Passenger class and clicked Done button");
+			
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("9.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
@@ -123,9 +121,7 @@ public class FlightSearch {
 	@Test(groups = {"desktop" }, description = "Flight Search DOM - RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_002(HashMap <String,String> testData) throws Exception {	
 		
-		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
+		String browser=testData.get("browser");		
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -133,7 +129,6 @@ public class FlightSearch {
 		String returnDate = testData.get("ReturnDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
-
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
@@ -142,38 +137,38 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
-
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'RoundTrip ' option in search Home Page ");
+			Log.message("2.Successfully clicked 'RoundTrip ' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
+			// step: select Departure date
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
+			// step: select Return date
 			String returndate = homePage.selectReturnDate(returnDate);
-			Log.message("7.Successfully selected the departure date: <b>" + returndate + "</b>(YY/MM/DD)");
-
+			Log.message("6.Successfully selected the Return date: <b>" + returndate + "</b>(YY/MM/DD)");
+			
+			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("8.Passenger Info successfully specified");
+			Log.message("7.Passenger Info successfully specified");
 
+			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("9.Successfully selected Passenger class and clicked Done button");
+			Log.message("8.Successfully selected Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("10.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("9.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
@@ -181,9 +176,9 @@ public class FlightSearch {
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
-
-			Log.testCaseResult();
-		} catch (Exception e) {
+			Log.testCaseResult();		
+		} 
+		catch (Exception e) {
 			Log.exception(e);
 		} finally {
 			driver.quit();
@@ -194,9 +189,7 @@ public class FlightSearch {
 	@Test(groups = { "desktop" }, description = "Flight Search DOM-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_005(HashMap <String,String> testData) throws Exception {
 
-		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
+		String browser=testData.get("browser");		
 		String origin1 = testData.get("Origin");
 		String origin2 = testData.get("Origin_Multicity");
 		String tripType = testData.get("TripType");
@@ -215,45 +208,45 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
-
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'Multicity' option in search Home Page ");
+			Log.message("2.Successfully clicked 'Multicity' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterMultiCityOrigin1(origin1);
-			Log.message("4.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination1(destination1);
-			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 
+			// step: select Departure date
 			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
-			Log.message("6.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			homePage.enterMultiCityOrigin2(origin2);
-			Log.message("7.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
+			Log.message("6.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination2(destination2);
-			Log.message("8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+			Log.message("7.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
+			// step: select Departure date
 			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
-			Log.message("9.Successfully selected the Multicity Departure2 date: <b>" + returndate + "</b>(YY/MM/DD)");
+			Log.message("8.Successfully selected the Multicity Departure2 date: <b>" + returndate + "</b>(YY/MM/DD)");
 
+			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("10.Passenger Info successfully specified");
+			Log.message("9.Passenger Info successfully specified");
 
+			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("11.Successfully selected Passenger class and clicked Done button");
+			Log.message("10.Successfully selected Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("12.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with DOM-Multicity flight result");
@@ -275,9 +268,7 @@ public class FlightSearch {
 	@Test(groups = {"desktop" }, description = "Flight Search INTL-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_006(HashMap <String,String> testData) throws Exception {
 
-		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
+		String browser=testData.get("browser");		
 		String origin1 = testData.get("Origin");
 		String origin2 = testData.get("Origin_Multicity");
 		String tripType = testData.get("TripType");
@@ -296,45 +287,46 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
-
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'Multicity' option in search Home Page ");
+			Log.message("2.Successfully clicked 'Multicity' option in search Home Page ");
 
-			// step: enter Origin place in Yatra Home page
+			// step: enter Origin1 place in Yatra Home page
 			homePage.enterMultiCityOrigin1(origin1);
-			Log.message("4.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
 
-			// step: enter Destination place in Yatra Home page
+			// step: enter Destination1 in Yatra Home page
 			homePage.enterMultiCityDestination1(destination1);
-			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 
+			// step: select Departure date1
 			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
-			Log.message("6.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
 
+			// step: enter Origin2 in Yatra Home page
 			homePage.enterMultiCityOrigin2(origin2);
-			Log.message("7.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
+			Log.message("6.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
 
-			// step: enter Destination place in Yatra Home page
+			// step: enter Destination2 in Yatra Home page
 			homePage.enterMultiCityDestination2(destination2);
-			Log.message("8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+			Log.message("7.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
+			// step: select Departure date2
 			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
-			Log.message("9.Successfully selected the Multicity Departure1 date: <b>" + returndate + "</b>(YY/MM/DD)");
+			Log.message("8.Successfully selected the Multicity Departure1 date: <b>" + returndate + "</b>(YY/MM/DD)");
 
+			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("10.Passenger Info successfully specified");
+			Log.message("9.Passenger Info successfully specified");
 
+			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("11.Successfully selected Passenger class and clicked Done button");
+			Log.message("10.Successfully selected Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("12.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result");
@@ -345,6 +337,7 @@ public class FlightSearch {
 					driver);
 
 			Log.testCaseResult();
+
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -380,18 +373,60 @@ public class FlightSearch {
 
 			//step:  select OneWay Flight Search fields
 			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);		
+
 			Log.message("3.Successfully filled the search details for 'TWO WAY' trip.");
 			Thread.sleep(5000);
 
 			// step: click 'Search' button in Yatra Home page
+
+			loginPage.clickBtnSignIn();
+
+			Log.message("6.Successfully clicked 'SignIn' ");
+			Log.message("Successfully Logged in Yatra acct");
+
+			Log.message("6.Successfully clicked 'SignIn' ");
+			Log.message("Successfully Logged in Yatra acct");
+
+			homePage.selectRoundTrip();
+			Log.message("7.Successfully clicked 'Round Trip' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			homePage.enterOrigin(origin);
+			Log.message("8.Successfully entered Origin '<b>"+ origin +"</b>' in Yatra Homepage" );
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterDestination(destination);
+			Log.message("9.Successfully entered Destination '<b>"+ destination+"</b>' in Yatra Homepage" );
+			Thread.sleep(3000);	
+
+			homePage.clickDeptDatePicker();		
+			homePage.selectDeptDateAfterOneWeek();
+			Log.message("10. selected Depart Date");	
+
+			homePage.clickReturnDatePicker();
+			homePage.selectReturnDateAfterTwoWeek();
+
+			Log.message("11. selected Return Date");
+			Thread.sleep(20000);
+
+			Log.message("11. selected Return Date");
+			Thread.sleep(10000);
+
+			homePage.specifyPassengerInfo(passengerInfo);
+			Log.message("12. Select Choice Of booking Seat");	
+
+			// step5: click 'Search' button in Yatra Home page
+
 			searchResult =	homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");	
+
 			BrowserActions.nap(5);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check Book as Guest button.");	
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("matrixStrip"), searchResult),
 					"<b>Actual Result:</b> The Airline Matrix is displayed on Review Page.",
 					"<b>Actual Result:</b> The Airline Matrix is not displayed on Review Page.",driver);  
+
 
 			searchResult.clickAirlineMatrix();
 			Log.message("Successfully clicked Airline Matrix");
@@ -435,6 +470,7 @@ public class FlightSearch {
 			//step:  select OneWay Flight Search fields
 			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);		
 			Log.message("3.Successfully filled the search details for 'TWO WAY' trip.");
+
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult =	homePage.clickBtnSearch();
@@ -966,7 +1002,7 @@ public class FlightSearch {
 			Log.message("<b>Expected Result:</b> User should be able to see the Meal Charges inculded in the Fare Detail!");
 			Thread.sleep(5000);
 			Log.assertThat(
-					reviewPage.elementLayer.verifyPageElements(Arrays.asList("mealDetails"), reviewPage),
+					travellerPage.elementLayer.verifyPageElements(Arrays.asList("mealDetails"), travellerPage),
 					"<b>Actual Result:</b> Meal Charges are included In Total Fare and Meal Charges is :" + mealCharges,
 					"<b>Actual Result:</b> Meal Charges are not included In Total Fare", driver);
 
@@ -1022,13 +1058,13 @@ public class FlightSearch {
 
 			travellerPage = reviewPage.clickOnContinue();
 			Log.message("7. Clicked On Continue Button on Review Page!");
-
+			
 			travellerPage.fillTravellerDetailsFormDom();
 			Log.message("8. Enter User Details!");
-
+			
 			travellerPage.clickOnAddMeal();
 			Log.message("9. Clicked On Add Meal!");
-
+			
 			travellerPage.selectMeal();
 			Log.message("10. Selected Meal!");
 			String mealCharges = travellerPage.getTextMealDetails();
@@ -1045,6 +1081,7 @@ public class FlightSearch {
 					travellerPage.elementLayer.verifyPageElements(Arrays.asList("btnAddMeal"), travellerPage),
 					"<b>Actual Result:</b> Meal Charges : "+ mealCharges + "Meal Charges after Removing the Meal :" + mealChargesAfterRemovingMeal,
 					"<b>Actual Result:</b> Meal Charges Can Not Be Removed From Review Page", driver);
+
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1106,6 +1143,7 @@ public class FlightSearch {
 			travellerPage.selectBaggage();
 			Log.message("10. Selected Baggage Type!");
 
+
 			String BaggageFare = travellerPage.getTextBaggageDetails();
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should be able to see the Baggage Charges inculded in the Fare Detail!");
@@ -1114,7 +1152,6 @@ public class FlightSearch {
 					travellerPage.elementLayer.verifyPageElements(Arrays.asList("btnAddBaggage"), travellerPage),
 					"<b>Actual Result:</b> Baggage Charges are included In Total Fare and Baggage Charges is :" + BaggageFare,
 					"<b>Actual Result:</b> Baggage Charges are not included In Total Fare", driver);
-
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -1193,8 +1230,6 @@ public class FlightSearch {
 					"<b>Actual Result:</b> Baggage Charges : "+ BaggageFare + "Baggage Charges after Removing the Baggage :" + BaggageFareAfterRemoving,
 					"<b>Actual Result:</b> Baggage Charges can not be Removed from Review Page", driver);
 
-			
-			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1203,6 +1238,7 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
+
 
 	@Test(groups = {
 	"desktop" }, description = "Verify Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
@@ -1269,13 +1305,12 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
-	@Test(groups = { "desktop" }, description = "Flight Search INTL- OW with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_003(HashMap <String,String> testData) throws Exception {
 
-		//HashMap<String, String> testData = TestDataExtractor.initTestData(workbookName, sheetName);
-		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
+	@Test(groups = { "desktop" }, description = "Flight Search INTL- OW with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+
+	public void TC_Yatra_Flight_003(HashMap <String,String> testData) throws Exception {
+		
+		String browser=testData.get("browser");		
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -1290,41 +1325,40 @@ public class FlightSearch {
 			// step1: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
-
-			LoginPage loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
-
+			
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
+			// step: select Departure date
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
+			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("7.Passenger Info successfully specified");
+			Log.message("6.Passenger Info successfully specified");
 
+			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("8.successfully selectd Passenger class and clicked Done button");
+			Log.message("7.successfully selectd Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("9.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>"); 
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
 			Thread.sleep(6000);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearch"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
 
@@ -1340,9 +1374,7 @@ public class FlightSearch {
 	@Test(groups = { "desktop" }, description = "Flight Search INTL- RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_004(HashMap<String, String> testData) throws Exception {
 
-		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
+		String browser=testData.get("browser");	
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -1359,43 +1391,43 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
-
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'RoundTrip' option in search Home Page ");
+			Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterOrigin(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterDestination(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
+			// step: select Departure date
 			String departDate = homePage.selectDepartureDate(departureDate);
-			Log.message("6.Successfully selected the departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
+			// step: select Return date
 			String returndate = homePage.selectReturnDate(returnDate);
-			Log.message("7.Successfully selected the departure date: <b>" + returndate + "</b>(YY/MM/DD)");
+			Log.message("6.Successfully selected the Return date: <b>" + returndate + "</b>(YY/MM/DD)");
 
+			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("8.Passenger Info successfully specified");
+			Log.message("7.Passenger Info successfully specified");
 
+			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("9.successfully selectd Passenger class and clicked Done button");
+			Log.message("8.successfully selectd Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("10.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("9.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>"); 
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
 			Thread.sleep(6000);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearch"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
 
@@ -1408,18 +1440,16 @@ public class FlightSearch {
 		}
 	}
 
-	
 
 	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_039(HashMap<String, String> testData) throws Exception {
 
 		String browser=testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
+		//String returnDate =  testData.get("ReturnDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
 
@@ -1431,14 +1461,12 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId , password);
-			Log.message("2.Successfully Logged in Yatra account");	
-
 			//step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
-
+			Thread.sleep(3000);
+			
+			//step:  select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);	
 			Log.message("4.Successfully filled the search details for 'ONE WAY' trip.");
 			Thread.sleep(3000);
@@ -1451,15 +1479,82 @@ public class FlightSearch {
 			//step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();			
 			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
-			Thread.sleep(5000);
+			//Thread.sleep(5000);
 			
 			reviewPage.clickOnContinue();
-			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check Book as Guest button.");	
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnBookAsGuest"), reviewPage),
 					"<b>Actual Result:</b> The Book as Guest button is displayed on Review Page.",
 					"<b>Actual Result:</b> The Book as Guest button is not displayed on Review Page.",driver);  
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Flights-OW-DOM -- Verification of payment Failure with Net banking", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_046(HashMap<String, String> testData) throws Exception {
+
+		String browser=testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");	
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2.Successfully Logged in Yatra account");
+			
+			//step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+
+			Thread.sleep(3000);
+			
+			//step:  select OneWay Flight Search fields
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);	
+			Log.message("4.Successfully filled the search details for 'ONE WAY' trip.");
+			Thread.sleep(3000);
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult =	homePage.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");
+
+			ReviewPage reviewPage =  searchResult.clickOnBookNowInOneWay(1);
+			Log.message("6. Clicked On Book Now Button!");
+
+			reviewPage.clickOnContinue();
+			Log.message("7. Clicked On Continue Button on Review Page!");
+
+			reviewPage.enterUserDeatils();
+			Log.message("8. Enter User Details!");
+			
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Check Book as Guest button.");	
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> The Book as Guest button is displayed on Review Page.",
+					"<b>Actual Result:</b> The Book as Guest button is not displayed on Review Page.",driver);  
+			
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1665,10 +1760,11 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
+
 }
 
 
