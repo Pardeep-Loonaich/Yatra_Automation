@@ -15,12 +15,11 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing">
 				<methods>
-<<<<<<< HEAD
+
 					<include name="TC_FlightPricing_015" />
-					
-=======
+				
 					<include name="TC_FlightPricing_022" />
->>>>>>> refs/remotes/origin/Framework_Development
+
 					
 				</methods>
 			</class>
