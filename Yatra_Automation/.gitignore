@@ -7,3 +7,6 @@ test-output/
 .setting
 /testng.xml
 *.class
+
+testData/
+*.xls

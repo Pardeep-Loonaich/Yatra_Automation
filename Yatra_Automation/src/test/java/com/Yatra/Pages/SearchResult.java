@@ -52,7 +52,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "[class='js-flightRow js-flightItem']")
 	List<WebElement> btnBookNow;
 
-	@FindBy(css = "p[class='new-blue-button .js-bookNow book-btn']")
+	@FindBy(css = "p[class='new-blue-button .js-bookNow book-btn relative tc']")
 	WebElement btnBookNowINT;
 
 	@FindBy(css = "div[ng-controller='productFareDetailsController']")

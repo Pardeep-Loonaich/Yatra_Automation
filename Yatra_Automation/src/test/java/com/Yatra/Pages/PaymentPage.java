@@ -283,6 +283,18 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
            BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on cancel ecash redeem.");
 
     }
+    
+    
+
+    /**
+    * Clicked on the  ecash redeem
+    * @return
+    * @throws Exception
+    */
+    public void clickingOnRedeemNow() throws Exception{
+           BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
+
+    }
     /**
     * Getting the text from the Payment details panel
     * @return
