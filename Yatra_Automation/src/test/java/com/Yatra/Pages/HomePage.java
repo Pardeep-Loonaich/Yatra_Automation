@@ -558,6 +558,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestination(destination); // enter Destination value
 		BrowserActions.nap(3);
 		selectDepartureDate(departureDate); // select Departure Date
+		
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult,
 												// Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
@@ -573,8 +574,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 
-	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate,
-			String returnDate, String passengerInfo, String passengerClass) throws Exception {
+	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate,	String returnDate, String passengerInfo, String passengerClass) throws Exception {
 		// selectRoundTrip();
 		BrowserActions.nap(2);
 		enterOrigin(origin); // enter Origin value
