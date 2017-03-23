@@ -27,6 +27,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	Utils utils;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra ReviewPage ***********************************
@@ -451,12 +452,11 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * 
 	 * @throws Exception
 	 */
- // public void fillTravellerDetails_INT(String[] InfantDOB ) throws Exception {
-	public void fillTravellerDetails_DOM() throws Exception {		
-		
+    public void fillTravellerDetails_DOM(String[] Infant) throws Exception {	
+    	// Infant DOB dates 
+    	String[] InfantDOB = selectDOBDate(Infant);  
+    	
 		int infant = 1;	int passengerNum = 1;		
-		String[] InfantDOB = { "02 Apr 2014" };  // Remove later
-		
 		for (int i = 0; i < modTravellerDetails.size(); i++) {
 			String formPaxDetail = "//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']";
 			WebElement lblTraveller = driver.findElement(By.xpath(" //*[@id='paxNum" + i + "']/div[@class='col-xs-12 col-md-1 min-wid52 ng-binding']"));
@@ -500,5 +500,23 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		}
 	}
 	
+    
+    
+    /**
+	 * To select DOB date
+	 * 
+	 * @throws Exception
+	 */
+	
+	public String[] selectDOBDate(String[] DOB) throws Exception {
+		String[] DOBDates = new String[DOB.length] ;
+		for (int i = 0; i < DOB.length; i++) {
+			int iDay = Integer.parseInt(DOB[i]);
+			String date = utils.dateGenerator_DOB("dd MMM yyyy", iDay);
+			Log.event("DOB Date: " + date); 
+			DOBDates[i] = date;						
+		}
+		return DOBDates;
+	}
 
 } //ReviewPage
