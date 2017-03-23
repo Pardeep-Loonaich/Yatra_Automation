@@ -22,7 +22,6 @@
 				<methods>
 					<include name="TC_FlightPricing_015" />				
 					<include name="TC_FlightPricing_022" />
-
 				</methods>
 			</class>
 		</classes>
