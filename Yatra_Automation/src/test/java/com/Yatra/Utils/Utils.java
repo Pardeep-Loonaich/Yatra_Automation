@@ -526,6 +526,7 @@ public class Utils {
 
 		{
 			cal.add(Calendar.DATE, iDay);
+			//cal.add(Calendar.YEAR,-18);
 			
 			dataToBeReturn=simpleDateFormat.format(cal.getTime()).toString();
 			//System.out.println(simpleDateFormat.format(cal.getTime()));
@@ -535,9 +536,10 @@ public class Utils {
 			dataToBeReturn=simpleDateFormat.format(new Date());
 			//System.out.println(simpleDateFormat.format(cal.getTime()));
 		}
-		return dataToBeReturn;
 
+		return dataToBeReturn;
 	}
+	
 	/** 
 	 * 
 	 * @param sExecute: a string flag YES/No

@@ -71,7 +71,7 @@ public class WebDriverFactory {
 	static String deviceName;
 	static URL hubURL;
 	static Proxy zapProxy = new Proxy();
-
+	static MobileEmulationUserAgentConfiguration mobEmuUA =new MobileEmulationUserAgentConfiguration();
 	static DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
 	static DesiredCapabilities firefoxCapabilities = DesiredCapabilities.firefox();
 	static DesiredCapabilities chromeCapabilities = DesiredCapabilities.chrome();
@@ -356,7 +356,7 @@ public class WebDriverFactory {
 						&& configProperty.getProperty("runUserAgentDeviceTest").equalsIgnoreCase("true")) {
 					deviceName = configProperty.hasProperty("deviceName") ? configProperty.getProperty("deviceName")
 							: null;
-					//userAgent = mobEmuUA.getUserAgent(deviceName);
+					userAgent = mobEmuUA.getUserAgent(deviceName);
 					if (userAgent != null && deviceName != null) {
 						driver = new RemoteWebDriver(hubURL, setChromeUserAgent(deviceName, userAgent));
 					} else {
@@ -408,8 +408,7 @@ public class WebDriverFactory {
 				}
 				driver.manage().timeouts().pageLoadTimeout(maxPageLoadWait, TimeUnit.SECONDS);
 			}
-			Assert.assertNotNull(driver,
-					"Driver did not intialize...\n Please check if hub is running / configuration settings are corect.");
+			Assert.assertNotNull(driver,"Driver did not intialize...\n Please check if hub is running / configuration settings are corect.");
 
 			if (!"ANDROID".equalsIgnoreCase(platform)) {
 				driver.manage().window().maximize();
@@ -674,9 +673,9 @@ public class WebDriverFactory {
 		int height = 0;
 		Double pixRatio = null;
 
-		/*width = Integer.valueOf(mobEmuUA.getDeviceWidth(deviceName));
+		width = Integer.valueOf(mobEmuUA.getDeviceWidth(deviceName));
 		height = Integer.valueOf(mobEmuUA.getDeviceHeight(deviceName));
-		pixRatio = Double.valueOf(mobEmuUA.getDevicePixelRatio(deviceName));*/
+		pixRatio = Double.valueOf(mobEmuUA.getDevicePixelRatio(deviceName));
 
 		deviceMetrics.put("width", width);
 		deviceMetrics.put("height", height);

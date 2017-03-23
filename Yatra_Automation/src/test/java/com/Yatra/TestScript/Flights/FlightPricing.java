@@ -53,7 +53,7 @@ public class FlightPricing {
 	@Test(groups = {
 			"desktop" }, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_015(HashMap<String, String> testData) throws Exception {
-		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
+		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -671,7 +671,7 @@ public class FlightPricing {
 
 	@Test(groups = {
 			"desktop" }, description = "Check to price calculation for DOM flight-multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_017(HashMap<String, String> testData) throws Exception {
+	public void TC_FlightPricing_017(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser = testData.get("browser");
