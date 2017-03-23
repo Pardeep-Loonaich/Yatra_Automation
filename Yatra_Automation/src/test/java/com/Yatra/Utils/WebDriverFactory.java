@@ -63,7 +63,7 @@ public class WebDriverFactory {
 
 	private static Logger logger = LoggerFactory.getLogger(WebDriverFactory.class);
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
-	private static MobileEmulationUserAgentConfiguration mobEmuUA = new MobileEmulationUserAgentConfiguration();
+	//private static MobileEmulationUserAgentConfiguration mobEmuUA = new MobileEmulationUserAgentConfiguration();
 
 	static String driverHost;
 	static String driverPort;
