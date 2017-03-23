@@ -110,7 +110,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check to price calculation for DOM flight-round trip", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+			"desktop" }, description = "Check to price calculation for DOM flight-round trip", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_016(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
@@ -178,7 +178,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Insurance added on pax page ", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+			"desktop" }, description = "Insurance added on pax page ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_028(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
@@ -253,7 +253,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Insurance verification on pax page removed", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+			"desktop" }, description = "Insurance verification on pax page removed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_029(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
@@ -341,7 +341,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+			"desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_022(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
