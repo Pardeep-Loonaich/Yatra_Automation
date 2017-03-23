@@ -526,6 +526,7 @@ public class Utils {
 
 		{
 			cal.add(Calendar.DATE, iDay);
+			
 			dataToBeReturn=simpleDateFormat.format(cal.getTime()).toString();
 			//System.out.println(simpleDateFormat.format(cal.getTime()));
 		}
@@ -558,5 +559,4 @@ public class Utils {
 		}
 		return dataToBeReturn;
 	}
-
 }

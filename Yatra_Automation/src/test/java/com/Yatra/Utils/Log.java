@@ -765,7 +765,7 @@ public class Log {
 	}
 
 	/**
-	 * addSauceJobUrlToReport will add the sauce lab job URL( video, selenium
+	 * addSauceJobUrlToReport will add the sauce lab job URL( video, selenium
 	 * log, commands and meta data details)
 	 * 
 	 * @param driver
