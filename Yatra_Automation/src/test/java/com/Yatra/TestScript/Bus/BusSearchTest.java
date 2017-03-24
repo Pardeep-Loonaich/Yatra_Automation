@@ -40,8 +40,7 @@ public class BusSearchTest {
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
-	@Test(groups = {
-			"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_001(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -90,8 +89,7 @@ public class BusSearchTest {
 		}
 	}
 
-	@Test(groups = {
-			"desktop" }, description = "Search Oneway bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Search Oneway bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_002(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -114,7 +112,7 @@ public class BusSearchTest {
 
 			homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
-
+			
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
 			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
 

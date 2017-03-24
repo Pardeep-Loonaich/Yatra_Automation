@@ -180,6 +180,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "#BE_bus_search_btn")
 	WebElement btnSearchBus;
 	
+	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month-']")
+	List<WebElement> selectMonth_Bus;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -675,13 +678,14 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
-		BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on departure date icon");
-		selectMonth.get(month - 2).click();
+		BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on Bus Return date icon");
+		selectMonth_Bus.get(month - 3).click();
+		BrowserActions.nap(2);
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		datePicker.get(0).click();
-		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
+		BrowserActions.nap(2);
+		datePicker.get(7).click();
+		Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
 		return date;
-
 	}
 
 	/**
@@ -957,11 +961,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
-		BrowserActions.clickOnElement(dateReturnBus, driver, "clicking on return date icon");
-		selectMonth.get(month - 2).click();
+		BrowserActions.clickOnElement(dateReturnBus, driver, "clicking on Bus Return date icon");
+		selectMonth_Bus.get(month - 3).click();
+		BrowserActions.nap(2);
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		datePicker.get(0).click();
-		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
+		BrowserActions.nap(2);
+		datePicker.get(7).click();
+		Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
 	
@@ -975,11 +981,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
-		BrowserActions.clickOnElement(dateDepartureBus, driver, "clicking on departure date icon");
-		selectMonth.get(month - 2).click();
+		BrowserActions.clickOnElement(dateDepartureBus, driver, "clicking on Bus Depart date icon");
+		selectMonth_Bus.get(month - 3).click();
+		BrowserActions.nap(2);
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		datePicker.get(0).click();
-		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
+		BrowserActions.nap(2);
+		datePicker.get(7).click();
+		Log.event("Selected Bus Departure Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
 	/**
@@ -1081,5 +1089,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
 		Utils.waitForPageLoad(driver);
 	}
+	
+	
 	
 } //HomePage
