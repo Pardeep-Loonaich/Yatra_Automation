@@ -40,8 +40,7 @@ public class BusSearchTest {
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
-	@Test(groups = {
-			"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_001(HashMap<String, String> testData) throws Exception {
 
 		// HashMap<String, String> testData =
@@ -73,10 +72,8 @@ public class BusSearchTest {
 			homePage.enterDestinationBus(destination);
 			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
-			// String departDate =
-			// homePage.selectDepartureDateBus(departureDate);
-			// Log.message("6.Successfully selected the Departure date: <b>" +
-			// departDate + "</b>(YY/MM/DD)");
+			String departDate = homePage.selectDepartureDateBus(departureDate);
+			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			homePage.PassengerInfoBus(passengerInfo);
 			Log.message("7. PassengerInfo added!");
@@ -103,8 +100,7 @@ public class BusSearchTest {
 		}
 	}
 
-	@Test(groups = {
-			"desktop" }, description = "Search Oneway bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Search Oneway bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_002(HashMap<String, String> testData) throws Exception {
 
 		// HashMap<String, String> testData =
@@ -136,10 +132,8 @@ public class BusSearchTest {
 			homePage.enterDestinationBus(destination);
 			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
-			// String departDate =
-			// homePage.selectDepartureDateBus(departureDate);
-			// Log.message("6.Successfully selected the Departure date: <b>" +
-			// departDate + "</b>(YY/MM/DD)");
+			String departDate = homePage.selectDepartureDateBus(departureDate);
+			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			homePage.PassengerInfoBus(passengerInfo);
 			Log.message("8. PassengerInfo added!");
@@ -200,14 +194,11 @@ public class BusSearchTest {
 			homePage.enterDestinationBus(destination);
 			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 
-			// String departDate =
-			// homePage.selectDepartureDateBus(departureDate);
-			// Log.message("6.Successfully selected the Departure date: <b>" +
-			// departDate + "</b>(YY/MM/DD)");
+			String departDate = homePage.selectDepartureDateBus(departureDate);
+			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
 
-			// String returndate = homePage.selectReturnDate(returnDate);
-			// Log.message("7.Successfully selected the Return date: <b>" +
-			// returndate + "</b>(YY/MM/DD)");
+			 String returndate = homePage.selectReturnDateBus(returnDate);
+			 Log.message("7.Successfully selected the Return date: <b>" + returndate + "</b>(YY/MM/DD)");
 
 			homePage.PassengerInfoBus(passengerInfo);
 			Log.message("8. PassengerInfo added!");
