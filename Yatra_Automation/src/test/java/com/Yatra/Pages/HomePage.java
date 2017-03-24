@@ -66,7 +66,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	String passengerClassLocator = "div[id='flight_class_select_child'] ul li";
 
-	@FindBy(css = "div[class='be-ddn-footer'] span")
+	@FindBy(css = "div[class='be-ddn-footer']>span[class='done']")
 	WebElement submitPassengerClassInfo;
 
 	@FindBy(css = "a[title='One Way']")
@@ -598,6 +598,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public void clickDoneButtonInPassengerBox() throws Exception {
+		Utils.waitForElement(driver, submitPassengerClassInfo);
 		BrowserActions.clickOnElement(submitPassengerClassInfo, driver, "Done Button");
 		Log.event("Successfully clicked Done button in Passenger DropDown box");
 
@@ -614,7 +615,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
+		Utils.waitForElement(driver, dateDeparture);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
+		
 		selectMonth.get(month - 2).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();

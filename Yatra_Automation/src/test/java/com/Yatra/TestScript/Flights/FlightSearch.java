@@ -1344,39 +1344,40 @@ public class FlightSearch {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
-
+		
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 			Thread.sleep(3000);
 
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-			Log.message("4.Successfully filled the search details for 'ONE WAY' trip.");
+			Log.message("3.Successfully filled the search details for 'ONE WAY' trip.");
 			Thread.sleep(3000);
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
 
-			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(1);
-			Log.message("6. Clicked On Book Now Button!");
+			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			Log.message("5. Clicked On Book Now Button!");
 
 			reviewPage.clickOnContinue();
-			Log.message("7. Clicked On Continue Button on Review Page!");
+			Log.message("6. Clicked On Continue Button on Review Page!");
 
-			reviewPage.loginYatraGuestAccount(emailId, mobile);
-			Log.message("8. Enter User Details!");
+			reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("7. Enter User Details as SignedIn User!");
 
-			Log.message("<br>");
-
-			Log.message("<b>Expected Result:</b> Check Book as Guest button.");
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnBookAsGuest"), reviewPage),
-
-					"<b>Actual Result:</b> The Book as Guest button is displayed on Review Page.",
-					"<b>Actual Result:</b> The Book as Guest button is not displayed on Review Page.", driver);
+			travellerPage.fillTravellerDetailsFormDom();
+			Log.message("8. Filled the traveller details.");
+			
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue in traveller Page.");
+			
+			paymentPage.selectPaymentType("NetBanking");
+			Log.message("Selected NetBanking as payment type.");
+			
+			
 
 			Log.testCaseResult();
 

@@ -305,4 +305,24 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
            return txtDetails;
 
     }
+    
+    @FindBy(css ="div[id='cpmt_tabContainer']>ul>li>a")
+    List<WebElement> paymentType;
+    
+    public void selectPaymentType(String PaymentType) throws Exception {
+	//	Utils.waitForElement(driver, selectEventType);
+		//BrowserActions.javascriptClick(selectEventType, driver, "State Drop down");
+			List<WebElement> lstElement = paymentType;
+		
+		for (WebElement e : lstElement) {
+			if (!(e.getText().trim().equals(""))) {
+								BrowserActions.scrollToViewElement(e, driver);
+				BrowserActions.clickOnElement(e, driver, "list elements");
+				break;
+
+			}
+		}
+
+	}
+
 }
