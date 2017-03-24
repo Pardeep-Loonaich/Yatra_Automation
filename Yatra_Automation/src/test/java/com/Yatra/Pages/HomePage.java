@@ -999,7 +999,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	
 	public void selectRoundTripBusSearchFields(String origin, String destination, String departureDate,
-			String returnDate, String passengerInfo, String passengerClass) throws Exception {
+			String returnDate, String passengerInfo) throws Exception {
 		enterOriginBus(origin); // enter Origin value
 		BrowserActions.nap(2);
 		enterDestinationBus(destination); // enter Destination value
@@ -1008,9 +1008,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		selectReturnDateBus(returnDate); // select Return Date
 		BrowserActions.nap(2);
-		PassengerInfoBus(passengerClass); // select Passengers
+		PassengerInfoBus(passengerInfo); // select Passengers
 		BrowserActions.nap(2);
-		Log.event("Successfully selected RoundTrip Bus Search fields");
+		Log.event("Successfully Filled RoundTrip Bus Search fields");
 	}
 
 	/**
@@ -1020,7 +1020,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public void selectOneWayBusSearchFields(String origin, String destination, String departureDate,
-			String passengerInfo, String passengerClass) throws Exception {
+			String passengerInfo) throws Exception {
 		BrowserActions.nap(2);
 		enterOriginBus(origin); // enter Origin value
 		BrowserActions.nap(2);
@@ -1028,8 +1028,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		selectDepartureDateBus(departureDate); // select Departure Date
 		BrowserActions.nap(2);
-		PassengerInfoBus(passengerClass); // select Passengers 
-		Log.event("Successfully selected OneWay Bus Search fields");
+		PassengerInfoBus(passengerInfo); // select Passengers 
+		Log.event("Successfully Filled OneWay Bus Search fields");
 
 	}
 

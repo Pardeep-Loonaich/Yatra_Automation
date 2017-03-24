@@ -44,8 +44,6 @@ public class BusSearchTest {
 			"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_001(HashMap<String, String> testData) throws Exception {
 
-		// HashMap<String, String> testData =
-		// TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -67,22 +65,11 @@ public class BusSearchTest {
 			homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
-			homePage.enterOriginBus(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
-
-			homePage.enterDestinationBus(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
-
-			// String departDate =
-			// homePage.selectDepartureDateBus(departureDate);
-			// Log.message("6.Successfully selected the Departure date: <b>" +
-			// departDate + "</b>(YY/MM/DD)");
-
-			homePage.PassengerInfoBus(passengerInfo);
-			Log.message("7. PassengerInfo added!");
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
 
 			searchResultBus = homePage.clickBtnSearchBus();
-			Log.message("8. Clicked On Search Button!");
+			Log.message("5. Clicked On Search Button!");
 			String BusDetail = searchResultBus.getTextBusDetails();
 
 			Log.message("<br>");
@@ -107,8 +94,6 @@ public class BusSearchTest {
 			"desktop" }, description = "Search Oneway bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_002(HashMap<String, String> testData) throws Exception {
 
-		// HashMap<String, String> testData =
-		// TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -130,22 +115,11 @@ public class BusSearchTest {
 			homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
-			homePage.enterOriginBus(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
-
-			homePage.enterDestinationBus(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
-
-			// String departDate =
-			// homePage.selectDepartureDateBus(departureDate);
-			// Log.message("6.Successfully selected the Departure date: <b>" +
-			// departDate + "</b>(YY/MM/DD)");
-
-			homePage.PassengerInfoBus(passengerInfo);
-			Log.message("8. PassengerInfo added!");
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
 
 			searchResultBus = homePage.clickBtnSearchBus();
-			Log.message("9. Clicked On Search Button!");
+			Log.message("5. Clicked On Search Button!");
 			String BusDetail = searchResultBus.getTextBusDetails();
 
 			Log.message("<br>");
@@ -170,8 +144,6 @@ public class BusSearchTest {
 			"desktop" }, description = "Search RoundTrip bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_003(HashMap<String, String> testData) throws Exception {
 
-		// HashMap<String, String> testData =
-		// TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -194,26 +166,11 @@ public class BusSearchTest {
 			homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
-			homePage.enterOriginBus(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
-
-			homePage.enterDestinationBus(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
-
-			// String departDate =
-			// homePage.selectDepartureDateBus(departureDate);
-			// Log.message("6.Successfully selected the Departure date: <b>" +
-			// departDate + "</b>(YY/MM/DD)");
-
-			// String returndate = homePage.selectReturnDate(returnDate);
-			// Log.message("7.Successfully selected the Return date: <b>" +
-			// returndate + "</b>(YY/MM/DD)");
-
-			homePage.PassengerInfoBus(passengerInfo);
-			Log.message("8. PassengerInfo added!");
+			homePage.selectRoundTripBusSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ROUND TRIP' trip!");
 
 			searchResultBus = homePage.clickBtnSearchBus();
-			Log.message("9. Clicked On Search Button!");
+			Log.message("5. Clicked On Search Button!");
 			String BusDetail = searchResultBus.getTextBusDetails();
 
 			Log.message("<br>");
@@ -238,8 +195,6 @@ public class BusSearchTest {
 			"desktop" }, description = "Search RoundTrip bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_004(HashMap<String, String> testData) throws Exception {
 
-		// HashMap<String, String> testData =
-		// TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -262,26 +217,11 @@ public class BusSearchTest {
 			homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
-			homePage.enterOriginBus(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
-
-			homePage.enterDestinationBus(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
-
-			// String departDate =
-			// homePage.selectDepartureDateBus(departureDate);
-			// Log.message("6.Successfully selected the Departure date: <b>" +
-			// departDate + "</b>(YY/MM/DD)");
-
-			// String returndate = homePage.selectReturnDate(returnDate);
-			// Log.message("7.Successfully selected the Return date: <b>" +
-			// returndate + "</b>(YY/MM/DD)");
-
-			homePage.PassengerInfoBus(passengerInfo);
-			Log.message("8. PassengerInfo added!");
+			homePage.selectRoundTripBusSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ROUND TRIP' trip!");
 
 			searchResultBus = homePage.clickBtnSearchBus();
-			Log.message("9. Clicked On Search Button!");
+			Log.message("5. Clicked On Search Button!");
 			String BusDetail = searchResultBus.getTextBusDetails();
 
 			Log.message("<br>");
@@ -303,17 +243,14 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for message in case of no result", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+			"desktop" }, description = "Check for Message in Case Of No Result", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_005(HashMap<String, String> testData) throws Exception {
 
-		// HashMap<String, String> testData =
-		// TestDataExtractor.initTestData(workbookName, sheetName);
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
-		String returnDate = testData.get("ReturnDate");
 		String passengerInfo = testData.get("PassengerInfo");
 
 		// Get the web driver instance
@@ -330,26 +267,11 @@ public class BusSearchTest {
 			homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
-			homePage.enterOriginBus(origin);
-			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
-
-			homePage.enterDestinationBus(destination);
-			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
-
-			// String departDate =
-			// homePage.selectDepartureDateBus(departureDate);
-			// Log.message("6.Successfully selected the Departure date: <b>" +
-			// departDate + "</b>(YY/MM/DD)");
-
-			// String returndate = homePage.selectReturnDate(returnDate);
-			// Log.message("7.Successfully selected the Return date: <b>" +
-			// returndate + "</b>(YY/MM/DD)");
-
-			homePage.PassengerInfoBus(passengerInfo);
-			Log.message("8. PassengerInfo added!");
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
 
 			searchResultBus = homePage.clickBtnSearchBus();
-			Log.message("9. Clicked On Search Button!");
+			Log.message("5. Clicked On Search Button!");
 			String SRPDetail = searchResultBus.getTextNoBusFound();
 
 			Log.message("<br>");
@@ -362,6 +284,56 @@ public class BusSearchTest {
 					"<b>Actual Result:</b> User Successfully navigated on SearchResult page and On SRP details as  : "
 							+ SRPDetail,
 					"<b>Actual Result:</b> User navigated on SearchResult Page,NO Bus Found Message not displayed On SRP Page",
+					driver);
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Results should be sorted by Price In Ascending Order", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void Web_Bus_006(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickBuses();
+			Log.message("2. Clicked on Bus Link!");
+
+			homePage.selectTripTypeBus(tripType);
+			Log.message("3. Trip Type Selected!");
+
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
+
+			searchResultBus = homePage.clickBtnSearchBus();
+			Log.message("5. Clicked On Search Button!");
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> On SearchResultPage Result Should Be Displayed In Ascending Order");
+			Thread.sleep(6000);
+			Log.assertThat(
+					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("txtNoResultFoundBus"),
+							searchResultBus),
+					"<b>Actual Result:</b> On SearchResultPage Result is Displayed in Ascending Order",
+					"<b>Actual Result:</b> On SearchResultPage Result is not Displayed in Ascending Order",
 					driver);
 
 		} catch (Exception e) {
