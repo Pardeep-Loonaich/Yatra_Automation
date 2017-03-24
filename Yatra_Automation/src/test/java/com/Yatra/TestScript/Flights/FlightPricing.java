@@ -782,6 +782,9 @@ public class FlightPricing {
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
+		String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -827,7 +830,7 @@ public class FlightPricing {
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("8.Successfully Logged in Yatra account!");
 
-			travellerPage.fillTravellerDetailsFormDom();
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
 			Log.message("9. Filled Traveller Details for domestic Flights.");
 
 			paymentPage = travellerPage.clickOnContinue();
@@ -878,6 +881,9 @@ public class FlightPricing {
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
+		String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -924,7 +930,7 @@ public class FlightPricing {
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("7.Successfully Logged in Yatra account!");
 
-			travellerPage.fillTravellerDetailsFormDom();
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
 			Log.message("8. Filled Traveller Details for domestic Flights.");
 
 			paymentPage = travellerPage.clickOnContinue();

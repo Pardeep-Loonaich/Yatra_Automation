@@ -818,5 +818,5 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
 	}
-
+	
 }// HomePage
