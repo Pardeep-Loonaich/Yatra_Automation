@@ -1,5 +1,7 @@
 package com.Yatra.Pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,6 +28,13 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
 	@FindBy(xpath = "//*[@id='trainSrp']/div/p")
 	public WebElement fldContentTrainMsgBox; 
+	
+	@FindBy (xpath ="//li[@class='trainDepart']")
+	public List<WebElement> timeDepart;
+	
+	@FindBy (xpath ="//a[@class='active']/span")
+	public WebElement icnDepartDateSort;
+	
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -72,5 +81,13 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		return true;
 	}
 	
+	public void sortDepartDate() throws Exception
+	{
+		for(int i=0;i<=1;i++)
+		{
+			BrowserActions.clickOnElement(icnDepartDateSort, driver, "Clicked on sort icon");
+		}
+		
+	}
 	
 }

@@ -19,7 +19,7 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Train.TrainSearch">
 				<methods>
-					<include name="Web_Train_001" />					
+					<include name="Web_Train_003" />					
 				</methods>
 			</class>
 		</classes>
