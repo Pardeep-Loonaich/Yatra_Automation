@@ -1107,7 +1107,7 @@ public class FlightSearch {
 		String paymentType = testData.get("PaymentMode");
 		String bankName = testData.get("BankName");
 
-		
+
 		String[] infantDOB = infant.split(",");
 
 		// Get the web driver instance
@@ -1121,7 +1121,7 @@ public class FlightSearch {
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 			Thread.sleep(3000);
-			
+
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully filled the search details for 'ONE WAY' trip.");
@@ -1146,24 +1146,24 @@ public class FlightSearch {
 
 			travellerPage.fillTravellerDetails_DOM(infantDOB);
 			Log.message("8. Filled the traveller details.");
-			
+
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue in traveller Page.");
-			
+
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected NetBanking as payment type.");
-			
-            paymentPage.selectBankName(bankName);
+
+			paymentPage.selectBankName(bankName);
 			Log.message("11. Selected Bank as 'CITY BANK'.");
 
 			paymentPage.clickOnPayNow();
 			Log.message("12. Clicked on 'Paynow' button.");
-			
+
 			//Need to complete the testcase
-		//	paymentPage.clickedOnSubmit();
-			
-		//	driver.navigate().back();
-			
+			//	paymentPage.clickedOnSubmit();
+
+			//	driver.navigate().back();
+
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -1268,7 +1268,7 @@ public class FlightSearch {
 		String adult = testData.get("Adult");
 		String child = testData.get("Child");
 		String infant = testData.get("Infant");
-		
+
 		String[] arrayAdult = adult.split(",");
 		String[] childAdult = child.split(",");
 		String[] infantDOB = infant.split(",");
