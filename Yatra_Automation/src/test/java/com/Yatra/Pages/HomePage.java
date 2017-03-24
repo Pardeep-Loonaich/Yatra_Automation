@@ -56,6 +56,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']")
 	List<WebElement> selectMonth;
+	
+	@FindBy(css = "ul[class='month-list'] li a[href*='#PegasusCal-0-month-']")
+	List<WebElement> selectMonth1;
 
 	@FindBy(css = "div[id='BE_flight_paxInfoBox']")
 	WebElement passengerInfo;
@@ -66,7 +69,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	String passengerClassLocator = "div[id='flight_class_select_child'] ul li";
 
-	@FindBy(css = "div[class='be-ddn-footer'] span")
+	@FindBy(css = "div[class='be-ddn-footer']>span[class='done']")
 	WebElement submitPassengerClassInfo;
 
 	@FindBy(css = "a[title='One Way']")
@@ -152,6 +155,18 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(css = "#BE_bus_from_station")
 	 WebElement txtOriginBus;
+	
+	@FindBy(xpath = "//input[@id='BE_train_from_station']")
+	WebElement txtTrainOrigin;
+	
+	@FindBy(xpath = "//input[@id='BE_train_to_station']")
+	WebElement txtTrainDestination;
+	
+	@FindBy(xpath = "//input[@id='BE_train_depart_date']")
+	WebElement dateTrainDeparture;
+	
+	@FindBy(xpath="//input[@id='BE_train_search_btn']")
+	WebElement btnTrainSearch;
 
 	@FindBy(css = "#BE_bus_to_station")
 	WebElement txtDestinationBus;
@@ -582,6 +597,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestination(destination); // enter Destination value
 		BrowserActions.nap(3);
 		selectDepartureDate(departureDate); // select Departure Date
+		
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult,
 												// Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
@@ -597,8 +613,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 
-	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate,
-			String returnDate, String passengerInfo, String passengerClass) throws Exception {
+	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate,	String returnDate, String passengerInfo, String passengerClass) throws Exception {
 		// selectRoundTrip();
 		BrowserActions.nap(2);
 		enterOrigin(origin); // enter Origin value
@@ -622,6 +637,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public void clickDoneButtonInPassengerBox() throws Exception {
+		Utils.waitForElement(driver, submitPassengerClassInfo);
 		BrowserActions.clickOnElement(submitPassengerClassInfo, driver, "Done Button");
 		Log.event("Successfully clicked Done button in Passenger DropDown box");
 
@@ -638,12 +654,34 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
+		Utils.waitForElement(driver, dateDeparture);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
+		
 		selectMonth.get(month - 2).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
 		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
 		return date;
+	}
+	
+	/**
+	 * To select Departure Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public String selectTrainDepartureDate(String trainDepartureDate) throws Exception {
+		int iDay = Integer.parseInt(trainDepartureDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on departure date icon");
+		selectMonth.get(month - 2).click();
+		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(0).click();
+		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
+		return date;
+
 	}
 
 	/**
@@ -839,6 +877,19 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
 	}
+
+	/**
+	 * Enter Train Origin
+	 * 
+	 * @param trainOrigin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterTrainOrigin(String trainOrigin) throws Exception {
+		Utils.waitForElement(driver, txtTrainOrigin);
+		BrowserActions.typeOnTextField(txtTrainOrigin, trainOrigin, driver, "Select Origin");
+		Log.event("Entered the Origin: " + trainOrigin);
+	}
 	
 	
 	/**
@@ -860,6 +911,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
+
 
 	public void selectTripTypeBus(String tripType) throws Exception {
 		if (tripType.equals(Constants.C_ONEWAY)) {
@@ -980,4 +1032,54 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Log.event("Successfully selected OneWay Bus Search fields");
 
 	}
-}// HomePage
+
+	/**
+	 * Enter Train Destination
+	 * 
+	 * @param trainDestination
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterTrainDestination(String trainDestination) throws Exception {
+		Utils.waitForElement(driver, txtTrainDestination);
+		BrowserActions.typeOnTextField(txtTrainDestination, trainDestination, driver, "Select Destination");
+		Log.event("Entered the Destination: " + trainDestination);
+	}
+
+	/**
+	 * To click search button on Home page for Trains
+	 * 
+	 * @throws Exception
+	 */
+
+	public TrainSearchResult clickTrainBtnSearch() throws Exception {
+		// final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnTrainSearch, driver, "Train Search");
+		Utils.waitForPageLoad(driver);
+		return new TrainSearchResult(driver).get();
+
+	}
+	
+	/**
+	 * To select Train search Fields
+	 * 
+	 * @throws Exception
+	 */
+
+	public void selectTrainSearchFields(String trainOrigin, String trainDestination, String trainDepartureDate) throws Exception {
+		BrowserActions.nap(2);
+		enterTrainOrigin(trainOrigin); // enter Origin value
+		enterTrainDestination(trainDestination); // enter Destination value
+		BrowserActions.nap(3);
+		selectTrainDepartureDate(trainDepartureDate); // select Departure Date
+		Log.event("Successfully selected OneWay Flight Search fields");
+
+	}
+	
+	public void clickTrainTab() throws Exception {
+		// final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
+		Utils.waitForPageLoad(driver);
+	}
+	
+} //HomePage

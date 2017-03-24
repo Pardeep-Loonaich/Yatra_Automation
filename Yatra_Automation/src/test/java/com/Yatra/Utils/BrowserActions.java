@@ -151,7 +151,7 @@ public class BrowserActions {
 			throw new Exception(elementDescription + " not found in page!!");
 
 		try {
-			btn.click();
+			btn.click();				
 		} catch (NoSuchElementException e) {
 			throw new Exception(elementDescription + " not found in page!!");
 		}

@@ -283,6 +283,18 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
            BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on cancel ecash redeem.");
 
     }
+    
+    
+
+    /**
+    * Clicked on the  ecash redeem
+    * @return
+    * @throws Exception
+    */
+    public void clickingOnRedeemNow() throws Exception{
+           BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
+
+    }
     /**
     * Getting the text from the Payment details panel
     * @return
@@ -293,4 +305,24 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
            return txtDetails;
 
     }
+    
+    @FindBy(css ="div[id='cpmt_tabContainer']>ul>li>a")
+    List<WebElement> paymentType;
+    
+    public void selectPaymentType(String PaymentType) throws Exception {
+	//	Utils.waitForElement(driver, selectEventType);
+		//BrowserActions.javascriptClick(selectEventType, driver, "State Drop down");
+			List<WebElement> lstElement = paymentType;
+		
+		for (WebElement e : lstElement) {
+			if (!(e.getText().trim().equals(""))) {
+								BrowserActions.scrollToViewElement(e, driver);
+				BrowserActions.clickOnElement(e, driver, "list elements");
+				break;
+
+			}
+		}
+
+	}
+
 }

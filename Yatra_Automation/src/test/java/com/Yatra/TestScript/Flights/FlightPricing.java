@@ -51,7 +51,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		"mobile"}, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_015(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
@@ -61,7 +61,7 @@ public class FlightPricing {
 		String departureDate = testData.get("DepartureDate");
 
 		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("passengerClass");
+		String passengerClass = testData.get("Class");
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
@@ -110,7 +110,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check to price calculation for DOM flight-round trip", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+			"desktop" }, description = "Check to price calculation for DOM flight-round trip", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_016(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
@@ -135,9 +135,10 @@ public class FlightPricing {
 				Log.message("2.Verified Yatra Title text");
 			}
 
+			
 			// step: enter search details in Yatra Home page
-			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo,
-					passengerClass);
+			homePage.selectRoundTrip();
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo,passengerClass);
 			Log.message("3.Successfully filled the search details for 'ROUND' trip.");
 
 			// step: click 'Search' button in Yatra Home page
@@ -178,7 +179,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Insurance added on pax page ", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+			"desktop" }, description = "Insurance added on pax page ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_028(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
@@ -216,7 +217,7 @@ public class FlightPricing {
 			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
 
 			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearchIcon"), searchResult),
+					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
@@ -253,7 +254,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Insurance verification on pax page removed", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+			"desktop" }, description = "Insurance verification on pax page removed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_029(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
@@ -290,7 +291,7 @@ public class FlightPricing {
 			Log.message("5.Clicked on 'Search' in Yatra Homepage.");
 
 			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("BtnModifySearchIcon"), searchResult),
+					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
@@ -341,7 +342,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "parallelTestDataProvider")
+			"desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_022(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
@@ -671,12 +672,10 @@ public class FlightPricing {
 
 	@Test(groups = {
 			"desktop" }, description = "Check to price calculation for DOM flight-multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_017(HashMap<String, String> testData) throws Exception {
+	public void TC_FlightPricing_017(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser = testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin1 = testData.get("Origin");
 		String origin2 = testData.get("Origin_Multicity");
 		String tripType = testData.get("TripType");
@@ -695,47 +694,44 @@ public class FlightPricing {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			LoginPage loginPage = homePage.navigateToSignIn();
-			loginPage.loginYatraAccount(emailId, password);
-			Log.message("2.Successfully Logged in Yatra account");
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("3.Successfully clicked 'Multicity' option in search Home Page ");
+			Log.message("2.Successfully clicked 'Multicity' option in search Home Page ");
 
 			// step: enter Origin place in Yatra Home page
 			homePage.enterMultiCityOrigin1(origin1);
-			Log.message("4.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
+			Log.message("3.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination1(destination1);
 			Log.message(
-					"5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+					"4.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 
 			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
-			Log.message("6.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
+			Log.message("5.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
 
 			homePage.enterMultiCityOrigin2(origin2);
-			Log.message("7.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
+			Log.message("6.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination2(destination2);
 			Log.message(
-					"8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+					"7.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
 			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
-			Log.message("9.Successfully selected the Multicity Departure1 date: <b>" + returndate + "</b>(YY/MM/DD)");
+			Log.message("8.Successfully selected the Multicity Departure1 date: <b>" + returndate + "</b>(YY/MM/DD)");
 
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("10.Passenger Info successfully specified");
+			Log.message("9.Passenger Info successfully specified");
 
 			homePage.selectPassengerClass(passengerClass);
 			homePage.clickDoneButtonInPassengerBox();
-			Log.message("11.Successfully selected Passenger class and clicked Done button");
+			Log.message("10.Successfully selected Passenger class and clicked Done button");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("12.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Thread.sleep(2000);
 			Log.assertThat(
@@ -745,15 +741,16 @@ public class FlightPricing {
 					driver);
 
 			reviewPage = searchResult.clickOnBookNowInMulticity(1, 1, 2, 4);
-			Log.message("13.Clicked on 'Book Now' button in Search Result Page ");
+			Log.message("12.Clicked on 'Book Now' button in Search Result Page ");
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
 
+			reviewPage.popUpAppear();
 			// clicked on fees & surcharge link
 			reviewPage.clickOnFareRulesLink();
-			Log.message("14.Clicked on 'Fare Rules' details link in Review Page.");
+			Log.message("13.Clicked on 'Fare Rules' details link in Review Page.");
 
 			Log.message("<br>");
 			Log.message(
@@ -767,7 +764,7 @@ public class FlightPricing {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -785,6 +782,9 @@ public class FlightPricing {
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
+		String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -830,11 +830,17 @@ public class FlightPricing {
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("8.Successfully Logged in Yatra account!");
 
-			travellerPage.fillTravellerDetailsFormDom();
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
 			Log.message("9. Filled Traveller Details for domestic Flights.");
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("10.Clicked on Continue button in Review Page Step-2.");
+			
+			paymentPage.clickingOnRedeemNow();
+			Log.message("11.Clicked on Redeem Now Button to add ecash.");
+			
+			paymentPage.clickingOnGotIt();
+			Log.message("12.Clicked on 'OK,Got It' link to confirm redeem ecash.");
 
 			Log.message("<br>");
 
@@ -862,8 +868,7 @@ public class FlightPricing {
 		}
 	}
 
-	@Test(groups = {
-			"desktop" }, description = "eCash redemption on payswift page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "eCash redemption on payswift page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_FlightPricing_037(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
@@ -876,6 +881,9 @@ public class FlightPricing {
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
+		String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -922,14 +930,17 @@ public class FlightPricing {
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("7.Successfully Logged in Yatra account!");
 
-			travellerPage.fillTravellerDetailsFormDom();
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
 			Log.message("8. Filled Traveller Details for domestic Flights.");
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9.Clicked on Continue button in Review Page Step-2.");
+			
+			paymentPage.clickingOnRedeemNow();
+			Log.message("10.Clicked on Redeem Now Button to add ecash.");
 
 			paymentPage.clickingToCancelEcashRedem();
-			Log.message("10.Clicked on Cancel Ecash Redeem in Review Page Step-2.");
+			Log.message("11.Clicked on Cancel Ecash Redeem in Review Page Step-2.");
 
 			Log.message("<br>");
 
