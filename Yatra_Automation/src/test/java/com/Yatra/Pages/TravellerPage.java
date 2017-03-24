@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -145,33 +146,30 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 		Utils.waitForPageLoad(driver);
 	}// load
-
 	/**
-	 * Filling traveller details form
+	 * To fill Traveller details -- International 
 	 * 
 	 * @throws Exception
 	 */
+	// public void fillTravellerDetails_INT(String[] adultDOB, String[], childDOB, String[] InfantDOB ) throws Exception {
+	public void fillTravellerDetails_INT(String[] Adult, String[] Child, String[] Infant) throws Exception {
+		int adult = 1; int child = 1; int infant = 1; int passengerNum = 1;
 
-	public void fillTravellerDetailsFormDom() throws Exception {
+		String[] adultDOB = selectDOBDate(Adult) ;  // Remove later
+		String[] childDOB = selectDOBDate(Child);
+		String[] InfantDOB = selectDOBDate(Infant); 
 
 		for (int i = 0; i < modTravellerDetails.size(); i++) {
-
 			String formPaxDetail = "//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']";
-
-			WebElement lblTraveller = driver.findElement(
-					By.xpath(" //*[@id='paxNum" + i + "']/div[@class='col-xs-12 col-md-1 min-wid52 ng-binding']"));
-			WebElement Firstname = driver.findElement(By.xpath(
-					"//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input"));
-			WebElement Lastname = driver.findElement(By
-					.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input"));
+			WebElement lblTraveller = driver.findElement(By.xpath(" //*[@id='paxNum" + i + "']/div[@class='col-xs-12 col-md-1 min-wid52 ng-binding']"));
+			WebElement Firstname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input"));
+			WebElement Lastname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input"));
 
 			WebElement drptitle = driver.findElement(By.xpath(formPaxDetail));
 			BrowserActions.clickOnElement(drptitle, driver, "Title Dropdown Clicked");
 			String label = BrowserActions.getText(driver, lblTraveller, "Traveller label");
 
-			List<WebElement> titleOptions = driver.findElements(By.xpath("//*[@id='paxNum" + i
-					+ "']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option"));
-
+			List<WebElement> titleOptions = driver.findElements(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option"));
 			if (titleOptions.size() != 0) {
 				int rand = Utils.getRandom(1, titleOptions.size());
 				Utils.waitForElement(driver, titleOptions.get(rand));
@@ -181,43 +179,112 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 			String randomFirstName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
 			String randomLastName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
-			BrowserActions.typeOnTextField(Firstname, randomFirstName, driver, "First Name");
+
+			// enter First Name with random string
+			BrowserActions.typeOnTextField(Firstname, randomFirstName, driver, "First Name");			
+			Log.event("Successfully entered Passenger" + passengerNum + " FirstName: " + randomFirstName);
+
+			// enter Last Name with random string
 			BrowserActions.typeOnTextField(Lastname, randomLastName, driver, "Last Name");
+			Log.event("Successfully entered Passenger" + passengerNum + " Last Name: " + randomLastName);
 
-			/*
-			 * method in progress
-			 */
-
-			if (label.startsWith("Infant")) {
-				WebElement DOB = driver.findElement(By.xpath("//*[@id='paxNum" + i
-						+ "']/div[@class='col-md-2 col-xs-offset-3 col-md-offset-0 md-align']/span/input[@name='dob" + i
-						+ "']"));
-				BrowserActions.clickOnElement(DOB, driver, "Clicked on Infant date");
-
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd MMM yyyy");
-				LocalDate localDate = LocalDate.now().plusYears(-1);
-				System.out.println(dtf.format(localDate));
-				String dateDOB = dtf.format(localDate);
-
-				for (int z = 0; z <= 2; z++) {
-					WebElement t = driver.findElement(By.cssSelector(".switch>p"));
-					BrowserActions.clickOnElement(t, driver, "Clicked on Infant date");
-				}
-
-				WebElement datevalue = driver.findElement(By.cssSelector(".ng-scope>table>tbody>tr>td"));
-				// BrowserActions.clickOnElement(t,driver,"Clicked on Infant
-				// date");
-
-				// BrowserActions.typeOnTextField(DOB, dateDOB, driver, "date
-				// selected");
-
+			// select the Passenger DOB's
+			if (label.startsWith("Adult")) {
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				String adultDOBDate = "document.querySelector(\"input#Adult_" + adult + "_dob\").value='"+ adultDOB[adult - 1] + "'";
+				js.executeScript(adultDOBDate);
+				Thread.sleep(1000);
+				Log.event("Successfully selected Adult" + adult + " DOB: " + adultDOB[adult - 1]);
+				adult++;
+			} else if (label.startsWith("Child")) {
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				String childDOBDate = "document.querySelector(\"input#Child_" + child + "_dob\").value='" + childDOB[child - 1] + "'";
+				js.executeScript(childDOBDate);
+				Thread.sleep(1000);
+				Log.event("Successfully selected Child" + child + " DOB: " + childDOB[child - 1]);
+				child++;
+			} else if (label.startsWith("Infant")) {
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				String infantDOBDate = "document.querySelector(\"input#Infant_" + infant + "_dob\").value='" + InfantDOB[infant - 1] + "'";
+				js.executeScript(infantDOBDate);
+				Thread.sleep(1000);
+				Log.event("Successfully selected Infant" + infant + " DOB: " + InfantDOB[infant - 1]);
+				infant++;
 			}
-
 			Thread.sleep(1000);
-
+			passengerNum++;
 		}
 	}
 
+	/**
+	 * To fill Traveller details -- Domestic 
+	 * 
+	 * @throws Exception
+	 */
+	public void fillTravellerDetails_DOM(String[] Infant) throws Exception {	
+		// Infant DOB dates 
+		String[] InfantDOB = selectDOBDate(Infant);  
+
+		int infant = 1;	int passengerNum = 1;		
+		for (int i = 0; i < modTravellerDetails.size(); i++) {
+			String formPaxDetail = "//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']";
+			WebElement lblTraveller = driver.findElement(By.xpath(" //*[@id='paxNum" + i + "']/div[@class='col-xs-12 col-md-1 min-wid52 ng-binding']"));
+			WebElement Firstname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input"));
+			WebElement Lastname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input"));
+
+			WebElement drptitle = driver.findElement(By.xpath(formPaxDetail));
+			BrowserActions.clickOnElement(drptitle, driver, "Title Dropdown Clicked");
+			String label = BrowserActions.getText(driver, lblTraveller, "Traveller label");
+
+			List<WebElement> titleOptions = driver.findElements(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option"));
+			if (titleOptions.size() != 0) {
+				int rand = Utils.getRandom(1, titleOptions.size());
+				Utils.waitForElement(driver, titleOptions.get(rand));
+				BrowserActions.clickOnElement(titleOptions.get(rand), driver, "title selected");
+				Utils.waitForPageLoad(driver);
+			}
+			String randomFirstName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
+			String randomLastName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
+
+			// enter First Name with random string
+			BrowserActions.typeOnTextField(Firstname, randomFirstName, driver, "First Name");
+			Log.event("Successfully entered Passenger" + passengerNum + " FirstName: " + randomFirstName);
+
+			// enter Last Name with random string
+			BrowserActions.typeOnTextField(Lastname, randomLastName, driver, "Last Name");
+			Log.event("Successfully entered Passenger" + passengerNum + " Last Name: " + randomLastName);
+
+			// select the Passenger DOB's
+			if (label.startsWith("Infant")) {
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				String infantDOBDate = "document.querySelector(\"input#Infant_" + infant + "_dob\").value='" + InfantDOB[infant - 1] + "'";
+				js.executeScript(infantDOBDate);
+				Thread.sleep(1000);
+				Log.event("Successfully selected Infant" + infant + " DOB: " + InfantDOB[infant - 1]);
+				infant++;
+			}
+			Thread.sleep(1000);
+			passengerNum++;
+		}
+	}
+
+
+	/**
+	 * To select DOB date
+	 * 
+	 * @throws Exception
+	 */
+
+	public String[] selectDOBDate(String[] DOB) throws Exception {
+		String[] DOBDates = new String[DOB.length] ;
+		for (int i = 0; i < DOB.length; i++) {
+			int iDay = Integer.parseInt(DOB[i]);
+			String date = utils.dateGenerator_DOB("dd MMM yyyy", iDay);
+			Log.event("DOB Date: " + date); 
+			DOBDates[i] = date;						
+		}
+		return DOBDates;
+	}
 	/**
 	 * Getting the ecash redeem successful messages
 	 * 

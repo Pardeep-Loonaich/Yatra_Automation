@@ -549,6 +549,28 @@ public class Utils {
 		return dataToBeReturn;
 	}
 
+	public static String dateGenerator_DOB(String sDateFormat, int iDay) {
+		String dataToBeReturn = "";
+		if (sDateFormat.equalsIgnoreCase("") || sDateFormat.equalsIgnoreCase(null)) {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		}
 
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDateFormat);
+
+		if (!(iDay == 0))
+		{
+			//cal.add(Calendar.DATE, iDay);
+			//cal.add(Calendar.MONTH, iDay);
+			cal.add(Calendar.YEAR, iDay);
+			dataToBeReturn = simpleDateFormat.format(cal.getTime()).toString();
+			// System.out.println(simpleDateFormat.format(cal.getTime()));
+		} else {
+			dataToBeReturn = simpleDateFormat.format(new Date());
+			// System.out.println(simpleDateFormat.format(cal.getTime()));
+		}
+		return dataToBeReturn;
+
+	}
 
 }

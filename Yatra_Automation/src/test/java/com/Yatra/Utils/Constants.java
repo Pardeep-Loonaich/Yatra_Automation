@@ -12,6 +12,7 @@ public class Constants {
 	public static final String C_PREMIUM_ECONOMY = "Premium Economy";
 	public static final String C_BUSINESS = "Business";
 	public static final String C_FIRST_CLASS = "First Class";
+	
 
 	// <<<<<<<< #end region
 }
