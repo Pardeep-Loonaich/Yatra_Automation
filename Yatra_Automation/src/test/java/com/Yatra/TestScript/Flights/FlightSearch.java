@@ -1104,7 +1104,9 @@ public class FlightSearch {
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
-		
+		String paymentType = testData.get("PaymentMode");
+		String bankName = testData.get("BankName");
+
 		
 		String[] infantDOB = infant.split(",");
 
@@ -1119,7 +1121,6 @@ public class FlightSearch {
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 			Thread.sleep(3000);
-			homePage = new HomePage(driver, webSite);		
 			
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
@@ -1149,20 +1150,20 @@ public class FlightSearch {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue in traveller Page.");
 			
-			paymentPage.selectPaymentType("NetBanking");
-			Log.message("Selected NetBanking as payment type.");
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected NetBanking as payment type.");
 			
+            paymentPage.selectBankName(bankName);
+			Log.message("11. Selected Bank as 'CITY BANK'.");
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Paynow' button.");
 			
-
-			Log.message("<br>");
-
-			Log.message("<b>Expected Result:</b> Check Book as Guest button.");
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnBookAsGuest"), reviewPage),
-
-					"<b>Actual Result:</b> The Book as Guest button is displayed on Review Page.",
-					"<b>Actual Result:</b> The Book as Guest button is not displayed on Review Page." );
-
-
+			//Need to complete the testcase
+		//	paymentPage.clickedOnSubmit();
+			
+		//	driver.navigate().back();
+			
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -1739,6 +1740,7 @@ public class FlightSearch {
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");
+			Thread.sleep(2000);
 
 			// step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);

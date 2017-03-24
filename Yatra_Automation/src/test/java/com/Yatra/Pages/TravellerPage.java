@@ -223,7 +223,6 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	 */
 	public void fillTravellerDetails_DOM(String[] Infant) throws Exception {	
 		// Infant DOB dates 
-		String[] InfantDOB = selectDOBDate(Infant);  
 
 		int infant = 1;	int passengerNum = 1;		
 		for (int i = 0; i < modTravellerDetails.size(); i++) {
@@ -256,6 +255,8 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 			// select the Passenger DOB's
 			if (label.startsWith("Infant")) {
+				String[] InfantDOB = selectDOBDate(Infant);  
+
 				JavascriptExecutor js = (JavascriptExecutor) driver;
 				String infantDOBDate = "document.querySelector(\"input#Infant_" + infant + "_dob\").value='" + InfantDOB[infant - 1] + "'";
 				js.executeScript(infantDOBDate);
