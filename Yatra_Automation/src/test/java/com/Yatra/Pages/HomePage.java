@@ -56,6 +56,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']")
 	List<WebElement> selectMonth;
+	
+	@FindBy(css = "ul[class='month-list'] li a[href*='#PegasusCal-0-month-']")
+	List<WebElement> selectMonth1;
 
 	@FindBy(css = "div[id='BE_flight_paxInfoBox']")
 	WebElement passengerInfo;
@@ -140,6 +143,18 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "#userSignInStrip")
 	WebElement lnkMyaccount;
+	
+	@FindBy(xpath = "//input[@id='BE_train_from_station']")
+	WebElement txtTrainOrigin;
+	
+	@FindBy(xpath = "//input[@id='BE_train_to_station']")
+	WebElement txtTrainDestination;
+	
+	@FindBy(xpath = "//input[@id='BE_train_depart_date']")
+	WebElement dateTrainDeparture;
+	
+	@FindBy(xpath="//input[@id='BE_train_search_btn']")
+	WebElement btnTrainSearch;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -621,6 +636,29 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
+	
+	/**
+	 * To select Departure Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public String selectTrainDepartureDate(String trainDepartureDate) throws Exception {
+		int iDay = Integer.parseInt(trainDepartureDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on departure date icon");
+		List<WebElement> a  = selectMonth1;
+		WebElement b = driver.findElement(By.cssSelector("ul[class='month-list'] li a[href*='#PegasusCal-0-month-" + month + " 25 + ']"));
+		
+		BrowserActions.clickOnElement(b, driver, "");
+		//a.get(month-2-2017).click();
+		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(0).click();
+		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
+		return date;
+	}
 
 	/**
 	 * To select Return Date
@@ -816,4 +854,72 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return new LoginPage(driver).get();
 	}
 
-}// HomePage
+
+
+	/**
+	 * Enter Train Origin
+	 * 
+	 * @param trainOrigin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterTrainOrigin(String trainOrigin) throws Exception {
+		Utils.waitForElement(driver, txtTrainOrigin);
+		BrowserActions.typeOnTextField(txtTrainOrigin, trainOrigin, driver, "Select Origin");
+		Log.event("Entered the Origin: " + trainOrigin);
+	}
+
+	/**
+	 * Enter Train Destination
+	 * 
+	 * @param trainDestination
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterTrainDestination(String trainDestination) throws Exception {
+		Utils.waitForElement(driver, txtTrainDestination);
+		BrowserActions.typeOnTextField(txtTrainDestination, trainDestination, driver, "Select Destination");
+		Log.event("Entered the Destination: " + trainDestination);
+	}
+
+	/**
+	 * To click search button on Home page for Trains
+	 * 
+	 * @throws Exception
+	 */
+
+	public TrainSearchResult clickTrainBtnSearch() throws Exception {
+		// final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnTrainSearch, driver, "Train Search");
+		Utils.waitForPageLoad(driver);
+		return new TrainSearchResult(driver).get();
+
+	}
+	
+	/**
+	 * To select Train search Fields
+	 * 
+	 * @throws Exception
+	 */
+
+	public void selectTrainSearchFields(String trainOrigin, String trainDestination, String trainDepartureDate) throws Exception {
+		BrowserActions.nap(2);
+		enterTrainOrigin(trainOrigin); // enter Origin value
+		enterTrainDestination(trainDestination); // enter Destination value
+		BrowserActions.nap(3);
+		selectTrainDepartureDate(trainDepartureDate); // select Departure Date
+		Log.event("Successfully selected OneWay Flight Search fields");
+
+	}
+	
+	public void clickTrainTab() throws Exception {
+		// final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
+		Utils.waitForPageLoad(driver);
+	}
+	
+
+
+}
+
+// HomePage
