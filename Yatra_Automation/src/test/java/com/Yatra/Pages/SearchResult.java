@@ -2,6 +2,7 @@ package com.Yatra.Pages;
 
 import java.util.List;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -115,7 +116,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "div[class='row baggage-summary']")
 	WebElement fldContentBaggageDetail;
-
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -347,8 +349,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.clickOnElement(lnkBaggage, driver, "Link Baggage Details");
 
 	}
-
-	//
 	/**
 	 * Getting the text from the flight fare and rules Deatil Pop Up
 	 * 
@@ -360,5 +360,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				"Getting text from the Baggage Details In Pop up");
 		return txtDetails;
 	}
+	
 
 }

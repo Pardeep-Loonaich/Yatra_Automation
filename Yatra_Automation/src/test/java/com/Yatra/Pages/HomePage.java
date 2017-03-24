@@ -140,7 +140,31 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "#userSignInStrip")
 	WebElement lnkMyaccount;
+	
+	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>div[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
+	WebElement btnIncreseSeat;
+	
+	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(1)")
+	WebElement lnkOneWayBus;
+	
+	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(3)")
+	WebElement lnkRoundTripBus;
+	
+	@FindBy(css = "#BE_bus_from_station")
+	 WebElement txtOriginBus;
 
+	@FindBy(css = "#BE_bus_to_station")
+	WebElement txtDestinationBus;
+
+	@FindBy(css = "#BE_bus_depart_date")
+	WebElement dateDepartureBus;
+
+	@FindBy(css = "#BE_bus_return_date")
+	WebElement dateReturnBus;
+	
+	@FindBy(css = "#BE_bus_search_btn")
+	WebElement btnSearchBus;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -815,5 +839,145 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
 	}
+	
+	
+	/**
+	 * To select Passenger Information 
+	 * 
+	 * @throws Exception
+	 */
+	public void PassengerInfoBus(String passengers) throws Exception {
+		BrowserActions.nap(2);
+		int z = Integer.parseInt(passengers);
+		for(int i=1 ; i<z ; i++){
+			BrowserActions.clickOnElement(btnIncreseSeat, driver, "Passenger Info");
+		}
+			}
+	
+	
+	/**
+	 * To Select Bus Trip Type
+	 * 
+	 * @throws Exception
+	 */
 
+	public void selectTripTypeBus(String tripType) throws Exception {
+		if (tripType.equals(Constants.C_ONEWAY)) {
+			BrowserActions.clickOnElement(lnkOneWayBus, driver, "One Way");
+			Utils.waitForPageLoad(driver);
+			Log.event("Successfully selected OneWay option in Search Fields");
+		} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
+			BrowserActions.clickOnElement(lnkRoundTripBus, driver, "Round Trip");
+			Utils.waitForPageLoad(driver);
+			Log.event("Successfully selected RoundTrip option in Search Fields");
+		}
+	}
+	
+	/**
+	 * To Select Bus Origin
+	 * 
+	 * @throws Exception
+	 */
+	public void enterOriginBus(String origin) throws Exception {
+		Utils.waitForElement(driver, txtOriginBus);
+		BrowserActions.typeOnTextField(txtOriginBus, origin, driver, "Select Origin");
+		Log.event("Entered the Origin: " + origin);
+	}
+	 	/**
+		 * To Select Bus Destination
+		 * 
+		 * @throws Exception
+		 */
+	
+	public void enterDestinationBus(String destination) throws Exception {
+		Utils.waitForElement(driver, txtDestinationBus);
+		BrowserActions.typeOnTextField(txtDestinationBus, destination, driver, "Select Destination");
+		Log.event("Entered the Destination: " + destination);
+	}
+	/**
+	 * To select Return Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public String selectReturnDateBus(String returnDate) throws Exception {
+		int iDay = Integer.parseInt(returnDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(dateReturnBus, driver, "clicking on return date icon");
+		selectMonth.get(month - 2).click();
+		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(0).click();
+		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
+		return date;
+	}
+	
+	/**
+	 * To Select Bus Depature Date
+	 * 
+	 * @throws Exception
+	 */
+	public String selectDepartureDateBus(String departureDate) throws Exception {
+		int iDay = Integer.parseInt(departureDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(dateDepartureBus, driver, "clicking on departure date icon");
+		selectMonth.get(month - 2).click();
+		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(0).click();
+		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
+		return date;
+	}
+	/**
+	 * To click search button on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public SearchResultBus clickBtnSearchBus() throws Exception {
+		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
+		Utils.waitForPageLoad(driver);
+		return new SearchResultBus(driver).get();
+	}
+	/**
+	 * To select RoundTrip Bus search Fields
+	 * 
+	 * @throws Exception
+	 */
+	
+	public void selectRoundTripBusSearchFields(String origin, String destination, String departureDate,
+			String returnDate, String passengerInfo, String passengerClass) throws Exception {
+		enterOriginBus(origin); // enter Origin value
+		BrowserActions.nap(2);
+		enterDestinationBus(destination); // enter Destination value
+		BrowserActions.nap(2);
+		selectDepartureDateBus(departureDate); // select Departure Date
+		BrowserActions.nap(2);
+		selectReturnDateBus(returnDate); // select Return Date
+		BrowserActions.nap(2);
+		PassengerInfoBus(passengerClass); // select Passengers
+		BrowserActions.nap(2);
+		Log.event("Successfully selected RoundTrip Bus Search fields");
+	}
+
+	/**
+	 * To select OneWay Bus search Fields
+	 * 
+	 * @throws Exception
+	 */
+
+	public void selectOneWayBusSearchFields(String origin, String destination, String departureDate,
+			String passengerInfo, String passengerClass) throws Exception {
+		BrowserActions.nap(2);
+		enterOriginBus(origin); // enter Origin value
+		BrowserActions.nap(2);
+		enterDestinationBus(destination); // enter Destination value
+		BrowserActions.nap(2);
+		selectDepartureDateBus(departureDate); // select Departure Date
+		BrowserActions.nap(2);
+		PassengerInfoBus(passengerClass); // select Passengers 
+		Log.event("Successfully selected OneWay Bus Search fields");
+
+	}
 }// HomePage

@@ -508,24 +508,19 @@ public class Utils {
 		{
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		}
-
 		Calendar cal=Calendar.getInstance();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDateFormat);
 
 		if(!(iDay==0))
-
 		{
 			cal.add(Calendar.DATE, iDay);
 			dataToBeReturn=simpleDateFormat.format(cal.getTime()).toString();
-			//System.out.println(simpleDateFormat.format(cal.getTime()));
 		}
 		else 
 		{
 			dataToBeReturn=simpleDateFormat.format(new Date());
-			//System.out.println(simpleDateFormat.format(cal.getTime()));
 		}
 		return dataToBeReturn;
-
 	}
 	/** 
 	 * 

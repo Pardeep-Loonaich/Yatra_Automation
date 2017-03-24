@@ -213,7 +213,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.clickOnElement(month, driver, "Month");
 		List<WebElement> months = driver.findElements(By.cssSelector("#dc_expm_id>option"));
 		if (months.size() != 0) {
-			int rand = Utils.getRandom(1, months.size());
+			int rand = Utils.getRandom(2, months.size());
 			BrowserActions.clickOnElement(months.get(rand), driver, "Month Selected");
 			Utils.waitForPageLoad(driver);
 		}
@@ -223,7 +223,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.clickOnElement(Year, driver, "Year");
 		List<WebElement> Year1 = driver.findElements(By.cssSelector("#dc_expy_id>option"));
 		if (Year1.size() != 0) {
-			int rand = Utils.getRandom(1, Year1.size());
+			int rand = Utils.getRandom(2, Year1.size());
 			BrowserActions.clickOnElement(Year1.get(rand), driver, "Year Selected");
 			Utils.waitForPageLoad(driver);
 		}

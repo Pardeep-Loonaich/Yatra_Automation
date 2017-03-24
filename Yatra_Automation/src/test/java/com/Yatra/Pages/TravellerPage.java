@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -69,7 +70,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select/option[2]")
 	WebElement fldContentselectBaggage;
 
-	@FindBy(css = "ul[class='list list-border']>li:nth-child(6)>span[class='pull-right tr alignment']>a[class='remove-btn']")
+	@FindBy(css = "ul[class='list list-border']>li:nth-child(6)>span[class='pull-right tr alignment']>a[class*='remove-btn']")
 	WebElement btnRemoveBaggage;
 
 	@FindBy(css = "ul[class='list list-border']>li:nth-child(5)")
@@ -267,25 +268,6 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 		BrowserActions.javascriptClick(btnAddBaggage, driver, "Add Baggage Button");
 		Utils.waitForPageLoad(driver);
 	}
-
-	public void selectMeal() throws Exception {
-		Utils.waitForElement(driver, drpSelectMeal);
-		BrowserActions.scrollToView(drpSelectMeal, driver);
-		BrowserActions.javascriptClick(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
-		Utils.waitForElement(driver, fldContentselectMeal);
-		BrowserActions.javascriptClick(fldContentselectMeal, driver, "Select Meal");
-		Utils.waitForPageLoad(driver);
-	}
-
-	public void selectBaggage() throws Exception {
-		Utils.waitForElement(driver, drpAddBaggage);
-		BrowserActions.scrollToView(drpAddBaggage, driver);
-		BrowserActions.javascriptClick(drpAddBaggage, driver, "Clicked On Drop Down Of Baggage");
-		Utils.waitForElement(driver, fldContentselectBaggage);
-		BrowserActions.javascriptClick(fldContentselectBaggage, driver, "Select Baggage");
-		Utils.waitForPageLoad(driver);
-	}
-
 	public void clickOnRemoveBaggageButton() throws Exception {
 		BrowserActions.javascriptClick(btnRemoveBaggage, driver, "Remove Baggage Button");
 	}
@@ -358,4 +340,78 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 		return txtDetails;
 
 	}
+	
+	public void fillTravellerDetails_DOM() throws Exception {		
+		
+		int infant = 1;	int passengerNum = 1;		
+		String[] InfantDOB = { "02 Apr 2015" };  // Remove later
+		
+		for (int i = 0; i < modTravellerDetails.size(); i++) {
+			String formPaxDetail = "//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']";
+			WebElement lblTraveller = driver.findElement(By.xpath(" //*[@id='paxNum" + i + "']/div[@class='col-xs-12 col-md-1 min-wid52 ng-binding']"));
+			WebElement Firstname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input"));
+			WebElement Lastname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input"));
+
+			WebElement drptitle = driver.findElement(By.xpath(formPaxDetail));
+			BrowserActions.clickOnElement(drptitle, driver, "Title Dropdown Clicked");
+			String label = BrowserActions.getText(driver, lblTraveller, "Traveller label");
+
+			List<WebElement> titleOptions = driver.findElements(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option"));
+			if (titleOptions.size() != 0) {
+				int rand = Utils.getRandom(1, titleOptions.size());
+				Utils.waitForElement(driver, titleOptions.get(rand));
+				BrowserActions.clickOnElement(titleOptions.get(rand), driver, "title selected");
+				Utils.waitForPageLoad(driver);
+			}
+
+			String randomFirstName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
+			String randomLastName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
+			
+			// enter First Name with random string
+			BrowserActions.typeOnTextField(Firstname, randomFirstName, driver, "First Name");
+			Log.event("Successfully entered Passenger" + passengerNum + " FirstName: " + randomFirstName);
+
+			// enter Last Name with random string
+			BrowserActions.typeOnTextField(Lastname, randomLastName, driver, "Last Name");
+			Log.event("Successfully entered Passenger" + passengerNum + " Last Name: " + randomLastName);
+
+			// select the Passenger DOB's
+			if (label.startsWith("Infant")) {
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				String infantDOBDate = "document.querySelector(\"input#Infant_" + infant + "_dob\").value='" + InfantDOB[infant - 1] + "'";
+				js.executeScript(infantDOBDate);
+				Thread.sleep(1000);
+				Log.event("Successfully selected Infant" + infant + " DOB: " + InfantDOB[infant - 1]);
+				infant++;
+			}
+			Thread.sleep(1000);
+			passengerNum++;
+		}
+	}
+
+	public void selectBaggage() throws Exception {
+		String css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='row ui-ssr ng-scope']>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li[class='ng-scope']>span";
+		WebElement Baggage = driver.findElement(By.cssSelector(css));
+		BrowserActions.clickOnElement(Baggage, driver, "Baggage");
+		List<WebElement> Baggages = driver.findElements(By.cssSelector(".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='row ui-ssr ng-scope']>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li[class='ng-scope']>span>select>option"));
+		if (Baggages.size() != 0) {
+			int rand = Utils.getRandom(1, Baggages.size());
+			BrowserActions.clickOnElement(Baggages.get(rand), driver, "Baggage Selected");
+			Utils.waitForPageLoad(driver);
+		}
+	}
+
+
+	public void selectMeal() throws Exception {
+		String css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='row ui-ssr ng-scope']>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span[class='ui-select']";
+		WebElement Meal = driver.findElement(By.cssSelector(css));
+		BrowserActions.clickOnElement(Meal, driver, "Meal");
+		List<WebElement> Meals = driver.findElements(By.cssSelector(".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='row ui-ssr ng-scope']>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span[class='ui-select']>select>option"));
+		if (Meals.size() != 0) {
+			int rand = Utils.getRandom(2, Meals.size());
+			BrowserActions.clickOnElement(Meals.get(rand), driver, "Meal Selected");
+			Utils.waitForPageLoad(driver);
+		}
+	}
 }
+

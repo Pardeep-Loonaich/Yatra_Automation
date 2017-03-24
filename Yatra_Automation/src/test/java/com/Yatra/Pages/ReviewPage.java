@@ -452,53 +452,5 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @throws Exception
 	 */
  // public void fillTravellerDetails_INT(String[] InfantDOB ) throws Exception {
-	public void fillTravellerDetails_DOM() throws Exception {		
-		
-		int infant = 1;	int passengerNum = 1;		
-		String[] InfantDOB = { "02 Apr 2014" };  // Remove later
-		
-		for (int i = 0; i < modTravellerDetails.size(); i++) {
-			String formPaxDetail = "//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']";
-			WebElement lblTraveller = driver.findElement(By.xpath(" //*[@id='paxNum" + i + "']/div[@class='col-xs-12 col-md-1 min-wid52 ng-binding']"));
-			WebElement Firstname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input"));
-			WebElement Lastname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input"));
-
-			WebElement drptitle = driver.findElement(By.xpath(formPaxDetail));
-			BrowserActions.clickOnElement(drptitle, driver, "Title Dropdown Clicked");
-			String label = BrowserActions.getText(driver, lblTraveller, "Traveller label");
-
-			List<WebElement> titleOptions = driver.findElements(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option"));
-			if (titleOptions.size() != 0) {
-				int rand = Utils.getRandom(1, titleOptions.size());
-				Utils.waitForElement(driver, titleOptions.get(rand));
-				BrowserActions.clickOnElement(titleOptions.get(rand), driver, "title selected");
-				Utils.waitForPageLoad(driver);
-			}
-
-			String randomFirstName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
-			String randomLastName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
-			
-			// enter First Name with random string
-			BrowserActions.typeOnTextField(Firstname, randomFirstName, driver, "First Name");
-			Log.event("Successfully entered Passenger" + passengerNum + " FirstName: " + randomFirstName);
-
-			// enter Last Name with random string
-			BrowserActions.typeOnTextField(Lastname, randomLastName, driver, "Last Name");
-			Log.event("Successfully entered Passenger" + passengerNum + " Last Name: " + randomLastName);
-
-			// select the Passenger DOB's
-			if (label.startsWith("Infant")) {
-				JavascriptExecutor js = (JavascriptExecutor) driver;
-				String infantDOBDate = "document.querySelector(\"input#Infant_" + infant + "_dob\").value='" + InfantDOB[infant - 1] + "'";
-				js.executeScript(infantDOBDate);
-				Thread.sleep(1000);
-				Log.event("Successfully selected Infant" + infant + " DOB: " + InfantDOB[infant - 1]);
-				infant++;
-			}
-			Thread.sleep(1000);
-			passengerNum++;
-		}
-	}
 	
-
 } //ReviewPage
