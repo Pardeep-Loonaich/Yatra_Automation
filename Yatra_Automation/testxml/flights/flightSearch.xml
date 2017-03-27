@@ -9,7 +9,7 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="firefox_windows"/>
+	<parameter name="browserName" value="chrome_windows"/>
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
 	<test name="Flight Search" thread-count="10" parallel="false">
@@ -22,7 +22,33 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch">
 				<methods>
-				    <include name="TC_Yatra_Flight_046"/>	
+				    <include name="TC_Yatra_Flight_001"/>	
+				    <include name="TC_Yatra_Flight_002"/>
+				    <include name="TC_Yatra_Flight_003"/>	
+				    <include name="TC_Yatra_Flight_004"/>
+				    <include name="TC_Yatra_Flight_005"/>	
+				    <include name="TC_Yatra_Flight_006"/>
+				    <include name="TC_Yatra_Flight_011"/>
+				    <include name="TC_Yatra_Flight_012"/>
+				    <include name="TC_Yatra_Flight_014"/>				    
+				    <include name="TC_Yatra_Flight_018"/>	
+				    <include name="TC_Yatra_Flight_019"/>
+				    <include name="TC_Yatra_Flight_020"/>	
+				    <include name="TC_Yatra_Flight_021"/>
+				    <include name="TC_Yatra_Flight_031"/>	
+				    <include name="TC_Yatra_Flight_032"/>
+				    <include name="TC_Yatra_Flight_031"/>	
+				    <include name="TC_Yatra_Flight_032"/>
+				    <include name="TC_Yatra_Flight_033"/>	
+				    <include name="TC_Yatra_Flight_034"/>
+				    <include name="TC_Yatra_Flight_035"/>	
+				    <include name="TC_Yatra_Flight_039"/>
+				    <include name="TC_Yatra_Flight_040"/>	
+				    <include name="TC_Yatra_Flight_041"/>
+				    <include name="TC_Yatra_Flight_042"/>	
+				    <include name="TC_Yatra_Flight_044"/>
+				    <include name="TC_Yatra_Flight_045"/>	
+				    <include name="TC_Yatra_Flight_046"/>
 				</methods>
 			</class>
 		</classes>

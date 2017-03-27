@@ -48,13 +48,10 @@ public class FlightSearch {
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Flight Search DOM - OW with  Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Flight Search DOM - OW with  Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_001(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -102,8 +99,7 @@ public class FlightSearch {
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
 			Thread.sleep(6000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
 
@@ -116,8 +112,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Flight Search DOM - RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Flight Search DOM - RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_002(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -172,8 +167,7 @@ public class FlightSearch {
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
 			Thread.sleep(6000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
 			Log.testCaseResult();
@@ -185,13 +179,10 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Flight Search DOM-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Flight Search DOM-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_005(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin1 = testData.get("Origin");
 		String origin2 = testData.get("Origin_Multicity");
 		String tripType = testData.get("TripType");
@@ -220,8 +211,7 @@ public class FlightSearch {
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination1(destination1);
-			Log.message(
-					"5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 
 			// step: select Departure date
 			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
@@ -232,8 +222,7 @@ public class FlightSearch {
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination2(destination2);
-			Log.message(
-					"8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+			Log.message("8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
 			// step: select Departure date
 			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
@@ -253,11 +242,9 @@ public class FlightSearch {
 			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> User should navigated on SearchResult page with DOM-Multicity flight result");
+			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with DOM-Multicity flight result");
 			Thread.sleep(6000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page with DOM-Multicity flight resulte",
 					"<b>Actual Result:</b> User should navigated on SearchResult page with DOM-Multicity flight result",
 					driver);
@@ -271,13 +258,10 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Flight Search INTL-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Flight Search INTL-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_006(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
 		String origin1 = testData.get("Origin");
 		String origin2 = testData.get("Origin_Multicity");
 		String tripType = testData.get("TripType");
@@ -307,8 +291,7 @@ public class FlightSearch {
 			// step: enter Destination1 in Yatra Home page
 			homePage.enterMultiCityDestination1(destination1);
 
-			Log.message(
-					"5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 
 			// step: select Departure date1
 			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
@@ -320,8 +303,7 @@ public class FlightSearch {
 
 			// step: enter Destination2 in Yatra Home page
 			homePage.enterMultiCityDestination2(destination2);
-			Log.message(
-					"8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+			Log.message("8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
 			// step: select Departure date2
 			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
@@ -341,11 +323,9 @@ public class FlightSearch {
 			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result");
+			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result");
 			Thread.sleep(6000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> ser should navigated on SearchResult page with INTL-Multicity flight result",
 					"<b>Actual Result:</b> ser should navigated on SearchResult page with INTL-Multicity flight result",
 					driver);
@@ -360,65 +340,8 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Airline Matrix Strip verification on SRP for DOM flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_FlightSearch_011(HashMap<String, String> testData) throws Exception {
-		
-		String browser = testData.get("browser");
-		String origin = testData.get("Origin");
-		String tripType = testData.get("TripType");
-		String destination = testData.get("Destination");
-		String departureDate = testData.get("DepartureDate");
-		String returnDate = testData.get("ReturnDate");
-		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("Class");
-
-		// Get the web driver instance
-		final WebDriver driver = WebDriverFactory.get(browser);
-		Log.testCaseInfo(testData);
-		try {
-			// step: Navigate to Yatra Home Page
-			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-
-			// step: Select Trip Type
-			homePage.selectTripType(tripType);
-			Log.message("2.Successfully clicked 'Two way' option in search Home Page ");
-
-			// step: select OneWay Flight Search fields
-			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo,
-					passengerClass);
-			Log.message("3.Successfully filled the search details for 'TWO WAY' trip.");
-
-			// step: click 'Search' button in Yatra Home page
-			searchResult = homePage.clickBtnSearch();
-			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
-			BrowserActions.nap(5);
-
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Check Book as Guest button.");
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("matrixStrip"), searchResult),
-					"<b>Actual Result:</b> The Airline Matrix is displayed on Review Page.",
-					"<b>Actual Result:</b> The Airline Matrix is not displayed on Review Page.", driver);
-
-			searchResult.clickAirlineMatrix();
-			Log.message("Successfully clicked Airline Matrix");
-			Thread.sleep(3000);
-
-			Log.testCaseResult();
-
-		} catch (Exception e) {
-			Log.exception(e);
-
-		} finally {
-			driver.quit();
-			Log.endTestCase();
-		}
-	}
-
-	@Test(groups = {
-	"desktop" }, description = "Airline Matrix Strip verification on SRP for INT flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_FlightSearch_012(HashMap<String, String> testData) throws Exception {
+	@Test(groups = {"desktop" }, description = "Airline Matrix Strip verification on SRP for DOM flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_011(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -460,7 +383,6 @@ public class FlightSearch {
 			searchResult.clickAirlineMatrix();
 			Log.message("Successfully clicked Airline Matrix");
 			Thread.sleep(3000);
-
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -472,9 +394,62 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Weekly Strip verification on SRP for DOM flight - OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_FlightSearch_014(HashMap<String, String> testData) throws Exception {
+	@Test(groups = {"desktop" }, description = "Airline Matrix Strip verification on SRP for INT flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_012(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'Two way' option in search Home Page ");
+
+			// step: select OneWay Flight Search fields
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo,
+					passengerClass);
+			Log.message("3.Successfully filled the search details for 'TWO WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
+			BrowserActions.nap(5);
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Check Book as Guest button.");
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("matrixStrip"), searchResult),
+					"<b>Actual Result:</b> The Airline Matrix is displayed on Review Page.",
+					"<b>Actual Result:</b> The Airline Matrix is not displayed on Review Page.", driver);
+
+			searchResult.clickAirlineMatrix();
+			Log.message("Successfully clicked Airline Matrix");
+			Thread.sleep(3000);
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {"desktop" }, description = "Weekly Strip verification on SRP for DOM flight - OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_014(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -498,21 +473,19 @@ public class FlightSearch {
 
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully entered OneWay Flight Search Fields ");
-
 			Thread.sleep(5000);
+			
 			// step: click 'Search' button in Yatra Home page
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> The Weekly strip should be displayed on the SRP page for domestic flights.");
+			Log.message("<b>Expected Result:</b> The Weekly strip should be displayed on the SRP page for domestic flights.");
 			Thread.sleep(5000);
-
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly strip displayed on the SRP page for domestic flights.",
 					"<b>Actual Result:</b> The Weekly strip not displayed on the SRP page for domestic flights.",
 					driver);
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -520,7 +493,6 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
-
 
 	@Test(groups = {"desktop" }, description = "Add Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_031(HashMap<String, String> testData) throws Exception {
@@ -536,7 +508,6 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
-
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -579,8 +550,7 @@ public class FlightSearch {
 			String mealCharges = travellerPage.getTextMealDetails();
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> User should be able to see the Meal Charges inculded in the Fare Detail!");
+			Log.message("<b>Expected Result:</b> User should be able to see the Meal Charges inculded in the Fare Detail!");
 			Thread.sleep(5000);
 			Log.assertThat(travellerPage.elementLayer.verifyPageElements(Arrays.asList("mealDetails"), travellerPage),
 					"<b>Actual Result:</b> Meal Charges are included In Total Fare and Meal Charges is :" + mealCharges,
@@ -595,8 +565,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Remove Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Remove Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_032(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -610,7 +579,6 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
-
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -664,7 +632,7 @@ public class FlightSearch {
 			Log.assertThat(travellerPage.elementLayer.verifyPageElements(Arrays.asList("btnAddMeal"), travellerPage),
 					"<b>Actual Result:</b> Meal Charges : " + mealCharges + "Meal Charges after Removing the Meal :"
 							+ mealChargesAfterRemovingMeal,
-							"<b>Actual Result:</b> Meal Charges Can Not Be Removed From Review Page", driver);
+					"<b>Actual Result:</b> Meal Charges Can Not Be Removed From Review Page", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -675,8 +643,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_034(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -690,7 +657,6 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
-
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -734,13 +700,12 @@ public class FlightSearch {
 			String BaggageFare = travellerPage.getTextBaggageDetails();
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> User should be able to see the Baggage Charges inculded in the Fare Detail!");
+			Log.message("<b>Expected Result:</b> User should be able to see the Baggage Charges inculded in the Fare Detail!");
 			Thread.sleep(5000);
 			Log.assertThat(travellerPage.elementLayer.verifyPageElements(Arrays.asList("btnAddBaggage"), travellerPage),
 					"<b>Actual Result:</b> Baggage Charges are included In Total Fare and Baggage Charges is :"
 							+ BaggageFare,
-							"<b>Actual Result:</b> Baggage Charges are not included In Total Fare", driver);
+					"<b>Actual Result:</b> Baggage Charges are not included In Total Fare", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -751,8 +716,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Remove Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Remove Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_035(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -766,7 +730,6 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
-
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -819,7 +782,7 @@ public class FlightSearch {
 			Thread.sleep(5000);
 			Log.assertThat(travellerPage.elementLayer.verifyPageElements(Arrays.asList("btnAddBaggage"), travellerPage),
 					"<b>Actual Result:</b> Baggage Charges : " + BaggageFare
-					+ "Baggage Charges after Removing the Baggage :" + BaggageFareAfterRemoving,
+							+ "Baggage Charges after Removing the Baggage :" + BaggageFareAfterRemoving,
 					"<b>Actual Result:</b> Baggage Charges can not be Removed from Review Page", driver);
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -830,8 +793,7 @@ public class FlightSearch {
 		}
 	}
 
-
-	@Test(groups = {"desktop","mobile" }, description = "Verify Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop",	"mobile" }, description = "Verify Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_033(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -845,7 +807,6 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
-
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -897,11 +858,8 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Flight Search INTL- OW with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-
+	@Test(groups = {"desktop" }, description = "Flight Search INTL- OW with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_003(HashMap<String, String> testData) throws Exception {
-
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -950,8 +908,7 @@ public class FlightSearch {
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
 			Thread.sleep(6000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
 
@@ -964,8 +921,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Flight Search INTL- RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Flight Search INTL- RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_004(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1021,8 +977,7 @@ public class FlightSearch {
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
 			Thread.sleep(6000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
 					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
 
@@ -1035,8 +990,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_039(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1091,7 +1045,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Flights-OW-DOM -- Verification of payment Failure with Net banking", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Flights-OW-DOM -- Verification of payment Failure with Net banking", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_046(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1104,8 +1058,6 @@ public class FlightSearch {
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
-		
-		
 		String[] infantDOB = infant.split(",");
 
 		// Get the web driver instance
@@ -1119,8 +1071,8 @@ public class FlightSearch {
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 			Thread.sleep(3000);
-			homePage = new HomePage(driver, webSite);		
-			
+			homePage = new HomePage(driver, webSite);
+
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully filled the search details for 'ONE WAY' trip.");
@@ -1136,31 +1088,26 @@ public class FlightSearch {
 			reviewPage.clickOnContinue();
 			Log.message("6. Clicked On Continue Button on Review Page!");
 
-
 			reviewPage.clickOnExistingUser();
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("7. Enter User Details as SignedIn User!");
-			//reviewPage.loginYatraGuestAccount(emailId, mobile);
+			// reviewPage.loginYatraGuestAccount(emailId, mobile);
 			Log.message("8. Enter User Details!");
 
 			travellerPage.fillTravellerDetails_DOM(infantDOB);
 			Log.message("8. Filled the traveller details.");
-			
+
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue in traveller Page.");
-			
+
 			paymentPage.selectPaymentType("NetBanking");
 			Log.message("Selected NetBanking as payment type.");
-			
-			
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check Book as Guest button.");
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnBookAsGuest"), reviewPage),
-
 					"<b>Actual Result:</b> The Book as Guest button is displayed on Review Page.",
-					"<b>Actual Result:</b> The Book as Guest button is not displayed on Review Page." );
-
+					"<b>Actual Result:</b> The Book as Guest button is not displayed on Review Page.");
 
 			Log.testCaseResult();
 
@@ -1172,7 +1119,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Failed payment flow with Credit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Failed payment flow with Credit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_044(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1186,7 +1133,6 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
-
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -1233,10 +1179,8 @@ public class FlightSearch {
 			String ErrorMsg = paymentPage.getTextErrorMessage();
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> Failed payment flow with Credit card (flight type, travel type, booking class of your choice)");
-			Log.assertThat(
-					paymentPage.elementLayer.verifyPageElements(Arrays.asList("popUpInvalidCardNumber"), paymentPage),
+			Log.message("<b>Expected Result:</b> Failed payment flow with Credit card (flight type, travel type, booking class of your choice)");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("popUpInvalidCardNumber"), paymentPage),
 					"<b>Actual Result:</b> Payment is failed and error Msg is Displayed as :" + ErrorMsg,
 					"<b>Actual Result:</b> Payment is successfully On Payment Page", driver);
 
@@ -1249,7 +1193,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Failed payment flow with Debit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Failed payment flow with Debit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_045(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1264,7 +1208,6 @@ public class FlightSearch {
 		String adult = testData.get("Adult");
 		String child = testData.get("Child");
 		String infant = testData.get("Infant");
-		
 		String[] arrayAdult = adult.split(",");
 		String[] childAdult = child.split(",");
 		String[] infantDOB = infant.split(",");
@@ -1300,10 +1243,10 @@ public class FlightSearch {
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("7.Successfully Logged in Yatra account!");
 
-			travellerPage.fillTravellerDetails_INT(arrayAdult,childAdult,infantDOB);
+			travellerPage.fillTravellerDetails_INT(arrayAdult, childAdult, infantDOB);
 			Log.message("8. Enter User Details!");
 
-			paymentPage =travellerPage.clickOnContinue();
+			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked On continue Button!");
 
 			paymentPage.enterDebitCardDetails();
@@ -1314,10 +1257,8 @@ public class FlightSearch {
 			String ErrorMsg = paymentPage.getTextErrorMessage();
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> Failed payment flow with Credit card (flight type, travel type, booking class of your choice)");
-			Log.assertThat(
-					paymentPage.elementLayer.verifyPageElements(Arrays.asList("popUpInvalidCardNumber"), paymentPage),
+			Log.message("<b>Expected Result:</b> Failed payment flow with Credit card (flight type, travel type, booking class of your choice)");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("popUpInvalidCardNumber"), paymentPage),
 					"<b>Actual Result:</b> Payment is failed and error Msg is Displayed as :" + ErrorMsg,
 					"<b>Actual Result:</b> Payment is successfully On Payment Page", driver);
 
@@ -1325,13 +1266,12 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			// driver.quit();
 			Log.endTestCase();
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_018(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1367,15 +1307,11 @@ public class FlightSearch {
 			String flightDeatils = searchResult.getTextFlightDetails();
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> The flight details pop up should be displayed on the SRP page after clicking on 'flight details' link and the following details should be displayed:Flight details,Book Now button and total amount!");
+			Log.message("<b>Expected Result:</b> The flight details pop up should be displayed on the SRP page after clicking on 'flight details' link and the following details should be displayed:Flight details,Book Now button and total amount!");
 			Thread.sleep(5000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnBookNowFlightDeatilPopUp"),
-							searchResult),
-					"<b>Actual Result:</b> Book Now Button is Properly Displayed and Details are Displayed as :"
-							+ flightDeatils,
-							"<b>Actual Result:</b> Book Now Button and flight Details is not Properly Displayed", driver);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnBookNowFlightDeatilPopUp"),
+							searchResult), "<b>Actual Result:</b> Book Now Button is Properly Displayed and Details are Displayed as :"
+							+ flightDeatils, "<b>Actual Result:</b> Book Now Button and flight Details is not Properly Displayed", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -1387,12 +1323,11 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_019(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
-		String emailId = testData.get("EmailAddress");
+		// String emailId = testData.get("EmailAddress");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
@@ -1428,16 +1363,11 @@ public class FlightSearch {
 			String Flightfare = searchResult.getTextFareDetailsandRuleInPopUp();
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> The flight details pop up should be displayed on the SRP page after clicking on 'flight details' link.The following details should be displayed after clicking on fare & summary tab :Fare details section,Fare rules section!");
+			Log.message("<b>Expected Result:</b> The flight details pop up should be displayed on the SRP page after clicking on 'flight details' link.The following details should be displayed after clicking on fare & summary tab :Fare details section,Fare rules section!");
 			Thread.sleep(5000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnBookNowFlightDeatilPopUp"),
-							searchResult),
-					"<b>Actual Result:</b> After Clicking on Fare And Rule Details, Fare Deatils are properly displayed as:"
-							+ Flightfare,
-							"<b>Actual Result:</b> After Clicking on Fare And Rule Details, Fare Deatils are not properly displayed",
-							driver);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnBookNowFlightDeatilPopUp"),
+							searchResult),	"<b>Actual Result:</b> After Clicking on Fare And Rule Details, Fare Deatils are properly displayed as:"
+							+ Flightfare,	"<b>Actual Result:</b> After Clicking on Fare And Rule Details, Fare Deatils are not properly displayed",	driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -1449,8 +1379,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_021(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1486,13 +1415,10 @@ public class FlightSearch {
 			String Message = searchResult.getTextDisclamierMessage();
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> The flight details pop up should be displayed on the SRP page after clicking on 'flight details' link.The Disclaimer line should be displayed on the pop-up.!");
+			Log.message("<b>Expected Result:</b> The flight details pop up should be displayed on the SRP page after clicking on 'flight details' link.The Disclaimer line should be displayed on the pop-up.!");
 			Thread.sleep(5000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnBookNowFlightDeatilPopUp"),
-							searchResult),
-					"<b>Actual Result:</b>  Disclaimer Message is properly displayed as :" + Message,
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnBookNowFlightDeatilPopUp"),
+					searchResult), "<b>Actual Result:</b>  Disclaimer Message is properly displayed as :" + Message,
 					"<b>Actual Result:</b>  Disclaimer Message is not properly displayed", driver);
 
 			Log.testCaseResult();
@@ -1504,8 +1430,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_020(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1544,15 +1469,11 @@ public class FlightSearch {
 			String baggage = searchResult.getTextBaggageDetails();
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> The flight details pop up should be displayed on the SRP page after clicking on 'flight details' link.The baggage details should be displayed after clicking on baggage tab!");
+			Log.message("<b>Expected Result:</b> The flight details pop up should be displayed on the SRP page after clicking on 'flight details' link.The baggage details should be displayed after clicking on baggage tab!");
 			Thread.sleep(5000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnBookNowFlightDeatilPopUp"),
-							searchResult),
-					"<b>Actual Result:</b> After Clicking Baggage Tab,Baggage Details are as :" + baggage,
-					"<b>Actual Result:</b> After Clicking Baggage Tab,Baggage Details are not displayed properly",
-					driver);
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnBookNowFlightDeatilPopUp"),
+					searchResult),"<b>Actual Result:</b> After Clicking Baggage Tab,Baggage Details are as :" + baggage,
+					"<b>Actual Result:</b> After Clicking Baggage Tab,Baggage Details are not displayed properly",	driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -1564,8 +1485,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_040(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1610,18 +1530,14 @@ public class FlightSearch {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check Book as Guest Email/Password fields.");
-			Log.assertThat(
-					reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtGuestEmail", "txtGuestMobile"),
-							reviewPage),
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtGuestEmail", "txtGuestMobile"), reviewPage),
 					"<b>Actual Result:</b> The Book as button/Guest Email/Guest Mobile text field is displayed on Review Page.",
-					"<b>Actual Result:</b> The Book as button/Guest Email/Guest Mobile text field is not displayed on Review Page.",
-					driver);
+					"<b>Actual Result:</b> The Book as button/Guest Email/Guest Mobile text field is not displayed on Review Page.", driver);
 
 			travellerPage = reviewPage.loginYatraGuestAccount(emailId, mobile);
 			Log.message("7.Login as 'Guest User' ");
 
 			Log.testCaseResult();
-
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -1630,8 +1546,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Guest flow - Verification of Existing User checkbox", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Existing User checkbox", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_041(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1679,9 +1594,7 @@ public class FlightSearch {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check Book as Guest Email/Password.");
-			Log.assertThat(
-					reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtGuestEmail", "txtGuestPassword"),
-							reviewPage),
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtGuestEmail", "txtGuestPassword"), reviewPage),
 					"<b>Actual Result:</b> The Book as Guest Email/Password is displayed on Review Page.",
 					"<b>Actual Result:</b> The Book as Guest Email/Password is not displayed on Review Page.", driver);
 
@@ -1689,7 +1602,6 @@ public class FlightSearch {
 			Log.message("7.Login as 'Existing User' ");
 
 			Log.testCaseResult();
-
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -1698,8 +1610,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Guest flow - Check Booking as a Existing User Fill Traveller form move to Payment page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Guest flow - Check Booking as a Existing User Fill Traveller form move to Payment page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_042(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -1749,9 +1660,7 @@ public class FlightSearch {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check Book as Guest Email/Password.");
-			Log.assertThat(
-					reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtGuestEmail", "txtGuestPassword"),
-							reviewPage),
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtGuestEmail", "txtGuestPassword"), reviewPage),
 					"<b>Actual Result:</b> The Book as Guest Email/Password is displayed on Review Page.",
 					"<b>Actual Result:</b> The Book as Guest Email/Password is not displayed on Review Page.", driver);
 
@@ -1764,7 +1673,6 @@ public class FlightSearch {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9.Clicked on 'Continue' button in Traveller Page ");
 			Thread.sleep(2000);
-
 			Log.testCaseResult();
 
 		} catch (Exception e) {
