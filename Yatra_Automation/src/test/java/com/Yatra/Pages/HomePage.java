@@ -140,7 +140,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "#userSignInStrip")
 	WebElement lnkMyaccount;
-
+	
+	@FindBy(css = ".be-container-v2")
+	WebElement searchPanel;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -171,7 +175,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		appURL = "https://www.yatra.com/";
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
-		PageFactory.initElements(finder, this);
+		PageFactory.initElements(finder, this);		
+		elementLayer = new ElementLayer(driver);
 	}// HomePage
 
 	@Override
@@ -818,5 +823,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
 	}
+	
+	
 	
 }// HomePage

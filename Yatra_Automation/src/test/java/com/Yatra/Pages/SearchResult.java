@@ -115,6 +115,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "div[class='row baggage-summary']")
 	WebElement fldContentBaggageDetail;
+	
+	@FindBy(css = ".ico-newHeaderLogo")
+	WebElement lnkYatraLogo1;
+	
+	@FindBy(css = "#userSignInStrip a.dropdown-toggle")
+	WebElement txtMyAccount;
+	
+	@FindBy(css = "#cutomerSupportNav a.dropdown-toggle.eventTrackable")
+	WebElement txtSupport;
+	
+	@FindBy(css = "#discountHdrLink")
+	WebElement txtSplDeals;
+	
+	@FindBy(css = "#recentSearch-wrapper a.dropdown-toggle")
+	WebElement txtRecentSearch;
+	
+	@FindBy(css = "a.logo")
+	WebElement lnkYatraLogo;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -361,4 +379,69 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return txtDetails;
 	}
 
-}
+	
+	/**
+	 * Getting the text from My Acccount in SRP page 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextMyAccount() throws Exception {
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtMyAccount, "My Account Text Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Support in SRP page 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSupport() throws Exception {
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtSupport, "Support Text Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Special Deals in SRP page 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSplDeals() throws Exception {
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtSplDeals, "Special Deals Text Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Recent Search in SRP page 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextRecentSearch() throws Exception {
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtRecentSearch, "Recent Search Text Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
+	
+	
+	public String getTextFromAYatraLogo() throws Exception {
+		return (BrowserActions.getTextFromAttribute(driver, lnkYatraLogo, "title", "Yatra Logo title"));
+	}
+
+	/**
+	 * To click search button on Home page
+	 * 
+	 * @throws Exception
+	 */
+
+	public HomePage clickYatraLogo() throws Exception {		
+		BrowserActions.clickOnElement(lnkYatraLogo, driver, "Search");
+		Utils.waitForPageLoad(driver);
+		Log.event("Successfully clicked Yatra Logo link in SRP");
+		return new HomePage(driver).get();
+
+	}
+	
+	
+} // SearchResult
