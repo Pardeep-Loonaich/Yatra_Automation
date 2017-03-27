@@ -726,7 +726,7 @@ public class FlightPricing {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			// driver.quit();
+			 driver.quit();
 			Log.endTestCase();
 		}
 	}

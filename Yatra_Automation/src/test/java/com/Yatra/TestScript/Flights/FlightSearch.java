@@ -340,9 +340,9 @@ public class FlightSearch {
 		}
 	}
 
+
 	@Test(groups = {"desktop" }, description = "Airline Matrix Strip verification on SRP for DOM flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_011(HashMap<String, String> testData) throws Exception {
-
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -778,7 +778,7 @@ public class FlightSearch {
 			String BaggageFareAfterRemoving = travellerPage.getTextBaggageDetails();
 
 			Log.message("<br>");
-			Log.message("<b>Expecokted Result:</b> User should be able to Remove the Baggage Charges On Review Page!");
+			Log.message("<b>Expected Result:</b> User should be able to Remove the Baggage Charges On Review Page!");
 			Thread.sleep(5000);
 			Log.assertThat(travellerPage.elementLayer.verifyPageElements(Arrays.asList("btnAddBaggage"), travellerPage),
 					"<b>Actual Result:</b> Baggage Charges : " + BaggageFare
@@ -1058,6 +1058,8 @@ public class FlightSearch {
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
+		String paymentType = testData.get("PaymentMode");
+		String bankName = testData.get("BankName");
 		String[] infantDOB = infant.split(",");
 
 		// Get the web driver instance
@@ -1071,7 +1073,6 @@ public class FlightSearch {
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 			Thread.sleep(3000);
-			homePage = new HomePage(driver, webSite);
 
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
@@ -1109,6 +1110,21 @@ public class FlightSearch {
 					"<b>Actual Result:</b> The Book as Guest button is displayed on Review Page.",
 					"<b>Actual Result:</b> The Book as Guest button is not displayed on Review Page.");
 
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected NetBanking as payment type.");
+
+			paymentPage.selectBankName(bankName);
+			Log.message("11. Selected Bank as 'CITY BANK'.");
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Paynow' button.");
+
+			//Need to complete the testcase
+			//	paymentPage.clickedOnSubmit();
+
+			//	driver.navigate().back();
+
+
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -1118,6 +1134,7 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
+
 
 	@Test(groups = { "desktop" }, description = "Failed payment flow with Credit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_044(HashMap<String, String> testData) throws Exception {
@@ -1193,6 +1210,7 @@ public class FlightSearch {
 		}
 	}
 
+
 	@Test(groups = { "desktop" }, description = "Failed payment flow with Debit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_045(HashMap<String, String> testData) throws Exception {
 
@@ -1208,6 +1226,7 @@ public class FlightSearch {
 		String adult = testData.get("Adult");
 		String child = testData.get("Child");
 		String infant = testData.get("Infant");
+
 		String[] arrayAdult = adult.split(",");
 		String[] childAdult = child.split(",");
 		String[] infantDOB = infant.split(",");
@@ -1266,7 +1285,7 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			// driver.quit();
+			 driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1646,6 +1665,7 @@ public class FlightSearch {
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");
+			Thread.sleep(2000);
 
 			// step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);

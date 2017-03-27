@@ -378,6 +378,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			}
 		
 	}
+
 		
 		/**
 		 * Getting the text from the fare details panel
@@ -391,4 +392,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			return txtDetails;
 
 		}
+
+		
+
 } //ReviewPage
