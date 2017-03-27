@@ -1,30 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<<<<<<< HEAD
 <suite name=" Yatra Web Automation Test" verbose="3" parallel="false" thread-count="500">
-    <listeners>
-	    <listener class-name="com.Yatra.Utils.MyTransformer"/>
-	</listeners>
 
-	<parameter name="workBookName" value="testdata\\data\\Flights.xls"/>
-    <parameter name="sheetName" value="FlightPricing"/>
+	<listeners>
+		<listener class-name="com.Yatra.Utils.MyTransformer" />
+	</listeners>
+	
+	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
+	<parameter name="sheetName" value="FlightPricing" />
+
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="iexplorer_windows" />
+	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
-	<test name="Flight Pricing" thread-count="3" parallel="false">
-		<!--<groups>
-			<run>
-				< include name="desktop" />
-			</run>
-		</groups> -->
 
-	<test name="Flight Pricing" thread-count="10" parallel="true">
-
-
+	<test name="Flight Pricing" thread-count="10" parallel="false">
+		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing">
+				<methods>
+					<include name="TC_FlightPricing_015" />				
+					<include name="TC_FlightPricing_022" />
+				</methods>
 			</class>
 		</classes>
 	</test>
