@@ -143,6 +143,51 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(css = ".be-container-v2")
 	WebElement searchPanel;
+
+	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>div[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
+	WebElement btnIncreseSeat;
+	
+	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(1)")
+	WebElement lnkOneWayBus;
+	
+	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(3)")
+	WebElement lnkRoundTripBus;
+	
+	@FindBy(css = "#BE_bus_from_station")
+	 WebElement txtOriginBus;
+	
+	@FindBy(xpath = "//input[@id='BE_train_from_station']")
+	WebElement txtTrainOrigin;
+	
+	@FindBy(xpath = "//input[@id='BE_train_to_station']")
+	WebElement txtTrainDestination;
+	
+	@FindBy(xpath = "//input[@id='BE_train_depart_date']")
+	WebElement dateTrainDeparture;
+	
+	@FindBy(xpath="//input[@id='BE_train_search_btn']")
+	WebElement btnTrainSearch;
+
+	@FindBy(css = "#BE_bus_to_station")
+	WebElement txtDestinationBus;
+
+	@FindBy(css = "#BE_bus_depart_date")
+	WebElement dateDepartureBus;
+
+	@FindBy(css = "#BE_bus_return_date")
+	WebElement dateReturnBus;
+	
+	@FindBy(css = "#BE_bus_search_btn")
+	WebElement btnSearchBus;
+	
+	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month-']")
+	List<WebElement> selectMonth_Bus;
+	
+	@FindBy(css = "#toater_21")
+	WebElement txtErrorMsgEmptyCity;
+	
+	@FindBy(css = "#toater_23")
+	WebElement txtErrorMsgSameCity;
 	
 	
 	/**********************************************************************************************
@@ -828,8 +873,272 @@ public class HomePage extends LoadableComponent<HomePage> {
 		}
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
+
+	}
+
+	/**
+	 * Enter Train Origin
+	 * 
+	 * @param trainOrigin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterTrainOrigin(String trainOrigin) throws Exception {
+		Utils.waitForElement(driver, txtTrainOrigin);
+		BrowserActions.typeOnTextField(txtTrainOrigin, trainOrigin, driver, "Select Origin");
+		Log.event("Entered the Origin: " + trainOrigin);
 	}
 	
+	
+	/**
+	 * To select Passenger Information 
+	 * 
+	 * @throws Exception
+	 */
+	public void PassengerInfoBus(String passengers) throws Exception {
+		BrowserActions.nap(2);
+		int z = Integer.parseInt(passengers);
+		for(int i=1 ; i<z ; i++){
+			BrowserActions.clickOnElement(btnIncreseSeat, driver, "Passenger Info");
+		}
+			}
+	
+	
+	/**
+	 * To Select Bus Trip Type
+	 * 
+	 * @throws Exception
+	 */
+	public void selectTripTypeBus(String tripType) throws Exception {
+		if (tripType.equals(Constants.C_ONEWAY)) {
+			BrowserActions.javascriptClick(lnkOneWayBus, driver, "One Way");
+			Utils.waitForPageLoad(driver);
+			Log.event("Successfully selected OneWay option in Search Fields");
+		} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
+			BrowserActions.javascriptClick(lnkRoundTripBus, driver, "Round Trip");
+			Utils.waitForPageLoad(driver);
+			Log.event("Successfully selected RoundTrip option in Search Fields");
+		}
+	}
+	
+	/**
+	 * To Select Bus Origin
+	 * 
+	 * @throws Exception
+	 */
+	public void enterOriginBus(String origin) throws Exception {
+		Utils.waitForElement(driver, txtOriginBus);
+		BrowserActions.typeOnTextField(txtOriginBus, origin, driver, "Select Origin");
+		Log.event("Entered the Origin: " + origin);
+	}
+	 	/**
+		 * To Select Bus Destination
+		 * 
+		 * @throws Exception
+		 */
+	
+	public void enterDestinationBus(String destination) throws Exception {
+		Utils.waitForElement(driver, txtDestinationBus);
+		BrowserActions.typeOnTextField(txtDestinationBus, destination, driver, "Select Destination");
+		Log.event("Entered the Destination: " + destination);
+	}
+	/**
+	 * To select Return Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public String selectReturnDateBus(String returnDate) throws Exception {
+		int iDay = Integer.parseInt(returnDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(dateReturnBus, driver, "clicking on Bus Return date icon");
+		selectMonth_Bus.get(month - 3).click();
+		BrowserActions.nap(2);
+		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		BrowserActions.nap(2);
+		datePicker.get(7).click();
+		Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
+		return date;
+	}
+	
+	/**
+	 * To Select Bus Depature Date
+	 * 
+	 * @throws Exception
+	 */
+	public String selectDepartureDateBus(String departureDate) throws Exception {
+		int iDay = Integer.parseInt(departureDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(dateDepartureBus, driver, "clicking on Bus Depart date icon");
+		selectMonth_Bus.get(month - 3).click();
+		BrowserActions.nap(2);
+		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		BrowserActions.nap(2);
+		datePicker.get(7).click();
+		Log.event("Selected Bus Departure Date: " + date + "(YY/MM/DD)");
+		return date;
+	}
+	/**
+	 * To click search button on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public SearchResultBus clickBtnSearchBus() throws Exception {
+		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
+		Utils.waitForPageLoad(driver);
+		return new SearchResultBus(driver).get();
+	}
+	/**
+	 * To select RoundTrip Bus search Fields
+	 * 
+	 * @throws Exception
+	 */
+	
+	public void selectRoundTripBusSearchFields(String origin, String destination, String departureDate,
+			String returnDate, String passengerInfo) throws Exception {
+		
+		enterOriginBus(origin); // enter Origin value
+		BrowserActions.nap(2);
+		enterDestinationBus(destination); // enter Destination value
+		BrowserActions.nap(2);
+		selectDepartureDateBus(departureDate); // select Departure Date
+		BrowserActions.nap(2);
+		selectReturnDateBus(returnDate); // select Return Date
+		BrowserActions.nap(2);
+		PassengerInfoBus(passengerInfo); // select Passengers
+		BrowserActions.nap(2);
+		Log.event("Successfully Filled RoundTrip Bus Search fields");
+	}
+
+	/**
+	 * To select OneWay Bus search Fields
+	 * 
+	 * @throws Exception
+	 */
+
+	public void selectOneWayBusSearchFields(String origin, String destination, String departureDate,
+			String passengerInfo) throws Exception {
+		BrowserActions.nap(2);
+		enterOriginBus(origin); // enter Origin value
+		BrowserActions.nap(2);
+		enterDestinationBus(destination); // enter Destination value
+		BrowserActions.nap(2);
+		selectDepartureDateBus(departureDate); // select Departure Date
+		BrowserActions.nap(2);
+		PassengerInfoBus(passengerInfo); // select Passengers 
+		Log.event("Successfully Filled OneWay Bus Search fields");
+
+	}
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorMsgEmptyCity() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
+	
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorSameCity() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
+
+	/**
+	 * Enter Train Destination
+	 * 
+	 * @param trainDestination
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterTrainDestination(String trainDestination) throws Exception {
+		Utils.waitForElement(driver, txtTrainDestination);
+		BrowserActions.typeOnTextField(txtTrainDestination, trainDestination, driver, "Select Destination");
+		Log.event("Entered the Destination: " + trainDestination);
+	}
+
+	/**
+	 * To click search button on Home page for Trains
+	 * 
+	 * @throws Exception
+	 */
+
+	public TrainSearchResult clickTrainBtnSearch() throws Exception {
+		// final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnTrainSearch, driver, "Train Search");
+		Utils.waitForPageLoad(driver);
+		return new TrainSearchResult(driver).get();
+
+	}
+
+    /**
+    * To select Departure Date
+    * 
+     * @throws Exception
+    */
+    @SuppressWarnings("static-access")
+    public String selectTrainDepartureDate(String trainDepartureDate) throws Exception {
+           int iDay = Integer.parseInt(trainDepartureDate);
+           String date = utils.dateGenerator("yyyy_M_d", iDay);
+           int month = Integer.parseInt(date.split("_")[1]);
+           BrowserActions.nap(2);
+           BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on Bus Return date icon");
+           selectMonth_Bus.get(month - 3).click();
+           BrowserActions.nap(2);
+           List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+           BrowserActions.nap(2);
+           datePicker.get(7).click();
+           Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
+           return date;
+    }
+
+	
+	/**
+	 * To select Train search Fields
+	 * 
+	 * @throws Exception
+	 */
+
+	public void selectTrainSearchFields(String trainOrigin, String trainDestination, String trainDepartureDate) throws Exception {
+		BrowserActions.nap(2);
+		enterTrainOrigin(trainOrigin); // enter Origin value
+		enterTrainDestination(trainDestination); // enter Destination value
+		BrowserActions.nap(3);
+		selectTrainDepartureDate(trainDepartureDate); // select Departure Date
+		Log.event("Successfully selected OneWay Flight Search fields");
+
+	}
+	
+	public void clickTrainTab() throws Exception {
+		// final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * To click search button on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnSearchBus() throws Exception {
+		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
+		Utils.waitForPageLoad(driver);
+	}
 	
 	
 }// HomePage
