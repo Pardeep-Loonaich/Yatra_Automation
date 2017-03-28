@@ -40,8 +40,7 @@ public class BusSearchTest {
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
-	@Test(groups = {
-			"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_001(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
