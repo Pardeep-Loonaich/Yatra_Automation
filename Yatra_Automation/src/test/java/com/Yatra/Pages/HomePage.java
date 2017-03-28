@@ -183,6 +183,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month-']")
 	List<WebElement> selectMonth_Bus;
 	
+	@FindBy(css = "#toater_21")
+	WebElement txtErrorMsgEmptyCity;
+	
+	@FindBy(css = "#toater_23")
+	WebElement txtErrorMsgSameCity;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -915,15 +922,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-
-
 	public void selectTripTypeBus(String tripType) throws Exception {
 		if (tripType.equals(Constants.C_ONEWAY)) {
-			BrowserActions.clickOnElement(lnkOneWayBus, driver, "One Way");
+			BrowserActions.javascriptClick(lnkOneWayBus, driver, "One Way");
 			Utils.waitForPageLoad(driver);
 			Log.event("Successfully selected OneWay option in Search Fields");
 		} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
-			BrowserActions.clickOnElement(lnkRoundTripBus, driver, "Round Trip");
+			BrowserActions.javascriptClick(lnkRoundTripBus, driver, "Round Trip");
 			Utils.waitForPageLoad(driver);
 			Log.event("Successfully selected RoundTrip option in Search Fields");
 		}
@@ -1008,6 +1013,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	public void selectRoundTripBusSearchFields(String origin, String destination, String departureDate,
 			String returnDate, String passengerInfo) throws Exception {
+		
 		enterOriginBus(origin); // enter Origin value
 		BrowserActions.nap(2);
 		enterDestinationBus(destination); // enter Destination value
@@ -1039,6 +1045,31 @@ public class HomePage extends LoadableComponent<HomePage> {
 		PassengerInfoBus(passengerInfo); // select Passengers 
 		Log.event("Successfully Filled OneWay Bus Search fields");
 
+	}
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorMsgEmptyCity() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
+	
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorSameCity() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
 	}
 
 	/**
@@ -1089,7 +1120,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
 		Utils.waitForPageLoad(driver);
 	}
-	
+	/**
+	 * To click search button on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnSearchBus() throws Exception {
+		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
+		Utils.waitForPageLoad(driver);
+	}
 	
 	
 } //HomePage

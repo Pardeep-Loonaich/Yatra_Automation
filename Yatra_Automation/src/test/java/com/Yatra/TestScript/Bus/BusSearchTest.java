@@ -18,8 +18,8 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
-import com.Yatra.Pages.SearchResult;
 import com.Yatra.Pages.SearchResultBus;
+import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -40,7 +40,8 @@ public class BusSearchTest {
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
-	@Test(groups = {"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {
+			"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_001(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -89,7 +90,8 @@ public class BusSearchTest {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Search Oneway bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {
+			"desktop" }, description = "Search Oneway bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_002(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -112,7 +114,7 @@ public class BusSearchTest {
 
 			homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
-			
+
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
 			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
 
@@ -169,16 +171,14 @@ public class BusSearchTest {
 
 			searchResultBus = homePage.clickBtnSearchBus();
 			Log.message("5. Clicked On Search Button!");
-			String BusDetail = searchResultBus.getTextBusDetails();
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
 			Thread.sleep(6000);
 			Log.assertThat(
-					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("fldContentBusDetail"),
+					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("fldContentBusDetail_RT"),
 							searchResultBus),
-					"<b>Actual Result:</b> User Successfully navigated on SearchResult page and Bus Details are as : "
-							+ BusDetail,
+					"<b>Actual Result:</b> User Successfully navigated on SearchResult page",
 					"<b>Actual Result:</b> User is not navigated on SearchResult page", driver);
 
 		} catch (Exception e) {
@@ -220,16 +220,14 @@ public class BusSearchTest {
 
 			searchResultBus = homePage.clickBtnSearchBus();
 			Log.message("5. Clicked On Search Button!");
-			String BusDetail = searchResultBus.getTextBusDetails();
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page");
 			Thread.sleep(6000);
 			Log.assertThat(
-					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("fldContentBusDetail"),
+					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("fldContentBusDetail_RT"),
 							searchResultBus),
-					"<b>Actual Result:</b> User Successfully navigated on SearchResult page and Bus Details are as : "
-							+ BusDetail,
+					"<b>Actual Result:</b> User Successfully navigated on SearchResult page",
 					"<b>Actual Result:</b> User is not navigated on SearchResult page", driver);
 
 		} catch (Exception e) {
@@ -241,7 +239,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for Message in Case Of No Result", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+			"desktop" }, description = "Don't select any city for onward/return", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_005(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -268,21 +266,20 @@ public class BusSearchTest {
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
 			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
 
-			searchResultBus = homePage.clickBtnSearchBus();
+			homePage.clickOnSearchBus();
 			Log.message("5. Clicked On Search Button!");
-			String SRPDetail = searchResultBus.getTextNoBusFound();
+			BrowserActions.nap(2);
+			homePage.clickOnSearchBus();
+			String ErrorMessage = homePage.getTextErrorMsgEmptyCity();
 
 			Log.message("<br>");
 			Log.message(
-					"<b>Expected Result:</b> User should navigated on SearchResult page and No Bus Found Message Should Be Displayed");
+					"<b>Expected Result:</b> User Should get a Error Message when,Don't select any city for onward/return");
 			Thread.sleep(6000);
-			Log.assertThat(
-					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("txtNoResultFoundBus"),
-							searchResultBus),
-					"<b>Actual Result:</b> User Successfully navigated on SearchResult page and On SRP details as  : "
-							+ SRPDetail,
-					"<b>Actual Result:</b> User navigated on SearchResult Page,NO Bus Found Message not displayed On SRP Page",
-					driver);
+			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("btnSearchBus"), homePage),
+					"<b>Actual Result:</b> After Clicking Search Button, An Error Message is Displayed as :"
+							+ ErrorMessage,
+					"<b>Actual Result:</b> After Clicking Search Button, No Error Message is not Displayed", driver);
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -293,7 +290,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Results should be sorted by Price In Ascending Order", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+			"desktop" }, description = "Don't select any date to travel", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void Web_Bus_006(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
@@ -320,19 +317,20 @@ public class BusSearchTest {
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
 			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
 
-			searchResultBus = homePage.clickBtnSearchBus();
+			homePage.clickOnSearchBus();
 			Log.message("5. Clicked On Search Button!");
+			BrowserActions.nap(2);
+			homePage.clickOnSearchBus();
+			String ErrorMessage = homePage.getTextErrorMsgEmptyCity();
 
 			Log.message("<br>");
 			Log.message(
-					"<b>Expected Result:</b> On SearchResultPage Result Should Be Displayed In Ascending Order");
+					"<b>Expected Result:</b> User Should get a Error Message when,Don't select any city for onward/return");
 			Thread.sleep(6000);
-			Log.assertThat(
-					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("txtNoResultFoundBus"),
-							searchResultBus),
-					"<b>Actual Result:</b> On SearchResultPage Result is Displayed in Ascending Order",
-					"<b>Actual Result:</b> On SearchResultPage Result is not Displayed in Ascending Order",
-					driver);
+			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("btnSearchBus"), homePage),
+					"<b>Actual Result:</b> After Clicking Search Button, An Error Message is Displayed as :"
+							+ ErrorMessage,
+					"<b>Actual Result:</b> After Clicking Search Button, No Error Message is not Displayed", driver);
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -341,4 +339,5 @@ public class BusSearchTest {
 			Log.endTestCase();
 		}
 	}
+
 }
