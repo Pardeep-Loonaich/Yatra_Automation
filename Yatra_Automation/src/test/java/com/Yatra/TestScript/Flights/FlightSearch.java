@@ -1912,7 +1912,7 @@ public class FlightSearch {
 			BrowserActions.nap(6);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon", "lnkYatraLogo"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Yatra logo is displayed,  UserName is dispalyed as <b>: " + userAcctNametText +"</b>, Support is dispalyed as <b>: " + supportText +"</b>, Special Deals is dispalyed as <b>: " + splDealsText +"</b>, Recent Search is dispalyed as : <b>" + recentSearchText +"</b> ",
-					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the Yatra logo is displayed, UserName is not dispalyed as <b>: " + userAcctNametText +"</b>, Support is not dispalyed as <b>: " + supportText +"</b>, Special Deals is not dispalyed as <b>: " + splDealsText +"</b>, Recent Search is not dispalyed as : <b>" + recentSearchText +"</b> ", driver);
+					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the Yatra logo is not displayed, UserName is not dispalyed as <b>: " + userAcctNametText +"</b>, Support is not dispalyed as <b>: " + supportText +"</b>, Special Deals is not dispalyed as <b>: " + splDealsText +"</b>, Recent Search is not dispalyed as : <b>" + recentSearchText +"</b> ", driver);
 		
 			BrowserActions.nap(2);
 			Log.testCaseResult();
@@ -1923,6 +1923,80 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
+	
+	
+	@Test(groups = {"desktop" }, description = "Validating the action on clicking on My Account header Menu items", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Web_Flight_011(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");		
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");			
+			
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			homePage.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterDestination(destination);
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+
+			// step: select Departure date
+			String departDate = homePage.selectDepartureDate(departureDate);
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			// step: select Passengers info
+			homePage.specifyPassengerInfo(passengerInfo);
+			Log.message("6.Successfully selected Passenger Info");
+
+			// step: select Passengers class
+			homePage.selectPassengerClass(passengerClass);
+			homePage.clickDoneButtonInPassengerBox();
+			Log.message("7.Successfully selected Passenger class and clicked Done button");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
+			
+			//getting text from headers
+			searchResult.mouseOverMyAccount();
+			String loginText = searchResult.getTextLogin();
+			String signUpText = searchResult.getTextSignUp();
+			String corporateLoginText = searchResult.getTextCorporateLogin();
+			String agentLoginText = searchResult.getTextAgentLogin();	
+			String myBookingText = searchResult.getMyBookings();	
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated the action on clicking on My Account header Menu items");
+			BrowserActions.nap(6);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon", "lnkYatraLogo"), searchResult),
+					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Login is dispalyed as <b>: " + loginText +"</b>, SignUp is dispalyed as <b>: " + signUpText +"</b>, Corporate Login is dispalyed as <b>: " + corporateLoginText +"</b>, Agent Login is dispalyed as : <b>" + agentLoginText +"</b>, My Bookings is dispalyed as : <b>" + myBookingText +"</b> ",
+					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the Login is not dispalyed as <b>: " + loginText +"</b>, SignUp is not dispalyed as <b>: " + signUpText +"</b>, Corporate Login is not dispalyed as <b>: " + corporateLoginText +"</b>, Agent Login is not dispalyed as : <b>" + agentLoginText +"</b>, My Bookings is not dispalyed as : <b>" + myBookingText +"</b> ", driver);
+		
+			BrowserActions.nap(2);
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
 
 	
   // ********************************End of Testcases ***************************************************************************************

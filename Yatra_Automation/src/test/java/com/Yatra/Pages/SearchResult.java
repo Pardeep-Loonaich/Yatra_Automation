@@ -25,7 +25,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public ElementLayer elementLayer;
 
 	/**********************************************************************************************
-	 ********************************* WebElements of Yatra Search Page ***********************************
+	 ********************************* WebElements of Yatra Search Result Page ***********************************
 	 **********************************************************************************************/
 
 	@FindBy(css = ".ico-newHeaderLogo")
@@ -133,6 +133,25 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "#userShowName")
 	WebElement txtUserAcctName;
+	
+	@FindBy(css = ".simple-dropdown")
+	WebElement txtMyBookings;
+	
+	@FindBy(css = "#signInBtn")
+	WebElement txtLogin;
+	
+	@FindBy(css = ".simple-dropdown.login-li.clearfix>span>a")
+	WebElement txtSignUp;
+	
+	@FindBy(css = "a.simple-tab.eventTrackable.uniqueDate")
+	WebElement txtCorporateLogin;
+	
+	@FindBy(xpath = "//a[contains(text(),'Agent Login')]")
+	WebElement txtAgentLogin;
+	
+	//li[@id='userSignInStrip']//li[3]/a
+	
+	
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -461,5 +480,71 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	
+	/**
+	 * Getting the text from Login button in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextLogin() throws Exception {
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtLogin, "Login button Text Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
 	
+	
+	/**
+	 * Getting the text from SignUp in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSignUp() throws Exception {
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtSignUp, "SignUp Text Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Corporate Login in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextCorporateLogin() throws Exception {
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtCorporateLogin, "Corporate Login Text Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Agent Login in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextAgentLogin() throws Exception {
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtAgentLogin, "Agent Login Text Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
+	
+	/**
+	 * Getting the text from My Bookings in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getMyBookings() throws Exception {
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtMyBookings, "My Booking Text Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
+	/**
+	 * To mouse hover to My Account
+	 */
+	public void mouseOverMyAccount() {
+		BrowserActions.nap(4);
+		BrowserActions.mouseHover(driver, txtMyAccount);
+	}
+	
+	
+	
+	
+  //*******************************End of SRP Functions********************************************************************************************
 } // SearchResult
