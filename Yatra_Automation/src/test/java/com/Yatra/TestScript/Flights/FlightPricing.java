@@ -49,7 +49,7 @@ public class FlightPricing {
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
-	@Test(groups = {"mobile" }, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_015(HashMap<String, String> testData) throws Exception {
 		// Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
