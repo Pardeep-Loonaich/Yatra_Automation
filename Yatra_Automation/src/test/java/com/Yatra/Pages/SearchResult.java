@@ -116,9 +116,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='row baggage-summary']")
 	WebElement fldContentBaggageDetail;
 	
-	@FindBy(css = ".ico-newHeaderLogo")
-	WebElement lnkYatraLogo1;
-	
 	@FindBy(css = "#userSignInStrip a.dropdown-toggle")
 	WebElement txtMyAccount;
 	
@@ -133,7 +130,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "a.logo")
 	WebElement lnkYatraLogo;
-
+	
+	@FindBy(css = "#userShowName")
+	WebElement txtUserAcctName;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -414,7 +414,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * Getting the text from Recent Search in SRP page 
+	 * Getting the text from Recent Search in SRP  
 	 * 
 	 * @return
 	 * @throws Exception
@@ -424,24 +424,42 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return myAccountGetTxt;
 	}
 	
-	
+	/**
+	 * Getting the text from Yatra Logo in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String getTextFromAYatraLogo() throws Exception {
+		BrowserActions.mouseHover(driver, lnkYatraLogo);
 		return (BrowserActions.getTextFromAttribute(driver, lnkYatraLogo, "title", "Yatra Logo title"));
 	}
 
 	/**
-	 * To click search button on Home page
+	 * To click Yatra Logo on Search Result page
 	 * 
 	 * @throws Exception
 	 */
 
-	public HomePage clickYatraLogo() throws Exception {		
-		BrowserActions.clickOnElement(lnkYatraLogo, driver, "Search");
+	public HomePage clickYatraLogo() throws Exception {			
+		BrowserActions.actionClick(lnkYatraLogo, driver, "Yatra Logo");
 		Utils.waitForPageLoad(driver);
 		Log.event("Successfully clicked Yatra Logo link in SRP");
 		return new HomePage(driver).get();
-
 	}
+	
+	/**
+	 * Getting the text from Recent Search in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextUserAcctName() throws Exception {
+		//BrowserActions.mouseHover(driver, txtUserAcctName);
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtUserAcctName, "User Name Search Text Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
+	
 	
 	
 } // SearchResult

@@ -523,7 +523,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public LoginPage navigateToSignIn() throws Exception {
 		// click Login button on signin page
-		Utils.waitForElement(driver, btnSignIn);
+		Utils.waitForElement(driver, lnkMyaccount);		
+		BrowserActions.mouseHover(driver, lnkMyaccount);
+		//BrowserActions.moveToElementJS(driver, lnkMyaccount);
+		//BrowserActions.actionClick(btnSignIn, driver, "Sign In");
 		BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
@@ -620,6 +623,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
+		BrowserActions.scrollToViewElement(dateDeparture, driver);
 		Utils.waitForElement(driver, dateDeparture);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
 		
@@ -641,6 +645,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
+		BrowserActions.scrollToViewElement(dateReturn, driver);
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
 		selectMonth.get(month - 2).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
@@ -656,6 +661,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public void specifyPassengerInfo(String passengers) throws Exception {
 		BrowserActions.nap(2);
+		BrowserActions.scrollToViewElement(passengerInfo, driver);
 		BrowserActions.clickOnElement(passengerInfo, driver, "Passenger Info");
 		List<WebElement> updatePassengers = driver.findElements(By.cssSelector(passengersLocator));
 		int adult = Integer.parseInt(passengers.split("_")[0]);

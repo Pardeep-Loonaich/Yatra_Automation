@@ -1848,4 +1848,82 @@ public class FlightSearch {
 		}
 	}
 	
-}
+	@Test(groups = {"desktop" }, description = "Validating the SRP Header for logged in User", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Web_Flight_010(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2.Successfully Logged in Yatra account");
+			
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			homePage.enterOrigin(origin);
+			Log.message("4.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterDestination(destination);
+			Log.message("5.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+
+			// step: select Departure date
+			String departDate = homePage.selectDepartureDate(departureDate);
+			Log.message("6.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			// step: select Passengers info
+			homePage.specifyPassengerInfo(passengerInfo);
+			Log.message("7.Successfully selected Passenger Info");
+
+			// step: select Passengers class
+			homePage.selectPassengerClass(passengerClass);
+			homePage.clickDoneButtonInPassengerBox();
+			Log.message("8.Successfully selected Passenger class and clicked Done button");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("9.Successfully clicked 'Search' button in Yatra Homepage ");
+			
+			//getting text from headers
+			String userAcctNametText = searchResult.getTextUserAcctName();
+			String supportText = searchResult.getTextSupport();
+			String splDealsText = searchResult.getTextSplDeals();
+			String recentSearchText = searchResult.getTextRecentSearch();	
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated the SRP Header for logged in User");
+			BrowserActions.nap(6);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon", "lnkYatraLogo"), searchResult),
+					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Yatra logo is displayed,  UserName is dispalyed as <b>: " + userAcctNametText +"</b>, Support is dispalyed as <b>: " + supportText +"</b>, Special Deals is dispalyed as <b>: " + splDealsText +"</b>, Recent Search is dispalyed as : <b>" + recentSearchText +"</b> ",
+					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the Yatra logo is displayed, UserName is not dispalyed as <b>: " + userAcctNametText +"</b>, Support is not dispalyed as <b>: " + supportText +"</b>, Special Deals is not dispalyed as <b>: " + splDealsText +"</b>, Recent Search is not dispalyed as : <b>" + recentSearchText +"</b> ", driver);
+		
+			BrowserActions.nap(2);
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	
+  // ********************************End of Testcases ***************************************************************************************
+} //FlightSearch
