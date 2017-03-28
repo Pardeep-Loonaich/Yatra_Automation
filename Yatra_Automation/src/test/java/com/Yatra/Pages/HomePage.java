@@ -56,9 +56,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']")
 	List<WebElement> selectMonth;
-	
-	@FindBy(css = "ul[class='month-list'] li a[href*='#PegasusCal-0-month-']")
-	List<WebElement> selectMonth1;
 
 	@FindBy(css = "div[id='BE_flight_paxInfoBox']")
 	WebElement passengerInfo;
@@ -144,6 +141,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "#userSignInStrip")
 	WebElement lnkMyaccount;
 	
+	@FindBy(css = ".be-container-v2")
+	WebElement searchPanel;
+
 	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>div[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
 	WebElement btnIncreseSeat;
 	
@@ -220,7 +220,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		appURL = "https://www.yatra.com/";
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
-		PageFactory.initElements(finder, this);
+		PageFactory.initElements(finder, this);		
+		elementLayer = new ElementLayer(driver);
 	}// HomePage
 
 	@Override
@@ -673,27 +674,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
-	
-	/**
-	 * To select Departure Date
-	 * 
-	 * @throws Exception
-	 */
-	@SuppressWarnings("static-access")
-	public String selectTrainDepartureDate(String trainDepartureDate) throws Exception {
-		int iDay = Integer.parseInt(trainDepartureDate);
-		String date = utils.dateGenerator("yyyy_M_d", iDay);
-		int month = Integer.parseInt(date.split("_")[1]);
-		BrowserActions.nap(2);
-		BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on Bus Return date icon");
-		selectMonth_Bus.get(month - 3).click();
-		BrowserActions.nap(2);
-		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		BrowserActions.nap(2);
-		datePicker.get(7).click();
-		Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
-		return date;
-	}
 
 	/**
 	 * To select Return Date
@@ -887,6 +867,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		}
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
+
 	}
 
 	/**
@@ -1098,6 +1079,28 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return new TrainSearchResult(driver).get();
 
 	}
+
+    /**
+    * To select Departure Date
+    * 
+     * @throws Exception
+    */
+    @SuppressWarnings("static-access")
+    public String selectTrainDepartureDate(String trainDepartureDate) throws Exception {
+           int iDay = Integer.parseInt(trainDepartureDate);
+           String date = utils.dateGenerator("yyyy_M_d", iDay);
+           int month = Integer.parseInt(date.split("_")[1]);
+           BrowserActions.nap(2);
+           BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on Bus Return date icon");
+           selectMonth_Bus.get(month - 3).click();
+           BrowserActions.nap(2);
+           List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+           BrowserActions.nap(2);
+           datePicker.get(7).click();
+           Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
+           return date;
+    }
+
 	
 	/**
 	 * To select Train search Fields
@@ -1120,6 +1123,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
 		Utils.waitForPageLoad(driver);
 	}
+
 	/**
 	 * To click search button on Home page
 	 * 
@@ -1131,4 +1135,4 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 	
 	
-} //HomePage
+}// HomePage

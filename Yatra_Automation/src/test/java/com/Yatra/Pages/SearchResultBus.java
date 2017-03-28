@@ -251,4 +251,4 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		BrowserActions.clickOnElement(lnkDroppingPoint, driver, "Dropping Point link");
 		Utils.waitForPageLoad(driver);
 	}
-}
+}//SRPBUS

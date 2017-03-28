@@ -17,9 +17,8 @@
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Bus.BusSearchTest">
-			<methods>
-					<include name="TC_FlightPricing_015" />				
-					<include name="TC_FlightPricing_022" />
+				<methods>
+					
 				</methods>
 			</class>
 		</classes>

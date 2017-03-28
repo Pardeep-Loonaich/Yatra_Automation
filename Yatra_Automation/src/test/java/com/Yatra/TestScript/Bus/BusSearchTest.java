@@ -340,4 +340,67 @@ public class BusSearchTest {
 		}
 	}
 
+	@Test(groups = {
+			"desktop" }, description = "Check for Dropping points, Boarding point, Bus type, Amenities, Price, depart time, arrival time", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void Web_Bus_011(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickBuses();
+			Log.message("2. Clicked on Bus Link!");
+
+			homePage.selectTripTypeBus(tripType);
+			Log.message("3. Trip Type Selected!");
+
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ROUND' trip!");
+
+			searchResultBus = homePage.clickBtnSearchBus();
+			Log.message("5. Clicked On Search Button!");
+
+			searchResultBus.clickBtnSelectSeat();
+			Log.message("6. Clicked On Search Button!");
+			String de = searchResultBus.getTextBusInfo();
+			Log.message(de);
+
+			searchResultBus.clickOnBoardingPoint();
+			Log.message("7. Clicked On Search Button!");
+			String BoardingPoint = searchResultBus.getTextBusBoardingPoint();
+
+			searchResultBus.clickOnDroppingPoint();
+			Log.message("8. Clicked On Search Button!");
+			String DroppingPoint = searchResultBus.getTextBusDroppingPoint();
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> User Should See all details properly like Dropping points, Boarding point, Bus type, Amenities, Price, depart time, arrival time");
+			Thread.sleep(6000);
+			Log.assertThat(
+					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("fldContentBusDetail"),
+							searchResultBus),
+					"<b>Actual Result:</b> User navigated to Search Result Page,All details are properly seen like Boarding Point As :"
+							+ BoardingPoint + "Dropping Point As :" + DroppingPoint,
+					"<b>Actual Result:</b> ", driver);
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
 }
