@@ -991,7 +991,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_039(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_112(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -1500,7 +1500,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_040(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_113(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
@@ -1561,7 +1561,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Existing User checkbox", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_041(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_114(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
@@ -1625,7 +1625,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = {"desktop" }, description = "Guest flow - Check Booking as a Existing User Fill Traveller form move to Payment page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_042(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_115(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");

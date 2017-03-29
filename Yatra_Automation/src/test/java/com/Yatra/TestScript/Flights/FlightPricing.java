@@ -325,7 +325,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = { "desktop" }, description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_022(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_106(HashMap<String, String> testData) throws Exception {
 
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser = testData.get("browser");
@@ -376,7 +376,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "Change flight link verification on Review page - INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_023(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_107(HashMap<String, String> testData) throws Exception {
 
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser = testData.get("browser");
@@ -428,7 +428,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = { "desktop" }, description = "Applying promo code on review page- Promo dropdown Validation", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_024(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_108(HashMap<String, String> testData) throws Exception {
 
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser = testData.get("browser");
@@ -484,7 +484,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "Applying promo code on review page- Promo Coupon Selection", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_025(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_109(HashMap<String, String> testData) throws Exception {
 
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser = testData.get("browser");
@@ -533,7 +533,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "Applying promo code on review page- Have a Promo Code Validation", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_026(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_110(HashMap<String, String> testData) throws Exception {
 
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser = testData.get("browser");
@@ -586,7 +586,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "Applying promo code on review page-  Have a Promo Code submission", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_027(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_111(HashMap<String, String> testData) throws Exception {
 
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser = testData.get("browser");
