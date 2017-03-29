@@ -449,7 +449,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = {"desktop" }, description = "Weekly Strip verification on SRP for DOM flight - OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_014(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_093(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -495,7 +495,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = {"desktop" }, description = "Add Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_031(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_099(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
@@ -552,7 +552,7 @@ public class FlightSearch {
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should be able to see the Meal Charges inculded in the Fare Detail!");
 			Thread.sleep(5000);
-			Log.assertThat(travellerPage.elementLayer.verifyPageElements(Arrays.asList("mealDetails"), travellerPage),
+			Log.assertThat(travellerPage.elementLayer.verifyPageElements(Arrays.asList("btnAddMeal"), travellerPage),
 					"<b>Actual Result:</b> Meal Charges are included In Total Fare and Meal Charges is :" + mealCharges,
 					"<b>Actual Result:</b> Meal Charges are not included In Total Fare", driver);
 
@@ -566,7 +566,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = {"desktop" }, description = "Remove Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_032(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_100(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
@@ -644,7 +644,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = { "desktop" }, description = "Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_034(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_102(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
@@ -717,7 +717,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = { "desktop" }, description = "Remove Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_035(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_103(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
@@ -794,7 +794,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = { "desktop",	"mobile" }, description = "Verify Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_033(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_101(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
@@ -1137,7 +1137,7 @@ public class FlightSearch {
 
 
 	@Test(groups = { "desktop" }, description = "Failed payment flow with Credit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_044(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_104(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -1212,7 +1212,7 @@ public class FlightSearch {
 
 
 	@Test(groups = { "desktop" }, description = "Failed payment flow with Debit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_045(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_105(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -1223,12 +1223,7 @@ public class FlightSearch {
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
-		String adult = testData.get("Adult");
-		String child = testData.get("Child");
 		String infant = testData.get("Infant");
-
-		String[] arrayAdult = adult.split(",");
-		String[] childAdult = child.split(",");
 		String[] infantDOB = infant.split(",");
 
 		// Get the web driver instance
@@ -1251,7 +1246,7 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			ReviewPage reviewPage = searchResult.clickOnBookNowINT();
+			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(1);
 			Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
@@ -1262,7 +1257,7 @@ public class FlightSearch {
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("7.Successfully Logged in Yatra account!");
 
-			travellerPage.fillTravellerDetails_INT(arrayAdult, childAdult, infantDOB);
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
 			Log.message("8. Enter User Details!");
 
 			paymentPage = travellerPage.clickOnContinue();
@@ -1291,7 +1286,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_018(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_094(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -1343,7 +1338,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_019(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_095(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		// String emailId = testData.get("EmailAddress");
@@ -1399,7 +1394,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_021(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_098(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -1450,7 +1445,7 @@ public class FlightSearch {
 	}
 
 	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_020(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_097(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");

@@ -50,7 +50,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "Check to price calculation for DOM flight-one way", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_015(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_087(HashMap<String, String> testData) throws Exception {
 		// Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
 		String browser = testData.get("browser");
@@ -107,7 +107,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "Check to price calculation for DOM flight-round trip", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_016(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_088(HashMap<String, String> testData) throws Exception {
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
 		String browser = testData.get("browser");
@@ -172,7 +172,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "Insurance added on pax page ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_028(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_089(HashMap<String, String> testData) throws Exception {
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		
 		String browser = testData.get("browser");
@@ -243,7 +243,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "Insurance verification on pax page removed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_029(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_090(HashMap<String, String> testData) throws Exception {
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		
 		String browser = testData.get("browser");
@@ -639,7 +639,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "Check to price calculation for DOM flight-multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_017(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_096(HashMap<String, String> testData) throws Exception {
 
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 		String browser = testData.get("browser");
@@ -732,7 +732,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "eCash redemption on payswift page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_036(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_091(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
@@ -822,7 +822,7 @@ public class FlightPricing {
 	}
 
 	@Test(groups = {"desktop" }, description = "eCash redemption on payswift page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_037(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Flight_092(HashMap<String, String> testData) throws Exception {
 		//Utils.testCaseConditionalSkip(testData.get("Run"), testData.get("testCaseId"));
 
 		String browser = testData.get("browser");
@@ -858,7 +858,6 @@ public class FlightPricing {
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
 
-			Thread.sleep(6000);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
