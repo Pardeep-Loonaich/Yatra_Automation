@@ -1057,6 +1057,8 @@ public class FlightSearch {
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
+		String cardNumber = testData.get("CreditCardNumber");
+
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
 
@@ -1097,7 +1099,7 @@ public class FlightSearch {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked On continue Button!");
 
-			paymentPage.enterCreditCardDetails();
+			paymentPage.enterCreditCardDetails(cardNumber);
 			Log.message("10. Fill Credit Card Details!");
 
 			paymentPage.clickOnPayNow();

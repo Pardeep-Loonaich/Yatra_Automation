@@ -478,5 +478,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.scrollToViewElement(btnSubmit, driver);
 		BrowserActions.clickOnElement(btnSubmit, driver, "Clicked on Submit button for city bank");
 
-	}*/
+	}*/ // Vandna -- Function is not there
+	
+	//enterCreditCardDetails
 }
