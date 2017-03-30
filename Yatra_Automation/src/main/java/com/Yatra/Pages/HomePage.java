@@ -568,6 +568,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public LoginPage navigateToSignIn() throws Exception {
 		// click Login button on signin page
+
 		/*Utils.waitForElement(driver, lnkMyaccount);		
 		BrowserActions.mouseHover(driver, lnkMyaccount);*/
 		//BrowserActions.moveToElementJS(driver, lnkMyaccount);
