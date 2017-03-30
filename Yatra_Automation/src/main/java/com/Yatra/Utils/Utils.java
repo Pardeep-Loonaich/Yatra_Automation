@@ -1,6 +1,5 @@
 package com.Yatra.Utils;
 
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -11,9 +10,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
-import org.testng.ITestContext;
 import org.testng.SkipException;
-import org.testng.annotations.ITestAnnotation;
 
 
 /**
@@ -22,13 +19,6 @@ import org.testng.annotations.ITestAnnotation;
  * 
  */
 public class Utils {
-	private static String workBookName="";
-	private static String sheetName="";
-	public static String testCaseId="";
-	public static ITestAnnotation annotation;
-	public static Method testMethod;
-	public static ITestContext context;
-	
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 	public static int maxElementWait = 10;
 
@@ -526,8 +516,6 @@ public class Utils {
 
 		{
 			cal.add(Calendar.DATE, iDay);
-			//cal.add(Calendar.YEAR,-18);
-			
 			dataToBeReturn=simpleDateFormat.format(cal.getTime()).toString();
 			//System.out.println(simpleDateFormat.format(cal.getTime()));
 		}
@@ -536,10 +524,9 @@ public class Utils {
 			dataToBeReturn=simpleDateFormat.format(new Date());
 			//System.out.println(simpleDateFormat.format(cal.getTime()));
 		}
-
 		return dataToBeReturn;
+
 	}
-	
 	/** 
 	 * 
 	 * @param sExecute: a string flag YES/No
@@ -561,4 +548,29 @@ public class Utils {
 		}
 		return dataToBeReturn;
 	}
+
+	public static String dateGenerator_DOB(String sDateFormat, int iDay) {
+		String dataToBeReturn = "";
+		if (sDateFormat.equalsIgnoreCase("") || sDateFormat.equalsIgnoreCase(null)) {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		}
+
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDateFormat);
+
+		if (!(iDay == 0))
+		{
+			//cal.add(Calendar.DATE, iDay);
+			//cal.add(Calendar.MONTH, iDay);
+			cal.add(Calendar.YEAR, iDay);
+			dataToBeReturn = simpleDateFormat.format(cal.getTime()).toString();
+			// System.out.println(simpleDateFormat.format(cal.getTime()));
+		} else {
+			dataToBeReturn = simpleDateFormat.format(new Date());
+			// System.out.println(simpleDateFormat.format(cal.getTime()));
+		}
+		return dataToBeReturn;
+
+	}
+
 }

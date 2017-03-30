@@ -34,8 +34,6 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 
 	@FindBy(css = "#signInBtn")
 	WebElement btnSignIn;
-	
-	//comment 
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Login Page - Ends ****************************

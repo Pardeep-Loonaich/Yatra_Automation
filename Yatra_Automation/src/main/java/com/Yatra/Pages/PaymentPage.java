@@ -61,19 +61,26 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	@FindBy(css = "[id='redeem-applied-id']>h3")
 	WebElement msgEcashRedeem;
-	
-	@FindBy(css="a[id='cancelRedemption']")
-    WebElement lnkCancelRedem;
-    
-    @FindBy(css="a[id='okgotitlink']")
-    WebElement lnkGotIt;
-    
-    @FindBy(css="input[id='redeem-ecash-button']")
-    WebElement btnRedeemNow;
-    
-    @FindBy(css="#paymentDetailsCont>div>ul[class='noListStyle']")
-    WebElement modulePaymentDetails;
 
+	@FindBy(css="a[id='cancelRedemption']")
+	WebElement lnkCancelRedem;
+
+	@FindBy(css="a[id='okgotitlink']")
+	WebElement lnkGotIt;
+
+	@FindBy(css="input[id='redeem-ecash-button']")
+	WebElement btnRedeemNow;
+
+	@FindBy(css="#paymentDetailsCont>div>ul[class='noListStyle']")
+	WebElement modulePaymentDetails;
+	
+	@FindBy(css ="div[id='cpmt_tabContainer']>ul>li")
+	List<WebElement> paymentType;
+	
+	@FindBy(css ="div[class='net-banking-desk']>article[class='cpmt_net cpmt_lastInfo']>ul>li")
+	List<WebElement> selectBank;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -263,46 +270,101 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return txtRedeemMsg;
 
 	}
+
+	/**
+	 * Clicked on the cancel ecash redeem
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickingOnGotIt() throws Exception{
+		BrowserActions.clickOnElement(lnkGotIt, driver, "Clicked on OK GOT IT ecash redeem.");
+
+	}
+
+	/**
+	 * Clicked on the cancel ecash redeem
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickingToCancelEcashRedem() throws Exception{
+		BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on cancel ecash redeem.");
+
+	}
+
+
+
+	/**
+	 * Clicked on the  ecash redeem
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickingOnRedeemNow() throws Exception{
+		BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
+
+	}
+	/**
+	 * Getting the text from the Payment details panel
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFromPaymentDetailsModule() throws Exception{
+		String txtDetails = BrowserActions.getText(driver, modulePaymentDetails, "Getting text from the Payment details module.");
+		return txtDetails;
+
+	}
+
+	/**
+	 * to select the payment time from left panel
+	 * @param PaymentType
+	 * @throws Exception
+	 */
+
+	public void selectPaymentType(String PaymentType) throws Exception {
+		List<WebElement> lstElement = paymentType;
+
+		for (WebElement e : lstElement) {
+			if (e.findElement(By.cssSelector("a")).getText().equals(PaymentType)) {
+				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("a")), driver);
+				BrowserActions.clickOnElement(e.findElement(By.cssSelector("a")), driver, "list elements");
+				break;
+
+			}
+		}
+
+	}
+
+	/**
+	 * to select the bank name
+	 * @param BankName
+	 * @throws Exception
+	 */
+
 	
-/**
-    * Clicked on the cancel ecash redeem
-    * @return
-    * @throws Exception
-    */
-    public void clickingOnGotIt() throws Exception{
-           BrowserActions.clickOnElement(lnkGotIt, driver, "Clicked on OK GOT IT ecash redeem.");
+	public void selectBankName(String BankName) throws Exception {
+		List<WebElement> lstElement = selectBank;
 
-    }
-    
-    /**
-    * Clicked on the cancel ecash redeem
-    * @return
-    * @throws Exception
-    */
-    public void clickingToCancelEcashRedem() throws Exception{
-           BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on cancel ecash redeem.");
+		for (WebElement e : lstElement) {
+			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(BankName)) {
+				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
+				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "checked");
+				break;
 
-    }
-    
-    
+			}
+		}
 
-    /**
-    * Clicked on the  ecash redeem
-    * @return
-    * @throws Exception
-    */
-    public void clickingOnRedeemNow() throws Exception{
-           BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
+	}
 
-    }
-    /**
-    * Getting the text from the Payment details panel
-    * @return
-    * @throws Exception
-    */
-    public String getTextFromPaymentDetailsModule() throws Exception{
-           String txtDetails = BrowserActions.getText(driver, modulePaymentDetails, "Getting text from the Payment details module.");
-           return txtDetails;
 
-    }
+/*
+	@FindBy(css ="div[id='submitciti']")
+	WebElement btnSubmit;
+
+	public void clickedOnSubmit() throws Exception {
+
+		BrowserActions.scrollToViewElement(btnSubmit, driver);
+		BrowserActions.clickOnElement(btnSubmit, driver, "Clicked on Submit button for city bank");
+		
+	}*/
+
+
 }

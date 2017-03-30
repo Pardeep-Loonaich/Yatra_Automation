@@ -18,7 +18,8 @@ import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 
 public class DataProviderUtils {
-
+	/*private static String workbookName = "testdata\\data\\Flights.xls";
+	private static String sheetName = "FlightPricing";*/
 	private static boolean doFilePathMapping=true;
 
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
@@ -162,15 +163,8 @@ public class DataProviderUtils {
 	}
 
 
-	/**
-	 * @author harveer.singh
-	 * @return :Hashmap obj with all data
-	 */
-
 	@DataProvider
-	public static Object[][] multipleExecutionData(Method method,ITestContext context)
-
-	{   
+	public static Object[][] multipleExecutionData(Method method,ITestContext context) {   
 		String sWorkBooName=context.getCurrentXmlTest().getParameter("workBookName");
 		String sheetNameP=context.getCurrentXmlTest().getParameter("sheetName");
 		String browserName=context.getCurrentXmlTest().getParameter("browserName");

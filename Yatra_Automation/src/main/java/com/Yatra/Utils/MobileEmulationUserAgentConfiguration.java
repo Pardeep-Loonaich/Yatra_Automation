@@ -26,10 +26,10 @@ public class MobileEmulationUserAgentConfiguration {
 					"Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25");
 			put("width", "414");
 			put("height", "736");
-			put("pixelRatio", "2");			
+			put("pixelRatio", "2");                                    
 		}
 	};
-	
+
 	@SuppressWarnings("serial")
 	private final HashMap<String, String> apple_ipad4_ios9 = new HashMap<String, String>() {
 		{
@@ -39,7 +39,7 @@ public class MobileEmulationUserAgentConfiguration {
 			put("pixelRatio", "2");
 		}
 	};
-	
+
 
 	/**
 	 * To storing the all the devices configurations
@@ -51,7 +51,7 @@ public class MobileEmulationUserAgentConfiguration {
 
 		HashMap<String, HashMap<String, String>> userAgentData = new HashMap<String, HashMap<String, String>>();
 
-		userAgentData.put(APPLE_IPHONE_IOS8, apple_iphone6plus_ios8);	
+		userAgentData.put(APPLE_IPHONE_IOS8, apple_iphone6plus_ios8);     
 		userAgentData.put(APPLE_IPAD_IOS9, apple_ipad4_ios9);
 		//userAgentData.put(key, value)
 
@@ -167,3 +167,11 @@ public class MobileEmulationUserAgentConfiguration {
 	}
 
 }
+
+
+
+
+
+
+
+

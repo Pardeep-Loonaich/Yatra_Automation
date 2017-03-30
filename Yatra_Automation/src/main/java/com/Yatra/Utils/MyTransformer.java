@@ -16,29 +16,15 @@ public class MyTransformer implements IAnnotationTransformer
 	
 	
 	@Override
-	public void transform(ITestAnnotation annotation, Class testClass,
-			Constructor testConstructor, Method testMethod) 
+	public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
+		HashMap<String, String> testData = TestDataExtractor.initTestData(workBookName, workSheet, testMethod.getName());
+		String invoke = testData.get("RunMode");
 
-	{
-		
-	/*Utils.annotation=annotation;
-		 Utils.testMethod=testMethod;
-		//Utils.testCaseId=testMethod.getName();
-		System.out.println(testMethod.getName());*/
-		
-		HashMap<String, String> testData=TestDataExtractor.initTestData(workBookName, workSheet,testMethod.getName());	
-		String invoke=testData.get("RunMode");
-		
-		if(invoke.equalsIgnoreCase("No"))
-		{
+		if (invoke.equalsIgnoreCase("No")) {
 			annotation.setEnabled(false);
-			System.out.println("disabled test case: \""+testMethod.getName()+"\", Now it will not be executed  !!");
+			System.out.println("disabled test case: \"" + testMethod.getName() + "\", Now it will not be executed  !!");
 		}
-		
-		
-		
+
 	}
 
-	
-
-}
+} //MyTransformer
