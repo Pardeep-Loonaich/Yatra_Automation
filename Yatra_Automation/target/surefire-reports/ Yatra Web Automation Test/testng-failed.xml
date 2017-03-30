@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="500" guice-stage="DEVELOPMENT" verbose="0" name="Failed suite [ Yatra Web Automation Test]">
+  <parameter name="webSite" value="https://www.yatra.com/"/>
+  <parameter name="sheetName" value="FlightPricing"/>
+  <parameter name="deviceHost" value="localhost"/>
+  <parameter name="workBookName" value="testdata\\data\\Flights.xls"/>
+  <parameter name="devicePort" value="4444"/>
+  <parameter name="browserName" value="chrome_windows"/>
+  <listeners>
+    <listener class-name="com.Yatra.Utils.MyTransformer"/>
+  </listeners>
+  <test name="Flight Pricing(failed)">
+    <classes>
+      <class name="com.Yatra.TestScript.Flights.FlightPricing">
+        <methods>
+          <include name="TC_Yatra_Flight_087" invocation-numbers="0"/>
+          <include name="init"/>
+        </methods>
+      </class> <!-- com.Yatra.TestScript.Flights.FlightPricing -->
+    </classes>
+  </test> <!-- Flight Pricing(failed) -->
+</suite> <!-- Failed suite [ Yatra Web Automation Test] -->

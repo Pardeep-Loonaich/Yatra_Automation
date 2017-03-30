@@ -1,0 +1,42 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 40.128 sec <<< FAILURE! - in TestSuite
+TC_Yatra_Flight_087(com.Yatra.TestScript.Flights.FlightPricing)  Time elapsed: 38.675 sec  <<< FAILURE!
+org.openqa.selenium.WebDriverException: 
+unknown error: Element <p class="new-blue-button fr book-button js-bookNow relative tc" ng-show="flt.totalFare>0 &amp;&amp; !queryProp.rescId" analytics="Flight Option|Book Now" yatratrackable="Flights|Search|Book Type|Book Now" ng-click="makePricing({seg:flt.pricingId, from:'', ttype:queryProp.type},$event,flt);">...</p> is not clickable at point (1193, 27). Other element would receive the click: <iframe name="notification-frame-~197148a1b" id="webklipper-publisher-widget-container-notification-frame" frameborder="0" marginheight="0" marginwidth="0" data-notification-layout-id="1af576bb" data-notification-layout-name="header-desktop" style="display: block; z-index: 16776272; visibility: visible; height: 35px; width: 100%; overflow: hidden; margin-top: 0px; left: auto; right: 0px; position: fixed; top: 0px;"></iframe>
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.28.455520 (cc17746adff54984afff480136733114c6b3704b),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 75 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1', time: '2016-06-30 17:37:03'
+System info: host: 'asplapggnr1', ip: '192.168.30.18', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.28.455520 (cc17746adff54984afff480136733114c6b3704b), userDataDir=C:\Users\HARVEE~1.YAT\AppData\Local\Temp\scoped_dir7124_24717}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 57483e4c3cd79026597652312643399f
+Command duration or timeout: 485 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'asplapggnr1', ip: '192.168.30.18', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.remote.RemoteWebDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.28.455520 (cc17746adff54984afff480136733114c6b3704b), userDataDir=C:\Users\HARVEE~1.YAT\AppData\Local\Temp\scoped_dir7124_24717}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, webdriver.remote.sessionid=32df696f-3038-4fc3-848b-05a796608e29, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 32df696f-3038-4fc3-848b-05a796608e29
+	at com.Yatra.TestScript.Flights.FlightPricing.TC_Yatra_Flight_087(FlightPricing.java:90)
+Caused by: org.openqa.selenium.remote.ScreenshotException: 
+Screen shot has been taken
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'asplapggnr1', ip: '192.168.30.18', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_60'
+Driver info: driver.version: RemoteWebDriver
+	at com.Yatra.TestScript.Flights.FlightPricing.TC_Yatra_Flight_087(FlightPricing.java:90)
+Caused by: org.openqa.selenium.WebDriverException: 
+unknown error: Element <p class="new-blue-button fr book-button js-bookNow relative tc" ng-show="flt.totalFare>0 &amp;&amp; !queryProp.rescId" analytics="Flight Option|Book Now" yatratrackable="Flights|Search|Book Type|Book Now" ng-click="makePricing({seg:flt.pricingId, from:'', ttype:queryProp.type},$event,flt);">...</p> is not clickable at point (1193, 27). Other element would receive the click: <iframe name="notification-frame-~197148a1b" id="webklipper-publisher-widget-container-notification-frame" frameborder="0" marginheight="0" marginwidth="0" data-notification-layout-id="1af576bb" data-notification-layout-name="header-desktop" style="display: block; z-index: 16776272; visibility: visible; height: 35px; width: 100%; overflow: hidden; margin-top: 0px; left: auto; right: 0px; position: fixed; top: 0px;"></iframe>
+  (Session info: chrome=57.0.2987.133)
+  (Driver info: chromedriver=2.28.455520 (cc17746adff54984afff480136733114c6b3704b),platform=Windows NT 6.1.7601 SP1 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 75 milliseconds
+Build info: version: '2.53.1', revision: 'a36b8b1', time: '2016-06-30 17:37:03'
+System info: host: 'asplapggnr1', ip: '192.168.30.18', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.28.455520 (cc17746adff54984afff480136733114c6b3704b), userDataDir=C:\Users\HARVEE~1.YAT\AppData\Local\Temp\scoped_dir7124_24717}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=57.0.2987.133, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: 57483e4c3cd79026597652312643399f
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'asplapggnr1', ip: '192.168.30.18', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_60'
+Driver info: driver.version: RemoteWebDriver
+

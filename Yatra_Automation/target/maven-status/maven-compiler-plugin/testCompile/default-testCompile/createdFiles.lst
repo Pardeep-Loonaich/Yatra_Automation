@@ -1,0 +1,4 @@
+com\Yatra\TestScript\Flights\FlightSearch.class
+com\Yatra\TestScript\Bus\BusSearchTest.class
+com\Yatra\TestScript\Flights\FlightPricing.class
+com\Yatra\TestScript\Hotels\HotelSearchTest.class

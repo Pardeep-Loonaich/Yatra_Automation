@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="500" guice-stage="DEVELOPMENT" verbose="3" name="Failed suite [ Yatra Web Automation Test]">
+  <parameter name="webSite" value="https://www.yatra.com/"/>
+  <parameter name="sheetName" value="FlightPricing"/>
+  <parameter name="deviceHost" value="localhost"/>
+  <parameter name="workBookName" value="testdata\\data\\Flights.xls"/>
+  <parameter name="devicePort" value="4444"/>
+  <parameter name="browserName" value="chrome_windows"/>
+  <listeners>
+    <listener class-name="com.Yatra.Utils.MyTransformer"/>
+  </listeners>
+  <test name="Flight Pricing(failed)">
+    <classes>
+      <class name="com.Yatra.TestScript.Flights.FlightPricing">
+        <methods>
+          <include name="TC_Yatra_Flight_087" invocation-numbers="0"/>
+          <include name="init"/>
+          <include name="TC_Yatra_Flight_089" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_111" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_107" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_096" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_109" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_106" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_108" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_091" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_090" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_092" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_088" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_110" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.Yatra.TestScript.Flights.FlightPricing -->
+    </classes>
+  </test> <!-- Flight Pricing(failed) -->
+</suite> <!-- Failed suite [ Yatra Web Automation Test] -->
