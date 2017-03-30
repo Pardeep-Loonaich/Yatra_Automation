@@ -211,7 +211,7 @@ public class FlightSearch {
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination1(destination1);
-			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 
 			// step: select Departure date
 			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
@@ -222,7 +222,7 @@ public class FlightSearch {
 
 			// step: enter Destination place in Yatra Home page
 			homePage.enterMultiCityDestination2(destination2);
-			Log.message("8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+			Log.message("7.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
 			// step: select Departure date
 			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
@@ -291,7 +291,7 @@ public class FlightSearch {
 			// step: enter Destination1 in Yatra Home page
 			homePage.enterMultiCityDestination1(destination1);
 
-			Log.message("5.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
 
 			// step: select Departure date1
 			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
@@ -303,7 +303,7 @@ public class FlightSearch {
 
 			// step: enter Destination2 in Yatra Home page
 			homePage.enterMultiCityDestination2(destination2);
-			Log.message("8.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+			Log.message("7.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
 
 			// step: select Departure date2
 			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
@@ -2019,8 +2019,7 @@ public class FlightSearch {
 			searchResult = homePage.clickBtnSearch();
 			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");			
 			
-			//getting text from headers
-			
+			//getting text from OneWay Journey city and depart date				
 			String sourceCityText = searchResult.getTextSourceCity();
 			String destCityText = searchResult.getTextDestinationCity();
 			String sourceDateText = searchResult.getTextSourceDate();
@@ -2094,7 +2093,7 @@ public class FlightSearch {
 			searchResult = homePage.clickBtnSearch();
 			Log.message("9.Successfully clicked 'Search' button in Yatra Homepage ");			
 			
-			//getting text from headers			
+			//getting text from RoundTrip Journey city and depart date			
 			String sourceCityText = searchResult.getTextSourceCity();
 			String destCityText = searchResult.getTextDestinationCity();
 			String sourceDateText = searchResult.getTextSourceDate();
@@ -2117,6 +2116,96 @@ public class FlightSearch {
 		}
 	}
 
+	
+	@Test(groups = {"desktop" }, description = "Validating the Matrix Result finder for MC search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_117(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin1 = testData.get("Origin");
+		String origin2 = testData.get("Origin_Multicity");
+		String tripType = testData.get("TripType");
+		String destination1 = testData.get("Destination");
+		String destination2 = testData.get("Destination_Multicity");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'Multicity' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			homePage.enterMultiCityOrigin1(origin1);
+			Log.message("3.Successfully entered Multicity Origin1 '<b>" + origin1 + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterMultiCityDestination1(destination1);
+			Log.message("4.Successfully entered Multicity Destination1 '<b>" + destination1 + "</b>' in Yatra Homepage");
+
+			// step: select Departure date
+			String departDate = homePage.selectMultiCityDateDeparture1(departureDate);
+			Log.message("5.Successfully selected the Multicity Departure1 date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			homePage.enterMultiCityOrigin2(origin2);
+			Log.message("6.Successfully entered Multicity Origin2 '<b>" + origin2 + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterMultiCityDestination2(destination2);
+			Log.message("7.Successfully entered Multicity Destination1 '<b>" + destination2 + "</b>' in Yatra Homepage");
+
+			// step: select Departure date
+			String returndate = homePage.selectMultiCityDateDeparture2(returnDate);
+			Log.message("8.Successfully selected the Multicity Departure2 date: <b>" + returndate + "</b>(YY/MM/DD)");
+
+			// step: select Passengers info
+			homePage.specifyPassengerInfo(passengerInfo);
+			Log.message("9.Passenger Info successfully specified");
+
+			// step: select Passenger class
+			homePage.selectPassengerClass(passengerClass);
+			homePage.clickDoneButtonInPassengerBox();
+			Log.message("10.Successfully selected Passenger class and clicked Done button");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
+			
+			
+			//getting text from  starting Journey city and depart date	
+			String startSourceCityText = searchResult.getTextStartSourceCity();			
+			String startSourceDateText = searchResult.getTextStartSourceDate();
+			String startDestCityText = searchResult.getTextStartDestCity();
+			
+			//getting text from  ending Journey city and depart date	
+			String endSourceCityText = searchResult.getTextEndSourceCity();			
+			String endSourceDateText = searchResult.getTextEndSourceDate();
+			String endDestCityText = searchResult.getTextEndDestCity();
+		
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated the Matrix Result finder for MC search");
+			BrowserActions.nap(6);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> User should navigated on SearchResult page, and the starting Source city is dispalyed as <b>: " + startSourceCityText +"</b>, starting Source Date is dispalyed as <b>: " + startSourceDateText +"</b>, starting Destination city is dispalyed as <b>: " + startDestCityText +"</b>, ending Source city is dispalyed as <b>: " + endSourceCityText +"</b>,  ending Source date is dispalyed as <b>: " + endSourceDateText +"</b>, ending Destination city is dispalyed as <b>: " + endDestCityText +"</b>" ,
+					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the starting Source city is not dispalyed as <b>: " + startSourceCityText +"</b>, starting Source Date is not dispalyed as <b>: " + startSourceDateText +"</b> , starting Destination city is not dispalyed as <b>: " + startDestCityText +"</b>, ending Source city is not dispalyed as <b>: " + endSourceCityText +"</b>, ending Source date is dispalyed as <b>: " + endSourceDateText +"</b>, ending Destination city is dispalyed as <b>: " + endDestCityText +"</b>" , driver);
+		
+			BrowserActions.nap(2);
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 	
   // ********************************End of Testcases ***************************************************************************************
 } //FlightSearch
