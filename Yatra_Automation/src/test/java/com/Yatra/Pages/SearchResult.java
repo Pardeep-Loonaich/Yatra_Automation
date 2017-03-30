@@ -149,8 +149,23 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "//a[contains(text(),'Agent Login')]")
 	WebElement txtAgentLogin;
 	
-	//li[@id='userSignInStrip']//li[3]/a
+	@FindBy(xpath = "//div[@id='resultBox']/div/div[3]/p")  //TODO: Need to change Xpath to css
+	WebElement txtTotalFlightSearch;
+
+	@FindBy(css = ".left.fl p.fs-10.ltr-gray.uprcse.mt2")
+	WebElement txtFlightSearchDuration;
 	
+	@FindBy(xpath = "//div[@id='resultBox']//ul[1]/li[1]/p[1]")  //TODO: Need to change Xpath to css
+	WebElement txtSourceCity;
+	
+	@FindBy(xpath = "//div[@id='resultBox']//ul[1]/li[1]/p[2]")   //TODO: Need to change Xpath to css
+	WebElement txtSourceDate;
+	
+	@FindBy(xpath = "//div[@id='resultBox']//ul[1]/li[2]/p[1]")  //TODO: Need to change Xpath to css
+	WebElement txtDestCity;
+	
+	@FindBy(xpath = "//div[@id='resultBox']//ul[1]/li[2]/p[2]")   //TODO: Need to change Xpath to css
+	WebElement txtDestDate;	
 	
 	
 	/**********************************************************************************************
@@ -399,6 +414,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 
 	
+	
 	/**
 	 * Getting the text from My Acccount in SRP page 
 	 * 
@@ -417,8 +433,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextSupport() throws Exception {
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtSupport, "Support Text Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		String supportGetTxt = BrowserActions.getText(driver,	txtSupport, "Support Text Should be displayed in SRP Page");
+		return supportGetTxt;
 	}
 	
 	/**
@@ -428,8 +444,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextSplDeals() throws Exception {
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtSplDeals, "Special Deals Text Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		String splDealsGetTxt = BrowserActions.getText(driver,	txtSplDeals, "Special Deals Text Should be displayed in SRP Page");
+		return splDealsGetTxt;
 	}
 	
 	/**
@@ -439,8 +455,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextRecentSearch() throws Exception {
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtRecentSearch, "Recent Search Text Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		String recentSearchGetTxt = BrowserActions.getText(driver,	txtRecentSearch, "Recent Search Text Should be displayed in SRP Page");
+		return recentSearchGetTxt;
 	}
 	
 	/**
@@ -475,8 +491,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextUserAcctName() throws Exception {
 		//BrowserActions.mouseHover(driver, txtUserAcctName);
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtUserAcctName, "User Name Search Text Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		String userNameGetTxt = BrowserActions.getText(driver,	txtUserAcctName, "User Name Search Text Should be displayed in SRP Page");
+		return userNameGetTxt;
 	}
 	
 	
@@ -487,8 +503,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextLogin() throws Exception {
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtLogin, "Login button Text Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		String textLogintGetTxt = BrowserActions.getText(driver,	txtLogin, "Login button Text Should be displayed in SRP Page");
+		return textLogintGetTxt;
 	}
 	
 	
@@ -499,8 +515,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextSignUp() throws Exception {
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtSignUp, "SignUp Text Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		String signUpGetTxt = BrowserActions.getText(driver,	txtSignUp, "SignUp Text Should be displayed in SRP Page");
+		return signUpGetTxt;
 	}
 	
 	/**
@@ -510,8 +526,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextCorporateLogin() throws Exception {
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtCorporateLogin, "Corporate Login Text Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		String corporateLoginGetTxt = BrowserActions.getText(driver,	txtCorporateLogin, "Corporate Login Text Should be displayed in SRP Page");
+		return corporateLoginGetTxt;
 	}
 	
 	/**
@@ -521,8 +537,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextAgentLogin() throws Exception {
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtAgentLogin, "Agent Login Text Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		String agentLoginGetTxt = BrowserActions.getText(driver,	txtAgentLogin, "Agent Login Text Should be displayed in SRP Page");
+		return agentLoginGetTxt;
 	}
 	
 	/**
@@ -532,9 +548,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getMyBookings() throws Exception {
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtMyBookings, "My Booking Text Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		String myBookingsGetTxt = BrowserActions.getText(driver,	txtMyBookings, "My Booking Text Should be displayed in SRP Page");
+		return myBookingsGetTxt;
 	}
+	
 	/**
 	 * To mouse hover to My Account
 	 */
@@ -543,6 +560,77 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.mouseHover(driver, txtMyAccount);
 	}
 	
+	
+	/**
+	 * Getting the text from Count of Flights 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getCountofTotalFlights() throws Exception {
+		String totalFlightsGetTxt = BrowserActions.getText(driver,	txtTotalFlightSearch, "Total No of Flight Should be displayed in SRP Page");
+		return totalFlightsGetTxt;
+	}
+	
+	
+	/**
+	 * Getting the text from Source city in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSourceCity() throws Exception {
+		String sourceCityGetTxt = BrowserActions.getText(driver,	txtSourceCity, "Source City Should be displayed in SRP Page");
+		return sourceCityGetTxt;
+	}
+	
+	
+
+	/**
+	 * Getting the text from Source date in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSourceDate() throws Exception {
+		String sourceDateGetTxt = BrowserActions.getText(driver,	txtSourceDate, "Source date Should be displayed in SRP Page");
+		return sourceDateGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Destination City in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDestinationCity() throws Exception {
+		String destCityGetTxt = BrowserActions.getText(driver,	txtDestCity, "Destination City Should be displayed in SRP Page");
+		return destCityGetTxt;
+	}
+	
+	
+
+	/**
+	 * Getting the text from Destination Date in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDestinationDate() throws Exception {
+		String destDateGetTxt = BrowserActions.getText(driver,	txtDestDate, "Destination date Should be displayed in SRP Page");
+		return destDateGetTxt;
+	}
+
+	/**
+	 * Getting the text from FlightSearch duration in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getFlightSearchDuration() throws Exception {
+		String myAccountGetTxt = BrowserActions.getText(driver,	txtFlightSearchDuration, "Flight Search duration Should be displayed in SRP Page");
+		return myAccountGetTxt;
+	}
 	
 	
 	
