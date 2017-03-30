@@ -1045,97 +1045,6 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Flights-OW-DOM -- Verification of payment Failure with Net banking", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_046(HashMap<String, String> testData) throws Exception {
-
-		String browser = testData.get("browser");
-		String emailId = testData.get("EmailAddress");
-		String password = testData.get("Password");
-		String origin = testData.get("Origin");
-		String tripType = testData.get("TripType");
-		String destination = testData.get("Destination");
-		String departureDate = testData.get("DepartureDate");
-		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("Class");
-		String infant = testData.get("Infant");
-		String paymentType = testData.get("PaymentMode");
-		String bankName = testData.get("BankName");
-		String[] infantDOB = infant.split(",");
-
-		// Get the web driver instance
-		final WebDriver driver = WebDriverFactory.get(browser);
-		Log.testCaseInfo(testData);
-		try {
-			// step: Navigate to Yatra Home Page
-			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-
-			homePage.selectTripType(tripType);
-			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
-			Thread.sleep(3000);
-
-			// step: select OneWay Flight Search fields
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-			Log.message("3.Successfully filled the search details for 'ONE WAY' trip.");
-			Thread.sleep(3000);
-
-			// step: click 'Search' button in Yatra Home page
-			searchResult = homePage.clickBtnSearch();
-			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
-
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
-			Log.message("5. Clicked On Book Now Button!");
-
-			reviewPage.clickOnContinue();
-			Log.message("6. Clicked On Continue Button on Review Page!");
-
-			reviewPage.clickOnExistingUser();
-			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
-			Log.message("7. Enter User Details as SignedIn User!");
-			// reviewPage.loginYatraGuestAccount(emailId, mobile);
-			Log.message("8. Enter User Details!");
-
-			travellerPage.fillTravellerDetails_DOM(infantDOB);
-			Log.message("8. Filled the traveller details.");
-
-			paymentPage = travellerPage.clickOnContinue();
-			Log.message("9. Clicked on Continue in traveller Page.");
-
-			paymentPage.selectPaymentType("NetBanking");
-			Log.message("Selected NetBanking as payment type.");
-
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Check Book as Guest button.");
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnBookAsGuest"), reviewPage),
-					"<b>Actual Result:</b> The Book as Guest button is displayed on Review Page.",
-					"<b>Actual Result:</b> The Book as Guest button is not displayed on Review Page.");
-
-			paymentPage.selectPaymentType(paymentType);
-			Log.message("10. Selected NetBanking as payment type.");
-
-			paymentPage.selectBankName(bankName);
-			Log.message("11. Selected Bank as 'CITY BANK'.");
-
-			paymentPage.clickOnPayNow();
-			Log.message("12. Clicked on 'Paynow' button.");
-
-			//Need to complete the testcase
-			//	paymentPage.clickedOnSubmit();
-
-			//	driver.navigate().back();
-
-
-			Log.testCaseResult();
-
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			driver.quit();
-			Log.endTestCase();
-		}
-	}
-
-
 	@Test(groups = { "desktop" }, description = "Failed payment flow with Credit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_104(HashMap<String, String> testData) throws Exception {
 
@@ -2117,7 +2026,7 @@ public class FlightSearch {
 			String sourceDateText = searchResult.getTextSourceDate();
 		
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> alidating the Matrix Result finder for OW search");
+			Log.message("<b>Expected Result:</b> Validated the Matrix Result finder for OW search");
 			BrowserActions.nap(6);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Source city is dispalyed as <b>: " + sourceCityText +"</b>, Source Date is dispalyed as <b>: " + sourceDateText +"</b> Destination city is dispalyed as <b>: " + destCityText +"</b> ",
@@ -2192,7 +2101,7 @@ public class FlightSearch {
 			String destDateText = searchResult.getTextDestinationDate();
 		
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> alidating the Matrix Result finder for RT search");
+			Log.message("<b>Expected Result:</b> Validated the Matrix Result finder for RT search");
 			BrowserActions.nap(6);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Source city is dispalyed as <b>: " + sourceCityText +"</b>, Source Date is dispalyed as <b>: " + sourceDateText +"</b>, Destination city is dispalyed as <b>: " + destCityText +"</b>, Destination date is dispalyed as <b>: " + destDateText +"</b>" ,
