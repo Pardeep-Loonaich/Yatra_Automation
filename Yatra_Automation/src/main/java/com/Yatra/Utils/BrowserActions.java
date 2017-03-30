@@ -3,6 +3,7 @@ package com.Yatra.Utils;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -501,18 +502,18 @@ public class BrowserActions {
 					TimeUnit.MILLISECONDS).ignoring(
 							NoSuchElementException.class,
 							StaleElementReferenceException.class)
-					.withMessage("Couldn't find " + locator))
-					.until(ExpectedConditions
-							.visibilityOfAllElementsLocatedBy(By.xpath(locator)));
+							.withMessage("Couldn't find " + locator))
+							.until(ExpectedConditions
+									.visibilityOfAllElementsLocatedBy(By.xpath(locator)));
 		} else {
 			elements = (new WebDriverWait(driver, 10).pollingEvery(500,
 					TimeUnit.MILLISECONDS).ignoring(
 							NoSuchElementException.class,
 							StaleElementReferenceException.class)
-					.withMessage("Couldn't find " + locator))
-					.until(ExpectedConditions
-							.visibilityOfAllElementsLocatedBy(By
-									.cssSelector(locator)));
+							.withMessage("Couldn't find " + locator))
+							.until(ExpectedConditions
+									.visibilityOfAllElementsLocatedBy(By
+											.cssSelector(locator)));
 		}
 		return elements;
 	}
@@ -531,17 +532,17 @@ public class BrowserActions {
 					TimeUnit.MILLISECONDS).ignoring(
 							NoSuchElementException.class,
 							StaleElementReferenceException.class)
-					.withMessage("Couldn't find " + locator))
-					.until(ExpectedConditions.visibilityOfElementLocated(By
-							.xpath(locator)));
+							.withMessage("Couldn't find " + locator))
+							.until(ExpectedConditions.visibilityOfElementLocated(By
+									.xpath(locator)));
 		} else {
 			element = (new WebDriverWait(driver, 10).pollingEvery(500,
 					TimeUnit.MILLISECONDS).ignoring(
 							NoSuchElementException.class,
 							StaleElementReferenceException.class)
-					.withMessage("Couldn't find " + locator))
-					.until(ExpectedConditions.visibilityOfElementLocated(By
-							.cssSelector(locator)));
+							.withMessage("Couldn't find " + locator))
+							.until(ExpectedConditions.visibilityOfElementLocated(By
+									.cssSelector(locator)));
 		}
 		return element;
 	}
@@ -632,4 +633,32 @@ public class BrowserActions {
 		selectByIndex.selectByIndex(0);
 
 	}
+
+	/**
+	 * @author harveer.singh
+	 * 
+	 * @param driver
+	 * @param sAction: if want click on ok , pass it "ok" and for cancel "cancel"
+	 */
+	public static void javaScriptAlertPopUpHandler(WebDriver driver, String sAction)
+
+	{
+		Alert alert=driver.switchTo().alert();
+		if("ok".equalsIgnoreCase(sAction.toLowerCase().trim()))
+
+		{	
+			Log.message("Accepting Alert Pop UP..");
+			alert.accept();
+
+		}
+		else if("cancel".equalsIgnoreCase(sAction.toLowerCase().trim()))
+
+		{
+			Log.message("Canceling Alert Pop UP..");
+			alert.dismiss();
+
+		}
+		driver.switchTo().defaultContent();
+	}
+
 }// BrowserActions page
