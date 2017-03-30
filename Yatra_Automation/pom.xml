@@ -5,6 +5,12 @@
 	<artifactId>Yatra_Automation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+
+	<properties>
+		<jre.level>1.8</jre.level>
+		<jdk.level>1.8</jdk.level>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.relevantcodes</groupId>
@@ -39,33 +45,24 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.21</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>3.9</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20160212</version>
 		</dependency>
-		
-		<!-- <dependency>
-			<groupId>com.saucelabs.selenium</groupId>
-			<artifactId>sauce-ondemand-driver</artifactId>
-			<version>2.13</version>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.saucelabs.selenium</groupId>
-			<artifactId>selenium-client-factory</artifactId>
-			<version>2.13</version>
-			<scope>test</scope>
-		</dependency>		 -->
-		
+
+		<!-- <dependency> <groupId>com.saucelabs.selenium</groupId> <artifactId>sauce-ondemand-driver</artifactId> 
+			<version>2.13</version> <scope>test</scope> </dependency> <dependency> <groupId>com.saucelabs.selenium</groupId> 
+			<artifactId>selenium-client-factory</artifactId> <version>2.13</version> 
+			<scope>test</scope> </dependency> -->
+
 	</dependencies>
 
 	<build>
@@ -76,25 +73,28 @@
 					<artifactId>maven-surefire-plugin</artifactId>
 					<version>2.19.1</version>
 					<configuration>
+						
+
 						<suiteXmlFiles>
 							<suiteXmlFile>.\testxml\flights\flightPricing.xml</suiteXmlFile>
 						</suiteXmlFiles>
 					</configuration>
 				</plugin>
-				 <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
-				<configuration>
-            		<fork>true</fork>
-            		<executable>C:\Program Files\Java\jdk1.8.0_60\bin\javac.exe</executable>
-       			 </configuration>
-			</plugin> 
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+					<configuration>
+					<source>${jdk.level}</source>
+						<target>${jdk.level}</target>
+						<fork>true</fork>
+						<executable>C:\Program Files\Java\jdk1.8.0_60\bin\javac.exe</executable>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
-
-   <repositories>
+	<repositories>
 		<!-- To directly pointing the saucelabs repository -->
 		<repository>
 			<id>saucelabs-repository</id>
