@@ -217,12 +217,9 @@ public class TrainSearch {
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			BrowserActions.nap(3);
 
-			trainSearchResult.trainMessageBox();
-			Log.message("4.Successfully verified the message box for 'Train Search' ");		
+			trainSearchResult.sortDepartDate();
+			Log.message("4.Successfully verified the deperature time for 'Train Search' ");		
 			
-			Log.assertThat(trainSearchResult.trainMessageBox(),
-					"<b>Actual Result:</b> Error Message displayed on Train Search Page.",
-					"<b>Actual Result:</b> Error Message not displayed on Train Search Page.", driver);
 
 		} catch (Exception e) {
 			Log.exception(e);
