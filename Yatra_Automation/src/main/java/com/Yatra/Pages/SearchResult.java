@@ -149,7 +149,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "//a[contains(text(),'Agent Login')]")
 	WebElement txtAgentLogin;
 	
-	@FindBy(xpath = "div[class='left fl']>p[class='fs-12']")  
+	@FindBy(css = "div[class='left fl']>p[class='fs-12']")  
 	WebElement txtTotalFlightSearch;
 
 	@FindBy(css = ".left.fl p.fs-10.ltr-gray.uprcse.mt2")
@@ -184,6 +184,22 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "div[class='center fl']>ul:nth-child(3)>li:nth-child(2)>p[class='fl city-name tl']")  
 	WebElement txtEndDestCity;
+	
+	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) div[class='time']>span")   
+	WebElement txtFlightDuration;
+	
+	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) a[class='under-link']")  
+	WebElement lnkFlightDetail;
+	
+	@FindBy(css = "div[class='row itinerary-details'] li[class='trip-type'] time")  
+	WebElement txtFlightDetailsPopupDuration;
+	
+	@FindBy(css = "span[class='ico ico-close overlay-close']")  
+	WebElement lnkcloseFlightDetailsPopUp;
+	
+	
+	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) span[class='ml5 hidden-sm']")  
+	WebElement txtResultStripView;
 	
 	
 	/**********************************************************************************************
@@ -590,6 +606,18 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return totalFlightsGetTxt;
 	}
 	
+	/**
+	 * Getting the text from Count of Flights 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getCountofTotalFlightsAndDuration() throws Exception {
+		String totalFlightsGetTxt = BrowserActions.getText(driver, txtTotalFlightSearch, "Total No of Flight Should be displayed in SRP Page");
+		String flightSearchDurationTxt = BrowserActions.getText(driver,	txtFlightSearchDuration, "Flight Search duration Should be displayed in SRP Page");
+		 String flightCountAndDuration =  totalFlightsGetTxt + " " +flightSearchDurationTxt;
+		return flightCountAndDuration;
+	}
 	
 	/**
 	 * Getting the text from Source city in SRP
@@ -646,8 +674,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getFlightSearchDuration() throws Exception {
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtFlightSearchDuration, "Flight Search duration Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		String flightSearchDurationTxt = BrowserActions.getText(driver,	txtFlightSearchDuration, "Flight Search duration Should be displayed in SRP Page");
+		return flightSearchDurationTxt;
 	}
 	
 	
@@ -658,8 +686,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextStartSourceCity() throws Exception {
-		String sourceCityGetTxt = BrowserActions.getText(driver, txtStartSourceCity, "Start Source City Should be displayed in SRP for MC");
-		return sourceCityGetTxt;
+		String startSourceCityGetTxt = BrowserActions.getText(driver, txtStartSourceCity, "Start Source City Should be displayed in SRP for MC");
+		return startSourceCityGetTxt;
 	}
 	
 	
@@ -671,19 +699,19 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextStartSourceDate() throws Exception {
-		String sourceDateGetTxt = BrowserActions.getText(driver, txtStartSourceDate, "Start Source date Should be displayed in SRP for MC");
-		return sourceDateGetTxt;
+		String startSourceDateGetTxt = BrowserActions.getText(driver, txtStartSourceDate, "Start Source date Should be displayed in SRP for MC");
+		return startSourceDateGetTxt;
 	}
 	
 	/**
-	 * Getting the text from start dest city in SRP for MC
+	 * Getting the text from start destination city in SRP for MC
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextStartDestCity() throws Exception {
-		String destCityGetTxt = BrowserActions.getText(driver, txtstartDestCity, "Start Destination City Should be displayed in SRP for MC");
-		return destCityGetTxt;
+		String startDestCityGetTxt = BrowserActions.getText(driver, txtstartDestCity, "Start Destination City Should be displayed in SRP for MC");
+		return startDestCityGetTxt;
 	}
 	
 	
@@ -695,8 +723,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextEndSourceCity() throws Exception {
-		String sourceCityGetTxt = BrowserActions.getText(driver, txtEndSourceCity, "End Source City Should be displayed in SRP for MC");
-		return sourceCityGetTxt;
+		String endSourceCityGetTxt = BrowserActions.getText(driver, txtEndSourceCity, "End Source City Should be displayed in SRP for MC");
+		return endSourceCityGetTxt;
 	}
 	
 	
@@ -708,21 +736,79 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextEndSourceDate() throws Exception {
-		String sourceDateGetTxt = BrowserActions.getText(driver, txtEndSourceDate, "End Source date Should be displayed in SRP for MC");
-		return sourceDateGetTxt;
+		String endSourceDateGetTxt = BrowserActions.getText(driver, txtEndSourceDate, "End Source date Should be displayed in SRP for MC");
+		return endSourceDateGetTxt;
 	}
 	
 	/**
-	 * Getting the text from end dest city in SRP for MC
+	 * Getting the text from end destination city in SRP for MC
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextEndDestCity() throws Exception {
-		String destCityGetTxt = BrowserActions.getText(driver, txtEndDestCity, "End Destination City Should be displayed in SRP for MC");
-		return destCityGetTxt;
+		String endDestCityGetTxt = BrowserActions.getText(driver, txtEndDestCity, "End Destination City Should be displayed in SRP for MC");
+		return endDestCityGetTxt;
 	}
 	
+	
+	/**
+	 * Getting the text from Flight duration in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFlightDuration() throws Exception {
+		String flightDurationGetTxt = BrowserActions.getText(driver, txtFlightDuration, "Flight duration format Should be displayed in SRP Page");
+		return flightDurationGetTxt;
+	}
+	
+	
+	
+	/**
+	 * Getting the text from Flight details PouUp duration in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFlightDetailsPouUpDuration() throws Exception {
+		String flightDetailsPouUpDurationGetTxt = BrowserActions.getText(driver, txtFlightDetailsPopupDuration, "Flight details popup duration format Should be displayed in SRP Page");
+		return flightDetailsPouUpDurationGetTxt;
+	}
+	
+	
+	/**
+	 * To click Flight Details link in SRP
+	 * 
+	 * @throws Exception
+	 */
+	public void clickFlightDetails() throws Exception {
+		BrowserActions.clickOnElement(lnkFlightDetail, driver, "Click Flight Details");
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicked Flight Details link in SRP");
+	}
+	
+	/**
+	 * To click Flight Details pouUp close link
+	 * 
+	 * @throws Exception
+	 */
+	public void closeFlightDetailsPouUp() throws Exception {
+		BrowserActions.clickOnElement(lnkcloseFlightDetailsPopUp, driver, "Click Flight Details PopUp close button");
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicked Flight Details PopUp close button");
+	}
+	
+	/**
+	 * Getting the text from Flight details PouUp duration in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextResultStrip() throws Exception {
+		String resultStripGetTxt = BrowserActions.getText(driver, txtResultStripView, "Result Strip view should be displayed in SRP ");
+		return resultStripGetTxt;
+	}
 	
 	
   //*******************************End of SRP Functions********************************************************************************************
