@@ -1,5 +1,5 @@
-package com.Yatra.Pages;
 
+package com.Yatra.Pages;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -336,24 +336,30 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 		Utils.waitForPageLoad(driver);
 	}
 
-	public void selectMeal() throws Exception {
-		Utils.waitForElement(driver, drpSelectMeal);
-		BrowserActions.scrollToView(drpSelectMeal, driver);
-		BrowserActions.javascriptClick(drpSelectMeal, driver, "Clicked On Drop Down Of Add meal");
-		Utils.waitForElement(driver, fldContentselectMeal);
-		BrowserActions.javascriptClick(fldContentselectMeal, driver, "Select Meal");
-		Utils.waitForPageLoad(driver);
-	}
-
 	public void selectBaggage() throws Exception {
-		Utils.waitForElement(driver, drpAddBaggage);
-		BrowserActions.scrollToView(drpAddBaggage, driver);
-		BrowserActions.javascriptClick(drpAddBaggage, driver, "Clicked On Drop Down Of Baggage");
-		Utils.waitForElement(driver, fldContentselectBaggage);
-		BrowserActions.javascriptClick(fldContentselectBaggage, driver, "Select Baggage");
-		Utils.waitForPageLoad(driver);
-	}
+        String css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='row ui-ssr ng-scope']>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li[class='ng-scope']>span";
+        WebElement Baggage = driver.findElement(By.cssSelector(css));
+        BrowserActions.clickOnElement(Baggage, driver, "Baggage");
+        List<WebElement> Baggages = driver.findElements(By.cssSelector(".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='row ui-ssr ng-scope']>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li[class='ng-scope']>span>select>option"));
+        if (Baggages.size() != 0) {
+               int rand = Utils.getRandom(1, Baggages.size());
+               BrowserActions.clickOnElement(Baggages.get(rand), driver, "Baggage Selected");
+               Utils.waitForPageLoad(driver);
+        }
+ }
 
+
+ public void selectMeal() throws Exception {
+        String css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='row ui-ssr ng-scope']>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span[class='ui-select']";
+        WebElement Meal = driver.findElement(By.cssSelector(css));
+        BrowserActions.clickOnElement(Meal, driver, "Meal");
+        List<WebElement> Meals = driver.findElements(By.cssSelector(".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='row ui-ssr ng-scope']>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span[class='ui-select']>select>option"));
+        if (Meals.size() != 0) {
+               int rand = Utils.getRandom(2, Meals.size());
+               BrowserActions.clickOnElement(Meals.get(rand), driver, "Meal Selected");
+               Utils.waitForPageLoad(driver);
+        }
+ }
 	public void clickOnRemoveBaggageButton() throws Exception {
 		BrowserActions.javascriptClick(btnRemoveBaggage, driver, "Remove Baggage Button");
 	}
@@ -427,3 +433,4 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	}
 }
+

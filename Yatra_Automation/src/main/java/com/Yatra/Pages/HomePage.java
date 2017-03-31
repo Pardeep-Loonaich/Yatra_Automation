@@ -1,4 +1,7 @@
+
 package com.Yatra.Pages;
+
+
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,6 +24,8 @@ import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
+
+
 
 public class HomePage extends LoadableComponent<HomePage> {
 
@@ -144,7 +149,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = ".be-container-v2")
 	WebElement searchPanel;
 
-	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>div[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
+	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>didnt v[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
 	WebElement btnIncreseSeat;
 	
 	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(1)")
@@ -154,7 +159,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	WebElement lnkRoundTripBus;
 	
 	@FindBy(css = "#BE_bus_from_station")
-	 WebElement txtOriginBus;
+	WebElement txtOriginBus;
 	
 	@FindBy(xpath = "//input[@id='BE_train_from_station']")
 	WebElement txtTrainOrigin;
@@ -804,6 +809,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 *            as string
 	 * @throws Exception
 	 */
+
 	@SuppressWarnings("static-access")
 	public String selectMultiCityDateDeparture2(String departureDate) throws Exception {
 		int iDay = Integer.parseInt(departureDate);
@@ -905,11 +911,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 			}
 	
 	
-	/**
-	 * To Select Bus Trip Type
-	 * 
-	 * @throws Exception
-	 */
+		
+
 	public void selectTripTypeBus(String tripType) throws Exception {
 		if (tripType.equals(Constants.C_ONEWAY)) {
 			BrowserActions.javascriptClick(lnkOneWayBus, driver, "One Way");
@@ -1040,7 +1043,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @return
 	 * @throws Exception
 	 */
-	public String getTextErrorMsg() throws Exception {
+	public String getTextErrorMsgEmptyCity() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
 		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
 				"Getting text from the Bus Dropping Point");
@@ -1059,18 +1062,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
-	/**
-	 * Getting the text from the Bus Info
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public String getTextErrorIncorrectCity() throws Exception {
-		Utils.waitForElement(driver, txtErrorMsgIncorrectCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgIncorrectCity,
-				"Getting text from the Bus Dropping Point");
-		return txtDetails;
-	}
+
 	/**
 	 * Enter Train Destination
 	 * 
@@ -1096,6 +1088,20 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);
 		return new TrainSearchResult(driver).get();
 
+	}
+	
+	
+	public Boolean incorrectCity() throws Exception {
+		BrowserActions.typeOnTextField(txtTrainOrigin, "xyz", driver, "Invalid Origin city");
+		Utils.waitForPageLoad(driver);
+		String cityError = BrowserActions.getText(driver, txtTrainOrigin, "Incorrect Orgin City");
+		if (cityError.startsWith("No match"))
+		{
+		return true;
+		}
+		
+		return false;
+			
 	}
 
     /**
@@ -1151,6 +1157,30 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
 		Utils.waitForPageLoad(driver);
 	}
-	
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorMsg() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorIncorrectCity() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgIncorrectCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgIncorrectCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
 	
 }// HomePage
+

@@ -1,5 +1,6 @@
 package com.Yatra.Utils;
 
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -631,31 +632,34 @@ public class BrowserActions {
 	public static void selectDropdownByIndex(WebElement element) {
 		Select selectByIndex = new Select(element);
 		selectByIndex.selectByIndex(0);
+
 	}
+	
 	/**
-     * @author harveer.singh
-     * 
-      * @param driver
-     * @param sAction: if want click on ok , pass it "ok" and for cancel "cancel"
-     */
-     public static void javaScriptAlertPopUpHandler(WebDriver driver, String sAction)
+	 * @author harveer.singh
+	 * 
+	 * @param alert
+	 * @param sAction
+	 */
+	public static void javaScriptAlertPopUpHandler(WebDriver driver, String sAction)
 
-     {
-           Alert alert=driver.switchTo().alert();
-           if("ok".equalsIgnoreCase(sAction.toLowerCase().trim()))
+	{
+		Alert alert=driver.switchTo().alert();
+		if("ok".equalsIgnoreCase(sAction.toLowerCase().trim()))
 
-           {     
-                 Log.message("Accepting Alert Pop UP..");
-                 alert.accept();
+		{	
+			Log.message("Accepting Alert Pop UP..");
+			alert.accept();
 
-           }
-           else if("cancel".equalsIgnoreCase(sAction.toLowerCase().trim()))
+		}
+		else if("cancel".equalsIgnoreCase(sAction.toLowerCase().trim()))
 
-           {
-                 Log.message("Canceling Alert Pop UP..");
-                 alert.dismiss();
-           }
-           driver.switchTo().defaultContent();
-     }
+		{
+			Log.message("Canceling Alert Pop UP..");
+			alert.dismiss();
 
+		}
+
+	}
+	
 }// BrowserActions page
