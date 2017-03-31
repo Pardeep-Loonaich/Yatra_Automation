@@ -227,7 +227,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);		
-		
+		elementLayer = new ElementLayer(driver);
 	}// HomePage
 
 	@Override
