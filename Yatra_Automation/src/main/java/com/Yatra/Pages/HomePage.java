@@ -1,4 +1,7 @@
+
 package com.Yatra.Pages;
+
+
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,6 +24,8 @@ import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
+
+
 
 public class HomePage extends LoadableComponent<HomePage> {
 
@@ -144,7 +149,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = ".be-container-v2")
 	WebElement searchPanel;
 
-	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>div[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
+	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>didnt v[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
 	WebElement btnIncreseSeat;
 	
 	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(1)")
@@ -154,7 +159,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	WebElement lnkRoundTripBus;
 	
 	@FindBy(css = "#BE_bus_from_station")
-	 WebElement txtOriginBus;
+	WebElement txtOriginBus;
 	
 	@FindBy(xpath = "//input[@id='BE_train_from_station']")
 	WebElement txtTrainOrigin;
@@ -167,9 +172,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(xpath="//input[@id='BE_train_search_btn']")
 	WebElement btnTrainSearch;
-	
-	@FindBy(xpath= "//li[@class = 'ac_over']")
-	WebElement txtErrorOriginTrain;
 
 	@FindBy(css = "#BE_bus_to_station")
 	WebElement txtDestinationBus;
@@ -186,11 +188,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month-']")
 	List<WebElement> selectMonth_Bus;
 	
-	@FindBy(css = "#toater_21")
+	@FindBy(css = "div[class='toasterHolder']")
 	WebElement txtErrorMsgEmptyCity;
 	
-	@FindBy(css = "#toater_23")
-	WebElement txtErrorMsgSameCity;
+	@FindBy(css = ".ac_over")
+	WebElement txtErrorMsgIncorrectCity;
 	
 	
 	/**********************************************************************************************
@@ -212,6 +214,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
+		elementLayer = new ElementLayer(driver);
 	}// HomePage
 
 	/**
@@ -224,7 +227,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);		
-		elementLayer = new ElementLayer(driver);
+		
 	}// HomePage
 
 	@Override
@@ -571,15 +574,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public LoginPage navigateToSignIn() throws Exception {
 		// click Login button on signin page
-
-		/*Utils.waitForElement(driver, lnkMyaccount);		
-		BrowserActions.mouseHover(driver, lnkMyaccount);*/
+		Utils.waitForElement(driver, lnkMyaccount);		
+		BrowserActions.mouseHover(driver, lnkMyaccount);
 		//BrowserActions.moveToElementJS(driver, lnkMyaccount);
 		//BrowserActions.actionClick(btnSignIn, driver, "Sign In");
-		Utils.waitForElement(driver, btnSignIn);
-		BrowserActions.javascriptClick(btnSignIn, driver, "Sign In");
-		//Utils.waitForPageLoad(driver);
-	    return new LoginPage(driver).get();
+		BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
+		Utils.waitForPageLoad(driver);
+		return new LoginPage(driver).get();
 	}
 
 	/**
@@ -808,6 +809,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 *            as string
 	 * @throws Exception
 	 */
+
 	@SuppressWarnings("static-access")
 	public String selectMultiCityDateDeparture2(String departureDate) throws Exception {
 		int iDay = Integer.parseInt(departureDate);
@@ -909,11 +911,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 			}
 	
 	
-	/**
-	 * To Select Bus Trip Type
-	 * 
-	 * @throws Exception
-	 */
+		
+
 	public void selectTripTypeBus(String tripType) throws Exception {
 		if (tripType.equals(Constants.C_ONEWAY)) {
 			BrowserActions.javascriptClick(lnkOneWayBus, driver, "One Way");
@@ -1158,6 +1157,30 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
 		Utils.waitForPageLoad(driver);
 	}
-	
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorMsg() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorIncorrectCity() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgIncorrectCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgIncorrectCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
 	
 }// HomePage
+

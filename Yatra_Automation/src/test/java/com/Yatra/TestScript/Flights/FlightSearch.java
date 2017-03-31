@@ -1953,17 +1953,26 @@ public class FlightSearch {
 			
 			//getting text from headers
 			
-			String totalFlightCountText = searchResult.getCountofTotalFlights();
-			String flightSearchDurationText = searchResult.getFlightSearchDuration();
-		
+			String totalFlightCountText[] = searchResult.getCountofTotalFlights().split(" ");
+			String flightCount=totalFlightCountText[1];
+			String flightSearchDurationText[] = searchResult.getFlightSearchDuration().split(" ");
+			String duration=flightSearchDurationText[1];			
+			String totalValues=searchResult.getCountofTotalFlightsAndDuration();	
+			
+			Log.assertThat(totalValues.equals("Found "+flightCount+ " flights IN "+duration+" SECONDS"),
+					"<b>Actual Result:</b> Successfully verified Flight Count and Flight duration</b> ",
+					"<b>Actual Result:</b> Not verified Flight Count and Flight search duration</b> ", driver);
+			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Checked total flight count");
-			BrowserActions.nap(6);
+			BrowserActions.nap(1);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page, and the total flight count is dispalyed as <b>: " + totalFlightCountText +"</b>, Flight Search durarion is dispalyed as <b>: " + flightSearchDurationText +"</b> ",
 					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the total flight count is not dispalyed as <b>: " + totalFlightCountText +"</b>, Flight Search durarion is not dispalyed as <b>: " + flightSearchDurationText +"</b> ", driver);
-		
-			BrowserActions.nap(2);
+
+			
+			
+			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -2208,6 +2217,87 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
+	
+	@Test(groups = {"desktop" }, description = "Validate that Duration should appear in 'hh mm' format across the SRP", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_016(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			homePage.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			homePage.enterDestination(destination);
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+
+			// step: select Departure date
+			String departDate = homePage.selectDepartureDate(departureDate);
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			// step: select Passengers info
+			homePage.specifyPassengerInfo(passengerInfo);
+			Log.message("6.Successfully selected Passenger Info");
+
+			// step: select Passengers class
+			homePage.selectPassengerClass(passengerClass);
+			homePage.clickDoneButtonInPassengerBox();
+			Log.message("7.Successfully selected Passenger class and clicked Done button");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");			
+			
+			//getting text from OneWay Flight Durationn format inSRP	
+			String flightDurationText = searchResult.getTextFlightDuration();
+			searchResult.clickFlightDetails();
+			String lightDetailsPouUpDurationText = searchResult.getTextFlightDetailsPouUpDuration();
+			Log.assertThat(flightDurationText.equals(lightDetailsPouUpDurationText),
+					"<b>Actual Result:</b> Validated that flight duration and flight details popup duration should appear in 'hh mm' format",
+					"<b>Actual Result:</b> Validated that flight duration and flight details popup duration should not appear in 'hh mm' format");
+			
+			
+			searchResult.closeFlightDetailsPouUp();
+			String resultStripText = searchResult.getTextResultStrip();
+			Log.assertThat(resultStripText.equals("VIEWED"),
+					"<b>Actual Result:</b> Validated Result Strip",
+					"<b>Actual Result:</b> Not Validated Result Strip");
+			
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated that Duration should appear in 'hh mm' format across the SRP ");
+			BrowserActions.nap(6);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Flight duration format is dispalyed as like 'hh mm' <b>: " + flightDurationText +"</b>, Flight details popup duration format is dispalyed as like 'hh mm' <b>: " + lightDetailsPouUpDurationText +"</b>  ",
+					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the Flight duration format is not dispalyed as like 'hh mm' <b>: " + flightDurationText +"</b>, Flight details popup duration format is dispalyed as like 'hh mm' <b>: " + lightDetailsPouUpDurationText +"</b>", driver);
+		
+			BrowserActions.nap(2);
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
 	
   // ********************************End of Testcases ***************************************************************************************
 } //FlightSearch

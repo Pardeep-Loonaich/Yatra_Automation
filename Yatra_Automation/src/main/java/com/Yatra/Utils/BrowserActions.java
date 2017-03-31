@@ -1,5 +1,6 @@
 package com.Yatra.Utils;
 
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -660,6 +661,5 @@ public class BrowserActions {
 		}
 
 	}
-
-
+	
 }// BrowserActions page
