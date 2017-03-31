@@ -167,6 +167,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(xpath="//input[@id='BE_train_search_btn']")
 	WebElement btnTrainSearch;
+	
+	@FindBy(xpath= "//li[@class = 'ac_over']")
+	WebElement txtErrorOriginTrain;
 
 	@FindBy(css = "#BE_bus_to_station")
 	WebElement txtDestinationBus;
@@ -1086,6 +1089,21 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	}
 
+	public Boolean incorrectCity() throws Exception {
+		BrowserActions.typeOnTextField(txtTrainOrigin, "xyz", driver, "Invalid Origin city");
+		Utils.waitForPageLoad(driver);
+		String cityError = BrowserActions.getText(driver, txtTrainOrigin, "Incorrect Orgin City");
+		if (cityError.startsWith("No match"))
+		{
+		return true;
+		}
+		
+		return false;
+			
+	}
+	
+	
+	
     /**
     * To select Departure Date
     * 

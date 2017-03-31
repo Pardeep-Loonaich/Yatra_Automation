@@ -19,6 +19,8 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 
+	public ElementLayer elementLayer;
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
