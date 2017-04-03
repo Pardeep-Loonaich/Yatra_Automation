@@ -573,6 +573,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.mouseHover(driver, lnkMyaccount);*/
 		//BrowserActions.moveToElementJS(driver, lnkMyaccount);
 		//BrowserActions.actionClick(btnSignIn, driver, "Sign In");
+		Utils.waitForPageLoad(driver);
 		Utils.waitForElement(driver, btnSignIn);
 		BrowserActions.javascriptClick(btnSignIn, driver, "Sign In");
 		//Utils.waitForPageLoad(driver);

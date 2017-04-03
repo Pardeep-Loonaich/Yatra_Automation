@@ -105,9 +105,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css="div[ng-show='priceChangeDiv']>div[class='overlay modal-new']>div[class='overlay-content ']")
 	WebElement popupFareChange;
 	
-	@FindBy(css="	button[class='button primary rounded pull-right']")
+	@FindBy(css="button[class='button primary rounded pull-right']")
 	WebElement ContinueInFareChangeAlertPopUp;
 
+	
 	@FindBy(css = " div[class='center-block text-center mt-1 mb-1 sticky-sm-bottom hide-under-overlay']>button[ng-disabled='isContinueBtnDisabled']")
 	WebElement ContinueInTravellerPage;
 
@@ -361,23 +362,26 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.javascriptClick(lnkFeeSurchrge, driver, "Clicked on Fees & Surcharge link.");
 	}
 
+	
+	@FindBy(css="button[ng-click='continueSameFlight();']")
+	WebElement ContinueInFarePopUp;
 	/**
 	 * Clicking Continue In Price Increase Pop Up
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-
+     
 	public void popUpAppear() throws Exception {
 		if (PricePopUp.isDisplayed()) {
-				BrowserActions.clickOnElement(ContinueInPopUp, driver, "Clicked on continue in Popup");
+				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
 			}
 		
 		else if (popupFareChange.isDisplayed()) {
 				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver, "Clicked on continue in Fare Change Alert Popup");
 			}
-		
-	}
+			
+		}
 
 		
 		/**

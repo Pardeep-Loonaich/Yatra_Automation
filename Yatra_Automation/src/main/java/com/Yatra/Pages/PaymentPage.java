@@ -80,10 +80,22 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	List<WebElement> paymentType;
 
 	@FindBy(css ="div[class='net-banking-desk']>article[class='cpmt_net cpmt_lastInfo']>ul>li")
-	List<WebElement> selectBank;
+	List<WebElement> selectNetBank;
 
 	@FindBy(css="span[id='total-redeemable-ecash']")
 	WebElement appliedEcash;
+
+	@FindBy(css="	div[id='login-cont']>p[class='back-merchant ng-scope']>a[ng-click='vm.backToMerchant()']")
+	WebElement lnkBckToYatraFrmFreechrge;
+	
+	@FindBy(css ="div[id='tab_mw']>article>ul>li")
+	List<WebElement> selectMobiWallet;
+	
+	@FindBy(css="input[class='BtnAlign cancelBtn Mbtn-cancel']")
+	WebElement btnCancelInHdfc;
+	
+	@FindBy(css ="select[id='emiBank_select']>option")
+	List<WebElement> selectCardInEMI;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
@@ -173,7 +185,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		Thread.sleep(2000);
 		
 		BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
-
+        BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#cc_SaveOptionDiv>label")), driver, "Unchecking Save QB");
 	}
 
 	/**
@@ -336,18 +348,19 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 			}
 		}
-
+      
 	}
-
+				
+			
 	/**
-	 * to select the bank name
+	 * to select the net bank name
 	 * @param BankName
 	 * @throws Exception
 	 */
 
 
-	public void selectBankName(String BankName) throws Exception {
-		List<WebElement> lstElement = selectBank;
+	public void selectNetBankName(String BankName) throws Exception {
+		List<WebElement> lstElement = selectNetBank;
 
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(BankName)) {
@@ -360,8 +373,28 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
-	@FindBy(css ="select[id='emiBank_select']>option")
-	List<WebElement> selectCardInEMI;
+	
+	/**
+	 * to select the mobile wallet name
+	 * @param BankName
+	 * @throws Exception
+	 */
+
+
+	public void selectMobileWallet(String WalletName) throws Exception {
+		List<WebElement> lstElement = selectMobiWallet;
+
+		for (WebElement e : lstElement) {
+			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(WalletName)) {
+				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
+				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "checked");
+				break;
+
+			}
+		}
+
+	}
+
 
 
 	/**
@@ -461,14 +494,16 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 
-	@FindBy(css="input[class='BtnAlign cancelBtn Mbtn-cancel']")
-	WebElement btnCancelInHdfc;
 
 	public void cancelHdfcPayment() throws Exception{
 		BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 		BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
 	}
 	
+	
+	public void clickOnBackToYatraLinkFreechrge() throws Exception{
+		BrowserActions.clickOnElement(lnkBckToYatraFrmFreechrge, driver, "Clicked on back to yatra link");
+	}
 	/*
 	@FindBy(css ="div[id='submitciti']")
 	WebElement btnSubmit;

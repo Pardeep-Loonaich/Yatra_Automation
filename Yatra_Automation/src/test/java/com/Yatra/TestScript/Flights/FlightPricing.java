@@ -884,7 +884,7 @@ public class FlightPricing {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9.Clicked on Continue button in Review Page Step-2.");
 
-			paymentPage.clickingOnRedeemNow();
+			//paymentPage.clickingOnRedeemNow();
 			Log.message("10.Clicked on Redeem Now Button to add ecash.");
 
 			paymentPage.clickingToCancelEcashRedem();
