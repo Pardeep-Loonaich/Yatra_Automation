@@ -1,4 +1,4 @@
-package com.Yatra.TestScripts.Trains;
+package com.Yatra.TestScript.Trains;
 
 //-----------------------------------------------------------------------------------------------------------
 //Description    :   All the Bus Search test Cases would be designed in this class 
