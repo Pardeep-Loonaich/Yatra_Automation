@@ -1,10 +1,9 @@
+
 package com.Yatra.Pages;
 
-import java.sql.Driver;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -517,3 +516,4 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	
 	//enterCreditCardDetails
 }
+
