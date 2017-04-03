@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name=" Yatra Web Automation Test" verbose="3" parallel="tests" thread-count="500">
+<parameter name="workBookName" value="testdata\\data\\Flights.xls"/>
+    <parameter name="sheetName" value="FlightPricing"/>
+	<parameter name="deviceHost" value="localhost" />
+	<parameter name="devicePort" value="4444" />
+	<parameter name="browserName" value="chrome_windows" />
+	<parameter name="webSite" value="https://www.yatra.com/" />
+
+	<test name="Bus Search" thread-count="10" parallel="true">
+		<groups>
+			<run>
+				<include name="desktop" />
+			</run>
+		</groups>
+
+		<classes>
+			<class name="com.Yatra.TestScript.Hotels.HotelSearchTest">
+				<methods>
+					<include name="TC_HotelSearch_001" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
