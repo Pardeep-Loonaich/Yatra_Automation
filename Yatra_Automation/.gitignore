@@ -1,9 +1,0 @@
-/target/
-/test-output/
-/bin/
-
-test-output/
-*.html
-.setting
-/testng.xml
-*.class
