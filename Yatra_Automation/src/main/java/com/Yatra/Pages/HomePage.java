@@ -148,7 +148,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = ".be-container-v2")
 	WebElement searchPanel;
 
-	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>didnt v[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
+	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>div[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
 	WebElement btnIncreseSeat;
 	
 	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(1)")
@@ -903,6 +903,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public void PassengerInfoBus(String passengers) throws Exception {
 		BrowserActions.nap(2);
+		Utils.waitForElement(driver, btnIncreseSeat);
 		int z = Integer.parseInt(passengers);
 		for(int i=1 ; i<z ; i++){
 			BrowserActions.clickOnElement(btnIncreseSeat, driver, "Passenger Info");
