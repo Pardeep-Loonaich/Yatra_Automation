@@ -219,7 +219,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[2]//span/input") // .trip-type-label-holder span[class='radio']")  
 	WebElement chkRoundTrip;
 	
-	@FindBy(css = "//form[@id='modifySearch']/div[1]//label[3]//span/input") //.trip-type-label-holder.multicity-tab span[class='radio']")  
+	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[3]//span/input") //.trip-type-label-holder.multicity-tab span[class='radio']")  
 	WebElement chkMultiCity;
 	
 	@FindBy(css = "#origin_0")  
@@ -253,6 +253,15 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = ".select-box-wrapper.fl>select[class='ng-valid ng-dirty ng-valid-parse ng-touched']>option[selected='selected']")  
 	WebElement txtPreferredAirline_ModifySearch;
+	
+	@FindBy(css = "#origin_1")  
+	WebElement txtOrigin1_ModifySearch;
+
+	@FindBy(css = "#destination_1")  
+	WebElement txtDestination1_ModifySearch;
+	
+	@FindBy(css = "#flight_depart_date_1")  
+	WebElement txtDepartDate1_ModifySearch;
 	
 	
 	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
@@ -942,11 +951,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickModifySearch() throws Exception {
-		BrowserActions.nap(4);
+		BrowserActions.nap(1);
 		Utils.waitForElement(driver, btnModifySearchIcon);
-		BrowserActions.mouseHover(driver, btnModifySearchIcon);		
+		//BrowserActions.mouseHover(driver, btnModifySearchIcon);		
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
-		BrowserActions.nap(2);
+		BrowserActions.nap(6);
 		Utils.waitForPageLoad(driver);
 		Log.event("Clicked Modify Search link in SRP");
 	}
@@ -1128,6 +1137,42 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return destination_ModifySearchGetTxt;
 	}
 	
+	/**
+	 * Getting the text from Origin in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextOrigin1_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtOrigin1_ModifySearch);
+		String origin_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtOrigin1_ModifySearch, "ng-msvalidate", "Origin_MC in Modify Search");
+		return origin_ModifySearchGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Destination in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDestination1_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtDestination1_ModifySearch);
+		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDestination1_ModifySearch, "ng-msvalidate",  "Destination_MC in Modify Search");
+		return destination_ModifySearchGetTxt;
+	}
+	
+	
+	/**
+	 * Getting the text from Destination in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDepartDate1_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtDepartDate1_ModifySearch);
+		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate1_ModifySearch, "ng-active-date",  "DepartDate_MC in Modify Search");
+		return destination_ModifySearchGetTxt;
+	}
 	
 	//YTMethods.getCityName(QueryProp.origin)
 	
