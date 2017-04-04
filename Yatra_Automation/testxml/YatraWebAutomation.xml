@@ -11,6 +11,8 @@
 			<package name="com.Yatra.TestScript.Flights" />			
 			<package name="com.Yatra.TestScript.Bus" />
 			<package name="com.Yatra.TestScript.Hotels" />
+			<package name="com.Yatra.TestScript.Payment" />
+			
 		</packages>
 	</test>
 </suite>

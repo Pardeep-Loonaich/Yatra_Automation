@@ -18,7 +18,7 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Hotels.HotelSearchTest">
 				<methods>
-					<include name="TC_HotelSearch_001" />
+				
 				</methods>
 			</class>
 		</classes>

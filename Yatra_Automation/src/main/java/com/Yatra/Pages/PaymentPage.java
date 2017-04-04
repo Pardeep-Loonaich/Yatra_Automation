@@ -117,7 +117,36 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css ="#cpmt_tabContainer>ul")
 	WebElement lstPaymentMetod;
 	
+	@FindBy(css= "div[id='signinlyr']>h2")
+	WebElement logoMobiWikWallet;
+	
+	@FindBy(css= "a[title='Oxigen Wallet']")
+	WebElement logoOxyGenWallet;
+	
+	@FindBy(css= ".icon-payumoney")
+	WebElement logoPayUWallet;
+	
+	@FindBy(css= ".img-responsive")
+	WebElement logoBuddyWallet;	
+	
+	@FindBy(css= ".logojio")
+	WebElement logoJioMoneyWallet;
+	
+	@FindBy(css= "#freechargeLogo")
+	WebElement logoFreechargeWallet;
 
+	@FindBy(css= "header>img")
+	WebElement logoOlaMoneyWallet;
+
+	@FindBy(css= ".container>div[style*='vertical-align']")
+	WebElement logoPayZAppWallet;
+	
+	@FindBy(css= ".vf_logo")
+	WebElement logoVodafoneWallet;
+	
+	@FindBy(css= "form[id='pgWalletPay']")
+	WebElement formIdeaMoneyWallet;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
