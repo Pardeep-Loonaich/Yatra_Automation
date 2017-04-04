@@ -662,4 +662,19 @@ public class BrowserActions {
 
 	}
 	
+	/**
+	 * @author 
+	 * 
+	 * @param driver
+	 * @param sring
+	 */
+	public static String executeJavaScript(WebDriver driver, String sJSCode) {
+		// String sJSCode1="QueryProp.destination";
+		String dataToBeReturn = "";
+		JavascriptExecutor JSDriver = (JavascriptExecutor) driver;
+		dataToBeReturn = JSDriver.executeScript(sJSCode).toString().trim();
+		return dataToBeReturn;
+	}
+	
+	
 }// BrowserActions page
