@@ -11,15 +11,31 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="iexplorer_windows" />
+	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
-	<test name="Bus Search " thread-count="10" parallel="true">
+	<test name="Bus Search " thread-count="5" parallel="true">
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Bus.BusSearchTest">
-				<methods>
-					
-				</methods>
+				<!-- <methods>
+					<include name="TC_Yatra_Bus_001"/>	
+				    <include name="TC_Yatra_Bus_002"/>
+				    <include name="TC_Yatra_Bus_003"/>	
+				    <include name="TC_Yatra_Bus_004"/>
+				    <include name="TC_Yatra_Bus_005"/>	
+				    <include name="TC_Yatra_Bus_006"/>
+				    <include name="TC_Yatra_Bus_007"/>
+				    <include name="TC_Yatra_Bus_008"/>
+				    <include name="TC_Yatra_Bus_009"/>				    
+				    <include name="TC_Yatra_Bus_010"/>	
+				    <include name="TC_Yatra_Bus_011"/>
+				    <include name="TC_Yatra_Bus_012"/>	
+				    <include name="TC_Yatra_Bus_013"/>
+				    <include name="TC_Yatra_Bus_014"/>	
+				    <include name="TC_Yatra_Bus_015"/>
+				    <include name="TC_Yatra_Bus_016"/>
+				    <include name="TC_Yatra_Bus_017"/>
+				</methods> -->
 			</class>
 		</classes>
 	</test>

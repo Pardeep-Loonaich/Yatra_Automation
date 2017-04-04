@@ -19,6 +19,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
+import com.Yatra.Pages.ReviewPageBus;
 import com.Yatra.Pages.SearchResultBus;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
@@ -33,6 +34,7 @@ public class BusSearchTest {
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	String webSite;
 	SearchResultBus searchResultBus;
+	ReviewPageBus reviewPageBus;
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
@@ -862,6 +864,10 @@ public class BusSearchTest {
 			searchResultBus = homePage.clickBtnSearchBus();
 			Log.message("5. Clicked On Search Button!");
 
+			searchResultBus.clickBtnSelectSeat();
+			Log.message("6. Clicked On Select Seat!");
+			Thread.sleep(6000);
+
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> On SearchResultPage Result Prev and Next Tab Should Be Shown");
 			Thread.sleep(6000);
@@ -952,37 +958,37 @@ public class BusSearchTest {
 		Log.testCaseInfo(testData);
 		try {
 			// step1: Navigate to Yatra Home Page
-	 			HomePage homePage = new HomePage(driver, webSite).get();
-	 			Log.message("1. Navigated to 'Yatra' Home Page!");
-	 
-	 			homePage.clickBuses();
-	 			Log.message("2. Clicked on Bus Link!");
-	 
-	 			homePage.selectTripTypeBus(tripType);
-	 			Log.message("3. Trip Type Selected!");
-	 
-	 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
-	 			Log.message("4. Successfully filled the search details for 'ROUND' trip!");
-	 
-	 			searchResultBus = homePage.clickBtnSearchBus();
-	 			Log.message("5. Clicked On Search Button!");
-	 
-	 			searchResultBus.enterOriginBus(invalidDestination);
-	 			Log.message("6. Filling Invalid Origin On Search Result Page!");
-	 			String error = searchResultBus.getTextCityValidationErrorMsg();
-	 			
-	 			Log.message("<br>");
-	 			Log.message(
-	 					"<b>Expected Result:</b> User Should Be navigated to Search Result Page and An Error Msg Should be Shown If City Name is Invalid");
-	 			Thread.sleep(6000);
-	 			Log.assertThat(
-	 					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("fldContentBusDetail"),
-	 							searchResultBus),
-	 					"<b>Actual Result:</b> User navigated to Search Result Page, and Error Message is Displayed as :"
-	 							+ error,
-	 					"<b>Actual Result:</b> User navigated to Search Result Page, But No Error Message is Displayed",
-	 					driver);
-	 
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickBuses();
+			Log.message("2. Clicked on Bus Link!");
+
+			homePage.selectTripTypeBus(tripType);
+			Log.message("3. Trip Type Selected!");
+
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ROUND' trip!");
+
+			searchResultBus = homePage.clickBtnSearchBus();
+			Log.message("5. Clicked On Search Button!");
+
+			searchResultBus.enterOriginBus(invalidDestination);
+			Log.message("6. Filling Invalid Origin On Search Result Page!");
+			String error = searchResultBus.getTextCityValidationErrorMsg();
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> User Should Be navigated to Search Result Page and An Error Msg Should be Shown If City Name is Invalid");
+			Thread.sleep(6000);
+			Log.assertThat(
+					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("fldContentBusDetail"),
+							searchResultBus),
+					"<b>Actual Result:</b> User navigated to Search Result Page, and Error Message is Displayed as :"
+							+ error,
+					"<b>Actual Result:</b> User navigated to Search Result Page, But No Error Message is Displayed",
+					driver);
+
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -1061,4 +1067,61 @@ public class BusSearchTest {
 		}
 	}
 
+	@Test(groups = {
+			"desktop" }, description = "Check for correct seat number and type shown", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Bus_020(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickBuses();
+			Log.message("2. Clicked on Bus Link!");
+
+			homePage.selectTripTypeBus(tripType);
+			Log.message("3. Trip Type Selected!");
+
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ROUND' trip!");
+
+			searchResultBus = homePage.clickBtnSearchBus();
+			Log.message("5. Clicked On Search Button!");
+
+			searchResultBus.clickBtnSelectSeat();
+			Log.message("6. Clicked On Select Seat!");
+
+			searchResultBus.selectSeat(2);
+			Log.message("7. Seat Selected!");
+			String SeatNumber = searchResultBus.getTextSeatNumber();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User Should See Correct Seat Number And Type Shown");
+			Thread.sleep(6000);
+			Log.assertThat(
+					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
+					"<b>Actual Result:</b> Seat Number is Displayed as : " + SeatNumber,
+					"<b>Actual Result:</b> Seat Number is not properly Displayed", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	
 }
