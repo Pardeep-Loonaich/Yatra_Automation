@@ -51,7 +51,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(css = "p[class='wfull text-error']>span[class='no-res-txt ng-binding']")
 	WebElement txtNoResultFoundBus;
 
-	@FindBy(css = "section[class='col-3 result ng-scope']>div>div[class='wfull result-holder onwards ng-scope']>ul:nth-child(3)>li[class='totlal-fare box-sizing tar']>a")
+	@FindBy(css = "section[class='col-3 result ng-scope']>div>div[class='wfull result-holder onwards ng-scope']>ul>li[class='totlal-fare box-sizing tar']>a")
 	WebElement btnSelectSeat;
 
 	@FindBy(xpath = "//*[@id='onwards-content']/div[@class='flL bus-details-box']/div[@class='bus-info']/div/p[1]")
@@ -120,7 +120,15 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(css = "div[class='wfull bus-details-popup']")
 	WebElement busDetailPopUp;
 	
-
+	@FindBy(css = "ul>li[data-avl='avl-Y']")
+	List <WebElement> selectSeat;
+	
+	@FindBy(css = "div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")
+	WebElement lstBoardingPoint;
+	
+	@FindBy(css = "div[class='wfull total-fare']>span[class='select-seats-action-round']>a")
+	WebElement selectBus_RT;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -215,6 +223,16 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 
 	public void clickBtnSelectSeat() throws Exception {
 		BrowserActions.clickOnElement(btnSelectSeat, driver, "Select Seat");
+		Utils.waitForPageLoad(driver);
+	}
+	/**
+	 * To click Select Seat RT
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickBtnSelectSeat_RT() throws Exception {
+		BrowserActions.clickOnElement(selectBus_RT, driver, "Select Seat button RT");
 		Utils.waitForPageLoad(driver);
 	}
 
@@ -400,5 +418,116 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		}
 		return Flag;
 	}
+	/**
+	 * To Select No Of Seat
+	 * 
+	 * @throws Exception
+	 */
+	
+	public void selectSeat(int number) throws Exception {
+		driver.manage().window().maximize();
+		driver.switchTo().frame(driver.findElement(By.tagName("iframe"))); // switching the frame by ID
+		Thread.sleep(8000);
+		for(int i = 0;i < number;i++){
+		driver.findElement(By.cssSelector("div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")).click(); // Random Seat Selected
+		BrowserActions.nap(2);
+		}	
+	}	
+	/**
+	 * To Select Boarding Point
+	 * 
+	 * @throws Exception
+	 */
+	public String selectBoardingPoint() throws Exception {
+		Thread.sleep(6000);
+		driver.findElement(By.cssSelector(("span[id='msdrpdd20_title']"))).click(); // Clicked On Drop Down
+		Thread.sleep(6000);
+		String txt = driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).getText(); //Boarding Point
+		driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).click(); //Select One Boarding point from Drop Down
+		Utils.waitForPageLoad(driver);
+		return txt;
+	}
+	/**
+	 * To Select Return Seat in Return Bus Ticket
+	 * 
+	 * @throws Exception
+	 */
+	
+	public void selectReturnSeat(int number) throws Exception {
+		driver.manage().window().maximize();
+		Thread.sleep(5000);
+		for(int i = 0;i < number;i++){
+		driver.findElement(By.cssSelector("div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")).click(); // Random Seat Selected
+		BrowserActions.nap(2);
+		}
+	}	
+	/**
+	 * To Select Boarding Point In Return Ticket
+	 * 
+	 * @throws Exception
+	 */
+	public String selectBoardingPointReturn() throws Exception {
+		Thread.sleep(6000);
+		driver.findElement(By.cssSelector(("span[id='msdrpdd20_title']"))).click(); // Clicked On Drop Down
+		Thread.sleep(6000);
+		String txt = driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).getText(); //Boarding Point
+		driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).click(); //Select One Boarding point from Drop Down
+		Utils.waitForPageLoad(driver);
+		return txt;
+	}
+	
+	
+	public String getTextMaxNumber() throws Exception {
+		BrowserActions.nap(2);
+		String txtDetails = driver.findElement(By.cssSelector("p[class='wfull txt13 mt20 mr10 t-ac txtGrey']")).getText();
+		return txtDetails;
+	}
+	
+	public String getTextSeatType() throws Exception {
+		driver.manage().window().maximize();
+		driver.switchTo().frame(driver.findElement(By.tagName("iframe")));
+		BrowserActions.nap(2);
+		String txtDetails = driver.findElement(By.cssSelector("ul>li[class='flL change-deck deck-btn left active']")).getText();
+		return txtDetails;
+	}
+	
+	public String getTextSeatTyp() throws Exception {
+		BrowserActions.nap(2);
+		String txtDetails = driver.findElement(By.cssSelector("ul>li[class='flL change-deck deck-btn right']")).getText();
+		return txtDetails;
+	
+	}
+	/**
+	 * To click On Continue Button In PoP Up To Select Seat
+	 * 
+	 * @throws Exception
+	 */
 
+	public ReviewPageBus clickOnContinueInPopUp() throws Exception {
+	BrowserActions.nap(2);
+	driver.findElement(By.cssSelector(("div[class='flL bus-details-box']>div[class='wfull mt20']>div"))).click();
+	return new ReviewPageBus(driver).get();
+	}
+	/**
+	 * Getting the text from the Bus Pop Up "Seat Number"
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSeatNumber() throws Exception {
+		BrowserActions.nap(2);
+		String txtDetails = driver.findElement(By.cssSelector("p[class='wfull txtMedium latoBold mt2 onwards-selected-seats']")).getText();
+		return txtDetails;
+	}/**
+	 * To click On Continue Button In PoP Up To Select Seat
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickOnSelectReturnSeat() throws Exception {
+	BrowserActions.nap(2);
+	driver.findElement(By.cssSelector(("div[class='flL bus-details-box']>div[class='wfull mt20']>div"))).click();
+	
+	}
+	
 }// SRPBUS

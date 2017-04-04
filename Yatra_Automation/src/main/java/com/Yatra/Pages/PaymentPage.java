@@ -78,6 +78,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css ="div[id='cpmt_tabContainer']>ul>li")
 	List<WebElement> paymentType;
 
+	@FindBy(css ="li[id='cpmt_otherPayOp']>ul>li")
+	List<WebElement> otherPaymentType;
+
 	@FindBy(css ="div[class='net-banking-desk']>article[class='cpmt_net cpmt_lastInfo']>ul>li")
 	List<WebElement> selectNetBank;
 
@@ -86,16 +89,64 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	@FindBy(css="	div[id='login-cont']>p[class='back-merchant ng-scope']>a[ng-click='vm.backToMerchant()']")
 	WebElement lnkBckToYatraFrmFreechrge;
-	
+
 	@FindBy(css ="div[id='tab_mw']>article>ul>li")
 	List<WebElement> selectMobiWallet;
-	
+
+	@FindBy(css ="div[id='tab_atm']>article>ul>li")
+	List<WebElement> selectATMCard;
+
 	@FindBy(css="input[class='BtnAlign cancelBtn Mbtn-cancel']")
 	WebElement btnCancelInHdfc;
-	
+
 	@FindBy(css ="select[id='emiBank_select']>option")
 	List<WebElement> selectCardInEMI;
 
+	@FindBy(css ="form[name='modeform']>table>tbody>tr>td[align='right']>input")
+	List<WebElement> selectITZCard;
+
+	@FindBy(css="span[class='sbi logo']")
+	WebElement logoSBI;
+
+	@FindBy(css="input[name='Cancel']")
+	WebElement btnCancelInSBIATM;
+
+	@FindBy(css="a[title='yatra.com']")
+	WebElement logoYatra;
+	
+	@FindBy(css ="#cpmt_tabContainer>ul")
+	WebElement lstPaymentMetod;
+	
+	@FindBy(css= "div[id='signinlyr']>h2")
+	WebElement logoMobiWikWallet;
+	
+	@FindBy(css= "a[title='Oxigen Wallet']")
+	WebElement logoOxyGenWallet;
+	
+	@FindBy(css= ".icon-payumoney")
+	WebElement logoPayUWallet;
+	
+	@FindBy(css= ".img-responsive")
+	WebElement logoBuddyWallet;	
+	
+	@FindBy(css= ".logojio")
+	WebElement logoJioMoneyWallet;
+	
+	@FindBy(css= "#freechargeLogo")
+	WebElement logoFreechargeWallet;
+
+	@FindBy(css= "header>img")
+	WebElement logoOlaMoneyWallet;
+
+	@FindBy(css= ".container>div[style*='vertical-align']")
+	WebElement logoPayZAppWallet;
+	
+	@FindBy(css= ".vf_logo")
+	WebElement logoVodafoneWallet;
+	
+	@FindBy(css= "form[id='pgWalletPay']")
+	WebElement formIdeaMoneyWallet;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -161,7 +212,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		BrowserActions.typeOnTextField(creditCardNumber,cardNumber, driver, "Credit card Number");
 		BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
-	
+
 		String css = "#cc_expm_id";
 		WebElement month = driver.findElement(By.cssSelector(css));
 		BrowserActions.clickOnElement(month, driver, "Date");
@@ -182,9 +233,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
-		
+
 		BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
-        BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#cc_SaveOptionDiv>label")), driver, "Unchecking Save QB");
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#cc_SaveOptionDiv>label")), driver, "Unchecking Save QB");
 	}
 
 	/**
@@ -338,19 +389,35 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	public void selectPaymentType(String PaymentType) throws Exception {
 		List<WebElement> lstElement = paymentType;
+		//List<WebElement> lstOtherElement = otherPaymentType;
+		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
+			BrowserActions.scrollToViewElement(driver.findElement(By.cssSelector("li[id='cpmt_others']>a")), driver);
+			BrowserActions.clickOnElement(driver.findElement(By.cssSelector("li[id='cpmt_others']>a")), driver, "list elements");
 
-		for (WebElement e : lstElement) {
-			if (e.findElement(By.cssSelector("a")).getText().equals(PaymentType)) {
-				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("a")), driver);
-				BrowserActions.clickOnElement(e.findElement(By.cssSelector("a")), driver, "list elements");
-				break;
-
+			for (WebElement ele : otherPaymentType) {
+				if (ele.findElement(By.cssSelector("a")).getText().equals(PaymentType)) 
+				{
+					BrowserActions.scrollToViewElement(ele.findElement(By.cssSelector("a")), driver);
+					BrowserActions.clickOnElement(ele.findElement(By.cssSelector("a")), driver, "list elements in others");
+					break;
+				}
 			}
 		}
-      
+
+		else{
+			for (WebElement e : lstElement) {
+				if (e.findElement(By.cssSelector("a")).getText().equals(PaymentType)) {
+
+					BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("a")), driver);
+					BrowserActions.clickOnElement(e.findElement(By.cssSelector("a")), driver, "list elements");
+					break;
+
+				}
+			}
+		}
 	}
-				
-			
+
+
 	/**
 	 * to select the net bank name
 	 * @param BankName
@@ -364,7 +431,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(BankName)) {
 				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
-				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "checked");
+				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "Selected Net bank");
 				break;
 
 			}
@@ -372,7 +439,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
-	
+
 	/**
 	 * to select the mobile wallet name
 	 * @param BankName
@@ -386,7 +453,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(WalletName)) {
 				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
-				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "checked");
+				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "selected Mobile Wallet");
 				break;
 
 			}
@@ -394,6 +461,26 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
+	/**
+	 * to select the ATM Card Name
+	 * @param BankName
+	 * @throws Exception
+	 */
+
+
+	public void selectATMCardName(String ATMCardName) throws Exception {
+		List<WebElement> lstElement = selectATMCard;
+
+		for (WebElement e : lstElement) {
+			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(ATMCardName)) {
+				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
+				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "seleted ATM.");
+				break;
+
+			}
+		}
+
+	}
 
 
 	/**
@@ -419,7 +506,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
-	
+
 	/**
 	 * getting text of ecash under slider
 	 * @return
@@ -439,23 +526,23 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		Actions action = new Actions(driver);
 		action.dragAndDropBy(sliderA, value, 0).build().perform();
 	}
-	
-	
+
+
 	@FindBy(css = "#emi_cno_id")
 	WebElement creditCardNumberInEMI;
-	
+
 	@FindBy(css = "#emi_cardholder_name_id")
 	WebElement creditCardHolderNameInEMI;
-	
+
 	@FindBy(css = "#emi_cvv_id")
 	WebElement creditCardCvvInEMI;
-	
+
 	@FindBy(css = "#emi_expm_id")
 	WebElement creditCardMonthInEMI;
-	
+
 	@FindBy(css = "#emi_expy_id")
 	WebElement creditCardYearInEMI;
-	
+
 	/**
 	 * Filling Credit Card Details in the EMI option
 	 * 
@@ -468,8 +555,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		String randomCvv = RandomStringUtils.randomNumeric(3);
 		BrowserActions.typeOnTextField(creditCardNumberInEMI,cardNumber, driver, "Credit card Number in EMI");
 		BrowserActions.typeOnTextField(creditCardHolderNameInEMI, randomName, driver, "Credit card holder Name in EMI");
-		
-		
+
+
 		BrowserActions.clickOnElement(creditCardMonthInEMI, driver, "Clicked on Month dropdown.");
 		List<WebElement> monthsList = driver.findElements(By.cssSelector("#emi_expm_id>option"));
 		if (monthsList.size() != 0) {
@@ -478,7 +565,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
-		
+
 		BrowserActions.clickOnElement(creditCardYearInEMI, driver, "Clicked on Year dropdown.");
 		List<WebElement> yearList = driver.findElements(By.cssSelector("#emi_expy_id>option"));
 		if (yearList.size() != 0) {
@@ -487,22 +574,86 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
-		
+
 		BrowserActions.typeOnTextField(creditCardCvvInEMI, randomCvv, driver, "Credit card Cvv");
 
 	}
 
+	/**
+	 * to navigate back to pages acc to browser
+	 * @param browser
+	 * @throws Exception
+	 */
 
+	public void navigateToBackPage(String browser) throws Exception{
+		if(browser.equalsIgnoreCase("browser")){
+			for(int i=0;i<2;i++){
+				driver.navigate().back();
+			}
+		}
+		else
+			driver.navigate().back();
 
+	}
+
+	/**
+	 * to click on Cancel in HDFC payment page
+	 * @throws Exception
+	 */
 	public void cancelHdfcPayment() throws Exception{
 		BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 		BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
 	}
-	
-	
+
+	/**
+	 * to click on cancel in SBI ATM payment
+	 * @throws Exception
+	 */
+	public void cancelSBIATMPayment() throws Exception{
+		BrowserActions.javascriptClick(btnCancelInSBIATM, driver, "Clicked on cancel button");
+		//BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
+	}
+
+	/**
+	 * to navigate back to yatra from freecharge page
+	 * @throws Exception
+	 */
 	public void clickOnBackToYatraLinkFreechrge() throws Exception{
 		BrowserActions.clickOnElement(lnkBckToYatraFrmFreechrge, driver, "Clicked on back to yatra link");
 	}
+
+	/**
+	 * to select the card from dropdown in EMI
+	 * @param BankName
+	 * @throws Exception
+	 */
+	public void selectITZCashRan(String itzName) throws Exception {
+		List<WebElement> lstElement =selectITZCard ;
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("form[name='modeform']>table>tbody>tr>td[align='right']>input")), driver, "Clicked on Card dropdown.");
+
+		for (WebElement e : lstElement) {
+			if (e.getAttribute("value").contains(itzName)) {
+				BrowserActions.scrollToViewElement(e, driver);
+				BrowserActions.clickOnElement(e, driver, "Selected ITZ Type");
+				break;
+
+			}
+		}
+
+	}
+	/**
+	 * to click on continue and cancelling the order for ITZCash
+	 * @throws Exception
+	 */
+	public void cancelOrderForITZCash() throws Exception{
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("input[name='continue']")), driver, "Clicked on continue in portal");
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("input[name='cancel']")), driver, "Clicked on cancelorder in portal");
+
+	}
+
+
+
 	/*
 	@FindBy(css ="div[id='submitciti']")
 	WebElement btnSubmit;
@@ -512,8 +663,10 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.scrollToViewElement(btnSubmit, driver);
 		BrowserActions.clickOnElement(btnSubmit, driver, "Clicked on Submit button for city bank");
 
-	}*/ // Vandna -- Function is not there
-	
+	}*/ 
+
 	//enterCreditCardDetails
+
+
 }
 
