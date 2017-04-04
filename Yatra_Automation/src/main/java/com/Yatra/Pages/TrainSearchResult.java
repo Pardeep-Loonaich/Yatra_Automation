@@ -1,7 +1,10 @@
 package com.Yatra.Pages;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -34,9 +37,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	@FindBy (xpath ="//li[@class='trainDepart']")
 	public List<WebElement> timeDepart;
 	
-	@FindBy (xpath ="//a[@class='active']/span")
-	public WebElement icnDepartDateSort;
-	
+	//ul[class ='train-info-block true']>li[class='trainDepart']>p
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -83,13 +84,27 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		return true;
 	}
 	
-	public void sortDepartDate() throws Exception
-	{
-		for(int i=0;i<=1;i++)
-		{
-			BrowserActions.clickOnElement(icnDepartDateSort, driver, "Clicked on sort icon");
+	
+	/**
+	 * To check Depart Time in Sorted Form
+	 * 
+	 * @throws Exception
+	 */
+	public boolean sortDepartDate() throws Exception {
+		boolean Flag = true;
+		ArrayList<String> time = new ArrayList<String>();
+		for (int j = 1; j < timeDepart.size(); j++) {
+			time.add(driver
+					.findElement(By.cssSelector("section[class='results col-3 anim']>div>section>div[class='row res-schedule-details']>div>ul:nth-child("+j+")>li[class='trainDepart']"))
+					.getText());
 		}
-		
+		Collections.sort(time);
+		for (int i = 1; i < time.size(); i++) {
+			if (time.get(i - 1).compareTo(time.get(i)) > 0)
+				Flag = false;
+		}
+		return Flag;
 	}
+	
 	
 }

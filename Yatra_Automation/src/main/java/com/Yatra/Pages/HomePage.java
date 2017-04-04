@@ -1,4 +1,3 @@
-
 package com.Yatra.Pages;
 
 
@@ -227,7 +226,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);		
-		
+		elementLayer = new ElementLayer(driver);
 	}// HomePage
 
 	@Override
@@ -574,11 +573,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public LoginPage navigateToSignIn() throws Exception {
 		// click Login button on signin page
-		Utils.waitForElement(driver, lnkMyaccount);		
-		BrowserActions.mouseHover(driver, lnkMyaccount);
+		//Utils.waitForElement(driver, lnkMyaccount);		
+		//BrowserActions.mouseHover(driver, lnkMyaccount);
 		//BrowserActions.moveToElementJS(driver, lnkMyaccount);
 		//BrowserActions.actionClick(btnSignIn, driver, "Sign In");
-		BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
+		BrowserActions.javascriptClick(btnSignIn, driver, "Sign In");
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
 	}
