@@ -1,20 +1,12 @@
 package com.Yatra.Pages;
 
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -23,7 +15,6 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
-import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -531,3 +522,4 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	}
 	
 }// SRPBUS
+

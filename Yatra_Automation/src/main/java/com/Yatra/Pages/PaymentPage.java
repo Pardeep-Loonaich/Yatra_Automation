@@ -1,4 +1,3 @@
-
 package com.Yatra.Pages;
 
 import java.util.List;
@@ -669,4 +668,3 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 }
-

@@ -21,11 +21,8 @@ public class FlightsCancellationCharges extends LoadableComponent<FlightsCancell
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
-	
-
 
 	@FindBy(xpath = "//input[@id ='bookingNumber']")
-
 	public WebElement txtBookingNo;
 	
 	@FindBy(xpath = "//input[@id ='mobileNumber']")

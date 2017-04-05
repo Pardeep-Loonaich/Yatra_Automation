@@ -208,9 +208,6 @@ public class TestDataExtractor {
 		//String testCaseId = t.getStackTrace()[1].getMethodName();
 		testData.setTestCaseId(testCaseId);
 		return testData.readData();
-	}
-	
-	
-	
+	}	
 
 }

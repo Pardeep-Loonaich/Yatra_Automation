@@ -676,5 +676,5 @@ public class BrowserActions {
 		return dataToBeReturn;
 	}
 	
-	
+
 }// BrowserActions page

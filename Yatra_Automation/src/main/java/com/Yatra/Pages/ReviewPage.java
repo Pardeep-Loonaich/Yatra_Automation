@@ -104,7 +104,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	@FindBy(css="div[ng-show='priceChangeDiv']>div[class='overlay modal-new']>div[class='overlay-content ']")
 	WebElement popupFareChange;
-	
+
 	@FindBy(css="button[class='button primary rounded pull-right']")
 	WebElement ContinueInFareChangeAlertPopUp;
 
@@ -396,7 +396,5 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			return txtDetails;
 
 		}
-
-		
 
 } //ReviewPage
