@@ -74,7 +74,8 @@
 					<version>2.19.1</version>
 					<configuration>
 						<suiteXmlFiles>
-							<suiteXmlFile>Regression.xml</suiteXmlFile>
+						<outputDirectory>${basedir}/test-output</outputDirectory>
+							<suiteXmlFile>.\testxml\flights\Regression.xml</suiteXmlFile>
 
 						</suiteXmlFiles>
 					</configuration>
