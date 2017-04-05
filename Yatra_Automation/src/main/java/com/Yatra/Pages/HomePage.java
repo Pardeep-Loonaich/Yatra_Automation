@@ -673,7 +673,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
-		BrowserActions.scrollToViewElement(dateDeparture, driver);
 		Utils.waitForElement(driver, dateDeparture);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
 		
@@ -958,6 +957,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateReturnBus, driver, "clicking on Bus Return date icon");
+		BrowserActions.scrollToViewElement(dateDeparture, driver);
 		selectMonth_Bus.get(month - 3).click();
 		BrowserActions.nap(2);
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
@@ -1011,6 +1011,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		selectDepartureDateBus(departureDate); // select Departure Date
 		BrowserActions.nap(2);
+		BrowserActions.scrollToView(dateDepartureBus, driver);
 		selectReturnDateBus(returnDate); // select Return Date
 		BrowserActions.nap(2);
 		PassengerInfoBus(passengerInfo); // select Passengers
@@ -1032,6 +1033,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestinationBus(destination); // enter Destination value
 		BrowserActions.nap(2);
 		selectDepartureDateBus(departureDate); // select Departure Date
+		BrowserActions.scrollToView(dateDepartureBus, driver);
 		BrowserActions.nap(2);
 		PassengerInfoBus(passengerInfo); // select Passengers 
 		Log.event("Successfully Filled OneWay Bus Search fields");

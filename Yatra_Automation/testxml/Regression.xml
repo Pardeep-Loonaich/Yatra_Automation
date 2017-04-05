@@ -5,5 +5,8 @@
 	<suite-files>
 		<suite-file path="testxml\flights\flightPricing.xml" />
 		<suite-file path="testxml\flights\flightSearch.xml" />		
+		<suite-file path="testxml\flights\payments.xml" />
+		<suite-file path="testxml\bus\busSearch.xml" />
+		
 	</suite-files>	
 </suite>
