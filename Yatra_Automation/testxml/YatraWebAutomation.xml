@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Yatra Web Automation Test " verbose="3" parallel="tests" thread-count="250">
-	<parameter name="deviceHost" value="localhost" />
-	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="chrome_windows" />
-	<parameter name="webSite" value="https://www.yatra.com/" />
-
-	<test name="Web Automation Testcases" thread-count="10" parallel="true">
-		<packages>
-			<package name="com.Yatra.TestScript.Flights" />			
-			<package name="com.Yatra.TestScript.Bus" />
-			<package name="com.Yatra.TestScript.Hotels" />
-			<package name="com.Yatra.TestScript.Payment" />
-			
-		</packages>
-	</test>
+<suite-files>
+   <suite-file path=".\testxml\bus\busSearch.xml"></suite-file>
+   <suite-file path=".\testxml\flights\flightPricing.xml"></suite-file>
+   <suite-file path=".\testxml\flights\flightSearch.xml"></suite-file>
+   <suite-file path=".\testxml\payments\payments.xml"></suite-file>
+</suite-files>
 </suite>
