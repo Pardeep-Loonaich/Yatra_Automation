@@ -81,7 +81,9 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	
 	public AgentRegister clickOnAgentRegsiter() throws Exception{
 		BrowserActions.clickOnElement(
+
 				btnRegisterHere, driver,
+
 						"Agent Register Btn");
 		return new AgentRegister(driver).get();
 	}

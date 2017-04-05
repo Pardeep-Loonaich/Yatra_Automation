@@ -3,6 +3,8 @@
 <suite name=" Yatra Web Automation Test" verbose="3" parallel="tests" thread-count="500">
 	<parameter name="workBookName" value="testdata\\data\\Train.xls"/>
     <parameter name="sheetName" value="TrainSearch"/>
+    
+    
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
@@ -19,7 +21,7 @@
 		<classes>
 			<class name="com.Yatra.TestScripts.Trains.TrainSearch">
 				<methods>
-					<include name="Web_Train_005" />					
+					
 				</methods>
 			</class>
 		</classes>

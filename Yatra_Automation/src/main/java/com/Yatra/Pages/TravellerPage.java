@@ -1,4 +1,3 @@
-
 package com.Yatra.Pages;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -433,4 +432,3 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	}
 }
-

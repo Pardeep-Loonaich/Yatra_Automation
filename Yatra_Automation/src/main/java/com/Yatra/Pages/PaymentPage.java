@@ -1,4 +1,3 @@
-
 package com.Yatra.Pages;
 
 import java.util.List;
@@ -113,11 +112,48 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	@FindBy(css="a[title='yatra.com']")
 	WebElement logoYatra;
-	
+
 	@FindBy(css ="#cpmt_tabContainer>ul")
 	WebElement lstPaymentMetod;
-	
 
+	@FindBy(css= "div[id='signinlyr']>h2")
+	WebElement logoMobiWikWallet;
+
+	@FindBy(css= "a[title='Oxigen Wallet']")
+	WebElement logoOxyGenWallet;
+
+	@FindBy(css= ".icon-payumoney")
+	WebElement logoPayUWallet;
+
+	@FindBy(css= ".img-responsive")
+	WebElement logoBuddyWallet;	
+
+	@FindBy(css= ".logojio")
+	WebElement logoJioMoneyWallet;
+
+	@FindBy(css= "#freechargeLogo")
+	WebElement logoFreechargeWallet;
+
+	@FindBy(css= "header>img")
+	WebElement logoOlaMoneyWallet;
+
+	@FindBy(css= ".container>div[style*='vertical-align']")
+	WebElement logoPayZAppWallet;
+
+	@FindBy(css= ".vf_logo")
+	WebElement logoVodafoneWallet;
+
+	@FindBy(css= "form[id='pgWalletPay']")
+	WebElement formIdeaMoneyWallet;
+
+	@FindBy(css= ".e-cash-pay")
+	WebElement modEcash;
+
+	@FindBy(css= ".leg")
+	WebElement labelFlightDetails;
+	
+	@FindBy(css= "div[class='pax-detailed']")
+	WebElement labelTravellerDetails;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -624,7 +660,74 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 
+	/**
+	 * to return ecashHeading  from ecash module
+	 * @return
+	 * @throws Exception
+	 */
+	public String getEcashHeading() throws Exception{
+		String ecashHeading = BrowserActions.getText(driver, driver.findElement(By.cssSelector(".box-title.normal.fs-base.clearfix")),"Heading Yatra's Earn");
+		return ecashHeading;
+	}
 
+
+	/**
+	 * to return ecashAmount  from ecash module
+	 * @return
+	 * @throws Exception
+	 */
+	public String getEcashAmount() throws Exception{
+		String ecashAmount = BrowserActions.getText(driver, driver.findElement(By.cssSelector("li[id='earnEcashDiv']>span")),"Ecash Amount");
+		return ecashAmount;
+	}
+
+	/**
+	 * to return Flight Details
+	 * @return
+	 * @throws Exception
+	 */
+	public String getFlightDetails() throws Exception{
+		String flightDetails = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='leg']>span[class='ib fl']")),"Getting Text From Flight Details.").trim().replace("?", "");
+		return flightDetails;
+	}
+
+	/**
+	 * to return Travellers Details
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTravellerDetails() throws Exception{
+		String travellerHeading = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='pax-detailed']>h3")),"Getting Heading of Traveller Details.");
+		String travellerDetails = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='pax-names']")),"Getting Text From Traveller Details.");
+		
+		String travellerInfo = travellerHeading.concat(travellerDetails);
+		return travellerInfo;
+	}
+
+	/**
+	 * to click on Terms and condition link 
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickedOnTnCLink() throws Exception{
+		BrowserActions.scrollToView(driver.findElement(By.cssSelector("#tncLink")),driver);
+
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#tncLink")),driver, "Clicked terms and condition link");
+	}
+	
+	
+	/**
+	 * to verify Tnc page
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean verifyTnCPage() throws Exception{
+		return BrowserActions.getText(driver, driver.findElement(By.cssSelector("span[class='hudini']")), "Getting Text from span").contains("Terms and Conditions");
+	}
+	
+	
+
+	
 	/*
 	@FindBy(css ="div[id='submitciti']")
 	WebElement btnSubmit;
@@ -640,4 +743,3 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 }
-
