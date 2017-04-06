@@ -1,7 +1,5 @@
 package com.Yatra.TestScript.Bus;
 
-import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 //-----------------------------------------------------------------------------------------------------------
@@ -13,7 +11,6 @@ import java.util.Arrays;
 
 import java.util.HashMap;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
@@ -49,9 +46,11 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_001(HashMap<String, String> testData) throws Exception {
-		
+
+
+
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -89,7 +88,7 @@ public class BusSearchTest {
 							searchResultBus),
 					"<b>Actual Result:</b> User Successfully navigated on SearchResult page and Bus Details are as : "
 							+ BusDetail,
-					"<b>Actual Result:</b> User is not navigated on SearchResult page", driver);
+							"<b>Actual Result:</b> User is not navigated on SearchResult page", driver);
 
 			Log.testCaseResult();
 
@@ -102,7 +101,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Search Oneway bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Search Oneway bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_002(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -142,7 +141,7 @@ public class BusSearchTest {
 							searchResultBus),
 					"<b>Actual Result:</b> User Successfully navigated on SearchResult page and Bus Details are as : "
 							+ BusDetail,
-					"<b>Actual Result:</b> User is not navigated on SearchResult page", driver);
+							"<b>Actual Result:</b> User is not navigated on SearchResult page", driver);
 
 			Log.testCaseResult();
 
@@ -155,7 +154,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Search RoundTrip bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Search RoundTrip bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_003(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -207,7 +206,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Search RoundTrip bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Search RoundTrip bus for multiple pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_004(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -259,7 +258,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Don't select any city for onward/return", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Don't select any city for onward/return", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_005(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -300,7 +299,7 @@ public class BusSearchTest {
 			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("btnSearchBus"), homePage),
 					"<b>Actual Result:</b> After Clicking Search Button, An Error Message is Displayed as :"
 							+ ErrorMessage,
-					"<b>Actual Result:</b> After Clicking Search Button, No Error Message is not Displayed", driver);
+							"<b>Actual Result:</b> After Clicking Search Button, No Error Message is not Displayed", driver);
 
 			Log.testCaseResult();
 
@@ -313,7 +312,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Don't select any date to travel", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Don't select any date to travel", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_006(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -358,7 +357,7 @@ public class BusSearchTest {
 			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("btnSearchBus"), homePage),
 					"<b>Actual Result:</b> After Clicking Search Button, An Error Message is Displayed as :"
 							+ ErrorMessage,
-					"<b>Actual Result:</b> After Clicking Search Button, No Error Message is not Displayed", driver);
+							"<b>Actual Result:</b> After Clicking Search Button, No Error Message is not Displayed", driver);
 
 			Log.testCaseResult();
 
@@ -371,7 +370,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "On selecting same city for depart & Arrival", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "On selecting same city for depart & Arrival", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_007(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -412,7 +411,7 @@ public class BusSearchTest {
 			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("btnSearchBus"), homePage),
 					"<b>Actual Result:</b> After Clicking Search Button, An Error Message is Displayed as :"
 							+ ErrorMessage,
-					"<b>Actual Result:</b> After Clicking Search Button, No Error Message is not Displayed", driver);
+							"<b>Actual Result:</b> After Clicking Search Button, No Error Message is not Displayed", driver);
 
 			Log.testCaseResult();
 
@@ -425,7 +424,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Enter incorrectCity Name for onward or return", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Enter incorrectCity Name for onward or return", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_008(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -466,7 +465,7 @@ public class BusSearchTest {
 			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("btnSearchBus"), homePage),
 					"<b>Actual Result:</b> After Clicking Search Button, An Error Message is Displayed as :"
 							+ ErrorMessage,
-					"<b>Actual Result:</b> After Clicking Search Button, No Error Message is not Displayed", driver);
+							"<b>Actual Result:</b> After Clicking Search Button, No Error Message is not Displayed", driver);
 
 			Log.testCaseResult();
 
@@ -479,7 +478,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for Message in Case Of No Result", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check for Message in Case Of No Result", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_009(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -520,8 +519,8 @@ public class BusSearchTest {
 							searchResultBus),
 					"<b>Actual Result:</b> User Successfully navigated on SearchResult page and On SRP details as  : "
 							+ SRPDetail,
-					"<b>Actual Result:</b> User navigated on SearchResult Page,NO Bus Found Message not displayed On SRP Page",
-					driver);
+							"<b>Actual Result:</b> User navigated on SearchResult Page,NO Bus Found Message not displayed On SRP Page",
+							driver);
 
 			Log.testCaseResult();
 
@@ -534,7 +533,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "User Should See the Price in Sorted Form in Ascending Order", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "User Should See the Price in Sorted Form in Ascending Order", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_010(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -584,7 +583,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "User Should See the depart time in Sorted Form", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "User Should See the depart time in Sorted Form", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_011(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -639,7 +638,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "User Should See the Arrive time in Sorted Form", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "User Should See the Arrive time in Sorted Form", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_012(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -694,7 +693,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "User Should See the Duration in Sorted Form", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "User Should See the Duration in Sorted Form", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_013(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -748,7 +747,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "On select seats should open seat-map page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "On select seats should open seat-map page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_014(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -801,7 +800,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Click on bus details link", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Click on bus details link", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_015(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -854,7 +853,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for Prev/Next day tabs", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check for Prev/Next day tabs", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_016(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -910,7 +909,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for RT /OW dates", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check for RT /OW dates", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_017(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -964,7 +963,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for validations in city names", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check for validations in city names", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_018(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1009,8 +1008,8 @@ public class BusSearchTest {
 							searchResultBus),
 					"<b>Actual Result:</b> User navigated to Search Result Page, and Error Message is Displayed as :"
 							+ error,
-					"<b>Actual Result:</b> User navigated to Search Result Page, But No Error Message is Displayed",
-					driver);
+							"<b>Actual Result:</b> User navigated to Search Result Page, But No Error Message is Displayed",
+							driver);
 
 			Log.testCaseResult();
 
@@ -1023,7 +1022,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for Dropping points, Boarding point, Bus type, Amenities, Price, depart time, arrival time", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check for Dropping points, Boarding point, Bus type, Amenities, Price, depart time, arrival time", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_019(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1077,7 +1076,7 @@ public class BusSearchTest {
 					"<b>Actual Result:</b> User navigated to Search Result Page,All details are properly seen as -->"
 							+ details + "Boarding Point as --> " + BoardingPoint + "Dropping Point As -->"
 							+ DroppingPoint,
-					"<b>Actual Result:</b> ", driver);
+							"<b>Actual Result:</b> ", driver);
 
 			Log.testCaseResult();
 
@@ -1090,7 +1089,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for correct seat number and type shown", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check for correct seat number and type shown", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_020(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1150,7 +1149,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for boarding point drop down", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check for boarding point drop down", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_021(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1199,7 +1198,7 @@ public class BusSearchTest {
 					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
 					"<b>Actual Result:</b> Boarding point Drop Down is Properly Displayed and Boarding Point as : "
 							+ DropingPoint,
-					"<b>Actual Result:</b> Seat Number is not properly Displayed", driver);
+							"<b>Actual Result:</b> Seat Number is not properly Displayed", driver);
 
 			Log.testCaseResult();
 
@@ -1212,7 +1211,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for Max 6 seats can be selected and min 1", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check for Max 6 seats can be selected and min 1", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_023(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1275,7 +1274,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for Lower/Upper deck", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check for Lower/Upper deck", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_024(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1334,7 +1333,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_025(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1402,7 +1401,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Check if seat is seletced but no boarding point is selected", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Check if seat is seletced but no boarding point is selected", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_026(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1461,7 +1460,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify user should check if details are correct as of selected bus,seats and No. of pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify user should check if details are correct as of selected bus,seats and No. of pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_027(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1513,7 +1512,7 @@ public class BusSearchTest {
 			Log.assertThat(
 					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
 					"<b>Actual Result:</b> All Deatils are Properly selected and Displayed as Seat No --> " + SeatNumber
-							+ " and Bus Details as  --> " + details,
+					+ " and Bus Details as  --> " + details,
 					"<b>Actual Result:</b> No Error Message is displayed", driver);
 
 			Log.testCaseResult();
@@ -1527,7 +1526,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify user should navigate to SRP after changing the bus", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify user should navigate to SRP after changing the bus", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_028(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1595,7 +1594,7 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify user click on continue Button and navigate to Review Page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify user click on continue Button and navigate to Review Page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_029(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));

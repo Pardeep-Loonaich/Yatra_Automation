@@ -127,7 +127,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
     @FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
 	WebElement moduleFareRules;
-
+    
+    @FindBy(css = "div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")
+    WebElement formReviewHeading;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -396,5 +398,19 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			return txtDetails;
 
 		}
+		
+		/**
+		 * Getting the text of Review Form heading 
+		 * 
+		 * @return
+		 * @throws Exception
+		 */
+
+		public String getTextOfReviewHeading() throws Exception {
+			String formReview = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")), "Getting text of Review Form Heading.");
+			return formReview;
+
+		}
+		
 
 } //ReviewPage
