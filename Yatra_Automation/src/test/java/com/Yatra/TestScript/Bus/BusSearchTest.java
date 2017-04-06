@@ -51,7 +51,7 @@ public class BusSearchTest {
 	@Test(groups = {
 			"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_001(HashMap<String, String> testData) throws Exception {
-		
+
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
