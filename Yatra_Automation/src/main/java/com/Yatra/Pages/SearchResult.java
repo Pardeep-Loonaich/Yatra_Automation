@@ -275,9 +275,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	WebElement txtLowestFlightFare_AirlineMatix;
 	
 	@FindBy(css = ".ng-pristine.ng-valid.ng-touched>option")
-	WebElement drpPassengerClass;
-	//List<WebElement> drpPassengerClass;
+	WebElement drpPassengerClass;	
 	
+	@FindBy(css = ".matrix-link.txt-ac.tabs-link.active")
+	WebElement lnkArirlineMatrix;
 	
 	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
 	
@@ -1250,7 +1251,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return passengerclassList;
 	}
 	
-	
+	/**
+	 * To verify Non Stop Flights Only checkbox is checked on unchecked
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyAllAirlineMatrixSelection() throws Exception {
+		boolean status = false;		
+		if (lnkArirlineMatrix.isDisplayed()) {
+			status = true;
+		} else 
+		if (lnkArirlineMatrix.isSelected()){
+			status = true;
+		}else {		
+			status = false;
+		}
+		return status;		
+		
+	}
 	
   //*******************************End of SRP Functions********************************************************************************************
 

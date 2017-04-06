@@ -100,4 +100,14 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 		BrowserActions.clickOnElement(txtSeatDetails, driver, "Select Seat");
 		Utils.waitForPageLoad(driver);
 	}
+	
+	
+	/**
+	 * to click on change bus button
+	 * @throws Exception
+	 */
+	public SearchResultBus clickOnChangeBus() throws Exception{
+		BrowserActions.clickOnElement(BtnChangeBus, driver, "clicked on change bus button.");
+		return new SearchResultBus(driver);
+	}
 }
