@@ -27,7 +27,6 @@ import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
-import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)

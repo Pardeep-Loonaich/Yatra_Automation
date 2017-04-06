@@ -9,8 +9,10 @@ package com.Yatra.TestScript.Flights;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
@@ -2645,7 +2647,7 @@ public class FlightSearch {
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
 	
-			//step: select OneWay Search fileds in HomePage
+			//step: select OneWay Search fields in HomePage
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully filled the search details for OneWay ");
 						
@@ -2701,7 +2703,7 @@ public class FlightSearch {
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
 	
-			//step: select Round Trip Search fileds in HomePage
+			//step: select Round Trip Search fields in HomePage
 			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully filled the search details for Round Trip");
 						
@@ -2750,7 +2752,7 @@ public class FlightSearch {
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'Multicity' option in search Home Page ");
 	
-			//step: selectMulticity Search fileds in HomePage
+			//step: selectMulticity Search fields in HomePage
 			homePage.selectMultiCityFlightSearchFields(origin1, destination1, departureDate1, origin2, destination2, departureDate2, passengerInfo, passengerClass);
 			Log.message("3.Successfully filled the search details for 'Multicity'");
 						
@@ -2773,6 +2775,109 @@ public class FlightSearch {
 		}
 	}
 	
+	
+	
+	@Test(groups = {"desktop" }, description = "Validating that for DOM search Class dropdown would not contain First Class as option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_024(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");		
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			//step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for OneWay ");
+					
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult.clickModifySearch(); 
+			Log.message("5.Successfully clicked 'Modify Search' link in SRP ");				
+			
+			List<String> passengerClassNames = searchResult.getPassengerClasssDetailsInMofifySearch();		
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated that for DOM search Class dropdown would not contain First Class as option");
+			BrowserActions.nap(2);
+			Log.assertThat(!passengerClassNames.contains("First Class"),
+					"<b>Actual Result:</b> DOM Flights Passenger Class dropdown sholud not contain First Class option</b>, Passenger Class List are : "+ passengerClassNames ,
+					"<b>Actual Result:</b> DOM Flights Passenger Class dropdown sholud contain First Class option</b> Passenger Class List are : " + passengerClassNames , driver);
+			
+		   Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = {"desktop" }, description = "Validating that for INT search Class dropdown should not contain First Class as option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_025(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");		
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			//step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for OneWay ");
+					
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult.clickModifySearch(); 
+			Log.message("5.Successfully clicked 'Modify Search' link in SRP ");				
+			
+			List<String> passengerClassNames = searchResult.getPassengerClasssDetailsInMofifySearch();		
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated that for INT search Class dropdown would not contain First Class as option");
+			BrowserActions.nap(2);
+			Log.assertThat(passengerClassNames.contains("First Class"),
+					"<b>Actual Result:</b> INT Flights Passenger Class dropdown sholud contain First Class option</b>, Passenger Class List are : "+ passengerClassNames ,
+					"<b>Actual Result:</b> INT Flights Passenger Class dropdown sholud not contain First Class option</b> Passenger Class List are : " + passengerClassNames , driver);
+			
+		   Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 	
   // ********************************End of Testcases ***************************************************************************************
 } //FlightSearch

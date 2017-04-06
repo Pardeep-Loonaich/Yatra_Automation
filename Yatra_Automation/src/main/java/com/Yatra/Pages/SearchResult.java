@@ -1,5 +1,6 @@
 package com.Yatra.Pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -274,7 +275,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	WebElement txtLowestFlightFare_AirlineMatix;
 	
 	@FindBy(css = ".ng-pristine.ng-valid.ng-touched>option")
-	List<WebElement> drpPassengerClass;
+	WebElement drpPassengerClass;
+	//List<WebElement> drpPassengerClass;
 	
 	
 	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
@@ -964,11 +966,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickModifySearch() throws Exception {
-		BrowserActions.nap(1);
+		BrowserActions.nap(10);
 		Utils.waitForElement(driver, btnModifySearchIcon);
 		//BrowserActions.mouseHover(driver, btnModifySearchIcon);		
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
-		BrowserActions.nap(6);
+		BrowserActions.nap(1);
 		Utils.waitForPageLoad(driver);
 		Log.event("Clicked Modify Search link in SRP");
 	}
@@ -1230,6 +1232,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String lowestFlightFareGetTxt = BrowserActions.getText(driver, txtLowestFlightFare_AirlineMatix," Lowest Flight fare should be displayed in Airline Matrix");
 		return lowestFlightFareGetTxt;
 	}	
+	
+	/**
+	 * Getting the text from Passenger class Drop down in Modify Search panel
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> getPassengerClasssDetailsInMofifySearch() throws Exception {		
+		List<String> passengerclassList = new ArrayList<String>();		
+		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("//form[@id='modifySearch']/div[2]//li[1]/div/select/option"));
+		for (int i = 0; i < passengerClassList1.size(); i++) {
+			String passengerClass = passengerClassList1.get(i).getText().toString().trim();
+			passengerclassList.add(passengerClass);
+		}
+		Log.event("Modify Search Passenger Class drop down details list : "+ passengerclassList);
+		return passengerclassList;
+	}
+	
 	
 	
   //*******************************End of SRP Functions********************************************************************************************
