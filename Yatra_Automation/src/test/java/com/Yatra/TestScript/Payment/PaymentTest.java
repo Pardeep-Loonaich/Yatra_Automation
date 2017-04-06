@@ -17,7 +17,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
@@ -26,11 +25,11 @@ import com.Yatra.Pages.PaymentPage;
 import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Pages.TravellerPage;
-import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
+import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
@@ -55,6 +54,8 @@ public class PaymentTest {
 
 	@Test(groups = { "desktop" }, description = "verify Ecash Redemption ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_001(HashMap<String, String> testData) throws Exception {
+		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -174,6 +175,7 @@ public class PaymentTest {
 
 	@Test(groups = { "desktop" }, description = "verify CreditCard Transaction", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_002(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -280,6 +282,7 @@ public class PaymentTest {
 
 	@Test(groups = { "desktop" }, description = "verify NetBanking Single Option ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_005(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -378,6 +381,7 @@ public class PaymentTest {
 	}
 	@Test(groups = { "desktop" }, description = "Verify Emi Options ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_006(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -484,6 +488,7 @@ public class PaymentTest {
 	}
 	@Test(groups = { "desktop" }, description = "Verify MobileWallet Single Option ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_007(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -587,6 +592,7 @@ public class PaymentTest {
 
 	@Test(groups = { "desktop" }, description = "Verify Cash Card ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_008(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -688,6 +694,7 @@ public class PaymentTest {
 
 	@Test(groups = { "desktop" }, description = "Verify Atm All Options ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_009(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -790,6 +797,7 @@ public class PaymentTest {
 
 	@Test(groups = { "desktop" }, description = "Verify Eze Click ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_010(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -891,6 +899,7 @@ public class PaymentTest {
 
 	@Test(groups = { "desktop" }, description = "Redeem eCash shouldnot display for guest user ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_016(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String mobile = testData.get("Mobile");
@@ -965,6 +974,7 @@ public class PaymentTest {
 	}
 	@Test(groups = { "desktop" }, description = "All payment methods displayed ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_017(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1044,6 +1054,7 @@ public class PaymentTest {
 	
 	@Test(groups = { "desktop" }, description = "Earn eCash is showing", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_020(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1124,6 +1135,7 @@ public class PaymentTest {
 	
 	@Test(groups = { "desktop" }, description = "Term and conditions link", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_022(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1221,6 +1233,7 @@ public class PaymentTest {
 	
 	@Test(groups = { "desktop" }, description = "Verify flight details is showing on top.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_023(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1302,6 +1315,7 @@ public class PaymentTest {
 	
 	@Test(groups = { "desktop" }, description = "Verify Traveller details is showing on top right.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_024(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1382,6 +1396,7 @@ public class PaymentTest {
 	
 	@Test(groups = { "desktop" }, description = "Verify booking progress bar is showing.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_025(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1462,6 +1477,7 @@ public class PaymentTest {
 	
 	@Test(groups = { "desktop" }, description = "Verify that for a Logged in user eCash details are displayed in header on Payment page.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_026(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1542,6 +1558,7 @@ public class PaymentTest {
 	
 	@Test(groups = { "desktop" }, description = "Verify that user name is displayed for logged in user.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_027(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1606,11 +1623,11 @@ public class PaymentTest {
 
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verify that for a Logged in user eCash details are displayed in header on Payment page.");
+			Log.message("<b>Expected Result:</b> Verify that user name is displayed for logged in user on Payment page.");
 			
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("labelEcash"), paymentPage),
-					"<b>Actual Result:</b> eCash details for logged in user is displayed on Payment Page as :'"+paymentPage.getTextFromEcashLabel()+"'",
-					"<b>Actual Result:</b> eCash details for logged in user is not displayed on Payment Page.", driver);
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("labelUserName"), paymentPage),
+					"<b>Actual Result:</b> User name is displayed for logged in user on Payment Page as :'"+paymentPage.getUserName()+"'",
+					"<b>Actual Result:</b> User name is not displayed for logged in user on Payment Page.", driver);
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1619,4 +1636,92 @@ public class PaymentTest {
 			Log.endTestCase();
 		}
 	}
+	
+	
+	@Test(groups = { "desktop" }, description = "Verify we are routing to review/pricing page seemlessly.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Payment_028(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			loginPage = homePage.navigateToSignIn();
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2. Login 'Yatra' account successfully.");
+			// step: verify Yatra title bar text
+
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("3. Verified Yatra Title text");
+			}
+
+			// selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("5. Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+			// clicked on book now button in one way
+			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+			// clicke on continue button
+			travellerPage = reviewPage.clickOnContinue();
+			Log.message("7. Clicked on Continue button on Review Page.");
+
+			/*	reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("8. Successfully Logged in Yatra account!");
+			 */
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Filled Traveller Details for domestic Flights.");
+
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue button on Travellers Page.");
+
+			Thread.sleep(2000);
+		   reviewPage= paymentPage.clickOnEditLink();
+			Log.message("10. Clicked on Edit Link under Review bookbar.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify we are routing to review/pricing page seemlessly.");
+			
+			Log.assertThat(reviewPage.getTextOfReviewHeading().contains("Review"),
+					"<b>Actual Result:</b> Successfully navigated to reviewpage after clicking on 'Edit' link ",
+					"<b>Actual Result:</b> Unable to navigate to reviewpage after clicking on 'Edit' link.", driver);
+			
+			
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
 }//PaymentTest

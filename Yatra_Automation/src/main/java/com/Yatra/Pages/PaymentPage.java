@@ -161,6 +161,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css= "span[class='simple-tab eCashholder']")
 	WebElement labelEcash;
 	
+	@FindBy(css= "li[id='userLoginBlock']")
+	WebElement labelUserName;
+	
 	@FindBy(css= "span[class='simple-tab eCashholder']>span")
 	WebElement ecashAmount;
 	/**********************************************************************************************
@@ -711,6 +714,17 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return flightDetails;
 	}
 
+	
+	/**
+	 * to return User Name from header
+	 * @return
+	 * @throws Exception
+	 */
+	public String getUserName() throws Exception{
+		String userName = BrowserActions.getText(driver, driver.findElement(By.cssSelector("#userShowName")),"Getting Text from user name.");
+		return userName;
+	}
+
 	/**
 	 * to return Travellers Details
 	 * @return
@@ -745,8 +759,15 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return BrowserActions.getText(driver, driver.findElement(By.cssSelector("span[class='hudini']")), "Getting Text from span").contains("Terms and Conditions");
 	}
 	
-	
-
+	/**
+	 * to click on Edit Link and returning Review Page
+	 * @return
+	 * @throws Exception
+	 */
+   public ReviewPage clickOnEditLink() throws Exception{
+	   BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#spanEditStep1>a")), driver, "Clicked on edit Link under review bar");
+	   return new ReviewPage(driver).get();
+   }
 	
 	/*
 	@FindBy(css ="div[id='submitciti']")
