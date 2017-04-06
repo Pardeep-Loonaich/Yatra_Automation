@@ -120,8 +120,6 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(css = "div[class='wfull total-fare']>span[class='select-seats-action-round']>a")
 	WebElement selectBus_RT;
 	
-	
-	
 	@FindBy(css = "div[class='return floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']")
 	WebElement PopUp_RT;
 	

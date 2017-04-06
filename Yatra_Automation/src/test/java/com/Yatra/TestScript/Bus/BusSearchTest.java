@@ -1434,4 +1434,198 @@ public class BusSearchTest {
 			Log.endTestCase();
 		}
 	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verify user should check if details are correct as of selected bus,seats and No. of pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Bus_027(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickBuses();
+			Log.message("2. Clicked on Bus Link!");
+
+			homePage.selectTripTypeBus(tripType);
+			Log.message("3. Trip Type Selected!");
+
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'One Way' trip!");
+
+			searchResultBus = homePage.clickBtnSearchBus();
+			Log.message("5. Clicked On Search Button!");
+
+			searchResultBus.clickBtnSelectSeat(1);
+			Log.message("6. Clicked On Select Seat!");
+
+			Thread.sleep(4000);
+			searchResultBus.switchToIframe();
+			searchResultBus.selectSeat(1);
+			Log.message("7. Seat Selected!");
+
+			String details = searchResultBus.getTextBusInfo();
+			Log.message(details);
+
+			String SeatNumber = searchResultBus.getTextSeatNumber();
+			Log.message(SeatNumber);
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> Verify user check if details are correct as of selected bus,seats and No. of pax");
+			Thread.sleep(6000);
+			Log.assertThat(
+					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
+					"<b>Actual Result:</b> All Deatils are Properly selected and Displayed as Seat No --> " + SeatNumber
+							+ " and Bus Details as  --> " + details,
+					"<b>Actual Result:</b> No Error Message is displayed", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verify user should navigate to SRP after changing the bus", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Bus_028(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickBuses();
+			Log.message("2. Clicked on Bus Link!");
+
+			homePage.selectTripTypeBus(tripType);
+			Log.message("3. Trip Type Selected!");
+
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ROUND' trip!");
+
+			searchResultBus = homePage.clickBtnSearchBus();
+			Log.message("5. Clicked On Search Button!");
+
+			searchResultBus.clickBtnSelectSeat(1);
+			Log.message("6. Clicked On Select Seat!");
+
+			Thread.sleep(4000);
+			searchResultBus.switchToIframe();
+			searchResultBus.selectSeat(1);
+			Log.message("7. Seat Selected from the popup!");
+
+			searchResultBus.selectBoardingPoint();
+			Log.message("8. Selected boarding point!");
+
+			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
+			Log.message("9. Clicked on continue to navigate to review page!");
+
+			searchResultBus = reviewPageBus.clickOnChangeBus();
+			Log.message("10. Clicked on continue to navigate to review page!");
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> Verify user should navigate to SRP after changing the bus on Review Page");
+			Thread.sleep(6000);
+			Log.assertThat(
+					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("btnFindBus"), searchResultBus),
+					"<b>Actual Result:</b> Successfully navigated to Search Result Page",
+					"<b>Actual Result:</b> Unable to navigate to Search Result Page", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verify user click on continue Button and navigate to Review Page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Bus_029(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickBuses();
+			Log.message("2. Clicked on Bus Link!");
+
+			homePage.selectTripTypeBus(tripType);
+			Log.message("3. Trip Type Selected!");
+
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ROUND' trip!");
+
+			searchResultBus = homePage.clickBtnSearchBus();
+			Log.message("5. Clicked On Search Button!");
+
+			searchResultBus.clickBtnSelectSeat(2);
+			Log.message("6. Clicked On Select Seat!");
+
+			Thread.sleep(4000);
+			searchResultBus.switchToIframe();
+			searchResultBus.selectSeat(1);
+			Log.message("7. Seat Selected from the popup!");
+
+			searchResultBus.selectBoardingPoint();
+			Log.message("8. Selected boarding point!");
+
+			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
+			Log.message("9. Clicked on continue to navigate to review page!");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user click on continue Button and navigate to Review Page");
+			Thread.sleep(6000);
+			Log.assertThat(driver.getCurrentUrl().contains("review"),
+					"<b>Actual Result:</b> Successfully navigated to Review Page",
+					"<b>Actual Result:</b> Unable to navigate to Review Page", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 }// BusModule

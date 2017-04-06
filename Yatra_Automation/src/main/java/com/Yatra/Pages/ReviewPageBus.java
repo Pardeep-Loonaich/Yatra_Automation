@@ -67,6 +67,12 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 	@FindBy(css = "div[class='loginInfo']>div[class='loginBtnCont']>input")
 	WebElement btnContinueLogin;
 	
+	@FindBy(css = ".yatraFb")
+	WebElement btnFaceBook;
+	
+	@FindBy(css = "div[class='toasterHolder']")
+	WebElement txtErrorMsg;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -138,10 +144,9 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
  	 * @throws Exception
  	 */
 
- 	public TravellerPageBus fillUserDetailsAsGuest(String email) throws Exception {
+ 	public TravellerPageBus fillUserDetailsAsGuest(String email,String PhoneNumber) throws Exception {
  		BrowserActions.typeOnTextField(txtBoxEmailGuest, email, driver, "Enter User Email");
- 		String rand =  RandomStringUtils.randomNumeric(10);
- 		BrowserActions.typeOnTextField(txtBoxPhoneNumberGuest,rand , driver, "Guest Phone Number");
+ 		BrowserActions.typeOnTextField(txtBoxPhoneNumberGuest, PhoneNumber, driver, "Enter Phone Number");
  		BrowserActions.clickOnElement(btnContinueGuest, driver, "Book Now");
 		return new TravellerPageBus(driver).get();
  	}
@@ -159,4 +164,17 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
  	 		BrowserActions.clickOnElement(btnContinueLogin, driver, "Book Now");
  	 		return new TravellerPageBus(driver).get();
  	 	}
+ 	 	
+ 	 	/**
+ 		 * Getting the text from the Error
+ 		 * 
+ 		 * @return
+ 		 * @throws Exception
+ 		 */
+ 		public String getTextErrorMsg() throws Exception {
+ 			Utils.waitForElement(driver, txtErrorMsg);
+ 			String txtDetails = BrowserActions.getText(driver, txtErrorMsg,
+ 					"Getting text from the Incoorect Element");
+ 			return txtDetails;
+ 		}
 }//ReviewPageBus
