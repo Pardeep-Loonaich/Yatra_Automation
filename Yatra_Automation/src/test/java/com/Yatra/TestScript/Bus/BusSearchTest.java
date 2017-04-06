@@ -765,7 +765,7 @@ public class BusSearchTest {
 			searchResultBus = homePage.clickBtnSearchBus();
 			Log.message("5. Clicked On Search Button!");
 
-			searchResultBus.clickBtnSelectSeat();
+			searchResultBus.clickBtnSelectSeat(1);
 			Log.message("6. Clicked On Select Seat!");
 
 			Log.message("<br>");
@@ -869,7 +869,7 @@ public class BusSearchTest {
 			searchResultBus = homePage.clickBtnSearchBus();
 			Log.message("5. Clicked On Search Button!");
 
-			searchResultBus.clickBtnSelectSeat();
+			searchResultBus.clickBtnSelectSeat(2);
 			Log.message("6. Clicked On Select Seat!");
 			Thread.sleep(6000);
 
@@ -1035,7 +1035,7 @@ public class BusSearchTest {
 			searchResultBus = homePage.clickBtnSearchBus();
 			Log.message("5. Clicked On Search Button!");
 
-			searchResultBus.clickBtnSelectSeat();
+			searchResultBus.clickBtnSelectSeat(2);
 			Log.message("6. Clicked On Select Seat!");
 			Thread.sleep(4000);
 			searchResultBus.switchToIframe();
@@ -1102,7 +1102,7 @@ public class BusSearchTest {
 			Log.message("5. Clicked On Search Button!");
 
 			Thread.sleep(4000);
-			searchResultBus.clickBtnSelectSeat();
+			searchResultBus.clickBtnSelectSeat(1);
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
@@ -1160,7 +1160,7 @@ public class BusSearchTest {
 			searchResultBus = homePage.clickBtnSearchBus();
 			Log.message("5. Clicked On Search Button!");
 
-			searchResultBus.clickBtnSelectSeat();
+			searchResultBus.clickBtnSelectSeat(2);
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(6000);
@@ -1222,7 +1222,7 @@ public class BusSearchTest {
 			Log.message("5. Clicked On Search Button!");
 
 			Thread.sleep(4000);
-			searchResultBus.clickBtnSelectSeat();
+			searchResultBus.clickBtnSelectSeat(1);
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
@@ -1284,7 +1284,7 @@ public class BusSearchTest {
 			Log.message("5. Clicked On Search Button!");
 
 			Thread.sleep(4000);
-			searchResultBus.clickBtnSelectSeat();
+			searchResultBus.clickBtnSelectSeat(1);
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
@@ -1408,7 +1408,7 @@ public class BusSearchTest {
 			searchResultBus = homePage.clickBtnSearchBus();
 			Log.message("5. Clicked On Search Button!");
 
-			searchResultBus.clickBtnSelectSeat();
+			searchResultBus.clickBtnSelectSeat(1);
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);

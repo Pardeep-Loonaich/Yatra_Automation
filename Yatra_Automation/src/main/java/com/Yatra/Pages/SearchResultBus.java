@@ -43,7 +43,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	WebElement txtNoResultFoundBus;
 
 	@FindBy(css = "section[class='col-3 result ng-scope']>div>div[class='wfull result-holder onwards ng-scope']>ul>li[class='totlal-fare box-sizing tar']>a")
-	WebElement btnSelectSeat;
+	List<WebElement> btnSelectSeat;
 
 	@FindBy(xpath = "//*[@id='onwards-content']/div[@class='flL bus-details-box']/div[@class='bus-info']/div/p[1]")
 	WebElement fldContentBusInfoInPopUp;
@@ -119,6 +119,8 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	
 	@FindBy(css = "div[class='wfull total-fare']>span[class='select-seats-action-round']>a")
 	WebElement selectBus_RT;
+	
+	
 	
 	@FindBy(css = "div[class='return floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']")
 	WebElement PopUp_RT;
@@ -218,9 +220,9 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * @throws Exception
 	 */
 
-	public void clickBtnSelectSeat() throws Exception {
-		Utils.waitForPageLoad(driver);
-		BrowserActions.clickOnElement(btnSelectSeat, driver, "Select Seat");
+	public void clickBtnSelectSeat(int index) throws Exception {
+		BrowserActions.mouseHover(driver,btnSelectSeat.get(index));
+		BrowserActions.clickOnElement(btnSelectSeat.get(index), driver, "Select Seat");
 		Utils.waitForPageLoad(driver);
 	}
 	/**
@@ -429,13 +431,15 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * 
 	 * @throws Exception
 	 */
-	
+
 	public void selectSeat(int number) throws Exception{
 		for(int i = 0;i < number;i++){
-		driver.findElement(By.cssSelector("div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")).click(); // Random Seat Selected
+		driver.findElement(By.cssSelector("div[class*='onwards floor-wrapper']>div[class*='seat-floor flL mt10 lower-deck']>ul>li[class*='flL type-SS avl-Y reserved-M']")).click(); // Random Seat Selected
 		BrowserActions.nap(2);
 		}	
 	}	
+	
+	
 	/**
 	 * To Select Boarding Point
 	 * 
