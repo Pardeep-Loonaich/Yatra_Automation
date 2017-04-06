@@ -9,6 +9,7 @@
 	<properties>
 		<jre.level>1.8</jre.level>
 		<jdk.level>1.8</jdk.level>
+		<compiler.version>1.8</compiler.version>
 	</properties>
 
 	<dependencies>
@@ -85,11 +86,13 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.5.1</version>
 					<configuration>
-					<source>${jdk.level}</source>
-						<target>${jdk.level}</target>
-						<fork>true</fork>
-						<executable>C:\Program Files\Java\jdk1.8.0_60\bin\javac.exe</executable>
-					</configuration>
+					<systemPropertyVariables>
+						<environment>${env}</environment>
+						<os>${os}</os>
+					</systemPropertyVariables>
+					<source>${compiler.version}</source>
+					<target>${compiler.version}</target>
+				</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
