@@ -280,6 +280,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = ".matrix-link.txt-ac.tabs-link.active")
 	WebElement lnkArirlineMatrix;
 	
+	@FindBy(css = "ul[class='matrix-slide-list tabs matrix-ul']>li:nth-child(2) p:nth-child(3)[class='matrix-label uprcse']")
+	WebElement lnkArirlineMatrixFare;
+	
+	
 	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
 	
 	
@@ -1265,10 +1269,26 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}else {		
 			status = false;
 		}
-		return status;		
-		
+		return status;			
 	}
 
+	/**
+	 * Getting the text from Passenger class Drop down in Modify Search panel
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> validateAirlineMatrixFareInAirlineMatrix() throws Exception {		
+		List<String> passengerclassList = new ArrayList<String>();		
+		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("//form[@id='modifySearch']/div[2]//li[1]/div/select/option"));
+		for (int i = 0; i < passengerClassList1.size(); i++) {
+			String passengerClass = passengerClassList1.get(i).getText().toString().trim();
+			passengerclassList.add(passengerClass);
+		}
+		Log.event("Modify Search Passenger Class drop down details list : "+ passengerclassList);
+		return passengerclassList;
+	}
+	
 	
   //*******************************End of SRP Functions********************************************************************************************
 
