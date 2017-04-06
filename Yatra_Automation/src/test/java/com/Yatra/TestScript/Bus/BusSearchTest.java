@@ -1,7 +1,5 @@
 package com.Yatra.TestScript.Bus;
 
-import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 //-----------------------------------------------------------------------------------------------------------
@@ -13,7 +11,6 @@ import java.util.Arrays;
 
 import java.util.HashMap;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
@@ -51,6 +48,7 @@ public class BusSearchTest {
 	@Test(groups = {
 			"desktop" }, description = "Search Oneway bus for 1 pax", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_001(HashMap<String, String> testData) throws Exception {
+
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
