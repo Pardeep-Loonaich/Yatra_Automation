@@ -301,6 +301,16 @@ public class Log {
 		ExtentReporter.info(description);
 
 	}
+	
+	public static void message_Skip(String description) {
+
+		Reporter.log(MESSAGE_HTML_BEGIN + description + MESSAGE_HTML_END);
+
+		lsLog4j().log(callerClass(), Level.INFO, description, null);		
+
+		ExtentReporter.skip(description);
+
+	}
 
 	/**
 	 * message print the test case custom message in the log with screenshot

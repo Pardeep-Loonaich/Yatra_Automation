@@ -1,5 +1,6 @@
 package com.Yatra.Pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -260,7 +261,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "#flight_depart_date_1")  
 	WebElement txtDepartDate1_ModifySearch;
-	
+
 	@FindBy(css = "div[class='matrix-slide-wrapper has-next-prev matrix-small-screen']")
 	WebElement weeklyFlightsStrip;
 	
@@ -274,8 +275,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	WebElement txtLowestFlightFare_AirlineMatix;
 	
 	@FindBy(css = ".ng-pristine.ng-valid.ng-touched>option")
-	List<WebElement> drpPassengerClass;
+	WebElement drpPassengerClass;	
 	
+	@FindBy(css = ".matrix-link.txt-ac.tabs-link.active")
+	WebElement lnkArirlineMatrix;
 	
 	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
 	
@@ -964,11 +967,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickModifySearch() throws Exception {
-		BrowserActions.nap(1);
+		BrowserActions.nap(10);
 		Utils.waitForElement(driver, btnModifySearchIcon);
 		//BrowserActions.mouseHover(driver, btnModifySearchIcon);		
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
-		BrowserActions.nap(6);
+		BrowserActions.nap(1);
 		Utils.waitForPageLoad(driver);
 		Log.event("Clicked Modify Search link in SRP");
 	}
@@ -995,7 +998,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * To select Trip Type in ModifySearch
+	 * To verify Trip Type in ModifySearch
 	 * 
 	 * @throws Exception
 	 */
@@ -1067,7 +1070,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	
 	/**
-	 * Getting the text from Adult in Modify Search
+	 * Getting the text from Origin in Modify Search
 	 * 
 	 * @return
 	 * @throws Exception
@@ -1079,75 +1082,75 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * Getting the text from Child in Modify Search
+	 * Getting the text from Origin in Modify Search
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextChild_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtChild_ModifySearch);
-		String childGetTxt = BrowserActions.getText(driver, txtChild_ModifySearch, "Child Should be displayed in Modify Search panel");
-		return childGetTxt;
+		String adultGetTxt = BrowserActions.getText(driver, txtChild_ModifySearch, "Child Should be displayed in Modify Search panel");
+		return adultGetTxt;
 	}
 	
 	/**
-	 * Getting the text from Infant in Modify Search
+	 * Getting the text from Origin in Modify Search
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextInfant_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtInfant_ModifySearch);
-		String infantGetTxt = BrowserActions.getText(driver, txtInfant_ModifySearch, "Infant Should be displayed in Modify Search panel");
-		return infantGetTxt;
+		String adultGetTxt = BrowserActions.getText(driver, txtInfant_ModifySearch, "Infant Should be displayed in Modify Search panel");
+		return adultGetTxt;
 	}
 	
 	/**
-	 * Getting the text from Depart date in Modify Search
+	 * Getting the text from Destination in Modify Search
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextDepartDate_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtDepartDate_ModifySearch);
-		String departDate_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate_ModifySearch, "ng-active-date",  "DepartDate in Modify Search");
-		return departDate_ModifySearchGetTxt;
+		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate_ModifySearch, "ng-active-date",  "DepartDate in Modify Search");
+		return destination_ModifySearchGetTxt;
 	}
 	
 	/**
-	 * Getting the text from Return Date in Modify Search
+	 * Getting the text from Destination in Modify Search
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextReturnDate_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtReturnDate_ModifySearch);
-		String returnDate_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtReturnDate_ModifySearch, "ng-active-date",  "Return Date in Modify Search");
-		return returnDate_ModifySearchGetTxt;
+		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtReturnDate_ModifySearch, "ng-active-date",  "ReturnDate in Modify Search");
+		return destination_ModifySearchGetTxt;
 	}
 	
 	/**
-	 * Getting the text from Passenger class in Modify Search
+	 * Getting the text from Destination in Modify Search
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextPassengerClass_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtPassengerClass_ModifySearch);
-		String passengerClass_ModifySearchGetTxt = BrowserActions.getText(driver, txtPassengerClass_ModifySearch, "Passenger class should be displayed in Modify Search panel");
-		return passengerClass_ModifySearchGetTxt;
+		String destination_ModifySearchGetTxt = BrowserActions.getText(driver, txtPassengerClass_ModifySearch, "Passenger class should be displayed in Modify Search panel");
+		return destination_ModifySearchGetTxt;
 	}
 	
 	/**
-	 * Getting the text from Preferred Airlines in Modify Search
+	 * Getting the text from Destination in Modify Search
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextPreferredAirline_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtPreferredAirline_ModifySearch);
-		String preferredAirlines_ModifySearchGetTxt = BrowserActions.getText(driver, txtPreferredAirline_ModifySearch, "Preferred Airlines should be displayed in Modify Search panel");
-		return preferredAirlines_ModifySearchGetTxt;
+		String destination_ModifySearchGetTxt = BrowserActions.getText(driver, txtPreferredAirline_ModifySearch, "Preferred Airlins should be displayed in Modify Search panel");
+		return destination_ModifySearchGetTxt;
 	}
 	
 	/**
@@ -1176,17 +1179,16 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	
 	/**
-	 * Getting the text from Depart date in Modify Search
+	 * Getting the text from Destination in Modify Search
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextDepartDate1_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtDepartDate1_ModifySearch);
-		String departDate_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate1_ModifySearch, "ng-active-date",  "DepartDate_MC in Modify Search");
-		return departDate_ModifySearchGetTxt;
-	}
-	
+		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate1_ModifySearch, "ng-active-date",  "DepartDate_MC in Modify Search");
+		return destination_ModifySearchGetTxt;
+	}	
 
 	/**
 	 * To verify Non Stop Flights Only checkbox is checked on unchecked
@@ -1197,16 +1199,15 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		boolean status = false;
 		if (lnkCurrentDate_WeeklyMatrix.isDisplayed()) {
 			status = true;
-		} else 
-		if (lnkCurrentDate_WeeklyMatrix.isSelected()){
+		} else if (lnkCurrentDate_WeeklyMatrix.isSelected()) {
 			status = true;
-		}else {		
+		} else {
 			status = false;
 		}
-		return status;		
-		
+		return status;
+
 	}
-	
+
 	/**
 	 * Getting the text from Current date Fare in Weekly Matrix
 	 * 
@@ -1215,7 +1216,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextCurrentDateFareInWeeklyMatrix() throws Exception {
 		Utils.waitForElement(driver, txtCurrentDateFare_WeeklyMatrix);
-		String currentDateFare_WeeklyMatrixGetTxt = BrowserActions.getText(driver, txtCurrentDateFare_WeeklyMatrix, "Current Date should be displayed in Weekly Matrix");
+		String currentDateFare_WeeklyMatrixGetTxt = BrowserActions.getText(driver, txtCurrentDateFare_WeeklyMatrix,
+				"Current Date should be displayed in Weekly Matrix");
 		return currentDateFare_WeeklyMatrixGetTxt;
 	}
 	
@@ -1231,6 +1233,42 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return lowestFlightFareGetTxt;
 	}	
 	
+	/**
+	 * Getting the text from Passenger class Drop down in Modify Search panel
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> getPassengerClasssDetailsInMofifySearch() throws Exception {		
+		List<String> passengerclassList = new ArrayList<String>();		
+		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("//form[@id='modifySearch']/div[2]//li[1]/div/select/option"));
+		for (int i = 0; i < passengerClassList1.size(); i++) {
+			String passengerClass = passengerClassList1.get(i).getText().toString().trim();
+			passengerclassList.add(passengerClass);
+		}
+		Log.event("Modify Search Passenger Class drop down details list : "+ passengerclassList);
+		return passengerclassList;
+	}
+	
+	/**
+	 * To verify Non Stop Flights Only checkbox is checked on unchecked
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyAllAirlineMatrixSelection() throws Exception {
+		boolean status = false;		
+		if (lnkArirlineMatrix.isDisplayed()) {
+			status = true;
+		} else 
+		if (lnkArirlineMatrix.isSelected()){
+			status = true;
+		}else {		
+			status = false;
+		}
+		return status;		
+		
+	}
+
 	
   //*******************************End of SRP Functions********************************************************************************************
 

@@ -166,6 +166,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	
 	@FindBy(css= "span[class='simple-tab eCashholder']>span")
 	WebElement ecashAmount;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -397,17 +398,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTextFromPaymentDetailsModule() throws Exception{
 		String txtDetails = BrowserActions.getText(driver, modulePaymentDetails, "Getting text from the Payment details module.");
 		return txtDetails;
-
-	}
-	
-	/**
-	 * Getting the text from the ecash label
-	 * @return
-	 * @throws Exception
-	 */
-	public String getTextFromEcashLabel() throws Exception{
-		String amountEcash = BrowserActions.getText(driver,ecashAmount , "Getting text from the eCash amount.");
-		return amountEcash;
 
 	}
 
@@ -701,6 +691,16 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 	public String getEcashAmount() throws Exception{
 		String ecashAmount = BrowserActions.getText(driver, driver.findElement(By.cssSelector("li[id='earnEcashDiv']>span")),"Ecash Amount");
+		return ecashAmount;
+	}
+	
+	/**
+	 * to return ecashAmount  from ecash header
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFromEcashLabel() throws Exception{
+		String ecashAmount = BrowserActions.getText(driver, driver.findElement(By.cssSelector(".eCahseValue")),"Ecash Amount");
 		return ecashAmount;
 	}
 

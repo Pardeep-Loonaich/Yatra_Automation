@@ -1394,6 +1394,7 @@ public class PaymentTest {
 		}
 	}
 	
+
 	@Test(groups = { "desktop" }, description = "Verify booking progress bar is showing.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_025(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1723,5 +1724,6 @@ public class PaymentTest {
 			Log.endTestCase();
 		}
 	}
+
 
 }//PaymentTest
