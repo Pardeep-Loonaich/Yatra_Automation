@@ -8,7 +8,7 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="chrome_windows" />
+	<parameter name="browserName" value="firefox_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
 	<test name="Train Search" thread-count="10" parallel="true">

@@ -673,7 +673,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
-		BrowserActions.scrollToViewElement(dateDeparture, driver);
 		Utils.waitForElement(driver, dateDeparture);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
 		
@@ -829,24 +828,18 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 
-	public void selectMultiCityFlightSearchFields(String origin1, String destination1, String origin2,
-			String destination2, String departureDate1, String departureDate2, String passengerInfo,
-			String passengerClass) throws Exception {
+	public void selectMultiCityFlightSearchFields(String origin1, String destination1, String departureDate1, String origin2,
+			String destination2,  String departureDate2, String passengerInfo,	String passengerClass) throws Exception {
+		
 		enterMultiCityOrigin1(origin1); // enter Multicity Origin1 value
-		enterMultiCityDestination1(destination1); // enter Multicity
-													// Destination2 value
+		enterMultiCityDestination1(destination1); // enter Multicity Destination1 value
+		selectMultiCityDateDeparture1(departureDate1); // select Multicity Departure1 Date
 
 		enterMultiCityOrigin2(origin2); // enter Multicity Origin2 value
-		enterMultiCityDestination2(destination2); // enter Multicity
-													// Destination2 value
-
-		selectMultiCityDateDeparture1(departureDate1); // select Multicity
-														// Departure1 Date
-		selectMultiCityDateDeparture2(departureDate1); // select Multicity
-														// Departure2 Date
-		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult,
-												// Child, Infant)
-
+		enterMultiCityDestination2(destination2); // enter Multicity Destination2 value		
+		selectMultiCityDateDeparture2(departureDate1); // select Multicity/ Departure2 Date
+		
+		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult,Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
 		clickDoneButtonInPassengerBox(); // click Done button
 		Log.event("Successfully selected 'Multicity' Flight Search fields");
@@ -958,6 +951,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateReturnBus, driver, "clicking on Bus Return date icon");
+		BrowserActions.scrollToViewElement(dateDeparture, driver);
 		selectMonth_Bus.get(month - 3).click();
 		BrowserActions.nap(2);
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
@@ -1011,6 +1005,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		selectDepartureDateBus(departureDate); // select Departure Date
 		BrowserActions.nap(2);
+		BrowserActions.scrollToView(dateDepartureBus, driver);
 		selectReturnDateBus(returnDate); // select Return Date
 		BrowserActions.nap(2);
 		PassengerInfoBus(passengerInfo); // select Passengers
@@ -1032,6 +1027,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestinationBus(destination); // enter Destination value
 		BrowserActions.nap(2);
 		selectDepartureDateBus(departureDate); // select Departure Date
+		BrowserActions.scrollToView(dateDepartureBus, driver);
 		BrowserActions.nap(2);
 		PassengerInfoBus(passengerInfo); // select Passengers 
 		Log.event("Successfully Filled OneWay Bus Search fields");
