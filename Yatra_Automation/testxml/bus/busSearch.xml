@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Bus Search Automation Test" verbose="3" parallel="false" thread-count="500">
-
+<!-- 
 	  <listeners>
 		<listener class-name="com.Yatra.Utils.MyTransformer" />
-	</listeners> 
+	</listeners>  -->
 	
 	<parameter name="workBookName" value="testdata\\data\\Bus.xls" />
 	<parameter name="sheetName" value="BusSearch" />
