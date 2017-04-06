@@ -10,7 +10,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,6 +45,27 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 	
 	@FindBy(css = "p[data-seat]")
 	WebElement txtSeatDetails;
+	
+	@FindBy(css = "#guest_email")
+	WebElement txtBoxEmailGuest;
+	
+	@FindBy(css = "#guest_mobile")
+	WebElement txtBoxPhoneNumberGuest;
+	
+	@FindBy(css = "#userContinue")
+	WebElement btnContinueGuest;
+	
+	@FindBy(css = "label[for='showLoginForm']>span[class='custom-checkbox']>span")
+	WebElement chkBoxYatraUser;
+	
+	@FindBy(css = "#login_email")
+	WebElement txtBoxEmailLogin;
+	
+	@FindBy(css = "#login_password")
+	WebElement txtBoxPasswordLogin;
+	
+	@FindBy(css = "div[class='loginInfo']>div[class='loginBtnCont']>input")
+	WebElement btnContinueLogin;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -100,4 +123,40 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 		BrowserActions.clickOnElement(txtSeatDetails, driver, "Select Seat");
 		Utils.waitForPageLoad(driver);
 	}
-}
+	/**
+     * to click on change bus button
+     * @throws Exception
+     */
+     public SearchResultBus clickOnChangeBus() throws Exception{
+            BrowserActions.clickOnElement(BtnChangeBus, driver, "clicked on change bus button.");
+            return new SearchResultBus(driver);
+     }
+     
+     /**
+ 	 * To Fill Traveller Details
+ 	 * 
+ 	 * @throws Exception
+ 	 */
+
+ 	public TravellerPageBus fillUserDetailsAsGuest(String email) throws Exception {
+ 		BrowserActions.typeOnTextField(txtBoxEmailGuest, email, driver, "Enter User Email");
+ 		String rand =  RandomStringUtils.randomNumeric(10);
+ 		BrowserActions.typeOnTextField(txtBoxPhoneNumberGuest,rand , driver, "Guest Phone Number");
+ 		BrowserActions.clickOnElement(btnContinueGuest, driver, "Book Now");
+		return new TravellerPageBus(driver).get();
+ 	}
+ 	
+ 	  /**
+ 	 	 * To Fill Traveller Details As Login User
+ 	 	 * 
+ 	 	 * @throws Exception
+ 	 	 */
+
+ 	 	public TravellerPageBus fillUserDetailsAsLogin(String email, String Password) throws Exception {
+ 	 		BrowserActions.clickOnElement(chkBoxYatraUser, driver, "Existing Yatra User Check Box");
+ 	 		BrowserActions.typeOnTextField(txtBoxEmailLogin, email, driver, "Enter User Email");
+ 	 		BrowserActions.typeOnTextField(txtBoxPasswordLogin, Password, driver, "Enter User Password");
+ 	 		BrowserActions.clickOnElement(btnContinueLogin, driver, "Book Now");
+ 	 		return new TravellerPageBus(driver).get();
+ 	 	}
+}//ReviewPageBus
