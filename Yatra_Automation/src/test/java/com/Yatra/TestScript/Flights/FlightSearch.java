@@ -29,6 +29,7 @@ import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
+import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
@@ -45,14 +46,14 @@ public class FlightSearch {
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
-	public void init(ITestContext context) {
+	public void init(ITestContext context) {		
 		webSite = (System.getProperty("webSite") != null ? System.getProperty("webSite")
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
 	@Test(groups = {"desktop" }, description = "Flight Search DOM - OW with  Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_001(HashMap<String, String> testData) throws Exception {
-
+	public void TC_Yatra_Flight_001(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -116,7 +117,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Flight Search DOM - RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_002(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -183,7 +184,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Flight Search DOM-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_005(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin1 = testData.get("Origin");
 		String origin2 = testData.get("Origin_Multicity");
@@ -262,7 +263,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Flight Search INTL-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_006(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin1 = testData.get("Origin");
 		String origin2 = testData.get("Origin_Multicity");
@@ -345,6 +346,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Airline Matrix Strip verification on SRP for DOM flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_118(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -398,7 +400,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Airline Matrix Strip verification on SRP for INT flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_119(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -452,7 +454,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Weekly Strip verification on SRP for DOM flight - OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_093(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
@@ -498,7 +500,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Add Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_099(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -569,7 +571,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Remove Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_100(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -647,7 +649,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_102(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -720,7 +722,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Remove Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_103(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -797,7 +799,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop",	"mobile" }, description = "Verify Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_101(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -862,6 +864,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Flight Search INTL- OW with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_003(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -925,7 +928,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Flight Search INTL- RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_004(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -994,7 +997,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_112(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -1046,7 +1049,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Failed payment flow with Credit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_104(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String emailId = testData.get("EmailAddress");
@@ -1123,7 +1126,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Failed payment flow with Debit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_105(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String emailId = testData.get("EmailAddress");
@@ -1197,7 +1200,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_094(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -1249,7 +1252,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_095(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		// String emailId = testData.get("EmailAddress");
 		String origin = testData.get("Origin");
@@ -1305,7 +1308,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_098(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -1356,7 +1359,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_097(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -1411,7 +1414,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_113(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String mobile = testData.get("Mobile");
@@ -1471,7 +1474,7 @@ public class FlightSearch {
 
 	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Existing User checkbox", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_114(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1534,7 +1537,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Guest flow - Check Booking as a Existing User Fill Traveller form move to Payment page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_115(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1609,7 +1612,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating the SRP Header", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_010(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -1678,7 +1681,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Validating the action on clicking on Yatra logo", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_011(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -1750,7 +1753,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating the SRP Header for logged in User", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_012(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
@@ -1827,7 +1830,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating the action on clicking on My Account header Menu items", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_013(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");		
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -1900,7 +1903,7 @@ public class FlightSearch {
  
 	@Test(groups = {"desktop" }, description = "Check total flight count", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_014(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -1975,7 +1978,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating the Matrix Result finder for OW search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_015(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -2043,7 +2046,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Validating the Matrix Result finder for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_116(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -2118,7 +2121,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating the Matrix Result finder for MC search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_117(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin1 = testData.get("Origin");
 		String origin2 = testData.get("Origin_Multicity");
@@ -2205,7 +2208,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validate that Duration should appear in 'hh mm' format across the SRP", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_016(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
 		String tripType = testData.get("TripType");
@@ -2282,7 +2285,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_017(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
 		String origin = testData.get("Origin");		
@@ -2383,7 +2386,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for RT", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_018(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
 		String origin = testData.get("Origin");		
@@ -2495,7 +2498,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for MC", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_019(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin1 = testData.get("Origin");
 		String origin2 = testData.get("Origin_Multicity");
@@ -2628,6 +2631,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating that Weekly fare Matrix will be available for OW search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_026(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
 		String origin = testData.get("Origin");		
@@ -2683,6 +2687,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Validating that Weekly fare Matrix will not be available for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_027(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
 		String origin = testData.get("Origin");		
@@ -2729,7 +2734,7 @@ public class FlightSearch {
 
 	@Test(groups = {"desktop" }, description = "Validating that Weekly fare Matrix will not be available for MC search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_028(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin1 = testData.get("Origin");
 		String origin2 = testData.get("Origin_Multicity");
@@ -2779,7 +2784,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating that for DOM search Class dropdown would not contain First Class as option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_024(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
 		String origin = testData.get("Origin");		
@@ -2830,7 +2835,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating that for INT search Class dropdown should not contain First Class as option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_025(HashMap<String, String> testData) throws Exception {
-
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
 		String origin = testData.get("Origin");		
@@ -2881,6 +2886,7 @@ public class FlightSearch {
 	
 	@Test(groups = {"desktop" }, description = "Validating the Airline Matrix", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_029(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
 		String origin = testData.get("Origin");		
@@ -2911,7 +2917,7 @@ public class FlightSearch {
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated the Airline Matrix");
 			BrowserActions.nap(2);
-			Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> Successfully selected All Airline Matrix", "<b>Actual Result:</b> Not selected All Airline Matrix", driver);
+			Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> 'All Airlines' option should appear with by deafult selection ", "<b>Actual Result:</b> 'All Airlines' option should not appear with by deafult selection", driver);
 			
 			Log.testCaseResult();
 		} catch (Exception e) {

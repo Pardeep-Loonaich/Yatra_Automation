@@ -535,21 +535,19 @@ public class Utils {
 	 * @return: it will return boolean
 	 */
 
-	public static boolean testCaseConditionalSkip(String sExecute,String testCaseId)
-	{
-		boolean dataToBeReturn=false;
-
-		if("yes".equalsIgnoreCase(sExecute.toLowerCase().trim()))
-		{
-			dataToBeReturn=true;
-			Log.message("\""+testCaseId+"\"has marked Run as \"NO\" in Excel data !!");
-			Log.message("\""+testCaseId+"\" has been skipped !!");
-			throw new SkipException("\""+testCaseId+"\" has been skipped !!");
-		
+	public static boolean testCaseConditionalSkip(String sExecute) {
+		boolean dataToBeReturn = false;
+		if ("no".equalsIgnoreCase(sExecute.toLowerCase().trim())) {
+			Throwable t = new Throwable();
+			String testCaseId = t.getStackTrace()[1].getMethodName();
+			dataToBeReturn = true;
+			Log.message_Skip("\"" + testCaseId + "\" has marked Run as \"NO\" in Excel data !!");
+			Log.message_Skip("\"" + testCaseId + "\" has been skipped !!");
+			throw new SkipException("\"" + testCaseId + "\" has been skipped !!");
 		}
 		return dataToBeReturn;
 	}
-
+	
 	public static String dateGenerator_DOB(String sDateFormat, int iDay) {
 		String dataToBeReturn = "";
 		if (sDateFormat.equalsIgnoreCase("") || sDateFormat.equalsIgnoreCase(null)) {
@@ -559,10 +557,9 @@ public class Utils {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDateFormat);
 
-		if (!(iDay == 0))
-		{
-			//cal.add(Calendar.DATE, iDay);
-			//cal.add(Calendar.MONTH, iDay);
+		if (!(iDay == 0)) {
+			// cal.add(Calendar.DATE, iDay);
+			// cal.add(Calendar.MONTH, iDay);
 			cal.add(Calendar.YEAR, iDay);
 			dataToBeReturn = simpleDateFormat.format(cal.getTime()).toString();
 			// System.out.println(simpleDateFormat.format(cal.getTime()));
