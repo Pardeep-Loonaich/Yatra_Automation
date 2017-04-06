@@ -2662,7 +2662,7 @@ public class FlightSearch {
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for OW Search",
 					driver);
 			
-			Log.assertThat(searchResult.verifyCurrentDateSelectionInWeeklyMatrix(), "<b>Actual Result:</b> Successfully selected Current date in weekly matrix", "<b>Actual Result:</b> Not sselected Current date in weekly matrix");
+			Log.assertThat(searchResult.verifyCurrentDateSelectionInWeeklyMatrix(), "<b>Actual Result:</b> Successfully selected Current date in weekly matrix", "<b>Actual Result:</b> Not selected Current date in weekly matrix");
 			String currentdateFareText = searchResult.getTextCurrentDateFareInWeeklyMatrix();
 			currentdateFareText = currentdateFareText.replace(" ", "").toString().trim();
 			String lowesrFlightFareText = searchResult.getTextLowestFlightFareInAirlineMatrix(); 
@@ -2681,7 +2681,7 @@ public class FlightSearch {
 	}
 	
 
-	@Test(groups = {"desktop" }, description = "Validating that Weekly fare Matrix will not be available for MC search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" }, description = "Validating that Weekly fare Matrix will not be available for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_027(HashMap<String, String> testData) throws Exception {
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
@@ -2871,6 +2871,49 @@ public class FlightSearch {
 					"<b>Actual Result:</b> INT Flights Passenger Class dropdown sholud not contain First Class option</b> Passenger Class List are : " + passengerClassNames , driver);
 			
 		   Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = {"desktop" }, description = "Validating the Airline Matrix", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_029(HashMap<String, String> testData) throws Exception {
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");		
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+	
+			//step: select Round Trip Search fields in HomePage
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for Round Trip");
+						
+			// step: click 'Search' button in Yatra Home page
+			SearchResult searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated the Airline Matrix");
+			BrowserActions.nap(2);
+			Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> Successfully selected All Airline Matrix", "<b>Actual Result:</b> Not selected All Airline Matrix", driver);
+			
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {

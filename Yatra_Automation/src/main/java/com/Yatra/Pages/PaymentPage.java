@@ -154,15 +154,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	
 	@FindBy(css= "div[class='pax-detailed']")
 	WebElement labelTravellerDetails;
-	
-	@FindBy(css= "div[class='container-fluid breadcrumb']")
-	WebElement breadcrumbBookingProgress;
-	
-	@FindBy(css= "span[class='simple-tab eCashholder']")
-	WebElement labelEcash;
-	
-	@FindBy(css= "span[class='simple-tab eCashholder']>span")
-	WebElement ecashAmount;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -394,17 +385,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTextFromPaymentDetailsModule() throws Exception{
 		String txtDetails = BrowserActions.getText(driver, modulePaymentDetails, "Getting text from the Payment details module.");
 		return txtDetails;
-
-	}
-	
-	/**
-	 * Getting the text from the ecash label
-	 * @return
-	 * @throws Exception
-	 */
-	public String getTextFromEcashLabel() throws Exception{
-		String amountEcash = BrowserActions.getText(driver,ecashAmount , "Getting text from the eCash amount.");
-		return amountEcash;
 
 	}
 
