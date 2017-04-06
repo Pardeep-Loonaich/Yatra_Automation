@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Bus Search Automation Test" verbose="3" parallel="false" thread-count="5">
-	<!--  <listeners>
-		<listener class-name="com.Yatra.Utils.MyTransformer" />
-	</listeners> -->
-	
 	<parameter name="workBookName" value="testdata\\data\\Bus.xls" />
 	<parameter name="sheetName" value="BusSearch" />
+
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 	<test name="Bus Search " thread-count="5" parallel="true">
+
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
-			<class name="com.Yatra.TestScript.Bus.BusSearchTest">
-				
-				
-			</class>
+			<class name="com.Yatra.TestScript.Bus.BusSearchTest"> </class>
 		</classes>
 	</test>
 </suite>

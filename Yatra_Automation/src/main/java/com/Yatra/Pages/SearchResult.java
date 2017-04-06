@@ -1,5 +1,6 @@
 package com.Yatra.Pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -260,7 +261,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "#flight_depart_date_1")  
 	WebElement txtDepartDate1_ModifySearch;
+
+	@FindBy(css = "div[class='matrix-slide-wrapper has-next-prev matrix-small-screen']")
+	WebElement weeklyFlightsStrip;
 	
+	@FindBy(css = "ul[class='matrix-slide-list tabs day-ul']>li>a[class='matrix-link tabs-link active']")
+	WebElement lnkCurrentDate_WeeklyMatrix;
+	
+	@FindBy(css = "ul[class='matrix-slide-list tabs day-ul']>li>a[class='matrix-link tabs-link active']>p[class='matrix-label matrix-price  uprcse']")
+	WebElement txtCurrentDateFare_WeeklyMatrix;
+	
+	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) li[class='price'] p[class='fr']>label")
+	WebElement txtLowestFlightFare_AirlineMatix;
+	
+	@FindBy(css = ".ng-pristine.ng-valid.ng-touched>option")
+	WebElement drpPassengerClass;	
+	
+	@FindBy(css = ".matrix-link.txt-ac.tabs-link.active")
+	WebElement lnkArirlineMatrix;
 	
 	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
 	
@@ -949,11 +967,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickModifySearch() throws Exception {
-		BrowserActions.nap(1);
+		BrowserActions.nap(10);
 		Utils.waitForElement(driver, btnModifySearchIcon);
 		//BrowserActions.mouseHover(driver, btnModifySearchIcon);		
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
-		BrowserActions.nap(6);
+		BrowserActions.nap(1);
 		Utils.waitForPageLoad(driver);
 		Log.event("Clicked Modify Search link in SRP");
 	}
@@ -1170,9 +1188,87 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForElement(driver, txtDepartDate1_ModifySearch);
 		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate1_ModifySearch, "ng-active-date",  "DepartDate_MC in Modify Search");
 		return destination_ModifySearchGetTxt;
+	}	
+
+	/**
+	 * To verify Non Stop Flights Only checkbox is checked on unchecked
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyCurrentDateSelectionInWeeklyMatrix() throws Exception {
+		boolean status = false;
+		if (lnkCurrentDate_WeeklyMatrix.isDisplayed()) {
+			status = true;
+		} else if (lnkCurrentDate_WeeklyMatrix.isSelected()) {
+			status = true;
+		} else {
+			status = false;
+		}
+		return status;
+
+	}
+
+	/**
+	 * Getting the text from Current date Fare in Weekly Matrix
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextCurrentDateFareInWeeklyMatrix() throws Exception {
+		Utils.waitForElement(driver, txtCurrentDateFare_WeeklyMatrix);
+		String currentDateFare_WeeklyMatrixGetTxt = BrowserActions.getText(driver, txtCurrentDateFare_WeeklyMatrix,
+				"Current Date should be displayed in Weekly Matrix");
+		return currentDateFare_WeeklyMatrixGetTxt;
 	}
 	
-	//YTMethods.getCityName(QueryProp.origin)
+	/**
+	 * Getting the text from Lowest Flight Fare in Airline Matrix
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextLowestFlightFareInAirlineMatrix() throws Exception {
+		Utils.waitForElement(driver, txtLowestFlightFare_AirlineMatix);
+		String lowestFlightFareGetTxt = BrowserActions.getText(driver, txtLowestFlightFare_AirlineMatix," Lowest Flight fare should be displayed in Airline Matrix");
+		return lowestFlightFareGetTxt;
+	}	
+	
+	/**
+	 * Getting the text from Passenger class Drop down in Modify Search panel
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> getPassengerClasssDetailsInMofifySearch() throws Exception {		
+		List<String> passengerclassList = new ArrayList<String>();		
+		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("//form[@id='modifySearch']/div[2]//li[1]/div/select/option"));
+		for (int i = 0; i < passengerClassList1.size(); i++) {
+			String passengerClass = passengerClassList1.get(i).getText().toString().trim();
+			passengerclassList.add(passengerClass);
+		}
+		Log.event("Modify Search Passenger Class drop down details list : "+ passengerclassList);
+		return passengerclassList;
+	}
+	
+	/**
+	 * To verify Non Stop Flights Only checkbox is checked on unchecked
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyAllAirlineMatrixSelection() throws Exception {
+		boolean status = false;		
+		if (lnkArirlineMatrix.isDisplayed()) {
+			status = true;
+		} else 
+		if (lnkArirlineMatrix.isSelected()){
+			status = true;
+		}else {		
+			status = false;
+		}
+		return status;		
+		
+	}
+
 	
   //*******************************End of SRP Functions********************************************************************************************
 

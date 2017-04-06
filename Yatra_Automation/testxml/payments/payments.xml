@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name=" Yatra Payment Testcases" verbose="3" parallel="false"
-	thread-count="500">
-	<!-- <listeners> <listener class-name="com.Yatra.Utils.MyTransformer" /> 
-		</listeners> -->
+<suite name=" YYatra Payment Automation Test" verbose="3" parallel="false"	thread-count="500">
 	<parameter name="workBookName" value="testdata\\data\\Payments.xls" />
 	<parameter name="sheetName" value="Payment" />
-
+	
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-
 	<parameter name="browserName" value="chrome_windows" />
-
-
 	<parameter name="webSite" value="https://www.yatra.com/" />
-
-	<test name="Payment" thread-count="10" parallel="false">
+	
+	<test name="Payment" thread-count="" parallel="false">
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
-			<class name="com.Yatra.TestScript.Payment.PaymentTest">
-			</class>
-		
-
+			<class name="com.Yatra.TestScript.Payment.PaymentTest">	</class>
 		</classes>
 	</test>
 </suite>
