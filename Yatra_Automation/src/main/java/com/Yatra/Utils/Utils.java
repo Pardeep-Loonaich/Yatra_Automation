@@ -20,7 +20,9 @@ import org.testng.SkipException;
  */
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
-	public static int maxElementWait = 10;
+	public static int maxElementWait = 30;
+	public static String testCaseId="";
+
 
 	/**
 	 * waitForPageLoad waits for the page load with default page load wait time
@@ -534,13 +536,16 @@ public class Utils {
 	 * @return: it will return boolean
 	 */
 
-	public static boolean testCaseConditionalSkip(String sExecute,String testCaseId)
+	public static boolean testCaseConditionalSkip(String sExecute)
 	{
 		boolean dataToBeReturn=false;
 
-		if("yes".equalsIgnoreCase(sExecute.toLowerCase().trim()))
+		if("no".equalsIgnoreCase(sExecute.toLowerCase().trim()))
 		{
+			Throwable t=new Throwable();
+			String testCaseId = t.getStackTrace()[1].getMethodName();
 			dataToBeReturn=true;
+		
 			Log.message("\""+testCaseId+"\"has marked Run as \"NO\" in Excel data !!");
 			Log.message("\""+testCaseId+"\" has been skipped !!");
 			throw new SkipException("\""+testCaseId+"\" has been skipped !!");

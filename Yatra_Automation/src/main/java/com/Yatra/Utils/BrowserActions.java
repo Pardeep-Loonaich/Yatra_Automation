@@ -1,8 +1,10 @@
 package com.Yatra.Utils;
 
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -632,4 +634,47 @@ public class BrowserActions {
 		selectByIndex.selectByIndex(0);
 
 	}
+	
+	/**
+	 * @author harveer.singh
+	 * 
+	 * @param alert
+	 * @param sAction
+	 */
+	public static void javaScriptAlertPopUpHandler(WebDriver driver, String sAction)
+
+	{
+		Alert alert=driver.switchTo().alert();
+		if("ok".equalsIgnoreCase(sAction.toLowerCase().trim()))
+
+		{	
+			Log.message("Accepting Alert Pop UP..");
+			alert.accept();
+
+		}
+		else if("cancel".equalsIgnoreCase(sAction.toLowerCase().trim()))
+
+		{
+			Log.message("Canceling Alert Pop UP..");
+			alert.dismiss();
+
+		}
+
+	}
+	
+	/**
+	 * @author 
+	 * 
+	 * @param driver
+	 * @param sring
+	 */
+	public static String executeJavaScript(WebDriver driver, String sJSCode) {
+		// String sJSCode1="QueryProp.destination";
+		String dataToBeReturn = "";
+		JavascriptExecutor JSDriver = (JavascriptExecutor) driver;
+		dataToBeReturn = JSDriver.executeScript(sJSCode).toString().trim();
+		return dataToBeReturn;
+	}
+	
+
 }// BrowserActions page

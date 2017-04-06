@@ -64,5 +64,9 @@ public class HotelSearchTest {
 			Log.endTestCase();
 		}
 	}
+	
+	
+	
+	
 
 }

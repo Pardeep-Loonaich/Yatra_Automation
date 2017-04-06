@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -43,7 +44,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "//ul[@class='matrix-slide-list tabs matrix-ul']/li[2]")
 	public WebElement matrixStrip;
 
-	@FindBy(css = "[class='ico fl ico-gray-modify-search']")
+	@FindBy(css = "p[class='new-gray-button fl small link-button']") //[class='ico fl ico-gray-modify-search']")
 	public WebElement btnModifySearchIcon;
 
 	@FindBy(css = "div[class='full']>div[class='matrix-wrapper day-matrix new-theme day-matrix-responsive']")
@@ -149,11 +150,20 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "//a[contains(text(),'Agent Login')]")
 	WebElement txtAgentLogin;
 	
-	@FindBy(xpath = "div[class='left fl']>p[class='fs-12']")  
+	@FindBy(css = "div[class='left fl']>p[class='fs-12']")  
 	WebElement txtTotalFlightSearch;
 
 	@FindBy(css = ".left.fl p.fs-10.ltr-gray.uprcse.mt2")
 	WebElement txtFlightSearchDuration;
+	
+	@FindBy(css = "div[class='fl center']>ul[class='full city-details tripO']>li:nth-child(1)>p[class='city-name']")   
+	WebElement txtSourceCity_OW;
+	
+	@FindBy(css = "div[class='fl center']>ul[class='full city-details tripO']>li:nth-child(1)>p[class*='fs-10']")   
+	WebElement txtSourceDate_OW;
+	
+	@FindBy(css = "div[class='fl center']>ul[class='full city-details tripO']>li:nth-child(2)>p[class='city-name']")  
+	WebElement txtDestCity_OW;
 	
 	@FindBy(css = "ul[class='full city-details tripR']>li:nth-child(1)>p[class='city-name']")   
 	WebElement txtSourceCity;
@@ -167,23 +177,92 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "ul[class='full city-details tripR']>li:nth-child(2)>p[class*='fs-10']")   
 	WebElement txtDestDate;	
 	
-	@FindBy(css = "div[class='center fl']>ul:nth-child(2)>li:nth-child(1)>p[class='city-name tl']")   
+	@FindBy(css = "div[class*='center']>ul:nth-child(2)>li:nth-child(1)>p[class='city-name tl']")   
 	WebElement txtStartSourceCity;
 	
-	@FindBy(css = "div[class='center fl']>ul:nth-child(2)>li:nth-child(1)>p[class*='fs-10']")   
+	@FindBy(css = "div[class*='center']>ul:nth-child(2)>li:nth-child(1)>p[class*='fs-10']")   
 	WebElement txtStartSourceDate;
 	
-	@FindBy(css = "div[class='center fl']>ul:nth-child(2)>li:nth-child(2)>p[class='fl city-name tl']")  
+	@FindBy(css = "div[class*='center']>ul:nth-child(2)>li:nth-child(2)>p[class='fl city-name tl']")  
 	WebElement txtstartDestCity;
 	
-	@FindBy(css = "div[class='center fl']>ul:nth-child(3)>li:nth-child(1)>p[class='city-name tl']")   
+	@FindBy(css = "div[class*='center']>ul:nth-child(3)>li:nth-child(1)>p[class='city-name tl']")   
 	WebElement txtEndSourceCity;
 	
-	@FindBy(css = "div[class='center fl']>ul:nth-child(3)>li:nth-child(1)>p[class*='fs-10']")   
+	@FindBy(css = "div[class*='center']>ul:nth-child(3)>li:nth-child(1)>p[class*='fs-10']")   
 	WebElement txtEndSourceDate;
 	
-	@FindBy(css = "div[class='center fl']>ul:nth-child(3)>li:nth-child(2)>p[class='fl city-name tl']")  
+	@FindBy(css = "div[class*='center']>ul:nth-child(3)>li:nth-child(2)>p[class='fl city-name tl']")  
 	WebElement txtEndDestCity;
+	
+	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) div[class='time']>span")   
+	WebElement txtFlightDuration;
+	
+	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) a[class='under-link']")  
+	WebElement lnkFlightDetail;
+	
+	@FindBy(css = "div[class='row itinerary-details'] li[class='trip-type'] time")  
+	WebElement txtFlightDetailsPopupDuration;
+	
+	@FindBy(css = "span[class='ico ico-close overlay-close']")  
+	WebElement lnkcloseFlightDetailsPopUp;
+	
+	
+	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) span[class='ml5 hidden-sm']")  
+	WebElement txtResultStripView;
+	
+	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[1]//span/input") // "trip-type-label-holder.active span[class='radio']>input")  
+	WebElement chkOneWay;
+	
+	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[2]//span/input") // .trip-type-label-holder span[class='radio']")  
+	WebElement chkRoundTrip;
+	
+	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[3]//span/input") //.trip-type-label-holder.multicity-tab span[class='radio']")  
+	WebElement chkMultiCity;
+	
+	@FindBy(css = "#origin_0")  
+	WebElement txtOrigin_ModifySearch;
+
+	String txtOrigin_ModifySearch1 = "QueryProp.origin";
+	
+	@FindBy(css = "#destination_0")  
+	WebElement txtDestination_ModifySearch;
+	
+	@FindBy(css = ".paxx-details>div:nth-child(1)>span[class='spin-count']>strong")  
+	WebElement txtAdult_ModifySearch;
+	
+	@FindBy(css = ".paxx-details>div:nth-child(2)>span[class='spin-count']>strong")  
+	WebElement txtChild_ModifySearch;
+	
+	@FindBy(css = ".paxx-details>div:nth-child(3)>span[class='spin-count']>strong")  
+	WebElement txtInfant_ModifySearch;
+		
+	@FindBy(css = "#flight_depart_date_0")  
+	WebElement txtDepartDate_ModifySearch;
+	
+	@FindBy(css = "#arrivalDate_0")  
+	WebElement txtReturnDate_ModifySearch;
+	
+	@FindBy(xpath = "//form[@id='modifySearch']/div[2]//li[3]/label//input") 
+	WebElement txtNonStopFlights_ModifySearch;
+	
+	@FindBy(css = ".select-box-wrapper.fl>select>option[selected='selected']")  
+	WebElement txtPassengerClass_ModifySearch;
+	
+	@FindBy(css = ".select-box-wrapper.fl>select[class='ng-valid ng-dirty ng-valid-parse ng-touched']>option[selected='selected']")  
+	WebElement txtPreferredAirline_ModifySearch;
+	
+	@FindBy(css = "#origin_1")  
+	WebElement txtOrigin1_ModifySearch;
+
+	@FindBy(css = "#destination_1")  
+	WebElement txtDestination1_ModifySearch;
+	
+	@FindBy(css = "#flight_depart_date_1")  
+	WebElement txtDepartDate1_ModifySearch;
+	
+	
+	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
 	
 	
 	/**********************************************************************************************
@@ -440,6 +519,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextMyAccount() throws Exception {
+		Utils.waitForElement(driver, txtMyAccount);
 		String myAccountGetTxt = BrowserActions.getText(driver,	txtMyAccount, "My Account Text Should be displayed in SRP Page");
 		return myAccountGetTxt;
 	}
@@ -451,6 +531,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextSupport() throws Exception {
+		Utils.waitForElement(driver, txtSupport);
 		String supportGetTxt = BrowserActions.getText(driver, txtSupport, "Support Text Should be displayed in SRP Page");
 		return supportGetTxt;
 	}
@@ -462,6 +543,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextSplDeals() throws Exception {
+		Utils.waitForElement(driver, txtSplDeals);
 		String splDealsGetTxt = BrowserActions.getText(driver, txtSplDeals, "Special Deals Text Should be displayed in SRP Page");
 		return splDealsGetTxt;
 	}
@@ -473,6 +555,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextRecentSearch() throws Exception {
+		Utils.waitForElement(driver, txtRecentSearch);
 		String recentSearchGetTxt = BrowserActions.getText(driver, txtRecentSearch, "Recent Search Text Should be displayed in SRP Page");
 		return recentSearchGetTxt;
 	}
@@ -484,6 +567,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextFromAYatraLogo() throws Exception {
+		Utils.waitForElement(driver, lnkYatraLogo);
 		BrowserActions.mouseHover(driver, lnkYatraLogo);
 		return (BrowserActions.getTextFromAttribute(driver, lnkYatraLogo, "title", "Yatra Logo title"));
 	}
@@ -498,7 +582,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.actionClick(lnkYatraLogo, driver, "Yatra Logo");
 		Utils.waitForPageLoad(driver);
 		Log.event("Successfully clicked Yatra Logo link in SRP");
+		//BrowserActions.nap(10);
 		return new HomePage(driver).get();
+		
 	}
 	
 	/**
@@ -509,6 +595,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextUserAcctName() throws Exception {
 		//BrowserActions.mouseHover(driver, txtUserAcctName);
+		Utils.waitForElement(driver, txtUserAcctName);
 		String userNameGetTxt = BrowserActions.getText(driver,	txtUserAcctName, "User Name Search Text Should be displayed in SRP Page");
 		return userNameGetTxt;
 	}
@@ -521,6 +608,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextLogin() throws Exception {
+		Utils.waitForElement(driver, txtLogin);
 		String textLogintGetTxt = BrowserActions.getText(driver, txtLogin, "Login button Text Should be displayed in SRP Page");
 		return textLogintGetTxt;
 	}
@@ -533,6 +621,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextSignUp() throws Exception {
+		Utils.waitForElement(driver, txtSignUp);
 		String signUpGetTxt = BrowserActions.getText(driver, txtSignUp, "SignUp Text Should be displayed in SRP Page");
 		return signUpGetTxt;
 	}
@@ -544,6 +633,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextCorporateLogin() throws Exception {
+		Utils.waitForElement(driver, txtCorporateLogin);
 		String corporateLoginGetTxt = BrowserActions.getText(driver, txtCorporateLogin, "Corporate Login Text Should be displayed in SRP Page");
 		return corporateLoginGetTxt;
 	}
@@ -555,6 +645,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextAgentLogin() throws Exception {
+		Utils.waitForElement(driver, txtAgentLogin);
 		String agentLoginGetTxt = BrowserActions.getText(driver, txtAgentLogin, "Agent Login Text Should be displayed in SRP Page");
 		return agentLoginGetTxt;
 	}
@@ -566,6 +657,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getMyBookings() throws Exception {
+		Utils.waitForElement(driver, txtMyBookings);
 		String myBookingsGetTxt = BrowserActions.getText(driver, txtMyBookings, "My Booking Text Should be displayed in SRP Page");
 		return myBookingsGetTxt;
 	}
@@ -586,10 +678,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getCountofTotalFlights() throws Exception {
+		Utils.waitForElement(driver, txtTotalFlightSearch);
 		String totalFlightsGetTxt = BrowserActions.getText(driver, txtTotalFlightSearch, "Total No of Flight Should be displayed in SRP Page");
 		return totalFlightsGetTxt;
 	}
 	
+	/**
+	 * Getting the text from Count of Flights 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getCountofTotalFlightsAndDuration() throws Exception {
+		Utils.waitForElement(driver, txtTotalFlightSearch);
+		String totalFlightsGetTxt = BrowserActions.getText(driver, txtTotalFlightSearch, "Total No of Flight Should be displayed in SRP Page");
+		String flightSearchDurationTxt = BrowserActions.getText(driver,	txtFlightSearchDuration, "Flight Search duration Should be displayed in SRP Page");
+		 String flightCountAndDuration =  totalFlightsGetTxt + " " +flightSearchDurationTxt;
+		return flightCountAndDuration;
+	}
 	
 	/**
 	 * Getting the text from Source city in SRP
@@ -598,6 +704,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextSourceCity() throws Exception {
+		Utils.waitForElement(driver, txtSourceCity);
 		String sourceCityGetTxt = BrowserActions.getText(driver, txtSourceCity, "Source City Should be displayed in SRP Page");
 		return sourceCityGetTxt;
 	}
@@ -611,6 +718,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextSourceDate() throws Exception {
+		Utils.waitForElement(driver, txtSourceDate);
 		String sourceDateGetTxt = BrowserActions.getText(driver, txtSourceDate, "Source date Should be displayed in SRP Page");
 		return sourceDateGetTxt;
 	}
@@ -622,6 +730,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextDestinationCity() throws Exception {
+		Utils.waitForElement(driver, txtDestCity);
 		String destCityGetTxt = BrowserActions.getText(driver, txtDestCity, "Destination City Should be displayed in SRP Page");
 		return destCityGetTxt;
 	}
@@ -635,6 +744,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextDestinationDate() throws Exception {
+		Utils.waitForElement(driver, txtDestDate);
 		String destDateGetTxt = BrowserActions.getText(driver, txtDestDate, "Destination date Should be displayed in SRP Page");
 		return destDateGetTxt;
 	}
@@ -646,8 +756,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getFlightSearchDuration() throws Exception {
-		String myAccountGetTxt = BrowserActions.getText(driver,	txtFlightSearchDuration, "Flight Search duration Should be displayed in SRP Page");
-		return myAccountGetTxt;
+		Utils.waitForElement(driver, txtFlightSearchDuration);
+		String flightSearchDurationTxt = BrowserActions.getText(driver,	txtFlightSearchDuration, "Flight Search duration Should be displayed in SRP Page");
+		return flightSearchDurationTxt;
 	}
 	
 	
@@ -658,8 +769,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextStartSourceCity() throws Exception {
-		String sourceCityGetTxt = BrowserActions.getText(driver, txtStartSourceCity, "Start Source City Should be displayed in SRP for MC");
-		return sourceCityGetTxt;
+		Utils.waitForElement(driver, txtStartSourceCity);
+		String startSourceCityGetTxt = BrowserActions.getText(driver, txtStartSourceCity, "Start Source City Should be displayed in SRP for MC");
+		return startSourceCityGetTxt;
 	}
 	
 	
@@ -671,19 +783,21 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextStartSourceDate() throws Exception {
-		String sourceDateGetTxt = BrowserActions.getText(driver, txtStartSourceDate, "Start Source date Should be displayed in SRP for MC");
-		return sourceDateGetTxt;
+		Utils.waitForElement(driver, txtStartSourceDate);
+		String startSourceDateGetTxt = BrowserActions.getText(driver, txtStartSourceDate, "Start Source date Should be displayed in SRP for MC");
+		return startSourceDateGetTxt;
 	}
 	
 	/**
-	 * Getting the text from start dest city in SRP for MC
+	 * Getting the text from start destination city in SRP for MC
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextStartDestCity() throws Exception {
-		String destCityGetTxt = BrowserActions.getText(driver, txtstartDestCity, "Start Destination City Should be displayed in SRP for MC");
-		return destCityGetTxt;
+		Utils.waitForElement(driver, txtstartDestCity);
+		String startDestCityGetTxt = BrowserActions.getText(driver, txtstartDestCity, "Start Destination City Should be displayed in SRP for MC");
+		return startDestCityGetTxt;
 	}
 	
 	
@@ -695,8 +809,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextEndSourceCity() throws Exception {
-		String sourceCityGetTxt = BrowserActions.getText(driver, txtEndSourceCity, "End Source City Should be displayed in SRP for MC");
-		return sourceCityGetTxt;
+		Utils.waitForElement(driver, txtEndSourceCity);
+		String endSourceCityGetTxt = BrowserActions.getText(driver, txtEndSourceCity, "End Source City Should be displayed in SRP for MC");
+		return endSourceCityGetTxt;
 	}
 	
 	
@@ -708,22 +823,357 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextEndSourceDate() throws Exception {
-		String sourceDateGetTxt = BrowserActions.getText(driver, txtEndSourceDate, "End Source date Should be displayed in SRP for MC");
-		return sourceDateGetTxt;
+		Utils.waitForElement(driver, txtEndSourceDate);
+		String endSourceDateGetTxt = BrowserActions.getText(driver, txtEndSourceDate, "End Source date Should be displayed in SRP for MC");
+		return endSourceDateGetTxt;
 	}
 	
 	/**
-	 * Getting the text from end dest city in SRP for MC
+	 * Getting the text from end destination city in SRP for MC
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextEndDestCity() throws Exception {
-		String destCityGetTxt = BrowserActions.getText(driver, txtEndDestCity, "End Destination City Should be displayed in SRP for MC");
-		return destCityGetTxt;
+		Utils.waitForElement(driver, txtEndDestCity);
+		String endDestCityGetTxt = BrowserActions.getText(driver, txtEndDestCity, "End Destination City Should be displayed in SRP for MC");
+		return endDestCityGetTxt;
+	}
+	
+	
+	/**
+	 * Getting the text from Flight duration in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFlightDuration() throws Exception {
+		Utils.waitForElement(driver, txtFlightDuration);
+		String flightDurationGetTxt = BrowserActions.getText(driver, txtFlightDuration, "Flight duration format Should be displayed in SRP Page");
+		return flightDurationGetTxt;
 	}
 	
 	
 	
+	/**
+	 * Getting the text from Flight details PouUp duration in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFlightDetailsPouUpDuration() throws Exception {
+		Utils.waitForElement(driver, txtFlightDetailsPopupDuration);
+		String flightDetailsPouUpDurationGetTxt = BrowserActions.getText(driver, txtFlightDetailsPopupDuration, "Flight details popup duration format Should be displayed in SRP Page");
+		return flightDetailsPouUpDurationGetTxt;
+	}
+	
+	
+	/**
+	 * To click Flight Details link in SRP
+	 * 
+	 * @throws Exception
+	 */
+	public void clickFlightDetails() throws Exception {
+		Utils.waitForElement(driver, lnkFlightDetail);
+		BrowserActions.clickOnElement(lnkFlightDetail, driver, "Click Flight Details");
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicked Flight Details link in SRP");
+	}
+	
+	/**
+	 * To click Flight Details pouUp close link
+	 * 
+	 * @throws Exception
+	 */
+	public void closeFlightDetailsPouUp() throws Exception {
+		Utils.waitForElement(driver, lnkcloseFlightDetailsPopUp);
+		BrowserActions.clickOnElement(lnkcloseFlightDetailsPopUp, driver, "Click Flight Details PopUp close button");
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicked Flight Details PopUp close button");
+	}
+	
+	/**
+	 * Getting the text from Flight details PouUp duration in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextResultStrip() throws Exception {
+		Utils.waitForElement(driver, txtResultStripView);
+		String resultStripGetTxt = BrowserActions.getText(driver, txtResultStripView, "Result Strip view should be displayed in SRP ");
+		return resultStripGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Source city in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSourceCity_OW() throws Exception {
+		Utils.waitForElement(driver, txtSourceCity);
+		String sourceCityGetTxt = BrowserActions.getText(driver, txtSourceCity_OW, "Source City Should be displayed in SRP Page");
+		return sourceCityGetTxt;
+	}
+	
+	
+
+	/**
+	 * Getting the text from Source date in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSourceDate_OW() throws Exception {
+		Utils.waitForElement(driver, txtSourceDate);
+		String sourceDateGetTxt = BrowserActions.getText(driver, txtSourceDate_OW, "Source date Should be displayed in SRP Page");
+		return sourceDateGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Destination City in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDestinationCity_OW() throws Exception {
+		Utils.waitForElement(driver, txtDestCity);
+		String destCityGetTxt = BrowserActions.getText(driver, txtDestCity_OW, "Destination City Should be displayed in SRP Page");
+		return destCityGetTxt;
+	}
+	
+	
+	/**
+	 * To click Modify Search link in SRP
+	 * 
+	 * @throws Exception
+	 */
+	public void clickModifySearch() throws Exception {
+		BrowserActions.nap(1);
+		Utils.waitForElement(driver, btnModifySearchIcon);
+		//BrowserActions.mouseHover(driver, btnModifySearchIcon);		
+		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
+		BrowserActions.nap(6);
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicked Modify Search link in SRP");
+	}
+	
+	/**
+	 * To verify Trip Type in ModifySearch
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyTripTypeInModifySearch(String tripType) throws Exception {
+		boolean status = false;
+		if (tripType.equals(Constants.C_ONEWAY)) {
+			status = BrowserActions.isRadioOrCheckBoxSelected(chkOneWay);		
+			Log.event("Successfully verified One Way button is selected");
+		} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
+			status = BrowserActions.isRadioOrCheckBoxSelected(chkRoundTrip);
+			Log.event("Successfully verified Round Trip button is selected");
+		} else if (tripType.equals(Constants.C_MULTICITY)) {
+			status = BrowserActions.isRadioOrCheckBoxSelected(chkMultiCity);
+			Log.event("Successfully verified Multicity button is selected");
+		}
+		
+		return status;
+	}
+	
+	/**
+	 * To verify Trip Type in ModifySearch
+	 * 
+	 * @throws Exception
+	 */
+	public boolean selectTripTypeInModifySearch(String tripType) throws Exception {
+		boolean status = false;
+		if (tripType.equals(Constants.C_ONEWAY)) {
+			status = BrowserActions.isRadioOrCheckBoxSelected(chkOneWay);		
+			Log.event("Successfully selected One Way button");
+		} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
+			status = BrowserActions.isRadioOrCheckBoxSelected(chkRoundTrip);
+			Log.event("Successfully selected Round Trip button");
+		} else if (tripType.equals(Constants.C_MULTICITY)) {
+			status = BrowserActions.isRadioOrCheckBoxSelected(chkMultiCity);
+			Log.event("Successfully selected Multicity button");
+		}
+		
+		return status;
+	}
+	
+	
+	
+	/**
+	 * Getting the text from Origin in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextOrigin_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtOrigin_ModifySearch);
+		String origin_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtOrigin_ModifySearch, "ng-msvalidate", "Origin in Modify Search");
+		return origin_ModifySearchGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Destination in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDestination_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtDestination_ModifySearch);
+		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDestination_ModifySearch, "ng-msvalidate",  "Destination in Modify Search");
+		return destination_ModifySearchGetTxt;
+	}
+	
+
+	/**
+	 * To verify Non Stop Flights Only checkbox is checked on unchecked
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyNonStopFlightsChkBox_ModifySearch() throws Exception {
+		boolean status = BrowserActions.isRadioOrCheckBoxSelected(txtNonStopFlights_ModifySearch);	 
+		return status;
+	}
+	
+	/**
+	 * Getting the text from Origin in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextOrigin_MS() throws Exception {
+		Utils.waitForElement(driver, txtOrigin_ModifySearch);
+		String origin_ModifySearchGetTxt = BrowserActions.executeJavaScript(driver, txtOrigin_ModifySearch1);
+		//String origin_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtOrigin_ModifySearch, "ng-msvalidate", "Origin in Modify Search");
+		return origin_ModifySearchGetTxt;
+	}
+	
+	
+	/**
+	 * Getting the text from Origin in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextAdult_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtAdult_ModifySearch);
+		String adultGetTxt = BrowserActions.getText(driver, txtAdult_ModifySearch, "Adult Should be displayed in Modify Search panel");
+		return adultGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Origin in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextChild_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtChild_ModifySearch);
+		String adultGetTxt = BrowserActions.getText(driver, txtChild_ModifySearch, "Child Should be displayed in Modify Search panel");
+		return adultGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Origin in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextInfant_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtInfant_ModifySearch);
+		String adultGetTxt = BrowserActions.getText(driver, txtInfant_ModifySearch, "Infant Should be displayed in Modify Search panel");
+		return adultGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Destination in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDepartDate_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtDepartDate_ModifySearch);
+		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate_ModifySearch, "ng-active-date",  "DepartDate in Modify Search");
+		return destination_ModifySearchGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Destination in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextReturnDate_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtReturnDate_ModifySearch);
+		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtReturnDate_ModifySearch, "ng-active-date",  "ReturnDate in Modify Search");
+		return destination_ModifySearchGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Destination in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextPassengerClass_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtPassengerClass_ModifySearch);
+		String destination_ModifySearchGetTxt = BrowserActions.getText(driver, txtPassengerClass_ModifySearch, "Passenger class should be displayed in Modify Search panel");
+		return destination_ModifySearchGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Destination in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextPreferredAirline_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtPreferredAirline_ModifySearch);
+		String destination_ModifySearchGetTxt = BrowserActions.getText(driver, txtPreferredAirline_ModifySearch, "Preferred Airlins should be displayed in Modify Search panel");
+		return destination_ModifySearchGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Origin in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextOrigin1_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtOrigin1_ModifySearch);
+		String origin_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtOrigin1_ModifySearch, "ng-msvalidate", "Origin_MC in Modify Search");
+		return origin_ModifySearchGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Destination in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDestination1_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtDestination1_ModifySearch);
+		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDestination1_ModifySearch, "ng-msvalidate",  "Destination_MC in Modify Search");
+		return destination_ModifySearchGetTxt;
+	}
+	
+	
+	/**
+	 * Getting the text from Destination in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDepartDate1_ModifySearch() throws Exception {
+		Utils.waitForElement(driver, txtDepartDate1_ModifySearch);
+		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate1_ModifySearch, "ng-active-date",  "DepartDate_MC in Modify Search");
+		return destination_ModifySearchGetTxt;
+	}
+	
+	//YTMethods.getCityName(QueryProp.origin)
+	
   //*******************************End of SRP Functions********************************************************************************************
+
 } // SearchResult

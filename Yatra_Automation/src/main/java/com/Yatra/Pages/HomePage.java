@@ -1,5 +1,7 @@
 package com.Yatra.Pages;
 
+
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,6 +23,8 @@ import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
+
+
 
 public class HomePage extends LoadableComponent<HomePage> {
 
@@ -154,7 +158,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	WebElement lnkRoundTripBus;
 	
 	@FindBy(css = "#BE_bus_from_station")
-	 WebElement txtOriginBus;
+	WebElement txtOriginBus;
 	
 	@FindBy(xpath = "//input[@id='BE_train_from_station']")
 	WebElement txtTrainOrigin;
@@ -183,11 +187,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month-']")
 	List<WebElement> selectMonth_Bus;
 	
-	@FindBy(css = "#toater_21")
+	@FindBy(css = "div[class='toasterHolder']")
 	WebElement txtErrorMsgEmptyCity;
 	
-	@FindBy(css = "#toater_23")
-	WebElement txtErrorMsgSameCity;
+	@FindBy(css = ".ac_over")
+	WebElement txtErrorMsgIncorrectCity;
 	
 	
 	/**********************************************************************************************
@@ -209,6 +213,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
+		elementLayer = new ElementLayer(driver);
 	}// HomePage
 
 	/**
@@ -568,11 +573,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public LoginPage navigateToSignIn() throws Exception {
 		// click Login button on signin page
-		Utils.waitForElement(driver, lnkMyaccount);		
-		BrowserActions.mouseHover(driver, lnkMyaccount);
+		//Utils.waitForElement(driver, lnkMyaccount);		
+		//BrowserActions.mouseHover(driver, lnkMyaccount);
 		//BrowserActions.moveToElementJS(driver, lnkMyaccount);
 		//BrowserActions.actionClick(btnSignIn, driver, "Sign In");
-		BrowserActions.clickOnElement(btnSignIn, driver, "Sign In");
+		BrowserActions.javascriptClick(btnSignIn, driver, "Sign In");
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
 	}
@@ -668,7 +673,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
-		BrowserActions.scrollToViewElement(dateDeparture, driver);
 		Utils.waitForElement(driver, dateDeparture);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
 		
@@ -803,6 +807,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 *            as string
 	 * @throws Exception
 	 */
+
 	@SuppressWarnings("static-access")
 	public String selectMultiCityDateDeparture2(String departureDate) throws Exception {
 		int iDay = Integer.parseInt(departureDate);
@@ -897,6 +902,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public void PassengerInfoBus(String passengers) throws Exception {
 		BrowserActions.nap(2);
+		Utils.waitForElement(driver, btnIncreseSeat);
 		int z = Integer.parseInt(passengers);
 		for(int i=1 ; i<z ; i++){
 			BrowserActions.clickOnElement(btnIncreseSeat, driver, "Passenger Info");
@@ -904,11 +910,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 			}
 	
 	
-	/**
-	 * To Select Bus Trip Type
-	 * 
-	 * @throws Exception
-	 */
+		
+
 	public void selectTripTypeBus(String tripType) throws Exception {
 		if (tripType.equals(Constants.C_ONEWAY)) {
 			BrowserActions.javascriptClick(lnkOneWayBus, driver, "One Way");
@@ -954,6 +957,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateReturnBus, driver, "clicking on Bus Return date icon");
+		BrowserActions.scrollToViewElement(dateDeparture, driver);
 		selectMonth_Bus.get(month - 3).click();
 		BrowserActions.nap(2);
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
@@ -1007,6 +1011,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		selectDepartureDateBus(departureDate); // select Departure Date
 		BrowserActions.nap(2);
+		BrowserActions.scrollToView(dateDepartureBus, driver);
 		selectReturnDateBus(returnDate); // select Return Date
 		BrowserActions.nap(2);
 		PassengerInfoBus(passengerInfo); // select Passengers
@@ -1028,6 +1033,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestinationBus(destination); // enter Destination value
 		BrowserActions.nap(2);
 		selectDepartureDateBus(departureDate); // select Departure Date
+		BrowserActions.scrollToView(dateDepartureBus, driver);
 		BrowserActions.nap(2);
 		PassengerInfoBus(passengerInfo); // select Passengers 
 		Log.event("Successfully Filled OneWay Bus Search fields");
@@ -1085,6 +1091,20 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return new TrainSearchResult(driver).get();
 
 	}
+	
+	
+	public Boolean incorrectCity() throws Exception {
+		BrowserActions.typeOnTextField(txtTrainOrigin, "xyz", driver, "Invalid Origin city");
+		Utils.waitForPageLoad(driver);
+		String cityError = BrowserActions.getText(driver, txtTrainOrigin, "Incorrect Orgin City");
+		if (cityError.startsWith("No match"))
+		{
+		return true;
+		}
+		
+		return false;
+			
+	}
 
     /**
     * To select Departure Date
@@ -1139,6 +1159,29 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
 		Utils.waitForPageLoad(driver);
 	}
-	
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorMsg() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorIncorrectCity() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgIncorrectCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgIncorrectCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
 	
 }// HomePage
