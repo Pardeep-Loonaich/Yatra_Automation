@@ -194,6 +194,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 	WebElement txtErrorMsgIncorrectCity;
 	
 	
+	@FindBy(css = "div[class='header-container']>a")
+	WebElement logoYatra;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -989,7 +992,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public SearchResultBus clickBtnSearchBus() throws Exception {
 		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
-		Utils.waitForPageLoad(driver);
 		return new SearchResultBus(driver).get();
 	}
 	/**
@@ -1007,9 +1009,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		selectDepartureDateBus(departureDate); // select Departure Date
 		BrowserActions.nap(2);
-		BrowserActions.scrollToView(dateDepartureBus, driver);
+		BrowserActions.scrollToView(logoYatra, driver);
 		selectReturnDateBus(returnDate); // select Return Date
 		BrowserActions.nap(2);
+		BrowserActions.scrollToView(logoYatra, driver);
 		PassengerInfoBus(passengerInfo); // select Passengers
 		BrowserActions.nap(2);
 		Log.event("Successfully Filled RoundTrip Bus Search fields");
@@ -1029,7 +1032,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestinationBus(destination); // enter Destination value
 		BrowserActions.nap(2);
 		selectDepartureDateBus(departureDate); // select Departure Date
-		BrowserActions.scrollToView(dateDepartureBus, driver);
+		BrowserActions.scrollToView(logoYatra, driver);
 		BrowserActions.nap(2);
 		PassengerInfoBus(passengerInfo); // select Passengers 
 		Log.event("Successfully Filled OneWay Bus Search fields");
