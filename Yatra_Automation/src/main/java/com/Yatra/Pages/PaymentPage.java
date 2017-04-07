@@ -380,7 +380,16 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 
-
+	/**
+	 * Clicked on the cancel ecash redeem after verification
+	 * @return
+	 * @throws Exception
+	 */
+	public void verifyCancelEcash() throws Exception{
+          if(lnkCancelRedem.isDisplayed()){
+        	  BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on Cancel ecash redeem.");
+          }
+	}
 	/**
 	 * Clicked on the  ecash redeem
 	 * @return

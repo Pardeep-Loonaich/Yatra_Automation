@@ -20,7 +20,7 @@ import org.testng.SkipException;
  */
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
-	public static int maxElementWait = 30;
+	public static int maxElementWait = 50;
 
 
 	/**
