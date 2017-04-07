@@ -828,24 +828,18 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 
-	public void selectMultiCityFlightSearchFields(String origin1, String destination1, String origin2,
-			String destination2, String departureDate1, String departureDate2, String passengerInfo,
-			String passengerClass) throws Exception {
-		enterMultiCityOrigin1(origin1); // enter Multicity Origin1 value
-		enterMultiCityDestination1(destination1); // enter Multicity
-													// Destination2 value
-
-		enterMultiCityOrigin2(origin2); // enter Multicity Origin2 value
-		enterMultiCityDestination2(destination2); // enter Multicity
-													// Destination2 value
-
-		selectMultiCityDateDeparture1(departureDate1); // select Multicity
-														// Departure1 Date
-		selectMultiCityDateDeparture2(departureDate1); // select Multicity
-														// Departure2 Date
-		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult,
-												// Child, Infant)
-
+	public void selectMultiCityFlightSearchFields(String origin1, String destination1, String departureDate1, String origin2,
+			String destination2, String departureDate2, String passengerInfo, String passengerClass) throws Exception {
+		
+		enterMultiCityOrigin1(origin1); // enter MultiCity Origin1 value
+		enterMultiCityDestination1(destination1); // enter MultiCity Destination1 value	
+		selectMultiCityDateDeparture1(departureDate1); // select MultiCity Departure1 Date
+		
+		enterMultiCityOrigin2(origin2); // enter MultiCity Origin2 value
+		enterMultiCityDestination2(destination2); // enter MultiCity Destination2 value		
+		selectMultiCityDateDeparture2(departureDate1); // select MultiCity Departure2 Date
+		
+		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
 		clickDoneButtonInPassengerBox(); // click Done button
 		Log.event("Successfully selected 'Multicity' Flight Search fields");
