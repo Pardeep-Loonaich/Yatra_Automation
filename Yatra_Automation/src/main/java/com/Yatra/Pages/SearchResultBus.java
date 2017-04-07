@@ -17,6 +17,7 @@ import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
+import com.gargoylesoftware.htmlunit.javascript.host.Element;
 
 public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 
@@ -126,6 +127,10 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(css = "div[class='flL bus-details-box']>div[class='wfull mt20']>div")
 	WebElement ContinueButtonInPopUp;
 	
+	@FindBy(css = "div[class*='onwards floor-wrapper']>div[class*='seat-floor flL mt10 lower-deck']>ul>li[class*='flL type-SS avl-Y reserved-M']")
+	WebElement emptyseatInPopUp;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -219,7 +224,6 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 
 	public void clickBtnSelectSeat(int index) throws Exception {
-		BrowserActions.mouseHover(driver,btnSelectSeat.get(index));
 		BrowserActions.clickOnElement(btnSelectSeat.get(index), driver, "Select Seat");
 		Utils.waitForPageLoad(driver);
 	}
@@ -422,8 +426,13 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	
 	public void switchToIframe() throws Exception {
 		driver.manage().window().maximize();
-		driver.switchTo().frame(driver.findElement(By.tagName("iframe"))); // switching the frame by ID	
+		driver.switchTo().frame(driver.findElements(By.cssSelector("iframe[id='popoverWindow_iframe']")).get(0)); // switching the frame by ID
+
 	}	
+	
+	
+	@FindBy(css="div[class*='onwards floor-wrapper']>div[class*='seat-floor flL mt10 lower-deck']>ul>li[class*='flL type-SS avl-Y reserved-M']")
+	WebElement listSeat;
 	/**
 	 * To Select No Of Seat
 	 * 
@@ -431,11 +440,16 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 
 	public void selectSeat(int number) throws Exception{
+		if(listSeat.isDisplayed()){
 		for(int i = 0;i < number;i++){
-		driver.findElement(By.cssSelector("div[class*='onwards floor-wrapper']>div[class*='seat-floor flL mt10 lower-deck']>ul>li[class*='flL type-SS avl-Y reserved-M']")).click(); // Random Seat Selected
+		driver.findElement(By.cssSelector("div[class='wfull tab-content onwards seat-layout']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")).click(); // Random Seat Selected
 		BrowserActions.nap(2);
 		}	
-	}	
+	}else{
+		System.out.println("dfhejhgbjey");
+	}
+		
+	}
 	
 	
 	/**
