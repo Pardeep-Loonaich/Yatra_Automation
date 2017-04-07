@@ -346,6 +346,7 @@ public class WebDriverFactory {
 			browser = browserWithPlatform.split("_")[0].toLowerCase().trim();
 			platform = browserWithPlatform.split("_")[1].toUpperCase().trim();
 		} else {
+			browser=browserWithPlatform;
 			platform = "ANY";
 		}
 
