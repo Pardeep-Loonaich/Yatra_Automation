@@ -25,6 +25,7 @@ import com.Yatra.Pages.PaymentPage;
 import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Pages.TravellerPage;
+import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -109,6 +110,7 @@ public class PaymentTest {
 			travellerPage = reviewPage.clickOnContinue();
 			Log.message("7. Clicked on Continue button on Review Page.");
 
+			reviewPage.popUpAppear();
 			/*reviewPage.clickOnExistingUser();
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("7. Successfully Logged in Yatra account as 'Existing' User!");
@@ -119,8 +121,12 @@ public class PaymentTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
+			paymentPage.verifyCancelEcash();
+			Log.message(". Clicked on Cancel ecash.");
+
 			String initialEcash1 = paymentPage.eCashAmount();
 			int initialEcash = Integer.parseInt(initialEcash1);
+			Log.message("Initial Cash:"+initialEcash);
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify if user has ecash greater than 0.");
@@ -129,12 +135,12 @@ public class PaymentTest {
 					"<b>Actual Result1:</b> Ecash amount is not greater than 0.",
 					driver);
 
-			paymentPage.scrollSliderOfEcashRedeem(80);
+			paymentPage.scrollSliderOfEcashRedeem(-80);
 			Log.message("10. Scroll the ecash Redeem Slider to adjust ecash amount.");
 
 			String finalEcash1 = paymentPage.eCashAmount();
 			int finalEcash = Integer.parseInt(finalEcash1);
-
+			Log.message("Final Cash:"+finalEcash);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Scroll the slider and verify Ecash redemption.");
 			Log.assertThat(initialEcash!=finalEcash,
@@ -164,11 +170,12 @@ public class PaymentTest {
 					"<b>Actual Result4:</b> Ecash is applied and the message is displayed under Payment method.",
 					driver);
 
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -270,6 +277,7 @@ public class PaymentTest {
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -372,6 +380,9 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+
+			Log.testCaseResult();
+
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -478,6 +489,8 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			Log.testCaseResult();
+
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -580,6 +593,7 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -683,6 +697,8 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			Log.testCaseResult();
+
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -786,6 +802,7 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -886,6 +903,7 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -964,6 +982,8 @@ public class PaymentTest {
 			Log.assertThat(!paymentPage.getTextFromPaymentDetailsModule().contains("eCash"),
 					"<b>Actual Result:</b> Redeem eCash not displayed in Payment detail module.",
 					"<b>Actual Result:</b> Redeem eCash displayed in Payment detail module.", driver);
+			Log.testCaseResult();
+
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1043,6 +1063,7 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("lstPaymentMetod"), paymentPage),
 					"<b>Actual Result:</b> All Payment Methods are available on Payment Page.",
 					"<b>Actual Result:</b> All Payment Methods are not available on Payment Page.", driver);
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1051,6 +1072,9 @@ public class PaymentTest {
 			Log.endTestCase();
 		}
 	}
+
+
+
 
 	@Test(groups = { "desktop" }, description = "Earn eCash is showing", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_020(HashMap<String, String> testData) throws Exception {
@@ -1124,6 +1148,7 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("modEcash"), paymentPage),
 					"<b>Actual Result:</b> Earn Ecash section is showing on Payment Page with heading '"+paymentPage.getEcashHeading()+"'and the amount is :"+paymentPage.getEcashAmount(),
 					"<b>Actual Result:</b> Earn Ecash section is not showing on Payment Page.", driver);
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1223,6 +1248,9 @@ public class PaymentTest {
 					"<b>Actual Result:</b> Successfully navigated to Terms and condition Page.",
 					"<b>Actual Result:</b> Unable to navigated to Terms and condition Page.", driver);
 
+			Log.testCaseResult();
+
+
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -1305,6 +1333,9 @@ public class PaymentTest {
 					"<b>Actual Result:</b> Flight Details are displayed on top as :'"+paymentPage.getFlightDetails()+"'",
 					"<b>Actual Result:</b> Flight Details are not displayed on top.", driver);
 
+			Log.testCaseResult();
+
+
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -1385,6 +1416,8 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("labelTravellerDetails"), paymentPage),
 					"<b>Actual Result:</b> Flight Details are displayed on top as :'"+paymentPage.getTravellerDetails()+"'",
 					"<b>Actual Result:</b> Flight Details are not displayed on top.", driver);
+
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1467,6 +1500,8 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("breadcrumbBookingProgress"), paymentPage),
 					"<b>Actual Result:</b> Booking bar is displayed on Payment Page.",
 					"<b>Actual Result:</b> Booking bar is not displayed on Payment Page.", driver);
+			Log.testCaseResult();
+
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1549,6 +1584,8 @@ public class PaymentTest {
 					"<b>Actual Result:</b> eCash details for logged in user is displayed on Payment Page as :'"+paymentPage.getTextFromEcashLabel()+"'",
 					"<b>Actual Result:</b> eCash details for logged in user is not displayed on Payment Page.", driver);
 
+			Log.testCaseResult();
+
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -1629,6 +1666,8 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("labelUserName"), paymentPage),
 					"<b>Actual Result:</b> User name is displayed for logged in user on Payment Page as :'"+paymentPage.getUserName()+"'",
 					"<b>Actual Result:</b> User name is not displayed for logged in user on Payment Page.", driver);
+			Log.testCaseResult();
+
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1715,7 +1754,7 @@ public class PaymentTest {
 					"<b>Actual Result:</b> Successfully navigated to reviewpage after clicking on 'Edit' link ",
 					"<b>Actual Result:</b> Unable to navigate to reviewpage after clicking on 'Edit' link.", driver);
 
-
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
