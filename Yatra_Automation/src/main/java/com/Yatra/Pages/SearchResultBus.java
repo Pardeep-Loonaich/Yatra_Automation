@@ -252,7 +252,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * @throws Exception
 	 */
 	public String getTextBusInfo() throws Exception {
-		String de = driver.findElement(By.cssSelector(("div[class*='flL bus-details-box']>div[class*='bus-info']>div[class*='wfull bdr-btm-grey padB10']"))).getText();
+		String de = driver.findElement(By.cssSelector(("div[class*='flL bus-details-box']>div[class*='bus-info']>div[class*='wfull bdr-btm-grey padB10']>"))).getText();
 		return de;
 	}
 

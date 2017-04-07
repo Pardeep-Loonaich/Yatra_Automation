@@ -2338,7 +2338,8 @@ public class FlightSearch {
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected One Way Radio button",	"<b>Actual Result:</b> Not selected One Way Radio button");
             Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP", "<b>Actual Result:</b> Not verified Origin City with HP");
             Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP","<b>Actual Result:</b> Not verified Destination City with HP");
-		    	
+		    
+            //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
             String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
 			String[] depart = deprtDateText.split("/"); 
 			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
@@ -2445,12 +2446,14 @@ public class FlightSearch {
             Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP", "<b>Actual Result:</b> Not verified Origin City with HP");
             Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP","<b>Actual Result:</b> Not verified Destination City with HP");
 		    
+           //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
 	        String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
 			String[] depart = deprtDateText.split("/"); 
 			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
 					"<b>Actual Result:</b> Successfully verified selected Departure date with HP</b> ",
 					"<b>Actual Result:</b> Not matched selected selected Departure date with HP</b> ", driver);
 			
+			//TODO: To change the logic for return date verification (like 10, 20, 30 dates in moth level)
 			String returnDateText = searchResult.getTextReturnDate_ModifySearch();
 			String[] arrayReturndate = returnDateText.split("/"); 
 			Log.assertThat(returndate.equalsIgnoreCase(arrayReturndate[2]+"_"+arrayReturndate[1].replace("0", "")+"_"+arrayReturndate[0].replace("0", "")),
@@ -2568,7 +2571,7 @@ public class FlightSearch {
             Log.assertThat(originCityText.contains(destination1), "<b>Actual Result:</b> Successfully verified Multicity Origin1 City name with HP Orgin1 name", "<b>Actual Result:</b> Not Matched Multicity Origin1 City name with HP Orgin1 name");
             Log.assertThat(destCityText.contains(origin1), "<b>Actual Result:</b> Successfully verified Multicity Destination1 City with HP HP Destination1 name","<b>Actual Result:</b> Not Matched Multicity Destination1 City name with HP Destination1 name");
 		    
-	
+           //TODO: To change the logic for depart1 date verification (like 10, 20, 30 dates in moth level)
             String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
 			String[] depart = deprtDateText.split("/"); 
 			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
@@ -2582,7 +2585,7 @@ public class FlightSearch {
             Log.assertThat(originCityText_MC.contains(destination2), "<b>Actual Result:</b> Successfully verified Multicity Origin2 City name with HP Orgin2 name", "<b>Actual Result:</b> Not Matched Multicity Origin2 City name with HP Orgin2 name");
             Log.assertThat(destCityText_MC.contains(origin2), "<b>Actual Result:</b> Successfully verified Multicity Destination1 City with HP HP Destination2 name","<b>Actual Result:</b> NNot Matched Multicity Destination2 City name with HP Destination2 name");
 		    
-	
+           //TODO: To change the logic for depart2 date verification (like 10, 20, 30 dates in moth level)
             String deprtDateText_MC = searchResult.getTextDepartDate1_ModifySearch();
 			String[] departMC = deprtDateText_MC.split("/"); 
 			Log.assertThat(departdate1.equalsIgnoreCase(departMC[2]+"_"+departMC[1].replace("0", "")+"_"+departMC[0].replace("0", "")),
@@ -2765,7 +2768,7 @@ public class FlightSearch {
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validating that Weekly fare Matrix will not be available for MC search");
-			BrowserActions.nap(2);
+			BrowserActions.nap(10);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for MC Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for MC Search",
@@ -2915,9 +2918,9 @@ public class FlightSearch {
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated the Airline Matrix");
-			BrowserActions.nap(2);
+			BrowserActions.nap(10);
 			Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> 'All Airlines' option should appear with by deafult selection ", "<b>Actual Result:</b> 'All Airlines' option should not appear with by deafult selection", driver);
-			
+			//TODO : verify the other flights arranged in increasing order of fare.
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
