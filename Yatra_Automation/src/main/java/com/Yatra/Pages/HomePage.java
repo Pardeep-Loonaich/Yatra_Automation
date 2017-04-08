@@ -678,8 +678,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 		
 		selectMonth.get(month - 2).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		Utils.waitForElement(driver, datePicker.get(0), 5);
 		datePicker.get(0).click();
-		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");
+		Log.event("Selected Departure Date: " + date + "(YYYY/MM/DD)");
 		return date;
 	}
 
