@@ -199,7 +199,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = ".ac_over")
 	WebElement txtErrorMsgIncorrectCity;
 
-
 	@FindBy(css = "div[class='header-container']>a")
 	WebElement logoYatra;
 
@@ -1063,8 +1062,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		enterDestinationBus(destination); // enter Destination value
 		BrowserActions.nap(2);
+		//BrowserActions.scrollToView(logoYatra, driver);
+		Utils.setMousePositionOffPage(driver);
+		Utils.scrollPage(driver, Constants.C_Page_Top);		
 		selectDepartureDateBus(departureDate); // select Departure Date
-		BrowserActions.scrollToView(logoYatra, driver);
+		Utils.setMousePositionOffPage(driver);
+		Utils.scrollPage(driver, Constants.C_Page_Top);
+		//BrowserActions.scrollToView(logoYatra, driver);
 		BrowserActions.nap(2);
 		PassengerInfoBus(passengerInfo); // select Passengers 
 		Log.event("Successfully Filled OneWay Bus Search fields");
