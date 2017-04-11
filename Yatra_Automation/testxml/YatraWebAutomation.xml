@@ -5,7 +5,7 @@
    <!--  <suite-file path=".\testxml\bus\busSearch.xml"></suite-file> -->
    <!--  <suite-file path=".\testxml\payments\payments.xml"></suite-file>  -->
   <suite-file path=".\testxml\flights\flightSearch.xml"></suite-file>
-  <suite-file path=".\testxml\flights\flightPricing.xml"></suite-file>
+  <!-- <suite-file path=".\testxml\flights\flightPricing.xml"></suite-file> -->
 
 </suite-files>
 </suite>

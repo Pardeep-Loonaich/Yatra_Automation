@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -23,6 +25,7 @@ import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
+import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 
 
 
@@ -37,6 +40,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
+
+
 
 	@FindBy(css = "input#BE_flight_origin_city")
 	public WebElement txtOrigin;
@@ -145,31 +150,31 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "#userSignInStrip")
 	WebElement lnkMyaccount;
-	
+
 	@FindBy(css = ".be-container-v2")
 	WebElement searchPanel;
 
 	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>div[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
 	WebElement btnIncreseSeat;
-	
+
 	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(1)")
 	WebElement lnkOneWayBus;
-	
+
 	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(3)")
 	WebElement lnkRoundTripBus;
-	
+
 	@FindBy(css = "#BE_bus_from_station")
 	WebElement txtOriginBus;
-	
+
 	@FindBy(xpath = "//input[@id='BE_train_from_station']")
 	WebElement txtTrainOrigin;
-	
+
 	@FindBy(xpath = "//input[@id='BE_train_to_station']")
 	WebElement txtTrainDestination;
-	
+
 	@FindBy(xpath = "//input[@id='BE_train_depart_date']")
 	WebElement dateTrainDeparture;
-	
+
 	@FindBy(xpath="//input[@id='BE_train_search_btn']")
 	WebElement btnTrainSearch;
 
@@ -181,23 +186,23 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "#BE_bus_return_date")
 	WebElement dateReturnBus;
-	
+
 	@FindBy(css = "#BE_bus_search_btn")
 	WebElement btnSearchBus;
-	
+
 	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month-']")
 	List<WebElement> selectMonth_Bus;
-	
+
 	@FindBy(css = "div[class='toasterHolder']")
 	WebElement txtErrorMsgEmptyCity;
-	
+
 	@FindBy(css = ".ac_over")
 	WebElement txtErrorMsgIncorrectCity;
-	
-	
+
+
 	@FindBy(css = "div[class='header-container']>a")
 	WebElement logoYatra;
-	
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -297,7 +302,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int month = Integer.parseInt(date.split("_")[2]);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
 		selectMonth.get(month - 2).click();
-		
+
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[1]")).click();
 		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
@@ -568,7 +573,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForElement(driver, dateReturn);
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
 		selectMonth.get(month - 2).click();
-		
+
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[1]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[1]")).click();
 		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
@@ -587,8 +592,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		//BrowserActions.mouseHover(driver, lnkMyaccount);
 		//BrowserActions.moveToElementJS(driver, lnkMyaccount);
 		//BrowserActions.actionClick(btnSignIn, driver, "Sign In");
-		
-	//	BrowserActions.moveToElementJS(driver, driver.findElement(By.cssSelector("li[id='userSignInStrip']")));
+
+		//	BrowserActions.moveToElementJS(driver, driver.findElement(By.cssSelector("li[id='userSignInStrip']")));
 		BrowserActions.javascriptClick(btnSignIn, driver, "Sign In");
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
@@ -628,9 +633,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestination(destination); // enter Destination value
 		BrowserActions.nap(3);
 		selectDepartureDate(departureDate); // select Departure Date
-		
+
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult,
-												// Child, Infant)
+		// Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
 		clickDoneButtonInPassengerBox(); // click Done button
 
@@ -652,7 +657,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectDepartureDate(departureDate); // select Departure Date
 		selectReturnDate(returnDate); // select Return Date
 		specifyPassengerInfo(passengerInfo); // select Passengers details
-												// (Adult, Child, Infant)
+		// (Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
 		BrowserActions.nap(3);
 		clickDoneButtonInPassengerBox(); // click Done button
@@ -687,17 +692,17 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		Utils.waitForElement(driver, dateDeparture);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon..");
-		
+
 		selectMonth.get(month - 2).click();
-		
+
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")));
-	 Utils.waitForPageLoad(driver, 7);
+		Utils.waitForPageLoad(driver, 7);
 		driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")).click();
-		
+
 		//List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		//Utils.waitForElement(driver, datePicker.get(0), 5);
 		//datePicker.get(0).click();
-		
+
 		Log.event("Selected Departure Date: " + date + "(YYYY/MM/DD)");
 		return date;
 	}
@@ -718,7 +723,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectMonth.get(month - 2).click();
 		Utils.waitForPageLoad(driver, 7);
 		driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")).click();
-		
+
 		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();*/
 		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
@@ -856,15 +861,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	public void selectMultiCityFlightSearchFields(String origin1, String destination1, String departureDate1, String origin2,
 			String destination2, String departureDate2, String passengerInfo, String passengerClass) throws Exception {
-		
+
 		enterMultiCityOrigin1(origin1); // enter MultiCity Origin1 value
 		enterMultiCityDestination1(destination1); // enter MultiCity Destination1 value	
 		selectMultiCityDateDeparture1(departureDate1); // select MultiCity Departure1 Date
-		
+
 		enterMultiCityOrigin2(origin2); // enter MultiCity Origin2 value
 		enterMultiCityDestination2(destination2); // enter MultiCity Destination2 value		
 		selectMultiCityDateDeparture2(departureDate1); // select MultiCity Departure2 Date
-		
+
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
 		clickDoneButtonInPassengerBox(); // click Done button
@@ -913,8 +918,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.typeOnTextField(txtTrainOrigin, trainOrigin, driver, "Select Origin");
 		Log.event("Entered the Origin: " + trainOrigin);
 	}
-	
-	
+
+
 	/**
 	 * To select Passenger Information 
 	 * 
@@ -927,10 +932,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 		for(int i=1 ; i<z ; i++){
 			BrowserActions.clickOnElement(btnIncreseSeat, driver, "Passenger Info");
 		}
-			}
-	
-	
-		
+	}
+
+
+
 
 	public void selectTripTypeBus(String tripType) throws Exception {
 		if (tripType.equals(Constants.C_ONEWAY)) {
@@ -943,7 +948,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 			Log.event("Successfully selected RoundTrip option in Search Fields");
 		}
 	}
-	
+
 	/**
 	 * To Select Bus Origin
 	 * 
@@ -954,12 +959,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.typeOnTextField(txtOriginBus, origin, driver, "Select Origin");
 		Log.event("Entered the Origin: " + origin);
 	}
-	 	/**
-		 * To Select Bus Destination
-		 * 
-		 * @throws Exception
-		 */
-	
+	/**
+	 * To Select Bus Destination
+	 * 
+	 * @throws Exception
+	 */
+
 	public void enterDestinationBus(String destination) throws Exception {
 		Utils.waitForElement(driver, txtDestinationBus);
 		BrowserActions.typeOnTextField(txtDestinationBus, destination, driver, "Select Destination");
@@ -982,14 +987,14 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
-		
+
 		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		BrowserActions.nap(2);
 		datePicker.get(7).click();*/
 		Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
-	
+
 	/**
 	 * To Select Bus Depature Date
 	 * 
@@ -1003,7 +1008,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(dateDepartureBus, driver, "clicking on Bus Depart date icon");
 		selectMonth_Bus.get(month - 3).click();
 		BrowserActions.nap(2);
-		
+
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
 		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
@@ -1026,10 +1031,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	
+
 	public void selectRoundTripBusSearchFields(String origin, String destination, String departureDate,
 			String returnDate, String passengerInfo) throws Exception {
-		
+
 		enterOriginBus(origin); // enter Origin value
 		BrowserActions.nap(2);
 		enterDestinationBus(destination); // enter Destination value
@@ -1077,7 +1082,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
-	
+
 	/**
 	 * Getting the text from the Bus Info
 	 * 
@@ -1117,46 +1122,46 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return new TrainSearchResult(driver).get();
 
 	}
-	
-	
+
+
 	public Boolean incorrectCity() throws Exception {
 		BrowserActions.typeOnTextField(txtTrainOrigin, "xyz", driver, "Invalid Origin city");
 		Utils.waitForPageLoad(driver);
 		String cityError = BrowserActions.getText(driver, txtTrainOrigin, "Incorrect Orgin City");
 		if (cityError.startsWith("No match"))
 		{
-		return true;
+			return true;
 		}
-		
+
 		return false;
-			
+
 	}
 
-    /**
-    * To select Departure Date
-    * 
-     * @throws Exception
-    */
-    @SuppressWarnings("static-access")
-    public String selectTrainDepartureDate(String trainDepartureDate) throws Exception {
-           int iDay = Integer.parseInt(trainDepartureDate);
-           String date = utils.dateGenerator("yyyy_M_d", iDay);
-           int month = Integer.parseInt(date.split("_")[1]);
-           BrowserActions.nap(2);
-           BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on Bus Return date icon");
-           selectMonth_Bus.get(month - 3).click();
-           
-           Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
-   		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
-           /*BrowserActions.nap(2);
+	/**
+	 * To select Departure Date
+	 * 
+	 * @throws Exception
+	 */
+	@SuppressWarnings("static-access")
+	public String selectTrainDepartureDate(String trainDepartureDate) throws Exception {
+		int iDay = Integer.parseInt(trainDepartureDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int month = Integer.parseInt(date.split("_")[1]);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on Bus Return date icon");
+		selectMonth_Bus.get(month - 3).click();
+
+		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
+		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
+		/*BrowserActions.nap(2);
            List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
            BrowserActions.nap(2);
            datePicker.get(7).click();*/
-           Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
-           return date;
-    }
+		Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
+		return date;
+	}
 
-	
+
 	/**
 	 * To select Train search Fields
 	 * 
@@ -1172,7 +1177,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
-	
+
 	public void clickTrainTab() throws Exception {
 		// final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
@@ -1212,5 +1217,62 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
-	
+
+	/**
+	 * Description:to Click on Main Menu and sub menu
+	 * @param driver
+	 * @param sMainMenu
+	 * @param sSubMenu
+	 * @throws Exception 
+	 */
+	public void clickOnMainMenu(WebDriver driver, String sMainMenu, String sSubMenu) throws Exception
+
+	{/*
+
+		WebElement wMainMenu=driver.findElement(By.xpath("//div[@class='menu']//a[contains(.,'"+sMainMenu+"')]"));
+
+		Actions action=new Actions(driver);
+		Utils.waitForElement(driver, wMainMenu, 5);
+		Log.message("clicking on "+sMainMenu+" in main Navigation");
+		Point location=wMainMenu.getLocation();
+		int xCoordinate=location.getX();
+		int yCoordinate=location.getY();
+		System.out.println();
+		action.moveToElement(wMainMenu, xCoordinate, yCoordinate).clickAndHold().build().perform();
+		BrowserActions.clickOnElement(wMainMenu, driver, "clicking on "+sMainMenu+" in main Navigation");
+
+		if("My Account".equalsIgnoreCase(sMainMenu.trim()))
+		{
+			Log.message("clicking on "+sSubMenu+" under "+sMainMenu+"");
+			WebElement wSubMenu=driver.findElement(By.xpath("//div[@class='user-drop-ddn-out header-dropdown']//a[text()='"+sSubMenu+"']"));
+			BrowserActions.clickOnElement(wSubMenu, driver, sSubMenu+" under "+sMainMenu+"");
+
+		}
+
+	 */
+		//this is just patch as of now will work on it
+		if(sSubMenu.contains("Agent"))
+		{
+			driver.navigate().to("https://www.yatra.com/agents");
+		}
+		else if(sSubMenu.contains("Corporate"))
+
+		{
+			driver.navigate().to("https://www.yatra.com/corporatetravel");
+		}
+		else if(sSubMenu.equalsIgnoreCase("Login"))
+
+		{
+			driver.navigate().to("https://secure.yatra.com/social/common/yatra/signin.htm");
+		}
+
+	}
+
+
+
+
+
+
+
+
 }// HomePage

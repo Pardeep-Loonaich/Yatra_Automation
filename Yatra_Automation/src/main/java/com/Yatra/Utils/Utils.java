@@ -574,19 +574,6 @@ public class Utils {
 
 	}
 	
-	/**
-	 * Description: to select date 
-	 * @param dateInputField: date icon field to display date calander
-	 * @param: dateElement: webelement of date to select
-	 * @date:
-	 */
-	public static void selectDate(WebElement dateInputField,WebElement dateElement)
 	
-	{
-		
-		dateInputField.click();
-		dateElement.click();
-		
-	}
 
 }
