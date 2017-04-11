@@ -21,6 +21,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
@@ -47,6 +48,27 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 
 	@FindBy(css = "input[class='ytBtn-chek ytBtnOrange-chek eventTrackable']")
 	WebElement btnContinue;
+	
+	@FindBy(css = "div[class='toasterHolder']")
+	WebElement txtErrorMsg;
+	
+	@FindBy(css = "span[id='editMobileNo']>a")
+	WebElement lnkEditButton;
+	
+	@FindBy(css = "input[id='userMobile']")
+	WebElement fldContentUserMobileNo;
+	
+	@FindBy(css = "#userMobile")
+	WebElement fldUserMobileNo;
+
+	@FindBy(css = "span[class='custom-checkbox']>input")
+	WebElement chkBoxAddonsFirst;
+	
+	@FindBy(css = "div[class='wfull']>span>input")
+	WebElement chkBoxAddonsSecond;
+	
+	@FindBy(css = "div[class='agreeToContNxt']>a")
+	WebElement lnkTermAndCond;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -84,7 +106,7 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	}
 	
 	
-	public void TravellerDetails() throws Exception {
+	public void TravellerDetails(String name) throws Exception {
 		Utils.waitForPageLoad(driver);
         WebElement Title = driver.findElement(By.cssSelector("select[id='paxtitle1']"));
         BrowserActions.clickOnElement(Title, driver, "Title");
@@ -94,18 +116,97 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
                BrowserActions.clickOnElement(Titles.get(rand), driver, "Title Selected");
         }//Random Title Selection
         Thread.sleep(5000);
-        String rand =  RandomStringUtils.randomAlphabetic(10);
- 		BrowserActions.typeOnTextField(txtBoxName, rand , driver, "Guest Name");//Random Name
+ 		BrowserActions.typeOnTextField(txtBoxName, name , driver, "Guest Name");//Name From Regression
  		Thread.sleep(5000);
  		WebElement Age = driver.findElement(By.cssSelector("#paxage1"));
-         BrowserActions.clickOnElement(Age, driver, "Title");
-         List<WebElement> Ages = driver.findElements(By.cssSelector("#paxage1>option"));
+ 		Select age = new Select(Age);
+ 		List<WebElement> Ages = age.getOptions();
          if (Ages.size() != 0) {
-                int rand1 = Utils.getRandom(2, Ages.size());
-                BrowserActions.nap(2);
-                BrowserActions.clickOnElement(Ages.get(rand1), driver, "Age Selected");//Random Age Selection
+           int rand1 = Utils.getRandom(2, Ages.size());               
+           BrowserActions.nap(2);
+           age.selectByIndex(rand1);
          }
          BrowserActions.clickOnElement(btnContinue, driver, "Continue Button");
 	}
+	/**
+	 * Getting the Error Text
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorMsg() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsg);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsg,
+				"Getting Error Text");
+		return txtDetails;
+	}/**
+	 * To click Edit Mobile Link
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickEditMobileLink() throws Exception {
+		Utils.waitForElement(driver, lnkEditButton);
+		BrowserActions.clickOnElement(lnkEditButton, driver, "Click Edit Button");
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * To Enter Mobile Number
+	 * 
+	 * @throws Exception
+	 */
+	public void enterMobileNumber(String Number) throws Exception {
+		Utils.waitForElement(driver, fldContentUserMobileNo);
+		BrowserActions.typeOnTextField(fldContentUserMobileNo, Number, driver, "User Phone Number");
+	}/**
+	 * To Get Mobile Number
+	 * 
+	 * @throws Exception
+	 */
+	public String getTextMobileNo() throws Exception {
+		Utils.waitForElement(driver, fldUserMobileNo);
+		String number =	fldUserMobileNo.getAttribute("value");
+		return number;	
+	}
+	public boolean checkBoxFirst() throws Exception {
+		boolean flag = false;
+		String result = chkBoxAddonsFirst.getAttribute("type");
+		if(result.equals("checkbox")){
+			 flag= true;
+		}else{
+			flag= false;
+		}
+		return flag;
 		
+	}
+	public boolean checkBoxSecond() throws Exception {
+		boolean flag = false;
+		String result = chkBoxAddonsSecond.getAttribute("type");
+		if(result.equals("checkbox")){
+			 flag= true;
+		}else{
+			flag= false;
+		}
+		return flag;
+	}
+ /**
+ * To click On Term and Conditions
+ * 
+ * @throws Exception
+ */
+
+public void clickOnTermAndCondition() throws Exception {
+	Utils.waitForElement(driver, lnkTermAndCond);
+	BrowserActions.clickOnElement(lnkTermAndCond, driver, "Click Term And Condition Link");
+	Utils.waitForPageLoad(driver);
+}
+/**
+ * to verify Tnc page
+ * @return
+ * @throws Exception
+ */
+public boolean verifyTnCPage() throws Exception{
+	return BrowserActions.getText(driver, driver.findElement(By.cssSelector(".ytAboutHanding.txtDrkGreyI")), "Getting Text from span").contains("Terms and Conditions");
+}	
 }//TravellerPage

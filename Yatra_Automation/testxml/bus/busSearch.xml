@@ -10,10 +10,17 @@
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
-	<test name="Bus Search" thread-count="5" parallel="true">
+	<test name="Bus Search" thread-count="4" parallel="true">
 
 		<classes>
-			<class name="com.Yatra.TestScript.Bus.BusSearchTest"> </class>
+			<class name="com.Yatra.TestScript.Bus.BusSearchTest">
+			<methods>
+             <include name="TC_Yatra_Bus_033"/> 
+             <include name="TC_Yatra_Bus_031"/>
+             <include name="TC_Yatra_Bus_019"/>
+             <include name="TC_Yatra_Bus_022"/>                  
+             </methods> 
+          </class>          
 		</classes>
 	</test>
 </suite>

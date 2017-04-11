@@ -1,5 +1,7 @@
 package com.Yatra.Utils;
 
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -11,6 +13,8 @@ import org.openqa.selenium.remote.*;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 import org.testng.SkipException;
+import org.openqa.selenium.JavascriptExecutor;
+//import com.Yatra.Pages.JavascriptExecutor;
 
 
 /**
@@ -570,5 +574,38 @@ public class Utils {
 		return dataToBeReturn;
 
 	}
+	/**
+	 * Use this if you need to scroll to top/Bottom of page
+	 * @param driver
+	 *	
+	 */
+	public static void scrollPage(WebDriver driver, int scrollPixel){
+		BrowserActions.nap(1);
+		((JavascriptExecutor) driver).executeScript("scroll(0, "+scrollPixel+");");
+		BrowserActions.nap(1);
+	}
+		
+	public static void setMousePositionOffPage(WebDriver driver) {
+			((JavascriptExecutor) driver).executeScript("window.focus();");
+
+			Robot r;
+			try {
+				r = new Robot();
+				r.mouseMove(1000,0);
+			} catch (AWTException e) {
+				// no message
+			}
+
+//			Screen screen = new Screen();
+	//
+//			try {
+//				Location l = screen.getTopRight();
+//				screen.mouseMove(l);
+//				screen.mouseMove(-250, 0);
+//			} catch (Exception e) {
+//				// no message please
+//			}
+		}
+
 
 }
