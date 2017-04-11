@@ -20,8 +20,8 @@ import org.testng.SkipException;
  */
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
-	public static int maxElementWait = 30;
-	public static String testCaseId="";
+
+	public static int maxElementWait = 50;
 
 
 	/**
@@ -45,7 +45,7 @@ public class Utils {
 	public static void waitForPageLoad(final WebDriver driver, int maxWait) {
 		//long startTime = StopWatch.startTime();
 		FluentWait<WebDriver> wait = new WebDriverWait(driver, maxWait).pollingEvery(500, TimeUnit.MILLISECONDS)
-				.ignoring(StaleElementReferenceException.class).withMessage("Page Load Timed Out");
+				.ignoring(StaleElementReferenceException.class,WebDriverException.class).withMessage("Page Load Timed Out");
 		try {
 
 			if (configProperty.getProperty("documentLoad").equalsIgnoreCase("true"))
@@ -145,6 +145,7 @@ public class Utils {
 		//long startTime = StopWatch.startTime();
 		WebDriverWait wait = new WebDriverWait(driver, maxWait);
 		try {
+			
 			WebElement waitElement = wait.until(ExpectedConditions.visibilityOf(element));
 			if (waitElement.isDisplayed() && waitElement.isEnabled()) {
 				statusOfElementToBeReturned = true;
@@ -536,24 +537,20 @@ public class Utils {
 	 * @return: it will return boolean
 	 */
 
-	public static boolean testCaseConditionalSkip(String sExecute)
-	{
-		boolean dataToBeReturn=false;
-
-		if("no".equalsIgnoreCase(sExecute.toLowerCase().trim()))
-		{
-			Throwable t=new Throwable();
+	public static boolean testCaseConditionalSkip(String sExecute) {
+		boolean dataToBeReturn = false;
+		if ("no".equalsIgnoreCase(sExecute.toLowerCase().trim())) {
+			Throwable t = new Throwable();
 			String testCaseId = t.getStackTrace()[1].getMethodName();
-			dataToBeReturn=true;
-		
-			Log.message("\""+testCaseId+"\"has marked Run as \"NO\" in Excel data !!");
-			Log.message("\""+testCaseId+"\" has been skipped !!");
-			throw new SkipException("\""+testCaseId+"\" has been skipped !!");
-		
+			dataToBeReturn = true;
+			Log.message_Skip("\"" + testCaseId + "\" has marked Run as \"NO\" in Excel data !!");
+			Log.message_Skip("\"" + testCaseId + "\" has been skipped !!");
+			throw new SkipException("\"" + testCaseId + "\" has been skipped !!");
+
 		}
 		return dataToBeReturn;
 	}
-
+	
 	public static String dateGenerator_DOB(String sDateFormat, int iDay) {
 		String dataToBeReturn = "";
 		if (sDateFormat.equalsIgnoreCase("") || sDateFormat.equalsIgnoreCase(null)) {
@@ -563,10 +560,9 @@ public class Utils {
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDateFormat);
 
-		if (!(iDay == 0))
-		{
-			//cal.add(Calendar.DATE, iDay);
-			//cal.add(Calendar.MONTH, iDay);
+		if (!(iDay == 0)) {
+			// cal.add(Calendar.DATE, iDay);
+			// cal.add(Calendar.MONTH, iDay);
 			cal.add(Calendar.YEAR, iDay);
 			dataToBeReturn = simpleDateFormat.format(cal.getTime()).toString();
 			// System.out.println(simpleDateFormat.format(cal.getTime()));
@@ -576,6 +572,21 @@ public class Utils {
 		}
 		return dataToBeReturn;
 
+	}
+	
+	/**
+	 * Description: to select date 
+	 * @param dateInputField: date icon field to display date calander
+	 * @param: dateElement: webelement of date to select
+	 * @date:
+	 */
+	public static void selectDate(WebElement dateInputField,WebElement dateElement)
+	
+	{
+		
+		dateInputField.click();
+		dateElement.click();
+		
 	}
 
 }

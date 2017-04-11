@@ -71,7 +71,7 @@ public class WebDriverFactory {
 	static String deviceName;
 	static URL hubURL;
 	static Proxy zapProxy = new Proxy();
-	static MobileEmulationUserAgentConfiguration mobEmuUA =new MobileEmulationUserAgentConfiguration();
+
 	static DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
 	static DesiredCapabilities firefoxCapabilities = DesiredCapabilities.firefox();
 	static DesiredCapabilities chromeCapabilities = DesiredCapabilities.chrome();
@@ -178,25 +178,25 @@ public class WebDriverFactory {
 			maxPageLoadWait = configProperty.getProperty("maxPageLoadWait") != null
 					? Integer.valueOf(configProperty.getProperty("maxPageLoadWait")) : maxPageLoadWait;
 
-					opt.addArguments("--ignore-certificate-errors");
-					opt.addArguments("--disable-bundled-ppapi-flash");
-					opt.addArguments("--disable-extensions");
-					opt.addArguments("--disable-web-security");
-					opt.addArguments("--always-authorize-plugins");
-					opt.addArguments("--allow-running-insecure-content");
-					opt.addArguments("--test-type");
-					opt.addArguments("--enable-npapi");
-					opt.addArguments("--disable-notifications");//disable notification
-					// to handle Chrome driver 2.28 “Chrome is being controlled by automated test software” notification
-					opt.addArguments("disable-infobars");
-					chromeCapabilities.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
-					chromeCapabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+			opt.addArguments("--ignore-certificate-errors");
+			opt.addArguments("--disable-bundled-ppapi-flash");
+			opt.addArguments("--disable-extensions");
+			opt.addArguments("--disable-web-security");
+			opt.addArguments("--always-authorize-plugins");
+			opt.addArguments("--allow-running-insecure-content");
+			opt.addArguments("--test-type");
+			opt.addArguments("--enable-npapi");
+			opt.addArguments("--disable-notifications");//disable notification
+			// to handle Chrome driver 2.28 “Chrome is being controlled by automated test software” notification
+			opt.addArguments("disable-infobars");
+			chromeCapabilities.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
+			chromeCapabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 
-					try {
-						hubURL = new URL("http://" + driverHost + ":" + driverPort + "/wd/hub");
-					} catch (MalformedURLException e) {
-						// e.printStackTrace();
-					}
+			try {
+				hubURL = new URL("http://" + driverHost + ":" + driverPort + "/wd/hub");
+			} catch (MalformedURLException e) {
+				// e.printStackTrace();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -212,7 +212,7 @@ public class WebDriverFactory {
 	public static WebDriver get() throws MalformedURLException {
 		browserName = System.getProperty("browserName") != null ? System.getProperty("browserName")
 				: Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browserName")
-				.toLowerCase();
+						.toLowerCase();
 		return get(browserName, null);
 	}
 
@@ -248,12 +248,12 @@ public class WebDriverFactory {
 		WebDriver driver = null;
 		String userAgent = null;
 		//long startTime = StopWatch.startTime();
-
+		
 		// Get invoking test name to pass on to Jenkins
 		String callerMethodName = new Exception().getStackTrace()[2].getMethodName();
 		Log.event("TestCaseID:: "+callerMethodName);
-
-		String driverInitializeInfo[] = null;              
+		
+		String driverInitializeInfo[] = null;	
 		// Handling System property variable overridden on parallel execution
 		// till web driver initialization part
 		synchronized (System.class) {
@@ -263,77 +263,77 @@ public class WebDriverFactory {
 
 				sauceUserName = configProperty.hasProperty("sauceUserName")
 						? configProperty.getProperty("sauceUserName") : null;
-						sauceAuthKey = configProperty.hasProperty("sauceAuthKey") ? configProperty.getProperty("sauceAuthKey")
-								: null;
+				sauceAuthKey = configProperty.hasProperty("sauceAuthKey") ? configProperty.getProperty("sauceAuthKey")
+						: null;
 
-						// Desktop
-						if (configProperty.hasProperty("runDesktop")
-								&& configProperty.getProperty("runDesktop").equalsIgnoreCase("true")) {
+				// Desktop
+				if (configProperty.hasProperty("runDesktop")
+						&& configProperty.getProperty("runDesktop").equalsIgnoreCase("true")) {
 
-							if (browserWithPlatform.contains("&")) {
-								driverInitializeInfo = browserWithPlatform.split("&");
-								browser = driverInitializeInfo[0];
+					if (browserWithPlatform.contains("&")) {
+						driverInitializeInfo = browserWithPlatform.split("&");
+						browser = driverInitializeInfo[0];
 
-								// BrowserType enum available in selenium remote class,
-								// so
-								// here pointing our framework BrowserType
-								browser = com.Yatra.Utils.BrowserType.fromConfiguration(browser).getConfiguration();
-								browserVersion = driverInitializeInfo[1];
-								platform = driverInitializeInfo[2];
-							}
+						// BrowserType enum available in selenium remote class,
+						// so
+						// here pointing our framework BrowserType
+						browser = com.Yatra.Utils.BrowserType.fromConfiguration(browser).getConfiguration();
+						browserVersion = driverInitializeInfo[1];
+						platform = driverInitializeInfo[2];
+					}
 
-							System.setProperty("SELENIUM_DRIVER",
-									"sauce-ondemand:?os=" + platform + "&browser=" + browser + "&browser-version="
-											+ browserVersion + "&username=" + sauceUserName + "&access-key=" + sauceAuthKey);
-							System.setProperty("SAUCE_USER_NAME", sauceUserName);
-							System.setProperty("SAUCE_API_KEY", sauceAuthKey);
+					System.setProperty("SELENIUM_DRIVER",
+							"sauce-ondemand:?os=" + platform + "&browser=" + browser + "&browser-version="
+									+ browserVersion + "&username=" + sauceUserName + "&access-key=" + sauceAuthKey);
+					System.setProperty("SAUCE_USER_NAME", sauceUserName);
+					System.setProperty("SAUCE_API_KEY", sauceAuthKey);
 
-							// From local to sauce lab for device test
-							if (configProperty.hasProperty("runUserAgentDeviceTest")
-									&& configProperty.getProperty("runUserAgentDeviceTest").equalsIgnoreCase("true")) {
-								deviceName = driverInitializeInfo[3];
-								System.setProperty("runUserAgentDeviceTest", "true");
-								System.setProperty("deviceName", deviceName);
-							}
-						}
-						// Mobile
-						if (configProperty.hasProperty("runMobile")
-								&& configProperty.getProperty("runMobile").equalsIgnoreCase("true")) {
+					// From local to sauce lab for device test
+					if (configProperty.hasProperty("runUserAgentDeviceTest")
+							&& configProperty.getProperty("runUserAgentDeviceTest").equalsIgnoreCase("true")) {
+						deviceName = driverInitializeInfo[3];
+						System.setProperty("runUserAgentDeviceTest", "true");
+						System.setProperty("deviceName", deviceName);
+					}
+				}
+				// Mobile
+				if (configProperty.hasProperty("runMobile")
+						&& configProperty.getProperty("runMobile").equalsIgnoreCase("true")) {
 
-							browser = configProperty.getProperty("mobileBrowserName");
-							platform = configProperty.getProperty("mobilePlatformName");
-							deviceName = configProperty.getProperty("mobileDeviceName");
-							browserVersion = configProperty.getProperty("mobilePlatformVersion");
-							appiumVersion = configProperty.getProperty("appiumVersion");
-							deviceOrientation = configProperty.getProperty("deviceOrientation");
+					browser = configProperty.getProperty("mobileBrowserName");
+					platform = configProperty.getProperty("mobilePlatformName");
+					deviceName = configProperty.getProperty("mobileDeviceName");
+					browserVersion = configProperty.getProperty("mobilePlatformVersion");
+					appiumVersion = configProperty.getProperty("appiumVersion");
+					deviceOrientation = configProperty.getProperty("deviceOrientation");
+					
+                    //adding method name into sauce lab build				
+					iOSDeviceCapabilities.setCapability("name", callerMethodName);
 
-							//adding method name into sauce lab build                                                     
-							iOSDeviceCapabilities.setCapability("name", callerMethodName);
+					iOSDeviceCapabilities.setCapability("browserName", browser);
+					iOSDeviceCapabilities.setCapability("platformVersion", browserVersion);
+					iOSDeviceCapabilities.setCapability("platformName", platform);
+					iOSDeviceCapabilities.setCapability("deviceName", deviceName);
+					iOSDeviceCapabilities.setCapability("deviceOrientation", deviceOrientation);
+					iOSDeviceCapabilities.setCapability("appiumVersion", appiumVersion);
+					
+					
 
-							iOSDeviceCapabilities.setCapability("browserName", browser);
-							iOSDeviceCapabilities.setCapability("platformVersion", browserVersion);
-							iOSDeviceCapabilities.setCapability("platformName", platform);
-							iOSDeviceCapabilities.setCapability("deviceName", deviceName);
-							iOSDeviceCapabilities.setCapability("deviceOrientation", deviceOrientation);
-							iOSDeviceCapabilities.setCapability("appiumVersion", appiumVersion);
+					driver = new RemoteWebDriver(new URL(
+							"http://" + sauceUserName + ":" + sauceAuthKey + "@ondemand.saucelabs.com:80/wd/hub"),
+							iOSDeviceCapabilities);
+					
+					String saucelabsSessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
+					String sauceLink = "http://saucelabs.com/jobs/" + saucelabsSessionId + "?auth=" + newHMACMD5Digest(
+							sauceUserName + ":" + sauceAuthKey, saucelabsSessionId);
+					logger.debug("Saucelab link for " + callerMethodName + ":: " + sauceLink);
+					Log.addSauceJobUrlToReport(driver, sauceLink);
+					
+					return driver;
 
-
-
-							driver = new RemoteWebDriver(new URL(
-									"http://" + sauceUserName + ":" + sauceAuthKey + "@ondemand.saucelabs.com:80/wd/hub"),
-									iOSDeviceCapabilities);
-
-							String saucelabsSessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
-							String sauceLink = "http://saucelabs.com/jobs/" + saucelabsSessionId + "?auth=" + newHMACMD5Digest(
-									sauceUserName + ":" + sauceAuthKey, saucelabsSessionId);
-							logger.debug("Saucelab link for " + callerMethodName + ":: " + sauceLink);
-							Log.addSauceJobUrlToReport(driver, sauceLink);
-
-							return driver;
-
-						}
+				}
 			}
-
+			
 			// check for Jenkins override from Jenkins to sauce lab
 			if (System.getProperty("SELENIUM_DRIVER") != null || System.getenv("SELENIUM_DRIVER") != null) {
 				return newWebDriverInstanceFromEnvironment(callerMethodName);
@@ -346,7 +346,6 @@ public class WebDriverFactory {
 			browser = browserWithPlatform.split("_")[0].toLowerCase().trim();
 			platform = browserWithPlatform.split("_")[1].toUpperCase().trim();
 		} else {
-			browser=browserWithPlatform;
 			platform = "ANY";
 		}
 
@@ -357,7 +356,7 @@ public class WebDriverFactory {
 						&& configProperty.getProperty("runUserAgentDeviceTest").equalsIgnoreCase("true")) {
 					deviceName = configProperty.hasProperty("deviceName") ? configProperty.getProperty("deviceName")
 							: null;
-					userAgent = mobEmuUA.getUserAgent(deviceName);
+					//userAgent = mobEmuUA.getUserAgent(deviceName);
 					if (userAgent != null && deviceName != null) {
 						driver = new RemoteWebDriver(hubURL, setChromeUserAgent(deviceName, userAgent));
 					} else {
@@ -391,8 +390,8 @@ public class WebDriverFactory {
 			} else if ("safari".equalsIgnoreCase(browser)) {
 				driver = new RemoteWebDriver(hubURL, safariCapabilities);
 			} else if ("zap".equalsIgnoreCase(browser)) { // To run a ZAP TC's
-				// Use Browser opt
-				// as zap
+															// Use Browser opt
+															// as zap
 				Proxy zapChromeProxy = new Proxy();
 				zapChromeProxy.setHttpProxy("localhost:8080");
 				zapChromeProxy.setFtpProxy("localhost:8080");
@@ -409,7 +408,8 @@ public class WebDriverFactory {
 				}
 				driver.manage().timeouts().pageLoadTimeout(maxPageLoadWait, TimeUnit.SECONDS);
 			}
-			Assert.assertNotNull(driver,"Driver did not intialize...\n Please check if hub is running / configuration settings are corect.");
+			Assert.assertNotNull(driver,
+					"Driver did not intialize...\n Please check if hub is running / configuration settings are corect.");
 
 			if (!"ANDROID".equalsIgnoreCase(platform)) {
 				driver.manage().window().maximize();
@@ -433,16 +433,16 @@ public class WebDriverFactory {
 				if (e.getMessage().toLowerCase().contains("error forwarding the new session empty pool of vm for setup")
 						|| e.getMessage().toLowerCase().contains("cannot get automation extension")
 						|| e.getMessage().toLowerCase().contains("chrome not reachable")) {
-					Log.message("&emsp;<b> --- Re-tried as browser crashed </b>");
-					try {
-						driver.quit();
-					} catch (WebDriverException e1) {
-						e.printStackTrace();
-					}
-					driver = get();
-				} else {
-					throw e;
+				Log.message("&emsp;<b> --- Re-tried as browser crashed </b>");
+				try {
+					driver.quit();
+				} catch (WebDriverException e1) {
+					e.printStackTrace();
 				}
+				driver = get();
+			} else {
+				throw e;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			Assert.fail("Exception encountered in getDriver Method." + e.getMessage().toString());
@@ -491,70 +491,70 @@ public class WebDriverFactory {
 					System.getenv("BUILD_ID"));
 			String screenResolution = configProperty.hasProperty("screenResolution")
 					? configProperty.getProperty("screenResolution") : null;
-					String seleniumVersion = configProperty.hasProperty("seleniumVersion")
-							? configProperty.getProperty("seleniumVersion") : null;
-							String iedriverVersion = configProperty.hasProperty("iedriverVersion")
-									? configProperty.getProperty("iedriverVersion") : null;
-									String chromedriverVersion = configProperty.hasProperty("chromedriverVersion")
-											? configProperty.getProperty("chromedriverVersion") : null;
-											String maxTestDuration = configProperty.hasProperty("maxTestDuration")
-													? configProperty.getProperty("maxTestDuration") : null;
-													String commandTimeout = configProperty.hasProperty("commandTimeout")
-															? configProperty.getProperty("commandTimeout") : null;
-															String idleTimeout = configProperty.hasProperty("idleTimeout") ? configProperty.getProperty("idleTimeout")
-																	: null;
+			String seleniumVersion = configProperty.hasProperty("seleniumVersion")
+					? configProperty.getProperty("seleniumVersion") : null;
+			String iedriverVersion = configProperty.hasProperty("iedriverVersion")
+					? configProperty.getProperty("iedriverVersion") : null;
+			String chromedriverVersion = configProperty.hasProperty("chromedriverVersion")
+					? configProperty.getProperty("chromedriverVersion") : null;
+			String maxTestDuration = configProperty.hasProperty("maxTestDuration")
+					? configProperty.getProperty("maxTestDuration") : null;
+			String commandTimeout = configProperty.hasProperty("commandTimeout")
+					? configProperty.getProperty("commandTimeout") : null;
+			String idleTimeout = configProperty.hasProperty("idleTimeout") ? configProperty.getProperty("idleTimeout")
+					: null;
 
-															caps.setRecordSnapshot(false);
+			caps.setRecordSnapshot(false);
 
-															// To setting the screen resolution
-															if (screenResolution != null) {
-																caps.setScreenResolution(screenResolution);
-															}
+			// To setting the screen resolution
+			if (screenResolution != null) {
+				caps.setScreenResolution(screenResolution);
+			}
 
-															// To setting the selenium, ie and chrome driver version
-															// capabilities
-															if (seleniumVersion != null)
-																caps.setSeleniumVersion(seleniumVersion);
-															if (iedriverVersion != null)
-																caps.setIeDriverVersion(iedriverVersion);
-															if (chromedriverVersion != null)
-																caps.setChromeDriverVersion(chromedriverVersion);
+			// To setting the selenium, ie and chrome driver version
+			// capabilities
+			if (seleniumVersion != null)
+				caps.setSeleniumVersion(seleniumVersion);
+			if (iedriverVersion != null)
+				caps.setIeDriverVersion(iedriverVersion);
+			if (chromedriverVersion != null)
+				caps.setChromeDriverVersion(chromedriverVersion);
 
-															// Timeout capabilities
-															if (maxTestDuration != null)
-																caps.setMaxTestDuration(maxTestDuration);
-															if (commandTimeout != null)
-																caps.setCommandTimeout(commandTimeout);
-															if (idleTimeout != null)
-																caps.setIdleTimeout(idleTimeout);
+			// Timeout capabilities
+			if (maxTestDuration != null)
+				caps.setMaxTestDuration(maxTestDuration);
+			if (commandTimeout != null)
+				caps.setCommandTimeout(commandTimeout);
+			if (idleTimeout != null)
+				caps.setIdleTimeout(idleTimeout);
 
-															WebDriver driver = null;
-															String userAgent = null;
-															// User agent capabilities
-															if (System.getProperty("runUserAgentDeviceTest") != null) {
-																if (System.getProperty("runUserAgentDeviceTest").equalsIgnoreCase("true")) {
-																	deviceName = System.getProperty("deviceName") != null ? System.getProperty("deviceName") : null;
-																	//userAgent = mobEmuUA.getUserAgent(deviceName) != null ? mobEmuUA.getUserAgent(deviceName) : null;
+			WebDriver driver = null;
+			String userAgent = null;
+			// User agent capabilities
+			if (System.getProperty("runUserAgentDeviceTest") != null) {
+				if (System.getProperty("runUserAgentDeviceTest").equalsIgnoreCase("true")) {
+					deviceName = System.getProperty("deviceName") != null ? System.getProperty("deviceName") : null;
+					//userAgent = mobEmuUA.getUserAgent(deviceName) != null ? mobEmuUA.getUserAgent(deviceName) : null;
 
-																	if (deviceName != null && userAgent != null) {
-																		//driver = SeleniumFactory.createWebDriver(caps.getUserAgentDesiredCapabilities(caps, deviceName, userAgent));
+					if (deviceName != null && userAgent != null) {
+						//driver = SeleniumFactory.createWebDriver(caps.getUserAgentDesiredCapabilities(caps, deviceName, userAgent));
 
-																	} else {
-																		logger.error("Invalid mobile emulation configuration, check the parameters(deviceName) value: "
-																				+ deviceName);
-																	}
-																} else {
-																	logger.error("runUserAgentDeviceTest value has been set as false");
-																}
-															} else {
-																//driver = SeleniumFactory.createWebDriver(caps.getDesiredCapabilities());
-															}
-															String saucelabsSessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
-															String sauceLink = "http://saucelabs.com/jobs/" + saucelabsSessionId + "?auth=" + newHMACMD5Digest(
-																	System.getenv("SAUCE_USER_NAME") + ":" + System.getenv("SAUCE_API_KEY"), saucelabsSessionId);
-															logger.debug("Saucelab link for " + testName + ":: " + sauceLink);
-															Log.addSauceJobUrlToReport(driver, sauceLink);
-															return driver;
+					} else {
+						logger.error("Invalid mobile emulation configuration, check the parameters(deviceName) value: "
+								+ deviceName);
+					}
+				} else {
+					logger.error("runUserAgentDeviceTest value has been set as false");
+				}
+			} else {
+				//driver = SeleniumFactory.createWebDriver(caps.getDesiredCapabilities());
+			}
+			String saucelabsSessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
+			String sauceLink = "http://saucelabs.com/jobs/" + saucelabsSessionId + "?auth=" + newHMACMD5Digest(
+					System.getenv("SAUCE_USER_NAME") + ":" + System.getenv("SAUCE_API_KEY"), saucelabsSessionId);
+			logger.debug("Saucelab link for " + testName + ":: " + sauceLink);
+			Log.addSauceJobUrlToReport(driver, sauceLink);
+			return driver;
 		} else {
 			return null;
 		}
@@ -674,9 +674,9 @@ public class WebDriverFactory {
 		int height = 0;
 		Double pixRatio = null;
 
-		width = Integer.valueOf(mobEmuUA.getDeviceWidth(deviceName));
+		/*width = Integer.valueOf(mobEmuUA.getDeviceWidth(deviceName));
 		height = Integer.valueOf(mobEmuUA.getDeviceHeight(deviceName));
-		pixRatio = Double.valueOf(mobEmuUA.getDevicePixelRatio(deviceName));
+		pixRatio = Double.valueOf(mobEmuUA.getDevicePixelRatio(deviceName));*/
 
 		deviceMetrics.put("width", width);
 		deviceMetrics.put("height", height);
@@ -695,26 +695,25 @@ public class WebDriverFactory {
 	 * @param har
 	 */
 	/*public static void printHarData(Har har) {
-                                HarLog log = har.getLog();
-                                List<HarEntry> harEntries = log.getEntries();
-                                Long totalSize = 0L;
-                                int callCount = 0;
-                                long totalTime = 0;
-                                for (HarEntry entry : harEntries) {
-                                                callCount++;
-                                                if (entry.getResponse() == null) {
-                                                                continue;
-                                                }
-                                                // System.out.println( "entry:" + entry.getRequest().getUrl() );
-                                                totalSize += entry.getResponse().getBodySize();
-                                                totalTime += entry.getTime(TimeUnit.MILLISECONDS);
-                                }
-                                HarSummary summary = new HarSummary((double) totalSize / 1024, callCount, totalTime);
-                                Log.message("#################<b>PERF DATA</b>###################");
-                                Log.message("<br>");
-                                Log.message("Call count : " + summary.getCallCount());
-                                Log.message("Size : " + summary.getTotalPayloadSize() / 1024 + " MB");
-                                Log.message("Total load time : " + summary.getTotalLoadTime() / 1000 + " seconds");
-                }*/
+		HarLog log = har.getLog();
+		List<HarEntry> harEntries = log.getEntries();
+		Long totalSize = 0L;
+		int callCount = 0;
+		long totalTime = 0;
+		for (HarEntry entry : harEntries) {
+			callCount++;
+			if (entry.getResponse() == null) {
+				continue;
+			}
+			// System.out.println( "entry:" + entry.getRequest().getUrl() );
+			totalSize += entry.getResponse().getBodySize();
+			totalTime += entry.getTime(TimeUnit.MILLISECONDS);
+		}
+		HarSummary summary = new HarSummary((double) totalSize / 1024, callCount, totalTime);
+		Log.message("#################<b>PERF DATA</b>###################");
+		Log.message("<br>");
+		Log.message("Call count : " + summary.getCallCount());
+		Log.message("Size : " + summary.getTotalPayloadSize() / 1024 + " MB");
+		Log.message("Total load time : " + summary.getTotalLoadTime() / 1000 + " seconds");
+	}*/
 }
-

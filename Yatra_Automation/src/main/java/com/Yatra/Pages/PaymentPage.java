@@ -154,6 +154,19 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	
 	@FindBy(css= "div[class='pax-detailed']")
 	WebElement labelTravellerDetails;
+	
+	@FindBy(css= "div[class='container-fluid breadcrumb']")
+	WebElement breadcrumbBookingProgress;
+	
+	@FindBy(css= "span[class='simple-tab eCashholder']")
+	WebElement labelEcash;
+	
+	@FindBy(css= "li[id='userLoginBlock']")
+	WebElement labelUserName;
+	
+	@FindBy(css= "span[class='simple-tab eCashholder']>span")
+	WebElement ecashAmount;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -367,7 +380,16 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 
-
+	/**
+	 * Clicked on the cancel ecash redeem after verification
+	 * @return
+	 * @throws Exception
+	 */
+	public void verifyCancelEcash() throws Exception{
+          if(lnkCancelRedem.isDisplayed()){
+        	  BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on Cancel ecash redeem.");
+          }
+	}
 	/**
 	 * Clicked on the  ecash redeem
 	 * @return
@@ -680,6 +702,16 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		String ecashAmount = BrowserActions.getText(driver, driver.findElement(By.cssSelector("li[id='earnEcashDiv']>span")),"Ecash Amount");
 		return ecashAmount;
 	}
+	
+	/**
+	 * to return ecashAmount  from ecash header
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFromEcashLabel() throws Exception{
+		String ecashAmount = BrowserActions.getText(driver, driver.findElement(By.cssSelector(".eCahseValue")),"Ecash Amount");
+		return ecashAmount;
+	}
 
 	/**
 	 * to return Flight Details
@@ -689,6 +721,17 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getFlightDetails() throws Exception{
 		String flightDetails = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='leg']>span[class='ib fl']")),"Getting Text From Flight Details.").trim().replace("?", "");
 		return flightDetails;
+	}
+
+	
+	/**
+	 * to return User Name from header
+	 * @return
+	 * @throws Exception
+	 */
+	public String getUserName() throws Exception{
+		String userName = BrowserActions.getText(driver, driver.findElement(By.cssSelector("#userShowName")),"Getting Text from user name.");
+		return userName;
 	}
 
 	/**
@@ -725,8 +768,15 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return BrowserActions.getText(driver, driver.findElement(By.cssSelector("span[class='hudini']")), "Getting Text from span").contains("Terms and Conditions");
 	}
 	
-	
-
+	/**
+	 * to click on Edit Link and returning Review Page
+	 * @return
+	 * @throws Exception
+	 */
+   public ReviewPage clickOnEditLink() throws Exception{
+	   BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#spanEditStep1>a")), driver, "Clicked on edit Link under review bar");
+	   return new ReviewPage(driver).get();
+   }
 	
 	/*
 	@FindBy(css ="div[id='submitciti']")
