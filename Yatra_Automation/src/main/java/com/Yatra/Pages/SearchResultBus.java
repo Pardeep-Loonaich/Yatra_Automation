@@ -30,7 +30,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
-
+//Harveer- all element should be private
 	@FindBy(css = "#BE_flight_flsearch_btn")
 	WebElement btnFindBus;
 

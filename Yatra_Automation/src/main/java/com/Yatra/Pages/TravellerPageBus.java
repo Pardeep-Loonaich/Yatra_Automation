@@ -36,6 +36,7 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	public ElementLayer elementLayer;
 	Utils utils;
 	SearchResultBus searchResult;
+	//@Harveer- make all element private under findby annotation
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************

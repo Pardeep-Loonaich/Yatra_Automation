@@ -41,7 +41,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 
-
+//@Harveer- change access specifier for all element private
 
 	@FindBy(css = "input#BE_flight_origin_city")
 	public WebElement txtOrigin;

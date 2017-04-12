@@ -51,6 +51,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	@FindBy(css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='button-group']>button:nth-child(2)")
 	WebElement btnAddBaggage;
 
+	//@Harveer- remove absolute xpath and try to use relative
 	@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
 	WebElement btnContinueTravellerPage;
 
@@ -62,10 +63,10 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select>option:nth-child(2)")
 	WebElement fldContentselectMeal;
-
+	//@Harveer- remove absolute xpath and try to use relative
 	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
 	WebElement drpAddBaggage;
-
+	//@Harveer- remove absolute xpath and try to use relative
 	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select/option[2]")
 	WebElement fldContentselectBaggage;
 
@@ -80,7 +81,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	@FindBy(css = "ul[class='list list-border']>li:nth-child(5)>span[class='pull-right tr alignment']>a[class='remove-btn']")
 	WebElement btnRemoveMeal;
-
+	//@Harveer- remove absolute xpath and try to use relative
 	@FindBy(xpath = ".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label/span[1]/input")
 	WebElement chkInsurance;
 
@@ -415,6 +416,8 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	 * @throws Exception
 	 */
 	public void uncheckingInsuranceCheckbox() throws Exception {
+		//@Harveer remove this absolute locator and keep all locator at top and it by using @FindByAnnotation
+		
 		WebElement e = driver.findElement(By.xpath(".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label"));
 		BrowserActions.clickOnElement(e, driver, "Clicked on Insurance CheckBox.");
 	}
