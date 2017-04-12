@@ -10,11 +10,18 @@
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="chrome_windows"/>
 	<parameter name="webSite" value="https://www.yatra.com/"/>
-	<test name="Flight Search" thread-count="10" parallel="true">
+	<test name="Flight Search" thread-count="4" parallel="true">
 
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch"></class>
-			
+			<methods>
+			    <include name="TC_Yatra_Flight_001"></include>
+			    <include name="TC_Yatra_Flight_002"></include>
+			    <include name="TC_Yatra_Flight_003"></include>
+			    <include name="TC_Yatra_Flight_004"></include>
+			    <include name="TC_Yatra_Flight_005"></include>
+			</methods>
+		
 		</classes>
 	</test>
 </suite>
