@@ -3,8 +3,9 @@
 /test-output/
 
 /bin/
-
 *.html
 .setting
 /testng.xml
 *.class
+
+*.css
