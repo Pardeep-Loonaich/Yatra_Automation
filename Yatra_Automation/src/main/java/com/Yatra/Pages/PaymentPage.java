@@ -1,5 +1,6 @@
 package com.Yatra.Pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -30,143 +31,152 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 ********************************* WebElements of Yatra PaymentPage ***********************************
 	 **********************************************************************************************/
 	@FindBy(xpath = "//input[@id= 'payNow']")
-	public WebElement btnPayNow;
+	private WebElement btnPayNow;
 
 	@FindBy(css = "#cc_cno_id")
-	WebElement creditCardNumber;
+	private WebElement creditCardNumber;
 
 	@FindBy(css = "#cc_cardholder_name_id")
-	WebElement creditCardName;
+	private WebElement creditCardName;
 
 	@FindBy(css = "#cc_cvv_id")
-	WebElement creditCardCvv;
+	private WebElement creditCardCvv;
 
 	@FindBy(css = "#dc")
-	WebElement lnkDebitCard;
+	private WebElement lnkDebitCard;
 
 	@FindBy(css = "#dc_cno_id")
-	WebElement debitCardNumber;
+	private WebElement debitCardNumber;
 
 	@FindBy(css = "#dc_cardholder_name_id")
-	WebElement debitCardName;
+	private WebElement debitCardName;
 
 	@FindBy(css = "#dc_cvv_id")
-	WebElement debitCardCvv;
+	private WebElement debitCardCvv;
 
 	@FindBy(css = "#toater_20")
-	WebElement popUpInvalidCardNumber;
+	private WebElement popUpInvalidCardNumber;
 
 	@FindBy(css = "[id='redeem-applied-id']>h4")
-	WebElement msgEcashRedeemBalance;
+	private WebElement msgEcashRedeemBalance;
 
 	@FindBy(css = "[id='redeem-applied-id']>h3")
-	WebElement msgEcashRedeem;
+	private WebElement msgEcashRedeem;
 
 	@FindBy(css="a[id='cancelRedemption']")
-	WebElement lnkCancelRedem;
+	private WebElement lnkCancelRedem;
 
 	@FindBy(css="a[id='okgotitlink']")
-	WebElement lnkGotIt;
+	private WebElement lnkGotIt;
+
+	@FindBy(css = "#totalAmountSpan")
+	private WebElement totalAmount;
 
 	@FindBy(css="input[id='redeem-ecash-button']")
-	WebElement btnRedeemNow;
+	private WebElement btnRedeemNow;
 
 	@FindBy(css="#paymentDetailsCont>div>ul[class='noListStyle']")
-	WebElement modulePaymentDetails;
+	private WebElement modulePaymentDetails;
 
 	@FindBy(css ="div[id='cpmt_tabContainer']>ul>li")
-	List<WebElement> paymentType;
+	private List<WebElement> paymentType;
 
 	@FindBy(css ="li[id='cpmt_otherPayOp']>ul>li")
-	List<WebElement> otherPaymentType;
+	private List<WebElement> otherPaymentType;
 
 	@FindBy(css ="div[class='net-banking-desk']>article[class='cpmt_net cpmt_lastInfo']>ul>li")
-	List<WebElement> selectNetBank;
+	private List<WebElement> selectNetBank;
 
 	@FindBy(css="span[id='total-redeemable-ecash']")
-	WebElement appliedEcash;
+	private WebElement appliedEcash;
 
 	@FindBy(css="	div[id='login-cont']>p[class='back-merchant ng-scope']>a[ng-click='vm.backToMerchant()']")
-	WebElement lnkBckToYatraFrmFreechrge;
+	private WebElement lnkBckToYatraFrmFreechrge;
 
 	@FindBy(css ="div[id='tab_mw']>article>ul>li")
-	List<WebElement> selectMobiWallet;
+	private List<WebElement> selectMobiWallet;
 
 	@FindBy(css ="div[id='tab_atm']>article>ul>li")
-	List<WebElement> selectATMCard;
+	private List<WebElement> selectATMCard;
 
 	@FindBy(css="input[class='BtnAlign cancelBtn Mbtn-cancel']")
-	WebElement btnCancelInHdfc;
+	private WebElement btnCancelInHdfc;
 
 	@FindBy(css ="select[id='emiBank_select']>option")
-	List<WebElement> selectCardInEMI;
+	private List<WebElement> selectCardInEMI;
 
 	@FindBy(css ="form[name='modeform']>table>tbody>tr>td[align='right']>input")
-	List<WebElement> selectITZCard;
+	private List<WebElement> selectITZCard;
 
 	@FindBy(css="span[class='sbi logo']")
-	WebElement logoSBI;
+	private WebElement logoSBI;
 
 	@FindBy(css="input[name='Cancel']")
-	WebElement btnCancelInSBIATM;
+	private WebElement btnCancelInSBIATM;
 
 	@FindBy(css="a[title='yatra.com']")
-	WebElement logoYatra;
+	private WebElement logoYatra;
 
 	@FindBy(css ="#cpmt_tabContainer>ul")
-	WebElement lstPaymentMetod;
+	private WebElement lstPaymentMetod;
 
 	@FindBy(css= "div[id='signinlyr']>h2")
-	WebElement logoMobiWikWallet;
+	private WebElement logoMobiWikWallet;
 
 	@FindBy(css= "a[title='Oxigen Wallet']")
-	WebElement logoOxyGenWallet;
+	private WebElement logoOxyGenWallet;
 
 	@FindBy(css= ".icon-payumoney")
-	WebElement logoPayUWallet;
+	private WebElement logoPayUWallet;
 
 	@FindBy(css= ".img-responsive")
-	WebElement logoBuddyWallet;	
+	private WebElement logoBuddyWallet;	
 
 	@FindBy(css= ".logojio")
-	WebElement logoJioMoneyWallet;
+	private WebElement logoJioMoneyWallet;
 
 	@FindBy(css= "#freechargeLogo")
-	WebElement logoFreechargeWallet;
+	private WebElement logoFreechargeWallet;
 
 	@FindBy(css= "header>img")
-	WebElement logoOlaMoneyWallet;
+	private WebElement logoOlaMoneyWallet;
 
 	@FindBy(css= ".container>div[style*='vertical-align']")
-	WebElement logoPayZAppWallet;
+	private WebElement logoPayZAppWallet;
 
 	@FindBy(css= ".vf_logo")
-	WebElement logoVodafoneWallet;
+	private WebElement logoVodafoneWallet;
 
 	@FindBy(css= "form[id='pgWalletPay']")
-	WebElement formIdeaMoneyWallet;
+	private WebElement formIdeaMoneyWallet;
 
 	@FindBy(css= ".e-cash-pay")
-	WebElement modEcash;
+	private WebElement modEcash;
 
 	@FindBy(css= ".leg")
-	WebElement labelFlightDetails;
-	
+	private WebElement labelFlightDetails;
+
 	@FindBy(css= "div[class='pax-detailed']")
-	WebElement labelTravellerDetails;
-	
+	private WebElement labelTravellerDetails;
+
 	@FindBy(css= "div[class='container-fluid breadcrumb']")
-	WebElement breadcrumbBookingProgress;
-	
+	private WebElement breadcrumbBookingProgress;
+
 	@FindBy(css= "span[class='simple-tab eCashholder']")
-	WebElement labelEcash;
-	
+	private WebElement labelEcash;
+
 	@FindBy(css= "li[id='userLoginBlock']")
-	WebElement labelUserName;
-	
+	private WebElement labelUserName;
+
 	@FindBy(css= "span[class='simple-tab eCashholder']>span")
-	WebElement ecashAmount;
+	private WebElement ecashAmount;
+
+	@FindBy(css= "div[class='cpmt_quickBook']>ul>li")
+	private WebElement tabSavedCC;
 	
+	@FindBy(css="i[class='PaymentSprite removeIcon']")
+	private WebElement iconRemove;
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -259,6 +269,27 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 	/**
+	 * to save the credit card details in quick book
+	 * @throws Exception
+	 */
+
+	public void saveCreditCardDetails() throws Exception{
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#cc_SaveOptionDiv>label")), driver, "Unchecking Save QB");
+	}
+
+	/**
+	 * to get text from credit card
+	 * @return
+	 * @throws Exception
+	 */
+	public String getCrediCrdNum() throws Exception{
+		String cc_No = BrowserActions.getText(driver,driver.findElement(By.cssSelector("span[class='cpmt_qbCardNo']")), "Getting Credit Card number.").substring(15,19);
+		return cc_No;
+	}
+
+
+	/**
 	 * Clicking on Pay Now In Payment Page
 	 * 
 	 * @throws Exception
@@ -269,6 +300,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.javascriptClick(btnPayNow, driver, "Pay Now");
 		Utils.waitForPageLoad(driver);
 	}
+
 
 	/**
 	 * Getting the text from the Error Pop Up In Credit card
@@ -360,6 +392,20 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 	/**
+	 * Getting the Total amount from payment module
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFromTotalAmount() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String txtTotalAmount = BrowserActions.getText(driver, totalAmount,
+				"Getting text for Total Amount.").trim().replace(",", " ");
+		return txtTotalAmount;
+
+	}
+
+	/**
 	 * Clicked on the cancel ecash redeem
 	 * @return
 	 * @throws Exception
@@ -386,9 +432,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void verifyCancelEcash() throws Exception{
-          if(lnkCancelRedem.isDisplayed()){
-        	  BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on Cancel ecash redeem.");
-          }
+		if(lnkCancelRedem.isDisplayed()){
+			BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on Cancel ecash redeem.");
+		}
 	}
 	/**
 	 * Clicked on the  ecash redeem
@@ -542,6 +588,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String eCashAmount() throws Exception{
+		Utils.waitForElement(driver, appliedEcash);
 		String ecash = appliedEcash.getText();
 		return ecash;
 
@@ -615,7 +662,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 
 	public void navigateToBackPage(String browser) throws Exception{
-		if(browser.equalsIgnoreCase("browser")){
+		if(browser.equalsIgnoreCase("firefox_windows")){
 			for(int i=0;i<2;i++){
 				driver.navigate().back();
 			}
@@ -702,7 +749,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		String ecashAmount = BrowserActions.getText(driver, driver.findElement(By.cssSelector("li[id='earnEcashDiv']>span")),"Ecash Amount");
 		return ecashAmount;
 	}
-	
+
 	/**
 	 * to return ecashAmount  from ecash header
 	 * @return
@@ -723,7 +770,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return flightDetails;
 	}
 
-	
+
 	/**
 	 * to return User Name from header
 	 * @return
@@ -742,7 +789,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTravellerDetails() throws Exception{
 		String travellerHeading = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='pax-detailed']>h3")),"Getting Heading of Traveller Details.");
 		String travellerDetails = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='pax-names']")),"Getting Text From Traveller Details.");
-		
+
 		String travellerInfo = travellerHeading.concat(travellerDetails);
 		return travellerInfo;
 	}
@@ -757,8 +804,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#tncLink")),driver, "Clicked terms and condition link");
 	}
-	
-	
+
+
 	/**
 	 * to verify Tnc page
 	 * @return
@@ -767,29 +814,33 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public boolean verifyTnCPage() throws Exception{
 		return BrowserActions.getText(driver, driver.findElement(By.cssSelector("span[class='hudini']")), "Getting Text from span").contains("Terms and Conditions");
 	}
+
 	
 	/**
 	 * to click on Edit Link and returning Review Page
 	 * @return
 	 * @throws Exception
 	 */
-   public ReviewPage clickOnEditLink() throws Exception{
-	   BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#spanEditStep1>a")), driver, "Clicked on edit Link under review bar");
-	   return new ReviewPage(driver).get();
-   }
+	public ReviewPage clickOnEditLink() throws Exception{
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#spanEditStep1>a")), driver, "Clicked on edit Link under review bar");
+		return new ReviewPage(driver).get();
+	}
+
 	
-	/*
-	@FindBy(css ="div[id='submitciti']")
-	WebElement btnSubmit;
+	/**
+	 * to remove saved credit card details
+	 * @throws Exception
+	 */
+	public void cancelCreditCardDetails() throws Exception{
+		if(tabSavedCC.isDisplayed()){
+			Utils.waitForElement(driver, iconRemove);
+			BrowserActions.scrollToView(iconRemove, driver);
+			BrowserActions.clickOnElement(iconRemove, driver, "Click on remove icon");
+			
+		}
 
-	public void clickedOnSubmit() throws Exception {
+	}
 
-		BrowserActions.scrollToViewElement(btnSubmit, driver);
-		BrowserActions.clickOnElement(btnSubmit, driver, "Clicked on Submit button for city bank");
-
-	}*/ 
-
-	//enterCreditCardDetails
-
+	
 
 }

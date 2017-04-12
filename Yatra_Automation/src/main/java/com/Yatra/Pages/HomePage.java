@@ -2,6 +2,7 @@ package com.Yatra.Pages;
 
 
 
+import java.awt.Robot;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -9,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -20,6 +22,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.BrowserType;
 import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
@@ -192,6 +195,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(css = ".ac_over")
 	WebElement txtErrorMsgIncorrectCity;
+	
+	@FindBy(css="li[id='userLoginBlock']>a")
+	WebElement drpdwnUserLogin;
+	
+	@FindBy(css="li[id='userLoginBlock']>div>div[class='user-drop-ddn header-dropdown']>ul>li[class='simple-dropdown']>a")
+	WebElement lnkMyBooking;
 	
 	
 	@FindBy(css = "div[class='header-container']>a")
@@ -576,12 +585,34 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public LoginPage navigateToSignIn() throws Exception {
 		// click Login button on signin page
-		//Utils.waitForElement(driver, lnkMyaccount);		
-		//BrowserActions.mouseHover(driver, lnkMyaccount);
-		//BrowserActions.moveToElementJS(driver, lnkMyaccount);
-		//BrowserActions.actionClick(btnSignIn, driver, "Sign In");
+		/*Utils.waitForElement(driver, lnkMyaccount);		
+		BrowserActions.mouseHover(driver, lnkMyaccount);
+		BrowserActions.moveToElementJS(driver, lnkMyaccount);
+		BrowserActions.actionClick(btnSignIn, driver, "Sign In");
 		
-	//	BrowserActions.moveToElementJS(driver, driver.findElement(By.cssSelector("li[id='userSignInStrip']")));
+	    Utils.waitForPageLoad(driver);		
+		
+		BrowserActions.moveToElementJS(driver, driver.findElement(By.cssSelector("li[id='userSignInStrip']>a")));
+		Actions actions = new Actions(driver);
+		actions.moveToElement(driver.findElement(By.cssSelector("li[id='userSignInStrip']"))).perform();
+		actions.click(driver.findElement(By.cssSelector("li[id='userSignInStrip']"))).click().perform();
+		
+		actions.moveToElement(driver.findElement(By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'My Account')]"))).perform();
+		actions.click(driver.findElement(By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'My Account')]"))).perform();
+		
+		*/
+		
+		WebElement lnkMyAccount = driver.findElement(By.cssSelector("li[id='userSignInStrip']>a"));
+		Point point = lnkMyAccount.getLocation();
+		int xCord = point.getX();
+		int yCord = point.getY();
+
+		if(BrowserType.fromConfiguration("ie") == BrowserType.IE){
+			Robot robot= new Robot();
+			robot.mouseMove(xCord, yCord);		
+		}
+				
+		Utils.waitForElement(driver, btnSignIn);
 		BrowserActions.javascriptClick(btnSignIn, driver, "Sign In");
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
@@ -1182,5 +1213,13 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
+	
+	
+	public Bookings navigateToBooking() throws Exception{
+		BrowserActions.moveToElementJS(driver, drpdwnUserLogin);
+		BrowserActions.clickOnElement(lnkMyBooking, driver, "Clicked on Login user dropdown");	
+		return new Bookings(driver).get();
+	}
+	
 	
 }// HomePage

@@ -48,7 +48,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath = "//ul[@class = 'promo-options']/li[@class='ng-scope']")
 	WebElement lnkPromoCoupon;
 
-	@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
+	//@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
+	@FindBy(xpath= "//Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]")
 	WebElement btnContinueReviewPage;
 
 	@FindBy(xpath = ".//*[@id='travellerf0']")
