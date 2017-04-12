@@ -29,7 +29,7 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	@FindBy(css = "div[class='col-lg-3 col-md-3']>div[id='itineraryDetailHeader']>div>aside>div>h2>i")
 	private WebElement headerBookingSummary;
 	
-	@FindBy(css = "div[class*='bus-booking-summary-onward']>p[class*='wfull mt3 textcol']")
+	@FindBy(css = "div[class*='bus-booking-summary-onward']>p")
 	private WebElement BookingSummaryDetail;
 	
 	/**********************************************************************************************
@@ -69,21 +69,23 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	
 	/**
      * To Click on Booking Summary
+	 * @return 
      * @throws Exception
      */
-     public void clickOnBookingSummary() throws Exception{
+     public String clickOnBookingSummary() throws Exception{
+    	 String details = null ;
+    	 Thread.sleep(3000);
     	 if(BookingSummaryDetail.isDisplayed()){
+    		 details = BookingSummaryDetail.getText();
     	 }else if(!(BookingSummaryDetail.isDisplayed()))
     	 {
            BrowserActions.clickOnElement(headerBookingSummary, driver, "clicked on Booking Summary Drop Down");
+            details = BookingSummaryDetail.getText();
     	 }
-    	
+    	 return details;
     	 }
 	
-	public String getText() throws Exception{
-	String details = BookingSummaryDetail.getText();
-	return details;
-	}
+	
 	
 	
 	
