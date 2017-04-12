@@ -7,6 +7,7 @@
 	
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
+
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="iexplorer_windows"/>
 	<parameter name="webSite" value="https://www.yatra.com/"/>
