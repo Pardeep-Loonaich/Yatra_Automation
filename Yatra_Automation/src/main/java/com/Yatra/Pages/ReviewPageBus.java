@@ -36,6 +36,7 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 	public ElementLayer elementLayer;
 	Utils utils;
 	SearchResultBus searchResult;
+	//@Harveer- all element should be private
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -145,6 +146,7 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
  	 */
 
  	public TravellerPageBus fillUserDetailsAsGuest(String email,String PhoneNumber) throws Exception {
+ 		Utils.waitForElement(driver, txtBoxEmailGuest);
  		BrowserActions.typeOnTextField(txtBoxEmailGuest, email, driver, "Enter User Email");
  		BrowserActions.typeOnTextField(txtBoxPhoneNumberGuest, PhoneNumber, driver, "Enter Phone Number");
  		BrowserActions.clickOnElement(btnContinueGuest, driver, "Book Now");
@@ -158,6 +160,7 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
  	 	 */
 
  	 	public TravellerPageBus fillUserDetailsAsLogin(String email, String Password) throws Exception {
+ 	 		Utils.waitForElement(driver, chkBoxYatraUser);
  	 		BrowserActions.clickOnElement(chkBoxYatraUser, driver, "Existing Yatra User Check Box");
  	 		BrowserActions.typeOnTextField(txtBoxEmailLogin, email, driver, "Enter User Email");
  	 		BrowserActions.typeOnTextField(txtBoxPasswordLogin, Password, driver, "Enter User Password");

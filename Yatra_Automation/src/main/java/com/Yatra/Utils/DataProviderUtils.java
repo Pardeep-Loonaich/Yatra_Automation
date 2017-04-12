@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.testng.ITestContext;
 import org.testng.annotations.DataProvider;
 
@@ -194,10 +196,14 @@ public class DataProviderUtils {
 			ObjHmap.put("browser", browserName);
 			ObjHmap.put("testCaseId", testCaseId.trim());
 			
-			for(int cell=0;cell<totalData;cell++)
+			for(int icell=0;icell<totalData;icell++)
 			{		  
-				String tempValue=sheet.getRow(ObjArrayOfTestCaseRow.get(row)).getCell(cell).getStringCellValue().trim();
-				ObjHmap.put(ObjArrayOf_Headers.get(cell), tempValue);  
+				DataFormatter dataFormatter=new DataFormatter();
+				
+				Cell cell=sheet.getRow(ObjArrayOfTestCaseRow.get(row)).getCell(icell);
+				String tempValue=dataFormatter.formatCellValue(cell);
+				
+				ObjHmap.put(ObjArrayOf_Headers.get(icell), tempValue);  
 			}
 			
 			obj[row][0]=ObjHmap;  	  

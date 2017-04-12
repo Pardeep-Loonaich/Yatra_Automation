@@ -659,7 +659,39 @@ public class BrowserActions {
 			alert.dismiss();
 
 		}
+		driver.switchTo().defaultContent();
 
+	}
+	
+	
+	/**
+	 * Description: iframe handling 
+	 * @param: driver- provide current driver instance.
+	 * @param: sIframeNameOrId- String
+	 */
+	public static void switchToIframe(WebDriver driver, String sIframeNameOrId)
+	{
+		
+		driver.switchTo().frame(sIframeNameOrId);
+	}
+	
+	
+
+	/**
+	 * Description: iframe handling 
+	 * @param: driver- provide current driver instance.
+	 * @param: WebElement
+	 */
+	public static void switchToIframe(WebDriver driver, WebElement sIframeNameOrId)
+	{
+		
+		driver.switchTo().frame(sIframeNameOrId);
+	}
+	
+	public static void switchToDefault(WebDriver driver)
+	{
+		
+		driver.switchTo().defaultContent();
 	}
 	
 	/**

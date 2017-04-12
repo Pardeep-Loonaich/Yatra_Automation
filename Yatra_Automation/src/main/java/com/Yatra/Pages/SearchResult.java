@@ -29,7 +29,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Result Page ***********************************
 	 **********************************************************************************************/
-
+	//@Harveer- 1- make all element private
+	//2- remove all c commented code if it is not required.
 	@FindBy(css = ".ico-newHeaderLogo")
 	public WebElement headerLogo;
 
@@ -424,6 +425,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
+	//@Harveer- update this method try to find the element with better approach it will fail in future
+	// for any issue discuss with me 
 	public ReviewPage clickOnBookNowInMulticity(int list1, int index1, int list2, int index2) throws Exception {
 		WebElement e1 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list1
 				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index1
@@ -1279,7 +1282,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public List<String> validateAirlineMatrixFareInAirlineMatrix() throws Exception {		
-		List<String> passengerclassList = new ArrayList<String>();		
+		List<String> passengerclassList = new ArrayList<String>();	
+		//@Harveer- as i have already suggest please don't use absolute locator, remove this locator and use @FindBy Annotation
 		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("//form[@id='modifySearch']/div[2]//li[1]/div/select/option"));
 		for (int i = 0; i < passengerClassList1.size(); i++) {
 			String passengerClass = passengerClassList1.get(i).getText().toString().trim();

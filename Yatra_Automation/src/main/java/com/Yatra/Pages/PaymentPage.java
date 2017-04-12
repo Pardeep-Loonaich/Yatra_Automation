@@ -29,6 +29,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage ***********************************
 	 **********************************************************************************************/
+	//@Harveer- make all element private
+	// don't use driver.findElement() in method until it require in specific case
 	@FindBy(xpath = "//input[@id= 'payNow']")
 	public WebElement btnPayNow;
 
@@ -255,6 +257,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		Thread.sleep(2000);
 
 		BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
+		//@Harveer- find element using @FindByAnnotation
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#cc_SaveOptionDiv>label")), driver, "Unchecking Save QB");
 	}
 
@@ -306,6 +309,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		String css = "#dc_expm_id";
 		WebElement month = driver.findElement(By.cssSelector(css));
 		BrowserActions.clickOnElement(month, driver, "Month");
+		//@Harveer- find element using @FindBy at top
 		List<WebElement> months = driver.findElements(By.cssSelector("#dc_expm_id>option"));
 		if (months.size() != 0) {
 			int rand = Utils.getRandom(1, months.size());
@@ -316,6 +320,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		String css1 = "#dc_expy_id";
 		WebElement Year = driver.findElement(By.cssSelector(css1));
 		BrowserActions.clickOnElement(Year, driver, "Year");
+		//@Harveer- find element using @FindBy at top
 		List<WebElement> Year1 = driver.findElements(By.cssSelector("#dc_expy_id>option"));
 		if (Year1.size() != 0) {
 			int rand = Utils.getRandom(1, Year1.size());
@@ -420,6 +425,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		List<WebElement> lstElement = paymentType;
 		//List<WebElement> lstOtherElement = otherPaymentType;
 		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
+			//@Harveer- find element using @FindBy at top
 			BrowserActions.scrollToViewElement(driver.findElement(By.cssSelector("li[id='cpmt_others']>a")), driver);
 			BrowserActions.clickOnElement(driver.findElement(By.cssSelector("li[id='cpmt_others']>a")), driver, "list elements");
 
@@ -459,6 +465,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(BankName)) {
+				//@Harveer- find element using @FindBy at top
 				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
 				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "Selected Net bank");
 				break;
@@ -481,6 +488,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(WalletName)) {
+				//@Harveer- find element using @FindBy at top
 				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
 				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "selected Mobile Wallet");
 				break;
