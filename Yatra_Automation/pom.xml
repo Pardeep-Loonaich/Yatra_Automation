@@ -78,7 +78,7 @@
 						<outputDirectory>${basedir}/test-output</outputDirectory>
 						<suiteXmlFiles>
 
-							<suiteXmlFile>.\testxml\YatraWebAutomation.xml</suiteXmlFile>
+							<suiteXmlFile>.\testxml\YatraWebRegression.xml</suiteXmlFile>
 
 						</suiteXmlFiles>
 					</configuration>
