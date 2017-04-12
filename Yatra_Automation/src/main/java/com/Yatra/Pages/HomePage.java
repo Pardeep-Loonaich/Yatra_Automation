@@ -196,6 +196,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(css = "div[class='header-container']>a")
 	WebElement logoYatra;
+	@FindBy(css = "#PegasusCal-7")
+	WebElement calenderMultiDept;
+	
+	@FindBy(css = "#PegasusCal-0")
+	WebElement calenderDeptdate;
+	
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -680,7 +686,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		Utils.waitForElement(driver, dateDeparture);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon");
-		
+		Utils.waitForElement(driver, calenderDeptdate);
+
 		selectMonth.get(month - 2).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		datePicker.get(0).click();
@@ -796,7 +803,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
-		BrowserActions.nap(2);
+		Utils.waitForElement(driver, calenderMultiDept);
 		BrowserActions.clickOnElement(dateMulticity_Departure1, driver, "clicking on MultiCity departure1 date icon");
 		selectMonth_MultiDepart1.get(month - 3).click();
 		List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
