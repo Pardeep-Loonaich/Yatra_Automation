@@ -24,16 +24,16 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 
 	//@FindBy(xpath = "//div[@class='user-drop-ddn-out header-dropdown']/ul/li[@id='signInBtn']")
 	@FindBy(xpath = "//button[@id='signInBtn']")
-	WebElement divLoginBox;
+	private WebElement divLoginBox;
 
 	@FindBy(css = "#emailId")
-	WebElement txtUserName;
+	private WebElement txtUserName;
 
 	@FindBy(css = "#password")
-	WebElement txtPassWord;
+	private WebElement txtPassWord;
 
 	@FindBy(css = "#signInBtn")
-	WebElement btnSignIn;
+	private WebElement btnSignIn;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Login Page - Ends ****************************

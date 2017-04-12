@@ -22,7 +22,7 @@ public class AgentRegister extends LoadableComponent<AgentRegister> {
 	 **********************************************************************************************/
 	//@Harveer- make all element private
 	@FindBy(xpath = "//*[@id='submitbutton']")	
-	public WebElement btnSubmit;
+	private WebElement btnSubmit;
 	
 	@Override
 	protected void isLoaded() throws Error {

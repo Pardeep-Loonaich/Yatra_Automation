@@ -30,8 +30,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage ***********************************
 	 **********************************************************************************************/
-	//@Harveer- make all element private
-	// don't use driver.findElement() in method until it require in specific case
+
 	@FindBy(xpath = "//input[@id= 'payNow']")
 	private WebElement btnPayNow;
 
@@ -175,9 +174,132 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	@FindBy(css= "div[class='cpmt_quickBook']>ul>li")
 	private WebElement tabSavedCC;
-	
+
 	@FindBy(css="i[class='PaymentSprite removeIcon']")
 	private WebElement iconRemove;
+
+	@FindBy(css="#cc_expm_id")
+	private WebElement monthCC;
+
+	@FindBy(css="#cc_expm_id>option")
+	private List <WebElement> lstMonthsCC;
+
+	@FindBy(css="#cc_expy_id")
+	private WebElement yearCC;
+
+	@FindBy(css="#cc_expy_id>option")
+	private List <WebElement> lstYearsCC;
+
+	@FindBy(css="#cc_SaveOptionDiv>label")
+	private WebElement lblSaveCCInQB;
+
+	@FindBy(css="#dc_expm_id")
+	private WebElement monthDC;
+
+	@FindBy(css="#dc_expm_id>option")
+	private List <WebElement> lstMonthsDC;
+
+	@FindBy(css="#dc_expy_id")
+	private WebElement yearDC;
+
+	@FindBy(css="#dc_expy_id>option")
+	private List <WebElement> lstYearsDC;
+
+	@FindBy(css="li[id='cpmt_others']>a")
+	private WebElement lnkOtherPayment;
+
+	@FindBy(css="li[id='selcted-bank']>label")
+	private WebElement drpdownSelectBnk;
+
+	@FindBy(css="div[class='cpmt_tnCstrip']>label")
+	private WebElement lblTncChkbox;
+
+	@FindBy(css=".slider-base")
+	private WebElement scrollSlider;
+
+	@FindBy(css = "#emi_cno_id")
+	private WebElement creditCardNumberInEMI;
+
+	@FindBy(css = "#emi_cardholder_name_id")
+	private WebElement creditCardHolderNameInEMI;
+
+	@FindBy(css="#emi_expm_id>option")
+	private List<WebElement> lstMonthEMI;
+
+	@FindBy(css="#emi_expy_id>option")
+	private List<WebElement> lstYearEMI;
+
+	@FindBy(css = "#emi_cvv_id")
+	private WebElement creditCardCvvInEMI;
+
+	@FindBy(css = "#emi_expm_id")
+	private WebElement creditCardMonthInEMI;
+
+	@FindBy(css = "#emi_expy_id")
+	private WebElement creditCardYearInEMI;
+
+	@FindBy(css="form[name='modeform']>table>tbody>tr>td[align='right']>input")
+	private WebElement rdoITZCard;
+
+	@FindBy(css="input[name='continue']")
+	private WebElement btnContinueITZPortal;
+
+	@FindBy(css="input[name='cancel']")
+	private WebElement btnCancelOrderITZPortal;
+
+	@FindBy(css=".box-title.normal.fs-base.clearfix")
+	private WebElement fldHeadingYatraEarn;
+
+	@FindBy(css="#spanEditStep1>a")
+	private WebElement lnkEdit;
+
+	@FindBy(css="li[id='earnEcashDiv']>span")
+	private WebElement txtEcashAmount;
+
+	@FindBy(css=".eCahseValue")
+	private WebElement txtEcashValueFromHeader;
+
+	@FindBy(css="div[class='leg']>span[class='ib fl']")
+	private WebElement txtFlightDetails;
+
+	@FindBy(css="#userShowName")
+	private WebElement txtUserNme;
+
+	@FindBy(css="div[class='pax-detailed']>h3")
+	private WebElement txtHeadingTravelDtl;
+
+	@FindBy(css="div[class='pax-names']")
+	private WebElement txtTravelDtl;
+
+	@FindBy(css="#tncLink")
+	private WebElement lnkTnC;
+
+	@FindBy(css="span[class='hudini']")
+	private WebElement txtTnCHeader;
+
+	@FindBy(css = "#rw_cno_id")
+	private WebElement txtcreditCardNumberInRewards;
+
+	@FindBy(css = "#rw_cardholder_name_id")
+	private WebElement txtcreditCardHolderNameInRewards;
+
+	@FindBy(css="#rw_expm_id>option")
+	private List<WebElement> drplstMonthRewards;
+
+	@FindBy(css="#rw_expy_id>option")
+	private List<WebElement> drplstYearRewards;
+
+	@FindBy(css = "#rw_cvv_id")
+	private WebElement txtcreditCardCvvInRewards;
+
+	@FindBy(css = "#rw_expm_id")
+	private WebElement creditCardMonthInRewards;
+
+	@FindBy(css = "#rw_expy_id")
+	private WebElement creditCardYearInRewards;
+
+	@FindBy(css = "#rw_reward_points_id")
+	private WebElement txtRewardPointInRewards;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
@@ -232,6 +354,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		Utils.waitForPageLoad(driver);
 	}// load
 
+
+
 	/**
 	 * Filling Credit Card Details
 	 * 
@@ -244,31 +368,23 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		BrowserActions.typeOnTextField(creditCardNumber,cardNumber, driver, "Credit card Number");
 		BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
-
-		String css = "#cc_expm_id";
-		WebElement month = driver.findElement(By.cssSelector(css));
-		BrowserActions.clickOnElement(month, driver, "Date");
-		List<WebElement> months = driver.findElements(By.cssSelector("#cc_expm_id>option"));
-		if (months.size() != 0) {
-			int rand = Utils.getRandom(1, months.size());
-			BrowserActions.clickOnElement(months.get(rand), driver, "Month Selected");
+		BrowserActions.clickOnElement(monthCC, driver, "Date");
+		if (lstMonthsCC.size() != 0) {
+			int rand = Utils.getRandom(1, lstMonthsCC.size());
+			BrowserActions.clickOnElement(lstMonthsCC.get(rand), driver, "Month Selected");
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
-		String css1 = "#cc_expy_id";
-		WebElement year = driver.findElement(By.cssSelector(css1));
-		BrowserActions.clickOnElement(year, driver, "Year");
-		List<WebElement> year1 = driver.findElements(By.cssSelector("#cc_expy_id>option"));
-		if (year1.size() != 0) {
-			int rand = Utils.getRandom(1, year1.size());
-			BrowserActions.clickOnElement(year1.get(rand), driver, "Year Selected");
+		BrowserActions.clickOnElement(yearCC, driver, "Year");
+		if (lstYearsCC.size() != 0) {
+			int rand = Utils.getRandom(1, lstYearsCC.size());
+			BrowserActions.clickOnElement(lstYearsCC.get(rand), driver, "Year Selected");
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
 
 		BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
-		//@Harveer- find element using @FindByAnnotation
-		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#cc_SaveOptionDiv>label")), driver, "Unchecking Save QB");
+		BrowserActions.clickOnElement(lblSaveCCInQB,driver ,"Unchecking Save QB");
 	}
 
 	/**
@@ -278,7 +394,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	public void saveCreditCardDetails() throws Exception{
 		Utils.waitForPageLoad(driver);
-		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#cc_SaveOptionDiv>label")), driver, "Unchecking Save QB");
+		BrowserActions.clickOnElement(lblSaveCCInQB, driver, "Cshecking Save QB");
 	}
 
 	/**
@@ -330,6 +446,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		Utils.waitForPageLoad(driver);
 	}
 
+
 	/**
 	 * Filling Debit Card Details
 	 * 
@@ -338,25 +455,17 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 	public void enterDebitCardDetails() throws Exception {
 		clickOnDebitCardLink();
-		String css = "#dc_expm_id";
-		WebElement month = driver.findElement(By.cssSelector(css));
-		BrowserActions.clickOnElement(month, driver, "Month");
-		//@Harveer- find element using @FindBy at top
-		List<WebElement> months = driver.findElements(By.cssSelector("#dc_expm_id>option"));
-		if (months.size() != 0) {
-			int rand = Utils.getRandom(1, months.size());
-			BrowserActions.clickOnElement(months.get(rand), driver, "Month Selected");
+		BrowserActions.clickOnElement(monthDC, driver, "Month");
+		if (lstMonthsDC.size() != 0) {
+			int rand = Utils.getRandom(1, lstMonthsDC.size());
+			BrowserActions.clickOnElement(lstMonthsDC.get(rand), driver, "Month Selected");
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
-		String css1 = "#dc_expy_id";
-		WebElement Year = driver.findElement(By.cssSelector(css1));
-		BrowserActions.clickOnElement(Year, driver, "Year");
-		//@Harveer- find element using @FindBy at top
-		List<WebElement> Year1 = driver.findElements(By.cssSelector("#dc_expy_id>option"));
-		if (Year1.size() != 0) {
-			int rand = Utils.getRandom(1, Year1.size());
-			BrowserActions.clickOnElement(Year1.get(rand), driver, "Year Selected");
+		BrowserActions.clickOnElement(yearDC, driver, "Year");
+		if (lstYearsDC.size() != 0) {
+			int rand = Utils.getRandom(1, lstYearsDC.size());
+			BrowserActions.clickOnElement(lstYearsDC.get(rand), driver, "Year Selected");
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
@@ -405,7 +514,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTextFromTotalAmount() throws Exception {
 		Utils.waitForPageLoad(driver);
 		String txtTotalAmount = BrowserActions.getText(driver, totalAmount,
-				"Getting text for Total Amount.").trim().replace(",", " ");
+				"Getting text for Total Amount.").trim().replace(",","");
 		return txtTotalAmount;
 
 	}
@@ -471,9 +580,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		List<WebElement> lstElement = paymentType;
 		//List<WebElement> lstOtherElement = otherPaymentType;
 		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
-			//@Harveer- find element using @FindBy at top
-			BrowserActions.scrollToViewElement(driver.findElement(By.cssSelector("li[id='cpmt_others']>a")), driver);
-			BrowserActions.clickOnElement(driver.findElement(By.cssSelector("li[id='cpmt_others']>a")), driver, "list elements");
+			BrowserActions.scrollToViewElement(lnkOtherPayment, driver);
+			BrowserActions.clickOnElement(lnkOtherPayment, driver, "list elements");
 
 			for (WebElement ele : otherPaymentType) {
 				if (ele.findElement(By.cssSelector("a")).getText().equals(PaymentType)) 
@@ -575,7 +683,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	public void selectCardNameInEMIDropdown(String cardName) throws Exception {
 		List<WebElement> lstElement = selectCardInEMI;
-		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("li[id='selcted-bank']>label")), driver, "Clicked on Card dropdown.");
+		BrowserActions.clickOnElement(drpdownSelectBnk, driver, "Clicked on Card dropdown.");
 
 		for (WebElement e : lstElement) {
 			if (e.getAttribute("value").contains(cardName)) {
@@ -585,7 +693,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 			}
 		}
-		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("div[class='cpmt_tnCstrip']>label")), driver, "Checked terms & condition checkbox.");
+		BrowserActions.clickOnElement(lblTncChkbox, driver, "Checked terms & condition checkbox.");
 
 	}
 
@@ -601,31 +709,19 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return ecash;
 
 	}
+
+
+
 	/**
 	 * scrolling the ecash slider
 	 * @param value
 	 */
 	public void scrollSliderOfEcashRedeem(int value){
-		WebElement sliderA = driver.findElement(By.cssSelector(".slider-base"));
 		Actions action = new Actions(driver);
-		action.dragAndDropBy(sliderA, value, 0).build().perform();
+		action.dragAndDropBy(scrollSlider, value, 0).build().perform();
 	}
 
 
-	@FindBy(css = "#emi_cno_id")
-	WebElement creditCardNumberInEMI;
-
-	@FindBy(css = "#emi_cardholder_name_id")
-	WebElement creditCardHolderNameInEMI;
-
-	@FindBy(css = "#emi_cvv_id")
-	WebElement creditCardCvvInEMI;
-
-	@FindBy(css = "#emi_expm_id")
-	WebElement creditCardMonthInEMI;
-
-	@FindBy(css = "#emi_expy_id")
-	WebElement creditCardYearInEMI;
 
 	/**
 	 * Filling Credit Card Details in the EMI option
@@ -642,19 +738,17 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 		BrowserActions.clickOnElement(creditCardMonthInEMI, driver, "Clicked on Month dropdown.");
-		List<WebElement> monthsList = driver.findElements(By.cssSelector("#emi_expm_id>option"));
-		if (monthsList.size() != 0) {
-			int rand = Utils.getRandom(1, monthsList.size());
-			BrowserActions.clickOnElement(monthsList.get(rand), driver, "Month Selected from dropdown");
+		if (lstMonthEMI.size() != 0) {
+			int rand = Utils.getRandom(1, lstMonthEMI.size());
+			BrowserActions.clickOnElement(lstMonthEMI.get(rand), driver, "Month Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
 
 		BrowserActions.clickOnElement(creditCardYearInEMI, driver, "Clicked on Year dropdown.");
-		List<WebElement> yearList = driver.findElements(By.cssSelector("#emi_expy_id>option"));
-		if (yearList.size() != 0) {
-			int rand = Utils.getRandom(1, yearList.size());
-			BrowserActions.clickOnElement(yearList.get(rand), driver, "Year Selected from dropdown");
+		if (lstYearEMI.size() != 0) {
+			int rand = Utils.getRandom(1, lstYearEMI.size());
+			BrowserActions.clickOnElement(lstYearEMI.get(rand), driver, "Year Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
@@ -669,14 +763,16 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 
-	public void navigateToBackPage(String browser) throws Exception{
+	public void navigateToBackPage(String browser,int ran) throws Exception{
 		if(browser.equalsIgnoreCase("firefox_windows")){
-			for(int i=0;i<2;i++){
+			for(int i=0;i<ran;i++){
 				driver.navigate().back();
 			}
 		}
-		else
-			driver.navigate().back();
+		else if(browser.equalsIgnoreCase("iexplorer_windows")){
+			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
+		}
+		driver.navigate().back();
 
 	}
 
@@ -706,14 +802,15 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.clickOnElement(lnkBckToYatraFrmFreechrge, driver, "Clicked on back to yatra link");
 	}
 
+
 	/**
-	 * to select the card from dropdown in EMI
-	 * @param BankName
+	 * Selecting the 'itzName' from the given options in ITZ cashcard page 
+	 * @param itzName is same as value of the locator 
 	 * @throws Exception
 	 */
 	public void selectITZCashRan(String itzName) throws Exception {
 		List<WebElement> lstElement =selectITZCard ;
-		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("form[name='modeform']>table>tbody>tr>td[align='right']>input")), driver, "Clicked on Card dropdown.");
+		BrowserActions.clickOnElement(rdoITZCard, driver, "Selected ITZ option.");
 
 		for (WebElement e : lstElement) {
 			if (e.getAttribute("value").contains(itzName)) {
@@ -725,14 +822,17 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		}
 
 	}
+
+
+
 	/**
-	 * to click on continue and cancelling the order for ITZCash
+	 * to click on continue and after that cancelling the order for ITZCash in ITZCash portal
 	 * @throws Exception
 	 */
 	public void cancelOrderForITZCash() throws Exception{
-		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("input[name='continue']")), driver, "Clicked on continue in portal");
+		BrowserActions.clickOnElement(btnContinueITZPortal, driver, "Clicked on continue in portal");
 		Utils.waitForPageLoad(driver);
-		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("input[name='cancel']")), driver, "Clicked on cancelorder in portal");
+		BrowserActions.clickOnElement(btnCancelOrderITZPortal, driver, "Clicked on cancelorder in portal");
 
 	}
 
@@ -743,20 +843,24 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String getEcashHeading() throws Exception{
-		String ecashHeading = BrowserActions.getText(driver, driver.findElement(By.cssSelector(".box-title.normal.fs-base.clearfix")),"Heading Yatra's Earn");
+		String ecashHeading = BrowserActions.getText(driver, fldHeadingYatraEarn,"Heading Yatra's Earn");
 		return ecashHeading;
 	}
 
 
+
+	/**
 	/**
 	 * to return ecashAmount  from ecash module
 	 * @return
 	 * @throws Exception
 	 */
 	public String getEcashAmount() throws Exception{
-		String ecashAmount = BrowserActions.getText(driver, driver.findElement(By.cssSelector("li[id='earnEcashDiv']>span")),"Ecash Amount");
+		String ecashAmount = BrowserActions.getText(driver, txtEcashAmount,"Ecash Amount");
 		return ecashAmount;
 	}
+
+
 
 	/**
 	 * to return ecashAmount  from ecash header
@@ -764,17 +868,18 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String getTextFromEcashLabel() throws Exception{
-		String ecashAmount = BrowserActions.getText(driver, driver.findElement(By.cssSelector(".eCahseValue")),"Ecash Amount");
+		String ecashAmount = BrowserActions.getText(driver, txtEcashValueFromHeader,"Ecash Amount");
 		return ecashAmount;
 	}
 
+
 	/**
-	 * to return Flight Details
+	 * to return Flight Details from header section
 	 * @return
 	 * @throws Exception
 	 */
 	public String getFlightDetails() throws Exception{
-		String flightDetails = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='leg']>span[class='ib fl']")),"Getting Text From Flight Details.").trim().replace("?", "");
+		String flightDetails = BrowserActions.getText(driver, txtFlightDetails,"Getting Text From Flight Details.").trim().replace("?", "");
 		return flightDetails;
 	}
 
@@ -785,22 +890,27 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String getUserName() throws Exception{
-		String userName = BrowserActions.getText(driver, driver.findElement(By.cssSelector("#userShowName")),"Getting Text from user name.");
+		String userName = BrowserActions.getText(driver, txtUserNme,"Getting Text from user name.");
 		return userName;
 	}
 
+
+
 	/**
-	 * to return Travellers Details
+	 * to return Travellers Details and heading
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTravellerDetails() throws Exception{
-		String travellerHeading = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='pax-detailed']>h3")),"Getting Heading of Traveller Details.");
-		String travellerDetails = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='pax-names']")),"Getting Text From Traveller Details.");
+		String travellerHeading = BrowserActions.getText(driver, txtHeadingTravelDtl,"Getting Heading of Traveller Details.");
+		String travellerDetails = BrowserActions.getText(driver, txtTravelDtl,"Getting Text From Traveller Details.");
 
 		String travellerInfo = travellerHeading.concat(travellerDetails);
 		return travellerInfo;
 	}
+
+
+
 
 	/**
 	 * to click on Terms and condition link 
@@ -808,9 +918,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickedOnTnCLink() throws Exception{
-		BrowserActions.scrollToView(driver.findElement(By.cssSelector("#tncLink")),driver);
+		BrowserActions.scrollToView(lnkTnC,driver);
 
-		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#tncLink")),driver, "Clicked terms and condition link");
+		BrowserActions.clickOnElement(lnkTnC,driver, "Clicked terms and condition link");
 	}
 
 
@@ -820,21 +930,21 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public boolean verifyTnCPage() throws Exception{
-		return BrowserActions.getText(driver, driver.findElement(By.cssSelector("span[class='hudini']")), "Getting Text from span").contains("Terms and Conditions");
+		return BrowserActions.getText(driver,txtTnCHeader, "Getting Text from span").contains("Terms and Conditions");
 	}
 
-	
+
 	/**
 	 * to click on Edit Link and returning Review Page
 	 * @return
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnEditLink() throws Exception{
-		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("#spanEditStep1>a")), driver, "Clicked on edit Link under review bar");
+		BrowserActions.clickOnElement(lnkEdit, driver, "Clicked on edit Link under review bar");
 		return new ReviewPage(driver).get();
 	}
 
-	
+
 	/**
 	 * to remove saved credit card details
 	 * @throws Exception
@@ -844,11 +954,57 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			Utils.waitForElement(driver, iconRemove);
 			BrowserActions.scrollToView(iconRemove, driver);
 			BrowserActions.clickOnElement(iconRemove, driver, "Click on remove icon");
-			
+
 		}
 
 	}
 
-	
+	@FindBy(css="#qb_newCreditCard")
+	private WebElement lblNewCC;
+	public void selectNewCreditCard() throws Exception{
+		BrowserActions.clickOnElement(lblNewCC, driver, "Selected the Use New CreditCard option.");
+
+	}
+
+
+
+	/**
+	 * Filling Credit Card Details in the EMI option
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void enterCreditCardDetailsInRewards(String cardNumber) throws Exception {
+
+		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
+		String randomCvv = RandomStringUtils.randomNumeric(3);
+		String randomRewardPoint = RandomStringUtils.randomNumeric(2);
+
+		BrowserActions.typeOnTextField(txtcreditCardNumberInRewards,cardNumber, driver, "Credit card Number in EMI");
+		BrowserActions.typeOnTextField(txtcreditCardHolderNameInRewards, randomName, driver, "Credit card holder Name in EMI");
+
+
+		BrowserActions.clickOnElement(creditCardMonthInRewards, driver, "Clicked on Month dropdown.");
+		if (drplstMonthRewards.size() != 0) {
+			int rand = Utils.getRandom(1, drplstMonthRewards.size());
+			BrowserActions.clickOnElement(drplstMonthRewards.get(rand), driver, "Month Selected from dropdown");
+			Utils.waitForPageLoad(driver);
+		}
+		Thread.sleep(2000);
+
+		BrowserActions.clickOnElement(creditCardYearInRewards, driver, "Clicked on Year dropdown.");
+		if (drplstYearRewards.size() != 0) {
+			int rand = Utils.getRandom(1, drplstYearRewards.size());
+			BrowserActions.clickOnElement(drplstYearRewards.get(rand), driver, "Year Selected from dropdown");
+			Utils.waitForPageLoad(driver);
+		}
+		Thread.sleep(2000);
+
+		BrowserActions.typeOnTextField(txtcreditCardCvvInRewards, randomCvv, driver, "Credit card Cvv");
+		BrowserActions.typeOnTextField(txtRewardPointInRewards, randomRewardPoint, driver, "Enter random Reward point");
+
+
+	}
+
 
 }

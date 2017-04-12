@@ -23,67 +23,67 @@ public class Bookings extends LoadableComponent<Bookings>  {
 	 **********************************************************************************************/
 	
 	@FindBy(xpath = "//*[@id='signInBtn']")
-	public WebElement btnSignIn;
+	private WebElement btnSignIn;
 	
 	@FindBy(xpath = "//*[@id='signUp']")
-	public WebElement btnSignUp;
+	private WebElement btnSignUp;
 
 	@FindBy(xpath = "//*[@id='emailId']")
-	public WebElement txtEmailId;
+	private WebElement txtEmailId;
 	
 	@FindBy(xpath = "//*[@id='password']")
-	public WebElement txtPassword;
+	private WebElement txtPassword;
 	
 	@FindBy(css = "p a[href='javascript:;']")
-	public WebElement lnkForgotPassword;
+	private WebElement lnkForgotPassword;
 	
 	@FindBy(css = "button[id='b2bSignUp']")
-	public WebElement btnRegisterHere;
+	private WebElement btnRegisterHere;
 	
 	@FindBy(css = "button[class='yt-btn btn-facebook btn-block']")
-	public WebElement btnLoginWithFacebook;
+	private WebElement btnLoginWithFacebook;
 	
 	@FindBy(xpath = "//*[@id='emailId_guest']")
-	public WebElement txtGuestEmail;
+	private WebElement txtGuestEmail;
 	
 	@FindBy(xpath = "//*[@id='book-num']")
-	public WebElement txtBookingReferenceNum;
+	private WebElement txtBookingReferenceNum;
 	
 	@FindBy(css = "button[class='yt-btn btn-blue btn-block']")
-	public WebElement btnSubmit;
+	private WebElement btnSubmit;
 	
 	@FindBy(xpath = "//*[@id='DYNPMessage']")
-	public WebElement DYNPMessage;
+	private WebElement DYNPMessage;
 	
 	@FindBy(css = "a[href*='customer-support']")
-	public WebElement lnkCustomerCare;
+	private WebElement lnkCustomerCare;
 	
 	@FindBy(css = "span[class='closeDYNPMessage']")
-	public WebElement closeDYNPMessage;
+	private WebElement closeDYNPMessage;
 	
 	@FindBy(css = "a[class='refNo']")
-	public WebElement howDoIFindMyReferenceNumberLinkInitialState;
+	private WebElement howDoIFindMyReferenceNumberLinkInitialState;
 	
 	@FindBy(css = "a[class='refNo rotate']")
-	public WebElement howDoIFindMyReferenceNumberLinkRotatedState;
+	private WebElement howDoIFindMyReferenceNumberLinkRotatedState;
 	
 	@FindBy(xpath = "//*[@id='diyLink']")
-	public WebElement lnkKnowMore;
+	private WebElement lnkKnowMore;
 	
 	 @FindBy(css="#qbLink")
-	 WebElement lnkQuickBook;
+	 private WebElement lnkQuickBook;
 	 
 	 @FindBy(css="#view-card-btn")
-	 WebElement btnViewCard;
+	 private WebElement btnViewCard;
 	 
 	 @FindBy(css="a[title='Delete']")
-	 WebElement deleteCreditCard;
+	 private WebElement deleteCreditCard;
 	 
 	 @FindBy(css="a[class='logo']>i")
-	 WebElement logoYatra;
+	 private WebElement logoYatra;
 	 
 	 @FindBy(css=" button[confirm='yes']")
-	 WebElement btnYesInPopUp;
+	 private  WebElement btnYesInPopUp;
 	
 	
 	/**********************************************************************************************

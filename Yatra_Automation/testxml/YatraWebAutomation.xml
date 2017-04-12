@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<<<<<<< HEAD
+
 <suite name="Yatra Web Automation Test " verbose="3" parallel="tests" thread-count="250">
 <suite-files>
    <suite-file path=".\testxml\flights\flightPricing.xml"></suite-file>
    <suite-file path=".\testxml\flights\flightSearch.xml"></suite-file>
     <suite-file path=".\testxml\bus\busSearch.xml"></suite-file>
      <suite-file path=".\testxml\payments\payments.xml"></suite-file>
-=======
-<suite name="Yatra Web Automation Test " verbose="3">
-<suite-files>
-   <!--  <suite-file path=".\testxml\bus\busSearch.xml"></suite-file> -->
-   <!--  <suite-file path=".\testxml\payments\payments.xml"></suite-file>  -->
-  <suite-file path=".\testxml\flights\flightSearch.xml"></suite-file>
-  <!-- <suite-file path=".\testxml\flights\flightPricing.xml"></suite-file> -->
 
->>>>>>> branch 'Framework_Development' of https://github.com/Harveer-Singh/Yatra_Automation.git
+
 </suite-files>
 </suite>

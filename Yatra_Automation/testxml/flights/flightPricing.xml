@@ -10,11 +10,8 @@
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
-<<<<<<< HEAD
-	<test name="Flight Pricing" thread-count="5" parallel="true">
-=======
+
 	<test name="Flight Pricing" thread-count="1" parallel="false">
->>>>>>> branch 'Framework_Development' of https://github.com/Harveer-Singh/Yatra_Automation.git
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing"> </class>
