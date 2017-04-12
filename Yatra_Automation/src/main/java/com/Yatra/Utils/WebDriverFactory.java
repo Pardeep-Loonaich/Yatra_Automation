@@ -236,7 +236,7 @@ public class WebDriverFactory {
 	 * @throws MalformedURLException
 	 */
 	@SuppressWarnings("unused")
-	public static WebDriver get(String browserWithPlatform, Proxy proxy) throws MalformedURLException {
+	public  static WebDriver get(String browserWithPlatform, Proxy proxy) throws MalformedURLException {
 		String browser = null;
 		String platform = null;
 		String browserVersion = null;
