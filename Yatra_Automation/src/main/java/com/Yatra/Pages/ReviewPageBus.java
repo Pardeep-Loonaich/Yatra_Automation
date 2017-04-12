@@ -42,37 +42,37 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 	@FindBy(css = "a[title='Change Your Selected Bus']")
-	WebElement BtnChangeBus;
+	private WebElement BtnChangeBus;
 	
 	@FindBy(css = "p[data-seat]")
-	WebElement txtSeatDetails;
+	private WebElement txtSeatDetails;
 	
 	@FindBy(css = "#guest_email")
-	WebElement txtBoxEmailGuest;
+	private WebElement txtBoxEmailGuest;
 	
 	@FindBy(css = "#guest_mobile")
-	WebElement txtBoxPhoneNumberGuest;
+	private WebElement txtBoxPhoneNumberGuest;
 	
 	@FindBy(css = "#userContinue")
-	WebElement btnContinueGuest;
+	private WebElement btnContinueGuest;
 	
 	@FindBy(css = "label[for='showLoginForm']>span[class='custom-checkbox']>span")
-	WebElement chkBoxYatraUser;
+	private WebElement chkBoxYatraUser;
 	
 	@FindBy(css = "#login_email")
-	WebElement txtBoxEmailLogin;
+	private WebElement txtBoxEmailLogin;
 	
 	@FindBy(css = "#login_password")
-	WebElement txtBoxPasswordLogin;
+	private WebElement txtBoxPasswordLogin;
 	
 	@FindBy(css = "div[class='loginInfo']>div[class='loginBtnCont']>input")
-	WebElement btnContinueLogin;
+	private WebElement btnContinueLogin;
 	
 	@FindBy(css = ".yatraFb")
-	WebElement btnFaceBook;
+	private WebElement btnFaceBook;
 	
 	@FindBy(css = "div[class='toasterHolder']")
-	WebElement txtErrorMsg;
+	private WebElement txtErrorMsg;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -136,7 +136,7 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
      */
      public SearchResultBus clickOnChangeBus() throws Exception{
             BrowserActions.clickOnElement(BtnChangeBus, driver, "clicked on change bus button.");
-            return new SearchResultBus(driver);
+            return new SearchResultBus(driver).get();
      }
      
      /**

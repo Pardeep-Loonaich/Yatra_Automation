@@ -107,7 +107,7 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	}
 	
 	
-	public void TravellerDetails(String name) throws Exception {
+	public PaymentPageBus TravellerDetails(String name) throws Exception {
 		Utils.waitForPageLoad(driver);
         WebElement Title = driver.findElement(By.cssSelector("select[id='paxtitle1']"));
         BrowserActions.clickOnElement(Title, driver, "Title");
@@ -128,6 +128,7 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
            age.selectByIndex(rand1);
          }
          BrowserActions.clickOnElement(btnContinue, driver, "Continue Button");
+		return new PaymentPageBus(driver).get();
 	}
 	/**
 	 * Getting the Error Text
