@@ -29,7 +29,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Result Page ***********************************
 	 **********************************************************************************************/
-
+	//@Harveer- 1- make all element private
+	//2- remove all c commented code if it is not required.
 	@FindBy(css = ".ico-newHeaderLogo")
 	public WebElement headerLogo;
 
@@ -62,28 +63,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "div[class='show-result multi-1']>div>div[class='results']>div:nth-child(1)>article>div[class='my-res-info full']>ul>li>small:nth-child(2)")
 	WebElement firstAirlineName_OW_DOM;
-	//
-	// @FindBy(css =
-	// "div[class='js-flightItem']:nth-child(2)>article>div[class='full
-	// airlines-deals-holder bxs hidden-sm']>div[class='ib airlines-info
-	// hidden-sm']>p")
-	// WebElement firstAirlineName_RT_INTL;
-	//
-	// @FindBy(css =
-	// "div[class='js-flightItem']:nth-child(2)>article>div[class='full
-	// result-card-content']>ul>li:nth-child(1)>div>p[class='full
-	// airline-name']")
-	// WebElement firstAirlineName_OW_INTL;
-	//
-	// @FindBy(css =
-	// "#resultBoxSlider>div[id='resultList_0']>div[class='results']>div:nth-child(1)>article>div[class='my-res-info
-	// full']>ul>li:nth-child(1)")
-	// WebElement firstAirlineName_RT_DOM_Left;
-	//
-	// @FindBy(css =
-	// "#resultBoxSlider>div[id='resultList_0']>div[class='results']>div:nth-child(1)>article>div[class='my-res-info
-	// full']>ul>li:nth-child(1)")
-	// WebElement firstAirlineName_RT_DOM_Right;
 
 	@FindBy(css = "div[class='js-flightItem']:nth-child(2)>article>div[class='full lob-inclusions bxs hidden-md']>div[class='inc-rgt']>ul>li>a[title='Flight Details']")
 	WebElement lnkFlightDetails_INTL;
@@ -424,6 +403,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
+	//@Harveer- update this method try to find the element with better approach it will fail in future
+	// for any issue discuss with me 
 	public ReviewPage clickOnBookNowInMulticity(int list1, int index1, int list2, int index2) throws Exception {
 		WebElement e1 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list1
 				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index1
@@ -1279,7 +1260,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public List<String> validateAirlineMatrixFareInAirlineMatrix() throws Exception {		
-		List<String> passengerclassList = new ArrayList<String>();		
+		List<String> passengerclassList = new ArrayList<String>();	
+		//@Harveer- as i have already suggest please don't use absolute locator, remove this locator and use @FindBy Annotation
 		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("//form[@id='modifySearch']/div[2]//li[1]/div/select/option"));
 		for (int i = 0; i < passengerClassList1.size(); i++) {
 			String passengerClass = passengerClassList1.get(i).getText().toString().trim();

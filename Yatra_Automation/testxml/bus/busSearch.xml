@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
 <suite name=" Yatra Bus Search Automation Test" verbose="3" parallel="true" thread-count="5">
 	
 	<parameter name="workBookName" value="testdata\\data\\Bus.xls" />
@@ -10,9 +11,12 @@
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="firefox_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
+
 	<test name="Bus Search" thread-count="4" parallel="true">
 
+
 		<classes>
+
 			<class name="com.Yatra.TestScript.Bus.BusSearchTest">
 			<methods>
              <include name="TC_Yatra_Bus_033"/> 
@@ -22,5 +26,6 @@
              </methods> 
           </class>          
 		</classes>
+
 	</test>
 </suite>

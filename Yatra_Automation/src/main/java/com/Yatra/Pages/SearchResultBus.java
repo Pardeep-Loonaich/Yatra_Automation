@@ -129,9 +129,13 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 
 	@FindBy(css = "div[class*='onwards floor-wrapper']>div[class*='seat-floor flL mt10 lower-deck']>ul>li[class*='flL type-SS avl-Y reserved-M']")
 	private WebElement emptyseatInPopUp;
-	
+
+	@FindBy(css="iframe[id='popoverWindow_iframe']")
+	private WebElement iFrameOnSearchResultBus;
+
 	@FindBy(css = "iframe[id='popoverWindow_iframe']")
 	private WebElement iframePopUp;
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -437,16 +441,12 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * 
 	 * @throws Exception
 	 */
-
 	public void switchToIframe() throws Exception {
-		BrowserActions.nap(2);
-		Utils.waitForElement(driver, iframePopUp);
-		driver.switchTo().frame(driver.findElement(By.cssSelector("iframe[id='popoverWindow_iframe']"))); // switching to iframe window
-	}
-
-	@FindBy(css = "div[class*='onwards floor-wrapper']>div[class*='seat-floor flL mt10 lower-deck']>ul>li[class*='flL type-SS avl-Y reserved-M']")
-	WebElement listSeat;
-
+		//driver.manage().window().maximize(); 
+		BrowserActions.switchToIframe(driver, iFrameOnSearchResultBus);
+		//do what ever action you want to perform code goes here..
+		BrowserActions.switchToDefault(driver);
+	}	
 	/**
 	 * To Select No Of Seat
 	 * 
@@ -476,13 +476,8 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		Thread.sleep(4000);
 		String txt = driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).getText(); // Boarding
 																														// Point
-		driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).click(); // Select
-																											// One
-																											// Boarding
-																											// point
-																											// from
-																											// Drop
-																											// Down
+		driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).click(); //Select one Boadring point From Drop Down
+																											
 		Utils.waitForPageLoad(driver);
 		return txt;
 	}
@@ -609,6 +604,5 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	public void clickOnContinue() throws Exception {
 		BrowserActions.nap(2);
 		driver.findElement(By.cssSelector(("div[class='flL bus-details-box']>div[class='wfull mt20']>div"))).click();
-
 	}
 }// SRPBUS

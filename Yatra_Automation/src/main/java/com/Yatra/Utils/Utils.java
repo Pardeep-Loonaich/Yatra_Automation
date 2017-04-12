@@ -24,6 +24,7 @@ import org.openqa.selenium.JavascriptExecutor;
  */
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
+
 	public static int maxElementWait = 50;
 
 
@@ -48,7 +49,7 @@ public class Utils {
 	public static void waitForPageLoad(final WebDriver driver, int maxWait) {
 		//long startTime = StopWatch.startTime();
 		FluentWait<WebDriver> wait = new WebDriverWait(driver, maxWait).pollingEvery(500, TimeUnit.MILLISECONDS)
-				.ignoring(StaleElementReferenceException.class).withMessage("Page Load Timed Out");
+				.ignoring(StaleElementReferenceException.class,WebDriverException.class).withMessage("Page Load Timed Out");
 		try {
 
 			if (configProperty.getProperty("documentLoad").equalsIgnoreCase("true"))
@@ -148,6 +149,7 @@ public class Utils {
 		//long startTime = StopWatch.startTime();
 		WebDriverWait wait = new WebDriverWait(driver, maxWait);
 		try {
+			
 			WebElement waitElement = wait.until(ExpectedConditions.visibilityOf(element));
 			if (waitElement.isDisplayed() && waitElement.isEnabled()) {
 				statusOfElementToBeReturned = true;
@@ -548,6 +550,7 @@ public class Utils {
 			Log.message_Skip("\"" + testCaseId + "\" has marked Run as \"NO\" in Excel data !!");
 			Log.message_Skip("\"" + testCaseId + "\" has been skipped !!");
 			throw new SkipException("\"" + testCaseId + "\" has been skipped !!");
+
 		}
 		return dataToBeReturn;
 	}
@@ -574,6 +577,7 @@ public class Utils {
 		return dataToBeReturn;
 
 	}
+
 	/**
 	 * Use this if you need to scroll to top/Bottom of page
 	 * @param driver
@@ -606,6 +610,7 @@ public class Utils {
 //				// no message please
 //			}
 		}
+
 
 
 }

@@ -36,6 +36,7 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 	public ElementLayer elementLayer;
 	Utils utils;
 	SearchResultBus searchResult;
+	//@Harveer- all element should be private
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
