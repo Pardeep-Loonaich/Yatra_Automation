@@ -65,8 +65,10 @@ public class FlightSearch {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
+			
 			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
+			homePage.clickOnMainMenu(driver, "My Account", "Login");
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			// step: Select Trip Type

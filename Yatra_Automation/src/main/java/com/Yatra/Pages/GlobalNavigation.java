@@ -117,4 +117,6 @@ public class GlobalNavigation extends LoadableComponent<GlobalNavigation> {
 			driver.findElement(By.xpath(sMAIN_NAV_SUBMENU_OPTION_OBJECT)).click();
 		}
 
+		
+		
 }// GlobalNavigation

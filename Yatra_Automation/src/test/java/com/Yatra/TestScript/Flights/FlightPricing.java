@@ -45,6 +45,7 @@ public class FlightPricing {
 
 	@BeforeTest(alwaysRun = true)
 	public void init(ITestContext context) {
+		
 		webSite = (System.getProperty("webSite") != null ? System.getProperty("webSite")
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}

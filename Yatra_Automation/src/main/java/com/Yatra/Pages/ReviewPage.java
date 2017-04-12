@@ -33,6 +33,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 ********************************* WebElements of Yatra ReviewPage ***********************************
 	 **********************************************************************************************/
 
+	
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	public WebElement btnChngeFlight;
 

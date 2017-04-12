@@ -21,7 +21,7 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
-	
+	 //@Harveer- make all element private
 	@FindBy(xpath = "//*[@id='signInBtn']")
 	public WebElement btnSignIn;
 
@@ -68,23 +68,14 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 
 	public void signIn(String loginId , String password) 
 			throws Exception{
-		BrowserActions.typeOnTextField(
-				txtMailId, loginId, driver,
-						"Email Id");
-		BrowserActions.typeOnTextField(
-				txtPassword, password, driver,
-						"Password");
-		BrowserActions.clickOnElement(
-				btnSignIn, driver, 
-						"SignIn buttom");
+		BrowserActions.typeOnTextField(	txtMailId, loginId, driver,"Email Id");
+		BrowserActions.typeOnTextField(txtPassword, password, driver,"Password");
+		BrowserActions.clickOnElement(btnSignIn, driver, "SignIn buttom");
 	}// the return type needs to be chnaged because the sinin action returns the homepage of the user
 	
 	public AgentRegister clickOnAgentRegsiter() throws Exception{
-		BrowserActions.clickOnElement(
-
-				btnRegisterHere, driver,
-
-						"Agent Register Btn");
+		
+		BrowserActions.clickOnElement(btnRegisterHere, driver,"Agent Register Btn");
 		return new AgentRegister(driver).get();
 	}
 	
