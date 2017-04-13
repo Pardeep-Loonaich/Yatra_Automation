@@ -10,6 +10,7 @@
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
+
 	<test name="Flight Pricing" thread-count="1" parallel="false">
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
@@ -17,3 +18,4 @@
 		</classes>
 	</test>
 </suite>
+s

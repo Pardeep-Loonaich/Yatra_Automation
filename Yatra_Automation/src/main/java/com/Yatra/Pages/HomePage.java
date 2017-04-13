@@ -2,6 +2,7 @@ package com.Yatra.Pages;
 
 
 
+import java.awt.Robot;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,6 +23,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.BrowserType;
 import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
@@ -44,164 +46,176 @@ public class HomePage extends LoadableComponent<HomePage> {
 //@Harveer- change access specifier for all element private
 
 	@FindBy(css = "input#BE_flight_origin_city")
-	public WebElement txtOrigin;
+	private WebElement txtOrigin;
 
 	@FindBy(css = "input#BE_flight_arrival_city")
-	WebElement txtDestination;
+	private WebElement txtDestination;
 
 	@FindBy(css = "input#BE_flight_flsearch_btn")
-	WebElement btnSearch;
+	private WebElement btnSearch;
 
 	@FindBy(css = "input#BE_flight_depart_date")
-	WebElement dateDeparture;
+	private WebElement dateDeparture;
 
 	@FindBy(css = "input#BE_flight_return_date")
-	WebElement dateReturn;
+	private WebElement dateReturn;
 
-	WebElement departureDate;
+	String departureDateLocator="(//table[@class='day-container-table']//a[@id='a_";
+	private WebElement departureDate;
 
 	@FindBy(id = "BE_flight_return_date")
-	WebElement returnDate;
+	private WebElement returnDate;
 
 	@FindBy(css = "div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']")
-	List<WebElement> selectMonth;
+	private List<WebElement> selectMonth;
 
 	@FindBy(css = "div[id='BE_flight_paxInfoBox']")
-	WebElement passengerInfo;
+	private WebElement passengerInfo;
 
 	//String dateLocator = "div[class='month-box'] table tbody td[class*='activeTD clsDateCell'] a[id='a_";
-	String departureDateLocator="(//table[@class='day-container-table']//a[@id='a_";
 	String returnDateLocator="";
 	String passengersLocator = "span[class='ddSpinnerPlus']";
-
-	String passengerClassLocator = "div[id='flight_class_select_child'] ul li";
+    String passengerClassLocator = "div[id='flight_class_select_child'] ul li";
 
 	@FindBy(css = "div[class='be-ddn-footer']>span[class='done']")
-	WebElement submitPassengerClassInfo;
+	private WebElement submitPassengerClassInfo;
 
 	@FindBy(css = "a[title='One Way']")
-	public WebElement lnkOneWay;
+	private WebElement lnkOneWay;
 
 	@FindBy(css = "a[title='Round Trip']")
-	WebElement lnkRoundTrip;
+	private WebElement lnkRoundTrip;
 
 	@FindBy(css = "a[title='Multicity']")
-	WebElement lnkMultiCity;
+	private WebElement lnkMultiCity;
 
 	@FindBy(css = "#BE_flight_depart_date")
-	WebElement txtDateDepart;
+	private WebElement txtDateDepart;
 
 	@FindBy(xpath = "//form[@id='BE_flight_form']//li[3]/i")
-	WebElement txtDeptDatePicker;
+	private WebElement txtDeptDatePicker;
 
 	@FindBy(xpath = "//form[@id='BE_flight_form']//li[4]/i")
-	WebElement txtReturnDatePicker;
+	private WebElement txtReturnDatePicker;
 
 	@FindBy(css = "a#booking_engine_flights")
-	WebElement lnkFlights;
+	private WebElement lnkFlights;
 
 	@FindBy(css = "a#booking_engine_hotels")
-	WebElement lnkHotels;
+	private WebElement lnkHotels;
 
 	@FindBy(css = "a#booking_engine_homestays")
-	WebElement lnkHomeStays;
+	private WebElement lnkHomeStays;
 
 	@FindBy(css = "a#booking_engine_holidays")
-	WebElement lnkHolidays;
+	private WebElement lnkHolidays;
 
 	@FindBy(css = "a#booking_engine_activities")
-	WebElement lnkActivities;
+	private WebElement lnkActivities;
 
 	@FindBy(css = "a#booking_engine_buses")
-	WebElement lnkBuses;
+	private WebElement lnkBuses;
 
 	@FindBy(css = "a#booking_engine_trains")
-	WebElement lnkTrains;
+	private WebElement lnkTrains;
 
 	@FindBy(css = "a#booking_engine_cruise")
-	WebElement lnkCruise;
+	private WebElement lnkCruise;
 
 	@FindBy(css = "#signInBtn")
-	WebElement btnSignIn;
+	private WebElement btnSignIn;
 
 	@FindBy(css = "input#BE_flight_origin_city_1")
-	public WebElement txtMulticity_Origin1;
+	private WebElement txtMulticity_Origin1;
 
 	@FindBy(css = "input#BE_flight_origin_city_2")
-	public WebElement txtMulticity_Origin2;
+	private WebElement txtMulticity_Origin2;
 
 	@FindBy(css = "input#BE_flight_arrival_city_1")
-	WebElement txtMulticity_Destination1;
+	private WebElement txtMulticity_Destination1;
 
 	@FindBy(css = "input#BE_flight_arrival_city_2")
-	WebElement txtMulticity_Destination2;
+	private WebElement txtMulticity_Destination2;
 
 	@FindBy(xpath = "//input[@id='BE_flight_depart_date_1']")
 	private WebElement dateMulticity_Departure1;
 
 	@FindBy(css = "input#BE_flight_depart_date_2")
-	WebElement dateMulticity_Departure2;
+	private WebElement dateMulticity_Departure2;
 
 	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month-']")
-	List<WebElement> selectMonth_MultiDepart1;
+	private List<WebElement> selectMonth_MultiDepart1;
 
 	@FindBy(css = "div[id='PegasusCal-8'] li a[href*='#PegasusCal-8-month-']")
-	List<WebElement> selectMonth_MultiDepart2;
+	private List<WebElement> selectMonth_MultiDepart2;
 
 	@FindBy(css = "#userSignInStrip")
-	WebElement lnkMyaccount;
+	private WebElement lnkMyaccount;
 
 	@FindBy(css = ".be-container-v2")
-	WebElement searchPanel;
+	private WebElement searchPanel;
 
 	@FindBy(css = "div[id='booking_engine_modues']>form>div>div[id='']>div[id='BE_bus_seats_msdd']>div[class='ddTitle borderRadiusTp']>span[class='ddSpinnerPlus']")
-	WebElement btnIncreseSeat;
+	private WebElement btnIncreseSeat;
 
 	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(1)")
-	WebElement lnkOneWayBus;
+	private WebElement lnkOneWayBus;
 
 	@FindBy(css = "div[class*='selc-more-options mor-option trip-type']>span:nth-child(3)")
-	WebElement lnkRoundTripBus;
+	private WebElement lnkRoundTripBus;
 
 	@FindBy(css = "#BE_bus_from_station")
-	WebElement txtOriginBus;
+	private WebElement txtOriginBus;
 
 	@FindBy(xpath = "//input[@id='BE_train_from_station']")
-	WebElement txtTrainOrigin;
+	private WebElement txtTrainOrigin;
 
 	@FindBy(xpath = "//input[@id='BE_train_to_station']")
-	WebElement txtTrainDestination;
+	private WebElement txtTrainDestination;
 
 	@FindBy(xpath = "//input[@id='BE_train_depart_date']")
-	WebElement dateTrainDeparture;
+	private WebElement dateTrainDeparture;
 
 	@FindBy(xpath="//input[@id='BE_train_search_btn']")
-	WebElement btnTrainSearch;
+	private WebElement btnTrainSearch;
 
 	@FindBy(css = "#BE_bus_to_station")
-	WebElement txtDestinationBus;
+	private WebElement txtDestinationBus;
 
 	@FindBy(css = "#BE_bus_depart_date")
-	WebElement dateDepartureBus;
+	private WebElement dateDepartureBus;
 
 	@FindBy(css = "#BE_bus_return_date")
-	WebElement dateReturnBus;
+	private WebElement dateReturnBus;
 
 	@FindBy(css = "#BE_bus_search_btn")
-	WebElement btnSearchBus;
+	private WebElement btnSearchBus;
 
 	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month-']")
-	List<WebElement> selectMonth_Bus;
+	private List<WebElement> selectMonth_Bus;
 
 	@FindBy(css = "div[class='toasterHolder']")
-	WebElement txtErrorMsgEmptyCity;
+	private WebElement txtErrorMsgEmptyCity;
 
 	@FindBy(css = ".ac_over")
-	WebElement txtErrorMsgIncorrectCity;
-
+	private WebElement txtErrorMsgIncorrectCity;
+	
+	@FindBy(css="li[id='userLoginBlock']>a")
+	private WebElement drpdwnUserLogin;
+	
+	@FindBy(css="li[id='userLoginBlock']>div>div[class='user-drop-ddn header-dropdown']>ul>li[class='simple-dropdown']>a")
+	private WebElement lnkMyBooking;
+	
 	@FindBy(css = "div[class='header-container']>a")
-	WebElement logoYatra;
+	private WebElement logoYatra;
 
+	@FindBy(css = "#PegasusCal-7")
+	WebElement calenderMultiDept;
+	
+	@FindBy(css = "#PegasusCal-0")
+	WebElement calenderDeptdate;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -587,12 +601,35 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public LoginPage navigateToSignIn() throws Exception {
 		// click Login button on signin page
-		//Utils.waitForElement(driver, lnkMyaccount);		
-		//BrowserActions.mouseHover(driver, lnkMyaccount);
-		//BrowserActions.moveToElementJS(driver, lnkMyaccount);
-		//BrowserActions.actionClick(btnSignIn, driver, "Sign In");
 
-		//	BrowserActions.moveToElementJS(driver, driver.findElement(By.cssSelector("li[id='userSignInStrip']")));
+		/*Utils.waitForElement(driver, lnkMyaccount);		
+		BrowserActions.mouseHover(driver, lnkMyaccount);
+		BrowserActions.moveToElementJS(driver, lnkMyaccount);
+		BrowserActions.actionClick(btnSignIn, driver, "Sign In");
+		
+	    Utils.waitForPageLoad(driver);		
+		
+		BrowserActions.moveToElementJS(driver, driver.findElement(By.cssSelector("li[id='userSignInStrip']>a")));
+		Actions actions = new Actions(driver);
+		actions.moveToElement(driver.findElement(By.cssSelector("li[id='userSignInStrip']"))).perform();
+		actions.click(driver.findElement(By.cssSelector("li[id='userSignInStrip']"))).click().perform();
+		
+		actions.moveToElement(driver.findElement(By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'My Account')]"))).perform();
+		actions.click(driver.findElement(By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'My Account')]"))).perform();
+		
+		*/
+		
+		WebElement lnkMyAccount = driver.findElement(By.cssSelector("li[id='userSignInStrip']>a"));
+		Point point = lnkMyAccount.getLocation();
+		int xCord = point.getX();
+		int yCord = point.getY();
+
+		if(BrowserType.fromConfiguration("ie") == BrowserType.IE){
+			Robot robot= new Robot();
+			robot.mouseMove(xCord, yCord);		
+		}
+				
+		Utils.waitForElement(driver, btnSignIn);
 		BrowserActions.javascriptClick(btnSignIn, driver, "Sign In");
 		Utils.waitForPageLoad(driver);
 		return new LoginPage(driver).get();
@@ -690,8 +727,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
 		Utils.waitForElement(driver, dateDeparture);
-		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon..");
 
+		Utils.waitForElement(driver, calenderDeptdate);
+		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon..");
 		selectMonth.get(month - 2).click();
 
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")));
@@ -817,7 +855,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
-		BrowserActions.nap(2);
+		Utils.waitForElement(driver, calenderMultiDept);
 		BrowserActions.clickOnElement(dateMulticity_Departure1, driver, "clicking on MultiCity departure1 date icon");
 		selectMonth_MultiDepart1.get(month - 3).click();
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
@@ -1222,6 +1260,17 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return txtDetails;
 	}
 
+	
+	
+	public Bookings navigateToBooking() throws Exception{
+		BrowserActions.moveToElementJS(driver, drpdwnUserLogin);
+		BrowserActions.clickOnElement(lnkMyBooking, driver, "Clicked on Login user dropdown");	
+		return new Bookings(driver).get();
+	}
+	
+	
+
+
 	/**
 	 * Description:to Click on Main Menu and sub menu
 	 * @param driver
@@ -1229,7 +1278,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @param sSubMenu
 	 * @throws Exception 
 	 */
-	public void clickOnMainMenu(WebDriver driver, String sMainMenu, String sSubMenu) throws Exception
+	public LoginPage clickOnMainMenu(WebDriver driver, String sMainMenu, String sSubMenu) throws Exception
 
 	{/*
 
@@ -1269,14 +1318,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		{
 			driver.navigate().to("https://secure.yatra.com/social/common/yatra/signin.htm");
 		}
+		return new LoginPage(driver).get();
 
 	}
-
-
-
-
-
-
-
-
 }// HomePage

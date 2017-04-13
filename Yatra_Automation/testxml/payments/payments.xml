@@ -10,7 +10,7 @@
 	<parameter name="browserName" value="Chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 	
-	<test name="Payment" thread-count="5" parallel="false">
+	<test name="Payment" thread-count="5" parallel="true">
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Payment.PaymentTest">	</class>

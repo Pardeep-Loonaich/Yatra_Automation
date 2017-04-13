@@ -330,8 +330,8 @@ public class FlightSearch {
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> ser should navigated on SearchResult page with INTL-Multicity flight result",
-					"<b>Actual Result:</b> ser should navigated on SearchResult page with INTL-Multicity flight result",
+					"<b>Actual Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result",
+					"<b>Actual Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result",
 					driver);
 
 			Log.testCaseResult();
