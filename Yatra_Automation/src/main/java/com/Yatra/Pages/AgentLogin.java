@@ -23,19 +23,19 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	 **********************************************************************************************/
 	 //@Harveer- make all element private
 	@FindBy(xpath = "//*[@id='signInBtn']")
-	public WebElement btnSignIn;
+	private WebElement btnSignIn;
 
 	@FindBy(xpath = "//*[@id='emailId']")
-	public WebElement txtMailId;
+	private WebElement txtMailId;
 	
 	@FindBy(xpath = "//*[@id='password']")
-	public WebElement txtPassword;
+	private WebElement txtPassword;
 	
 	@FindBy(css = "p a[href*='forgotpassword']")
-	public WebElement lnkForgotPassword;
+	private WebElement lnkForgotPassword;
 	
 	@FindBy(css = "button[id='b2bSignUp']")
-	public WebElement btnRegisterHere;
+	private WebElement btnRegisterHere;
 
 	
 	/**********************************************************************************************

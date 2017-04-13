@@ -3,10 +3,18 @@ package com.Yatra.Pages;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -15,9 +23,11 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.javascript.host.Element;
+import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
+import com.thoughtworks.selenium.Selenium;
 
 public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 
@@ -30,114 +40,136 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
-//Harveer- all element should be private
+
 	@FindBy(css = "#BE_flight_flsearch_btn")
-	WebElement btnFindBus;
+	private WebElement btnFindBus;
 
 	@FindBy(css = "div[class='wfull mt10 dest-details box-sizing']>div[class='flL w75P']")
-	WebElement fldContentBusDetail;
+	private WebElement fldContentBusDetail;
 
 	@FindBy(css = "div[class='flL padL5 w50P']")
-	WebElement fldContentBusDetail_RT;
+	private	WebElement fldContentBusDetail_RT;
 
 	@FindBy(css = "p[class='wfull text-error']>span[class='no-res-txt ng-binding']")
-	WebElement txtNoResultFoundBus;
+	private WebElement txtNoResultFoundBus;
 
 	@FindBy(css = "section[class='col-3 result ng-scope']>div>div[class='wfull result-holder onwards ng-scope']>ul>li[class='totlal-fare box-sizing tar']>a")
-	List<WebElement> btnSelectSeat;
+	private List<WebElement> btnSelectSeat;
 
 	@FindBy(xpath = "//*[@id='onwards-content']/div[@class='flL bus-details-box']/div[@class='bus-info']/div/p[1]")
-	WebElement fldContentBusInfoInPopUp;
+	private WebElement fldContentBusInfoInPopUp;
 
 	@FindBy(css = ".flL.button-nextPrev.anim.prev_day_search_link.eventTrackable")
-	WebElement btnPrevDay;
+	private WebElement btnPrevDay;
 
 	@FindBy(css = ".flL.button-nextPrev.ml5.anim.next_day_search_link.eventTrackable")
-	WebElement btnNextDay;
+	private WebElement btnNextDay;
 
 	@FindBy(css = "#bus_depart_date")
-	WebElement fldDepartDate;
+	private WebElement fldDepartDate;
 
 	@FindBy(css = "#bus_return_date")
-	WebElement fldReturnDate;
+	private WebElement fldReturnDate;
 
 	@FindBy(css = "div[class='ac_results']>ul>li[ class='ac_over']")
-	WebElement txtCityValidationErrorMsg;
+	private WebElement txtCityValidationErrorMsg;
 
 	@FindBy(css = "#bus_origin_city")
-	WebElement txtOriginBus;
+	private WebElement txtOriginBus;
 
 	@FindBy(css = "	#bordDropping-content>div[class='wfull gray-scroll']>div>div>div")
-	WebElement fldContentBoardingPoint;
+	private WebElement fldContentBoardingPoint;
 
 	@FindBy(css = ".wfull.ng-scope>ul>li[id='bordDropping']")
-	WebElement lnkBoardingPoint;
+	private WebElement lnkBoardingPoint;
 
 	@FindBy(css = "div[class='wfull ng-scope']>ul>li:nth-child(3)>a")
-	WebElement lnkDroppingPoint;
+	private WebElement lnkDroppingPoint;
 
 	@FindBy(css = "div[class='jspContainer']>div")
-	WebElement fldContentDroppingPoint;
+	private WebElement fldContentDroppingPoint;
 
 	@FindBy(css = ".wfull.pad-tb10.hide.bdr-top-grey.onwards.selected-seats")
-	WebElement txtSelectedSeat;
+	private WebElement txtSelectedSeat;
 
 	@FindBy(css = ".wfull.pad-tb10.onwards.bdr-top-grey.hide.total-ammount")
-	WebElement txtTotalAmount;
+	private WebElement txtTotalAmount;
 
 	@FindBy(css = "div[class='wfull result-holder onwards ng-scope']>ul[class='wfull res-list mt20 sorting-list noListStyle']>li[class='depart box-sizing']>a")
-	WebElement lnkDepartTime;
+	private WebElement lnkDepartTime;
 
 	@FindBy(css = "div[class='wfull result-holder onwards ng-scope']>ul:nth-child(3)>li[class='box-sizing ar-de-seats']>p[class='flL txtMedium w33P']:nth-child(1)>span")
-	List<WebElement> departTime;
+	private List<WebElement> departTime;
 
 	@FindBy(css = "div[class='wfull result-holder onwards ng-scope']>ul:nth-child(3)>li[class='box-sizing ar-de-seats']>p[class='flL txtMedium w33P']:nth-child(2)>span")
-	List<WebElement> arriveTime;
+	private List<WebElement> arriveTime;
 
 	@FindBy(css = "div[class='wfull result-holder onwards ng-scope']>ul:nth-child(3)>li[class='box-sizing ar-de-seats']>p[class='flL w33P ng-binding']")
-	List<WebElement> duration;
+	private List<WebElement> duration;
 
 	@FindBy(css = "#toater_21")
-	WebElement txtErrorMsgEmptyCity;
+	private WebElement txtErrorMsgEmptyCity;
 
 	@FindBy(css = "div[class='wfull result-holder onwards ng-scope']>ul>li[class='totlal-fare box-sizing tar']>p>span[class='flL txtXXL ng-binding']")
-	List<WebElement> price;
+	private List<WebElement> price;
 
 	@FindBy(css = "div[class='wfull']")
-	WebElement selectSeatPopUp;
+	private WebElement selectSeatPopUp;
 
 	@FindBy(css = "	div[class='wfull result-holder onwards ng-scope']>ul:not([class='wfull res-list mt20 sorting-list noListStyle'])>li[class='wfull box-sizing footer']>div[class='flL separator']>a")
-	WebElement lnkbusDetail;
+	private WebElement lnkbusDetail;
 
 	@FindBy(css = "div[class='wfull bus-details-popup']")
-	WebElement busDetailPopUp;
+	private WebElement busDetailPopUp;
 
 	@FindBy(css = "ul>li[data-avl='avl-Y']")
-	List<WebElement> selectSeat;
+	private List<WebElement> selectSeat;
 
 	@FindBy(css = "div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")
-	WebElement lstBoardingPoint;
+	private	WebElement lstBoardingPoint;
 
 	@FindBy(css = "div[class='wfull total-fare']>span[class='select-seats-action-round']>a")
-	WebElement selectBus_RT;
+	private WebElement selectBus_RT;
 
 	@FindBy(css = "div[class='return floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']")
-	WebElement PopUp_RT;
+	private WebElement PopUp_RT;
 
 	@FindBy(css = "div[class='flL bus-details-box']>div[class='wfull mt20']>div")
-	WebElement ContinueButtonInPopUp;
+	private	WebElement ContinueButtonInPopUp;
 
 	@FindBy(css = "div[class*='onwards floor-wrapper']>div[class*='seat-floor flL mt10 lower-deck']>ul>li[class*='flL type-SS avl-Y reserved-M']")
-	WebElement emptyseatInPopUp;
-	
+	private WebElement emptyseatInPopUp;
 
 	@FindBy(css="iframe[id='popoverWindow_iframe']")
 	private WebElement iFrameOnSearchResultBus;
+
+	@FindBy(xpath = "(//a[@data-trackvalue='Select Seats PopUp'][contains(.,'Continue')])[1]")
+	WebElement ContinueInIframe;
 	
+	@FindBy(css = "div[id='bordDropping-content']>div[class='wfull gray-scroll']>div>div>div[class='jspPane']")
+	WebElement detailsBoardingPoint;
+	
+	@FindBy(css = "div[id='DroppingOnly-content']>div[class='wfull gray-scroll']>div>div>div")
+	WebElement detailsDroppingPoint;
+	
+	@FindBy(css = "div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>p")
+	WebElement txtMaxSeat;
+	
+	@FindBy(css = "ul>li[class='flL change-deck deck-btn left active']")
+	WebElement txtSeatType;
+	
+	@FindBy(css = "ul>li[class='flL change-deck deck-btn right']")
+	WebElement txtSeatTyp;
+	
+	@FindBy(css = "p[class='wfull txtMedium latoBold mt2 onwards-selected-seats']")
+	WebElement txtSeatNumber;
 
-	@FindBy(css = "iframe[id='popoverWindow_iframe']")
-	WebElement iframePopUp;
-
+	@FindBy(css = ".boarding.tooltip")
+	WebElement errorMessage;
+	
+	@FindBy(css = "/div[class='wfull tab-content onwards seat-layout']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")
+	WebElement btnSelectseat;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -233,6 +265,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 
 	public void clickBtnSelectSeat(int index) throws Exception {
+		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(btnSelectSeat.get(index), driver, "Select Seat");
 		Utils.waitForPageLoad(driver);
 	}
@@ -282,10 +315,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 	public String getTextBusBoardingPoint() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver
-				.findElement(By.cssSelector(
-						"div[id='bordDropping-content']>div[class='wfull gray-scroll']>div>div>div[class='jspPane']"))
-				.getText();
+		String txtDetails = detailsBoardingPoint.getText();
 		return txtDetails;
 	}
 
@@ -297,10 +327,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 	public String getTextBusDroppingPoint() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver
-				.findElement(
-						By.cssSelector("div[id='DroppingOnly-content']>div[class='wfull gray-scroll']>div>div>div"))
-				.getText();
+		String txtDetails = detailsDroppingPoint.getText();
 		return txtDetails;
 	}
 
@@ -443,18 +470,11 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * 
 	 * @throws Exception
 	 */
-
-	
 	public void switchToIframe() throws Exception {
-		//driver.manage().window().maximize(); 
+		BrowserActions.nap(2);
 		BrowserActions.switchToIframe(driver, iFrameOnSearchResultBus);
-		//do what ever action you want to perform code goes here..
-		BrowserActions.switchToDefault(driver);
+		
 	}	
-	
-	
-
-
 	/**
 	 * To Select No Of Seat
 	 * 
@@ -484,13 +504,8 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		Thread.sleep(4000);
 		String txt = driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).getText(); // Boarding
 																														// Point
-		driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).click(); // Select
-																											// One
-																											// Boarding
-																											// point
-																											// from
-																											// Drop
-																											// Down
+		driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).click(); //Select one Boadring point From Drop Down
+																											
 		Utils.waitForPageLoad(driver);
 		return txt;
 	}
@@ -517,54 +532,59 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 	public String selectBoardingPointReturn() throws Exception {
 		Thread.sleep(3000);
-		driver.findElement(By.cssSelector(("span[id='msdrpdd20_title']"))).click(); // Clicked
-																					// On
-																					// Drop
-																					// Down
-		String txt = driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).getText(); // Boarding
-																														// Point
-		driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).click(); // Select
-																											// One
-																											// Boarding
-																											// point
-																											// from
-																											// Drop
-																											// Down
+		driver.findElement(By.cssSelector(("span[id='msdrpdd20_title']"))).click(); // Clicked On Drop Down																
+		String txt = driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).getText();
+		driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).click(); // Select one Boarding point																								
 		Utils.waitForPageLoad(driver);
 		return txt;
 	}
 
+	/**
+	 * To Get Text Total Seat Number Booked
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String getTextMaxNumber() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver.findElement(By.cssSelector("p[class='wfull txt13 mt20 mr10 t-ac txtGrey']"))
-				.getText();
+		String txtDetails = txtMaxSeat.getText();
 		return txtDetails;
 	}
-
+	/**
+	 * To Get Text Seat Type
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String getTextSeatType() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver.findElement(By.cssSelector("ul>li[class='flL change-deck deck-btn left active']"))
-				.getText();
+		String txtDetails = txtSeatType.getText();
 		return txtDetails;
 	}
-
+	/**
+	 * To Get Text Seat Type
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String getTextSeatTyp() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver.findElement(By.cssSelector("ul>li[class='flL change-deck deck-btn right']"))
-				.getText();
+		String txtDetails = txtSeatTyp.getText();
 		return txtDetails;
-
 	}
 
 	/**
-	 * To click On Continue Button In PoP Up To Select Seat
+	 * To Click on Continue Button
 	 * 
+	 *  @return
 	 * @throws Exception
 	 */
 
 	public ReviewPageBus clickOnContinueInPopUp() throws Exception {
 		BrowserActions.nap(2);
-		driver.findElement(By.cssSelector(("div[class='flL bus-details-box']>div[class='wfull mt20']>div"))).click();
+		//driver.findElement(By.xpath("(//a[@data-trackvalue='Select Seats PopUp'][contains(.,'Continue')])[1]")).click();
+		ContinueInIframe.click();
+		BrowserActions.switchToDefault(driver);
 		Utils.waitForPageLoad(driver);
 		return new ReviewPageBus(driver).get();
 
@@ -578,9 +598,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 	public String getTextSeatNumber() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver
-				.findElement(By.cssSelector("p[class='wfull txtMedium latoBold mt2 onwards-selected-seats']"))
-				.getText();
+		String txtDetails = txtSeatNumber.getText();
 		return txtDetails;
 	}
 
@@ -603,9 +621,8 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 	public String getTextErrorMessage() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver.findElement(By.cssSelector(".boarding.tooltip")).getText();
+		String txtDetails = errorMessage.getText();
 		return txtDetails;
-
 	}
 
 	/**
@@ -615,8 +632,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 
 	public void clickOnContinue() throws Exception {
-		BrowserActions.nap(2);
-		driver.findElement(By.cssSelector(("div[class='flL bus-details-box']>div[class='wfull mt20']>div"))).click();
-
+		Thread.sleep(4000);
+		driver.findElement(By.cssSelector("a[class*='flL ytBtn ytBtnBlue txtL LatoBold seat_map_continue tooltip']")).click(); 
 	}
 }// SRPBUS

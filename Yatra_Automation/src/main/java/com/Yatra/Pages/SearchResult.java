@@ -63,28 +63,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "div[class='show-result multi-1']>div>div[class='results']>div:nth-child(1)>article>div[class='my-res-info full']>ul>li>small:nth-child(2)")
 	WebElement firstAirlineName_OW_DOM;
-	//
-	// @FindBy(css =
-	// "div[class='js-flightItem']:nth-child(2)>article>div[class='full
-	// airlines-deals-holder bxs hidden-sm']>div[class='ib airlines-info
-	// hidden-sm']>p")
-	// WebElement firstAirlineName_RT_INTL;
-	//
-	// @FindBy(css =
-	// "div[class='js-flightItem']:nth-child(2)>article>div[class='full
-	// result-card-content']>ul>li:nth-child(1)>div>p[class='full
-	// airline-name']")
-	// WebElement firstAirlineName_OW_INTL;
-	//
-	// @FindBy(css =
-	// "#resultBoxSlider>div[id='resultList_0']>div[class='results']>div:nth-child(1)>article>div[class='my-res-info
-	// full']>ul>li:nth-child(1)")
-	// WebElement firstAirlineName_RT_DOM_Left;
-	//
-	// @FindBy(css =
-	// "#resultBoxSlider>div[id='resultList_0']>div[class='results']>div:nth-child(1)>article>div[class='my-res-info
-	// full']>ul>li:nth-child(1)")
-	// WebElement firstAirlineName_RT_DOM_Right;
 
 	@FindBy(css = "div[class='js-flightItem']:nth-child(2)>article>div[class='full lob-inclusions bxs hidden-md']>div[class='inc-rgt']>ul>li>a[title='Flight Details']")
 	WebElement lnkFlightDetails_INTL;
@@ -283,7 +261,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "ul[class='matrix-slide-list tabs matrix-ul']>li:nth-child(2) p:nth-child(3)[class='matrix-label uprcse']")
 	WebElement lnkArirlineMatrixFare;
-	
+	@FindBy (xpath="(//div[@id='resultBox']//div[@class='js-flightRow js-flightItem'][1]//span[contains(.,'Book Now')])[1]")
+	private WebElement flightBookNow;
 	
 	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
 	
@@ -387,9 +366,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
 		WebElement e = driver.findElement(By.cssSelector(
-				"div[id='resultBoxSlider']>div>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
-						+ index
-						+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
+		"div[id='resultBoxSlider']>div>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
+					+ index
+				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
 		BrowserActions.scrollToView(e, driver);
 		BrowserActions.clickOnElement(e, driver, "To click on Book now button.");
 		return new ReviewPage(driver).get();

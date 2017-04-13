@@ -23,16 +23,16 @@ public class MakePayment extends LoadableComponent<CompleteBooking> {
 	 **********************************************************************************************/
 	
 	@FindBy(xpath= "//input[@id ='cust_email']")
-	public WebElement txtCustomerEmail;
+	private WebElement txtCustomerEmail;
 	
 	@FindBy(xpath="//li[@class='checkAcc']/input[@class='mt3 flL']")
-	public WebElement chkYatraAcc;
+	private WebElement chkYatraAcc;
 	
 	@FindBy(xpath= "//input[@id ='super_pnr']")
-	public WebElement txtBookingRefNo;
+	private WebElement txtBookingRefNo;
 	
 	@FindBy(xpath =  "//input[@id ='login-button']")
-	public WebElement btnLogin;
+	private WebElement btnLogin;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************

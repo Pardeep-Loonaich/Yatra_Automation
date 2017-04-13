@@ -1,6 +1,6 @@
 package com.Yatra.TestScript.Bus;
 
-import java.util.Arrays;
+
 
 //-----------------------------------------------------------------------------------------------------------
 //Description    :   All the Bus Search test Cases would be designed in this class 
@@ -9,6 +9,7 @@ import java.util.Arrays;
 //Modified on/By :   -
 //-----------------------------------------------------------------------------------------------------------
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
+import com.Yatra.Pages.PaymentPageBus;
 import com.Yatra.Pages.ReviewPageBus;
 import com.Yatra.Pages.SearchResultBus;
 import com.Yatra.Pages.TravellerPageBus;
@@ -39,6 +41,7 @@ public class BusSearchTest {
 	SearchResultBus searchResultBus;
 	ReviewPageBus reviewPageBus;
 	TravellerPageBus travellerPageBus;
+	PaymentPageBus paymentPageBus;
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
@@ -1254,7 +1257,7 @@ public class BusSearchTest {
 			Thread.sleep(6000);
 			Log.assertThat(
 					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
-					"<b>Actual Result:</b>  User can " + Msg,
+					"<b>Actual Result:</b> User have selected these seat and seat number are : " + Msg,
 					"<b>Actual Result:</b> User can select any number of Seat", driver);
 
 			Log.testCaseResult();
@@ -1313,7 +1316,7 @@ public class BusSearchTest {
 			Thread.sleep(6000);
 			Log.assertThat(
 					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
-					"<b>Actual Result:</b> User can Select " + bustype + " and " + bustyp,
+					"<b>Actual Result:</b> User can Select " + bustype + " and " + bustyp + "seat type",
 					"<b>Actual Result:</b> User can not Select lower/Upper Deck seats", driver);
 
 			Log.testCaseResult();
@@ -1365,12 +1368,13 @@ public class BusSearchTest {
 
 			Thread.sleep(4000);
 			searchResultBus.switchToIframe();
-			searchResultBus.selectSeat(0);
+			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Boarding Point Selected!");
 
+			searchResultBus.switchToIframe();
 			searchResultBus.clickOnSelectReturnSeat();
 			Log.message("9. Clicked On Continue!");
 
@@ -1558,6 +1562,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1626,6 +1631,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1691,14 +1697,18 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
+			searchResultBus.switchToIframe();
+			searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
 			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
 			travellerPageBus.TravellerDetails(name);
-			Log.message("11. Filled Guest Details and Clicked on Continue!");
+			Log.message("11. Filled Guest Details!");
+
+			travellerPageBus.clickOnContinueInTravellerPage();
+			Log.message("12. Clicked on Continue!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify the guest Flow");
@@ -1761,6 +1771,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1769,6 +1780,9 @@ public class BusSearchTest {
 
 			travellerPageBus.TravellerDetails(name);
 			Log.message("11. Filled Guest Details and Clicked on Continue!");
+
+			travellerPageBus.clickOnContinueInTravellerPage();
+			Log.message("12. Clicked on Continue!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify the Login User Flow");
@@ -1830,6 +1844,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1898,6 +1913,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1907,6 +1923,84 @@ public class BusSearchTest {
 			Log.assertThat(reviewPageBus.elementLayer.verifyPageElements(Arrays.asList("btnFaceBook"), reviewPageBus),
 					"<b>Actual Result:</b> FaceBook Button is properly Visible on Review Page",
 					"<b>Actual Result:</b> FaceBook Button is not Visible on Review Page", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verify name, title & Age validations", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Bus_034(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String email = testData.get("EmailAddress");
+		String name = testData.get("CustomerName");
+		String phoneNumber = testData.get("PhoneNumber");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickBuses();
+			Log.message("2. Clicked on Bus Link!");
+
+			homePage.selectTripTypeBus(tripType);
+			Log.message("3. Trip Type Selected!");
+
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
+
+			searchResultBus = homePage.clickBtnSearchBus();
+			Log.message("5. Clicked On Search Button!");
+
+			searchResultBus.clickBtnSelectSeat(2);
+			Log.message("6. Clicked On Select Seat!");
+
+			Thread.sleep(4000);
+			searchResultBus.switchToIframe();
+			searchResultBus.selectSeat(1);
+			Log.message("7. Seat Selected from the popup!");
+
+			searchResultBus.selectBoardingPoint();
+			Log.message("8. Selected boarding point!");
+
+			searchResultBus.switchToIframe();
+			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
+			Log.message("9. Clicked on continue to navigate to review page!");
+
+			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			Log.message("10. Entered Email Address and Phone Number!");
+
+			travellerPageBus.TravellerDetails(name);
+			Log.message("11. Filled Guest Details!");
+
+			travellerPageBus.clickOnContinue();
+			Log.message("12. Clicked on Continue!");
+			String Error = travellerPageBus.getTextErrorMsg();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify name, title & Age validations");
+			Thread.sleep(6000);
+			Log.assertThat(
+					travellerPageBus.elementLayer.verifyPageElements(Arrays.asList("btnContinue"), travellerPageBus),
+					"<b>Actual Result:</b> If Name,title or Age field is empty an Error message is displayed as :"
+							+ Error,
+					"<b>Actual Result:</b> ", driver);
 
 			Log.testCaseResult();
 

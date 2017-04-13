@@ -510,14 +510,15 @@ public class Utils {
 	public static String dateGenerator(String sDateFormat,int iDay)
 
 	{
+		SimpleDateFormat simpleDateFormat=null;
 		String dataToBeReturn="";
 		if(sDateFormat.equalsIgnoreCase("") ||sDateFormat.equalsIgnoreCase(null))
 		{
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			 simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		}
 
 		Calendar cal=Calendar.getInstance();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDateFormat);
+		 simpleDateFormat = new SimpleDateFormat(sDateFormat);
 
 		if(!(iDay==0))
 
@@ -578,6 +579,38 @@ public class Utils {
 
 	}
 
+	
+	 
+		/**
+		 * Used to validate if a locator is on the page
+		 * @param driver
+		 * @param by locator
+		 * @return true or false
+		 */
+		public boolean exists(WebDriver driver, By by){
+			driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+			boolean found = false;
+			try {
+				List<WebElement> list = driver.findElements(by);
+				for (WebElement l : list) {
+					if(l.isDisplayed()){
+						found = true;
+						break;
+
+	} else {
+						found = false;
+					}
+				}
+				return found;
+			} catch (Exception e) {
+				return false;
+			} finally {
+				driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+			}
+		}
+
+
+
 	/**
 	 * Use this if you need to scroll to top/Bottom of page
 	 * @param driver
@@ -591,6 +624,7 @@ public class Utils {
 		
 	public static void setMousePositionOffPage(WebDriver driver) {
 			((JavascriptExecutor) driver).executeScript("window.focus();");
+
 
 			Robot r;
 			try {

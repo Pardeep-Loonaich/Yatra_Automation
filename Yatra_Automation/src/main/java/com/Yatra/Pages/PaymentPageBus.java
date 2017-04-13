@@ -8,6 +8,8 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
+
+import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -22,8 +24,13 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 	@FindBy(css = "div[class='cpmt_detailBox cpmt_clearfix']>h2")
-	WebElement headerPayemntMethod;
+	private WebElement headerPayemntMethod;
 	
+	@FindBy(css = "div[class='col-lg-3 col-md-3']>div[id='itineraryDetailHeader']>div>aside>div>h2>i")
+	private WebElement headerBookingSummary;
+	
+	@FindBy(css = "div[class*='bus-booking-summary-onward']>p")
+	private WebElement BookingSummaryDetail;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -59,4 +66,31 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}
+	
+	/**
+     * To Click on Booking Summary
+	 * @return 
+     * @throws Exception
+     */
+     public String clickOnBookingSummary() throws Exception{
+    	 String details = null ;
+    	 Thread.sleep(3000);
+    	 if(BookingSummaryDetail.isDisplayed()){
+    		 details = BookingSummaryDetail.getText();
+    	 }else if(!(BookingSummaryDetail.isDisplayed()))
+    	 {
+           BrowserActions.clickOnElement(headerBookingSummary, driver, "clicked on Booking Summary Drop Down");
+            details = BookingSummaryDetail.getText();
+    	 }
+    	 return details;
+    	 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }//PaymentPageBus

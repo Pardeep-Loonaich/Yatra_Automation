@@ -23,13 +23,13 @@ public class FlightsCancellationCharges extends LoadableComponent<FlightsCancell
 	 **********************************************************************************************/
 
 	@FindBy(xpath = "//input[@id ='bookingNumber']")
-	public WebElement txtBookingNo;
+    private WebElement txtBookingNo;
 	
 	@FindBy(xpath = "//input[@id ='mobileNumber']")
-	public WebElement txtMobileNo;
+	private WebElement txtMobileNo;
 	
 	@FindBy(xpath =  "//input[@type='submit']")
-	public WebElement btnSubmit;
+	private WebElement btnSubmit;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************

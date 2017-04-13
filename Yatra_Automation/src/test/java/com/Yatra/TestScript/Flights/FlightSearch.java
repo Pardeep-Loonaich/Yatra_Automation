@@ -68,7 +68,7 @@ public class FlightSearch {
 			
 			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
-		//	homePage.clickOnMainMenu(driver, "My Account", "Login");
+			homePage.clickOnMainMenu(driver, "My Account", "Login");
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			// step: Select Trip Type
@@ -111,7 +111,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -179,7 +178,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -259,7 +257,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -333,8 +330,8 @@ public class FlightSearch {
 			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> ser should navigated on SearchResult page with INTL-Multicity flight result",
-					"<b>Actual Result:</b> ser should navigated on SearchResult page with INTL-Multicity flight result",
+					"<b>Actual Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result",
+					"<b>Actual Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result",
 					driver);
 
 			Log.testCaseResult();
@@ -342,7 +339,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -398,7 +394,6 @@ public class FlightSearch {
 			Log.exception(e);
 
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -453,7 +448,6 @@ public class FlightSearch {
 			Log.exception(e);
 
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -500,7 +494,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -572,7 +565,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -651,7 +643,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -725,7 +716,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -803,8 +793,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -870,7 +858,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -935,8 +922,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1006,7 +991,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1135,7 +1119,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1211,7 +1194,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			 driver.quit();
 			Log.endTestCase();
 		}
@@ -1264,7 +1246,6 @@ public class FlightSearch {
 			Log.exception(e);
 
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1321,7 +1302,6 @@ public class FlightSearch {
 			Log.exception(e);
 
 		} finally {
-			System.out.println("closing driver instance :"+driver);
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1373,8 +1353,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-			
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1430,8 +1408,6 @@ public class FlightSearch {
 			Log.exception(e);
 
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1492,8 +1468,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1514,7 +1488,6 @@ public class FlightSearch {
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
-		
 		Log.testCaseInfo(testData);
 		try {
 			// step: Navigate to Yatra Home Page
@@ -1558,8 +1531,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1634,8 +1605,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1706,8 +1675,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1780,8 +1747,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1858,8 +1823,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -1933,8 +1896,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -2010,8 +1971,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -2155,8 +2114,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -2245,8 +2202,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -2323,8 +2278,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}
@@ -2541,8 +2494,6 @@ public class FlightSearch {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			System.out.println("closing driver instance :"+driver);
-
 			driver.quit();
 			Log.endTestCase();
 		}

@@ -25,10 +25,10 @@ public class CompleteBooking extends LoadableComponent<CompleteBooking> {
 	 **********************************************************************************************/
 	
 	@FindBy(css = "td [id='ref']")
-	public WebElement txtBookingRefNo;
+	private WebElement txtBookingRefNo;
 	
 	@FindBy(css =  "td [id='submitBtn']")
-	public WebElement btnSubmit;
+	private WebElement btnSubmit;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************

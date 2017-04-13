@@ -31,10 +31,10 @@ public class GlobalNavigation extends LoadableComponent<GlobalNavigation> {
 	 **********************************************************************************************/
 
 	@FindBy(id = "BE_flight_arrival_city")
-	WebElement txtDestination;
+	private WebElement txtDestination;
 
 	@FindBy(id = "BE_flight_flsearch_btn")
-	WebElement btnSearch;
+	private WebElement btnSearch;
 
 
 

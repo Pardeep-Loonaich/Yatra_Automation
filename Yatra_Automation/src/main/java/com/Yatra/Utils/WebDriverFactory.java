@@ -236,7 +236,7 @@ public class WebDriverFactory {
 	 * @throws MalformedURLException
 	 */
 	@SuppressWarnings("unused")
-	public  static WebDriver get(String browserWithPlatform, Proxy proxy) throws MalformedURLException {
+	public static WebDriver get(String browserWithPlatform, Proxy proxy) throws MalformedURLException {
 		String browser = null;
 		String platform = null;
 		String browserVersion = null;
@@ -407,7 +407,6 @@ public class WebDriverFactory {
 					driver = new RemoteWebDriver(hubURL, firefoxCapabilities);
 				}
 				driver.manage().timeouts().pageLoadTimeout(maxPageLoadWait, TimeUnit.SECONDS);
-				//driver.manage().timeouts().implicitlyWait(maxPageLoadWait, TimeUnit.SECONDS);
 			}
 			Assert.assertNotNull(driver,
 					"Driver did not intialize...\n Please check if hub is running / configuration settings are corect.");
@@ -461,7 +460,7 @@ public class WebDriverFactory {
 			}
 		}
 
-		driver.manage().timeouts().implicitlyWait(maxPageLoadWait, TimeUnit.SECONDS);//updated wait from 0
+		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		//Log.event("Driver::initialize::Get", StopWatch.elapsedTime(startTime));
 		Log.addTestRunMachineInfo(driver);
 		return driver;
