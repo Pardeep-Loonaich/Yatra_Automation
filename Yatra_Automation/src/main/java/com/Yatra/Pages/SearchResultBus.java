@@ -634,6 +634,5 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	public void clickOnContinue() throws Exception {
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector("a[class*='flL ytBtn ytBtnBlue txtL LatoBold seat_map_continue tooltip']")).click(); 
-		//"div[id='onwards-content']>div[class='flL bus-details-box']>div[class='wfull mt20']>div>a"));
 	}
 }// SRPBUS
