@@ -1060,7 +1060,7 @@ public class FlightSearch {
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
-		String cardNumber = testData.get("CreditCardNumber");
+		String cardNumber = testData.get("CardNumber");
 
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
@@ -1138,6 +1138,9 @@ public class FlightSearch {
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
+		String cardNumber = testData.get("CardNumber");
+    	String cvv = testData.get("CVV");
+
 		String[] infantDOB = infant.split(",");
 
 		// Get the web driver instance
@@ -1176,9 +1179,11 @@ public class FlightSearch {
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked On continue Button!");
+			
+			paymentPage.selectPaymentType("Debit Card");
 
-			paymentPage.enterDebitCardDetails();
-			Log.message("10. Fill Credit Card Details!");
+			paymentPage.enterDebitCardDetails(cardNumber,cvv);
+			Log.message("10. Fill invalid Debit Card Details!");
 
 			paymentPage.clickOnPayNow();
 			Log.message("11.Click On Pay Now!");

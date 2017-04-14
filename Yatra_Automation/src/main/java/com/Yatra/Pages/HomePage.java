@@ -271,6 +271,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);
 	}// load
 
+	@FindBy(css="ul[class='mac-scroll scrollable']>div[class='viewport']>div[class='overview']>li")
+	private List<WebElement> lstOrigin;
 	/**
 	 * Enter Origin
 	 * 
