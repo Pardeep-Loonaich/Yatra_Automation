@@ -3,10 +3,18 @@ package com.Yatra.Pages;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -15,9 +23,11 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.javascript.host.Element;
+import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
+import com.thoughtworks.selenium.Selenium;
 
 public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 
@@ -133,9 +143,33 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(css="iframe[id='popoverWindow_iframe']")
 	private WebElement iFrameOnSearchResultBus;
 
-	@FindBy(css = "iframe[id='popoverWindow_iframe']")
-	private WebElement iframePopUp;
+	@FindBy(xpath = "(//a[@data-trackvalue='Select Seats PopUp'][contains(.,'Continue')])[1]")
+	WebElement ContinueInIframe;
+	
+	@FindBy(css = "div[id='bordDropping-content']>div[class='wfull gray-scroll']>div>div>div[class='jspPane']")
+	WebElement detailsBoardingPoint;
+	
+	@FindBy(css = "div[id='DroppingOnly-content']>div[class='wfull gray-scroll']>div>div>div")
+	WebElement detailsDroppingPoint;
+	
+	@FindBy(css = "div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>p")
+	WebElement txtMaxSeat;
+	
+	@FindBy(css = "ul>li[class='flL change-deck deck-btn left active']")
+	WebElement txtSeatType;
+	
+	@FindBy(css = "ul>li[class='flL change-deck deck-btn right']")
+	WebElement txtSeatTyp;
+	
+	@FindBy(css = "p[class='wfull txtMedium latoBold mt2 onwards-selected-seats']")
+	WebElement txtSeatNumber;
 
+	@FindBy(css = ".boarding.tooltip")
+	WebElement errorMessage;
+	
+	@FindBy(css = "/div[class='wfull tab-content onwards seat-layout']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")
+	WebElement btnSelectseat;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -231,6 +265,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 
 	public void clickBtnSelectSeat(int index) throws Exception {
+		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(btnSelectSeat.get(index), driver, "Select Seat");
 		Utils.waitForPageLoad(driver);
 	}
@@ -280,10 +315,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 	public String getTextBusBoardingPoint() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver
-				.findElement(By.cssSelector(
-						"div[id='bordDropping-content']>div[class='wfull gray-scroll']>div>div>div[class='jspPane']"))
-				.getText();
+		String txtDetails = detailsBoardingPoint.getText();
 		return txtDetails;
 	}
 
@@ -295,10 +327,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 	public String getTextBusDroppingPoint() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver
-				.findElement(
-						By.cssSelector("div[id='DroppingOnly-content']>div[class='wfull gray-scroll']>div>div>div"))
-				.getText();
+		String txtDetails = detailsDroppingPoint.getText();
 		return txtDetails;
 	}
 
@@ -442,10 +471,9 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * @throws Exception
 	 */
 	public void switchToIframe() throws Exception {
-		//driver.manage().window().maximize(); 
+		BrowserActions.nap(2);
 		BrowserActions.switchToIframe(driver, iFrameOnSearchResultBus);
-		//do what ever action you want to perform code goes here..
-		BrowserActions.switchToDefault(driver);
+		
 	}	
 	/**
 	 * To Select No Of Seat
@@ -504,54 +532,59 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 	public String selectBoardingPointReturn() throws Exception {
 		Thread.sleep(3000);
-		driver.findElement(By.cssSelector(("span[id='msdrpdd20_title']"))).click(); // Clicked
-																					// On
-																					// Drop
-																					// Down
-		String txt = driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).getText(); // Boarding
-																														// Point
-		driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).click(); // Select
-																											// One
-																											// Boarding
-																											// point
-																											// from
-																											// Drop
-																											// Down
+		driver.findElement(By.cssSelector(("span[id='msdrpdd20_title']"))).click(); // Clicked On Drop Down																
+		String txt = driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).getText();
+		driver.findElement(By.cssSelector("div[id='msdrpdd20_child']>ul>li:nth-child(2)>span")).click(); // Select one Boarding point																								
 		Utils.waitForPageLoad(driver);
 		return txt;
 	}
 
+	/**
+	 * To Get Text Total Seat Number Booked
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String getTextMaxNumber() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver.findElement(By.cssSelector("p[class='wfull txt13 mt20 mr10 t-ac txtGrey']"))
-				.getText();
+		String txtDetails = txtMaxSeat.getText();
 		return txtDetails;
 	}
-
+	/**
+	 * To Get Text Seat Type
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String getTextSeatType() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver.findElement(By.cssSelector("ul>li[class='flL change-deck deck-btn left active']"))
-				.getText();
+		String txtDetails = txtSeatType.getText();
 		return txtDetails;
 	}
-
+	/**
+	 * To Get Text Seat Type
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String getTextSeatTyp() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver.findElement(By.cssSelector("ul>li[class='flL change-deck deck-btn right']"))
-				.getText();
+		String txtDetails = txtSeatTyp.getText();
 		return txtDetails;
-
 	}
 
 	/**
-	 * To click On Continue Button In PoP Up To Select Seat
+	 * To Click on Continue Button
 	 * 
+	 *  @return
 	 * @throws Exception
 	 */
 
 	public ReviewPageBus clickOnContinueInPopUp() throws Exception {
 		BrowserActions.nap(2);
-		driver.findElement(By.cssSelector(("div[class='flL bus-details-box']>div[class='wfull mt20']>div"))).click();
+		//driver.findElement(By.xpath("(//a[@data-trackvalue='Select Seats PopUp'][contains(.,'Continue')])[1]")).click();
+		ContinueInIframe.click();
+		BrowserActions.switchToDefault(driver);
 		Utils.waitForPageLoad(driver);
 		return new ReviewPageBus(driver).get();
 
@@ -565,9 +598,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 	public String getTextSeatNumber() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver
-				.findElement(By.cssSelector("p[class='wfull txtMedium latoBold mt2 onwards-selected-seats']"))
-				.getText();
+		String txtDetails = txtSeatNumber.getText();
 		return txtDetails;
 	}
 
@@ -590,9 +621,8 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 	public String getTextErrorMessage() throws Exception {
 		BrowserActions.nap(2);
-		String txtDetails = driver.findElement(By.cssSelector(".boarding.tooltip")).getText();
+		String txtDetails = errorMessage.getText();
 		return txtDetails;
-
 	}
 
 	/**
@@ -602,7 +632,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 
 	public void clickOnContinue() throws Exception {
-		BrowserActions.nap(2);
-		driver.findElement(By.cssSelector(("div[class='flL bus-details-box']>div[class='wfull mt20']>div"))).click();
+		Thread.sleep(4000);
+		driver.findElement(By.cssSelector("a[class*='flL ytBtn ytBtnBlue txtL LatoBold seat_map_continue tooltip']")).click(); 
 	}
 }// SRPBUS

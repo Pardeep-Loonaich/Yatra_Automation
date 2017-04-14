@@ -690,6 +690,8 @@ public class BrowserActions {
 		driver.switchTo().frame(sIframeNameOrId);
 	}
 	
+	
+	
 	public static void switchToDefault(WebDriver driver)
 	{
 		
@@ -710,19 +712,6 @@ public class BrowserActions {
 		return dataToBeReturn;
 	}
 		
-	/*Alert isDialogPresent(WebDriver driver) {
-	    Alert alert = ExpectedConditions.alertIsPresent().apply(driver);
-	    return alert;
-	}*/
-	public static boolean isAlertPresent(WebDriver driver){
-	WebDriverWait wait = new WebDriverWait(driver, 2000);
-	if(wait.until(ExpectedConditions.alertIsPresent())==null){
-	    System.out.println("alert was not present");
-	    return false;}
-	else {
-	    System.out.println("alert was present");
-	    return true;
-		}
-	}
+	
 
 }// BrowserActions page

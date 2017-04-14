@@ -1257,7 +1257,7 @@ public class BusSearchTest {
 			Thread.sleep(6000);
 			Log.assertThat(
 					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
-					"<b>Actual Result:</b>  User can " + Msg,
+					"<b>Actual Result:</b> User have selected these seat and seat number are : " + Msg,
 					"<b>Actual Result:</b> User can select any number of Seat", driver);
 
 			Log.testCaseResult();
@@ -1316,7 +1316,7 @@ public class BusSearchTest {
 			Thread.sleep(6000);
 			Log.assertThat(
 					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
-					"<b>Actual Result:</b> User can Select " + bustype + " and " + bustyp,
+					"<b>Actual Result:</b> User can Select " + bustype + " and " + bustyp + "seat type",
 					"<b>Actual Result:</b> User can not Select lower/Upper Deck seats", driver);
 
 			Log.testCaseResult();
@@ -1368,12 +1368,13 @@ public class BusSearchTest {
 
 			Thread.sleep(4000);
 			searchResultBus.switchToIframe();
-			searchResultBus.selectSeat(0);
+			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Boarding Point Selected!");
 
+			searchResultBus.switchToIframe();
 			searchResultBus.clickOnSelectReturnSeat();
 			Log.message("9. Clicked On Continue!");
 
@@ -1561,6 +1562,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1629,6 +1631,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1694,14 +1697,18 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
+			searchResultBus.switchToIframe();
+			searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
 			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
 			travellerPageBus.TravellerDetails(name);
-			Log.message("11. Filled Guest Details and Clicked on Continue!");
+			Log.message("11. Filled Guest Details!");
+
+			travellerPageBus.clickOnContinueInTravellerPage();
+			Log.message("12. Clicked on Continue!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify the guest Flow");
@@ -1764,6 +1771,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1772,6 +1780,9 @@ public class BusSearchTest {
 
 			travellerPageBus.TravellerDetails(name);
 			Log.message("11. Filled Guest Details and Clicked on Continue!");
+
+			travellerPageBus.clickOnContinueInTravellerPage();
+			Log.message("12. Clicked on Continue!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify the Login User Flow");
@@ -1833,6 +1844,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1901,6 +1913,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1966,6 +1979,7 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
+			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1973,7 +1987,10 @@ public class BusSearchTest {
 			Log.message("10. Entered Email Address and Phone Number!");
 
 			travellerPageBus.TravellerDetails(name);
-			Log.message("11. Filled Guest Details and Clicked on Continue!");
+			Log.message("11. Filled Guest Details!");
+
+			travellerPageBus.clickOnContinue();
+			Log.message("12. Clicked on Continue!");
 			String Error = travellerPageBus.getTextErrorMsg();
 
 			Log.message("<br>");
@@ -1995,4 +2012,3 @@ public class BusSearchTest {
 		}
 	}
 }// BusModule
-

@@ -271,8 +271,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Utils.waitForPageLoad(driver);
 	}// load
 
-	@FindBy(css="ul[class='mac-scroll scrollable']>div[class='viewport']>div[class='overview']>li")
-	private List<WebElement> lstOrigin;
+
 	/**
 	 * Enter Origin
 	 * 
@@ -1103,10 +1102,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 		enterDestinationBus(destination); // enter Destination value
 		BrowserActions.nap(2);
 		//BrowserActions.scrollToView(logoYatra, driver);
-		Utils.setMousePositionOffPage(driver);
+		//Utils.setMousePositionOffPage(driver);
 		Utils.scrollPage(driver, Constants.C_Page_Top);		
 		selectDepartureDateBus(departureDate); // select Departure Date
-		Utils.setMousePositionOffPage(driver);
+		//Utils.setMousePositionOffPage(driver);
 		Utils.scrollPage(driver, Constants.C_Page_Top);
 		//BrowserActions.scrollToView(logoYatra, driver);
 		BrowserActions.nap(2);
