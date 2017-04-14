@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -12,7 +15,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
@@ -172,7 +177,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css= "span[class='simple-tab eCashholder']>span")
 	private WebElement ecashAmount;
 
-	@FindBy(css= "div[class='cpmt_quickBook']>ul>li")
+	@FindBy(xpath= ".//*[@id='qb_newCreditCard']")
 	private WebElement tabSavedCC;
 
 	@FindBy(css="i[class='PaymentSprite removeIcon']")
@@ -300,6 +305,16 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	@FindBy(css = "#rw_reward_points_id")
 	private WebElement txtRewardPointInRewards;
+
+	@FindBy(css = "#next")
+	private WebElement btnNextRewardPage;
+
+	@FindBy(css = "#dc_cvvMsg_id")
+	private WebElement txtValidDBMsg;
+
+	@FindBy(css = "div[id='failed_payment_res']>div>span>span")
+	private WebElement txtFailedDBTrans;
+
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
@@ -453,8 +468,11 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @return
 	 * @throws Exception
 	 */
-	public void enterDebitCardDetails() throws Exception {
-		clickOnDebitCardLink();
+	public void enterDebitCardDetails(String cardNumber,String cardCVV) throws Exception {
+		
+		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
+		BrowserActions.typeOnTextField(debitCardNumber, cardNumber, driver, "Debit card Number");
+		BrowserActions.typeOnTextField(debitCardName, randomName, driver, "Debit card Name");
 		BrowserActions.clickOnElement(monthDC, driver, "Month");
 		if (lstMonthsDC.size() != 0) {
 			int rand = Utils.getRandom(1, lstMonthsDC.size());
@@ -469,13 +487,23 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
-		String randomNumber = RandomStringUtils.randomNumeric(10);
-		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
-		String randomCvv = RandomStringUtils.randomNumeric(3);
-		BrowserActions.typeOnTextField(debitCardNumber, randomNumber, driver, "Debit card Number");
-		BrowserActions.typeOnTextField(debitCardName, randomName, driver, "Debit card Name");
-		BrowserActions.typeOnTextField(debitCardCvv, randomCvv, driver, "Debit card Cvv");
+		BrowserActions.typeOnTextField(debitCardCvv, cardCVV, driver, "Debit card Cvv");
 
+		
+	}
+	
+	/**
+	 * Filling Debit Card Details
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void enterPartialDebitCardDetails(String cardNumber) throws Exception {
+		
+		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
+		BrowserActions.typeOnTextField(debitCardNumber, cardNumber, driver, "Debit card Number");
+		BrowserActions.typeOnTextField(debitCardName, randomName, driver, "Debit card Name");
+		
 	}
 
 	/**
@@ -758,23 +786,42 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 	/**
-	 * to navigate back to pages acc to browser
+	 * to navigate back to pages acc to browser for creditcards
 	 * @param browser
 	 * @throws Exception
 	 */
 
-	public void navigateToBackPage(String browser,int ran) throws Exception{
+	public void returnFromCreditCardPage(String browser,int ran) throws Exception{
 		if(browser.equalsIgnoreCase("firefox_windows")){
 			for(int i=0;i<ran;i++){
 				driver.navigate().back();
 			}
 		}
 		else if(browser.equalsIgnoreCase("iexplorer_windows")){
-			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 		}
 		driver.navigate().back();
 
 	}
+	
+	
+
+	/**
+	 * navigated to back pages acc to browsers for RewardPoint
+	 * @param browser
+	 * @throws Exception
+	 */
+	public void returnFromRewardPage(String browser) throws Exception{
+		if(browser.equalsIgnoreCase("chrome_windows")){
+			JavascriptExecutor js = (JavascriptExecutor) driver; 
+			js.executeScript("window.history.go(-1)");
+			//BrowserActions.executeJavaScript(driver, "window.history.go(-1)");
+			driver.switchTo().alert().accept();
+
+		}	
+
+	}
+
+
 
 	/**
 	 * to click on Cancel in HDFC payment page
@@ -1006,5 +1053,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
+	/**
+	 * getting failed message from failed transaction after applying DebitCard
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFromFailedDebitCardTrans() throws Exception{
+		String msgFailed = BrowserActions.getText(driver, txtFailedDBTrans, "Getting txt of the failed debit card transaction.");
+		return msgFailed;
 
+	}
 }
