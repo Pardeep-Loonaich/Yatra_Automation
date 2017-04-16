@@ -7,11 +7,9 @@
 	
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
-
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="chrome_windows"/>
 	
-	<test name="Flight Search on firefox" thread-count="1" parallel="true">
+	<!-- <test name="Flight Search on firefox" thread-count="1" parallel="true">
 	    <parameter name="browserName" value="firefox_windows"/>
 	    <parameter name="webSite" value="https://www.yatra.com/"/>
 		<classes>
@@ -19,7 +17,7 @@
 			
 		
 		</classes>
-	</test>
+	</test> -->
 	
 		<test name="Flight Search on chrome" thread-count="1" parallel="true">
 	    <parameter name="browserName" value="chrome_windows"/>
