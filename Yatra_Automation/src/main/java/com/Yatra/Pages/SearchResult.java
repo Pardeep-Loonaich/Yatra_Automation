@@ -365,12 +365,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		WebElement e = driver.findElement(By.cssSelector(
+		/*WebElement e = driver.findElement(By.cssSelector(
 		"div[id='resultBoxSlider']>div>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
 					+ index
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
-		BrowserActions.scrollToView(e, driver);
-		BrowserActions.clickOnElement(e, driver, "To click on Book now button.");
+		*/
+		WebElement wBookNow=driver.findElement(By.xpath("(//div[@class='full result-card-content']//div[@class='result-price']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
+		BrowserActions.scrollToView(wBookNow, driver);
+		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
 		return new ReviewPage(driver).get();
 	}
 
