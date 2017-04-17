@@ -262,6 +262,16 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "ul[class='matrix-slide-list tabs matrix-ul']>li:nth-child(2) p:nth-child(3)[class='matrix-label uprcse']")
 	WebElement lnkArirlineMatrixFare;
 	
+	@FindBy(css = "label[id*='fare']")
+	WebElement  fldContentFare;
+	
+	@FindBy(css = "div[ng-show='open_airline']>ul>li")
+	List<WebElement> selectAirlines;
+	
+	@FindBy(css = "i[class='ico ico-check']")
+	WebElement  chkSelectAirline;
+	
+	
 	
 	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
 	
@@ -953,8 +963,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public void clickModifySearch() throws Exception {
 		BrowserActions.nap(10);
-		Utils.waitForElement(driver, btnModifySearchIcon);
-		//BrowserActions.mouseHover(driver, btnModifySearchIcon);		
+		Utils.waitForElement(driver, btnModifySearchIcon);	
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
 		BrowserActions.nap(1);
 		Utils.waitForPageLoad(driver);
@@ -1271,6 +1280,19 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return passengerclassList;
 	}
 	
+	/**
+	 * to select the Airlines by Name
+	 * @param BankName
+	 * @throws Exception
+	 */
+	public void selectAirline(String AirlinesName) throws Exception {
+		for (WebElement e : selectAirlines) {
+			if (e.findElement(By.cssSelector("label>span[class='clip-overflow']")).getText().equalsIgnoreCase(AirlinesName)) {
+				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>span[class='clip-overflow']")), driver, "Selected Airline");
+				break;
+				}
+			}
+		}
 	
   //*******************************End of SRP Functions********************************************************************************************
 

@@ -578,7 +578,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	public void selectPaymentType(String PaymentType) throws Exception {
 		List<WebElement> lstElement = paymentType;
-		//List<WebElement> lstOtherElement = otherPaymentType;
 		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
 			BrowserActions.scrollToViewElement(lnkOtherPayment, driver);
 			BrowserActions.clickOnElement(lnkOtherPayment, driver, "list elements");
@@ -596,7 +595,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		else{
 			for (WebElement e : lstElement) {
 				if (e.findElement(By.cssSelector("a")).getText().equals(PaymentType)) {
-
 					BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("a")), driver);
 					BrowserActions.clickOnElement(e.findElement(By.cssSelector("a")), driver, "list elements");
 					break;

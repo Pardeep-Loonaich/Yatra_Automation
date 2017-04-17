@@ -109,7 +109,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	@FindBy(css="button[class='button primary rounded pull-right']")
 	WebElement ContinueInFareChangeAlertPopUp;
-
 	
 	@FindBy(css = " div[class='center-block text-center mt-1 mb-1 sticky-sm-bottom hide-under-overlay']>button[ng-disabled='isContinueBtnDisabled']")
 	WebElement ContinueInTravellerPage;
@@ -126,12 +125,14 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath= "//*[@ng-repeat='traveller in travellerDetails']")
 	List<WebElement> modTravellerDetails ;
 	
-	
     @FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
 	WebElement moduleFareRules;
     
     @FindBy(css = "div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")
     WebElement formReviewHeading;
+    
+	@FindBy(css = "div[class='overlay-content ']")
+	WebElement  popUpFareAlert;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -411,8 +412,37 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		public String getTextOfReviewHeading() throws Exception {
 			String formReview = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")), "Getting text of Review Form Heading.");
 			return formReview;
-
 		}
 		
+		@FindBy(css= "input[id='promoListInput']")
+		WebElement  fldContentPromoCode;
+		
+		@FindBy(css= "span[class*='pull-left w85perc ng-binding']")
+		WebElement  PromoCodeErrorMessage;
+	
+		@FindBy(css= "button[class='button sleek-btn promo-btn ng-binding']")
+		WebElement  btnApplyPromoCode;
+		/**
+		 * Enter Promo Code in review page and Click Apply
+		 * 
+		 * @param String
+		 * @throws Exception
+		 */
+		public void enterPromo(String promo) throws Exception {
+			BrowserActions.typeOnTextField(fldContentPromoCode, promo, driver, "Enter Promo");
+			BrowserActions.clickOnElement(btnApplyPromoCode, driver, "Apply Button");
+		}
+		/**
+		 * Getting the text of Promo Code Error Message
+		 * 
+		 * @return String
+		 * @throws Exception
+		 */
+		
+		public String getTextFromPromoMessage() throws Exception {
+			String ErrorMessage = BrowserActions.getText(driver, PromoCodeErrorMessage, "Getting Error text from the Promo Code");
+			return ErrorMessage;
+
+		}
 
 } //ReviewPage

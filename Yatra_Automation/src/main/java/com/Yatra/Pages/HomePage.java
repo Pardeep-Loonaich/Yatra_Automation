@@ -1100,13 +1100,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		enterDestinationBus(destination); // enter Destination value
 		BrowserActions.nap(2);
-		//BrowserActions.scrollToView(logoYatra, driver);
-		//Utils.setMousePositionOffPage(driver);
+		Utils.setMousePositionOffPage(driver);
 		Utils.scrollPage(driver, Constants.C_Page_Top);		
 		selectDepartureDateBus(departureDate); // select Departure Date
-		//Utils.setMousePositionOffPage(driver);
+		Utils.setMousePositionOffPage(driver);
 		Utils.scrollPage(driver, Constants.C_Page_Top);
-		//BrowserActions.scrollToView(logoYatra, driver);
 		BrowserActions.nap(2);
 		PassengerInfoBus(passengerInfo); // select Passengers 
 		Log.event("Successfully Filled OneWay Bus Search fields");
