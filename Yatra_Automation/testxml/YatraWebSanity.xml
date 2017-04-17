@@ -16,7 +16,8 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch"></class>
 			<methods>
-			    <include name="TC_Yatra_Flight_001"></include>
+			    <include name="TC_Yatra_Flight_098"></include>
+			    <!-- <include name="TC_Yatra_Flight_001"></include>
 			  <include name="TC_Yatra_Flight_002"></include>
 			    <include name="TC_Yatra_Flight_003"></include>
 			    <include name="TC_Yatra_Flight_004"></include>
@@ -28,13 +29,8 @@
 			    <include name="TC_Yatra_Flight_094"></include>
 			    <include name="TC_Yatra_Flight_095"></include>
 			    <include name="TC_Yatra_Flight_097"></include>
-			    <include name="TC_Yatra_Flight_098"></include>
-			     <include name="TC_Yatra_Flight_107"></include>
-			    <include name="TC_Yatra_Flight_108"></include>
-			     <include name="TC_Yatra_Flight_109"></include>
-			    <include name="TC_Yatra_Flight_110"></include>
-			     <include name="TC_Yatra_Flight_111"></include>
-			    <include name="TC_Yatra_Flight_099"></include> -->
+			    
+			     <include name="TC_Yatra_Flight_107"></include> -->
 			</methods>
 			</classes>
 			</test>
