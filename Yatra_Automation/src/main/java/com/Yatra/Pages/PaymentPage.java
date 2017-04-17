@@ -1,6 +1,7 @@
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -315,7 +316,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css = "div[id='failed_payment_res']>div>span>span")
 	private WebElement txtFailedDBTrans;
 
+	@FindBy(css="#qb_newCreditCard")
+	private WebElement lblNewCC;
 
+	@FindBy(css="span[class='cpmt_qbCardNo']")
+	private WebElement CreditCardNumber; 
+
+	@FindBy(css="ul[class='js-quick noListStyle']>li")
+	private List<WebElement> lstCreditCardNumbers; 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -412,15 +420,26 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.clickOnElement(lblSaveCCInQB, driver, "Cshecking Save QB");
 	}
 
+
 	/**
-	 * to get text from credit card
+	 * to get text from credit card number first on the list
 	 * @return
 	 * @throws Exception
 	 */
-	public String getCrediCrdNum() throws Exception{
-		String cc_No = BrowserActions.getText(driver,driver.findElement(By.cssSelector("span[class='cpmt_qbCardNo']")), "Getting Credit Card number.").substring(15,19);
-		return cc_No;
+	public /*ArrayList<String>*/ String getCrediCrdNum() throws Exception{
+		/*ArrayList<String> cardNumList = new ArrayList<String>();
+
+		for(WebElement e:lstCreditCardNumbers){
+		String cc_No = BrowserActions.getText(driver,CreditCardNumber,"Getting the CreditCardNumber");
+		cardNumList.add("cc_No");
+
+		}
+		return cardNumList;*/
+
+		String cc_no = BrowserActions.getText(driver, CreditCardNumber, "Getting the CreditCardNumber").substring(15, 19);
+		return cc_no;
 	}
+
 
 
 	/**
@@ -449,27 +468,25 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
+
 	/**
-	 * Clicking on Debit Card Link
-	 * 
+	 * Clicking on debit Card Link
 	 * @throws Exception
 	 */
-
 	public void clickOnDebitCardLink() throws Exception {
 		BrowserActions.scrollToView(lnkDebitCard, driver);
 		BrowserActions.javascriptClick(lnkDebitCard, driver, "Debit Card Link");
 		Utils.waitForPageLoad(driver);
 	}
 
-
 	/**
-	 * Filling Debit Card Details
-	 * 
-	 * @return
+	 * Filling all debit card details
+	 * @param cardNumber
+	 * @param cardCVV
 	 * @throws Exception
 	 */
 	public void enterDebitCardDetails(String cardNumber,String cardCVV) throws Exception {
-		
+
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		BrowserActions.typeOnTextField(debitCardNumber, cardNumber, driver, "Debit card Number");
 		BrowserActions.typeOnTextField(debitCardName, randomName, driver, "Debit card Name");
@@ -489,9 +506,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		Thread.sleep(2000);
 		BrowserActions.typeOnTextField(debitCardCvv, cardCVV, driver, "Debit card Cvv");
 
-		
+
 	}
-	
+
 	/**
 	 * Filling Debit Card Details
 	 * 
@@ -499,11 +516,11 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void enterPartialDebitCardDetails(String cardNumber) throws Exception {
-		
+
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		BrowserActions.typeOnTextField(debitCardNumber, cardNumber, driver, "Debit card Number");
 		BrowserActions.typeOnTextField(debitCardName, randomName, driver, "Debit card Name");
-		
+
 	}
 
 	/**
@@ -606,7 +623,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	public void selectPaymentType(String PaymentType) throws Exception {
 		List<WebElement> lstElement = paymentType;
-		//List<WebElement> lstOtherElement = otherPaymentType;
+        //findElement is required here
 		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
 			BrowserActions.scrollToViewElement(lnkOtherPayment, driver);
 			BrowserActions.clickOnElement(lnkOtherPayment, driver, "list elements");
@@ -624,6 +641,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		else{
 			for (WebElement e : lstElement) {
 				if (e.findElement(By.cssSelector("a")).getText().equals(PaymentType)) {
+			          //findElement is required here
 
 					BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("a")), driver);
 					BrowserActions.clickOnElement(e.findElement(By.cssSelector("a")), driver, "list elements");
@@ -647,7 +665,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(BankName)) {
-				//@Harveer- find element using @FindBy at top
+		          //findElement is required here
 				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
 				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "Selected Net bank");
 				break;
@@ -667,10 +685,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	public void selectMobileWallet(String WalletName) throws Exception {
 		List<WebElement> lstElement = selectMobiWallet;
-
+          //findElement is required here
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(WalletName)) {
-				//@Harveer- find element using @FindBy at top
 				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
 				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "selected Mobile Wallet");
 				break;
@@ -689,6 +706,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	public void selectATMCardName(String ATMCardName) throws Exception {
 		List<WebElement> lstElement = selectATMCard;
+        //findElement is required here
 
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(ATMCardName)) {
@@ -802,15 +820,15 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		driver.navigate().back();
 
 	}
-	
-	
+
+
 
 	/**
-	 * navigated to back pages acc to browsers for RewardPoint
+	 * navigated to back pages acc to browsers for RewardPoint and Credit card in case of citi bank portal
 	 * @param browser
 	 * @throws Exception
 	 */
-	public void returnFromRewardPage(String browser) throws Exception{
+	public void returnFromCitiPortal(String browser) throws Exception{
 		if(browser.equalsIgnoreCase("chrome_windows")){
 			JavascriptExecutor js = (JavascriptExecutor) driver; 
 			js.executeScript("window.history.go(-1)");
@@ -827,9 +845,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * to click on Cancel in HDFC payment page
 	 * @throws Exception
 	 */
-	public void cancelHdfcPayment() throws Exception{
+	public void cancelHdfcPayment(String browser) throws Exception{
 		BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
+		if(browser.equalsIgnoreCase("chrome_windows")){
 		BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
+		}
+		else if(browser.equalsIgnoreCase("iexplorer_windows")){
+			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
+		}
 	}
 
 	/**
@@ -997,7 +1020,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void cancelCreditCardDetails() throws Exception{
-		if(tabSavedCC.isDisplayed()){
+
+		while(tabSavedCC.isDisplayed()){
 			Utils.waitForElement(driver, iconRemove);
 			BrowserActions.scrollToView(iconRemove, driver);
 			BrowserActions.clickOnElement(iconRemove, driver, "Click on remove icon");
@@ -1006,8 +1030,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
-	@FindBy(css="#qb_newCreditCard")
-	private WebElement lblNewCC;
+
 	public void selectNewCreditCard() throws Exception{
 		BrowserActions.clickOnElement(lblNewCC, driver, "Selected the Use New CreditCard option.");
 
@@ -1063,4 +1086,42 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return msgFailed;
 
 	}
+	
+	
+	
+	@FindBy(css="div[id='paymentDetailsCont']>div[class='totalPayInf']>ul[class='noListStyle']>li>span")
+	private List <WebElement> lstPayAmount;
+
+	@FindBy(css="#totalAmountSpan")
+	private WebElement totalPayAmount;
+
+	/**
+	 * getting the amount we need to pay step by step and then summing them
+	 * @return
+	 * @throws Exception
+	 */
+	public int calculatingAmountToPay() throws Exception {
+
+		int chrgedAmount=0;
+
+		for (int i = 0; i < lstPayAmount.size(); i++) {
+			String amount = BrowserActions.getText(driver,lstPayAmount.get(i), "lstPayAmount").trim().replace(",","").replace("Rs.", "");
+			int amount1 = Integer.parseInt(amount);
+			chrgedAmount = amount1+chrgedAmount;
+		}
+		return chrgedAmount;
+
+	}
+
+	/**
+	 * getting the text from the Total amount from the fare detail panel
+	 * @return
+	 * @throws Exception
+	 */
+	public String gettingTotalPayAmount()throws Exception {
+		String amount =BrowserActions.getText(driver,totalPayAmount, "Getting txt of total payment amount").trim().replace(",","");
+		return amount;
+	}
+
+
 }

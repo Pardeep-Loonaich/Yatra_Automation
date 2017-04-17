@@ -894,5 +894,6 @@ public class FlightPricing {
 			Log.endTestCase();
 		}
 	}
+	
 
-}
+} //Flight Pricing
