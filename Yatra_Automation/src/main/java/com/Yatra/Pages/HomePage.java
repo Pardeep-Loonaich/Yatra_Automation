@@ -293,8 +293,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void enterDestination(String destination) throws Exception {
+		
 		Utils.waitForElement(driver, txtDestination);
 		BrowserActions.typeOnTextField(txtDestination, destination, driver, "Select Destination");
+		BrowserActions.nap(2);
 		Log.event("Entered the Destination: " + destination);
 	}
 
