@@ -659,6 +659,8 @@ public class BrowserActions {
 			alert.dismiss();
 
 		}
+		
+		
 		driver.switchTo().defaultContent();
 
 	}
@@ -709,6 +711,7 @@ public class BrowserActions {
 		dataToBeReturn = JSDriver.executeScript(sJSCode).toString().trim();
 		return dataToBeReturn;
 	}
+		
 	
 
 }// BrowserActions page

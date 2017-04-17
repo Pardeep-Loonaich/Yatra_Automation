@@ -15,10 +15,6 @@
 
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch"></class>
-			<!-- <methods>
-			    <include name="TC_Yatra_Flight_001"></include>
-			</methods> -->
-		
 		</classes>
 	</test>
 </suite>
