@@ -615,6 +615,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
+
 	/**
 	 * to select the payment time from left panel
 	 * @param PaymentType
@@ -622,8 +623,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 
 	public void selectPaymentType(String PaymentType) throws Exception {
+
 		List<WebElement> lstElement = paymentType;
-        //findElement is required here
 		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
 			BrowserActions.scrollToViewElement(lnkOtherPayment, driver);
 			BrowserActions.clickOnElement(lnkOtherPayment, driver, "list elements");
@@ -640,8 +641,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		else{
 			for (WebElement e : lstElement) {
+
 				if (e.findElement(By.cssSelector("a")).getText().equals(PaymentType)) {
-			          //findElement is required here
+					//findElement is required here
 
 					BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("a")), driver);
 					BrowserActions.clickOnElement(e.findElement(By.cssSelector("a")), driver, "list elements");
@@ -665,7 +667,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(BankName)) {
-		          //findElement is required here
+				//findElement is required here
 				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
 				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>label")), driver, "Selected Net bank");
 				break;
@@ -685,7 +687,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	public void selectMobileWallet(String WalletName) throws Exception {
 		List<WebElement> lstElement = selectMobiWallet;
-          //findElement is required here
+		//findElement is required here
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(WalletName)) {
 				BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("label>label")), driver);
@@ -706,7 +708,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	public void selectATMCardName(String ATMCardName) throws Exception {
 		List<WebElement> lstElement = selectATMCard;
-        //findElement is required here
+		//findElement is required here
 
 		for (WebElement e : lstElement) {
 			if (e.findElement(By.cssSelector("label>label")).getAttribute("class").contains(ATMCardName)) {
@@ -848,7 +850,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public void cancelHdfcPayment(String browser) throws Exception{
 		BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 		if(browser.equalsIgnoreCase("chrome_windows")){
-		BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
+			BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
 		}
 		else if(browser.equalsIgnoreCase("iexplorer_windows")){
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
@@ -1086,9 +1088,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return msgFailed;
 
 	}
-	
-	
-	
+
+
+
 	@FindBy(css="div[id='paymentDetailsCont']>div[class='totalPayInf']>ul[class='noListStyle']>li>span")
 	private List <WebElement> lstPayAmount;
 

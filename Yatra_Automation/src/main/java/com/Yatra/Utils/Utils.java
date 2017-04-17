@@ -455,7 +455,6 @@ public class Utils {
 			rand = random.nextInt(max);
 		else
 			rand = ThreadLocalRandom.current().nextInt(min, max);
-
 		return rand;
 	}
 
@@ -624,8 +623,6 @@ public class Utils {
 		
 	public static void setMousePositionOffPage(WebDriver driver) {
 			((JavascriptExecutor) driver).executeScript("window.focus();");
-
-
 			Robot r;
 			try {
 				r = new Robot();

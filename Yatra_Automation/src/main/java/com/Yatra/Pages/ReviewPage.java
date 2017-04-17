@@ -129,21 +129,29 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath= "//*[@ng-repeat='traveller in travellerDetails']")
 	private List<WebElement> modTravellerDetails ;
 
-
 	@FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
 	private WebElement moduleFareRules;
 
 	@FindBy(css = "div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")
 	private WebElement formReviewHeading;
-	
+    
+	@FindBy(css = "div[class='overlay-content ']")
+	private WebElement  popUpFareAlert;
+
 	@FindBy(css="div[ng-controller='productFareDetailsController']>div[class='box-content hide-under-overlay']>div[ng-show='showFareDetails']>ul[class='list list-border']>li[class='ng-scope']>span[class='pull-right tr alignment']>span")
 	private List <WebElement> lstPayAmount;
 
 	@FindBy(css="div[class='text-right alignment ng-scope']>span[class='block fs-xlg gray-dark u-pay ng-binding']:not([class='rs'])")
 	private WebElement totalPayAmount;
-
-
 	
+	@FindBy(css= "input[id='promoListInput']")
+	private WebElement  fldContentPromoCode;
+	
+	@FindBy(css= "span[class*='pull-left w85perc ng-binding']")
+	private WebElement  PromoCodeErrorMessage;
+
+	@FindBy(css= "button[class='button sleek-btn promo-btn ng-binding']")
+	private WebElement  btnApplyPromoCode;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -419,19 +427,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	}
 
 	/**
-	 * Getting the text of Review Form heading 
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-
-	public String getTextOfReviewHeading() throws Exception {
-		String formReview = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")), "Getting text of Review Form Heading.");
-		return formReview;
-
-	}
-
-	/**
 	 * getting the amount we need to pay step by step and then summing them
 	 * @return
 	 * @throws Exception
@@ -458,8 +453,34 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		String amount =BrowserActions.getText(driver,totalPayAmount, "Getting txt of total payment amount").trim().replace(",","");
 		return amount;
 	}
+	
+		public String getTextOfReviewHeading() throws Exception {
+			String formReview = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")), "Getting text of Review Form Heading.");
+			return formReview;
+		}
+		
+		
+		/**
+		 * Enter Promo Code in review page and Click Apply
+		 * 
+		 * @param String
+		 * @throws Exception
+		 */
+		public void enterPromo(String promo) throws Exception {
+			BrowserActions.typeOnTextField(fldContentPromoCode, promo, driver, "Enter Promo");
+			BrowserActions.clickOnElement(btnApplyPromoCode, driver, "Apply Button");
+		}
+		/**
+		 * Getting the text of Promo Code Error Message
+		 * 
+		 * @return String
+		 * @throws Exception
+		 */
+		
+		public String getTextFromPromoMessage() throws Exception {
+			String ErrorMessage = BrowserActions.getText(driver, PromoCodeErrorMessage, "Getting Error text from the Promo Code");
+			return ErrorMessage;
 
-
-
+		}
 
 } //ReviewPage

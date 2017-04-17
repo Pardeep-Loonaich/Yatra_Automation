@@ -2,6 +2,7 @@ package com.Yatra.Pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -31,7 +32,28 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	
 	@FindBy(css = "div[class*='bus-booking-summary-onward']>p")
 	private WebElement BookingSummaryDetail;
+
+	@FindBy(css = "div[class='cpmt_cardNavigation']>ul>li>a")
+	private WebElement fldContentPaymentMethods;
 	
+	@FindBy(css = "div[class='outer-redeem']>div")
+	private WebElement divEwallet;
+	
+	@FindBy(css = "div[id='redeem-applied-id']>h3>span[class='applied-ecash']>span[class='total-redeemed-ecash']")
+	private WebElement redemeedEcash;
+	
+	@FindBy(css = "#totalAmountSpan")
+	private WebElement totalCashPaymentMethod;
+	
+	@FindBy(css = "span[id='totalAmountSpan']")
+	private WebElement totalCashPaymentDeatils;
+
+	@FindBy(css = "#redeem-ecash-button")
+	private WebElement btnRedeemNow;
+
+	@FindBy(css=".slider-base")
+	private WebElement scrollSlider;
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -84,13 +106,50 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
     	 }
     	 return details;
     	 }
+     
+     /**
+      * To Get Text Total Amount in payment Method(Top of the Page) 
+ 	  * @return 
+      * @throws Exception
+      */
+	public String getTextTotalAmountPaymentMethod() throws Exception{
+		String Amount = totalCashPaymentMethod.getText().trim().replace(",", "");
+		return Amount; 
+	}
 	
+	 /**
+     * To Get Text Ecash Used 
+	  * @return 
+     * @throws Exception
+     */
+	public String getTextEcashUsed() throws Exception{
+		String Ecash = redemeedEcash.getText();
+		return Ecash; 
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	 /**
+     * To Get Text Total Amount in Payment Details
+	 * @return 
+     * @throws Exception
+     */
+	public String getTextTotalAmountPaymentDeatils() throws Exception{
+		String Amount = totalCashPaymentDeatils.getText().trim().replace(",", "");
+		return Amount; 
+	}
+	/**
+     * To Click on Redeem Now Button
+	 *  
+     * @throws Exception
+     */
+	public void clickOnRedeemNowButton() throws Exception{
+		 btnRedeemNow.click();
+	}
+	/**
+	 * scrolling the ecash slider
+	 * @param value
+	 */
+	public void scrollSliderOfEcashRedeem(int value){
+		Actions action = new Actions(driver);
+		action.dragAndDropBy(scrollSlider, value, 0).build().perform();
+	}
 }//PaymentPageBus

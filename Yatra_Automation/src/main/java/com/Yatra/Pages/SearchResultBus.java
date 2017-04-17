@@ -54,7 +54,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	private WebElement txtNoResultFoundBus;
 
 	@FindBy(css = "section[class='col-3 result ng-scope']>div>div[class='wfull result-holder onwards ng-scope']>ul>li[class='totlal-fare box-sizing tar']>a")
-	private List<WebElement> btnSelectSeat;
+	private List <WebElement> btnSelectSeat;
 
 	@FindBy(xpath = "//*[@id='onwards-content']/div[@class='flL bus-details-box']/div[@class='bus-info']/div/p[1]")
 	private WebElement fldContentBusInfoInPopUp;
@@ -170,6 +170,8 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(css = "/div[class='wfull tab-content onwards seat-layout']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")
 	WebElement btnSelectseat;
 	
+	@FindBy(css = "div[class='wfull error-message'")
+	WebElement errorMessageSorryNoSeat;
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -263,13 +265,12 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * 
 	 * @throws Exception
 	 */
-
-	public void clickBtnSelectSeat(int index) throws Exception {
+	public void clickBtnSelectSeat() throws Exception {
 		Utils.waitForPageLoad(driver);
-		BrowserActions.clickOnElement(btnSelectSeat.get(index), driver, "Select Seat");
+		int rand = Utils.getRandom(0, 5);
+		BrowserActions.clickOnElement(btnSelectSeat.get(rand), driver, "Select Seat");
 		Utils.waitForPageLoad(driver);
 	}
-
 	/**
 	 * To click Select Seat RT
 	 * 
@@ -482,6 +483,10 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 
 	public void selectSeat(int number) throws Exception {
+//		while(errorMessageSorryNoSeat.isDisplayed()){
+//			
+//			BrowserActions.switchToDefault(driver);
+//		}
 		for (int i = 0; i < number; i++) {
 			driver.findElement(By.cssSelector(
 					"div[class='wfull tab-content onwards seat-layout']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']"))
