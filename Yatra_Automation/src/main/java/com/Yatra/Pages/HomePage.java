@@ -731,7 +731,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		Utils.waitForElement(driver, dateDeparture);
 
-		Utils.waitForElement(driver, calenderDeptdate);
+		//Utils.waitForElement(driver, calenderDeptdate);
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon..");
 		selectMonth.get(month - 2).click();
 

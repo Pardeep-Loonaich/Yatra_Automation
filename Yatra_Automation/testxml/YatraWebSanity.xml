@@ -31,6 +31,13 @@
 			    <include name="TC_Yatra_Flight_097"></include>
 			     <include name="TC_Yatra_Flight_107"></include>
 			     <include name="TC_Yatra_Flight_099"></include> 
+			     <include name="TC_Yatra_Flight_131"></include>
+			      <include name="TC_Yatra_Flight_127"></include>
+			       <include name="TC_Yatra_Flight_128"></include>
+			        <include name="TC_Yatra_Flight_121"></include>
+			         <include name="TC_Yatra_Flight_125"></include>
+			         <include name="TC_Yatra_Flight_126"></include>
+			         
 			</methods>
 			</classes>
 			</test>

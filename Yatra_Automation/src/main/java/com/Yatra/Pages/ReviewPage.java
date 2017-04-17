@@ -1,5 +1,6 @@
 package com.Yatra.Pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -33,105 +34,116 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 ********************************* WebElements of Yatra ReviewPage ***********************************
 	 **********************************************************************************************/
 
-	
+
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
-	public WebElement btnChngeFlight;
+	private WebElement btnChngeFlight;
 
 	@FindBy(css = "[id='checkoutBase']>div:nth-child(3)>main>div>aside>div[ng-controller='productFareDetailsController']")
-	WebElement moduleFareDetails;
+	private WebElement moduleFareDetails;
 
 	@FindBy(xpath = "//i[@class = 'arrow-down']")
-	WebElement drpPromoCode;
+	private WebElement drpPromoCode;
 
 	@FindBy(xpath = "//ul[@class = 'promo-options']/li/label/span/span[@class='promo-key ng-binding']")
-	WebElement fldContentpromo;
+	private WebElement fldContentpromo;
 
 	@FindBy(xpath = "//ul[@class = 'promo-options']/li[@class='ng-scope']")
-	WebElement lnkPromoCoupon;
+	private WebElement lnkPromoCoupon;
 
 	//@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
 	@FindBy(xpath= "//Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]")
-	WebElement btnContinueReviewPage;
+	private WebElement btnContinueReviewPage;
 
 	@FindBy(xpath = ".//*[@id='travellerf0']")
-	WebElement userFirstName;
+	private WebElement userFirstName;
 
 	@FindBy(xpath = ".//*[@id='travellerl0']")
-	WebElement userSecondName;
+	private WebElement userSecondName;
 
 	@FindBy(css = ".col-md-1.col-xs-3.min-width70>span[class='ui-select']>select>option:nth-child(2)")
-	WebElement userTitle;
+	private WebElement userTitle;
 
 	@FindBy(xpath = ".//*[@id='paxNum0']/div[2]/span[1]")
-	WebElement drpuserTitle;
+	private WebElement drpuserTitle;
 
 	@FindBy(xpath = ".//*[@id='traveller-dom']/div[1]/div[1]/div/article[2]/div[2]/input")
-	WebElement userEmail;
+	private WebElement userEmail;
 
 	@FindBy(css = "span[class='pull-left cursor-pointer ng-binding under-link']>a")
-	WebElement lnkFeeSurchrge;
+	private WebElement lnkFeeSurchrge;
 
 	@FindBy(css = "span[class='pull-left w85perc ng-binding']")
-	WebElement msgPromoApplied;
+	private WebElement msgPromoApplied;
 
 	@FindBy(css = "span[ng-show='selectPromo && promoListEnable']")
-	WebElement lnkHavePromoCode;
+	private WebElement lnkHavePromoCode;
 
 	@FindBy(xpath = "//input[@id='promoListInput']")
-	WebElement txtPromoCode;
+	private WebElement txtPromoCode;
 
 	@FindBy(css = "button[ng-show='!selectPromo']")
-	WebElement btnApply;
+	private WebElement btnApply;
 
 	@FindBy(css = "[ng-click='showFareRulesPopup()']")
-	WebElement lnkFareRules;
+	private WebElement lnkFareRules;
 
 	@FindBy(css = "div[class='fareBox']>ul[class='list review-title']")
-	WebElement moduleFeeSurchrge;
+	private WebElement moduleFeeSurchrge;
 
 	@FindBy(xpath = "//div[@ng-show='showLoginRegister']/form/div[@class='row']/button")
-	WebElement btnBookAsGuest;
+	private WebElement btnBookAsGuest;
 
 	@FindBy(xpath = "//div[@ng-show='showLoginRegister']/form/div[@class='row']/input[@name = 'email']")
-	WebElement txtGuestEmail;
+	private WebElement txtGuestEmail;
 
 	@FindBy(xpath = "//div[@id='regUserDiv']/input[@type='password']")
-	WebElement txtGuestPassword;
+	private WebElement txtGuestPassword;
 
 	@FindBy(css = ".update-fare.pt10.ico-right")
-	WebElement PricePopUp;
+	private WebElement PricePopUp;
 
 	@FindBy(css = ".overlay-content>p[class='text-center']>button[class='button primary rounded']")
-	WebElement ContinueInPopUp;
+	private WebElement ContinueInPopUp;
 
-	@FindBy(css="div[ng-show='priceChangeDiv']>div[class='overlay modal-new']>div[class='overlay-content ']")
-	WebElement popupFareChange;
+	@FindBy(css="[ng-show='priceChangeDiv']>div>div[class='overlay-content ']")
+	private WebElement popupFareChange;
 
-	@FindBy(css="button[class='button primary rounded pull-right']")
-	WebElement ContinueInFareChangeAlertPopUp;
+	@FindBy(css="[ng-show='priceChangeDiv']>div>div[class='overlay-content ']>div[class='row mt10 btn-box text-center']>button")
+	private WebElement ContinueInpopUpFareSlashed;
 
-	
+	@FindBy(css="[ng-show='priceChangeDiv']>div>div[class='overlay-content ']>div[class='row mt10 btn-box']>button[ng-click='continueSameFlight()']")
+	private WebElement ContinueInFareChangeAlertPopUp;
+
 	@FindBy(css = " div[class='center-block text-center mt-1 mb-1 sticky-sm-bottom hide-under-overlay']>button[ng-disabled='isContinueBtnDisabled']")
-	WebElement ContinueInTravellerPage;
+	private WebElement ContinueInTravellerPage;
 
 	@FindBy(css = "div[class='align-width']>input[name='mobile']")
-	WebElement txtGuestMobile;
+	private WebElement txtGuestMobile;
 
 	@FindBy(xpath = "//span[@class='account-msg ui-checkbox']")
-	WebElement chkExistingUser;
+	private WebElement chkExistingUser;
 
 	@FindBy(css = "[id='checkoutBase']>div:not([class])>main>div>aside>div[class='box ng-scope']>div[class='box-content hide-under-overlay']>div>ul[class='list list-border']")
-	WebElement contentFareDetails;
+	private WebElement contentFareDetails;
 
 	@FindBy(xpath= "//*[@ng-repeat='traveller in travellerDetails']")
-	List<WebElement> modTravellerDetails ;
+	private List<WebElement> modTravellerDetails ;
+
+
+	@FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
+	private WebElement moduleFareRules;
+
+	@FindBy(css = "div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")
+	private WebElement formReviewHeading;
 	
+	@FindBy(css="div[ng-controller='productFareDetailsController']>div[class='box-content hide-under-overlay']>div[ng-show='showFareDetails']>ul[class='list list-border']>li[class='ng-scope']>span[class='pull-right tr alignment']>span")
+	private List <WebElement> lstPayAmount;
+
+	@FindBy(css="div[class='text-right alignment ng-scope']>span[class='block fs-xlg gray-dark u-pay ng-binding']:not([class='rs'])")
+	private WebElement totalPayAmount;
+
+
 	
-    @FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
-	WebElement moduleFareRules;
-    
-    @FindBy(css = "div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")
-    WebElement formReviewHeading;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -366,7 +378,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.javascriptClick(lnkFeeSurchrge, driver, "Clicked on Fees & Surcharge link.");
 	}
 
-	
+
 	@FindBy(css="button[ng-click='continueSameFlight();']")
 	WebElement ContinueInFarePopUp;
 	/**
@@ -375,44 +387,79 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @return
 	 * @throws Exception
 	 */
-     
+
 	public void popUpAppear() throws Exception {
 		if (PricePopUp.isDisplayed()) {
-				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
-			}
-		
-		else if (popupFareChange.isDisplayed()) {
+			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
+		}
+
+		else if (popupFareChange.isDisplayed()) 
+			if(ContinueInFareChangeAlertPopUp.isDisplayed())
+			{
 				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver, "Clicked on continue in Fare Change Alert Popup");
 			}
-			
+			else if(ContinueInpopUpFareSlashed.isDisplayed())
+			{
+				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver, "Clicked on continue in fare slashed popup");
+			}
+	}
+
+
+	/**
+	 * Getting the text from the fare details panel
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+
+	public String getTextFromFareDetails() throws Exception {
+		String txtDetails = BrowserActions.getText(driver, contentFareDetails, "Getting text from the fare details.");
+		return txtDetails;
+
+	}
+
+	/**
+	 * Getting the text of Review Form heading 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+
+	public String getTextOfReviewHeading() throws Exception {
+		String formReview = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")), "Getting text of Review Form Heading.");
+		return formReview;
+
+	}
+
+	/**
+	 * getting the amount we need to pay step by step and then summing them
+	 * @return
+	 * @throws Exception
+	 */
+	public int calculatingAmountToPay() throws Exception {
+
+		int chrgedAmount=0;
+
+		for (int i = 0; i < lstPayAmount.size(); i++) {
+			String amount = BrowserActions.getText(driver,lstPayAmount.get(i), "lstPayAmount").trim().replace(",","");
+			int amount1 = Integer.parseInt(amount);
+			chrgedAmount = amount1+chrgedAmount;
 		}
+		return chrgedAmount;
 
-		
-		/**
-		 * Getting the text from the fare details panel
-		 * 
-		 * @return
-		 * @throws Exception
-		 */
+	}
 
-		public String getTextFromFareDetails() throws Exception {
-			String txtDetails = BrowserActions.getText(driver, contentFareDetails, "Getting text from the fare details.");
-			return txtDetails;
+	/**
+	 * getting the text from the Total amount from the fare detail panel
+	 * @return
+	 * @throws Exception
+	 */
+	public String gettingTotalPayAmount()throws Exception {
+		String amount =BrowserActions.getText(driver,totalPayAmount, "Getting txt of total payment amount").trim().replace(",","");
+		return amount;
+	}
 
-		}
-		
-		/**
-		 * Getting the text of Review Form heading 
-		 * 
-		 * @return
-		 * @throws Exception
-		 */
 
-		public String getTextOfReviewHeading() throws Exception {
-			String formReview = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")), "Getting text of Review Form Heading.");
-			return formReview;
 
-		}
-		
 
 } //ReviewPage
