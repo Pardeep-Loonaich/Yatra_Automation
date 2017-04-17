@@ -2942,7 +2942,7 @@ public class FlightSearch {
 	
 	
   // ********************************End of Testcases ***************************************************************************************
-	@Test(groups = {"desktop" }, description = "Login flow - Check Booking as a Existing User Fill Traveller form move to Payment page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop","sanity"}, description = "Login flow - Check Booking as a Existing User Fill Traveller form move to Payment page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_131(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -3032,7 +3032,7 @@ public class FlightSearch {
 
 	
 
-	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" ,"sanity"}, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_127(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -3095,7 +3095,7 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
-	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = { "desktop" ,"sanity"}, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_128(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -3157,7 +3157,7 @@ public class FlightSearch {
 		}
 	}
 	
-	@Test(groups = {"desktop" }, description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for RT-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {"desktop" ,"sanity"}, description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for RT-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_121(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -3271,7 +3271,7 @@ public class FlightSearch {
 	}
 	
 	
-		@Test(groups = {"desktop" }, description = "Check to price calculation for DOM flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		@Test(groups = {"desktop" ,"sanity"}, description = "Check to price calculation for DOM flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 		public void TC_Yatra_Flight_125(HashMap<String, String> testData) throws Exception {
 			Utils.testCaseConditionalSkip(testData.get("RunMode"));
 			String browser = testData.get("browser");
@@ -3341,7 +3341,7 @@ public class FlightSearch {
 			}
 		}
 		
-		@Test(groups = {"desktop" }, description = "Check to price calculation for INTL flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		@Test(groups = {"desktop" ,"sanity"}, description = "Check to price calculation for INTL flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 		public void TC_Yatra_Flight_126(HashMap<String, String> testData) throws Exception {
 			Utils.testCaseConditionalSkip(testData.get("RunMode"));
 			String browser = testData.get("browser");
@@ -3404,7 +3404,6 @@ public class FlightSearch {
 
 
 			} catch (Exception e) {
-				Log.exception(e);
 			} finally {
 				driver.quit();
 				Log.endTestCase();
