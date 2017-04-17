@@ -264,6 +264,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy (xpath="(//div[@id='resultBox']//div[@class='js-flightRow js-flightItem'][1]//span[contains(.,'Book Now')])[1]")
 	private WebElement flightBookNow;
 	
+	@FindBy(xpath="/html/body//*[@class='close close-icon']//*[@class='wewidgeticon we_close']")
+	private WebElement btnCloseIframeNotification;
+	
 	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
 	
 	
@@ -360,7 +363,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	/**
 	 * to click on Book now button in OneWay Trip for Domestic flights
 	 * 
-	 * @param index
+	 * @param index: pass even value :) example to selct first flight pass 2, and for second pass 4 and so on..
 	 * @return
 	 * @throws Exception
 	 */
@@ -370,7 +373,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 					+ index
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
 		*/
-		WebElement wBookNow=driver.findElement(By.xpath("(//div[@class='full result-card-content']//div[@class='result-price']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
+		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
 		return new ReviewPage(driver).get();
@@ -484,6 +487,16 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickOnlnkFlightDetails_INTL() throws Exception {
+		
+		if(btnCloseIframeNotification.isDisplayed())
+		{
+		BrowserActions.nap(2);
+		BrowserActions.switchToIframe(driver, "webklipper-publisher-widget-container-notification-frame");
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
+		BrowserActions.switchToDefault(driver);
+		}
+		BrowserActions.nap(2);
 		BrowserActions.scrollToView(lnkFlightDetails_INTL, driver);
 		BrowserActions.clickOnElement(lnkFlightDetails_INTL, driver, "Link Flight Details For International One Way");
 
