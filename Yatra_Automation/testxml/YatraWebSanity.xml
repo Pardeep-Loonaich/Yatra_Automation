@@ -18,11 +18,12 @@
     </run>
 </groups> -->
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightSearch"></class>
+			<class name="com.Yatra.TestScript.Flights.FlightSearch">   
+			</class>
 			
 			<methods>
 			    
-		 <include name="TC_Yatra_Flight_001"></include>
+		<!--  <include name="TC_Yatra_Flight_001"></include>
 			  <include name="TC_Yatra_Flight_002"></include>
 			    <include name="TC_Yatra_Flight_003"></include>
 			    <include name="TC_Yatra_Flight_004"></include>
@@ -42,7 +43,7 @@
 			         <include name="TC_Yatra_Flight_130"></include>
 			         <include name="TC_Yatra_Flight_128"></include>
 			         
-			        <include name="TC_Yatra_Flight_121"></include>
+			        <include name="TC_Yatra_Flight_121"></include> -->
 			         <include name="TC_Yatra_Flight_125"></include>
 			                  
 			</methods> 
