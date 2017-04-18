@@ -21,7 +21,8 @@ import com.Yatra.Utils.Utils;
 public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	private String appURL;
-
+ 
+	
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
