@@ -1,5 +1,37 @@
 package com.Yatra.Pages;
 
+import java.util.List;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
+import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.LoadableComponent;
+import org.testng.Assert;
+
+import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Log;
+import com.Yatra.Utils.Utils;
+
+public class PaymentPage extends LoadableComponent<PaymentPage> {
+
+	private String appURL;
+ 
+	
+	private WebDriver driver;
+	private boolean isPageLoaded;
+	public ElementLayer elementLayer;
+
+	/**********************************************************************************************
+	 ********************************* WebElements of Yatra PaymentPage ***********************************
+=======
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -35,6 +67,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage ***********************************
+>>>>>>> refs/remotes/origin/Framework_Development
 	 **********************************************************************************************/
 
 	@FindBy(xpath = "//input[@id= 'payNow']")

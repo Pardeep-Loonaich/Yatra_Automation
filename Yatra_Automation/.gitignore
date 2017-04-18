@@ -4,8 +4,10 @@
 
 /bin/
 *.html
-.setting
+.setting/
 /testng.xml
 *.class
 
 *.css
+.classpath
+.gitignore
