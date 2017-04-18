@@ -1,9 +1,11 @@
 /target/
-/test-output/
-/bin/
 
-test-output/
+/test-output/
+
+/bin/
 *.html
 .setting
 /testng.xml
 *.class
+
+*.css

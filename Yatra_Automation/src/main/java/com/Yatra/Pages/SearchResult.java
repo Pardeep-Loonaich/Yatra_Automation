@@ -261,7 +261,23 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "ul[class='matrix-slide-list tabs matrix-ul']>li:nth-child(2) p:nth-child(3)[class='matrix-label uprcse']")
 	WebElement lnkArirlineMatrixFare;
+	@FindBy (xpath="(//div[@id='resultBox']//div[@class='js-flightRow js-flightItem'][1]//span[contains(.,'Book Now')])[1]")
+	private WebElement flightBookNow;
 	
+
+	@FindBy(xpath="/html/body//*[@class='close close-icon']//*[@class='wewidgeticon we_close']")
+	private WebElement btnCloseIframeNotification;
+	@FindBy(css = "label[id*='fare']")
+	WebElement  fldContentFare;
+	
+	@FindBy(css = "div[ng-show='open_airline']>ul>li")
+	List<WebElement> selectAirlines;
+	
+	@FindBy(css = "i[class='ico ico-check']")
+	WebElement  chkSelectAirline;
+	
+	@FindBy(xpath="//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
+	private WebElement iFrameNotification;
 	
 	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
 	
@@ -359,17 +375,22 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	/**
 	 * to click on Book now button in OneWay Trip for Domestic flights
 	 * 
-	 * @param index
+	 * @param index: pass even value :) example to select first flight pass 2, and for second pass 4 and so on..
 	 * @return
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		WebElement e = driver.findElement(By.cssSelector(
-				"div[id='resultBoxSlider']>div>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
-						+ index
-						+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
-		BrowserActions.scrollToView(e, driver);
-		BrowserActions.clickOnElement(e, driver, "To click on Book now button.");
+		
+		/*WebElement e = driver.findElement(By.cssSelector(
+		"div[id='resultBoxSlider']>div>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
+					+ index
+				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
+		*/
+		closeINotificationAtTopSRP();
+		
+		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
+		BrowserActions.scrollToView(wBookNow, driver);
+		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
 		return new ReviewPage(driver).get();
 	}
 
@@ -481,6 +502,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickOnlnkFlightDetails_INTL() throws Exception {
+		
+		closeINotificationAtTopSRP();
+		BrowserActions.nap(2);
 		BrowserActions.scrollToView(lnkFlightDetails_INTL, driver);
 		BrowserActions.clickOnElement(lnkFlightDetails_INTL, driver, "Link Flight Details For International One Way");
 
@@ -953,8 +977,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public void clickModifySearch() throws Exception {
 		BrowserActions.nap(10);
-		Utils.waitForElement(driver, btnModifySearchIcon);
-		//BrowserActions.mouseHover(driver, btnModifySearchIcon);		
+		Utils.waitForElement(driver, btnModifySearchIcon);	
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
 		BrowserActions.nap(1);
 		Utils.waitForPageLoad(driver);
@@ -1271,6 +1294,37 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return passengerclassList;
 	}
 	
+	/**
+	 * to select the Airlines by Name
+	 * @param BankName
+	 * @throws Exception
+	 */
+	public void selectAirline(String AirlinesName) throws Exception {
+		for (WebElement e : selectAirlines) {
+			if (e.findElement(By.cssSelector("label>span[class='clip-overflow']")).getText().equalsIgnoreCase(AirlinesName)) {
+				BrowserActions.clickOnElement(e.findElement(By.cssSelector("label>span[class='clip-overflow']")), driver, "Selected Airline");
+				break;
+				}
+			}
+		}
+	
+	/**
+	 * Description: to close notification which display randomly on SRP page
+	 * @throws Exception 
+	 */
+	public void closeINotificationAtTopSRP() throws Exception
+	{
+		
+		if(iFrameNotification.isDisplayed())
+		{
+		BrowserActions.nap(2);
+		
+		BrowserActions.switchToIframe(driver, iFrameNotification);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
+		BrowserActions.switchToDefault(driver);
+		}
+	}
 	
   //*******************************End of SRP Functions********************************************************************************************
 

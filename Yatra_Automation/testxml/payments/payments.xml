@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Payment Automation Test" verbose="3" parallel="false"	thread-count="500">
@@ -7,13 +8,17 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="chrome_windows" />
+	<parameter name="browserName" value="iexplorer_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 	
-	<test name="Payment" thread-count="5" parallel="true">
+
+	<test name="Payment" thread-count="1" parallel="true">
+
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Payment.PaymentTest">	</class>
+			
+			
 		</classes>
 	</test>
 </suite>

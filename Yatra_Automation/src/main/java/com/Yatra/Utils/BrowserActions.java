@@ -61,6 +61,7 @@ public class BrowserActions {
 
 		}
 
+
 	}// typeOnTextField
 
 	/**
@@ -661,6 +662,11 @@ public class BrowserActions {
 		}
 		driver.switchTo().defaultContent();
 
+
+		
+		driver.switchTo().defaultContent();
+
+
 	}
 	
 	
@@ -688,6 +694,8 @@ public class BrowserActions {
 		driver.switchTo().frame(sIframeNameOrId);
 	}
 	
+	
+	
 	public static void switchToDefault(WebDriver driver)
 	{
 		
@@ -707,6 +715,7 @@ public class BrowserActions {
 		dataToBeReturn = JSDriver.executeScript(sJSCode).toString().trim();
 		return dataToBeReturn;
 	}
+		
 	
 
 }// BrowserActions page

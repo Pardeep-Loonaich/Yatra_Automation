@@ -23,16 +23,16 @@ public class CorporateLogin extends LoadableComponent<CorporateLogin>{
 	 **********************************************************************************************/
 	
 	@FindBy(xpath = "//*[@id='signInBtn']")
-	public WebElement signInBtn;
+	private WebElement signInBtn;
 
 	@FindBy(xpath = "//*[@id='emailId']")
-	public WebElement emailIdTxtBox;
+	private WebElement emailIdTxtBox;
 	
 	@FindBy(xpath = "//*[@id='password']")
-	public WebElement passwordTxtBox;
+	private WebElement passwordTxtBox;
 	
 	@FindBy(css = "p a[href*='forgotpassword']")
-	public WebElement forgotPasswordLink;
+	private WebElement forgotPasswordLink;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************

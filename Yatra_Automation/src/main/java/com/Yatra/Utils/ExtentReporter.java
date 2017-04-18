@@ -10,6 +10,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.SkipException;
+import org.testng.annotations.Listeners;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -20,6 +21,7 @@ import com.relevantcodes.extentreports.LogStatus;
  * ExtentReports Generator (Works with @Listeners(EmailReport.class))
  *
  */
+
 public class ExtentReporter {
 
 	private static ExtentReports report = null;

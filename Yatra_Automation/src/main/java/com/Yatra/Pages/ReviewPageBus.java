@@ -54,7 +54,7 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 	private WebElement txtBoxPhoneNumberGuest;
 	
 	@FindBy(css = "#userContinue")
-	private WebElement btnContinueGuest;
+	WebElement btnContinueGuest;
 	
 	@FindBy(css = "label[for='showLoginForm']>span[class='custom-checkbox']>span")
 	private WebElement chkBoxYatraUser;
@@ -135,6 +135,7 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
      * @throws Exception
      */
      public SearchResultBus clickOnChangeBus() throws Exception{
+    	 	Utils.waitForPageLoad(driver);
             BrowserActions.clickOnElement(BtnChangeBus, driver, "clicked on change bus button.");
             return new SearchResultBus(driver).get();
      }
@@ -160,6 +161,7 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
  	 	 */
 
  	 	public TravellerPageBus fillUserDetailsAsLogin(String email, String Password) throws Exception {
+ 	 		Utils.waitForPageLoad(driver);
  	 		Utils.waitForElement(driver, chkBoxYatraUser);
  	 		BrowserActions.clickOnElement(chkBoxYatraUser, driver, "Existing Yatra User Check Box");
  	 		BrowserActions.typeOnTextField(txtBoxEmailLogin, email, driver, "Enter User Email");

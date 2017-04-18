@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Yatra Flight Search Tests" verbose="3" parallel="true" thread-count="500">
+<suite name="Yatra Flight Search Tests" verbose="3" parallel="Tests" thread-count="500">
 	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
 	<parameter name="sheetName" value="FlightSearch" />
 	
@@ -9,15 +9,15 @@
 	<parameter name="deviceHost" value="localhost" />
 
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="iexplorer_windows"/>
-	<parameter name="webSite" value="https://www.yatra.com/"/>
-	<test name="Flight Search" thread-count="1" parallel="true">
-
+		<test name="Flight Search on chrome" thread-count="1" parallel="true">
+	    <parameter name="browserName" value="chrome_windows"/>
+	    <parameter name="webSite" value="https://www.yatra.com/"/>
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch"></class>
-			<methods>
-			    <include name="TC_Yatra_Flight_001"></include>
-			</methods>
+
+			<!-- <methods>
+			    <include name="TC_Yatra_Flight_002"></include>
+			</methods> -->
 		
 		</classes>
 	</test>
