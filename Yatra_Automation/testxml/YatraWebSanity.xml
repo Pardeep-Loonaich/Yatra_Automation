@@ -12,17 +12,17 @@
 	<parameter name="browserName" value="chrome_windows"/>
 	<parameter name="webSite" value="https://www.yatra.com/"/>
 	<test name="Yatra Web Sanity Test" thread-count="1" parallel="true">
-<groups>
+<!-- <groups>
     <run>
         <include name="Sanity"></include>
     </run>
-</groups>-
+</groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch"></class>
 			
 			<methods>
 			    
-			<!-- <  <include name="TC_Yatra_Flight_001"></include>
+		 <include name="TC_Yatra_Flight_001"></include>
 			  <include name="TC_Yatra_Flight_002"></include>
 			    <include name="TC_Yatra_Flight_003"></include>
 			    <include name="TC_Yatra_Flight_004"></include>
@@ -43,7 +43,7 @@
 			         <include name="TC_Yatra_Flight_128"></include>
 			         
 			        <include name="TC_Yatra_Flight_121"></include>
-			         <include name="TC_Yatra_Flight_125"></include>-->
+			         <include name="TC_Yatra_Flight_125"></include>
 			         
 			         
 			         
