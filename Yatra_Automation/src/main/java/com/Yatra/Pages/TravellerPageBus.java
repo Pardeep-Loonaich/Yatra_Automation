@@ -41,8 +41,8 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
-	@FindBy(css = "a[title='Change Your Selected Bus']")
-	WebElement BtnChangeBus;
+	@FindBy(css = "div[id='paxListBox']")
+	WebElement fldContentPaxDetails;
 
 	@FindBy(css = "input[id='paxname1']")
 	WebElement txtBoxName;
@@ -97,15 +97,15 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
 		elementLayer = new ElementLayer(driver);
-	}// ReviewPageBus
+	}// TravellerPageBus
 
 	@Override
 	protected void isLoaded() {
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, BtnChangeBus))) {
-			Log.fail("Review Page did not open up. Site might be down.", driver);
+		if (isPageLoaded && !(Utils.waitForElement(driver, fldContentPaxDetails))) {
+			Log.fail("Traveller Page did not open up. Site might be down.", driver);
 		}
 	}// isLoaded
 
@@ -147,8 +147,8 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	 */
 
 	public PaymentPageBus clickOnContinueInTravellerPage() throws Exception {
-		Utils.waitForElement(driver, lnkTermAndCond);
-		BrowserActions.clickOnElement(btnContinue, driver, "Continue Button");
+		Utils.waitForElement(driver, btnContinue);
+		BrowserActions.javascriptClick(btnContinue, driver, "Continue Button");
 		return new PaymentPageBus(driver).get();
 	}
 
@@ -171,7 +171,6 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	 * @throws Exception
 	 */
 	public String getTextErrorMsgPromo() throws Exception {
-		Utils.waitForElement(driver, txtErrorMsg);
 		String txtDetails = txtPromoMessage.getText();
 		return txtDetails;
 	}

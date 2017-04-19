@@ -1056,6 +1056,7 @@ public class BusSearchTest {
 
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
+
 			Thread.sleep(4000);
 			searchResultBus.switchToIframe();
 			String details = searchResultBus.getTextBusInfo();
@@ -1121,13 +1122,11 @@ public class BusSearchTest {
 			searchResultBus = homePage.clickBtnSearchBus();
 			Log.message("5. Clicked On Search Button!");
 
-			Thread.sleep(4000);
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			Thread.sleep(4000);
 			searchResultBus.switchToIframe();
-			searchResultBus.selectSeat(2);
+			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 			String SeatNumber = searchResultBus.getTextSeatNumber();
 
@@ -1185,7 +1184,6 @@ public class BusSearchTest {
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(6000);
-			searchResultBus.switchToIframe();
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 
@@ -1261,7 +1259,7 @@ public class BusSearchTest {
 			Thread.sleep(6000);
 			Log.assertThat(
 					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
-					"<b>Actual Result:</b> User have selected these seat and seat number are : " + Msg,
+					"<b>Actual Result:</b> User have selected seats and Message is displayed as : " + Msg,
 					"<b>Actual Result:</b> User can select any number of Seat", driver);
 
 			Log.testCaseResult();
@@ -1320,7 +1318,7 @@ public class BusSearchTest {
 			Thread.sleep(6000);
 			Log.assertThat(
 					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
-					"<b>Actual Result:</b> User can Select " + bustype + " and " + bustyp + "seat type",
+					"<b>Actual Result:</b> User can Select " + bustype + " and " + bustyp + " seat type",
 					"<b>Actual Result:</b> User can not Select lower/Upper Deck seats", driver);
 
 			Log.testCaseResult();
@@ -1370,7 +1368,6 @@ public class BusSearchTest {
 			searchResultBus.clickBtnSelectSeat_RT();
 			Log.message("6. Clicked On Select Seat!");
 
-			Thread.sleep(4000);
 			searchResultBus.switchToIframe();
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
@@ -1378,7 +1375,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Boarding Point Selected!");
 
-			searchResultBus.switchToIframe();
 			searchResultBus.clickOnSelectReturnSeat();
 			Log.message("9. Clicked On Continue!");
 
@@ -1635,7 +1631,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1775,7 +1770,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1848,7 +1842,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1917,7 +1910,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -1983,7 +1975,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2060,7 +2051,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2139,7 +2129,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2213,7 +2202,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2284,7 +2272,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2364,7 +2351,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2442,7 +2428,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			// searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2457,15 +2442,16 @@ public class BusSearchTest {
 
 			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
 			Log.message("13. Clicked on Continue!");
+			String PromoReward = paymentPageBus.getTextPromotionalRewards();
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verify for all payment option");
+			Log.message("<b>Expected Result:</b> Verify promocode is applied then amount should be shown correctly");
 			Thread.sleep(6000);
 			Log.assertThat(
-					paymentPageBus.elementLayer.verifyPageElements(Arrays.asList("fldContentPaymentMethods"),
+					paymentPageBus.elementLayer.verifyPageElements(Arrays.asList("PromoRewardPaymentPage"),
 							paymentPageBus),
-					"<b>Actual Result:</b> All Payment Methods are visible",
-					"<b>Actual Result:</b> No Payment Methods is visible", driver);
+					"<b>Actual Result:</b> Promo is visible on payment page is :" + PromoReward,
+					"<b>Actual Result:</b> No promo is visible on payment page", driver);
 
 			Log.testCaseResult();
 
@@ -2521,7 +2507,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			// searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2538,8 +2523,7 @@ public class BusSearchTest {
 			Log.message("<b>Expected Result:</b> Verify eWallet div");
 			Thread.sleep(6000);
 			Log.assertThat(paymentPageBus.elementLayer.verifyPageElements(Arrays.asList("divEwallet"), paymentPageBus),
-					"<b>Actual Result:</b> Ewallet is properly visible", 
-					"<b>Actual Result:</b> Ewallet is not visible",
+					"<b>Actual Result:</b> Ewallet is properly visible", "<b>Actual Result:</b> Ewallet is not visible",
 					driver);
 
 			Log.testCaseResult();
@@ -2553,8 +2537,8 @@ public class BusSearchTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification continue PG and cancel transaction", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Bus_043(HashMap<String, String> testData) throws Exception {
+			"desktop" }, description = "Verify for ewallet amount which should be according to given % basis", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Bus_042(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -2565,6 +2549,7 @@ public class BusSearchTest {
 		String email = testData.get("EmailAddress");
 		String Password = testData.get("Password");
 		String name = testData.get("CustomerName");
+		String Per = testData.get("Percentage");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -2599,7 +2584,6 @@ public class BusSearchTest {
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			Thread.sleep(3000);
 			travellerPageBus = reviewPageBus.fillUserDetailsAsLogin(email, Password);
 			Log.message("10. Entered Email Address and Phone Number!");
 
@@ -2609,15 +2593,109 @@ public class BusSearchTest {
 			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
 			Log.message("12. Clicked on Continue!");
 			
+			Thread.sleep(2000);
+			double TotalAmount = Double.parseDouble(paymentPageBus.getTextTotalAmountPaymentMethod());
+			int Percentage = Integer.parseInt(Per);
+			double TotalPercentage = TotalAmount*Percentage/100;
+			double value = Math.round(TotalPercentage);
+			String PercentageAfterCalcutaion = String.valueOf(value).replaceAll("[.]0", "");
+			String EcashVisible = paymentPageBus.getTextMaxiumEcash();
 			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify for ewallet amount which should be according to given % basis");
+			Thread.sleep(6000);
+			Log.assertThat(PercentageAfterCalcutaion.equals(EcashVisible),
+					"<b>Actual Result:</b> Correct ewallet amount is displayed in Payment Page",
+					"<b>Actual Result:</b> Correct ewallet amount is not displayed in Payment Page", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verification continue PG and cancel transaction", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Bus_043(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String email = testData.get("EmailAddress");
+		String phoneNumber = testData.get("PhoneNumber");
+		String name = testData.get("CustomerName");
+		String paymentType = testData.get("PaymentType");
+		String cardNumber = testData.get("CardNumber");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickBuses();
+			Log.message("2. Clicked on Bus Link!");
+
+			homePage.selectTripTypeBus(tripType);
+			Log.message("3. Trip Type Selected!");
+
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
+
+			searchResultBus = homePage.clickBtnSearchBus();
+			Log.message("5. Clicked On Search Button!");
+
+			searchResultBus.clickBtnSelectSeat();
+			Log.message("6. Clicked On Select Seat!");
+
+			searchResultBus.switchToIframe();
+			searchResultBus.selectSeat(1);
+			Log.message("7. Seat Selected from the popup!");
+
+			searchResultBus.selectBoardingPoint();
+			Log.message("8. Selected boarding point!");
+
+			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
+			Log.message("9. Clicked on continue to navigate to review page!");
+
+			Thread.sleep(3000);
+			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			Log.message("10. Entered Email Address and Phone Number!");
+
+			travellerPageBus.TravellerDetails(name);
+			Log.message("11. Filled Guest Details and Clicked on Continue!");
+
+			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
+			Log.message("12. Clicked on Continue!");
+
+			paymentPageBus.selectPaymentType(paymentType);
+			Log.message("13. Payment Type Selected!");
+
+			paymentPageBus.enterCreditCardDetails(cardNumber);
+			Log.message("14. Credit Card Details SucessFully Filled!");
+
+			paymentPageBus.cancelHdfcPayment(browser);
+			Log.message("15. Clicked on Cancel Button On Payment GateWay!");
+
+			Thread.sleep(1000);
+			paymentPageBus.returnFromCreditCardPage(browser, 2);
+			Log.message("16. Naviagted Back to Yatra Payment Page!");
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> ");
-			Log.assertThat(
-					paymentPageBus.elementLayer.verifyPageElements(Arrays.asList("fldContentPaymentMethods"),
-							paymentPageBus),
-					"<b>Actual Result:</b> ",
-					"<b>Actual Result:</b> ", driver);
+			Log.message("<b>Expected Result:</b> Verification continue PG and cancel transaction");
+			Thread.sleep(3000);
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
+					"<b>Actual Result:</b> After Cancelling the transaction user naviagted back to Yatra Payment Page!",
+					"<b>Actual Result:</b> After Cancelling the transaction user is not naviagted back to Yatra Payment Page",
+					driver);
 
 			Log.testCaseResult();
 
@@ -2673,7 +2751,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			// searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2686,12 +2763,12 @@ public class BusSearchTest {
 
 			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
 			Log.message("12. Clicked on Continue!");
-			
+
 			int amount = Integer.parseInt(paymentPageBus.getTextTotalAmountPaymentMethod());
 			paymentPageBus.scrollSliderOfEcashRedeem(-80);
 			paymentPageBus.clickOnRedeemNowButton();
 			Log.message("13. Clicked on Redeem Now Button!");
-			 
+
 			Thread.sleep(5000);
 			int Ecash = Integer.parseInt(paymentPageBus.getTextEcashUsed());
 			int ActualCost = amount - Ecash;
@@ -2759,7 +2836,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2838,7 +2914,6 @@ public class BusSearchTest {
 			searchResultBus.selectBoardingPoint();
 			Log.message("8. Selected boarding point!");
 
-			searchResultBus.switchToIframe();
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
@@ -2851,7 +2926,6 @@ public class BusSearchTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify Validations of promocodes For Guest User");
-			Thread.sleep(6000);
 			Log.assertThat(
 					travellerPageBus.elementLayer.verifyPageElements(Arrays.asList("txtPromoMessage"),
 							travellerPageBus),

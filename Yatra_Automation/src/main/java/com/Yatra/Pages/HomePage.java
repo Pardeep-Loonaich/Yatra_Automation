@@ -110,7 +110,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "a#booking_engine_holidays")
 	private WebElement lnkHolidays;
 
-	@FindBy(css = "a#booking_engine_activities")
+	@FindBy(css = "a[id='booking_engine_activities']>span:not([class='betaBookingEngine'])")
 	private WebElement lnkActivities;
 
 	@FindBy(css = "a#booking_engine_buses")
@@ -217,8 +217,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(css = "li.ac_even.ac_over")
 	private WebElement txtCityOver;
-	
-	
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -1138,20 +1136,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
-
-	/**
-	 * Getting the text from the Bus Info
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public String getTextErrorSameCity() throws Exception {
-		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
-				"Getting text from the Bus Dropping Point");
-		return txtDetails;
-	}
-
 	/**
 	 * Enter Train Destination
 	 * 
@@ -1172,7 +1156,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public TrainSearchResult clickTrainBtnSearch() throws Exception {
-		// final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(btnTrainSearch, driver, "Train Search");
 		Utils.waitForPageLoad(driver);
 		return new TrainSearchResult(driver).get();
@@ -1192,7 +1175,18 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return false;
 
 	}
-
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorSameCity() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
 	/**
 	 * To select Departure Date
 	 * 
@@ -1206,7 +1200,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on Bus Return date icon");
 		selectMonth_Bus.get(month - 3).click();
-
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
 		/*BrowserActions.nap(2);
@@ -1333,7 +1326,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 			driver.navigate().to("https://secure.yatra.com/social/common/yatra/signin.htm");
 		}
 		return new LoginPage(driver).get();
-
 	}
 	/**
 	 * Description: to select date from  calendar (it will work for depart date and return date)
