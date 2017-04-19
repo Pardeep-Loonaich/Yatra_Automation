@@ -985,7 +985,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickModifySearch() throws Exception {
-		BrowserActions.nap(15);
+		BrowserActions.nap(20);
 		Utils.waitForElement(driver, btnModifySearchIcon);	
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
 		BrowserActions.nap(1);
