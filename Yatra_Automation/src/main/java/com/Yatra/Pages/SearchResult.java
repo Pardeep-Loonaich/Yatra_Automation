@@ -277,7 +277,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath="//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
 	private WebElement iFrameNotification;
 	
-	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
+	@FindBy(css = ".matrix-slide-list.tabs.matrix-ul")
+	private WebElement lnkAirlineMatrixStrip;	
 	
 	
 	/**********************************************************************************************
