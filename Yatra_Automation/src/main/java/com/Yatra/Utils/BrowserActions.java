@@ -61,6 +61,7 @@ public class BrowserActions {
 
 		}
 
+
 	}// typeOnTextField
 
 	/**
@@ -659,9 +660,12 @@ public class BrowserActions {
 			alert.dismiss();
 
 		}
-		
+		driver.switchTo().defaultContent();
+
+
 		
 		driver.switchTo().defaultContent();
+
 
 	}
 	
@@ -711,7 +715,39 @@ public class BrowserActions {
 		dataToBeReturn = JSDriver.executeScript(sJSCode).toString().trim();
 		return dataToBeReturn;
 	}
-		
+	
+	/**
+	 * Description: iframe handling 
+	 * @param: driver- provide current driver instance.
+	 * @param: WebElement
+	 */
+	public static boolean isElementPresent(WebDriver driver, WebElement locator) {
+		try {
+			locator.isDisplayed();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	public static boolean isElementVisible(WebDriver driver, WebElement locator) {
+		try {
+			locator.isEnabled();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}	
+	
+	public static boolean isElementSelected(WebDriver driver, WebElement locator) {
+		try {
+			locator.isEnabled();
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 	
 
 }// BrowserActions page

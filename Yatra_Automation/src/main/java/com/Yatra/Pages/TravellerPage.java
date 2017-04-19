@@ -86,7 +86,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	WebElement chkInsurance;
 
 	@FindBy(css = "[id='checkoutBase']>div:not([class])>main>div>aside>div[class='box ng-scope']>div[class='box-content hide-under-overlay']>div>ul[class='list list-border']")
-	WebElement contentFareDetails;
+	private WebElement contentFareDetails;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of TravellerPage Page - Ends ****************************

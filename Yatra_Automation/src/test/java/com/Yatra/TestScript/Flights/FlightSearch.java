@@ -50,7 +50,7 @@ public class FlightSearch {
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
 
-	@Test(groups = {"desktop" }, description = "Flight Search DOM - OW with  Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Flight Search DOM - OW with  Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_001(HashMap<String, String> testData) throws Exception {		
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -68,7 +68,6 @@ public class FlightSearch {
 			
 			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
-			homePage.clickOnMainMenu(driver, "My Account", "Login");
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			// step: Select Trip Type
@@ -116,7 +115,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Flight Search DOM - RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Flight Search DOM - RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_002(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -183,7 +182,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Flight Search DOM-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(description = "Flight Search DOM-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_005(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -262,7 +261,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Flight Search INTL-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(description = "Flight Search INTL-Multicity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_006(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -345,7 +344,7 @@ public class FlightSearch {
 	}
 
 
-	@Test(groups = {"desktop" }, description = "Airline Matrix Strip verification on SRP for DOM flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(description = "Airline Matrix Strip verification on SRP for DOM flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_118(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -399,7 +398,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Airline Matrix Strip verification on SRP for INT flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Airline Matrix Strip verification on SRP for INT flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_119(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -453,7 +452,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Weekly Strip verification on SRP for DOM flight - OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Weekly Strip verification on SRP for DOM flight - OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_093(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -499,7 +498,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Add Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Add Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_099(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -570,7 +569,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Remove Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Remove Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_100(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -648,7 +647,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_102(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -721,7 +720,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Remove Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(description = "Remove Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_103(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -798,7 +797,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Verify Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Verify Add Baggage on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_101(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -863,7 +862,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Flight Search INTL- OW with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Flight Search INTL- OW with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_003(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -927,7 +926,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Flight Search INTL- RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(description = "Flight Search INTL- RT with Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_004(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -996,7 +995,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_112(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1048,7 +1047,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Failed payment flow with Credit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Failed payment flow with Credit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_104(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1125,7 +1124,7 @@ public class FlightSearch {
 	}
 
 
-	@Test(groups = { "desktop" }, description = "Failed payment flow with Debit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Failed payment flow with Debit card flight type, travel type, booking class of your choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_105(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1204,7 +1203,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_094(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1256,7 +1255,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_095(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1312,7 +1311,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_098(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1363,7 +1362,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(  description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_097(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1418,7 +1417,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Guest flow - Verification of Book As Guest button ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_113(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1478,7 +1477,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Guest flow - Verification of Existing User checkbox", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Guest flow - Verification of Existing User checkbox", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_114(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1541,7 +1540,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Guest flow - Check Booking as a Existing User Fill Traveller form move to Payment page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Guest flow - Check Booking as a Existing User Fill Traveller form move to Payment page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_115(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1616,7 +1615,7 @@ public class FlightSearch {
 	}
 	
 	
-	@Test(groups = {"desktop" }, description = "Validating the SRP Header", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating the SRP Header", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_010(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1685,7 +1684,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Validating the action on clicking on Yatra logo", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating the action on clicking on Yatra logo", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_011(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1732,7 +1731,7 @@ public class FlightSearch {
 			searchResult = homePage.clickBtnSearch();
 			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");			
 			
-			String yatraLogoTitle = searchResult.getTextFromAYatraLogo();
+			String yatraLogoTitle = searchResult.getTextFromYatraLogo();
 			Log.assertThat(yatraLogoTitle.equals("yatra.com"),
 					"<b>Actual Result:</b> Yatra Logo tool tip should appear 'yatra.com' in SRP",
 					"<b>Actual Result:</b> Yatra Logo tool tip should not appear 'yatra.com' in SRP");
@@ -1757,7 +1756,7 @@ public class FlightSearch {
 		}
 	}
 	
-	@Test(groups = {"desktop" }, description = "Validating the SRP Header for logged in User", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating the SRP Header for logged in User", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_012(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1834,7 +1833,7 @@ public class FlightSearch {
 	}
 	
 	
-	@Test(groups = {"desktop" }, description = "Validating the action on clicking on My Account header Menu items", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating the action on clicking on My Account header Menu items", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_013(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");		
@@ -1907,7 +1906,7 @@ public class FlightSearch {
 	}
 	
  
-	@Test(groups = {"desktop" }, description = "Check total flight count", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Check total flight count", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_014(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1982,7 +1981,7 @@ public class FlightSearch {
 	}
 	
 	
-	@Test(groups = {"desktop" }, description = "Validating the Matrix Result finder for OW search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating the Matrix Result finder for OW search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_015(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2050,7 +2049,7 @@ public class FlightSearch {
 		}
 	}
 
-	@Test(groups = {"desktop" }, description = "Validating the Matrix Result finder for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating the Matrix Result finder for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_116(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2125,7 +2124,7 @@ public class FlightSearch {
 	}
 
 	
-	@Test(groups = {"desktop" }, description = "Validating the Matrix Result finder for MC search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating the Matrix Result finder for MC search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_117(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2212,7 +2211,7 @@ public class FlightSearch {
 		}
 	}
 	
-	@Test(groups = {"desktop" }, description = "Validate that Duration should appear in 'hh mm' format across the SRP", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validate that Duration should appear in 'hh mm' format across the SRP", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_016(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2289,7 +2288,7 @@ public class FlightSearch {
 	}
 	
 	
-	@Test(groups = {"desktop" }, description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_017(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2343,14 +2342,14 @@ public class FlightSearch {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected One Way Radio button",	"<b>Actual Result:</b> Not selected One Way Radio button");
-            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP", "<b>Actual Result:</b> Not verified Origin City with HP");
-            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP","<b>Actual Result:</b> Not verified Destination City with HP");
+            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP, Orgin City:  <b> "+ originCityText+ "</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
+            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP, Destination City:  <b> " + destCityText + "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
 		    
             //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
             String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
 			String[] depart = deprtDateText.split("/"); 
 			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
-					"<b>Actual Result:</b> Successfully verified selected Departure date with HP</b> ",
+					"<b>Actual Result:</b> Successfully verified selected Departure date with HP, Departure Date is: <b> "+ deprtDateText+"</b>",
 					"<b>Actual Result:</b> Not matched selected selected Departure date with HP</b> ", driver);
 						         
             String[] pax= passengerInfo.split("_");
@@ -2359,29 +2358,23 @@ public class FlightSearch {
 			String childText = searchResult.getTextChild_ModifySearch();
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
-					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP </b> ",
+					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP, Selected Adult is:  <b> " + adult+ "</b>",
 					"<b>Actual Result:</b> Not matched selected Adult passenger details with HP</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
-					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP</b> ",
+					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP, Selected Child is:  <b>" +child+ "</b>",
 					"<b>Actual Result:</b> Not matched selected Child passenger details with HP</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
-					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP </b> ",
+					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP, Selected Infant is: <b>+ "+ infant + "</b>",
 					"<b>Actual Result:</b> Not matched selected Infant passenger details with HP</b> ", driver);
 			
 			
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClassText.contains(passengerClass),
-					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP</b> ",
+					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
 					"<b>Actual Result:</b> Not matched selected passenger class details with HP</b> ", driver);
 			
-			/*String prefferedAirlineText = searchResult.getTextPreferredAirline_ModifySearch();			
-			Log.assertThat(passengerClass.contains(prefferedAirlineText),
-					"<b>Actual Result:</b> Successfully verified selected preffered airline details with HP</b> ",
-					"<b>Actual Result:</b> Not matched selected preffered airline  details with HP</b> ", driver);
-			//Log.assertThat(searchResult.verifyNonStopFlightsChkBox_ModifySearch(), "Successfully selected Non Stop Flights Checkbox",	"Not selected Non Stop Flights Checkbox");
-			*/			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -2391,7 +2384,7 @@ public class FlightSearch {
 		}
 	}
 	
-	@Test(groups = {"desktop" }, description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for RT", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for RT", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_018(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2450,21 +2443,21 @@ public class FlightSearch {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected Round Trip Radio button",	"<b>Actual Result:</b> Not selected Round Trip Radio button");
-            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP", "<b>Actual Result:</b> Not verified Origin City with HP");
-            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP","<b>Actual Result:</b> Not verified Destination City with HP");
+            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP, Orgin City:  <b> "+ originCityText+ "</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
+            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP, Destination City:  <b> "+ destCityText+ "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
 		    
            //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
 	        String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
 			String[] depart = deprtDateText.split("/"); 
 			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
-					"<b>Actual Result:</b> Successfully verified selected Departure date with HP</b> ",
+					"<b>Actual Result:</b> Successfully verified selected Departure date with HP, Departure Date is: <b> "+ deprtDateText+"</b>",
 					"<b>Actual Result:</b> Not matched selected selected Departure date with HP</b> ", driver);
 			
 			//TODO: To change the logic for return date verification (like 10, 20, 30 dates in moth level)
 			String returnDateText = searchResult.getTextReturnDate_ModifySearch();
 			String[] arrayReturndate = returnDateText.split("/"); 
 			Log.assertThat(returndate.equalsIgnoreCase(arrayReturndate[2]+"_"+arrayReturndate[1].replace("0", "")+"_"+arrayReturndate[0].replace("0", "")),
-					"<b>Actual Result:</b> Successfully verified selected Return date with HP</b> ",
+					"<b>Actual Result:</b> Successfully verified selected Return date with HP, Return Date is: <b> "+ returnDateText+"</b>",
 					"<b>Actual Result:</b> Not matched selected selected Return date with HP</b> ", driver);
 			
             String[] pax= passengerInfo.split("_");
@@ -2473,28 +2466,22 @@ public class FlightSearch {
 			String childText = searchResult.getTextChild_ModifySearch();
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
-					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP </b> ",
+					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP, Selected Adult is:  <b> " + adult+ "</b>",
 					"<b>Actual Result:</b> Not matched selected Adult passenger details with HP</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
-					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP</b> ",
+					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP, Selected Child is:  <b> " + child+ "</b>",
 					"<b>Actual Result:</b> Not matched selected Child passenger details with HP</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
-					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP </b> ",
+					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP, Selected Infant is:  <b> " + infant+ "</b>",
 					"<b>Actual Result:</b> Not matched selected Infant passenger details with HP</b> ", driver);
 					
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClass.contains(passengerClassText),
-					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP</b> ",
+					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
 					"<b>Actual Result:</b> Not matched selected passenger class details with HP</b> ", driver);
-			
-			/*String prefferedAirlineText = searchResult.getTextPreferredAirline_ModifySearch();			
-			Log.assertThat(passengerClass.contains(prefferedAirlineText),
-					"<b>Actual Result:</b> Successfully verified selected preffered airline details with HP</b> ",
-					"<b>Actual Result:</b> Not matched selected preffered airline  details with HP</b> ", driver);
-			//Log.assertThat(searchResult.verifyNonStopFlightsChkBox_ModifySearch(), "Successfully selected Non Stop Flights Checkbox",	"Not selected Non Stop Flights Checkbox");
-			*/
+					
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -2505,7 +2492,7 @@ public class FlightSearch {
 	}
 	
 	
-	@Test(groups = {"desktop" }, description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for MC", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for MC", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_019(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2606,29 +2593,23 @@ public class FlightSearch {
 			String childText = searchResult.getTextChild_ModifySearch();
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
-					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP </b> ",
+					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP, Selected Adult is:  <b> " + adult+ "</b>",
 					"<b>Actual Result:</b> Not matched selected Adult passenger details with HP</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
-					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP</b> ",
+					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP, Selected Child is:  <b> " + child+ "</b>",
 					"<b>Actual Result:</b> Not matched selected Child passenger details with HP</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
-					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP </b> ",
+					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP, Selected Infant is:  <b> " + infant+ "</b>",
 					"<b>Actual Result:</b> Not matched selected Infant passenger details with HP</b> ", driver);
 			
 			
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClassText.contains(passengerClass),
-					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP</b> ",
+					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
 					"<b>Actual Result:</b> Not matched selected passenger class details with HP</b> ", driver);
-			
-			/*String prefferedAirlineText = searchResult.getTextPreferredAirline_ModifySearch();			
-			Log.assertThat(passengerClass.contains(prefferedAirlineText),
-					"<b>Actual Result:</b> Successfully verified selected preffered airline details with HP</b> ",
-					"<b>Actual Result:</b> Not matched selected preffered airline  details with HP</b> ", driver);
-			//Log.assertThat(searchResult.verifyNonStopFlightsChkBox_ModifySearch(), "Successfully selected Non Stop Flights Checkbox",	"Not selected Non Stop Flights Checkbox");
-			*/		
+						
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -2638,7 +2619,7 @@ public class FlightSearch {
 		}
 	}
 	
-	@Test(groups = {"desktop" }, description = "Validating that Weekly fare Matrix will be available for OW search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that Weekly fare Matrix will be available for OW search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_026(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2681,7 +2662,7 @@ public class FlightSearch {
 			String lowesrFlightFareText = searchResult.getTextLowestFlightFareInAirlineMatrix(); 
 			lowesrFlightFareText = lowesrFlightFareText.toString().trim();
 			Log.assertThat(currentdateFareText.equalsIgnoreCase(lowesrFlightFareText),
-					"<b>Actual Result:</b> Successfully shown lowest fare in matrix for that date</b> ",
+					"<b>Actual Result:</b> Successfully shown lowest fare in matrix for that date, Fare: <b> "+ currentdateFareText +"</b>",
 					"<b>Actual Result:</b> Not shown lowest fare in matrix for that date</b> ", driver);
 						
 			Log.testCaseResult();
@@ -2694,7 +2675,7 @@ public class FlightSearch {
 	}
 	
 
-	@Test(groups = {"desktop" }, description = "Validating that Weekly fare Matrix will not be available for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that Weekly fare Matrix will not be available for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_027(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2724,6 +2705,7 @@ public class FlightSearch {
 			// step: click 'Search' button in Yatra Home page
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
+			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated that Weekly fare Matrix will not be available for RT search");
 			BrowserActions.nap(2);
@@ -2731,6 +2713,7 @@ public class FlightSearch {
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix  displayed on the SRP page for RT Search",
 					driver);
+			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -2741,7 +2724,7 @@ public class FlightSearch {
 	}
 	
 
-	@Test(groups = {"desktop" }, description = "Validating that Weekly fare Matrix will not be available for MC search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that Weekly fare Matrix will not be available for MC search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_028(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2791,7 +2774,7 @@ public class FlightSearch {
 	
 	
 	
-	@Test(groups = {"desktop" }, description = "Validating that for DOM search Class dropdown would not contain First Class as option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that for DOM search Class dropdown would not contain First Class as option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_024(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2842,7 +2825,7 @@ public class FlightSearch {
 		}
 	}
 	
-	@Test(groups = {"desktop" }, description = "Validating that for INT search Class dropdown should not contain First Class as option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that for INT search Class dropdown should not contain First Class as option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_025(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2893,7 +2876,7 @@ public class FlightSearch {
 		}
 	}
 	
-	@Test(groups = {"desktop" }, description = "Validating the Airline Matrix", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating the Airline Matrix", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_029(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2936,13 +2919,342 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
+	@Test(description = "Applying Promo Code on review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_129(HashMap<String, String> testData) throws Exception {
+		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String promo[] =testData.get("Promo").split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
+
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			Log.message("5.Clicked on 'Book Now' button in Search Result Page!");
+
+			reviewPage.clickOnHavePromoCode();
+			Log.message("6.Clicked on 'Have a Promo Code' link in Review Page!");
+			
+			reviewPage.enterPromo(promo[0]);
+			Log.message("7.Entered invalid Promo Code!");
+			String Error = reviewPage.getTextFromPromoMessage();
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Applying Promo Code on review page!");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("PromoCodeErrorMessage"), reviewPage),
+					"<b>Actual Result:</b> If invalid Promo Code is Applied an error message is dispalyed as :" + Error,
+					"<b>Actual Result:</b> If invalid Promo Code is Applied no error message is dispalyed",
+					driver);
+			
+			reviewPage.enterPromo(promo[1]);
+			Log.message("8.Entered valid Promo Code!");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Applying Promo Code on review page!");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("PromoCodeErrorMessage"), reviewPage),
+					"<b>Actual Result:</b> If valid Promo Code is Applied an message is dispalyed",
+					"<b>Actual Result:</b> If valid Promo Code is Applied no message is dispalyed",
+					driver);
+			
+			
+			Log.testCaseResult();
+			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	@Test( description = "Travel Assistance and Insurance verification on pax page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_130(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: verify Yatra title bar text
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("2.Verified Yatra Title text!");
+			}
+			// selected trip as one way
+			homePage.selectOneWayTrip();
+			
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for 'ONE WAY' trip!");
+			
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Clicked on 'Search' in Yatra Homepage!");
+
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("5.Clicked on 'Book Now' button in Search Result Page!");
+
+			reviewPage.clickOnContinue();
+			Log.message("6. Clicked On Continue Button on Review Page!");
+
+			reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("7.Successfully Logged in Yatra account!");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Travel Assistance and Insurance verification on pax page");
+			Log.assertThat(travellerPage.getTextFromFareDetails().contains("Travel Assistance and Insurance"),
+					"<b>Actual Result:</b> Travel Assistance and Insurance amount included in the Fare details",
+					"<b>Actual Result:</b> Travel Assistance and Insurance amount not included in the Fare details",
+					driver);
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}	
 	
-	
-	
-	
-	
-  // ********************************End of Testcases ***************************************************************************************
-	@Test(groups = {"desktop","sanity"}, description = "Login flow - Check Booking as a Existing User Fill Traveller form move to Payment page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Flight pricing on any airline", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_122(HashMap<String, String> testData) throws Exception {
+		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Flight pricing on any airline!");
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("fldContentFare"), searchResult),
+					"<b>Actual Result:</b> Prices for all flights are visible",
+					"<b>Actual Result:</b> Prices for all flights are not visible",
+					driver);
+			
+			
+			Log.testCaseResult();
+			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	@Test( description = "Flight pricing of preferred Airline", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_123(HashMap<String, String> testData) throws Exception {
+		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String airlineName = testData.get("AirLineName");
+		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
+
+			searchResult.selectAirline(airlineName);
+			Log.message("5.Selected Flight of the chioce!");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Flight pricing on any airline!");
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("fldContentFare"), searchResult),
+					"<b>Actual Result:</b> Prices for preferred flights are visible",
+					"<b>Actual Result:</b> Prices for preferred flights are not visible",
+					driver);
+			
+			
+			Log.testCaseResult();
+			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	@Test( description = "Error alert for price increase/decrease/pricing failure cases", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_124(HashMap<String, String> testData) throws Exception {
+		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
+			
+			reviewPage =searchResult.clickOnBookNowINT();
+			Log.message("5. clicked On Book Now Button!");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Flight pricing on any airline!");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("popUpFareAlert"), reviewPage),
+					"<b>Actual Result:</b> Prices for all flights are visible",
+					"<b>Actual Result:</b> Prices for all flights are not visible",
+					driver);
+			
+			
+			Log.testCaseResult();
+			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	@Test( description = "Preferred Airline search (modify Search) INTL-OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_120(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");		
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
+		
+			searchResult.clickModifySearch(); 
+			Log.message("5.Successfully clicked 'Modify Search' link in SRP ");				
+			
+			String originCityText = searchResult.getTextOrigin_ModifySearch();		
+			String destCityText = searchResult.getTextDestination_ModifySearch();			
+			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected One Way Radio button",	"<b>Actual Result:</b> Not selected One Way Radio button");
+            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP", "<b>Actual Result:</b> Not verified Origin City with HP");
+            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP","<b>Actual Result:</b> Not verified Destination City with HP");
+						         
+            String[] pax= passengerInfo.split("_");
+			String adult =pax[0]; String child =pax[1]; String infant =pax[2]; 
+			String adultText = searchResult.getTextAdult_ModifySearch();
+			String childText = searchResult.getTextChild_ModifySearch();
+			String infantText = searchResult.getTextInfant_ModifySearch();
+			Log.assertThat(adultText.contains(adult),
+					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP </b> " + adultText,
+					"<b>Actual Result:</b> Not matched selected Adult passenger details with HP</b> ", driver);
+			
+			Log.assertThat(childText.contains(child),
+					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP </b>" +childText,
+					"<b>Actual Result:</b> Not matched selected Child passenger details with HP</b> ", driver);
+			
+			Log.assertThat(infantText.contains(infant),
+					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP </b>"+ infantText,
+					"<b>Actual Result:</b> Not matched selected Infant passenger details with HP</b> ", driver);
+			
+			
+			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
+			Log.assertThat(passengerClassText.contains(passengerClass),
+					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP</b> ",
+					"<b>Actual Result:</b> Not matched selected passenger class details with HP</b> ", driver);
+			
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+  
+	@Test(description = "Login flow - Check Booking as a Existing User Fill Traveller form move to Payment page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_131(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -3032,7 +3344,7 @@ public class FlightSearch {
 
 	
 
-	@Test(groups = { "desktop" ,"sanity"}, description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Flight details link verification on SRP-DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_127(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -3095,7 +3407,7 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
-	@Test(groups = { "desktop" ,"sanity"}, description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Flight details link verification on SRP-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_128(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -3157,7 +3469,7 @@ public class FlightSearch {
 		}
 	}
 	
-	@Test(groups = {"desktop" ,"sanity"}, description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for RT-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that 'Modify Search' should display prefilled respective search made from Homepage for RT-INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_121(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -3271,7 +3583,7 @@ public class FlightSearch {
 	}
 	
 	
-		@Test(groups = {"desktop" ,"sanity"}, description = "Check to price calculation for DOM flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		@Test( description = "Check to price calculation for DOM flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 		public void TC_Yatra_Flight_125(HashMap<String, String> testData) throws Exception {
 			Utils.testCaseConditionalSkip(testData.get("RunMode"));
 			String browser = testData.get("browser");
@@ -3308,7 +3620,7 @@ public class FlightSearch {
 						"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
 				// clicked on book now buuton
-				reviewPage = searchResult.clickOnBookNowInOneWay(3);
+				reviewPage = searchResult.clickOnBookNowInOneWay(4);
 				Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
 
 				Log.message("<br>");
@@ -3341,7 +3653,7 @@ public class FlightSearch {
 			}
 		}
 		
-		@Test(groups = {"desktop" ,"sanity"}, description = "Check to price calculation for INTL flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		@Test( description = "Check to price calculation for INTL flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 		public void TC_Yatra_Flight_126(HashMap<String, String> testData) throws Exception {
 			Utils.testCaseConditionalSkip(testData.get("RunMode"));
 			String browser = testData.get("browser");
@@ -3400,13 +3712,204 @@ public class FlightSearch {
 				Log.assertThat(totalAmt==Total1,
 						"<b>Actual Result:</b> The price is calculated properly in the Fare Detail module on Review Page.",
 						"<b>Actual Result:</b> The price is not calculated properly in the Fare Detail module on Review Page.", driver);
-				
-
-
+		
 			} catch (Exception e) {
 			} finally {
 				driver.quit();
 				Log.endTestCase();
 			}
 		}
+		
+		@Test(description = "eCash redemption on payswift page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_091(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String emailId = testData.get("EmailAddress");
+			String password = testData.get("Password");
+			String origin = testData.get("Origin");
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");
+			String infant = testData.get("Infant");
+			String[] infantDOB = infant.split(",");
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				// step: Navigate to Yatra Home Page
+				HomePage homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: verify Yatra title bar text
+				if (driver.getTitle().contains("Flight")) {
+					Log.message("2.Verified Yatra Title text");
+				}
+
+				// selected trip as one way and enter the search details
+				homePage.selectOneWayTrip();
+				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+				Log.message("4.Successfully filled the search details for 'ONE WAY' trip.");
+
+				// step: click 'Search' button in Yatra Home page
+				searchResult = homePage.clickBtnSearch();
+				Log.message("5.Clicked on 'Search' in Yatra Homepage.");
+
+				Thread.sleep(6000);
+				Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+						"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+						"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+				// clicked on book now button in one way
+				reviewPage = searchResult.clickOnBookNowInOneWay(3);
+				Log.message("6.Clicked on 'Book Now' button in Search Result Page.");
+				Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+						"<b>Actual Result:</b> Successfully navigated on Review Page.",
+						"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+				// click on continue button
+				reviewPage.clickOnContinue();
+				Log.message("7.Clicked on Continue button in Review Page Step-1.");
+
+				reviewPage.clickOnExistingUser();
+				travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+				Log.message("8.Successfully Logged in Yatra account!");
+
+				travellerPage.fillTravellerDetails_DOM(infantDOB);
+				Log.message("9. Filled Traveller Details for domestic Flights.");
+
+				paymentPage = travellerPage.clickOnContinue();
+				Log.message("10.Clicked on Continue button in Review Page Step-2.");
+
+				paymentPage.clickingOnRedeemNow();
+				Log.message("11.Clicked on Redeem Now Button to add ecash.");
+
+				paymentPage.clickingOnGotIt();
+				Log.message("12.Clicked on 'OK,Got It' link to confirm redeem ecash.");
+
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Ecash should be applied and balance amount should be deducted from the total payment under Payment method.");
+				Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("msgEcashRedeem"), paymentPage),
+						"<b>Actual Result1:</b> Ecash is applied successfully and the message is displayed under Payment method."
+								+ paymentPage.getMsgFromEcashRedeemSuccess(),
+						"<b>Actual Result1:</b> Ecash is not applied and the message is not displayed under Payment method.",
+						driver);
+
+				Log.assertThat(	paymentPage.elementLayer.verifyPageElements(Arrays.asList("msgEcashRedeemBalance"), paymentPage),
+						"<b>Actual Result2:</b> Balance is successfully deducted and the message is displayed under Payment method."
+								+ paymentPage.getMsgFromEcashBalanceDeduction(),
+						"<b>Actual Result2:</b> Balance is not deducted and the message is not displayed under Payment method.",
+						driver);
+
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+		
+		@Test(description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_106(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String origin = testData.get("Origin");
+			String tripType = testData.get("TripType");
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				// step: Navigate to Yatra Home Page
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+				// step: select OneWay Flight Search fields
+				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+				Thread.sleep(5000);
+
+				// step: click 'Search' button in Yatra Home page
+				searchResult = homePage.clickBtnSearch();
+				Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
+
+				// step: Click on 'Book Now' button in Yatra Home page
+				ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(1);
+				Log.message("4.Clicked on 'Book Now' button in Search Result Page ");
+				Thread.sleep(5000);
+
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Check Change Flight link.");
+				Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+						"<b>Actual Result:</b> The Change Flight link is displayed on Review page.",
+						"<b>Actual Result:</b> The Change Flight link is not displayed on Review Page.", driver);
+
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+
+		@Test(description = "Change flight link verification on Review page - INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_107(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String origin = testData.get("Origin");
+			String tripType = testData.get("TripType");
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				// step: Navigate to Yatra Home Page
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+				// step: select OneWay Flight Search fields
+				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully selected OneWay Flight Search Fields ");
+				Thread.sleep(5000);
+
+				// step: click 'Search' button in Yatra Home page
+				searchResult = homePage.clickBtnSearch();
+				// Thread.sleep(5000);
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
+
+				ReviewPage reviewPage = searchResult.clickOnBookNowINT();
+				Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
+				Thread.sleep(5000);
+
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Check Change Flight link.");
+				Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+						"<b>Actual Result:</b> The Change Flight link is displayed on Review page.",
+						"<b>Actual Result:</b> The Change Flight link is not displayed on Review Page.", driver);
+
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+
+// ********************************End of Testcases ***************************************************************************************
 } //FlightSearch
