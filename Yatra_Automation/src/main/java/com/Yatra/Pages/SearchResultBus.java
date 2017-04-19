@@ -27,7 +27,6 @@ import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
-import com.thoughtworks.selenium.Selenium;
 
 public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 
