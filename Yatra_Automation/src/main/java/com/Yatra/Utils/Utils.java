@@ -25,7 +25,7 @@ import org.openqa.selenium.JavascriptExecutor;
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 
-	public static int maxElementWait = 50;
+	public static int maxElementWait = 60;
 
 
 	/**
@@ -509,14 +509,15 @@ public class Utils {
 	public static String dateGenerator(String sDateFormat,int iDay)
 
 	{
+		SimpleDateFormat simpleDateFormat=null;
 		String dataToBeReturn="";
 		if(sDateFormat.equalsIgnoreCase("") ||sDateFormat.equalsIgnoreCase(null))
 		{
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			 simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		}
 
 		Calendar cal=Calendar.getInstance();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDateFormat);
+		 simpleDateFormat = new SimpleDateFormat(sDateFormat);
 
 		if(!(iDay==0))
 

@@ -215,6 +215,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "#PegasusCal-0")
 	WebElement calenderDeptdate;
 	
+	@FindBy(css = "li.ac_even.ac_over")
+	private WebElement txtCityOver;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -279,9 +282,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public void enterOrigin(String origin) throws Exception {
-		Utils.waitForElement(driver, txtOrigin);
+		Utils.waitForElement(driver, txtOrigin);		
 		BrowserActions.typeOnTextField(txtOrigin, origin, driver, "Select Origin");
-		Log.event("Entered the Origin: " + origin);
+		BrowserActions.nap(3);
+		Utils.waitForElement(driver, txtCityOver);			
+		Log.event("Entered the Origin: " + origin);		
 	}
 
 	/**
@@ -291,9 +296,10 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 *            as string
 	 * @throws Exception
 	 */
-	public void enterDestination(String destination) throws Exception {
+	public void enterDestination(String destination) throws Exception {		
 		Utils.waitForElement(driver, txtDestination);
-		BrowserActions.typeOnTextField(txtDestination, destination, driver, "Select Destination");
+		BrowserActions.typeOnTextField(txtDestination, destination, driver, "Select Destination");		
+		Utils.waitForElement(driver, txtCityOver);		
 		Log.event("Entered the Destination: " + destination);
 	}
 
@@ -303,8 +309,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 
-	public SearchResult clickBtnSearch() throws Exception {
-		// final long startTime = StopWatch.startTime();
+	public SearchResult clickBtnSearch() throws Exception {		
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 		Utils.waitForPageLoad(driver);
 		return new SearchResult(driver).get();
@@ -667,7 +672,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
-		BrowserActions.nap(3);
+		BrowserActions.nap(2);
 		selectDepartureDate(departureDate); // select Departure Date
 
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult,
@@ -801,6 +806,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void enterMultiCityOrigin1(String origin) throws Exception {
 		Utils.waitForElement(driver, txtMulticity_Origin1);
 		BrowserActions.typeOnTextField(txtMulticity_Origin1, origin, driver, "Select MultiCity Origin1");
+		Utils.waitForElement(driver, txtCityOver);		
 		Log.event("Entered the Origin: " + origin);
 	}
 
@@ -814,6 +820,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void enterMultiCityOrigin2(String origin) throws Exception {
 		Utils.waitForElement(driver, txtMulticity_Origin2);
 		BrowserActions.typeOnTextField(txtMulticity_Origin2, origin, driver, "Select MultiCity Origin2");
+		Utils.waitForElement(driver, txtCityOver);		
 		Log.event("Entered the Origin: " + origin);
 	}
 
@@ -827,6 +834,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void enterMultiCityDestination1(String destination) throws Exception {
 		Utils.waitForElement(driver, txtMulticity_Destination1);
 		BrowserActions.typeOnTextField(txtMulticity_Destination1, destination, driver, "Select MultiCity Destination1");
+		Utils.waitForElement(driver, txtCityOver);		
 		Log.event("Entered the Destination: " + destination);
 	}
 
@@ -840,11 +848,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void enterMultiCityDestination2(String destination) throws Exception {
 		Utils.waitForElement(driver, txtMulticity_Destination2);
 		BrowserActions.typeOnTextField(txtMulticity_Destination2, destination, driver, "Select MultiCity Destination2");
+		Utils.waitForElement(driver, txtCityOver);		
 		Log.event("Entered the Destination: " + destination);
 	}
 
 	/**
-	 * To select Multicity Date Departure1
+	 * To select MultiCity Date Departure1
 	 * 
 	 * @param departureDate
 	 *            as string
@@ -867,7 +876,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 
 	/**
-	 * To select Multicity Date Departure2
+	 * To select MultiCity Date Departure2
 	 * 
 	 * @param departureDate
 	 *            as string
@@ -891,7 +900,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 
 	/**
-	 * To select Multicity Flight search Fields
+	 * To select MultiCity Flight search Fields
 	 * 
 	 * @throws Exception
 	 */
@@ -1033,10 +1042,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 
 	/**
-	 * To Select Bus Depature Date
+	 * To Select Bus Departure Date
 	 * 
 	 * @throws Exception
 	 */
+	@SuppressWarnings("static-access")
 	public String selectDepartureDateBus(String departureDate) throws Exception {
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
@@ -1100,9 +1110,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		enterDestinationBus(destination); // enter Destination value
 		BrowserActions.nap(2);
+
 		Utils.setMousePositionOffPage(driver);
 		Utils.scrollPage(driver, Constants.C_Page_Top);		
+
 		selectDepartureDateBus(departureDate); // select Departure Date
+
 		Utils.setMousePositionOffPage(driver);
 		Utils.scrollPage(driver, Constants.C_Page_Top);
 		BrowserActions.nap(2);
@@ -1110,6 +1123,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Log.event("Successfully Filled OneWay Bus Search fields");
 
 	}
+	
 	/**
 	 * Getting the text from the Bus Info
 	 * 
@@ -1122,20 +1136,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
-
-	/**
-	 * Getting the text from the Bus Info
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public String getTextErrorSameCity() throws Exception {
-		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
-				"Getting text from the Bus Dropping Point");
-		return txtDetails;
-	}
-
 	/**
 	 * Enter Train Destination
 	 * 
@@ -1175,7 +1175,18 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return false;
 
 	}
-
+	/**
+	 * Getting the text from the Bus Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorSameCity() throws Exception {
+		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
+		return txtDetails;
+	}
 	/**
 	 * To select Departure Date
 	 * 
@@ -1189,7 +1200,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on Bus Return date icon");
 		selectMonth_Bus.get(month - 3).click();
-
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
 		/*BrowserActions.nap(2);
@@ -1316,5 +1326,27 @@ public class HomePage extends LoadableComponent<HomePage> {
 			driver.navigate().to("https://secure.yatra.com/social/common/yatra/signin.htm");
 		}
 		return new LoginPage(driver).get();
+	}
+	/**
+	 * Description: to select date from  calendar (it will work for depart date and return date)
+	 * @author harveer.singh
+	 * @param: String date in (yyyy_mm_dd) 
+	 */
+	@SuppressWarnings("static-access")
+	public void datePicker(WebDriver driver,String departureDate)
+	
+	{
+		int iDay = Integer.parseInt(departureDate);
+		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		int year=Integer.parseInt(date.split("_")[0]);
+		int month = Integer.parseInt(date.split("_")[1]);
+		int day=Integer.parseInt(date.split("_")[2]);
+		
+		
+		WebElement element=driver.findElement(By.xpath("/*[@class='month-list'])[1]//*[@href='#PegasusCal-0-month-"+month+"-"+year+"']"));
+		element.click();
+		 WebElement calndr=driver.findElement(By.xpath("//*[@id='PegasusCal-0-month-"+month+"-"+year+"']//a[@id='a_"+year+"_"+month+"_"+day+"']"));
+		
+		
 	}
 }// HomePage

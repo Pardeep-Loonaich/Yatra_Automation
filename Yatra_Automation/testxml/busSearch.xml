@@ -14,14 +14,10 @@
 
 	<test name="Bus Search" thread-count="1" parallel="true">
 		<classes>
-			<class name="com.Yatra.TestScript.Bus.BusSearchTest"/>
-			<!-- <methods>
-             <include name="TC_Yatra_Bus_033"/> 
-             <include name="TC_Yatra_Bus_031"/>
-             <include name="TC_Yatra_Bus_019"/>
-             <include name="TC_Yatra_Bus_022"/>                  
-             </methods> 
-          </class>         -->  
+			<class name="com.Yatra.TestScript.Bus.BusSearchTest">
+		
+          </class>          
+
 		</classes>
 
 	</test>

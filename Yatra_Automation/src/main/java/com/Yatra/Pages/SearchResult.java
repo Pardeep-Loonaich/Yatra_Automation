@@ -32,248 +32,253 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	//@Harveer- 1- make all element private
 	//2- remove all c commented code if it is not required.
 	@FindBy(css = ".ico-newHeaderLogo")
-	public WebElement headerLogo;
+	private WebElement headerLogo;
 
 	@FindBy(css = ".filter-list.filter-list-with-clear:nth-child(1)>label>div>span")
-	WebElement chkChooseFlightFirst;
+	private WebElement chkChooseFlightFirst;
 
 	@FindBy(css = ".filter-list.filter-list-with-clear:nth-child(1)>label>span:nth-child(2)")
-	WebElement preferredFlightName;
+	private WebElement preferredFlightName;
 
 	@FindBy(css = "[class ='ico-newHeaderLogo']")
-	public WebElement logoYatra;
+	private WebElement logoYatra;
 
 	@FindBy(xpath = "//ul[@class='matrix-slide-list tabs matrix-ul']/li[2]")
-	public WebElement matrixStrip;
+	private WebElement matrixStrip;
 
-	@FindBy(css = "p[class='new-gray-button fl small link-button']") //[class='ico fl ico-gray-modify-search']")
-	public WebElement btnModifySearchIcon;
+	@FindBy(css = "p[class='new-gray-button fl small link-button']") 
+	private WebElement btnModifySearchIcon;
 
 	@FindBy(css = "div[class='full']>div[class='matrix-wrapper day-matrix new-theme day-matrix-responsive']")
-	WebElement weeklyStrip;
+	private WebElement weeklyStrip;
 
 	@FindBy(css = "[class='js-flightRow js-flightItem']")
-	List<WebElement> btnBookNow;
+	private List<WebElement> btnBookNow;
 
 	@FindBy(css = "p[class='new-blue-button .js-bookNow book-btn relative tc']")
-	WebElement btnBookNowINT;
+	private WebElement btnBookNowINT;
 
 	@FindBy(css = "div[ng-controller='productFareDetailsController']")
-	WebElement moduleFareDetails;
+	private WebElement moduleFareDetails;
 
 	@FindBy(css = "div[class='show-result multi-1']>div>div[class='results']>div:nth-child(1)>article>div[class='my-res-info full']>ul>li>small:nth-child(2)")
-	WebElement firstAirlineName_OW_DOM;
+	private WebElement firstAirlineName_OW_DOM;
 
 	@FindBy(css = "div[class='js-flightItem']:nth-child(2)>article>div[class='full lob-inclusions bxs hidden-md']>div[class='inc-rgt']>ul>li>a[title='Flight Details']")
-	WebElement lnkFlightDetails_INTL;
+	private WebElement lnkFlightDetails_INTL;
 
 	@FindBy(css = "#resultBoxSlider>div[id='resultList_0']>div[class='results']>div:nth-child(1)>article>footer>ul[class='res-footer-list fl uprcse']")
-	WebElement lnkFlightDetails_DOM;
+	private WebElement lnkFlightDetails_DOM;
 
 	@FindBy(css = "div[class='new-green-button fr relative tc']")
-	WebElement btnBookNowRoundTrip;
+	private WebElement btnBookNowRoundTrip;
 
 	@FindBy(css = "div[class='show-result multi-1']>div>div[class='results']>div:nth-child(1)>article>footer>ul[class='res-footer-list fl uprcse']>li:nth-child(1)")
-	WebElement lnkFlightDetails;
+	private WebElement lnkFlightDetails;
 
 	@FindBy(css = "div[class='short-details']>h3>p")
-	WebElement btnBookNowFlightDeatilPopUp;
+	private WebElement btnBookNowFlightDeatilPopUp;
 
 	@FindBy(css = "div[class='short-details']>div")
-	WebElement fldContentFlightDetails;
+	private WebElement fldContentFlightDetails;
 
 	@FindBy(css = "div[class='my-fare-grid']>ul[class='tab fs-md']>li[ng-hide='isBYOPPage']")
-	WebElement lnkFareSummaryandRules;
+	private WebElement lnkFareSummaryandRules;
 
 	@FindBy(css = ".one-fourth")
-	WebElement fldContentFareDeatilAndRulesDetails;
+	private WebElement fldContentFareDeatilAndRulesDetails;
 
 	@FindBy(css = "div[class*='disclaimer']>span")
-	WebElement txtDisclaimer;
+	private WebElement txtDisclaimer;
 
 	@FindBy(css = "div[class='my-fare-grid']>ul[class='tab fs-md']>li:nth-child(3)")
-	WebElement lnkBaggage;
+	private WebElement lnkBaggage;
 
 	@FindBy(css = "div[class='row baggage-summary']")
-	WebElement fldContentBaggageDetail;
+	private WebElement fldContentBaggageDetail;
 	
 	@FindBy(css = "#userSignInStrip a.dropdown-toggle")
-	WebElement txtMyAccount;
+	private WebElement txtMyAccount;
 	
 	@FindBy(css = "#cutomerSupportNav a.dropdown-toggle.eventTrackable")
-	WebElement txtSupport;
+	private WebElement txtSupport;
 	
 	@FindBy(css = "#discountHdrLink")
-	WebElement txtSplDeals;
+	private WebElement txtSplDeals;
 	
 	@FindBy(css = "#recentSearch-wrapper a.dropdown-toggle")
-	WebElement txtRecentSearch;
+	private WebElement txtRecentSearch;
 	
 	@FindBy(css = "a.logo")
-	WebElement lnkYatraLogo;
+	private WebElement lnkYatraLogo;
 	
 	@FindBy(css = "#userShowName")
-	WebElement txtUserAcctName;
+	private WebElement txtUserAcctName;
 	
 	@FindBy(css = ".simple-dropdown")
-	WebElement txtMyBookings;
+	private WebElement txtMyBookings;
 	
 	@FindBy(css = "#signInBtn")
-	WebElement txtLogin;
+	private WebElement txtLogin;
 	
 	@FindBy(css = ".simple-dropdown.login-li.clearfix>span>a")
-	WebElement txtSignUp;
+	private WebElement txtSignUp;
 	
 	@FindBy(css = "a.simple-tab.eventTrackable.uniqueDate")
-	WebElement txtCorporateLogin;
+	private WebElement txtCorporateLogin;
 	
 	@FindBy(xpath = "//a[contains(text(),'Agent Login')]")
-	WebElement txtAgentLogin;
+	private WebElement txtAgentLogin;
 	
 	@FindBy(css = "div[class='left fl']>p[class='fs-12']")  
-	WebElement txtTotalFlightSearch;
+	private WebElement txtTotalFlightSearch;
 
 	@FindBy(css = ".left.fl p.fs-10.ltr-gray.uprcse.mt2")
-	WebElement txtFlightSearchDuration;
+	private WebElement txtFlightSearchDuration;
 	
 	@FindBy(css = "div[class='fl center']>ul[class='full city-details tripO']>li:nth-child(1)>p[class='city-name']")   
-	WebElement txtSourceCity_OW;
+	private WebElement txtSourceCity_OW;
 	
 	@FindBy(css = "div[class='fl center']>ul[class='full city-details tripO']>li:nth-child(1)>p[class*='fs-10']")   
-	WebElement txtSourceDate_OW;
+	private WebElement txtSourceDate_OW;
 	
 	@FindBy(css = "div[class='fl center']>ul[class='full city-details tripO']>li:nth-child(2)>p[class='city-name']")  
-	WebElement txtDestCity_OW;
+	private WebElement txtDestCity_OW;
 	
 	@FindBy(css = "ul[class='full city-details tripR']>li:nth-child(1)>p[class='city-name']")   
-	WebElement txtSourceCity;
+	private WebElement txtSourceCity;
 	
 	@FindBy(css = "ul[class='full city-details tripR']>li:nth-child(1)>p[class*='fs-10']")   
-	WebElement txtSourceDate;
+	private WebElement txtSourceDate;
 	
 	@FindBy(css = "ul[class='full city-details tripR']>li:nth-child(2)>p[class='city-name']")  
-	WebElement txtDestCity;
+	private WebElement txtDestCity;
 	
 	@FindBy(css = "ul[class='full city-details tripR']>li:nth-child(2)>p[class*='fs-10']")   
-	WebElement txtDestDate;	
+	private WebElement txtDestDate;	
 	
 	@FindBy(css = "div[class*='center']>ul:nth-child(2)>li:nth-child(1)>p[class='city-name tl']")   
-	WebElement txtStartSourceCity;
+	private WebElement txtStartSourceCity;
 	
 	@FindBy(css = "div[class*='center']>ul:nth-child(2)>li:nth-child(1)>p[class*='fs-10']")   
-	WebElement txtStartSourceDate;
+	private WebElement txtStartSourceDate;
 	
 	@FindBy(css = "div[class*='center']>ul:nth-child(2)>li:nth-child(2)>p[class='fl city-name tl']")  
-	WebElement txtstartDestCity;
+	private WebElement txtstartDestCity;
 	
 	@FindBy(css = "div[class*='center']>ul:nth-child(3)>li:nth-child(1)>p[class='city-name tl']")   
-	WebElement txtEndSourceCity;
+	private WebElement txtEndSourceCity;
 	
 	@FindBy(css = "div[class*='center']>ul:nth-child(3)>li:nth-child(1)>p[class*='fs-10']")   
-	WebElement txtEndSourceDate;
+	private WebElement txtEndSourceDate;
 	
 	@FindBy(css = "div[class*='center']>ul:nth-child(3)>li:nth-child(2)>p[class='fl city-name tl']")  
-	WebElement txtEndDestCity;
+	private WebElement txtEndDestCity;
 	
 	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) div[class='time']>span")   
-	WebElement txtFlightDuration;
+	private WebElement txtFlightDuration;
 	
 	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) a[class='under-link']")  
-	WebElement lnkFlightDetail;
+	private WebElement lnkFlightDetail;
 	
 	@FindBy(css = "div[class='row itinerary-details'] li[class='trip-type'] time")  
-	WebElement txtFlightDetailsPopupDuration;
+	private WebElement txtFlightDetailsPopupDuration;
 	
 	@FindBy(css = "span[class='ico ico-close overlay-close']")  
-	WebElement lnkcloseFlightDetailsPopUp;
-	
+	private WebElement lnkcloseFlightDetailsPopUp;	
 	
 	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) span[class='ml5 hidden-sm']")  
-	WebElement txtResultStripView;
+	private WebElement txtResultStripView;
 	
 	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[1]//span/input") // "trip-type-label-holder.active span[class='radio']>input")  
-	WebElement chkOneWay;
+	private WebElement chkOneWay;
 	
 	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[2]//span/input") // .trip-type-label-holder span[class='radio']")  
-	WebElement chkRoundTrip;
+	private WebElement chkRoundTrip;
 	
 	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[3]//span/input") //.trip-type-label-holder.multicity-tab span[class='radio']")  
-	WebElement chkMultiCity;
+	private WebElement chkMultiCity;
 	
 	@FindBy(css = "#origin_0")  
-	WebElement txtOrigin_ModifySearch;
-
-	String txtOrigin_ModifySearch1 = "QueryProp.origin";
+	private WebElement txtOrigin_ModifySearch;
 	
 	@FindBy(css = "#destination_0")  
-	WebElement txtDestination_ModifySearch;
+	private WebElement txtDestination_ModifySearch;
 	
 	@FindBy(css = ".paxx-details>div:nth-child(1)>span[class='spin-count']>strong")  
-	WebElement txtAdult_ModifySearch;
+	private WebElement txtAdult_ModifySearch;
 	
 	@FindBy(css = ".paxx-details>div:nth-child(2)>span[class='spin-count']>strong")  
-	WebElement txtChild_ModifySearch;
+	private WebElement txtChild_ModifySearch;
 	
 	@FindBy(css = ".paxx-details>div:nth-child(3)>span[class='spin-count']>strong")  
-	WebElement txtInfant_ModifySearch;
+	private WebElement txtInfant_ModifySearch;
 		
 	@FindBy(css = "#flight_depart_date_0")  
-	WebElement txtDepartDate_ModifySearch;
+	private WebElement txtDepartDate_ModifySearch;
 	
 	@FindBy(css = "#arrivalDate_0")  
-	WebElement txtReturnDate_ModifySearch;
+	private WebElement txtReturnDate_ModifySearch;
 	
 	@FindBy(xpath = "//form[@id='modifySearch']/div[2]//li[3]/label//input") 
-	WebElement txtNonStopFlights_ModifySearch;
+	private WebElement txtNonStopFlights_ModifySearch;
 	
 	@FindBy(css = ".select-box-wrapper.fl>select>option[selected='selected']")  
-	WebElement txtPassengerClass_ModifySearch;
+	private WebElement txtPassengerClass_ModifySearch;
 	
 	@FindBy(css = ".select-box-wrapper.fl>select[class='ng-valid ng-dirty ng-valid-parse ng-touched']>option[selected='selected']")  
-	WebElement txtPreferredAirline_ModifySearch;
+	private WebElement txtPreferredAirline_ModifySearch;
 	
 	@FindBy(css = "#origin_1")  
-	WebElement txtOrigin1_ModifySearch;
+	private WebElement txtOrigin1_ModifySearch;
 
 	@FindBy(css = "#destination_1")  
-	WebElement txtDestination1_ModifySearch;
+	private WebElement txtDestination1_ModifySearch;
 	
 	@FindBy(css = "#flight_depart_date_1")  
-	WebElement txtDepartDate1_ModifySearch;
+	private WebElement txtDepartDate1_ModifySearch;
 
 	@FindBy(css = "div[class='matrix-slide-wrapper has-next-prev matrix-small-screen']")
-	WebElement weeklyFlightsStrip;
+	private WebElement weeklyFlightsStrip;
 	
 	@FindBy(css = "ul[class='matrix-slide-list tabs day-ul']>li>a[class='matrix-link tabs-link active']")
-	WebElement lnkCurrentDate_WeeklyMatrix;
+	private WebElement lnkCurrentDate_WeeklyMatrix;
 	
 	@FindBy(css = "ul[class='matrix-slide-list tabs day-ul']>li>a[class='matrix-link tabs-link active']>p[class='matrix-label matrix-price  uprcse']")
-	WebElement txtCurrentDateFare_WeeklyMatrix;
+	private WebElement txtCurrentDateFare_WeeklyMatrix;
 	
 	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) li[class='price'] p[class='fr']>label")
-	WebElement txtLowestFlightFare_AirlineMatix;
+	private WebElement txtLowestFlightFare_AirlineMatix;
 	
 	@FindBy(css = ".ng-pristine.ng-valid.ng-touched>option")
-	WebElement drpPassengerClass;	
+	private WebElement drpPassengerClass;	
 	
 	@FindBy(css = ".matrix-link.txt-ac.tabs-link.active")
-	WebElement lnkArirlineMatrix;
+	private WebElement lnkArirlineMatrix;
 	
 	@FindBy(css = "ul[class='matrix-slide-list tabs matrix-ul']>li:nth-child(2) p:nth-child(3)[class='matrix-label uprcse']")
-	WebElement lnkArirlineMatrixFare;
+	private WebElement lnkArirlineMatrixFare;
+	
+	@FindBy (xpath="(//div[@id='resultBox']//div[@class='js-flightRow js-flightItem'][1]//span[contains(.,'Book Now')])[1]")
+	private WebElement flightBookNow;	
+
+	@FindBy(xpath="/html/body//*[@class='close close-icon']//*[@class='wewidgeticon we_close']")
+	private WebElement btnCloseIframeNotification;
 	
 	@FindBy(css = "label[id*='fare']")
-	WebElement  fldContentFare;
+	private WebElement  fldContentFare;
 	
 	@FindBy(css = "div[ng-show='open_airline']>ul>li")
-	List<WebElement> selectAirlines;
+	private List<WebElement> selectAirlines;
 	
 	@FindBy(css = "i[class='ico ico-check']")
-	WebElement  chkSelectAirline;
+	private WebElement  chkSelectAirline;
 	
+	@FindBy(xpath="//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
+	private WebElement iFrameNotification;
 	
-	
-	//.datepicker-inner.full .datepicker-dates.full.price-on.holidays- div:nth-child(10) span[class='full date-val']
+	@FindBy(css = ".matrix-slide-list.tabs.matrix-ul")
+	private WebElement lnkAirlineMatrixStrip;	
 	
 	
 	/**********************************************************************************************
@@ -369,20 +374,31 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	/**
 	 * to click on Book now button in OneWay Trip for Domestic flights
 	 * 
-	 * @param index
+	 * @param index: pass even value :) example to select first flight pass 2, and for second pass 4 and so on..
 	 * @return
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		WebElement e = driver.findElement(By.cssSelector(
-				"div[id='resultBoxSlider']>div>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
-						+ index
-						+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
-		BrowserActions.scrollToView(e, driver);
-		BrowserActions.clickOnElement(e, driver, "To click on Book now button.");
+		
+		/*WebElement e = driver.findElement(By.cssSelector(
+		"div[id='resultBoxSlider']>div>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
+					+ index
+				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
+		*/
+		closeINotificationAtTopSRP();
+		
+		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
+		BrowserActions.scrollToView(wBookNow, driver);
+		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
 		return new ReviewPage(driver).get();
 	}
 
+	/**
+	 * Getting the text from the flight Name on Preferred Flight
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	public String preferredFlightFirst() throws Exception {
 		Utils.waitForElement(driver, chkChooseFlightFirst);
 		BrowserActions.scrollToView(chkChooseFlightFirst, driver);
@@ -392,12 +408,22 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return name;
 	}
 
+	/**
+	 * To click on Airline Matrix Strip
+	 * 
+	 * @throws Exception
+	 */
 	public void clickAirlineMatrix() throws Exception {
 		BrowserActions.clickOnElement(matrixStrip, driver, "Airline Matrix Strip");
 		Utils.waitForPageLoad(driver);
 
 	}
 
+	/**
+	 * To click on Flight Link
+	 * 
+	 * @throws Exception
+	 */
 	public void clickOnFlightLink() throws Exception {
 		BrowserActions.clickOnElement(lnkFlightDetails, driver, "Flight Link");
 		Utils.waitForPageLoad(driver);
@@ -433,7 +459,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 
 	/**
-	 * Getting the text from the flight Deatil Pop Up
+	 * Getting the text from the flight Details PopUp
 	 * 
 	 * @return
 	 * @throws Exception
@@ -444,12 +470,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return txtDetails;
 
 	}
-
+	
 	/**
-	 * to click on Book now button in OneWay Trip for International flights
+	 * To click on Book now button in OneWay Trip for International flights
 	 * 
-	 * @param index
-	 * @return
 	 * @throws Exception
 	 */
 	public void clickOnlnkFareandRule() throws Exception {
@@ -459,7 +483,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 
 	/**
-	 * Getting the text from the flight fare and rules Deatil Pop Up
+	 * Getting the text from the Flight Fare and Rules Deatil pop Up
 	 * 
 	 * @return
 	 * @throws Exception
@@ -472,7 +496,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 
 	/**
-	 * Getting the text from the flight fare and rules Deatil Pop Up
+	 * Getting the text from the Disclaimer Message In Pop up
 	 * 
 	 * @return
 	 * @throws Exception
@@ -490,12 +514,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public void clickOnlnkFlightDetails_INTL() throws Exception {
+	public void clickOnlnkFlightDetails_INTL() throws Exception {		
+		closeINotificationAtTopSRP();
+		BrowserActions.nap(2);
 		BrowserActions.scrollToView(lnkFlightDetails_INTL, driver);
 		BrowserActions.clickOnElement(lnkFlightDetails_INTL, driver, "Link Flight Details For International One Way");
 
 	}
-	//
+	
 
 	/**
 	 * to click on Baggage Details Link in OneWay Trip for International flight
@@ -510,9 +536,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	}
 
-	//
 	/**
-	 * Getting the text from the flight fare and rules Deatil Pop Up
+	 * Getting the text from the flight fare and rules Detail PopUp
 	 * 
 	 * @return
 	 * @throws Exception
@@ -526,7 +551,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	
 	/**
-	 * Getting the text from My Acccount in SRP page 
+	 * Getting the text from My Account in SRP page 
 	 * 
 	 * @return
 	 * @throws Exception
@@ -579,7 +604,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public String getTextFromAYatraLogo() throws Exception {
+	public String getTextFromYatraLogo() throws Exception {
 		Utils.waitForElement(driver, lnkYatraLogo);
 		BrowserActions.mouseHover(driver, lnkYatraLogo);
 		return (BrowserActions.getTextFromAttribute(driver, lnkYatraLogo, "title", "Yatra Logo title"));
@@ -590,7 +615,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-
 	public HomePage clickYatraLogo() throws Exception {			
 		BrowserActions.actionClick(lnkYatraLogo, driver, "Yatra Logo");
 		Utils.waitForPageLoad(driver);
@@ -601,7 +625,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * Getting the text from Recent Search in SRP  
+	 * Getting the text from User Account name in SRP  
 	 * 
 	 * @return
 	 * @throws Exception
@@ -706,7 +730,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForElement(driver, txtTotalFlightSearch);
 		String totalFlightsGetTxt = BrowserActions.getText(driver, txtTotalFlightSearch, "Total No of Flight Should be displayed in SRP Page");
 		String flightSearchDurationTxt = BrowserActions.getText(driver,	txtFlightSearchDuration, "Flight Search duration Should be displayed in SRP Page");
-		 String flightCountAndDuration =  totalFlightsGetTxt + " " +flightSearchDurationTxt;
+		String flightCountAndDuration =  totalFlightsGetTxt + " " +flightSearchDurationTxt;
 		return flightCountAndDuration;
 	}
 	
@@ -721,8 +745,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String sourceCityGetTxt = BrowserActions.getText(driver, txtSourceCity, "Source City Should be displayed in SRP Page");
 		return sourceCityGetTxt;
 	}
-	
-	
+		
 
 	/**
 	 * Getting the text from Source date in SRP
@@ -788,7 +811,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	
-
 	/**
 	 * Getting the text from start source date in SRP for MC
 	 * 
@@ -801,6 +823,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return startSourceDateGetTxt;
 	}
 	
+	
 	/**
 	 * Getting the text from start destination city in SRP for MC
 	 * 
@@ -812,8 +835,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String startDestCityGetTxt = BrowserActions.getText(driver, txtstartDestCity, "Start Destination City Should be displayed in SRP for MC");
 		return startDestCityGetTxt;
 	}
-	
-	
+		
 	
 	/**
 	 * Getting the text from end source city in SRP for MC
@@ -828,7 +850,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	
-
 	/**
 	 * Getting the text from end source date in SRP for MC
 	 * 
@@ -840,6 +861,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String endSourceDateGetTxt = BrowserActions.getText(driver, txtEndSourceDate, "End Source date Should be displayed in SRP for MC");
 		return endSourceDateGetTxt;
 	}
+	
 	
 	/**
 	 * Getting the text from end destination city in SRP for MC
@@ -866,8 +888,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return flightDurationGetTxt;
 	}
 	
-	
-	
+		
 	/**
 	 * Getting the text from Flight details PouUp duration in SRP
 	 * 
@@ -893,6 +914,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Log.event("Clicked Flight Details link in SRP");
 	}
 	
+	
 	/**
 	 * To click Flight Details pouUp close link
 	 * 
@@ -904,6 +926,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForPageLoad(driver);
 		Log.event("Clicked Flight Details PopUp close button");
 	}
+	
 	
 	/**
 	 * Getting the text from Flight details PouUp duration in SRP
@@ -917,6 +940,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return resultStripGetTxt;
 	}
 	
+	
 	/**
 	 * Getting the text from Source city in SRP
 	 * 
@@ -928,8 +952,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String sourceCityGetTxt = BrowserActions.getText(driver, txtSourceCity_OW, "Source City Should be displayed in SRP Page");
 		return sourceCityGetTxt;
 	}
-	
-	
+		
 
 	/**
 	 * Getting the text from Source date in SRP
@@ -942,6 +965,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String sourceDateGetTxt = BrowserActions.getText(driver, txtSourceDate_OW, "Source date Should be displayed in SRP Page");
 		return sourceDateGetTxt;
 	}
+	
 	
 	/**
 	 * Getting the text from Destination City in SRP
@@ -962,7 +986,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickModifySearch() throws Exception {
-		BrowserActions.nap(10);
+		BrowserActions.nap(20);
 		Utils.waitForElement(driver, btnModifySearchIcon);	
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
 		BrowserActions.nap(1);
@@ -970,9 +994,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Log.event("Clicked Modify Search link in SRP");
 	}
 	
+	
 	/**
 	 * To verify Trip Type in ModifySearch
 	 * 
+	 * @param String : type of Trip
 	 * @throws Exception
 	 */
 	public boolean verifyTripTypeInModifySearch(String tripType) throws Exception {
@@ -986,14 +1012,15 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		} else if (tripType.equals(Constants.C_MULTICITY)) {
 			status = BrowserActions.isRadioOrCheckBoxSelected(chkMultiCity);
 			Log.event("Successfully verified Multicity button is selected");
-		}
-		
+		}		
 		return status;
 	}
+	
 	
 	/**
 	 * To verify Trip Type in ModifySearch
 	 * 
+	 * @param String : type of Trip
 	 * @throws Exception
 	 */
 	public boolean selectTripTypeInModifySearch(String tripType) throws Exception {
@@ -1007,8 +1034,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		} else if (tripType.equals(Constants.C_MULTICITY)) {
 			status = BrowserActions.isRadioOrCheckBoxSelected(chkMultiCity);
 			Log.event("Successfully selected Multicity button");
-		}
-		
+		}		
 		return status;
 	}
 	
@@ -1040,7 +1066,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 
 	/**
-	 * To verify Non Stop Flights Only checkbox is checked on unchecked
+	 * To verify Non Stop Flights Only check box is checked on unchecked
 	 * 
 	 * @throws Exception
 	 */
@@ -1049,20 +1075,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return status;
 	}
 	
-	/**
-	 * Getting the text from Origin in Modify Search
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public String getTextOrigin_MS() throws Exception {
-		Utils.waitForElement(driver, txtOrigin_ModifySearch);
-		String origin_ModifySearchGetTxt = BrowserActions.executeJavaScript(driver, txtOrigin_ModifySearch1);
-		//String origin_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtOrigin_ModifySearch, "ng-msvalidate", "Origin in Modify Search");
-		return origin_ModifySearchGetTxt;
-	}
-	
-	
+		
 	/**
 	 * Getting the text from Origin in Modify Search
 	 * 
@@ -1083,8 +1096,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextChild_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtChild_ModifySearch);
-		String adultGetTxt = BrowserActions.getText(driver, txtChild_ModifySearch, "Child Should be displayed in Modify Search panel");
-		return adultGetTxt;
+		String childGetTxt = BrowserActions.getText(driver, txtChild_ModifySearch, "Child Should be displayed in Modify Search panel");
+		return childGetTxt;
 	}
 	
 	/**
@@ -1095,8 +1108,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextInfant_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtInfant_ModifySearch);
-		String adultGetTxt = BrowserActions.getText(driver, txtInfant_ModifySearch, "Infant Should be displayed in Modify Search panel");
-		return adultGetTxt;
+		String InfantGetTxt = BrowserActions.getText(driver, txtInfant_ModifySearch, "Infant Should be displayed in Modify Search panel");
+		return InfantGetTxt;
 	}
 	
 	/**
@@ -1107,8 +1120,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextDepartDate_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtDepartDate_ModifySearch);
-		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate_ModifySearch, "ng-active-date",  "DepartDate in Modify Search");
-		return destination_ModifySearchGetTxt;
+		String departDate_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate_ModifySearch, "ng-active-date",  "DepartDate in Modify Search");
+		return departDate_ModifySearchGetTxt;
 	}
 	
 	/**
@@ -1119,8 +1132,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextReturnDate_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtReturnDate_ModifySearch);
-		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtReturnDate_ModifySearch, "ng-active-date",  "ReturnDate in Modify Search");
-		return destination_ModifySearchGetTxt;
+		String returnDate_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtReturnDate_ModifySearch, "ng-active-date",  "ReturnDate in Modify Search");
+		return returnDate_ModifySearchGetTxt;
 	}
 	
 	/**
@@ -1131,8 +1144,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextPassengerClass_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtPassengerClass_ModifySearch);
-		String destination_ModifySearchGetTxt = BrowserActions.getText(driver, txtPassengerClass_ModifySearch, "Passenger class should be displayed in Modify Search panel");
-		return destination_ModifySearchGetTxt;
+		String passengerClass_ModifySearchGetTxt = BrowserActions.getText(driver, txtPassengerClass_ModifySearch, "Passenger class should be displayed in Modify Search panel");
+		return passengerClass_ModifySearchGetTxt;
 	}
 	
 	/**
@@ -1143,8 +1156,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextPreferredAirline_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtPreferredAirline_ModifySearch);
-		String destination_ModifySearchGetTxt = BrowserActions.getText(driver, txtPreferredAirline_ModifySearch, "Preferred Airlins should be displayed in Modify Search panel");
-		return destination_ModifySearchGetTxt;
+		String preferredAirline_ModifySearchGetTxt = BrowserActions.getText(driver, txtPreferredAirline_ModifySearch, "Preferred Airlins should be displayed in Modify Search panel");
+		return preferredAirline_ModifySearchGetTxt;
 	}
 	
 	/**
@@ -1180,12 +1193,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextDepartDate1_ModifySearch() throws Exception {
 		Utils.waitForElement(driver, txtDepartDate1_ModifySearch);
-		String destination_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate1_ModifySearch, "ng-active-date",  "DepartDate_MC in Modify Search");
-		return destination_ModifySearchGetTxt;
+		String departDate_ModifySearchGetTxt = BrowserActions.getTextFromAttribute(driver, txtDepartDate1_ModifySearch, "ng-active-date",  "DepartDate_MC in Modify Search");
+		return departDate_ModifySearchGetTxt;
 	}	
 
 	/**
-	 * To verify Non Stop Flights Only checkbox is checked on unchecked
+	 * To verify current date selection in Weekly Matrix
 	 * 
 	 * @throws Exception
 	 */
@@ -1235,7 +1248,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public List<String> getPassengerClasssDetailsInMofifySearch() throws Exception {		
 		List<String> passengerclassList = new ArrayList<String>();		
-		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("//form[@id='modifySearch']/div[2]//li[1]/div/select/option"));
+		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("[@id='modifySearch']//select[@ng-model='modifyData.class']"));
 		for (int i = 0; i < passengerClassList1.size(); i++) {
 			String passengerClass = passengerClassList1.get(i).getText().toString().trim();
 			passengerclassList.add(passengerClass);
@@ -1245,7 +1258,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * To verify Non Stop Flights Only checkbox is checked on unchecked
+	 * To verify Non Stop Flights Only check box is checked on unchecked
 	 * 
 	 * @throws Exception
 	 */
@@ -1271,7 +1284,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public List<String> validateAirlineMatrixFareInAirlineMatrix() throws Exception {		
 		List<String> passengerclassList = new ArrayList<String>();	
 		//@Harveer- as i have already suggest please don't use absolute locator, remove this locator and use @FindBy Annotation
-		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("//form[@id='modifySearch']/div[2]//li[1]/div/select/option"));
+		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("[@id='modifySearch']//select[@ng-model='modifyData.class']"));
 		for (int i = 0; i < passengerClassList1.size(); i++) {
 			String passengerClass = passengerClassList1.get(i).getText().toString().trim();
 			passengerclassList.add(passengerClass);
@@ -1293,6 +1306,25 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				}
 			}
 		}
+	
+	/**
+	 * Description: to close notification which display randomly on SRP page
+	 * @throws Exception 
+	 */
+	public void closeINotificationAtTopSRP() throws Exception {			
+		boolean boolFrameNotification = BrowserActions.isElementPresent(driver, iFrameNotification);
+		if (boolFrameNotification == true) {
+			BrowserActions.nap(2);
+			BrowserActions.switchToIframe(driver, iFrameNotification);
+			BrowserActions.nap(2);
+			BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
+			BrowserActions.switchToDefault(driver);					
+		} else {
+			Log.event("Not displayed Iframe Notification at top on SRP ");				
+		}		
+	}
+	
+	
 	
   //*******************************End of SRP Functions********************************************************************************************
 
