@@ -586,12 +586,10 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 
 	public ReviewPageBus clickOnContinueInPopUp() throws Exception {
 		BrowserActions.nap(2);
-		//driver.findElement(By.xpath("(//a[@data-trackvalue='Select Seats PopUp'][contains(.,'Continue')])[1]")).click();
 		ContinueInIframe.click();
 		BrowserActions.switchToDefault(driver);
-		Utils.waitForPageLoad(driver);
+		BrowserActions.nap(2);
 		return new ReviewPageBus(driver).get();
-
 	}
 
 	/**
