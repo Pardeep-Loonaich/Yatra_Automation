@@ -88,7 +88,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("6.Passenger Info successfully specified");
+			Log.message("6.Successfully specified Passenger Info");
 
 			// step: select Passengers class
 			homePage.selectPassengerClass(passengerClass);
@@ -156,7 +156,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("7.Passenger Info successfully specified");
+			Log.message("7.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -233,7 +233,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("9.Passenger Info successfully specified");
+			Log.message("9.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -314,7 +314,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("9.Passenger Info successfully specified");
+			Log.message("9.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -885,7 +885,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("6.Passenger Info successfully specified");
+			Log.message("6.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -954,7 +954,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("7.Passenger Info successfully specified");
+			Log.message("7.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -2161,7 +2161,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("9.Passenger Info successfully specified");
+			Log.message("9.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -2529,7 +2529,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("9.Passenger Info successfully specified");
+			Log.message("9.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -2891,12 +2891,16 @@ public class FlightSearch {
 						
 			// step: click 'Search' button in Yatra Home page
 			SearchResult searchResult = homePage.clickBtnSearch();
-			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");			
+			BrowserActions.nap(12);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated the Airline Matrix");
-			BrowserActions.nap(10);
 			Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> 'All Airlines' option should appear with by deafult selection ", "<b>Actual Result:</b> 'All Airlines' option should not appear with by deafult selection", driver);
-			//TODO : verify the other flights arranged in increasing order of fare.
+			List<String> airlineMatrixFareDetails = searchResult.getAirlineMatrixFareDetails();	
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
+					"<b>Actual Result:</b> Airline Matrix flights arranged to increasing orderwise fare: <b>"+ airlineMatrixFareDetails + "</b>",
+					"<b>Actual Result:</b> Airline Matrix flights increasing fare is not displayed on Search Result page", driver);
+			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -3896,6 +3900,56 @@ public class FlightSearch {
 				Log.endTestCase();
 			}
 		}
+		
+		@Test( description = "Validating the UI of Airline Matrix", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_030(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String tripType = testData.get("TripType");
+			String origin = testData.get("Origin");		
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String returnDate = testData.get("ReturnDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");		
 
-// ********************************End of Testcases ***************************************************************************************
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+		
+				//step: select Round Trip Search fields in HomePage
+				homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully filled the search details for Round Trip");
+							
+				// step: click 'Search' button in Yatra Home page
+				SearchResult searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");			
+				BrowserActions.nap(12);
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validating the UI of Airline Matrix");
+				Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> 'All Airlines' option should appear with by deafult selection ", "<b>Actual Result:</b> 'All Airlines' option should not appear with by deafult selection", driver);
+				Log.assertThat(searchResult.verifyAirlinelogoInMatrix(), "<b>Actual Result:</b> Successfully displayed Airline Logo's in Airline Matrix strip ", "<b>Actual Result:</b> Not displayed Airline Logo's in Airline Matrix strip", driver);
+				List<String> airlineNames = searchResult.getAirlineNamesInMatrix();				
+				List<String> airlineMatrixFareDetails = searchResult.getAirlineMatrixFareDetails();	
+				Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
+						"<b>Actual Result:</b> Airline Names: <b>"+ airlineNames + "</b>, and lowest fare of respective Airlines <b>"+ airlineMatrixFareDetails + "</b> on Airline Matrix in Search Result page ",
+						"<b>Actual Result:</b> Airline Names and lowest fare of respective Airlines is not displayed on Airline Matrix in Search Result page", driver);
+				
+				Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+
+// ********************************End of Test cases ***************************************************************************************
 } //FlightSearch

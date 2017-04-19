@@ -43,8 +43,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "[class ='ico-newHeaderLogo']")
 	private WebElement logoYatra;
 
-	@FindBy(xpath = "//ul[@class='matrix-slide-list tabs matrix-ul']/li[2]")
-	private WebElement matrixStrip;
+	@FindBy(xpath = "//ul[@class='matrix-slide-list tabs matrix-ul']/li")
+	private List<WebElement> lnkAirlineMatrix;
 
 	@FindBy(css = "p[class='new-gray-button fl small link-button']") 
 	private WebElement btnModifySearchIcon;
@@ -278,7 +278,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	private WebElement iFrameNotification;
 	
 	@FindBy(css = ".matrix-slide-list.tabs.matrix-ul")
-	private WebElement lnkAirlineMatrixStrip;	
+	private WebElement lnkAirlineMatrixStrip;
+	
+	
 	
 	
 	/**********************************************************************************************
@@ -413,11 +415,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickAirlineMatrix() throws Exception {
+	/*public void clickAirlineMatrix() throws Exception {
 		BrowserActions.clickOnElement(matrixStrip, driver, "Airline Matrix Strip");
 		Utils.waitForPageLoad(driver);
 
-	}
+	}*/
 
 	/**
 	 * To click on Flight Link
@@ -1276,21 +1278,20 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 
 	/**
-	 * Getting the text from Passenger class Drop down in Modify Search panel
+	 * Getting the text Airline Matrix fare details
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public List<String> validateAirlineMatrixFareInAirlineMatrix() throws Exception {		
-		List<String> passengerclassList = new ArrayList<String>();	
-		//@Harveer- as i have already suggest please don't use absolute locator, remove this locator and use @FindBy Annotation
-		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("[@id='modifySearch']//select[@ng-model='modifyData.class']"));
-		for (int i = 0; i < passengerClassList1.size(); i++) {
-			String passengerClass = passengerClassList1.get(i).getText().toString().trim();
-			passengerclassList.add(passengerClass);
+	public List<String> getAirlineMatrixFareDetails() throws Exception {		
+		List<String> airlineMatrixFareDetailsList = new ArrayList<String>();		
+		for (int i = 1; i < lnkAirlineMatrix.size(); i++) {
+			WebElement airlineFareDetails = driver.findElement(By.cssSelector("ul[class='matrix-slide-list tabs matrix-ul'] li:nth-child("+i+") p:nth-child(3)[class='matrix-label uprcse']"));
+			String airlineFare = airlineFareDetails.getText().toString().trim();
+			airlineMatrixFareDetailsList.add(airlineFare);
 		}
-		Log.event("Modify Search Passenger Class drop down details list : "+ passengerclassList);
-		return passengerclassList;
+		Log.event("Airline Matrix fare details : "+ airlineMatrixFareDetailsList);
+		return airlineMatrixFareDetailsList;
 	}
 	
 	/**
@@ -1324,7 +1325,42 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}		
 	}
 	
+	/**
+	 * Getting the text Airline Matrix fare details
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> getAirlineNamesInMatrix() throws Exception {		
+		List<String> airlineNamesInMatrix = new ArrayList<String>();		
+		for (int i = 1; i < lnkAirlineMatrix.size(); i++) {
+			WebElement airlineNamesDetails = driver.findElement(By.cssSelector("ul[class='matrix-slide-list tabs matrix-ul'] li:nth-child("+i+") p[class='matrix-label uprcse']"));
+			String airlineNames = airlineNamesDetails.getText().toString().trim();
+			airlineNamesInMatrix.add(airlineNames);
+		}
+		Log.event("Airline Matrix fare details : "+ airlineNamesInMatrix);
+		return airlineNamesInMatrix;
+	}
 	
+	/**
+	 * Getting the text Airline Matrix fare details
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean verifyAirlinelogoInMatrix() throws Exception {
+		boolean status = false;
+		for (int i = 1; i < lnkAirlineMatrix.size(); i++) {
+			WebElement airlineNamesDetails = driver.findElement(By.cssSelector("ul[class='matrix-slide-list tabs matrix-ul'] li:nth-child(" + i	+ ") p[class='matrix-airline-logo']"));
+			if (airlineNamesDetails.isDisplayed()) {
+				status = true;
+			} else {
+				status = false;
+				break;
+			}
+		}
+		return status;
+	}
 	
   //*******************************End of SRP Functions********************************************************************************************
 
