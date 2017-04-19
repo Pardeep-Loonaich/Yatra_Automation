@@ -533,7 +533,7 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked On Book Now Button!");
 
 			reviewPage.clickOnContinue();
@@ -1084,7 +1084,7 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
@@ -1162,7 +1162,7 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
@@ -3017,7 +3017,7 @@ public class FlightSearch {
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Clicked on 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			reviewPage = searchResult.clickOnBookNowInOneWay(4);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page!");
 
 			reviewPage.clickOnContinue();
@@ -3762,7 +3762,7 @@ public class FlightSearch {
 						"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
 				// clicked on book now button in one way
-				reviewPage = searchResult.clickOnBookNowInOneWay(3);
+				reviewPage = searchResult.clickOnBookNowInOneWay(2);
 				Log.message("6.Clicked on 'Book Now' button in Search Result Page.");
 				Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
 						"<b>Actual Result:</b> Successfully navigated on Review Page.",

@@ -152,6 +152,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	@FindBy(css= "button[class='button sleek-btn promo-btn ng-binding']")
 	private WebElement  btnApplyPromoCode;
+	//@Harveer
+	@FindBy(xpath="(//div[@class='overlay modal-new'])[1]")
+	private WebElement priceChangeDiv;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -481,6 +484,21 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			String ErrorMessage = BrowserActions.getText(driver, PromoCodeErrorMessage, "Getting Error text from the Promo Code");
 			return ErrorMessage;
 
+		}
+		/**
+		 * Description: to handle price change pop up, if pop appear <br>
+		 *  it will navigate to back to SRP Paage
+		 */
+		
+		public void handlePriceChangeWindow()
+		{
+			// @harveer- i have hard coded these value because this pop up will be available in some scenario 
+		if (driver.findElements(By.xpath("(//div[@class='overlay modal-new'])[1]")).size()>0)
+		{
+			
+			driver.findElement(By.cssSelector("button[class='button rounded primary']")).click();
+		}
+			
 		}
 
 } //ReviewPage
