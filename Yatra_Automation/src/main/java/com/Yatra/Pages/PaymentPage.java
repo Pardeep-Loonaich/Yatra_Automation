@@ -405,7 +405,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			Utils.waitForPageLoad(driver);
 		}
 		Thread.sleep(2000);
-
 		BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
 		BrowserActions.clickOnElement(lblSaveCCInQB,driver ,"Unchecking Save QB");
 	}
@@ -853,8 +852,10 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		else if(browser.equalsIgnoreCase("iexplorer_windows")){
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 		}
+		else if(browser.equalsIgnoreCase("FireFox_windows")){
+			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
+		}
 	}
-
 	/**
 	 * to click on cancel in SBI ATM payment
 	 * @throws Exception
@@ -974,7 +975,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTravellerDetails() throws Exception{
 		String travellerHeading = BrowserActions.getText(driver, txtHeadingTravelDtl,"Getting Heading of Traveller Details.");
 		String travellerDetails = BrowserActions.getText(driver, txtTravelDtl,"Getting Text From Traveller Details.");
-
 		String travellerInfo = travellerHeading.concat(travellerDetails);
 		return travellerInfo;
 	}
@@ -989,7 +989,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 	public void clickedOnTnCLink() throws Exception{
 		BrowserActions.scrollToView(lnkTnC,driver);
-
 		BrowserActions.clickOnElement(lnkTnC,driver, "Clicked terms and condition link");
 	}
 

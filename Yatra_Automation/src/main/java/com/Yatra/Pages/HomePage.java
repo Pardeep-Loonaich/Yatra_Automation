@@ -110,7 +110,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "a#booking_engine_holidays")
 	private WebElement lnkHolidays;
 
-	@FindBy(css = "a#booking_engine_activities")
+	@FindBy(css = "a[id='booking_engine_activities']>span:not([class='betaBookingEngine'])")
 	private WebElement lnkActivities;
 
 	@FindBy(css = "a#booking_engine_buses")
@@ -214,7 +214,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	
 	@FindBy(css = "#PegasusCal-0")
 	WebElement calenderDeptdate;
-	
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -1157,7 +1156,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public TrainSearchResult clickTrainBtnSearch() throws Exception {
-		// final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(btnTrainSearch, driver, "Train Search");
 		Utils.waitForPageLoad(driver);
 		return new TrainSearchResult(driver).get();
@@ -1318,6 +1316,5 @@ public class HomePage extends LoadableComponent<HomePage> {
 			driver.navigate().to("https://secure.yatra.com/social/common/yatra/signin.htm");
 		}
 		return new LoginPage(driver).get();
-
 	}
 }// HomePage
