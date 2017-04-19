@@ -282,7 +282,7 @@ public class PaymentTest {
 
 			paymentPage.cancelHdfcPayment(browser);
 			Log.message("13. Clicked on Cancel button.");
-
+			
 			paymentPage.returnFromCreditCardPage(browser,2);
 			Log.message("14. Navigating back to 'Yatra' page.");
 
@@ -290,7 +290,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -357,7 +357,7 @@ public class PaymentTest {
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
 			// clicked on book now button in one way
-			reviewPage = searchResult.clickOnBookNowInOneWay(2);	
+			reviewPage = searchResult.clickOnBookNowInOneWay(4);	
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
@@ -398,7 +398,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User is successfully coming back to yatra page after failed transcaction.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> User successfully navigated back to yatra page after failed transaction with failed message:"+paymentPage.getTextFromFailedDebitCardTrans(),
 					"<b>Actual Result:</b> User not coming back to yatra page after failed transaction.", driver);
 
@@ -505,7 +505,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User is successfully coming back to yatra page after failed transcaction.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> User successfully navigated back to yatra page after failed transaction with failed message:"+paymentPage.getTextFromFailedDebitCardTrans(),
 					"<b>Actual Result:</b> User not coming back to yatra page after failed transaction.", driver);
 
@@ -617,7 +617,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -730,7 +730,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -839,7 +839,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -946,7 +946,7 @@ public class PaymentTest {
 			Utils.waitForPageLoad(driver);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -1056,7 +1056,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -1161,7 +1161,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -1265,7 +1265,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -1278,6 +1278,7 @@ public class PaymentTest {
 		}
 	}
 
+	
 	@Test(groups = { "desktop" }, description = "Verify Stored cards", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Payment_015(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1378,7 +1379,7 @@ public class PaymentTest {
 
 			Utils.waitForPageLoad(driver);
 			Log.message("<br>");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -2734,7 +2735,7 @@ public class PaymentTest {
 			Log.message("15. Navigating back to 'Yatra' page.");
 
 			Utils.waitForPageLoad(driver);
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -2888,7 +2889,7 @@ public class PaymentTest {
 
 
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoYatra"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated from "+paymentType+" Page.",
 					"<b>Actual Result:</b> Unable to navigated from "+paymentType+" Page.", driver);
 
@@ -2909,4 +2910,990 @@ public class PaymentTest {
 			Log.endTestCase();
 		}
 	}
+	@Test(groups = { "desktop" }, description = "Verify MobileWallet Options: Mobivik ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Payment_012(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String paymentType = testData.get("PaymentType");
+		String walletName = testData.get("BankName");
+        String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			//loginPage = homePage.navigateToSignIn();
+			loginPage = homePage.clickOnMainMenu(driver, "MyAccount", "Login");
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2. Login 'Yatra' account successfully.");
+			// step: verify Yatra title bar text
+
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("3. Verified Yatra Title text");
+			}
+
+			// selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("5. Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+			// clicked on book now button in one way
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+			// clicke on continue button
+			travellerPage = reviewPage.clickOnContinue();
+			Log.message("7. Clicked on Continue button on Review Page.");
+
+			/*	reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("8. Successfully Logged in Yatra account!");
+			 */
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Filled Traveller Details for domestic Flights.");
+
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue button on Travellers Page.");
+
+			paymentPage.verifyCancelEcash();
+
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected "+paymentType+" as mode of Payment");
+
+			paymentPage.selectMobileWallet(walletName);
+			Log.message("11. Selected "+walletName+" for payment");
+
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Pay Now' for making payment.");
+			Utils.waitForPageLoad(driver);
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoMobiWikWallet"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on "+walletName+" Page.",
+					"<b>Actual Result:</b> Unable to navigated back on "+walletName+" Page.", driver);
+
+
+			paymentPage.navigateBackFromMobileWallet(walletName);
+			Log.message("13. Navigating back to 'Yatra' page.");
+			Utils.waitForPageLoad(driver);
+
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
+					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
+	@Test(groups = { "desktop" }, description = "Verify MobileWallet Options: oxigen ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Payment_031(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String paymentType = testData.get("PaymentType");
+		String walletName = testData.get("BankName");
+        String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			//loginPage = homePage.navigateToSignIn();
+			loginPage = homePage.clickOnMainMenu(driver, "MyAccount", "Login");
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2. Login 'Yatra' account successfully.");
+			// step: verify Yatra title bar text
+
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("3. Verified Yatra Title text");
+			}
+
+			// selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("5. Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+			// clicked on book now button in one way
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+			// clicke on continue button
+			travellerPage = reviewPage.clickOnContinue();
+			Log.message("7. Clicked on Continue button on Review Page.");
+
+			/*	reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("8. Successfully Logged in Yatra account!");
+			 */
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Filled Traveller Details for domestic Flights.");
+
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue button on Travellers Page.");
+
+			paymentPage.verifyCancelEcash();
+
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected "+paymentType+" as mode of Payment");
+
+			paymentPage.selectMobileWallet(walletName);
+			Log.message("11. Selected "+walletName+" for payment");
+
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Pay Now' for making payment.");
+			Utils.waitForPageLoad(driver);
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoOxyGenWallet"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on "+walletName+" Page.",
+					"<b>Actual Result:</b> Unable to navigated back on "+walletName+" Page.", driver);
+
+
+			paymentPage.navigateBackFromMobileWallet(walletName);
+			Log.message("13. Navigating back to 'Yatra' page.");
+			Utils.waitForPageLoad(driver);
+
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
+					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Verify MobileWallet Options: payu", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Payment_032(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String paymentType = testData.get("PaymentType");
+		String walletName = testData.get("BankName");
+        String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			//loginPage = homePage.navigateToSignIn();
+			loginPage = homePage.clickOnMainMenu(driver, "MyAccount", "Login");
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2. Login 'Yatra' account successfully.");
+			// step: verify Yatra title bar text
+
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("3. Verified Yatra Title text");
+			}
+
+			// selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("5. Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+			// clicked on book now button in one way
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+			// clicke on continue button
+			travellerPage = reviewPage.clickOnContinue();
+			Log.message("7. Clicked on Continue button on Review Page.");
+
+			/*	reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("8. Successfully Logged in Yatra account!");
+			 */
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Filled Traveller Details for domestic Flights.");
+
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue button on Travellers Page.");
+
+			paymentPage.verifyCancelEcash();
+
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected "+paymentType+" as mode of Payment");
+
+			paymentPage.selectMobileWallet(walletName);
+			Log.message("11. Selected "+walletName+" for payment");
+
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Pay Now' for making payment.");
+			Utils.waitForPageLoad(driver);
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoPayUWallet"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on "+walletName+" Page.",
+					"<b>Actual Result:</b> Unable to navigated back on "+walletName+" Page.", driver);
+
+
+			paymentPage.navigateBackFromMobileWallet(walletName);
+			Log.message("13. Navigating back to 'Yatra' page.");
+			Utils.waitForPageLoad(driver);
+
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
+					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Verify MobileWallet Options: sbibuddy", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Payment_033(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String paymentType = testData.get("PaymentType");
+		String walletName = testData.get("BankName");
+        String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			//loginPage = homePage.navigateToSignIn();
+			loginPage = homePage.clickOnMainMenu(driver, "MyAccount", "Login");
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2. Login 'Yatra' account successfully.");
+			// step: verify Yatra title bar text
+
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("3. Verified Yatra Title text");
+			}
+
+			// selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("5. Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+			// clicked on book now button in one way
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+			// clicke on continue button
+			travellerPage = reviewPage.clickOnContinue();
+			Log.message("7. Clicked on Continue button on Review Page.");
+
+			/*	reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("8. Successfully Logged in Yatra account!");
+			 */
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Filled Traveller Details for domestic Flights.");
+
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue button on Travellers Page.");
+
+			paymentPage.verifyCancelEcash();
+
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected "+paymentType+" as mode of Payment");
+
+			paymentPage.selectMobileWallet(walletName);
+			Log.message("11. Selected "+walletName+" for payment");
+
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Pay Now' for making payment.");
+			Utils.waitForPageLoad(driver);
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoBuddyWallet"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on "+walletName+" Page.",
+					"<b>Actual Result:</b> Unable to navigated back on "+walletName+" Page.", driver);
+
+
+			paymentPage.navigateBackFromMobileWallet(walletName);
+			Log.message("13. Navigating back to 'Yatra' page.");
+			Utils.waitForPageLoad(driver);
+
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
+					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Verify MobileWallet Options: reliancejio", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Payment_034(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String paymentType = testData.get("PaymentType");
+		String walletName = testData.get("BankName");
+        String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			//loginPage = homePage.navigateToSignIn();
+			loginPage = homePage.clickOnMainMenu(driver, "MyAccount", "Login");
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2. Login 'Yatra' account successfully.");
+			// step: verify Yatra title bar text
+
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("3. Verified Yatra Title text");
+			}
+
+			// selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("5. Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+			// clicked on book now button in one way
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+			// clicke on continue button
+			travellerPage = reviewPage.clickOnContinue();
+			Log.message("7. Clicked on Continue button on Review Page.");
+
+			/*	reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("8. Successfully Logged in Yatra account!");
+			 */
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Filled Traveller Details for domestic Flights.");
+
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue button on Travellers Page.");
+
+			paymentPage.verifyCancelEcash();
+
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected "+paymentType+" as mode of Payment");
+
+			paymentPage.selectMobileWallet(walletName);
+			Log.message("11. Selected "+walletName+" for payment");
+
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Pay Now' for making payment.");
+			Utils.waitForPageLoad(driver);
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoJioMoneyWallet"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on "+walletName+" Page.",
+					"<b>Actual Result:</b> Unable to navigated back on "+walletName+" Page.", driver);
+
+
+			paymentPage.navigateBackFromMobileWallet(walletName);
+			Log.message("13. Navigating back to 'Yatra' page.");
+			Utils.waitForPageLoad(driver);
+
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
+					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Verify MobileWallet Options: olamoney", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Payment_035(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String paymentType = testData.get("PaymentType");
+		String walletName = testData.get("BankName");
+        String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			//loginPage = homePage.navigateToSignIn();
+			loginPage = homePage.clickOnMainMenu(driver, "MyAccount", "Login");
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2. Login 'Yatra' account successfully.");
+			// step: verify Yatra title bar text
+
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("3. Verified Yatra Title text");
+			}
+
+			// selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("5. Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+			// clicked on book now button in one way
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+			// clicke on continue button
+			travellerPage = reviewPage.clickOnContinue();
+			Log.message("7. Clicked on Continue button on Review Page.");
+
+			/*	reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("8. Successfully Logged in Yatra account!");
+			 */
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Filled Traveller Details for domestic Flights.");
+
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue button on Travellers Page.");
+
+			paymentPage.verifyCancelEcash();
+
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected "+paymentType+" as mode of Payment");
+
+			paymentPage.selectMobileWallet(walletName);
+			Log.message("11. Selected "+walletName+" for payment");
+
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Pay Now' for making payment.");
+			Utils.waitForPageLoad(driver);
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnOlaMoneyWallet"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on "+walletName+" Page.",
+					"<b>Actual Result:</b> Unable to navigated back on "+walletName+" Page.", driver);
+
+
+			paymentPage.navigateBackFromMobileWallet(walletName);
+			Log.message("13. Navigating back to 'Yatra' page.");
+			Utils.waitForPageLoad(driver);
+
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
+					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Verify MobileWallet Options: payzapp", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Payment_036(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String paymentType = testData.get("PaymentType");
+		String walletName = testData.get("BankName");
+        String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			//loginPage = homePage.navigateToSignIn();
+			loginPage = homePage.clickOnMainMenu(driver, "MyAccount", "Login");
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2. Login 'Yatra' account successfully.");
+			// step: verify Yatra title bar text
+
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("3. Verified Yatra Title text");
+			}
+
+			// selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("5. Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+			// clicked on book now button in one way
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+			// clicke on continue button
+			travellerPage = reviewPage.clickOnContinue();
+			Log.message("7. Clicked on Continue button on Review Page.");
+
+			/*	reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("8. Successfully Logged in Yatra account!");
+			 */
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Filled Traveller Details for domestic Flights.");
+
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue button on Travellers Page.");
+
+			paymentPage.verifyCancelEcash();
+
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected "+paymentType+" as mode of Payment");
+
+			paymentPage.selectMobileWallet(walletName);
+			Log.message("11. Selected "+walletName+" for payment");
+
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Pay Now' for making payment.");
+			Utils.waitForPageLoad(driver);
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayZAppWallet"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on "+walletName+" Page.",
+					"<b>Actual Result:</b> Unable to navigated back on "+walletName+" Page.", driver);
+
+
+			paymentPage.navigateBackFromMobileWallet(walletName);
+			Log.message("13. Navigating back to 'Yatra' page.");
+			Utils.waitForPageLoad(driver);
+
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
+					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+
+	@Test(groups = { "desktop" }, description = "Verify MobileWallet Options: voda-mpesa", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Payment_037(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String paymentType = testData.get("PaymentType");
+		String walletName = testData.get("BankName");
+        String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			//loginPage = homePage.navigateToSignIn();
+			loginPage = homePage.clickOnMainMenu(driver, "MyAccount", "Login");
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2. Login 'Yatra' account successfully.");
+			// step: verify Yatra title bar text
+
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("3. Verified Yatra Title text");
+			}
+
+			// selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("5. Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+			// clicked on book now button in one way
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+			// clicke on continue button
+			travellerPage = reviewPage.clickOnContinue();
+			Log.message("7. Clicked on Continue button on Review Page.");
+
+			/*	reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("8. Successfully Logged in Yatra account!");
+			 */
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Filled Traveller Details for domestic Flights.");
+
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue button on Travellers Page.");
+
+			paymentPage.verifyCancelEcash();
+
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected "+paymentType+" as mode of Payment");
+
+			paymentPage.selectMobileWallet(walletName);
+			Log.message("11. Selected "+walletName+" for payment");
+
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Pay Now' for making payment.");
+			Utils.waitForPageLoad(driver);
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoVodafoneWallet"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on "+walletName+" Page.",
+					"<b>Actual Result:</b> Unable to navigated back on "+walletName+" Page.", driver);
+
+
+			paymentPage.navigateBackFromMobileWallet(walletName);
+			Log.message("13. Navigating back to 'Yatra' page.");
+			Utils.waitForPageLoad(driver);
+
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
+					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Verify MobileWallet Options: idea-money", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Payment_038(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String paymentType = testData.get("PaymentType");
+		String walletName = testData.get("BankName");
+        String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			//loginPage = homePage.navigateToSignIn();
+			loginPage = homePage.clickOnMainMenu(driver, "MyAccount", "Login");
+			loginPage.loginYatraAccount(emailId, password);
+			Log.message("2. Login 'Yatra' account successfully.");
+			// step: verify Yatra title bar text
+
+			if (driver.getTitle().contains("Flight")) {
+				Log.message("3. Verified Yatra Title text");
+			}
+
+			// selected trip as one way and enter the search details
+			homePage.selectOneWayTrip();
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("5. Clicked on 'Search' in Yatra Homepage.");
+
+			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
+					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+
+			// clicked on book now button in one way
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",
+					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+
+			// clicke on continue button
+			travellerPage = reviewPage.clickOnContinue();
+			Log.message("7. Clicked on Continue button on Review Page.");
+
+			/*	reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("8. Successfully Logged in Yatra account!");
+			 */
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Filled Traveller Details for domestic Flights.");
+
+			paymentPage = travellerPage.clickOnContinue();
+			Log.message("9. Clicked on Continue button on Travellers Page.");
+
+			paymentPage.verifyCancelEcash();
+
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("10. Selected "+paymentType+" as mode of Payment");
+
+			paymentPage.selectMobileWallet(walletName);
+			Log.message("11. Selected "+walletName+" for payment");
+
+
+			paymentPage.clickOnPayNow();
+			Log.message("12. Clicked on 'Pay Now' for making payment.");
+			Utils.waitForPageLoad(driver);
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("formIdeaMoneyWallet"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on "+walletName+" Page.",
+					"<b>Actual Result:</b> Unable to navigated back on "+walletName+" Page.", driver);
+
+
+			paymentPage.navigateBackFromMobileWallet(walletName);
+			Log.message("13. Navigating back to 'Yatra' page.");
+			Utils.waitForPageLoad(driver);
+
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
+					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
+
 }//PaymentTest
+
