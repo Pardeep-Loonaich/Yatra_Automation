@@ -88,7 +88,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("6.Passenger Info successfully specified");
+			Log.message("6.Successfully specified Passenger Info");
 
 			// step: select Passengers class
 			homePage.selectPassengerClass(passengerClass);
@@ -156,7 +156,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("7.Passenger Info successfully specified");
+			Log.message("7.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -233,7 +233,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("9.Passenger Info successfully specified");
+			Log.message("9.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -314,7 +314,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("9.Passenger Info successfully specified");
+			Log.message("9.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -366,29 +366,22 @@ public class FlightSearch {
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("2.Successfully clicked 'Two way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'Round Trip' option in search Home Page ");
 
 			// step: select OneWay Flight Search fields
-			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo,
-					passengerClass);
-			Log.message("3.Successfully filled the search details for 'TWO WAY' trip.");
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for 'Round Trip' trip.");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
 			BrowserActions.nap(5);
-
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Check Book as Guest button.");
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("matrixStrip"), searchResult),
-					"<b>Actual Result:</b> The Airline Matrix is displayed on Review Page.",
-					"<b>Actual Result:</b> The Airline Matrix is not displayed on Review Page.", driver);
-
-			searchResult.clickAirlineMatrix();
-			Log.message("Successfully clicked Airline Matrix");
-			BrowserActions.nap(2);
+			Log.message("<b>Expected Result:</b> Successfully verified Airline Matrix Strip on SRP for DOM fligh");
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
+					"<b>Actual Result:</b> Airline Matrix should be properly displayed on Search Result page",
+					"<b>Actual Result:</b> Airline Matrix should not displayed properly on Search Result page", driver);
 			Log.testCaseResult();
-
 		} catch (Exception e) {
 			Log.exception(e);
 
@@ -420,29 +413,22 @@ public class FlightSearch {
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
-			Log.message("2.Successfully clicked 'Two way' option in search Home Page ");
+			Log.message("2.Successfully clicked 'Round Trip' option in search Home Page ");
 
-			// step: select OneWay Flight Search fields
-			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo,
-					passengerClass);
-			Log.message("3.Successfully filled the search details for 'TWO WAY' trip.");
+			// step: select Round Trip Flight Search fields
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for 'Round Trip' trip.");
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
-			BrowserActions.nap(2);
-
+			BrowserActions.nap(5);
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Check Book as Guest button.");
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("matrixStrip"), searchResult),
-					"<b>Actual Result:</b> The Airline Matrix is displayed on Review Page.",
-					"<b>Actual Result:</b> The Airline Matrix is not displayed on Review Page.", driver);
-
-			searchResult.clickAirlineMatrix();
-			Log.message("Successfully clicked Airline Matrix");
-			BrowserActions.nap(2);
+			Log.message("<b>Expected Result:</b> Successfully verified Airline Matrix Strip on SRP for INT flight");
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
+					"<b>Actual Result:</b> irline Matrix should be properly displayed on Search Result page",
+					"<b>Actual Result:</b> Airline Matrix should not displayed properly on Search Result page", driver);
 			Log.testCaseResult();
-
 		} catch (Exception e) {
 			Log.exception(e);
 
@@ -533,7 +519,7 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked On Book Now Button!");
 
 			reviewPage.clickOnContinue();
@@ -604,7 +590,7 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
@@ -682,7 +668,7 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
@@ -755,7 +741,7 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
@@ -832,7 +818,7 @@ public class FlightSearch {
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
@@ -899,7 +885,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("6.Passenger Info successfully specified");
+			Log.message("6.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -968,7 +954,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("7.Passenger Info successfully specified");
+			Log.message("7.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -1084,7 +1070,7 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
@@ -1162,7 +1148,7 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
@@ -2175,7 +2161,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("9.Passenger Info successfully specified");
+			Log.message("9.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -2342,8 +2328,8 @@ public class FlightSearch {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected One Way Radio button",	"<b>Actual Result:</b> Not selected One Way Radio button");
-            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP, Orgin City:  <b> "+ originCityText+ "</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
-            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP, Destination City:  <b> " + destCityText + "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
+            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP, Orgin City:  <b> "+ destination+ "</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
+            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP, Destination City:  <b> " + origin + "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
 		    
             //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
             String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
@@ -2443,8 +2429,8 @@ public class FlightSearch {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected Round Trip Radio button",	"<b>Actual Result:</b> Not selected Round Trip Radio button");
-            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP, Orgin City:  <b> "+ originCityText+ "</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
-            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP, Destination City:  <b> "+ destCityText+ "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
+            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP, Orgin City:  <b> "+ destination+ "</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
+            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP, Destination City:  <b> "+ origin+ "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
 		    
            //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
 	        String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
@@ -2543,7 +2529,7 @@ public class FlightSearch {
 
 			// step: select Passengers info
 			homePage.specifyPassengerInfo(passengerInfo);
-			Log.message("9.Passenger Info successfully specified");
+			Log.message("9.Successfully specified Passenger Info");
 
 			// step: select Passenger class
 			homePage.selectPassengerClass(passengerClass);
@@ -2905,12 +2891,16 @@ public class FlightSearch {
 						
 			// step: click 'Search' button in Yatra Home page
 			SearchResult searchResult = homePage.clickBtnSearch();
-			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");			
+			BrowserActions.nap(12);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated the Airline Matrix");
-			BrowserActions.nap(10);
 			Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> 'All Airlines' option should appear with by deafult selection ", "<b>Actual Result:</b> 'All Airlines' option should not appear with by deafult selection", driver);
-			//TODO : verify the other flights arranged in increasing order of fare.
+			List<String> airlineMatrixFareDetails = searchResult.getAirlineMatrixFareDetails();	
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
+					"<b>Actual Result:</b> Airline Matrix flights arranged to increasing orderwise fare: <b>"+ airlineMatrixFareDetails + "</b>",
+					"<b>Actual Result:</b> Airline Matrix flights increasing fare is not displayed on Search Result page", driver);
+			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -3017,7 +3007,7 @@ public class FlightSearch {
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Clicked on 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page!");
 
 			reviewPage.clickOnContinue();
@@ -3620,7 +3610,7 @@ public class FlightSearch {
 						"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
 				// clicked on book now buuton
-				reviewPage = searchResult.clickOnBookNowInOneWay(4);
+				reviewPage = searchResult.clickOnBookNowInOneWay(2);
 				Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
 
 				Log.message("<br>");
@@ -3762,7 +3752,7 @@ public class FlightSearch {
 						"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
 				// clicked on book now button in one way
-				reviewPage = searchResult.clickOnBookNowInOneWay(3);
+				reviewPage = searchResult.clickOnBookNowInOneWay(2);
 				Log.message("6.Clicked on 'Book Now' button in Search Result Page.");
 				Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
 						"<b>Actual Result:</b> Successfully navigated on Review Page.",
@@ -3842,7 +3832,7 @@ public class FlightSearch {
 				Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 
 				// step: Click on 'Book Now' button in Yatra Home page
-				ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(1);
+				ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(2);
 				Log.message("4.Clicked on 'Book Now' button in Search Result Page ");
 				Thread.sleep(5000);
 
@@ -3910,6 +3900,56 @@ public class FlightSearch {
 				Log.endTestCase();
 			}
 		}
+		
+		@Test( description = "Validating the UI of Airline Matrix", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_030(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String tripType = testData.get("TripType");
+			String origin = testData.get("Origin");		
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String returnDate = testData.get("ReturnDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");		
 
-// ********************************End of Testcases ***************************************************************************************
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+		
+				//step: select Round Trip Search fields in HomePage
+				homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully filled the search details for Round Trip");
+							
+				// step: click 'Search' button in Yatra Home page
+				SearchResult searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");			
+				BrowserActions.nap(12);
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validating the UI of Airline Matrix");
+				Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> 'All Airlines' option should appear with by deafult selection ", "<b>Actual Result:</b> 'All Airlines' option should not appear with by deafult selection", driver);
+				Log.assertThat(searchResult.verifyAirlinelogoInMatrix(), "<b>Actual Result:</b> Successfully displayed Airline Logo's in Airline Matrix strip ", "<b>Actual Result:</b> Not displayed Airline Logo's in Airline Matrix strip", driver);
+				List<String> airlineNames = searchResult.getAirlineNamesInMatrix();				
+				List<String> airlineMatrixFareDetails = searchResult.getAirlineMatrixFareDetails();	
+				Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
+						"<b>Actual Result:</b> Airline Names: <b>"+ airlineNames + "</b>, and lowest fare of respective Airlines <b>"+ airlineMatrixFareDetails + "</b> on Airline Matrix in Search Result page ",
+						"<b>Actual Result:</b> Airline Names and lowest fare of respective Airlines is not displayed on Airline Matrix in Search Result page", driver);
+				
+				Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+
+// ********************************End of Test cases ***************************************************************************************
 } //FlightSearch

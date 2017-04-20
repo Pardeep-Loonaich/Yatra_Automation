@@ -110,7 +110,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "a#booking_engine_holidays")
 	private WebElement lnkHolidays;
 
-	@FindBy(css = "a#booking_engine_activities")
+	@FindBy(css = "a[id='booking_engine_activities']>span:not([class='betaBookingEngine'])")
 	private WebElement lnkActivities;
 
 	@FindBy(css = "a#booking_engine_buses")
@@ -217,9 +217,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "li.ac_even.ac_over")
 	private WebElement txtCityOver;
-
-
-
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -1138,7 +1135,21 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
+	
 
+
+	public Boolean incorrectCity() throws Exception {
+		BrowserActions.typeOnTextField(txtTrainOrigin, "xyz", driver, "Invalid Origin city");
+		Utils.waitForPageLoad(driver);
+		String cityError = BrowserActions.getText(driver, txtTrainOrigin, "Incorrect Orgin City");
+		if (cityError.startsWith("No match"))
+		{
+			return true;
+		}
+
+		return false;
+
+	}
 	/**
 	 * Getting the text from the Bus Info
 	 * 
@@ -1151,6 +1162,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
+
 
 	/**
 	 * Enter Train Destination
@@ -1186,6 +1198,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	}
 
+
 	/**
 	 * To select Departure Date
 	 * 
@@ -1199,7 +1212,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateTrainDeparture, driver, "clicking on Bus Return date icon");
 		selectMonth_Bus.get(month - 3).click();
-
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
 		/*BrowserActions.nap(2);
@@ -1326,7 +1338,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 			driver.navigate().to("https://secure.yatra.com/social/common/yatra/signin.htm");
 		}
 		return new LoginPage(driver).get();
-
 	}
 	/**
 	 * Description: to select date from  calendar (it will work for depart date and return date)
