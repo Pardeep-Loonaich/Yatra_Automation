@@ -38,8 +38,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
 
-	/**********************************************************************************************
-	 ********************************* WebElements of Yatra PaymentPage ***********************************
 
 
 	/**********************************************************************************************
@@ -339,6 +337,54 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	@FindBy(css="#totalAmountSpan")
 	private WebElement totalPayAmount;
+	
+	@FindBy(css="td[class='NewReg']>a")
+	private WebElement btnAppDownInAllahabad;
+	
+	@FindBy(css="div[class='login-btn']")
+	private WebElement btnLoginAxis;
+	
+	@FindBy(css="input[id='submitciti']")
+	private WebElement btnSubmitCiti;
+	
+	@FindBy(css="input[name='fldLoginUserId']")
+	private WebElement btnContinueHDFC;
+	
+	@FindBy(css="[class='login_button']")
+	private WebElement btnLoginICICI;
+	
+	@FindBy(css="input[type='submit']")
+	private WebElement btnLoginIDBI;
+	
+	@FindBy(css="a[id='secure-login01']")
+	private WebElement btnLoginKotak;
+	
+	@FindBy(css="input[class='loginpage_btn_loginshp']")
+	private WebElement btnLoginPNB;
+	
+	@FindBy(css="input[name='CorporateSignonCorpId']")
+	private WebElement fldUserIDAndhra;
+	
+	@FindBy(css= "#Button1")
+	private WebElement btnBckToYatraOxygen;
+	
+	@FindBy(css= ".back_btn")
+	private WebElement btnBckToYatraPAyU;
+	
+	@FindBy(css= "#backButton")
+	private WebElement btnBckToYatraSBIBuddy;
+	
+	@FindBy(css= "#cancelBtn")
+	private WebElement btnCancelJio;
+	
+	@FindBy(css= "#okButton")
+	private WebElement btnOkJio;
+
+	@FindBy(css= "button[class='btn btn-warning col-xs-4']")
+	private WebElement btnPayZ;
+	
+	@FindBy(css= "#rejectPaymentReq")
+	private WebElement btnCancelIdea;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
@@ -359,7 +405,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
-	}// SearchPage
+	}// 
 
 	/**
 	 * 
@@ -747,6 +793,39 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		}
 
 	}
+	
+	@FindBy(css ="select[id='nprBank']>option")
+	private List<WebElement> lstselectOtherNetBank;
+	
+	@FindBy(css ="select[id='nprBank']")
+	private WebElement drpselectOtherNetBank;
+	
+
+
+	/**
+	 * to select the net bank name
+	 * @param BankName
+	 * @throws Exception
+	 */
+
+
+	public void selectOtherNetBankName(String BankName) throws Exception {
+		List<WebElement> lstElement = lstselectOtherNetBank;
+		BrowserActions.clickOnElement(drpselectOtherNetBank, driver, "clicked on Select Other bank dropdown");
+
+		
+		for (WebElement e : lstElement) {
+			if (e.getAttribute("value").contains(BankName)) {
+				//findElement is required here
+				BrowserActions.scrollToViewElement(e, driver);
+				BrowserActions.clickOnElement(e, driver, "Selected Other Net bank");
+				break;
+
+			}
+		}
+
+	}
+	
 
 
 
@@ -868,6 +947,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		else if(browser.equalsIgnoreCase("iexplorer_windows")){
 		}
 		driver.navigate().back();
+		driver.navigate().refresh();
 
 	}
 
@@ -883,6 +963,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			JavascriptExecutor js = (JavascriptExecutor) driver; 
 			js.executeScript("window.history.go(-1)");
 			driver.switchTo().alert().accept();
+			driver.navigate().refresh();
 
 		}	
 
@@ -1122,14 +1203,15 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return chrgedAmount;
 
 	}
-
+	
+	
 	/**
 	 * getting the text from the Total amount from the fare detail panel
 	 * @return
 	 * @throws Exception
 	 */
 	public String gettingTotalPayAmount()throws Exception {
-		String amount =BrowserActions.getText(driver,totalPayAmount, "Getting txt of total payment amount").trim().replace(",","");
+		String amount =BrowserActions.getText(driver,totalPayAmount, "Getting txt of total payment amount.").trim().replace(",","");
 		return amount;
 	}
 
@@ -1141,43 +1223,21 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			break;
 
 		case "oxigen":
-			BrowserActions.javascriptClick(driver.findElement(By.cssSelector("#Button1")), driver, "Clicked on 'Back to Yatra' button");
+			BrowserActions.javascriptClick(btnBckToYatraOxygen, driver, "Clicked on 'Back to Yatra' button.");
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 			break;
 
 		case "payu":
-			BrowserActions.javascriptClick(driver.findElement(By.cssSelector(".back_btn")), driver, "Clicked on 'Back to Yatra' button");
+			BrowserActions.javascriptClick(btnBckToYatraPAyU, driver, "Clicked on 'Back to Yatra' button.");
 			break;
 
 		case "sbibuddy":
-			BrowserActions.javascriptClick(driver.findElement(By.cssSelector("#backButton")), driver, "Clicked on 'Back to Yatra' button");
+			BrowserActions.javascriptClick(btnBckToYatraSBIBuddy, driver, "Clicked on 'Back to Yatra' button.");
 			break;
 
 		case "reliancejio":
-			BrowserActions.javascriptClick(driver.findElement(By.cssSelector("#cancelBtn")), driver, "Clicked on 'Back to Yatra' button");
-
-			/*String winHandleBefore = driver.getWindowHandle();
-				// Perform the click operation that opens new window
-				BrowserActions.javascriptClick(driver.findElement(By.cssSelector("#cancelBtn")), driver, "Clicked on 'Back to Yatra' button");
-				// Switch to new window opened
-                Set<String> handles = driver.getWindowHandles(); 
-				for(String winHandle : handles){
-					if(!winHandle.equals(winHandleBefore)){
-						driver.switchTo().window(winHandle);
-						Utils.waitForElement(driver, driver.findElement(By.cssSelector("#okButton")));
-						BrowserActions.javascriptClick(driver.findElement(By.cssSelector("#okButton")), driver, "Clicked on 'Ok' button");
-						break;
-					}
-				}*/
-			/*JavascriptExecutor js = (JavascriptExecutor) driver; 
-                js.executeScript("window.confirm = function(msg) { return true; }");
-
-		        Alert alert = driver.switchTo().alert();
-	        	alert.accept();*/
-			driver.switchTo().activeElement();
-			BrowserActions.javascriptClick(driver.findElement(By.cssSelector("#okButton")), driver, "Clicked on 'Ok' button");
-
-
+			BrowserActions.javascriptClick(btnCancelJio, driver, "Clicked on 'cancel' button.");
+			BrowserActions.javascriptClick(btnOkJio, driver, "Clicked on 'ok' button in popup.");
 			break;
 
 		case "freecharge":
@@ -1189,7 +1249,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			break;
 
 		case "payzapp":
-			BrowserActions.javascriptClick(driver.findElement(By.cssSelector("button[class='btn btn-warning col-xs-4']")), driver, "Clicked on 'Back to Yatra' button");
+			BrowserActions.javascriptClick(btnPayZ, driver, "Clicked on 'Back to Yatra' button");
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 			break;
 
@@ -1198,7 +1258,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			break;
 
 		case "idea-money":
-			BrowserActions.javascriptClick(driver.findElement(By.cssSelector("#rejectPaymentReq")), driver, "Clicked on 'Back to Yatra' button");
+			BrowserActions.javascriptClick(btnCancelIdea, driver, "Clicked on 'Back to Yatra' button");
 			break;
 
 		}

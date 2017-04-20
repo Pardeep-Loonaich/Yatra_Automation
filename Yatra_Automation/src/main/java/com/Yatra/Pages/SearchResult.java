@@ -384,11 +384,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 					+ index
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
 		*/
-		closeINotificationAtTopSRP();
+	
 		
-		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
+		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//div[@class='new-ttlFare']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
+		//closeINotificationAtTopSRP();
 		return new ReviewPage(driver).get();
 	}
 
