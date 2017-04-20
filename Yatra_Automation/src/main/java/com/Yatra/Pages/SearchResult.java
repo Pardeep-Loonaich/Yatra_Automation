@@ -1216,8 +1216,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	/**
 	 * Getting the text from Destination in Modify Search
-	 * 
-	 * @return
+	 * @return		 
 	 * @throws Exception
 	 */
 	public String getTextDepartDate1_ModifySearch() throws Exception {
@@ -1228,7 +1227,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	/**
 	 * To verify current date selection in Weekly Matrix
-	 * 
+	 * @return
 	 * @throws Exception
 	 */
 	public boolean verifyCurrentDateSelectionInWeeklyMatrix() throws Exception {
@@ -1353,7 +1352,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * Getting the text Airline Matrix fare details
+	 * Getting the text form Airline Names 
 	 * 
 	 * @return
 	 * @throws Exception
@@ -1370,7 +1369,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * Getting the text Airline Matrix fare details
+	 * To Verify Airline Logos in Airline Matrix
 	 * 
 	 * @return
 	 * @throws Exception
@@ -1391,7 +1390,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 
 	/**
-	 * To click Flight Details pouUp close link
+	 * To click Airline in Airline Matrix
 	 * 
 	 * @throws Exception
 	 */
@@ -1403,7 +1402,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * Getting the text from Corporate Login in SRP  
+	 * Getting the text from Selected Airline Name in Airline Matrix  
 	 * 
 	 * @return
 	 * @throws Exception
@@ -1412,21 +1411,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForElement(driver, txtselectedAirlineName);
 		String airlineNameGetTxt = BrowserActions.getText(driver, txtselectedAirlineName, "Selected Airline Name Text Should be displayed on Airline Matrix in SRP Page");
 		return airlineNameGetTxt;
-	}
+	}	
+	
 	
 	/**
-	 * To verify Non Stop Flights Only check box is checked on unchecked
-	 * 
-	 * @throws Exception
-	 */
-	public boolean verifySelectedAirlineInAirlineFilters1() throws Exception {
-		boolean status = BrowserActions.isRadioOrCheckBoxSelected(txtNonStopFlights_ModifySearch);	 
-		return status;
-	}
-	
-	/**
-	 * Getting the text Airline Matrix fare details
-	 * 
+	 * To verify selection on particular Airline in Airline Filters 
+	 * @param airlineName : Airline Name
 	 * @return
 	 * @throws Exception
 	 */
@@ -1445,8 +1435,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * To verify Non Stop Flights Only check box is checked on unchecked
-	 * 
+	 * To verify Onward and Return LFF is displayed
+	 * @param LFF : Lowest Fare Finder calendar
+	 * @return
 	 * @throws Exception
 	 */
 	public boolean verifyOnwardAndReturnLFF(String LFF) throws Exception {
@@ -1466,30 +1457,28 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * To click Flight Details pouUp close link
-	 * 
+	 * To click Onward and Return LFF calendar link
+	 * @param LFF : Lowest Fare Finder calendar
 	 * @throws Exception
 	 */
 	public void clickOnwardAndReturnLFF(String LFF) throws Exception {
 		if (LFF == "OLFF") {
 			Utils.waitForElement(driver, lnkOnwardLFF);
-			BrowserActions.clickOnElement(lnkOnwardLFF, driver, "Click onward LFF - RT");
-			//Utils.waitForPageLoad(driver);
+			BrowserActions.clickOnElement(lnkOnwardLFF, driver, "Click onward LFF - RT");			
 			Log.event("Click onward LFF");
 		} else if (LFF == "RLFF") {
 			Utils.waitForElement(driver, lnkReturnLFF);
-			BrowserActions.clickOnElement(lnkReturnLFF, driver, "Click Return LFF - RT");
-			//Utils.waitForPageLoad(driver);
+			BrowserActions.clickOnElement(lnkReturnLFF, driver, "Click Return LFF - RT");			
 			Log.event("Click Return LFF");
 		}
 	}
 	
 	/**
-	 * To click Flight Details pouUp close link
-	 * 
+	 * To Getting text from calendar Travel Details in LFF
+	 * @param LFF : Lowest Fare Finder calendar
 	 * @throws Exception
 	 */
-	public String getTextOnwardAndReturnLFF(String LFF) throws Exception {
+	public String getTextTravelDetailsInOnwardAndReturnLFF(String LFF) throws Exception {
 		String textLFF = null;
 		if (LFF == "OLFF") {
 			Utils.waitForElement(driver, txtOnwardLFF_TravelDetails);
@@ -1502,8 +1491,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * To click Flight Details pouUp close link
-	 * 
+	 * Getting text from calendar in LFF
+	 * @param LFF : Lowest Fare Finder calendar
 	 * @throws Exception
 	 */
 	public String getTextCalenderInOnwardAndReturnLFF(String LFF) throws Exception {
@@ -1517,8 +1506,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		return textLFF;
 	}
-
-	//iv[id='resultList_0'] h6[class='full']
+	
 
   //*******************************End of SRP Functions********************************************************************************************
 
