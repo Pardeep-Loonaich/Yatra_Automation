@@ -43,8 +43,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "[class ='ico-newHeaderLogo']")
 	private WebElement logoYatra;
 
-	@FindBy(xpath = "//ul[@class='matrix-slide-list tabs matrix-ul']/li[2]")
-	private WebElement matrixStrip;
+	@FindBy(xpath = "//ul[@class='matrix-slide-list tabs matrix-ul']/li")
+	private List<WebElement> lnkAirlineMatrix;
 
 	@FindBy(css = "p[class='new-gray-button fl small link-button']") 
 	private WebElement btnModifySearchIcon;
@@ -220,7 +220,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "#arrivalDate_0")  
 	private WebElement txtReturnDate_ModifySearch;
 	
-	@FindBy(xpath = "//form[@id='modifySearch']/div[2]//li[3]/label//input") 
+	@FindBy(xpath = "//input[@id='BE_flight_non_stop']") 
 	private WebElement txtNonStopFlights_ModifySearch;
 	
 	@FindBy(css = ".select-box-wrapper.fl>select>option[selected='selected']")  
@@ -278,7 +278,35 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	private WebElement iFrameNotification;
 	
 	@FindBy(css = ".matrix-slide-list.tabs.matrix-ul")
-	private WebElement lnkAirlineMatrixStrip;	
+	private WebElement lnkAirlineMatrixStrip;
+	
+	@FindBy(css = "ul[class='matrix-slide-list tabs matrix-ul']>li")  
+	private WebElement lnkAirline;	
+	
+	@FindBy(css = "ul[class='matrix-slide-list tabs matrix-ul'] a[class='matrix-link tabs-link active'] p[class='matrix-label uprcse']")  
+	private WebElement txtselectedAirlineName;
+	
+	@FindBy(xpath = "//label[@class='filter-label nowrap']//span[@class='clip-overflow']")
+	private List<WebElement> txtAirlineName_AirlineFilters;
+	
+	@FindBy(css = "div[id='resultList_0'] div[class='fr leg-fare-cal']")  
+	private WebElement lnkOnwardLFF;
+	
+	@FindBy(css = "div[id='resultList_1'] div[class='fr leg-fare-cal']")  
+	private WebElement lnkReturnLFF;
+	
+	@FindBy(css = "div[id='resultList_1'] p[class='full title-tagline']")  
+	private WebElement txtReturnLFF_TravelDetails;
+	
+	@FindBy(css = "div[id='resultList_0'] p[class='full title-tagline']")  
+	private WebElement txtOnwardLFF_TravelDetails;
+	
+	@FindBy(css = "div[id='resultList_1'] h6[class='full']")  
+	private WebElement txtCalender_ReturnLFF;
+	
+	@FindBy(css = "div[id='resultList_0'] h6[class='full']")  
+	private WebElement txtCalender_OnwardLFF;
+	
 	
 	
 	/**********************************************************************************************
@@ -385,11 +413,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 					+ index
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
 		*/
-		closeINotificationAtTopSRP();
+	
 		
-		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
+		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//div[@class='new-ttlFare']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
+		//closeINotificationAtTopSRP();
 		return new ReviewPage(driver).get();
 	}
 
@@ -413,11 +442,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickAirlineMatrix() throws Exception {
+	/*public void clickAirlineMatrix() throws Exception {
 		BrowserActions.clickOnElement(matrixStrip, driver, "Airline Matrix Strip");
 		Utils.waitForPageLoad(driver);
 
-	}
+	}*/
 
 	/**
 	 * To click on Flight Link
@@ -1187,8 +1216,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	/**
 	 * Getting the text from Destination in Modify Search
-	 * 
-	 * @return
+	 * @return		 
 	 * @throws Exception
 	 */
 	public String getTextDepartDate1_ModifySearch() throws Exception {
@@ -1199,7 +1227,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	/**
 	 * To verify current date selection in Weekly Matrix
-	 * 
+	 * @return
 	 * @throws Exception
 	 */
 	public boolean verifyCurrentDateSelectionInWeeklyMatrix() throws Exception {
@@ -1248,7 +1276,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public List<String> getPassengerClasssDetailsInMofifySearch() throws Exception {		
 		List<String> passengerclassList = new ArrayList<String>();		
-		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("[@id='modifySearch']//select[@ng-model='modifyData.class']"));
+		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("//form[@id='modifySearch']//option[@ng-repeat='key in className']"));
 		for (int i = 0; i < passengerClassList1.size(); i++) {
 			String passengerClass = passengerClassList1.get(i).getText().toString().trim();
 			passengerclassList.add(passengerClass);
@@ -1276,21 +1304,20 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 
 	/**
-	 * Getting the text from Passenger class Drop down in Modify Search panel
+	 * Getting the text Airline Matrix fare details
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public List<String> validateAirlineMatrixFareInAirlineMatrix() throws Exception {		
-		List<String> passengerclassList = new ArrayList<String>();	
-		//@Harveer- as i have already suggest please don't use absolute locator, remove this locator and use @FindBy Annotation
-		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("[@id='modifySearch']//select[@ng-model='modifyData.class']"));
-		for (int i = 0; i < passengerClassList1.size(); i++) {
-			String passengerClass = passengerClassList1.get(i).getText().toString().trim();
-			passengerclassList.add(passengerClass);
+	public List<String> getAirlineMatrixFareDetails() throws Exception {		
+		List<String> airlineMatrixFareDetailsList = new ArrayList<String>();		
+		for (int i = 1; i < lnkAirlineMatrix.size(); i++) {
+			WebElement airlineFareDetails = driver.findElement(By.cssSelector("ul[class='matrix-slide-list tabs matrix-ul'] li:nth-child("+i+") p:nth-child(3)[class='matrix-label uprcse']"));
+			String airlineFare = airlineFareDetails.getText().toString().trim();
+			airlineMatrixFareDetailsList.add(airlineFare);
 		}
-		Log.event("Modify Search Passenger Class drop down details list : "+ passengerclassList);
-		return passengerclassList;
+		Log.event("Airline Matrix fare details : "+ airlineMatrixFareDetailsList);
+		return airlineMatrixFareDetailsList;
 	}
 	
 	/**
@@ -1324,8 +1351,163 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}		
 	}
 	
+	/**
+	 * Getting the text form Airline Names 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> getAirlineNamesInMatrix() throws Exception {		
+		List<String> airlineNamesInMatrix = new ArrayList<String>();		
+		for (int i = 1; i < lnkAirlineMatrix.size(); i++) {
+			WebElement airlineNamesDetails = driver.findElement(By.cssSelector("ul[class='matrix-slide-list tabs matrix-ul'] li:nth-child("+i+") p[class='matrix-label uprcse']"));
+			String airlineNames = airlineNamesDetails.getText().toString().trim();
+			airlineNamesInMatrix.add(airlineNames);
+		}
+		Log.event("Airline Matrix fare details : "+ airlineNamesInMatrix);
+		return airlineNamesInMatrix;
+	}
+	
+	/**
+	 * To Verify Airline Logos in Airline Matrix
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean verifyAirlinelogoInMatrix() throws Exception {
+		boolean status = false;
+		for (int i = 1; i < lnkAirlineMatrix.size(); i++) {
+			WebElement airlineNamesDetails = driver.findElement(By.cssSelector("ul[class='matrix-slide-list tabs matrix-ul'] li:nth-child(" + i	+ ") p[class='matrix-airline-logo']"));
+			if (airlineNamesDetails.isDisplayed()) {
+				status = true;
+			} else {
+				status = false;
+				break;
+			}
+		}
+		return status;
+	}
+	
+
+	/**
+	 * To click Airline in Airline Matrix
+	 * 
+	 * @throws Exception
+	 */
+	public void clickAirlineInAirlineMatrix() throws Exception {
+		Utils.waitForElement(driver, lnkAirline);
+		BrowserActions.clickOnElement(lnkAirline, driver, "Click Airline in Airline Matrix - RT");
+		Utils.waitForPageLoad(driver);
+		Log.event("Click Airline in Airline Matrix");
+	}
+	
+	/**
+	 * Getting the text from Selected Airline Name in Airline Matrix  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSelectedAirlineName() throws Exception {
+		Utils.waitForElement(driver, txtselectedAirlineName);
+		String airlineNameGetTxt = BrowserActions.getText(driver, txtselectedAirlineName, "Selected Airline Name Text Should be displayed on Airline Matrix in SRP Page");
+		return airlineNameGetTxt;
+	}	
 	
 	
+	/**
+	 * To verify selection on particular Airline in Airline Filters 
+	 * @param airlineName : Airline Name
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean verifySelectedAirlineInAirlineFilters(String airlineName) throws Exception {
+		boolean status = false;
+		for (int i = 1; i < txtAirlineName_AirlineFilters.size(); i++) {
+			WebElement airlineFareDetails = driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='clip-overflow']"));
+			String airline = airlineFareDetails.getText().toString().trim();			
+			if (airlineName.equalsIgnoreCase(airline)){				
+				WebElement chkAirline = driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='checkbox']>input"));
+				status = BrowserActions.isRadioOrCheckBoxSelected(chkAirline);
+				break;
+			}
+		}
+		return status;
+	}
+	
+	/**
+	 * To verify Onward and Return LFF is displayed
+	 * @param LFF : Lowest Fare Finder calendar
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean verifyOnwardAndReturnLFF(String LFF) throws Exception {
+		boolean status = false;
+		if (LFF == "OLFF") {
+			boolean boolOnwardLFF = BrowserActions.isElementPresent(driver, lnkOnwardLFF);
+			if (boolOnwardLFF == true) {
+				status = true;
+			}
+		} else if (LFF == "RLFF") {
+			boolean boolReturnLFF = BrowserActions.isElementPresent(driver, lnkReturnLFF);
+			if (boolReturnLFF == true) {
+				status = true;
+			}
+		}
+		return status;
+	}
+	
+	/**
+	 * To click Onward and Return LFF calendar link
+	 * @param LFF : Lowest Fare Finder calendar
+	 * @throws Exception
+	 */
+	public void clickOnwardAndReturnLFF(String LFF) throws Exception {
+		if (LFF == "OLFF") {
+			Utils.waitForElement(driver, lnkOnwardLFF);
+			BrowserActions.clickOnElement(lnkOnwardLFF, driver, "Click onward LFF - RT");			
+			Log.event("Click onward LFF");
+		} else if (LFF == "RLFF") {
+			Utils.waitForElement(driver, lnkReturnLFF);
+			BrowserActions.clickOnElement(lnkReturnLFF, driver, "Click Return LFF - RT");			
+			Log.event("Click Return LFF");
+		}
+	}
+	
+	/**
+	 * To Getting text from calendar Travel Details in LFF
+	 * @param LFF : Lowest Fare Finder calendar
+	 * @throws Exception
+	 */
+	public String getTextTravelDetailsInOnwardAndReturnLFF(String LFF) throws Exception {
+		String textLFF = null;
+		if (LFF == "OLFF") {
+			Utils.waitForElement(driver, txtOnwardLFF_TravelDetails);
+			textLFF = BrowserActions.getText(driver, txtOnwardLFF_TravelDetails, "Onward LFF Travel details text should be displayed");
+		} else if (LFF == "RLFF") {
+			Utils.waitForElement(driver, txtReturnLFF_TravelDetails);
+			textLFF = BrowserActions.getText(driver, txtReturnLFF_TravelDetails, "Return LFF Travel details text should be displayed");
+		}
+		return textLFF;
+	}
+	
+	/**
+	 * Getting text from calendar in LFF
+	 * @param LFF : Lowest Fare Finder calendar
+	 * @throws Exception
+	 */
+	public String getTextCalenderInOnwardAndReturnLFF(String LFF) throws Exception {
+		String textLFF = null;
+		if (LFF == "OLFF") {
+			Utils.waitForElement(driver, txtOnwardLFF_TravelDetails);
+			textLFF = BrowserActions.getText(driver, txtCalender_OnwardLFF, "Onward LFF Calender text should be displayed");
+		} else if (LFF == "RLFF") {
+			Utils.waitForElement(driver, txtReturnLFF_TravelDetails);
+			textLFF = BrowserActions.getText(driver, txtCalender_ReturnLFF, "Return LFF Calender text should be displayed");
+		}
+		return textLFF;
+	}
+	
+
   //*******************************End of SRP Functions********************************************************************************************
 
 } // SearchResult
