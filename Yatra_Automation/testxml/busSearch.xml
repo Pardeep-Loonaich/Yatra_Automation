@@ -4,7 +4,7 @@
 <suite name=" Yatra Bus Search Automation Test" verbose="3" parallel="true" thread-count="5">
 	
 	<parameter name="workBookName" value="testdata\\data\\Bus.xls" />
-	<parameter name="sheetName" value="BusSearch" />
+	<parameter name="sheetName" value="BusSearch"/>
 
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
@@ -14,11 +14,7 @@
 
 	<test name="Bus Search" thread-count="1" parallel="true">
 		<classes>
-			<class name="com.Yatra.TestScript.Bus.BusSearchTest">
-		
-          </class>          
-
+			<class name="com.Yatra.TestScript.Bus.BusSearchTest"></class>          
 		</classes>
-
 	</test>
 </suite>
