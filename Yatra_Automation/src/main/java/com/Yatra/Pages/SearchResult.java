@@ -220,7 +220,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "#arrivalDate_0")  
 	private WebElement txtReturnDate_ModifySearch;
 	
-	@FindBy(xpath = "//form[@id='modifySearch']/div[2]//li[3]/label//input") 
+	@FindBy(xpath = "//input[@id='BE_flight_non_stop']") 
 	private WebElement txtNonStopFlights_ModifySearch;
 	
 	@FindBy(css = ".select-box-wrapper.fl>select>option[selected='selected']")  
@@ -280,6 +280,32 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = ".matrix-slide-list.tabs.matrix-ul")
 	private WebElement lnkAirlineMatrixStrip;
 	
+	@FindBy(css = "ul[class='matrix-slide-list tabs matrix-ul']>li")  
+	private WebElement lnkAirline;	
+	
+	@FindBy(css = "ul[class='matrix-slide-list tabs matrix-ul'] a[class='matrix-link tabs-link active'] p[class='matrix-label uprcse']")  
+	private WebElement txtselectedAirlineName;
+	
+	@FindBy(xpath = "//label[@class='filter-label nowrap']//span[@class='clip-overflow']")
+	private List<WebElement> txtAirlineName_AirlineFilters;
+	
+	@FindBy(css = "div[id='resultList_0'] div[class='fr leg-fare-cal']")  
+	private WebElement lnkOnwardLFF;
+	
+	@FindBy(css = "div[id='resultList_1'] div[class='fr leg-fare-cal']")  
+	private WebElement lnkReturnLFF;
+	
+	@FindBy(css = "div[id='resultList_1'] p[class='full title-tagline']")  
+	private WebElement txtReturnLFF_TravelDetails;
+	
+	@FindBy(css = "div[id='resultList_0'] p[class='full title-tagline']")  
+	private WebElement txtOnwardLFF_TravelDetails;
+	
+	@FindBy(css = "div[id='resultList_1'] h6[class='full']")  
+	private WebElement txtCalender_ReturnLFF;
+	
+	@FindBy(css = "div[id='resultList_0'] h6[class='full']")  
+	private WebElement txtCalender_OnwardLFF;
 	
 	
 	
@@ -1250,7 +1276,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public List<String> getPassengerClasssDetailsInMofifySearch() throws Exception {		
 		List<String> passengerclassList = new ArrayList<String>();		
-		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("[@id='modifySearch']//select[@ng-model='modifyData.class']"));
+		List<WebElement> passengerClassList1 = driver.findElements(By.xpath("//form[@id='modifySearch']//option[@ng-repeat='key in className']"));
 		for (int i = 0; i < passengerClassList1.size(); i++) {
 			String passengerClass = passengerClassList1.get(i).getText().toString().trim();
 			passengerclassList.add(passengerClass);
@@ -1362,6 +1388,137 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return status;
 	}
 	
+
+	/**
+	 * To click Flight Details pouUp close link
+	 * 
+	 * @throws Exception
+	 */
+	public void clickAirlineInAirlineMatrix() throws Exception {
+		Utils.waitForElement(driver, lnkAirline);
+		BrowserActions.clickOnElement(lnkAirline, driver, "Click Airline in Airline Matrix - RT");
+		Utils.waitForPageLoad(driver);
+		Log.event("Click Airline in Airline Matrix");
+	}
+	
+	/**
+	 * Getting the text from Corporate Login in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSelectedAirlineName() throws Exception {
+		Utils.waitForElement(driver, txtselectedAirlineName);
+		String airlineNameGetTxt = BrowserActions.getText(driver, txtselectedAirlineName, "Selected Airline Name Text Should be displayed on Airline Matrix in SRP Page");
+		return airlineNameGetTxt;
+	}
+	
+	/**
+	 * To verify Non Stop Flights Only check box is checked on unchecked
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifySelectedAirlineInAirlineFilters1() throws Exception {
+		boolean status = BrowserActions.isRadioOrCheckBoxSelected(txtNonStopFlights_ModifySearch);	 
+		return status;
+	}
+	
+	/**
+	 * Getting the text Airline Matrix fare details
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean verifySelectedAirlineInAirlineFilters(String airlineName) throws Exception {
+		boolean status = false;
+		for (int i = 1; i < txtAirlineName_AirlineFilters.size(); i++) {
+			WebElement airlineFareDetails = driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='clip-overflow']"));
+			String airline = airlineFareDetails.getText().toString().trim();			
+			if (airlineName.equalsIgnoreCase(airline)){				
+				WebElement chkAirline = driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='checkbox']>input"));
+				status = BrowserActions.isRadioOrCheckBoxSelected(chkAirline);
+				break;
+			}
+		}
+		return status;
+	}
+	
+	/**
+	 * To verify Non Stop Flights Only check box is checked on unchecked
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyOnwardAndReturnLFF(String LFF) throws Exception {
+		boolean status = false;
+		if (LFF == "OLFF") {
+			boolean boolOnwardLFF = BrowserActions.isElementPresent(driver, lnkOnwardLFF);
+			if (boolOnwardLFF == true) {
+				status = true;
+			}
+		} else if (LFF == "RLFF") {
+			boolean boolReturnLFF = BrowserActions.isElementPresent(driver, lnkReturnLFF);
+			if (boolReturnLFF == true) {
+				status = true;
+			}
+		}
+		return status;
+	}
+	
+	/**
+	 * To click Flight Details pouUp close link
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnwardAndReturnLFF(String LFF) throws Exception {
+		if (LFF == "OLFF") {
+			Utils.waitForElement(driver, lnkOnwardLFF);
+			BrowserActions.clickOnElement(lnkOnwardLFF, driver, "Click onward LFF - RT");
+			//Utils.waitForPageLoad(driver);
+			Log.event("Click onward LFF");
+		} else if (LFF == "RLFF") {
+			Utils.waitForElement(driver, lnkReturnLFF);
+			BrowserActions.clickOnElement(lnkReturnLFF, driver, "Click Return LFF - RT");
+			//Utils.waitForPageLoad(driver);
+			Log.event("Click Return LFF");
+		}
+	}
+	
+	/**
+	 * To click Flight Details pouUp close link
+	 * 
+	 * @throws Exception
+	 */
+	public String getTextOnwardAndReturnLFF(String LFF) throws Exception {
+		String textLFF = null;
+		if (LFF == "OLFF") {
+			Utils.waitForElement(driver, txtOnwardLFF_TravelDetails);
+			textLFF = BrowserActions.getText(driver, txtOnwardLFF_TravelDetails, "Onward LFF Travel details text should be displayed");
+		} else if (LFF == "RLFF") {
+			Utils.waitForElement(driver, txtReturnLFF_TravelDetails);
+			textLFF = BrowserActions.getText(driver, txtReturnLFF_TravelDetails, "Return LFF Travel details text should be displayed");
+		}
+		return textLFF;
+	}
+	
+	/**
+	 * To click Flight Details pouUp close link
+	 * 
+	 * @throws Exception
+	 */
+	public String getTextCalenderInOnwardAndReturnLFF(String LFF) throws Exception {
+		String textLFF = null;
+		if (LFF == "OLFF") {
+			Utils.waitForElement(driver, txtOnwardLFF_TravelDetails);
+			textLFF = BrowserActions.getText(driver, txtCalender_OnwardLFF, "Onward LFF Calender text should be displayed");
+		} else if (LFF == "RLFF") {
+			Utils.waitForElement(driver, txtReturnLFF_TravelDetails);
+			textLFF = BrowserActions.getText(driver, txtCalender_ReturnLFF, "Return LFF Calender text should be displayed");
+		}
+		return textLFF;
+	}
+
+	//iv[id='resultList_0'] h6[class='full']
+
   //*******************************End of SRP Functions********************************************************************************************
 
 } // SearchResult
