@@ -31,6 +31,12 @@ import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
 
+/**
+ * @Description:<br>
+ * this class have all test case related to search flight module 
+ * @author harveer.singh
+ *
+ */
 @Listeners(EmailReport.class)
 public class FlightSearch {
 
