@@ -20,6 +20,8 @@ import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
+import bsh.util.Util;
+
 public class SearchResult extends LoadableComponent<SearchResult> {
 
 	private String appURL;
@@ -280,12 +282,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "i[class='ico ico-check']")
 	private WebElement  chkSelectAirline;
 	
-	@FindBy(xpath="//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
-	private WebElement iFrameNotification;
-	
+	/*@FindBy(xpath="//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
+	private WebElement iFrameNotification;*/
+
 	@FindBy(css = ".matrix-slide-list.tabs.matrix-ul")
 	private WebElement lnkAirlineMatrixStrip;
-	
 	@FindBy(css = "ul[class='matrix-slide-list tabs matrix-ul']>li")  
 	private WebElement lnkAirline;	
 	
@@ -295,10 +296,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "//label[@class='filter-label nowrap']//span[@class='clip-overflow']")
 	private List<WebElement> txtAirlineName_AirlineFilters;
 	
-	@FindBy(css = "div[id='resultList_0'] div[class='fr leg-fare-cal']")  
+	@FindBy(css = "div[id='resultList_0'] a[datep-obj='findLowesFare']")  
 	private WebElement lnkOnwardLFF;
 	
-	@FindBy(css = "div[id='resultList_1'] div[class='fr leg-fare-cal']")  
+	@FindBy(css = "div[id='resultList_1'] a[datep-obj='findLowesFare']")  
 	private WebElement lnkReturnLFF;
 	
 	@FindBy(css = "div[id='resultList_1'] p[class='full title-tagline']")  
@@ -312,8 +313,56 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "div[id='resultList_0'] h6[class='full']")  
 	private WebElement txtCalender_OnwardLFF;
+
 	
+	@FindBy(css = "i[class='ico ico-fare-cal-fixed']")  
+	private WebElement lnkFareAlert;
 	
+	@FindBy(css = "div[id='fareAlertPopup'] span[class='bold']")  
+	private WebElement txtFareAlertTitle;
+	
+	@FindBy(css = "input[class='new-blue-button search-btn']")  
+	private WebElement btnSetAlert_FareAlert;
+	
+	@FindBy(css = "form[id='fare-alert-form'] input[name='origin']")  
+	private WebElement txtOrigin_FareAlert;
+	
+	@FindBy(css = "form[id='fare-alert-form'] input[name='destination']")  
+	private WebElement txtDestination_FareAlert;
+	
+	@FindBy(css = "form[id='fare-alert-form'] li[class='search-limit'] a")  
+	private WebElement lnkExactDates_FareAlert;
+	
+	@FindBy(css = "form[id='fare-alert-form'] li[class='active']>a")  
+	private WebElement lnkDays_FareAlert;
+	
+	@FindBy(css = "form[id='fare-alert-form'] input[name='departDate']")  
+	private WebElement txtDepartureDate_FareAlert;
+	
+	@FindBy(css = "form[id='fare-alert-form'] input[name='trackPrice']")  
+	private WebElement txtMaxPrice_FareAlert;
+	
+	@FindBy(css = "form[id='fare-alert-form'] input[name='email']")  
+	private WebElement txtEmail_FareAlert;
+	
+	@FindBy(css = "form[id='fare-alert-form'] select[name='mobileISD']")  
+	private WebElement drpMobileSTD_FareAlert;
+	
+	@FindBy(css = "form[id='fare-alert-form'] input[name='mobile']")  
+	private WebElement txtMobile_FareAlert;
+	
+	@FindBy(css = "div[id='fareAlertPopup'] p[class='text-success tc']")  
+	private WebElement txtFareAlertMessage;
+
+	@FindBy(css = "ul[class='tab fs-md']>li:not([class='active'])>a[yatratrackable='Flights|Search|flight_details|FareSummary']")  
+	private WebElement lnkFareAndSummaryFlightDetail;
+	
+	@FindBy(css = "ul[class='tab fs-md']>li:nth-child(3)>a")  
+	private WebElement lnkBaggageFlightDetail;
+
+	@FindBy(css = "div[class='row baggage-summary']")  
+	private WebElement txtBaggageInfoFlightDetail;
+
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -399,7 +448,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public ReviewPage clickOnBookNowINT() throws Exception {
+	public ReviewPage clickOnBookNowINT() throws Exception 
+	{
+		closeINotificationAtTopSRP();
 		BrowserActions.scrollToView(btnBookNowINT, driver);
 		BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button.");
 		return new ReviewPage(driver).get();
@@ -413,13 +464,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		
-		
+	
 	
 		closeINotificationAtTopSRP();
-		
 		WebElement wBookNow=driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])["+index+"]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
+		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
 		
 		return new ReviewPage(driver).get();
@@ -547,7 +597,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickOnlnkFlightDetails_INTL() throws Exception {		
-		closeINotificationAtTopSRP();
 		BrowserActions.nap(2);
 		BrowserActions.scrollToView(lnkFlightDetails_INTL, driver);
 		BrowserActions.clickOnElement(lnkFlightDetails_INTL, driver, "Link Flight Details For International One Way");
@@ -638,7 +687,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextFromYatraLogo() throws Exception {
 		Utils.waitForElement(driver, lnkYatraLogo);
-		BrowserActions.mouseHover(driver, lnkYatraLogo);
+		//BrowserActions.mouseHover(driver, lnkYatraLogo); //FF issue
 		return (BrowserActions.getTextFromAttribute(driver, lnkYatraLogo, "title", "Yatra Logo title"));
 	}
 
@@ -1018,10 +1067,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickModifySearch() throws Exception {
-		BrowserActions.nap(20);
+
+		BrowserActions.nap(30);
 		Utils.waitForElement(driver, btnModifySearchIcon);	
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
-		BrowserActions.nap(1);
+		BrowserActions.nap(3);
 		Utils.waitForPageLoad(driver);
 		Log.event("Clicked Modify Search link in SRP");
 	}
@@ -1342,9 +1392,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception 
 	 */
 	public void closeINotificationAtTopSRP() throws Exception {			
-		boolean boolFrameNotification = BrowserActions.isElementPresent(driver, iFrameNotification);
-		if (boolFrameNotification == true) {
-			BrowserActions.nap(2);
+		//boolean boolFrameNotification = BrowserActions.isElementPresent(driver, iFrameNotification);
+		if (driver.findElements(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']")).size()>0) 
+		{
+			WebElement iFrameNotification=driver.findElement(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"));
 			BrowserActions.switchToIframe(driver, iFrameNotification);
 			BrowserActions.nap(2);
 			BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
@@ -1446,11 +1497,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public boolean verifyOnwardAndReturnLFF(String LFF) throws Exception {
 		boolean status = false;
 		if (LFF == "OLFF") {
+			Utils.waitForElement(driver, lnkOnwardLFF);
 			boolean boolOnwardLFF = BrowserActions.isElementPresent(driver, lnkOnwardLFF);
 			if (boolOnwardLFF == true) {
 				status = true;
 			}
 		} else if (LFF == "RLFF") {
+			Utils.waitForElement(driver, lnkReturnLFF);
 			boolean boolReturnLFF = BrowserActions.isElementPresent(driver, lnkReturnLFF);
 			if (boolReturnLFF == true) {
 				status = true;
@@ -1509,8 +1562,202 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		return textLFF;
 	}
+
+	
+	/**
+	 * To click Fare Alert pop up
+	 * 
+	 * @throws Exception
+	 */
+	public void clickFareAlertPopup() throws Exception {
+		Utils.waitForElement(driver, lnkFareAlert);
+		BrowserActions.clickOnElement(lnkFareAlert, driver, "Click Fare Alert");
+		Utils.waitForPageLoad(driver);
+		Log.event("Click Fare Alert");
+	}
+	
+	/**
+	 * Getting the text from Title in Fare Alert pop up  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFareAlertPopupTitle() throws Exception {
+		Utils.waitForElement(driver, txtFareAlertTitle);
+		String airlineNameGetTxt = BrowserActions.getText(driver, txtFareAlertTitle, "Fare Alert Title text should be displayed");
+		return airlineNameGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Leaving From text box in Fare Alert pop up  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextLeavingFromInFareAlert() throws Exception {
+		Utils.waitForElement(driver, txtOrigin_FareAlert);
+		String leavingFromGetTxt = BrowserActions.getTextFromAttribute(driver, txtOrigin_FareAlert, "ng-favalidate",  "Leaving From in Fare Alert");
+		return leavingFromGetTxt;
+	}
+	
+	
+	/**
+	 * Getting the text from Going To text box in Fare Alert pop up  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextGoingToInFareAlert() throws Exception {
+		Utils.waitForElement(driver, txtDestination_FareAlert);
+		String goingToGetTxt = BrowserActions.getTextFromAttribute(driver, txtDestination_FareAlert, "ng-favalidate",  "Going To in Fare Alert");
+		return goingToGetTxt;
+	}
+	
+	/**
+	 * Getting the text from ExactDays in Fare Alert pop up  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextExactDatesInFareAlert() throws Exception {
+		Utils.waitForElement(driver, lnkExactDates_FareAlert);
+		String airlineNameGetTxt = BrowserActions.getText(driver, lnkExactDates_FareAlert, "Fare Alert Title text should be displayed");
+		return airlineNameGetTxt;
+	}
+	
+	
+	/**
+	 * Getting the text from Days in Fare Alert pop up  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDaysInFareAlert() throws Exception {
+		Utils.waitForElement(driver, lnkDays_FareAlert);
+		String airlineNameGetTxt = BrowserActions.getText(driver, lnkDays_FareAlert, "Fare Alert Title text should be displayed");
+		return airlineNameGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Departure field in Fare Alert pop up  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDepartureInFareAlert() throws Exception {
+		Utils.waitForElement(driver, txtDepartureDate_FareAlert);
+		String airlineNameGetTxt = BrowserActions.getText(driver, txtDepartureDate_FareAlert, "Fare Alert Title text should be displayed");
+		return airlineNameGetTxt;
+	}
+	
+	/**
+	 * Enter Max Price in Fare Alert pop up
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterMaxPriceInFareAlert(String price) throws Exception {
+		Utils.waitForElement(driver, txtMaxPrice_FareAlert);		
+		BrowserActions.typeOnTextField(txtMaxPrice_FareAlert, price, driver, "Enter Max Price");					
+		Log.event("Entered the Max Price: " + price);		
+	}
+	
+	/**
+	 * Enter Email in Fare Alert pop up
+	 * 
+	 * @param email
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterEmailInFareAlert(String email) throws Exception {
+		Utils.waitForElement(driver, txtEmail_FareAlert);		
+		BrowserActions.typeOnTextField(txtEmail_FareAlert, email, driver, "Enter Email");				
+		Log.event("Entered Email: " + email);		
+	}
+	
+	/**
+	 * Enter Mobile number in Fare Alert pop up
+	 * 
+	 * @param mobile
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterMobileInFareAlert(String mobile) throws Exception {
+		Utils.waitForElement(driver, txtMobile_FareAlert);		
+		BrowserActions.typeOnTextField(txtMobile_FareAlert, mobile, driver, "Enter Mobile");					
+		Log.event("Entered the Mobile: " + mobile);		
+	}
+	
+	
+	/**
+	 * To click Set Alert button in Fare Alert pop up
+	 * 
+	 * @throws Exception
+	 */
+	public void clickSetAlertButtonInFareAlertp() throws Exception {
+		Utils.waitForElement(driver, btnSetAlert_FareAlert);
+		BrowserActions.clickOnElement(btnSetAlert_FareAlert, driver, "Click Set Alert button in Fare Alert");
+		Utils.waitForPageLoad(driver);
+		Log.event("Click Set Alert button in Fare Alert");
+	}
+	
+	/**
+	 * Getting the text from Success message in Fare Alert pop up  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFareAlertSuccessMesaage() throws Exception {
+		Utils.waitForElement(driver, txtFareAlertMessage);
+		String messageGetTxt = BrowserActions.getText(driver, txtFareAlertMessage, "Fare Alert success message text should be displayed");
+		return messageGetTxt;
+	}
+	
+	/**
+	 * Select Mobile STD in Fare Alert pop up
+	 * 
+	 * @param mobileSTD
+	 *            as string
+	 * @throws Exception
+	 */
+	public void selectMobileSTDInFareAlert(String mobileSTD) throws Exception {
+		Utils.waitForElement(driver, txtMobile_FareAlert);		
+		BrowserActions.selectDropDownValue(driver, drpMobileSTD_FareAlert, "Select Mobile STD code");					
+		Log.event("Selected the Mobile STD code: " + mobileSTD);		
+	}
+
+
+	/**
+	 * To click Fare And Summary in Flight Detail Pop Up
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnFareAndSummaryFlightDetail() throws Exception {
+		Utils.waitForPageLoad(driver);	
+		BrowserActions.clickOnElement(lnkFareAndSummaryFlightDetail, driver, "Click Fare And Summary Link");
+	}
 	
 
+	/**
+	 * To click Baggage in Flight Detail Pop Up
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnBaggageFlightDetail() throws Exception {
+		Utils.waitForPageLoad(driver);	
+		BrowserActions.clickOnElement(lnkBaggageFlightDetail, driver, "Click Baggage Link");
+	}
+	/**
+	 * To get text Baggage Details In Flight Details pop Up
+	 * @throws Exception
+	 */
+	
+	public String getTextBaggageInfoFlightDetail() throws Exception {
+		String Details = txtBaggageInfoFlightDetail.getText();
+		return Details;
+	}
+	
   //*******************************End of SRP Functions********************************************************************************************
 
 } // SearchResult

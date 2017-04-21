@@ -642,17 +642,31 @@ public class BrowserActions {
 	 * @param alert
 	 * @param sAction
 	 */
-	public static void javaScriptAlertPopUpHandler(WebDriver driver, String sAction){
-		Alert alert = driver.switchTo().alert();
-		if ("ok".equalsIgnoreCase(sAction.toLowerCase().trim())){
+	public static void javaScriptAlertPopUpHandler(WebDriver driver, String sAction)
+
+	{
+		Alert alert=driver.switchTo().alert();
+		if("ok".equalsIgnoreCase(sAction.toLowerCase().trim()))
+
+		{	
 			Log.message("Accepting Alert Pop UP..");
 			alert.accept();
-		} else if ("cancel".equalsIgnoreCase(sAction.toLowerCase().trim())){
+
+		}
+		else if("cancel".equalsIgnoreCase(sAction.toLowerCase().trim()))
+
+		{
 			Log.message("Canceling Alert Pop UP..");
 			alert.dismiss();
+
 		}
 		driver.switchTo().defaultContent();
+
+
+		
 		driver.switchTo().defaultContent();
+
+
 	}
 	
 	
@@ -661,9 +675,12 @@ public class BrowserActions {
 	 * @param: driver- provide current driver instance.
 	 * @param: sIframeNameOrId- String
 	 */
-	public static void switchToIframe(WebDriver driver, String sIframeNameOrId) {
+	public static void switchToIframe(WebDriver driver, String sIframeNameOrId)
+	{
+		
 		driver.switchTo().frame(sIframeNameOrId);
 	}
+	
 	
 
 	/**
@@ -671,16 +688,22 @@ public class BrowserActions {
 	 * @param: driver- provide current driver instance.
 	 * @param: WebElement
 	 */
-	public static void switchToIframe(WebDriver driver, WebElement sIframeNameOrId) {
+	public static void switchToIframe(WebDriver driver, WebElement sIframeNameOrId)
+	{
+		
 		driver.switchTo().frame(sIframeNameOrId);
 	}
-
-	public static void switchToDefault(WebDriver driver) {
+	
+	
+	
+	public static void switchToDefault(WebDriver driver)
+	{
+		
 		driver.switchTo().defaultContent();
 	}
 	
 	/**
-	 * @author : Narayana
+	 * @author 
 	 * 
 	 * @param driver
 	 * @param sring
@@ -693,15 +716,10 @@ public class BrowserActions {
 		return dataToBeReturn;
 	}
 	
-	
 	/**
-	 * @author : Narayana
-	 * @Description: verification on element present
-	 * @param driver
-	 *            : WebDriver Instances
-	 * @param locator
-	 *            : WebElement
-	 * @return: boolean
+	 * Description: iframe handling 
+	 * @param: driver- provide current driver instance.
+	 * @param: WebElement
 	 */
 	public static boolean isElementPresent(WebDriver driver, WebElement locator) {
 		try {
@@ -712,16 +730,6 @@ public class BrowserActions {
 		}
 	}
 
-	/**
-	 * 
-	 * @author : Narayana
-	 * @Description: verification on element visible
-	 * @param driver
-	 *            : WebDriver Instances
-	 * @param locator
-	 *            : WebElement
-	 * @return: boolean
-	 */
 	public static boolean isElementVisible(WebDriver driver, WebElement locator) {
 		try {
 			locator.isEnabled();
@@ -729,17 +737,8 @@ public class BrowserActions {
 		} catch (Exception e) {
 			return false;
 		}
-	}
-
-	/**
-	 * @author : Narayana
-	 * @Description: verification on element selection
-	 * @param driver
-	 *            : WebDriver Instances
-	 * @param locator
-	 *            : WebElement
-	 * @return: boolean
-	 */
+	}	
+	
 	public static boolean isElementSelected(WebDriver driver, WebElement locator) {
 		try {
 			locator.isEnabled();
@@ -748,6 +747,7 @@ public class BrowserActions {
 			return false;
 		}
 	}
+	
 	
 
 }// BrowserActions page

@@ -148,7 +148,7 @@ public class PaymentTest {
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
-
+			
 			Thread.sleep(1000);
 			paymentPage.verifyCancelEcash();
 			Log.message(". Clicked on Cancel ecash.");
@@ -5154,9 +5154,6 @@ public class PaymentTest {
 			Log.endTestCase();
 		}
 	}
-
-
-
 
 
 

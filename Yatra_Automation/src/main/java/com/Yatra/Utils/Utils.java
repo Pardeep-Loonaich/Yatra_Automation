@@ -2,7 +2,11 @@ package com.Yatra.Utils;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -25,7 +29,7 @@ import org.openqa.selenium.JavascriptExecutor;
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 
-	public static int maxElementWait = 60;
+	public static int maxElementWait = 90;
 
 
 	/**
@@ -641,7 +645,21 @@ public class Utils {
 //				// no message please
 //			}
 		}
-
+	
+	/**
+	 * Purpose: to capture response code for an url<br>
+	 * @param urlString: URL (String)<br>
+	 * @return: method will return response code<br>
+	 * @throws MalformedURLException,IOException: this method will through IO and  MalformedURl exception
+	 *  
+	 */
+	public static int getResponseCode(String urlString) throws MalformedURLException, IOException{
+	    URL url = new URL(urlString);
+	    HttpURLConnection huc = (HttpURLConnection)url.openConnection();
+	    huc.setRequestMethod("GET");
+	    huc.connect();
+	    return huc.getResponseCode();
+	}
 
 
 }

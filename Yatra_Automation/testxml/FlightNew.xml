@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name=" Yatra Activites Search Automation Test" verbose="3" parallel="true" thread-count="5">
+	
+	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
+	<parameter name="sheetName" value="FlightNew"/>
+
+	<!-- parameter for device host and port -->
+	<parameter name="deviceHost" value="localhost" />
+	<parameter name="devicePort" value="4444" />
+	<parameter name="browserName" value="chrome_windows" />
+	<parameter name="webSite" value="https://www.yatra.com/" />
+
+	<test name="Activites Search" thread-count="1" parallel="true">
+		<classes>
+			<class name="com.Yatra.TestScript.Flights.FlightNew"></class>          
+		</classes>
+	</test>
+</suite>
