@@ -152,6 +152,15 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	@FindBy(css= "button[class='button sleek-btn promo-btn ng-binding']")
 	private WebElement  btnApplyPromoCode;
+	
+	@FindBy(css= "div[class='box hide-under-overlay ng-scope']>h3[class='box-title fs-md normal ng-binding']")
+	private WebElement  txtReviewYourBooking;
+	
+	@FindBy(css= "h3>span[class='pull-left w85perc ng-binding']")
+	private WebElement  txtPromoDiscountApplied;
+	
+	@FindBy(css= "div[class='text-right alignment ng-scope']>span[class='block fs-xlg gray-dark u-pay ng-binding']")
+	private WebElement  totalAmountInreviewPage;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -307,7 +316,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.scrollToView(drpPromoCode, driver);
 		BrowserActions.clickOnElement(drpPromoCode, driver, "To click on Promo code Dropdown.");
 	}
-
+	
+	public void selectPromoByIndex(int Index) throws Exception {
+		driver.findElement(By.cssSelector("div[class='col-sm-6 promo-select-ui width-increased']>ul>li:nth-child("+Index+")>label")).click();;
+	}
 	/**
 	 * To click promo drop down on Review page fetch coupon text from the
 	 * dropdown submit the received coupon and click on Apply button on Review
@@ -480,7 +492,36 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		public String getTextFromPromoMessage() throws Exception {
 			String ErrorMessage = BrowserActions.getText(driver, PromoCodeErrorMessage, "Getting Error text from the Promo Code");
 			return ErrorMessage;
-
 		}
-
+		/**
+		 * Getting the text of text Review Your Booking
+		 * 
+		 * @return String
+		 * @throws Exception
+		 */
+		public String getTextReviewBooking() throws Exception {
+			String Message = BrowserActions.getText(driver, txtReviewYourBooking, "Getting Error text Review Your Booking");
+			return Message;
+		}
+		/**
+		 * Getting the text of Promo Applied
+		 * 
+		 * @return String
+		 * @throws Exception
+		 */
+		public String getTextPromotinalMessage() throws Exception {
+			String Message = BrowserActions.getText(driver, txtPromoDiscountApplied, "Getting Text of Promo Applied");
+			return Message;
+		}
+		/**
+		 * GGetting Text of Total Amount
+		 * 
+		 * @return String
+		 * @throws Exception
+		 */
+		public String getTextTotalAmount() throws Exception {
+			String Amount = BrowserActions.getText(driver, totalAmountInreviewPage, "Getting Text of Total Amount");
+			return Amount;
+		}
+		//
 } //ReviewPage

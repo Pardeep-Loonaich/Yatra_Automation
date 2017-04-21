@@ -122,6 +122,7 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @throws Exception
 	 */
 	public String getTextErrorMessage() throws Exception {
+		Utils.waitForPageLoad(driver);
 		String txtDetails = BrowserActions.getText(driver, txtNoResultFound,
 				"Getting text from the SRP 'No Activity found'");
 		return txtDetails;
@@ -153,6 +154,7 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @throws Exception
 	 */
 	public boolean getSortedPopluarActivity() throws Exception {
+		
 		boolean Flag = true;
 		ArrayList<String> popular = new ArrayList<String>();
 		for (int j = 1; j < 5; j++) {
@@ -187,6 +189,7 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @throws Exception
 	 */
 	public String getTextActivityDetailsByTileIndex(int index) throws Exception {
+		Utils.waitForPageLoad(driver);
 		String txtDetails = BrowserActions.getText(driver, driver.findElement(By.cssSelector("article[class='my-res fr eventTrackable ng-scope']:nth-child("+index+")>div[class='my-res-info']>div[class='my-desc']>h3")), "Getting text of the Activity.");
 		return txtDetails;
 	}
@@ -198,7 +201,8 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @throws Exception
 	 */
 	public ActivityDetailPage ClickBookNowByIndex(int index) throws Exception {
-	 driver.findElement(By.cssSelector("article[class='my-res fr eventTrackable ng-scope']:nth-child("+index+")>div[class='my-res-info']>div[class='my-price tr']>a")).click();
+	Utils.waitForPageLoad(driver);
+	driver.findElement(By.cssSelector("article[class='my-res fr eventTrackable ng-scope']:nth-child("+index+")>div[class='my-res-info']>div[class='my-price tr']>a")).click();
 	return new ActivityDetailPage(driver).get();
 	}
 	
