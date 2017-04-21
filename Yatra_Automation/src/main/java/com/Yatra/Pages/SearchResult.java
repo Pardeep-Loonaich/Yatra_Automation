@@ -274,8 +274,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "i[class='ico ico-check']")
 	private WebElement  chkSelectAirline;
 	
-	@FindBy(xpath="//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
-	private WebElement iFrameNotification;
+	/*@FindBy(xpath="//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
+	private WebElement iFrameNotification;*/
 
 	@FindBy(css = ".matrix-slide-list.tabs.matrix-ul")
 	private WebElement lnkAirlineMatrixStrip;
@@ -413,12 +413,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 					+ index
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
 		*/
-	
+		closeINotificationAtTopSRP();
 		
-		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//div[@class='new-ttlFare']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
+		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
 		BrowserActions.scrollToView(wBookNow, driver);
+		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
-		//closeINotificationAtTopSRP();
+		
 		return new ReviewPage(driver).get();
 	}
 
@@ -1339,9 +1340,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception 
 	 */
 	public void closeINotificationAtTopSRP() throws Exception {			
-		boolean boolFrameNotification = BrowserActions.isElementPresent(driver, iFrameNotification);
-		if (boolFrameNotification == true) {
-			BrowserActions.nap(2);
+		//boolean boolFrameNotification = BrowserActions.isElementPresent(driver, iFrameNotification);
+		if (driver.findElements(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']")).size()>0) 
+		{
+			WebElement iFrameNotification=driver.findElement(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"));
 			BrowserActions.switchToIframe(driver, iFrameNotification);
 			BrowserActions.nap(2);
 			BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
