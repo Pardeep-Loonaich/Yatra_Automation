@@ -1688,14 +1688,17 @@ public class BusSearchTest {
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			 reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
+			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			Log.message("11. Clicked On Book Now!");
+			
 			travellerPageBus.TravellerDetails(name);
-			Log.message("11. Filled Guest Details!");
+			Log.message("12. Filled Guest Details!");
 
 			travellerPageBus.clickOnContinueInTravellerPage();
-			Log.message("12. Clicked on Continue!");
+			Log.message("13. Clicked on Continue!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify the guest Flow");
@@ -1835,11 +1838,13 @@ public class BusSearchTest {
 
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
+			
+			reviewPageBus.clickOnbtnBookNow();
+			Log.message("11. Clicked On Book Now!");
 			String Error = reviewPageBus.getTextErrorMsg();
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify mobile No. & ISD code valdation");
-			Thread.sleep(6000);
 			Log.assertThat(reviewPageBus.elementLayer.verifyPageElements(Arrays.asList("BtnChangeBus"), reviewPageBus),
 					"<b>Actual Result:</b> After Entering invalid Phone Number an error Message is Displayed as :"
 							+ Error,
@@ -1966,14 +1971,17 @@ public class BusSearchTest {
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
+			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			Log.message("11. Clicked On Book Now!");
+			
 			travellerPageBus.TravellerDetails(name);
-			Log.message("11. Filled Guest Details!");
+			Log.message("12. Filled Guest Details!");
 
 			travellerPageBus.clickOnContinue();
-			Log.message("12. Clicked on Continue!");
+			Log.message("13. Clicked on Continue!");
 			String Error = travellerPageBus.getTextErrorMsg();
 
 			Log.message("<br>");
@@ -2042,15 +2050,18 @@ public class BusSearchTest {
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber[0]);
+			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber[0]);
 			Log.message("10. Entered Email Address and Phone Number!");
+			
+			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			Log.message("11. Clicked On Book Now!");
 			String numberBeforeEdit = travellerPageBus.getTextMobileNo();
-
+			
 			travellerPageBus.clickEditMobileLink();
-			Log.message("11. Clicked On Edit Mobile Number Link!");
+			Log.message("12. Clicked On Edit Mobile Number Link!");
 
 			travellerPageBus.enterMobileNumber(phoneNumber[1]);
-			Log.message("12. Enter Edited Mobile Number!");
+			Log.message("13. Enter Edited Mobile Number!");
 			String numberAfterEdit = travellerPageBus.getTextMobileNo();
 
 			Log.message("<br>");
@@ -2120,11 +2131,14 @@ public class BusSearchTest {
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
+			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			Log.message("11. Clicked On Book Now!");
+			
 			travellerPageBus.enterPromoCode(promo);
-			Log.message("10. Entered Promo Code!");
+			Log.message("12. Entered Promo Code!");
 			String Promo = travellerPageBus.getTextErrorMsgPromo();
 
 			Log.message("<br>");
@@ -2193,8 +2207,11 @@ public class BusSearchTest {
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
+			
+			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			Log.message("11. Clicked On Book Now!");
 			boolean resultFirst = travellerPageBus.checkBoxFirst();
 			boolean resultSecond = travellerPageBus.checkBoxSecond();
 
@@ -2263,13 +2280,16 @@ public class BusSearchTest {
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
-
+			
+			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			Log.message("11. Clicked On Book Now!");
+			
 			Thread.sleep(3000);
 			String winHandleBefore = driver.getWindowHandle();
 			travellerPageBus.clickOnTermAndCondition();
-			Log.message("11. Clicked On Term And Condition Link!");
+			Log.message("12. Clicked On Term And Condition Link!");
 
 			Set<String> handles = driver.getWindowHandles();
 			for (String winHandle : handles) {
@@ -2342,14 +2362,17 @@ public class BusSearchTest {
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
+			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			Log.message("11. Clicked On Book Now!");
+			
 			travellerPageBus.TravellerDetails(name);
-			Log.message("11. Filled Guest Details!");
+			Log.message("12. Filled Guest Details!");
 
 			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
-			Log.message("12. Clicked on Continue!");
+			Log.message("13. Clicked on Continue!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify for all payment option");
@@ -2419,17 +2442,20 @@ public class BusSearchTest {
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
+			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			Log.message("11. Clicked On Book Now!");
+			
 			travellerPageBus.enterPromoCode(promo);
-			Log.message("11. Entered Promo Code!");
+			Log.message("12. Entered Promo Code!");
 
 			travellerPageBus.TravellerDetails(name);
-			Log.message("12. Filled Guest Details!");
+			Log.message("13. Filled Guest Details!");
 
 			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
-			Log.message("13. Clicked on Continue!");
+			Log.message("14. Clicked on Continue!");
 			String PromoReward = paymentPageBus.getTextPromotionalRewards();
 
 			Log.message("<br>");
@@ -2655,27 +2681,30 @@ public class BusSearchTest {
 			Log.message("9. Clicked on continue to navigate to review page!");
 
 			Thread.sleep(3000);
-			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
+			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			Log.message("11. Clicked On Book Now!");
+			
 			travellerPageBus.TravellerDetails(name);
-			Log.message("11. Filled Guest Details and Clicked on Continue!");
+			Log.message("12. Filled Guest Details and Clicked on Continue!");
 
 			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
-			Log.message("12. Clicked on Continue!");
+			Log.message("13. Clicked on Continue!");
 
 			paymentPageBus.selectPaymentType(paymentType);
-			Log.message("13. Payment Type Selected!");
+			Log.message("14. Payment Type Selected!");
 
 			paymentPageBus.enterCreditCardDetails(cardNumber);
-			Log.message("14. Credit Card Details SucessFully Filled!");
+			Log.message("15. Credit Card Details SucessFully Filled!");
 
 			paymentPageBus.cancelHdfcPayment(browser);
-			Log.message("15. Clicked on Cancel Button On Payment GateWay!");
+			Log.message("16. Clicked on Cancel Button On Payment GateWay!");
 
 			Thread.sleep(1000);
 			paymentPageBus.returnFromCreditCardPage(browser, 2);
-			Log.message("16. Naviagted Back to Yatra Payment Page!");
+			Log.message("17. Naviagted Back to Yatra Payment Page!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verification continue PG and cancel transaction");
@@ -2827,17 +2856,20 @@ public class BusSearchTest {
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			travellerPageBus = reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
-
+			
+			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			Log.message("11. Clicked On Book Now!");
+			
 			travellerPageBus.TravellerDetails(name);
-			Log.message("11. Filled Guest Details !");
+			Log.message("12. Filled Guest Details !");
 
 			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
-			Log.message("12. Clicked on Continue!");
+			Log.message("13. Clicked on Continue!");
 
 			String details = paymentPageBus.clickOnBookingSummary();
-			Log.message("13. Clicked On Booking Summary!");
+			Log.message("14. Clicked On Booking Summary!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify booking summary drop down");

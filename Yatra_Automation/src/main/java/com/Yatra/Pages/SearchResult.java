@@ -18,6 +18,8 @@ import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
+import bsh.util.Util;
+
 public class SearchResult extends LoadableComponent<SearchResult> {
 
 	private String appURL;
@@ -307,6 +309,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	private WebElement txtCalender_OnwardLFF;
 
 	
+	@FindBy(css = "ul[class='tab fs-md']>li:not([class='active'])>a[yatratrackable='Flights|Search|flight_details|FareSummary']")  
+	private WebElement lnkFareAndSummaryFlightDetail;
+	
+	@FindBy(css = "ul[class='tab fs-md']>li:nth-child(3)>a")  
+	private WebElement lnkBaggageFlightDetail;
+
+	@FindBy(css = "div[class='row baggage-summary']")  
+	private WebElement txtBaggageInfoFlightDetail;
 	
 	
 	/**********************************************************************************************
@@ -547,7 +557,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickOnlnkFlightDetails_INTL() throws Exception {		
-		closeINotificationAtTopSRP();
 		BrowserActions.nap(2);
 		BrowserActions.scrollToView(lnkFlightDetails_INTL, driver);
 		BrowserActions.clickOnElement(lnkFlightDetails_INTL, driver, "Link Flight Details For International One Way");
@@ -1511,7 +1520,38 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return textLFF;
 	}
 	
+	/**
+	 * To click Fare And Summary in Flight Detail Pop Up
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnFareAndSummaryFlightDetail() throws Exception {
+		Utils.waitForPageLoad(driver);	
+		BrowserActions.clickOnElement(lnkFareAndSummaryFlightDetail, driver, "Click Fare And Summary Link");
+	}
+	
 
+	/**
+	 * To click Baggage in Flight Detail Pop Up
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnBaggageFlightDetail() throws Exception {
+		Utils.waitForPageLoad(driver);	
+		BrowserActions.clickOnElement(lnkBaggageFlightDetail, driver, "Click Baggage Link");
+	}
+	/**
+	 * To get text Baggage Details In Flight Details pop Up
+	 * @throws Exception
+	 */
+	
+	public String getTextBaggageInfoFlightDetail() throws Exception {
+		String Details = txtBaggageInfoFlightDetail.getText();
+		return Details;
+	}
+	
+
+//
   //*******************************End of SRP Functions********************************************************************************************
 
 } // SearchResult

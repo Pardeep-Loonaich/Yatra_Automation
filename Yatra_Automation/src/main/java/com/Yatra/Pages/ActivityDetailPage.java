@@ -40,7 +40,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 
-	@FindBy(css = "button[class='new-blue-button fr eventTrackable']")
+	@FindBy(css = "div[class='price-block fr disp-table-cell']>ul>li[class='mt2']>button")
 	private WebElement btnBookNow;
 	
 	@FindBy(css = "h3[class='fm-lb mb5 top-head ng-binding']")
@@ -51,6 +51,18 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	
 	@FindBy(css = "ul[class='row my-nav col hidden-md fs-12 uprcse tabs-active-bottom-in tabs']>li")
 	private List<WebElement> headerDisplay;
+	
+	@FindBy(xpath = "div[class='hotel-info ng-binding']")
+	private WebElement txtDescrption;
+	
+	@FindBy(css = "div[id='viewAdditionalInfo']>div[class='hotel-info']")
+	private WebElement txtAdditionalInfo;
+	
+	@FindBy(css = "div[class='wrapper_inner']")
+	private WebElement fldSimilarActivities;
+	
+	@FindBy(css = "div[class='ng-isolate-scope ng-valid']")
+	private WebElement dateCalendar;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -105,15 +117,15 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 
 	
 	/**
-	 * Getting the text from the the Activity Details
+	 * Clicking on header link om Activity deatils Page
 	 * 
-	 * @return
+	 * @param String- photos,description
 	 * @throws Exception
 	 */
-	public void getTe(String header) throws Exception {
+	public void ClickOnHeaderLinks(String header) throws Exception {
 		Utils.waitForPageLoad(driver);
 		for (WebElement ele : headerDisplay) {
-			if (ele.findElement(By.cssSelector("a")).getText().equals(header)) 
+			if (ele.findElement(By.cssSelector("a")).getText().equalsIgnoreCase(header)) 
 			{
 				BrowserActions.scrollToViewElement(ele.findElement(By.cssSelector("a")), driver);
 				BrowserActions.clickOnElement(ele.findElement(By.cssSelector("a")), driver, "list elements in others");
@@ -121,5 +133,52 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 			}
 		}
 	}
+	
+	/**
+	 * Getting the text from the the Activity Description
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTexActivityDescription() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String txtDetails = BrowserActions.getText(driver, txtDescrption,
+				"Getting text from the Activity Description");
+		return txtDetails;
+	}
+	/**
+	 * Getting the text from the the Activity Additional Info
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTexActivityAdditionalInfo() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String txtDetails = BrowserActions.getText(driver, txtAdditionalInfo,
+				"Getting text from the Activity Additional Info");
+		return txtDetails;
+	}
+	
+	/**
+	 * Click On Book Now
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnBookNowButton() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnBookNow, driver, "Click On Book Now Button");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }//ActivityDetailPage
