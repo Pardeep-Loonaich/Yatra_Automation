@@ -393,7 +393,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public ReviewPage clickOnBookNowINT() throws Exception {
+	public ReviewPage clickOnBookNowINT() throws Exception 
+	{
+		closeINotificationAtTopSRP();
 		BrowserActions.scrollToView(btnBookNowINT, driver);
 		BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button.");
 		return new ReviewPage(driver).get();
