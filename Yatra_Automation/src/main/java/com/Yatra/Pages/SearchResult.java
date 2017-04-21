@@ -415,7 +415,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		*/
 		closeINotificationAtTopSRP();
 		
-		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
+		WebElement wBookNow=driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])["+index+"]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
