@@ -17,5 +17,10 @@ public class Constants {
 	// >>>> Page Constants Begins>>>>
 	public static final int C_Page_Top = -1000;
 	public static final int C_Page_Bottom = 2500;
+	
+	// >>> Flights Trip type
+	public static final String C_FareAlert_Title = "Set A Fare Alert";
+	public static final String C_FareAlert_Message = "Your fare alert has been set! You'll get an e-mail soon!";
+		
 	// >>>> Page Constants End>>>>
 }

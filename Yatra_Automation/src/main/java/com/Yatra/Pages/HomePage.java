@@ -307,6 +307,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void enterDestination(String destination) throws Exception {		
 		Utils.waitForElement(driver, txtDestination);
 		BrowserActions.typeOnTextField(txtDestination, destination, driver, "Select Destination");		
+		BrowserActions.nap(3);
 		Utils.waitForElement(driver, txtCityOver);		
 		Log.event("Entered the Destination: " + destination);
 	}
@@ -767,10 +768,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
+		Utils.waitForElement(driver, dateReturn);
 		BrowserActions.scrollToViewElement(dateReturn, driver);
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
 		selectMonth.get(month - 2).click();
-		Utils.waitForPageLoad(driver, 7);
+		Utils.waitForPageLoad(driver, 15); 
 		driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")).click();
 
 		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
