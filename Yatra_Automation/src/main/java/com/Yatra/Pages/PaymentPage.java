@@ -635,16 +635,18 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
-
+     @FindBy(css="div[class='redeem-block']")
+     private WebElement blckRedeem;
 	/**
 	 * Clicked on the cancel ecash redeem after verification
 	 * @return
 	 * @throws Exception
 	 */
 	public void verifyCancelEcash() throws Exception{
-		if(lnkCancelRedem.isDisplayed()){
+		if(blckRedeem.getAttribute("style").contains("margin-bottom: 10px; display: none;")){
 			BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on Cancel ecash redeem.");
 		}
+		
 	}
 	/**
 	 * Clicked on the  ecash redeem
@@ -663,10 +665,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String eCashAmount() throws Exception{
+		if(scrollSlider.isDisplayed()){
 		Utils.waitForElement(driver, appliedEcash);
 		String ecash = appliedEcash.getText();
 		return ecash;
-
+		}
+		else
+			Log.event("No eCash at the moment...");
+            return null;
 	}
 
 
