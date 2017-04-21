@@ -217,7 +217,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "li.ac_even.ac_over")
 	private WebElement txtCityOver;
-
+	
+	@FindBy(css = "input[id='BE_activity_destination']")
+	private WebElement txtActivitesOrigin;
+	
+	@FindBy(css = "div[class='journey-details clearfix']>div>div[class='ripple-parent']>input")
+	private WebElement btnSearchActivties;
+	
+	@FindBy(css = "div[class='ac_results act-look']>ul[class='mac-scroll scrollable']")
+	private WebElement listautoSuggestion;
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -1384,4 +1392,38 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public String getTextFrmSuggestionInOriginTrain() throws Exception{
 		return BrowserActions.getText(driver, lstOriginSuggestion, "Getting text from the list of suggestion");
 	}
+	/**
+	 * Entert Activites Origin
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterActivitiesOrigin(String origin) throws Exception {
+		Utils.waitForElement(driver, txtActivitesOrigin);		
+		BrowserActions.typeOnTextField(txtActivitesOrigin, origin, driver, "Select Origin");			
+		Log.event("Entered the Origin: " + origin);		
+	}
+	/**
+	 * To click search button on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public SearchResultActivites clickOnSearchActivites() throws Exception {
+		BrowserActions.clickOnElement(btnSearchActivties, driver, "Search Button");
+		Utils.waitForPageLoad(driver);
+		return new SearchResultActivites(driver).get();
+	}
+	/**
+	 * Getting the text from the Auto Suggestion DropDown
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextAutoSuggestionCityName() throws Exception {
+		String txtDetails = BrowserActions.getText(driver, listautoSuggestion,
+				"Getting text from the Auto Suggestion City Name");
+		return txtDetails;
+	}
+	
 }// HomePage

@@ -149,6 +149,7 @@ public class PaymentTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
+			Thread.sleep(1000);
 			paymentPage.verifyCancelEcash();
 			Log.message(". Clicked on Cancel ecash.");
 
@@ -323,7 +324,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back to Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -446,7 +447,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User is successfully coming back to yatra page after failed transcaction.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> User successfully navigated back to yatra page after failed transaction with failed message:"+paymentPage.getTextFromFailedDebitCardTrans(),
 					"<b>Actual Result:</b> User not coming back to yatra page after failed transaction.", driver);
 
@@ -570,7 +571,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User is successfully coming back to yatra page after failed transcaction.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> User successfully navigated back to yatra page after failed transaction with failed message:"+paymentPage.getTextFromFailedDebitCardTrans(),
 					"<b>Actual Result:</b> User not coming back to yatra page after failed transaction.", driver);
 
@@ -655,8 +656,8 @@ public class PaymentTest {
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
-
-			paymentPage.verifyCancelEcash();
+            
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected '"+paymentType+"' as mode of Payment");
@@ -683,7 +684,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back to Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -797,7 +798,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back to Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -906,7 +907,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back to Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -1013,7 +1014,7 @@ public class PaymentTest {
 			Utils.waitForPageLoad(driver);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back to Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -1123,7 +1124,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back to Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -1229,7 +1230,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back to Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -1333,7 +1334,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back to Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 			Log.testCaseResult();
@@ -3077,7 +3078,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -3185,7 +3186,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -3294,7 +3295,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -3403,7 +3404,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -3512,7 +3513,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -3621,7 +3622,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -3730,7 +3731,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -3839,7 +3840,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -3949,7 +3950,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -4058,7 +4059,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -4165,7 +4166,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -4272,7 +4273,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -4379,7 +4380,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -4594,7 +4595,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -4702,7 +4703,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -4810,7 +4811,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -4919,7 +4920,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -5029,7 +5030,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -5140,7 +5141,7 @@ public class PaymentTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 

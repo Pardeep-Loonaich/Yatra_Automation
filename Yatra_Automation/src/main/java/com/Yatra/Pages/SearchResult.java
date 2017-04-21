@@ -18,6 +18,8 @@ import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
+import bsh.util.Util;
+
 public class SearchResult extends LoadableComponent<SearchResult> {
 
 	private String appURL;
@@ -345,6 +347,16 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "div[id='fareAlertPopup'] p[class='text-success tc']")  
 	private WebElement txtFareAlertMessage;
+
+	@FindBy(css = "ul[class='tab fs-md']>li:not([class='active'])>a[yatratrackable='Flights|Search|flight_details|FareSummary']")  
+	private WebElement lnkFareAndSummaryFlightDetail;
+	
+	@FindBy(css = "ul[class='tab fs-md']>li:nth-child(3)>a")  
+	private WebElement lnkBaggageFlightDetail;
+
+	@FindBy(css = "div[class='row baggage-summary']")  
+	private WebElement txtBaggageInfoFlightDetail;
+
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -450,8 +462,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 					+ index
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='book-now']>div>p[class='new-blue-button fr book-button js-bookNow relative tc']"));
 		*/
-	
-		
 		WebElement wBookNow=driver.findElement(By.xpath("(//ul[@class='table-listing my-res-table']//li[@class='book-now']//div[@class='new-ttlFare']//p[@analytics='Flight Option|Book Now'])["+index+"]"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
@@ -581,7 +591,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickOnlnkFlightDetails_INTL() throws Exception {		
-		closeINotificationAtTopSRP();
 		BrowserActions.nap(2);
 		BrowserActions.scrollToView(lnkFlightDetails_INTL, driver);
 		BrowserActions.clickOnElement(lnkFlightDetails_INTL, driver, "Link Flight Details For International One Way");
@@ -1545,7 +1554,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		return textLFF;
 	}
-	
+
 	
 	/**
 	 * To click Fare Alert pop up
@@ -1710,6 +1719,37 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Log.event("Selected the Mobile STD code: " + mobileSTD);		
 	}
 
+
+	/**
+	 * To click Fare And Summary in Flight Detail Pop Up
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnFareAndSummaryFlightDetail() throws Exception {
+		Utils.waitForPageLoad(driver);	
+		BrowserActions.clickOnElement(lnkFareAndSummaryFlightDetail, driver, "Click Fare And Summary Link");
+	}
+	
+
+	/**
+	 * To click Baggage in Flight Detail Pop Up
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnBaggageFlightDetail() throws Exception {
+		Utils.waitForPageLoad(driver);	
+		BrowserActions.clickOnElement(lnkBaggageFlightDetail, driver, "Click Baggage Link");
+	}
+	/**
+	 * To get text Baggage Details In Flight Details pop Up
+	 * @throws Exception
+	 */
+	
+	public String getTextBaggageInfoFlightDetail() throws Exception {
+		String Details = txtBaggageInfoFlightDetail.getText();
+		return Details;
+	}
+	
   //*******************************End of SRP Functions********************************************************************************************
 
 } // SearchResult

@@ -146,12 +146,31 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
  	 * @throws Exception
  	 */
 
- 	public TravellerPageBus fillUserDetailsAsGuest(String email,String PhoneNumber) throws Exception {
+ 	public void fillUserDetailsAsGuest(String email,String PhoneNumber) throws Exception {
  		Utils.waitForElement(driver, txtBoxEmailGuest);
  		BrowserActions.typeOnTextField(txtBoxEmailGuest, email, driver, "Enter User Email");
  		BrowserActions.typeOnTextField(txtBoxPhoneNumberGuest, PhoneNumber, driver, "Enter Phone Number");
+ 		
+ 	}
+ 	/**
+ 	 * To Click On Book Now Button 
+ 	 * @returns TravellerPageBus
+ 	 * @throws Exception
+ 	 */
+ 	
+ 	public TravellerPageBus clickOnBookNow() throws Exception{
  		BrowserActions.clickOnElement(btnContinueGuest, driver, "Book Now");
-		return new TravellerPageBus(driver).get();
+ 		return new TravellerPageBus(driver).get();
+ 	}
+ 
+ 	/**
+ 	 * To Click On Book Now Button 
+ 	 * 
+ 	 * @throws Exception
+ 	 */
+ 	
+ 	public void clickOnbtnBookNow() throws Exception{
+ 		BrowserActions.clickOnElement(btnContinueGuest, driver, "Book Now");
  	}
  	
  	  /**
