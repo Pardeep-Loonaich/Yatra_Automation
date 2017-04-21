@@ -19,46 +19,50 @@ import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
 public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
+	
+	private String appURL;
+
 	private WebDriver driver;
 	private boolean isPageLoaded;
-
-	public ElementLayer elementLayer;
+    public ElementLayer elementLayer;
 
 	/**********************************************************************************************
-	 ********************************* WebElements of Yatra Home Page ***********************************
+	 ********************************* WebElements of Yatra Train Search Result Page ***********************************
 	 **********************************************************************************************/
 
-	@FindBy(xpath= "//input[@title='Find Trains']")
+	@FindBy(css= "input[title='Find Trains']")
 	public WebElement btnFindTrain;
 
 	@FindBy(xpath = "//*[@id='trainSrp']/div/p")
 	public WebElement fldContentTrainMsgBox; 
-	
+
 	@FindBy (xpath ="//li[@class='trainDepart']")
 	public List<WebElement> timeDepart;
 	
+	@FindBy (xpath ="//li[@class='trainArrive']")
+	public List<WebElement> trainArrive;
+
 	//ul[class ='train-info-block true']>li[class='trainDepart']>p
 
 	/**********************************************************************************************
-	 ********************************* WebElements of Home Page - Ends ****************************
+	 ********************************* WebElements of Train Search Result Page - Ends ****************************
 	 **********************************************************************************************/
 
+
+	
+
 	/**
-	 * constructor of the class
 	 * 
 	 * @param driver
-	 *            : WebDriver
-	 * 
-	 * @param url
-	 *            : UAT URL
+	 *            : webdriver
 	 */
-
 	public TrainSearchResult(WebDriver driver) {
+		Utils.waitForPageLoad(driver);
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
+		elementLayer = new ElementLayer(driver);
 	}
-
 	@Override
 	protected void isLoaded() {
 
@@ -67,7 +71,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		}
 
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindTrain))) {
-			Log.fail("Complete Booking page didn't open up", driver);
+			Log.fail("Train Search Result page didn't open up", driver);
 		}
 	}
 
@@ -83,8 +87,8 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		messagetext.startsWith("Sorry");
 		return true;
 	}
-	
-	
+
+
 	/**
 	 * To check Depart Time in Sorted Form
 	 * 
@@ -105,6 +109,36 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		}
 		return Flag;
 	}
-	
-	
+
+	/**
+	 * To check Arrival Time in Sorted Form
+	 * 
+	 * @throws Exception
+	 */
+	public boolean sortArrivalDate() throws Exception {
+		boolean Flag = true;
+		ArrayList<String> time = new ArrayList<String>();
+
+		for (int j = 1; j < trainArrive.size(); j++) {
+		    time.add(driver.findElement(By.cssSelector("section[class='results col-3 anim']>div>section>div[class='row res-schedule-details']>div>ul:nth-child("+j+")>li[class='trainArrive']")).getText());
+		}
+		
+		Collections.sort(time);
+		for (int i = 1; i < time.size(); i++) {
+			if (time.get(i - 1).compareTo(time.get(i)) > 0)
+				Flag = false;
+		}
+		return Flag;
+	}
+
+	public ArrayList<String>  checkAvailableSeatBySelectingSeatByRow(int index) throws Exception{
+		ArrayList<String> lstSeat = new ArrayList<String>();
+           List<WebElement> lst = driver.findElements(By.cssSelector("ul[class='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p"));
+           for(int i=0;i<lst.size();i++){
+		    String seatAvail = BrowserActions.getText(driver, lst.get(i), "Getting available seats by selecting trains by row.");
+		    lstSeat.add(seatAvail);
+           }       
+		  return lstSeat;
+	}
+
 }

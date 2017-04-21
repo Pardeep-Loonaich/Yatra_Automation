@@ -1,45 +1,19 @@
 package com.Yatra.Pages;
 
-import java.util.List;
-
-import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
-import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
-import org.openqa.selenium.support.ui.LoadableComponent;
-import org.testng.Assert;
-
-import com.Yatra.Utils.BrowserActions;
-import com.Yatra.Utils.Log;
-import com.Yatra.Utils.Utils;
-
-public class PaymentPage extends LoadableComponent<PaymentPage> {
-
-	private String appURL;
- 
-	
-	private WebDriver driver;
-	private boolean isPageLoaded;
-	public ElementLayer elementLayer;
-
-	/**********************************************************************************************
-	 ********************************* WebElements of Yatra PaymentPage ***********************************
-=======
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import java.util.List;
+
+import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,9 +22,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
@@ -61,13 +33,15 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	private String appURL;
 
+
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
 
+
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage ***********************************
->>>>>>> refs/remotes/origin/Framework_Development
 	 **********************************************************************************************/
 
 	@FindBy(xpath = "//input[@id= 'payNow']")
@@ -166,7 +140,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css= "a[title='Oxigen Wallet']")
 	private WebElement logoOxyGenWallet;
 
-	@FindBy(css= ".icon-payumoney")
+	@FindBy(css= "div[class='pymnt_main']>div>a[class='icon-payumoney']")
 	private WebElement logoPayUWallet;
 
 	@FindBy(css= ".img-responsive")
@@ -178,11 +152,11 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css= "#freechargeLogo")
 	private WebElement logoFreechargeWallet;
 
-	@FindBy(css= "header>img")
-	private WebElement logoOlaMoneyWallet;
+	@FindBy(css= "#closeButton")
+	private WebElement btnOlaMoneyWallet;
 
-	@FindBy(css= ".container>div[style*='vertical-align']")
-	private WebElement logoPayZAppWallet;
+	@FindBy(css= "#registerButton")
+	private WebElement btnPayZAppWallet;
 
 	@FindBy(css= ".vf_logo")
 	private WebElement logoVodafoneWallet;
@@ -357,6 +331,61 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	@FindBy(css="ul[class='js-quick noListStyle']>li")
 	private List<WebElement> lstCreditCardNumbers; 
+
+	@FindBy(css="div[id='paymentDetailsCont']>div[class='totalPayInf']>ul[class='noListStyle']>li>span")
+	private List <WebElement> lstPayAmount;
+
+	@FindBy(css="#totalAmountSpan")
+	private WebElement totalPayAmount;
+	
+	@FindBy(css="td[class='NewReg']>a")
+	private WebElement btnAppDownInAllahabad;
+	
+	@FindBy(css="div[class='login-btn']")
+	private WebElement btnLoginAxis;
+	
+	@FindBy(css="input[id='submitciti']")
+	private WebElement btnSubmitCiti;
+	
+	@FindBy(css="input[name='fldLoginUserId']")
+	private WebElement btnContinueHDFC;
+	
+	@FindBy(css="[class='login_button']")
+	private WebElement btnLoginICICI;
+	
+	@FindBy(css="input[type='submit']")
+	private WebElement btnLoginIDBI;
+	
+	@FindBy(css="a[id='secure-login01']")
+	private WebElement btnLoginKotak;
+	
+	@FindBy(css="input[class='loginpage_btn_loginshp']")
+	private WebElement btnLoginPNB;
+	
+	@FindBy(css="input[name='CorporateSignonCorpId']")
+	private WebElement fldUserIDAndhra;
+	
+	@FindBy(css= "#Button1")
+	private WebElement btnBckToYatraOxygen;
+	
+	@FindBy(css= ".back_btn")
+	private WebElement btnBckToYatraPAyU;
+	
+	@FindBy(css= "#backButton")
+	private WebElement btnBckToYatraSBIBuddy;
+	
+	@FindBy(css= "#cancelBtn")
+	private WebElement btnCancelJio;
+	
+	@FindBy(css= "#okButton")
+	private WebElement btnOkJio;
+
+	@FindBy(css= "button[class='btn btn-warning col-xs-4']")
+	private WebElement btnPayZ;
+	
+	@FindBy(css= "#rejectPaymentReq")
+	private WebElement btnCancelIdea;
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -376,7 +405,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
-	}// SearchPage
+	}// 
 
 	/**
 	 * 
@@ -409,7 +438,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		Utils.waitForPageLoad(driver);
 	}// load
-
 
 
 
@@ -474,6 +502,20 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 
+	/**
+	 * Getting the text from the Error message after the failed transaction
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorMessage() throws Exception {
+		String txtDetails = BrowserActions.getText(driver, popUpInvalidCardNumber,
+				"Getting text from the Credit card Error message");
+		return txtDetails;
+
+	}
+
+
 
 	/**
 	 * Clicking on Pay Now In Payment Page
@@ -487,19 +529,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		Utils.waitForPageLoad(driver);
 	}
 
-
-	/**
-	 * Getting the text from the Error Pop Up In Credit card
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public String getTextErrorMessage() throws Exception {
-		String txtDetails = BrowserActions.getText(driver, popUpInvalidCardNumber,
-				"Getting text from the Credit card Error message");
-		return txtDetails;
-
-	}
 
 
 	/**
@@ -556,19 +585,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
-	/**
-	 * Getting the ecash redeem successful messages
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
 
-	public String getMsgFromEcashRedeemSuccess() throws Exception {
-		String txtRedeemMsg = BrowserActions.getText(driver, msgEcashRedeem, "Getting text for ecash Redeem message.")
-				.replace("Cancel Redemption", "");
-		return txtRedeemMsg;
-
-	}
 
 	/**
 	 * Getting the ecash redeem Balance successful messages
@@ -584,18 +601,19 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 	/**
-	 * Getting the Total amount from payment module
+	 * Getting the ecash redeem successful messages
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public String getTextFromTotalAmount() throws Exception {
-		Utils.waitForPageLoad(driver);
-		String txtTotalAmount = BrowserActions.getText(driver, totalAmount,
-				"Getting text for Total Amount.").trim().replace(",","");
-		return txtTotalAmount;
+
+	public String getMsgFromEcashRedeemSuccess() throws Exception {
+		String txtRedeemMsg = BrowserActions.getText(driver, msgEcashRedeem, "Getting text for ecash Redeem message.")
+				.replace("Cancel Redemption", "");
+		return txtRedeemMsg;
 
 	}
+
 
 	/**
 	 * Clicked on the cancel ecash redeem
@@ -637,26 +655,91 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
 
 	}
+
+
 	/**
-	 * Getting the text from the Payment details panel
+	 * getting text of ecash under slider
 	 * @return
 	 * @throws Exception
 	 */
-	public String getTextFromPaymentDetailsModule() throws Exception{
-		String txtDetails = BrowserActions.getText(driver, modulePaymentDetails, "Getting text from the Payment details module.");
-		return txtDetails;
+	public String eCashAmount() throws Exception{
+		Utils.waitForElement(driver, appliedEcash);
+		String ecash = appliedEcash.getText();
+		return ecash;
 
 	}
 
 
+
 	/**
-	 * to select the payment time from left panel
+	 * scrolling the ecash slider
+	 * @param value
+	 */
+	public void scrollSliderOfEcashRedeem(int value){
+		Actions action = new Actions(driver);
+		action.dragAndDropBy(scrollSlider, value, 0).build().perform();
+	}
+
+	/**
+	 * to return ecashHeading  from ecash module
+	 * @return
+	 * @throws Exception
+	 */
+	public String getEcashHeading() throws Exception{
+		String ecashHeading = BrowserActions.getText(driver, fldHeadingYatraEarn,"Heading Yatra's Earn");
+		return ecashHeading;
+	}
+
+
+
+	/**
+	/**
+	 * to return ecashAmount  from ecash module
+	 * @return
+	 * @throws Exception
+	 */
+	public String getEcashAmount() throws Exception{
+		String ecashAmount = BrowserActions.getText(driver, txtEcashAmount,"Ecash Amount");
+		return ecashAmount;
+	}
+
+
+
+	/**
+	 * to return ecashAmount  from ecash header
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFromEcashLabel() throws Exception{
+		String ecashAmount = BrowserActions.getText(driver, txtEcashValueFromHeader,"Ecash Amount");
+		return ecashAmount;
+	}
+
+	/**
+	 * Getting the Total amount from payment module
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFromTotalAmount() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String txtTotalAmount = BrowserActions.getText(driver, totalAmount,
+				"Getting text for Total Amount.").trim().replace(",","");
+		return txtTotalAmount;
+
+	}
+
+
+
+
+
+	/**
+	 * to select the payment type from left navigations panel
 	 * @param PaymentType
 	 * @throws Exception
 	 */
 
 	public void selectPaymentType(String PaymentType) throws Exception {
-
 		List<WebElement> lstElement = paymentType;
 		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
 			BrowserActions.scrollToViewElement(lnkOtherPayment, driver);
@@ -677,7 +760,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 				if (e.findElement(By.cssSelector("a")).getText().equals(PaymentType)) {
 					//findElement is required here
-
 					BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("a")), driver);
 					BrowserActions.clickOnElement(e.findElement(By.cssSelector("a")), driver, "list elements");
 					break;
@@ -709,6 +791,41 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		}
 
 	}
+	
+	@FindBy(css ="select[id='nprBank']>option")
+	private List<WebElement> lstselectOtherNetBank;
+	
+	@FindBy(css ="select[id='nprBank']")
+	private WebElement drpselectOtherNetBank;
+	
+
+
+	/**
+	 * to select the net bank name
+	 * @param BankName
+	 * @throws Exception
+	 */
+
+
+	public void selectOtherNetBankName(String BankName) throws Exception {
+		List<WebElement> lstElement = lstselectOtherNetBank;
+		BrowserActions.clickOnElement(drpselectOtherNetBank, driver, "clicked on Select Other bank dropdown");
+
+		
+		for (WebElement e : lstElement) {
+			if (e.getAttribute("value").contains(BankName)) {
+				//findElement is required here
+				BrowserActions.scrollToViewElement(e, driver);
+				BrowserActions.clickOnElement(e, driver, "Selected Other Net bank");
+				break;
+
+			}
+		}
+
+	}
+	
+
+
 
 
 	/**
@@ -780,31 +897,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 	/**
-	 * getting text of ecash under slider
-	 * @return
-	 * @throws Exception
-	 */
-	public String eCashAmount() throws Exception{
-		Utils.waitForElement(driver, appliedEcash);
-		String ecash = appliedEcash.getText();
-		return ecash;
-
-	}
-
-
-
-	/**
-	 * scrolling the ecash slider
-	 * @param value
-	 */
-	public void scrollSliderOfEcashRedeem(int value){
-		Actions action = new Actions(driver);
-		action.dragAndDropBy(scrollSlider, value, 0).build().perform();
-	}
-
-
-
-	/**
 	 * Filling Credit Card Details in the EMI option
 	 * 
 	 * @return
@@ -839,7 +931,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 	/**
-	 * to navigate back to pages acc to browser for creditcards
+	 * to navigate back to payment page browser from the bank portals in case of credit card
 	 * @param browser
 	 * @throws Exception
 	 */
@@ -853,13 +945,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		else if(browser.equalsIgnoreCase("iexplorer_windows")){
 		}
 		driver.navigate().back();
+		driver.navigate().refresh();
 
 	}
 
 
 
 	/**
-	 * navigated to back pages acc to browsers for RewardPoint and Credit card in case of citi bank portal
+	 * to navigate back to payment page from RewardPoint and Credit card in case of CITI bank portal
 	 * @param browser
 	 * @throws Exception
 	 */
@@ -867,19 +960,19 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		if(browser.equalsIgnoreCase("chrome_windows")){
 			JavascriptExecutor js = (JavascriptExecutor) driver; 
 			js.executeScript("window.history.go(-1)");
-			//BrowserActions.executeJavaScript(driver, "window.history.go(-1)");
 			driver.switchTo().alert().accept();
+			driver.navigate().refresh();
 
 		}	
 
 	}
 
-
-
 	/**
-	 * to click on Cancel in HDFC payment page
+	 * to click on cancel transaction in HDFC bank portal and click on the validation that appear on the popup
 	 * @throws Exception
 	 */
+
+
 	public void cancelHdfcPayment(String browser) throws Exception{
 		BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 		if(browser.equalsIgnoreCase("chrome_windows")){
@@ -891,11 +984,10 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		else if(browser.equalsIgnoreCase("FireFox_windows")){
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 		}
-
 	}
 
 	/**
-	 * to click on cancel in SBI ATM payment
+	 * to click on cancel button in SBI payment portal in case of ATM to cancel transaction 
 	 * @throws Exception
 	 */
 	public void cancelSBIATMPayment() throws Exception{
@@ -904,7 +996,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 	/**
-	 * to navigate back to yatra from freecharge page
+	 * to navigate back to payment page from freecharge page by clicking on 'Back to yatra link' in case of MOBILE WALLET
 	 * @throws Exception
 	 */
 	public void clickOnBackToYatraLinkFreechrge() throws Exception{
@@ -946,40 +1038,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 
-	/**
-	 * to return ecashHeading  from ecash module
-	 * @return
-	 * @throws Exception
-	 */
-	public String getEcashHeading() throws Exception{
-		String ecashHeading = BrowserActions.getText(driver, fldHeadingYatraEarn,"Heading Yatra's Earn");
-		return ecashHeading;
-	}
-
-
-
-	/**
-	/**
-	 * to return ecashAmount  from ecash module
-	 * @return
-	 * @throws Exception
-	 */
-	public String getEcashAmount() throws Exception{
-		String ecashAmount = BrowserActions.getText(driver, txtEcashAmount,"Ecash Amount");
-		return ecashAmount;
-	}
-
-
-
-	/**
-	 * to return ecashAmount  from ecash header
-	 * @return
-	 * @throws Exception
-	 */
-	public String getTextFromEcashLabel() throws Exception{
-		String ecashAmount = BrowserActions.getText(driver, txtEcashValueFromHeader,"Ecash Amount");
-		return ecashAmount;
-	}
 
 
 	/**
@@ -1126,12 +1184,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 
-	@FindBy(css="div[id='paymentDetailsCont']>div[class='totalPayInf']>ul[class='noListStyle']>li>span")
-	private List <WebElement> lstPayAmount;
-
-	@FindBy(css="#totalAmountSpan")
-	private WebElement totalPayAmount;
-
 	/**
 	 * getting the amount we need to pay step by step and then summing them
 	 * @return
@@ -1149,16 +1201,91 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return chrgedAmount;
 
 	}
-
+	
+	
 	/**
 	 * getting the text from the Total amount from the fare detail panel
 	 * @return
 	 * @throws Exception
 	 */
 	public String gettingTotalPayAmount()throws Exception {
-		String amount =BrowserActions.getText(driver,totalPayAmount, "Getting txt of total payment amount").trim().replace(",","");
+		String amount =BrowserActions.getText(driver,totalPayAmount, "Getting txt of total payment amount.").trim().replace(",","");
 		return amount;
 	}
 
+
+	public void navigateBackFromMobileWallet(String walletName) throws Exception{
+		switch (walletName){
+		case "mobikwik":
+			driver.navigate().back();
+			break;
+
+		case "oxigen":
+			BrowserActions.javascriptClick(btnBckToYatraOxygen, driver, "Clicked on 'Back to Yatra' button.");
+			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
+			break;
+
+		case "payu":
+			BrowserActions.javascriptClick(btnBckToYatraPAyU, driver, "Clicked on 'Back to Yatra' button.");
+			break;
+
+		case "sbibuddy":
+			BrowserActions.javascriptClick(btnBckToYatraSBIBuddy, driver, "Clicked on 'Back to Yatra' button.");
+			break;
+
+		case "reliancejio":
+			BrowserActions.javascriptClick(btnCancelJio, driver, "Clicked on 'cancel' button.");
+			BrowserActions.javascriptClick(btnOkJio, driver, "Clicked on 'ok' button in popup.");
+			break;
+
+		case "freecharge":
+			clickOnBackToYatraLinkFreechrge();
+			break;
+
+		case "olamoney":
+			BrowserActions.javascriptClick(btnOlaMoneyWallet, driver, "Clicked on 'Back to Yatra' button");
+			break;
+
+		case "payzapp":
+			BrowserActions.javascriptClick(btnPayZ, driver, "Clicked on 'Back to Yatra' button");
+			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
+			break;
+
+		case "voda-mpesa":
+			driver.navigate().back();
+			break;
+
+		case "idea-money":
+			BrowserActions.javascriptClick(btnCancelIdea, driver, "Clicked on 'Back to Yatra' button");
+			break;
+
+		}
+	}
+	
+	@FindBy(xpath= "//Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]")
+	private WebElement btnContinueReviewPage;
+	
+
+	public boolean verifyPage() throws Exception{
+		boolean flag = false;
+		if(btnContinueReviewPage.isDisplayed()!=flag){
+			return !flag;
+
+		}
+		else
+			return flag;	 
+	}
+
+
+	/**
+	 * Getting the text from the Payment details panel
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFromPaymentDetailsModule() throws Exception{
+		String txtDetails = BrowserActions.getText(driver, modulePaymentDetails, "Getting text from the Payment details module.");
+		return txtDetails;
+
+	}
 
 }

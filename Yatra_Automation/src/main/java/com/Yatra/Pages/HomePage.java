@@ -43,7 +43,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 
-//@Harveer- change access specifier for all element private
+	//@Harveer- change access specifier for all element private
 
 	@FindBy(css = "input#BE_flight_origin_city")
 	private WebElement txtOrigin;
@@ -75,7 +75,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	//String dateLocator = "div[class='month-box'] table tbody td[class*='activeTD clsDateCell'] a[id='a_";
 	String returnDateLocator="";
 	String passengersLocator = "span[class='ddSpinnerPlus']";
-    String passengerClassLocator = "div[id='flight_class_select_child'] ul li";
+	String passengerClassLocator = "div[id='flight_class_select_child'] ul li";
 
 	@FindBy(css = "div[class='be-ddn-footer']>span[class='done']")
 	private WebElement submitPassengerClassInfo;
@@ -199,25 +199,33 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = ".ac_over")
 	private WebElement txtErrorMsgIncorrectCity;
-	
+
 	@FindBy(css="li[id='userLoginBlock']>a")
 	private WebElement drpdwnUserLogin;
-	
+
 	@FindBy(css="li[id='userLoginBlock']>div>div[class='user-drop-ddn header-dropdown']>ul>li[class='simple-dropdown']>a")
 	private WebElement lnkMyBooking;
-	
+
 	@FindBy(css = "div[class='header-container']>a")
 	private WebElement logoYatra;
 
 	@FindBy(css = "#PegasusCal-7")
 	WebElement calenderMultiDept;
-	
+
 	@FindBy(css = "#PegasusCal-0")
 	WebElement calenderDeptdate;
-	
+
 	@FindBy(css = "li.ac_even.ac_over")
 	private WebElement txtCityOver;
 	
+	@FindBy(css = "input[id='BE_activity_destination']")
+	private WebElement txtActivitesOrigin;
+	
+	@FindBy(css = "div[class='journey-details clearfix']>div>div[class='ripple-parent']>input")
+	private WebElement btnSearchActivties;
+	
+	@FindBy(css = "div[class='ac_results act-look']>ul[class='mac-scroll scrollable']")
+	private WebElement listautoSuggestion;
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -611,19 +619,19 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.mouseHover(driver, lnkMyaccount);
 		BrowserActions.moveToElementJS(driver, lnkMyaccount);
 		BrowserActions.actionClick(btnSignIn, driver, "Sign In");
-		
+
 	    Utils.waitForPageLoad(driver);		
-		
+
 		BrowserActions.moveToElementJS(driver, driver.findElement(By.cssSelector("li[id='userSignInStrip']>a")));
 		Actions actions = new Actions(driver);
 		actions.moveToElement(driver.findElement(By.cssSelector("li[id='userSignInStrip']"))).perform();
 		actions.click(driver.findElement(By.cssSelector("li[id='userSignInStrip']"))).click().perform();
-		
+
 		actions.moveToElement(driver.findElement(By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'My Account')]"))).perform();
 		actions.click(driver.findElement(By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'My Account')]"))).perform();
-		
-		*/
-		
+
+		 */
+
 		WebElement lnkMyAccount = driver.findElement(By.cssSelector("li[id='userSignInStrip']>a"));
 		Point point = lnkMyAccount.getLocation();
 		int xCord = point.getX();
@@ -633,7 +641,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 			Robot robot= new Robot();
 			robot.mouseMove(xCord, yCord);		
 		}
-				
+
 		Utils.waitForElement(driver, btnSignIn);
 		BrowserActions.javascriptClick(btnSignIn, driver, "Sign In");
 		Utils.waitForPageLoad(driver);
@@ -678,8 +686,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult,
 		// Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
-		clickDoneButtonInPassengerBox(); // click Done button
-
+		//clickDoneButtonInPassengerBox(); // click Done button
 		Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
@@ -1123,7 +1130,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Log.event("Successfully Filled OneWay Bus Search fields");
 
 	}
-	
+
 	/**
 	 * Getting the text from the Bus Info
 	 * 
@@ -1136,31 +1143,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
-	/**
-	 * Enter Train Destination
-	 * 
-	 * @param trainDestination
-	 *            as string
-	 * @throws Exception
-	 */
-	public void enterTrainDestination(String trainDestination) throws Exception {
-		Utils.waitForElement(driver, txtTrainDestination);
-		BrowserActions.typeOnTextField(txtTrainDestination, trainDestination, driver, "Select Destination");
-		Log.event("Entered the Destination: " + trainDestination);
-	}
-
-	/**
-	 * To click search button on Home page for Trains
-	 * 
-	 * @throws Exception
-	 */
-
-	public TrainSearchResult clickTrainBtnSearch() throws Exception {
-		BrowserActions.clickOnElement(btnTrainSearch, driver, "Train Search");
-		Utils.waitForPageLoad(driver);
-		return new TrainSearchResult(driver).get();
-
-	}
+	
 
 
 	public Boolean incorrectCity() throws Exception {
@@ -1187,6 +1170,43 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
+
+
+	/**
+	 * Enter Train Destination
+	 * 
+	 * @param trainDestination
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterTrainDestination(String trainDestination) throws Exception {
+		Utils.waitForElement(driver, txtTrainDestination);
+		BrowserActions.typeOnTextField(txtTrainDestination, trainDestination, driver, "Select Destination");
+		Log.event("Entered the Destination: " + trainDestination);
+	}
+
+	/**
+	 * To click search button on Home page for Trains
+	 * 
+	 * @throws Exception
+	 */
+
+	public TrainSearchResult clickTrainBtnSearch() throws Exception {
+		// final long startTime = StopWatch.startTime();
+		BrowserActions.clickOnElement(btnTrainSearch, driver, "Train Search");
+		Utils.waitForPageLoad(driver);
+		return new TrainSearchResult(driver).get();
+
+	}
+
+
+	public void EnterOriginCity(String trainorigin) throws Exception {
+		BrowserActions.typeOnTextField(txtTrainOrigin,trainorigin, driver, "Invalid Origin city");	
+		Log.event("Entered the Origin: " + trainorigin);
+
+	}
+
+
 	/**
 	 * To select Departure Date
 	 * 
@@ -1267,15 +1287,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return txtDetails;
 	}
 
-	
-	
+
+
 	public Bookings navigateToBooking() throws Exception{
 		BrowserActions.moveToElementJS(driver, drpdwnUserLogin);
 		BrowserActions.clickOnElement(lnkMyBooking, driver, "Clicked on Login user dropdown");	
 		return new Bookings(driver).get();
 	}
-	
-	
+
+
 
 
 	/**
@@ -1334,19 +1354,74 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	@SuppressWarnings("static-access")
 	public void datePicker(WebDriver driver,String departureDate)
-	
+
 	{
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int year=Integer.parseInt(date.split("_")[0]);
 		int month = Integer.parseInt(date.split("_")[1]);
 		int day=Integer.parseInt(date.split("_")[2]);
-		
-		
+
+
 		WebElement element=driver.findElement(By.xpath("/*[@class='month-list'])[1]//*[@href='#PegasusCal-0-month-"+month+"-"+year+"']"));
 		element.click();
-		 WebElement calndr=driver.findElement(By.xpath("//*[@id='PegasusCal-0-month-"+month+"-"+year+"']//a[@id='a_"+year+"_"+month+"_"+day+"']"));
-		
-		
+		WebElement calndr=driver.findElement(By.xpath("//*[@id='PegasusCal-0-month-"+month+"-"+year+"']//a[@id='a_"+year+"_"+month+"_"+day+"']"));
+
+
 	}
+
+	/***
+	 * in this we are getting error text from the suggestion drpdwn after entering invalid code in train
+	 * @return
+	 * @throws Exception
+	 */
+	public String getErrorTextAfterInvalidTxt() throws Exception{
+		return BrowserActions.getText(driver, txtErrorMsgIncorrectCity, "Getting error message after entering invalid city");
+	}
+	
+	
+	@FindBy(css="div[class='overview']>li[class*='ac']>strong")
+	private WebElement lstOriginSuggestion;
+	/**
+	 * in this we are getting text from the suggestion dropdown after entering the origincity name of train
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFrmSuggestionInOriginTrain() throws Exception{
+		return BrowserActions.getText(driver, lstOriginSuggestion, "Getting text from the list of suggestion");
+	}
+	/**
+	 * Entert Activites Origin
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterActivitiesOrigin(String origin) throws Exception {
+		Utils.waitForElement(driver, txtActivitesOrigin);		
+		BrowserActions.typeOnTextField(txtActivitesOrigin, origin, driver, "Select Origin");			
+		Log.event("Entered the Origin: " + origin);		
+	}
+	/**
+	 * To click search button on Home page
+	 * 
+	 * @throws Exception
+	 */
+	public SearchResultActivites clickOnSearchActivites() throws Exception {
+		BrowserActions.clickOnElement(btnSearchActivties, driver, "Search Button");
+		Utils.waitForPageLoad(driver);
+		return new SearchResultActivites(driver).get();
+	}
+	/**
+	 * Getting the text from the Auto Suggestion DropDown
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextAutoSuggestionCityName() throws Exception {
+		String txtDetails = BrowserActions.getText(driver, listautoSuggestion,
+				"Getting text from the Auto Suggestion City Name");
+		return txtDetails;
+	}
+	
 }// HomePage

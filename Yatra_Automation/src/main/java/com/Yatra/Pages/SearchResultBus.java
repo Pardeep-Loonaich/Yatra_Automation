@@ -482,18 +482,23 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 
 	public void selectSeat(int number) throws Exception {
-//		while(errorMessageSorryNoSeat.isDisplayed()){
-//			
-//			BrowserActions.switchToDefault(driver);
-//		}
+		if(txtSeatType.isDisplayed()){
 		for (int i = 0; i < number; i++) {
 			driver.findElement(By.cssSelector(
-					"div[class='wfull tab-content onwards seat-layout']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']"))
+					"div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SL avl-Y reserved-M']"))
 					.click(); // Random Seat Selected
 			BrowserActions.nap(2);
+			}
+		}else
+			{
+				for (int i = 0; i < number; i++) {
+					driver.findElement(By.cssSelector(
+							"div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']"))
+							.click(); // Random Seat Selected
+					BrowserActions.nap(2);
+			}
 		}
 	}
-
 	/**
 	 * To Select Boarding Point
 	 * 

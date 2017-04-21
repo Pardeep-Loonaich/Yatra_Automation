@@ -13,10 +13,7 @@
 
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightPricing"> </class>
-			<!-- <methods>
-			    <include name="TC_Yatra_Flight_087"></include>
-			</methods> -->
+			<class name="com.Yatra.TestScript.Flights.FlightPricing"> </class>			
 		</classes>
 	</test>
 

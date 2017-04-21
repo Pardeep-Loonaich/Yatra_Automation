@@ -381,7 +381,7 @@ public class FlightSearch {
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
-			BrowserActions.nap(5);
+			BrowserActions.nap(10);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Successfully verified Airline Matrix Strip on SRP for DOM fligh");
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
@@ -428,7 +428,7 @@ public class FlightSearch {
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
-			BrowserActions.nap(5);
+			BrowserActions.nap(10);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Successfully verified Airline Matrix Strip on SRP for INT flight");
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
@@ -2766,7 +2766,7 @@ public class FlightSearch {
 	
 	
 	
-	@Test( description = "Validating that for DOM search Class dropdown would not contain First Class as option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that for DOM search Class dropdown would not contain First Class option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_024(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2802,7 +2802,7 @@ public class FlightSearch {
 			
 			List<String> passengerClassNames = searchResult.getPassengerClasssDetailsInMofifySearch();		
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Validated that for DOM search Class dropdown would not contain First Class as option");
+			Log.message("<b>Expected Result:</b> Validated that for DOM search Class dropdown would not contain First Class option");
 			BrowserActions.nap(2);
 			Log.assertThat(!passengerClassNames.contains("First Class"),
 					"<b>Actual Result:</b> DOM Flights Passenger Class dropdown sholud not contain First Class option</b>, Passenger Class List are : "+ passengerClassNames ,
@@ -2817,7 +2817,7 @@ public class FlightSearch {
 		}
 	}
 	
-	@Test( description = "Validating that for INT search Class dropdown should not contain First Class as option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validating that for INT search Class dropdown should contain First Class option", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_025(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -2853,7 +2853,7 @@ public class FlightSearch {
 			
 			List<String> passengerClassNames = searchResult.getPassengerClasssDetailsInMofifySearch();		
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Validated that for INT search Class dropdown would not contain First Class as option");
+			Log.message("<b>Expected Result:</b> Validated that for INT search Class dropdown contain First Class option");
 			BrowserActions.nap(2);
 			Log.assertThat(passengerClassNames.contains("First Class"),
 					"<b>Actual Result:</b> INT Flights Passenger Class dropdown sholud contain First Class option</b>, Passenger Class List are : "+ passengerClassNames ,
@@ -3947,6 +3947,193 @@ public class FlightSearch {
 				Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
 						"<b>Actual Result:</b> Airline Names: <b>"+ airlineNames + "</b>, and lowest fare of respective Airlines <b>"+ airlineMatrixFareDetails + "</b> on Airline Matrix in Search Result page ",
 						"<b>Actual Result:</b> Airline Names and lowest fare of respective Airlines is not displayed on Airline Matrix in Search Result page", driver);
+				
+				Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+		
+		@Test( description = "Validating the action on clicking on Airline Matrix for any Airline", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_031(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String tripType = testData.get("TripType");
+			String origin = testData.get("Origin");		
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String returnDate = testData.get("ReturnDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");		
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+		
+				//step: select Round Trip Search fields in HomePage
+				homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully filled the search details for Round Trip");
+							
+				// step: click 'Search' button in Yatra Home page
+				SearchResult searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");	
+				BrowserActions.nap(12);
+				
+				searchResult.clickAirlineInAirlineMatrix();
+				Log.message("5.Successfully clicked Airline on the Airline Matrix");	
+				String airlineName = searchResult.getTextSelectedAirlineName();				
+				searchResult.verifySelectedAirlineInAirlineFilters(airlineName);
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validated the action on clicking on Airline Matrix for any Airline");
+				Log.assertThat(searchResult.verifySelectedAirlineInAirlineFilters(airlineName),
+						"<b>Actual Result:</b> Successfully verified selected Airline in Filter Airline, Selected Airline Name: <b>"+ airlineName + "</b> ",
+						"<b>Actual Result:</b> Not verified selected Airline in Filter Airline", driver);
+				Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+		
+		@Test( description = "Validate that LFF is not available for MC Search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_037(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String origin1 = testData.get("Origin");
+			String origin2 = testData.get("Origin_Multicity");
+			String tripType = testData.get("TripType");
+			String destination1 = testData.get("Destination");
+			String destination2 = testData.get("Destination_Multicity");
+			String departureDate1 = testData.get("DepartureDate");
+			String departureDate2 = testData.get("ReturnDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");		
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'Multicity' option in search Home Page ");
+		
+				//step: selectMulticity Search fields in HomePage
+				homePage.selectMultiCityFlightSearchFields(origin1, destination1, departureDate1, origin2, destination2, departureDate2, passengerInfo, passengerClass);
+				Log.message("3.Successfully filled the search details for 'Multicity'");
+							
+				// step: click 'Search' button in Yatra Home page
+				SearchResult searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");			
+				BrowserActions.nap(15);				
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validated that LFF is not available for MC Search");
+				Log.assertThat(!searchResult.verifyOnwardAndReturnLFF("OLFF"), "<b>Actual Result:</b> Successfully validated LFF is not displayed for MC Search", "<b>Actual Result:</b> LFF is displayed for MC Search", driver);
+				Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+		@Test( description = "Validate the LFF calendar for OW search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_038(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+			String browser = testData.get("browser");
+			String origin = testData.get("Origin");
+			String tripType = testData.get("TripType");
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");				
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+				searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");				
+				BrowserActions.nap(12);					
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validated that LFF is not diplayed for OW Search");
+				Log.assertThat(!searchResult.verifyOnwardAndReturnLFF("OLFF"), "<b>Actual Result:</b> Successfully validated LFF is not displayed for OW Search", "<b>Actual Result:</b> LFF is displayed for OW Search", driver);
+			    Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+		
+		@Test( description = "Validate the LFF calendar for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_039(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String tripType = testData.get("TripType");
+			String origin = testData.get("Origin");		
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String returnDate = testData.get("ReturnDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");		
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+		
+				//step: select Round Trip Search fields in HomePage
+				homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully filled the search details for Round Trip");
+							
+				// step: click 'Search' button in Yatra Home page
+				SearchResult searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");	
+				BrowserActions.nap(12);				
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validated that LFF is not available for MC Search");
+				Log.assertThat(searchResult.verifyOnwardAndReturnLFF("OLFF"), "<b>Actual Result:</b> Successfully validated onward LFF is displayed for RT Search", "<b>Actual Result:</b> Onward LFF is not displayed for RT Search", driver);
+				Log.assertThat(searchResult.verifyOnwardAndReturnLFF("RLFF"), "<b>Actual Result:</b> Successfully validated Return LFF is displayed for RT Search", "<b>Actual Result:</b> Return LFF is not displayed for RT Search", driver);
+				
+				searchResult.clickOnwardAndReturnLFF("OLFF");
+				//String textTravelDetails = searchResult.getTextOnwardAndReturnLFF("OLFF");
+				String textOnwardCalender = searchResult.getTextCalenderInOnwardAndReturnLFF("OLFF");			
+				searchResult.clickOnwardAndReturnLFF("RLFF");
+				String textReturnCalender = searchResult.getTextCalenderInOnwardAndReturnLFF("RLFF");				
+				Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkOnwardLFF", "lnkReturnLFF"), searchResult),
+						"<b>Actual Result:</b> Successfully verified Onward Calender Name text: <b>"+ textOnwardCalender + "</b> and Return Calender Name text: <b>"+ textReturnCalender + "</b> ",
+						"<b>Actual Result:</b> Not verified Onward and Return Calender Name text", driver);
+				
 				
 				Log.testCaseResult();
 			} catch (Exception e) {
