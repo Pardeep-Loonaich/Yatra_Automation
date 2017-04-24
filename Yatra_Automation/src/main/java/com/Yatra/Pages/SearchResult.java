@@ -363,6 +363,44 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='row baggage-summary']")  
 	private WebElement txtBaggageInfoFlightDetail;
 
+	@FindBy(css = "label[title='Refine By Price']")  
+	private WebElement txtPriceFliter;
+	
+	@FindBy(css = "label[for='filter-depart-time']>span")  
+	private WebElement txtDepartTimeFilter;
+	
+	@FindBy(css = "label[title='Refine By Stops']")  
+	private WebElement txtStopsFilter;
+	
+	@FindBy(css = "label[title='Refine By Fare Type']")  
+	private WebElement txtFareTypeFilter;
+	
+	@FindBy(css = "label[title='Refine By Airlines']>span")  
+	private WebElement txtAirlinesFilter;
+	
+	@FindBy(css = "span[ng-checked='filter[getLegKey()].stops[0]']")  
+	private WebElement lnkNonStopFlights;
+	
+	@FindBy(css = "li[class='fl ml10 mobi-hide pad-hide']")  
+	private WebElement lnkShareItinerary;
+	
+	@FindBy(css = "div[class='full input-holder'] input[name='emails']")  
+	private WebElement txtEmail_ShareItinerary;
+	
+	@FindBy(css = "div[class='results-wrapper'] div[class='results']>article:nth-child(1) span[class='checkbox']")  
+	private WebElement chkItinerary_ShareItinerary;
+	
+	@FindBy(xpath = "//div[@class='full input-holder']/textarea[@name='message']")  
+	private WebElement txtMessage_ShareItinerary;
+	
+	@FindBy(css = "li[class='fl ml10 mobi-hide pad-hide'] span")  
+	private WebElement txtShareItineraryTooltipText;	
+	
+	@FindBy(css = "div[class='full mt20'] button[type='submit']")  
+	private WebElement txtShareButton_ShareItinerary;
+	
+	@FindBy(css = "div[class='overlay-content']>p[class='text-success tc']")  
+	private WebElement txtPopupMessage_ShareItinerary;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -1067,7 +1105,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickModifySearch() throws Exception {
-
 		BrowserActions.nap(30);
 		Utils.waitForElement(driver, btnModifySearchIcon);	
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
@@ -1758,6 +1795,166 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return Details;
 	}
 	
+	
+	/**
+	 * Getting the text from Price slider filter title in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextPriceFilterTitle() throws Exception {
+		Utils.waitForElement(driver, txtPriceFliter);
+		String priceGetTxt = BrowserActions.getText(driver, txtPriceFliter, "Price filter title text should be displayed");
+		return priceGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Depart Time filter title in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextDepartTimeFilterTitle() throws Exception {
+		Utils.waitForElement(driver, txtDepartTimeFilter);
+		String departTimeGetTxt = BrowserActions.getText(driver, txtDepartTimeFilter, "Depart Time filter title text should be displayed");
+		return departTimeGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Stops filter title in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextStopsFilterTitle() throws Exception {
+		Utils.waitForElement(driver, txtStopsFilter);
+		String stopsGetTxt = BrowserActions.getText(driver, txtStopsFilter, "Stops filter title text should be displayed");
+		return stopsGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Fare Type filter title in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFareTypeFilterTitle() throws Exception {
+		Utils.waitForElement(driver, txtFareTypeFilter);
+		String fareTypeGetTxt = BrowserActions.getText(driver, txtFareTypeFilter, "Fare Type filter title text should be displayed");
+		return fareTypeGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Airlines filter title in SRP  
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextAirlinesFilterTitle() throws Exception {
+		Utils.waitForElement(driver, txtAirlinesFilter);
+		String airlinesGetTxt = BrowserActions.getText(driver, txtAirlinesFilter, "Airlines filter title text should be displayed");
+		return airlinesGetTxt;
+	}
+		
+	
+	/**
+	 * To verify Non Stop Flights Only check box is checked on Stop Filters in SRP
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyNonStopFlightsSelectionInFilters() throws Exception {
+		boolean status = false;
+		if (BrowserActions.isElementSelected(driver, lnkNonStopFlights) == true) {
+			status = true;
+		}
+		return status;
+	}
+	
+	/**
+	 * To click Share Itinerary
+	 * 
+	 * @throws Exception
+	 */
+	public void clickShareItinerary() throws Exception {
+		BrowserActions.nap(10);
+		Utils.waitForElement(driver, lnkShareItinerary);
+		BrowserActions.clickOnElement(lnkShareItinerary, driver, "Click Share Itinerary");
+		BrowserActions.nap(2);
+		Log.event("Click Share Itinerary");
+	}
+	
+	/**
+	 * Enter Email in Share Itinerary
+	 * 
+	 * @param email
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterEmailInShareItinerary(String email) throws Exception {
+		Utils.waitForElement(driver, txtEmail_ShareItinerary);		
+		BrowserActions.typeOnTextField(txtEmail_ShareItinerary, email, driver, "Enter Email in Share Itinerary");				
+		Log.event("Entered Email in Share Itinerary, Email Id : " + email);		
+	}
+	
+	/**
+	 * Getting the text from pop up message in Share Itinerary
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextShareItinerary() throws Exception {
+		Utils.waitForElement(driver, txtShareItineraryTooltipText);
+		BrowserActions.mouseHover(driver, txtShareItineraryTooltipText);  //FF issue
+		String shareItineraryPouUpMessageGetTxt = BrowserActions.getText(driver, txtShareItineraryTooltipText, "Share Itinerary Tooltip Text should be displayed");
+		return shareItineraryPouUpMessageGetTxt;
+	}
+	
+	/**
+	 * Enter Message in Share Itinerary
+	 * 
+	 * @param email
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterMessageInShareItinerary(String message) throws Exception {
+		Utils.waitForElement(driver, txtMessage_ShareItinerary);		
+		BrowserActions.typeOnTextField(txtMessage_ShareItinerary, message, driver, "Enter Message in Share Itinerary");				
+		Log.event("Entered Message in Share Itinerary, Message: " + message);		
+	}
+	
+	/**
+	 * To select first flight check box for Itinerary  
+	 * 
+	 * @throws Exception
+	 */
+	public void clickFlightItineraryChkBoxInShareItinerary() throws Exception {
+		Utils.waitForElement(driver, chkItinerary_ShareItinerary);	
+		BrowserActions.clickOnElement(chkItinerary_ShareItinerary, driver, "Click Itinerary in in Share Itinerary");
+		Log.event("Clicked Itinerary in in Share Itinerary");
+	}
+	
+	/**
+	 * To click Share button in Share Itinerary
+	 * 
+	 * @throws Exception
+	 */
+	public void clickShareInShareItinerary() throws Exception {
+		Utils.waitForElement(driver, txtShareButton_ShareItinerary);	
+		BrowserActions.clickOnElement(txtShareButton_ShareItinerary, driver, "Click Share button in Share Itinerary");
+		Log.event("Clicked Share button in Share Itinerary");
+	}
+	
+	/**
+	 * Getting the text from pop up message in Share Itinerary
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextShareItineraryPouUpMessage() throws Exception {
+		Utils.waitForElement(driver, txtPopupMessage_ShareItinerary);
+		String shareItineraryPouUpMessageGetTxt = BrowserActions.getText(driver, txtPopupMessage_ShareItinerary, "Share Itinerary popup message should be displayed");
+		return shareItineraryPouUpMessageGetTxt;
+	}
   //*******************************End of SRP Functions********************************************************************************************
 
 } // SearchResult

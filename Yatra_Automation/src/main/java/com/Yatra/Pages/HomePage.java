@@ -225,7 +225,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	private WebElement btnSearchActivties;
 	
 	@FindBy(css = "div[class='ac_results act-look']>ul[class='mac-scroll scrollable']")
-	private WebElement listautoSuggestion;
+	private WebElement listautoSuggestion;	
+	
+	@FindBy(css = "a[for='BE_flight_non_stop']>i")
+	private WebElement chkNonStopFlights;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -1426,4 +1430,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return txtDetails;
 	}
 	
+
+	/**
+	 * To click Non Stop Flights Checkbox
+	 * 
+	 * @throws Exception
+	 */
+	public void clickNonStopFlightsCheckbox() throws Exception {
+		Utils.waitForElement(driver, chkNonStopFlights);	
+		BrowserActions.clickOnElement(chkNonStopFlights, driver, "Click Non Stop Flights Checkbox");
+		Log.event("Clicked Non Stop Flights in HomePage");
+	}
 }// HomePage

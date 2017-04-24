@@ -415,8 +415,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 */
 
 	public void popUpAppear() throws Exception {
-		if (driver.findElements(By.cssSelector(".update-fare.pt10.ico-right")).size()>0) 
-		{
+		//if (driver.findElements(By.cssSelector(".update-fare.pt10.ico-right")).size()>0)		
+		if(PricePopUp.isDisplayed()){
 			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
 		}
 
