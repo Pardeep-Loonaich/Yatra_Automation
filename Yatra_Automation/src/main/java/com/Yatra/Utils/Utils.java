@@ -29,7 +29,7 @@ import org.openqa.selenium.JavascriptExecutor;
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 
-	public static int maxElementWait = 90;
+	public static final int maxElementWait = 60;
 
 
 	/**
@@ -56,10 +56,10 @@ public class Utils {
 				.ignoring(StaleElementReferenceException.class,WebDriverException.class).withMessage("Page Load Timed Out");
 		try {
 
-			if (configProperty.getProperty("documentLoad").equalsIgnoreCase("true"))
+			if ("true".equalsIgnoreCase(configProperty.getProperty("documentLoad")))
 				wait.until(WebDriverFactory.documentLoad);
 
-			if (configProperty.getProperty("imageLoad").equalsIgnoreCase("true"))
+			if ("true".equalsIgnoreCase(configProperty.getProperty("imageLoad")))
 				wait.until(WebDriverFactory.imagesLoad);
 
 			if (configProperty.getProperty("framesLoad").equalsIgnoreCase("true"))
@@ -514,20 +514,22 @@ public class Utils {
 
 	{
 		SimpleDateFormat simpleDateFormat=null;
+		Calendar cal=Calendar.getInstance();
 		String dataToBeReturn="";
-		if(sDateFormat.equalsIgnoreCase("") ||sDateFormat.equalsIgnoreCase(null))
+		if("".equalsIgnoreCase(sDateFormat) ||sDateFormat.equalsIgnoreCase(null))
 		{
 			 simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		}
-
-		Calendar cal=Calendar.getInstance();
+		else{
+		
 		 simpleDateFormat = new SimpleDateFormat(sDateFormat);
+		}
 
-		if(!(iDay==0))
+		if(iDay!=0)
 
 		{
 			cal.add(Calendar.DATE, iDay);
-			dataToBeReturn=simpleDateFormat.format(cal.getTime()).toString();
+			dataToBeReturn=simpleDateFormat.format(cal.getTime());
 			//System.out.println(simpleDateFormat.format(cal.getTime()));
 		}
 		else 

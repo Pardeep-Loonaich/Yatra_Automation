@@ -16,7 +16,7 @@
 				<methods>
 					<include name="TC_Yatra_Flight_124"></include>
 					<include name="TC_Yatra_Flight_127"></include>
-					<include name="TC_Yatra_Flight_001"></include>
+				<!-- 	<include name="TC_Yatra_Flight_001"></include>
 					<include name="TC_Yatra_Flight_018"></include>
 					<include name="TC_Yatra_Flight_099"></include>
 					<include name="TC_Yatra_Flight_004"></include>
@@ -44,7 +44,7 @@
 					<include name="TC_Yatra_Flight_128"></include>
 					<include name="TC_Yatra_Flight_129"></include>
 					<include name="TC_Yatra_Flight_130"></include>
-					<include name="TC_Yatra_Flight_131"></include>
+					<include name="TC_Yatra_Flight_131"></include> -->
 				
 				</methods>
 			</class>

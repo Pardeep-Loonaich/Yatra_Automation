@@ -765,7 +765,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@SuppressWarnings("static-access")
 	public String selectReturnDate(String returnDate) throws Exception {
 		int iDay = Integer.parseInt(returnDate);
-		String date = utils.dateGenerator("yyyy_M_d", iDay);
+		String date = Utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
 		Utils.waitForElement(driver, dateReturn);
