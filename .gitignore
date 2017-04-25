@@ -1,1 +1,10 @@
-# Add any directories, files, or patterns you don't want to be tracked by version control
+/target/
+/test-output/
+/bin/
+test-output/
+*.html
+.setting
+*.class
+*.log
+.gitignore
+/Yatra_Automation/
