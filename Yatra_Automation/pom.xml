@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-compiler-plugin</artifactId>
-			<version>3.6.0</version>
+			<version>3.6.1</version>
 		</dependency>
 		<!--plugin for executing test.xml from pom surefire have only one goal 
 			which m -->
@@ -77,9 +77,7 @@
 						<threadCount>5</threadCount>
 						<outputDirectory>${basedir}/test-output</outputDirectory>
 						<suiteXmlFiles>
-
-							<suiteXmlFile>.\testxml\YatraWebRegression.xml</suiteXmlFile>
-
+							<suiteXmlFile>.\testxml\flights\flightPricing.xml</suiteXmlFile>
 						</suiteXmlFiles>
 					</configuration>
 				</plugin>
@@ -87,12 +85,12 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-report-plugin</artifactId>
-					<version>2.15</version>
+					<version>2.19.1</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.5.1</version>
+					<version>3.6.1</version>
 					<configuration>
 						<systemPropertyVariables>
 							<environment>${env}</environment>
