@@ -19,28 +19,42 @@ import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
 public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
-	
+
 	private String appURL;
 
 	private WebDriver driver;
 	private boolean isPageLoaded;
-    public ElementLayer elementLayer;
+	public ElementLayer elementLayer;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Train Search Result Page ***********************************
 	 **********************************************************************************************/
 
 	@FindBy(css= "input[title='Find Trains']")
-	public WebElement btnFindTrain;
+	private WebElement btnFindTrain;
 
 	@FindBy(xpath = "//*[@id='trainSrp']/div/p")
-	public WebElement fldContentTrainMsgBox; 
+	private WebElement fldContentTrainMsgBox; 
 
 	@FindBy (xpath ="//li[@class='trainDepart']")
-	public List<WebElement> timeDepart;
-	
+	private List<WebElement> timeDepart;
+
 	@FindBy (xpath ="//li[@class='trainArrive']")
-	public List<WebElement> trainArrive;
+	private List<WebElement> trainArrive;
+	
+	@FindBy(css="button[class*='train-prevDay']")
+	private WebElement tabPrevDay;
+	
+	@FindBy(css="button[class*='train-nextDay']")
+	private WebElement tabNextDay;
+	
+	@FindBy(css="[class='find-bus-btn']")
+	private WebElement btnFindBus;
+
+
+	@FindBy(css="select[id='quotaSelectdd']")
+	private WebElement drpQuota;
+
 
 	//ul[class ='train-info-block true']>li[class='trainDepart']>p
 
@@ -49,7 +63,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	 **********************************************************************************************/
 
 
-	
+
 
 	/**
 	 * 
@@ -120,9 +134,9 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		ArrayList<String> time = new ArrayList<String>();
 
 		for (int j = 1; j < trainArrive.size(); j++) {
-		    time.add(driver.findElement(By.cssSelector("section[class='results col-3 anim']>div>section>div[class='row res-schedule-details']>div>ul:nth-child("+j+")>li[class='trainArrive']")).getText());
+			time.add(driver.findElement(By.cssSelector("section[class='results col-3 anim']>div>section>div[class='row res-schedule-details']>div>ul:nth-child("+j+")>li[class='trainArrive']")).getText());
 		}
-		
+
 		Collections.sort(time);
 		for (int i = 1; i < time.size(); i++) {
 			if (time.get(i - 1).compareTo(time.get(i)) > 0)
@@ -131,14 +145,40 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		return Flag;
 	}
 
-	public ArrayList<String>  checkAvailableSeatBySelectingSeatByRow(int index) throws Exception{
-		ArrayList<String> lstSeat = new ArrayList<String>();
-           List<WebElement> lst = driver.findElements(By.cssSelector("ul[class='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p"));
-           for(int i=0;i<lst.size();i++){
-		    String seatAvail = BrowserActions.getText(driver, lst.get(i), "Getting available seats by selecting trains by row.");
-		    lstSeat.add(seatAvail);
-           }       
-		  return lstSeat;
+	/**
+	 * this method will return the available classes of the selected train
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public ArrayList<String>  checkAvailableClassBySelectingTrainByRow(int index) throws Exception{
+		ArrayList<String> lstClass = new ArrayList<String>();
+		List<WebElement> lst = driver.findElements(By.cssSelector("ul[class='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p"));
+		for(int i=0;i<lst.size();i++){
+			String classAvail = BrowserActions.getText(driver, lst.get(i), "Getting available seats by selecting trains by row.");
+			lstClass.add(classAvail);
+		}       
+		return lstClass;
+	}
+
+	
+
+	/**
+	 * this method clicks on the quota dropdown first and then return the list options
+	 * @return
+	 * @throws Exception
+	 */
+
+	public ArrayList<String> selectQuota() throws Exception{
+		BrowserActions.clickOnElement(drpQuota, driver, "Clicked on Select Quota dropdown.");
+		ArrayList<String> lstQuota = new ArrayList<String>();
+		List<WebElement> lst = drpQuota.findElements(By.cssSelector("option"));
+		for(int i=0;i<lst.size();i++){
+			String quotaAvail = BrowserActions.getText(driver, lst.get(i), "Getting available Quota for the Selected seat.");
+			lstQuota.add(quotaAvail);
+		}       
+		return lstQuota;
+
 	}
 
 }
