@@ -13,8 +13,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
@@ -161,7 +163,25 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	@FindBy(css= "div[class='text-right alignment ng-scope']>span[class='block fs-xlg gray-dark u-pay ng-binding']")
 	private WebElement  totalAmountInreviewPage;
-	/**********************************************************************************************
+	
+	@FindBy(css= "ul[class='list list-border']>li:nth-child(5)>span[class='pull-right tr alignment']>a[class='remove-btn']")
+	private WebElement  btnRemove;
+	
+	@FindBy(css= "div[class='col-sm-6 promo-select-ui width-increased']>a")
+	private WebElement  btnClosePromoBox;
+	
+	@FindBy(css= "ul[class='list list-border ng-scope']>li[ng-show='yatraExtra.eCash && yatraExtra.eCash.amount']")
+	private WebElement  txtTotalEcashEarned;
+	
+	@FindBy(css= "div[ng-show='showFareDetails']>ul[class='list list-border']>li:nth-child(4)")
+	private WebElement  txtFeeAndSurcharge;
+	
+	
+	
+	
+	
+	/**********************************************
+	 ************************************************
 	 ********************************* WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
 
@@ -490,6 +510,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		 */
 		
 		public String getTextFromPromoMessage() throws Exception {
+			Utils.waitForPageLoad(driver);
 			String ErrorMessage = BrowserActions.getText(driver, PromoCodeErrorMessage, "Getting Error text from the Promo Code");
 			return ErrorMessage;
 		}
@@ -500,6 +521,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		 * @throws Exception
 		 */
 		public String getTextReviewBooking() throws Exception {
+			Utils.waitForPageLoad(driver);
 			String Message = BrowserActions.getText(driver, txtReviewYourBooking, "Getting Error text Review Your Booking");
 			return Message;
 		}
@@ -510,18 +532,66 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		 * @throws Exception
 		 */
 		public String getTextPromotinalMessage() throws Exception {
+			Utils.waitForPageLoad(driver);
 			String Message = BrowserActions.getText(driver, txtPromoDiscountApplied, "Getting Text of Promo Applied");
 			return Message;
 		}
 		/**
-		 * GGetting Text of Total Amount
+		 * Getting Text of Total Amount
 		 * 
 		 * @return String
 		 * @throws Exception
 		 */
 		public String getTextTotalAmount() throws Exception {
+			Utils.waitForPageLoad(driver);
 			String Amount = BrowserActions.getText(driver, totalAmountInreviewPage, "Getting Text of Total Amount");
 			return Amount;
 		}
+		/**
+		 * To Click On Remove Button on Fare Details Section
+		 * 
+		 * @return String
+		 * @throws Exception
+		 */
+		public void ClickOnRemoveButton() throws Exception {
+			Utils.waitForPageLoad(driver);
+			btnRemove.click();
+		}
+		
+		/**
+		 * To Click On Close Button on Promo Box
+		 * 
+		 * @return String
+		 * @throws Exception
+		 */
+		public void ClickOnCloseButtonInPromoBox() throws Exception {
+			Utils.waitForPageLoad(driver);
+			btnClosePromoBox.click();
+		}
+		
+		/**
+		 * Getting Text Ecash Earned
+		 * 
+		 * @return String
+		 * @throws Exception
+		 */
+		public String getTextEcashFareDetails() throws Exception {
+			Utils.waitForPageLoad(driver);
+			String Ecash = BrowserActions.getText(driver, txtTotalEcashEarned, "Getting Text of Ecash Added In Account");
+			return Ecash;
+		}
+
+		/**
+		 * Getting Text Fee and Surcharge in Fare Details
+		 * 
+		 * @return String
+		 * @throws Exception
+		 */
+		public String getTextFeeAndSurcharge() throws Exception {
+			Utils.waitForPageLoad(driver);
+			String Ecash = BrowserActions.getText(driver, txtFeeAndSurcharge, "Getting Text of Fee and Surcharge in Fare Details");
+			return Ecash;
+		}
+		
 		//
 } //ReviewPage
