@@ -1038,5 +1038,4 @@ public class FlightNew {
 			Log.endTestCase();
 		}
 	}
-
-}
+}//FlightNewEnd

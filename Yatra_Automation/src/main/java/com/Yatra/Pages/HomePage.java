@@ -1441,4 +1441,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(chkNonStopFlights, driver, "Click Non Stop Flights Checkbox");
 		Log.event("Clicked Non Stop Flights in HomePage");
 	}
+	
+	
 }// HomePage

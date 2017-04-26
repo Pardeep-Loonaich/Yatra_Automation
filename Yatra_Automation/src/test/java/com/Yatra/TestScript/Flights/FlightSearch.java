@@ -3040,8 +3040,7 @@ public class FlightSearch {
 	}	
 	
 	@Test( description = "Flight pricing on any airline", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_122(HashMap<String, String> testData) throws Exception {
-		
+	public void TC_Yatra_Flight_122(HashMap<String, String> testData) throws Exception {		
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -3049,8 +3048,7 @@ public class FlightSearch {
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("Class");
-		
+		String passengerClass = testData.get("Class");		
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -4291,7 +4289,7 @@ public class FlightSearch {
 				Log.message("4.Successfully clicked Search in Yatra Homepage!");				
 				
 				String shareItineraryText = searchResult.getTextShareItinerary();	
-				Log.assertThat(shareItineraryText.contains("Share Itinerary"),"<b>Actual Result:</b> Successfully should appeared tool tip is 'Share Itinerary", "<b>Actual Result:</b> Not appeared tool tip is 'Share Itinerary ");
+				Log.assertThat(shareItineraryText.contains("Share Itinerary"),"<b>Actual Result:</b> Successfully should appeared tool tip is Share Itinerary", "<b>Actual Result:</b> Not appeared tool tip is 'Share Itinerary ");
 								
 				//step: click Share Itinerary
 				searchResult.clickShareItinerary();
@@ -4432,6 +4430,135 @@ public class FlightSearch {
 			}
 		}
 		
+		@Test( description = "Validating that Prev day/Next day should not be availble for OW search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_032(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+			String browser = testData.get("browser");
+			String origin = testData.get("Origin");
+			String tripType = testData.get("TripType");
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");				
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+				
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+				//step: select OneWay Search fields in HomePage
+				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+				searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");				
+				BrowserActions.nap(12);					
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validated that Prev day/Next day should not be availble for OW search");
+				Log.assertThat(!(searchResult.verifyOnwardAndReturnLFF("PrevDay") && searchResult.verifyOnwardAndReturnLFF("NextDay")), "<b>Actual Result:</b> Successfully validated Prev day/Next day search option are not available on SRP", "<b>Actual Result:</b> Prev day/Next day search option are available on SRP", driver);
+			    Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
 		
+		@Test( description = "Validating the Prev day/Next day for RT search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_033(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String tripType = testData.get("TripType");
+			String origin = testData.get("Origin");		
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String returnDate = testData.get("ReturnDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");		
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+		
+				//step: select Round Trip Search fields in HomePage
+				homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully filled the search details for Round Trip");
+							
+				// step: click 'Search' button in Yatra Home page
+				SearchResult searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");	
+				BrowserActions.nap(12);						
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validated the Prev day/Next day for RT search");
+				Log.assertThat((searchResult.verifyOnwardLegLinks("PrevDay") && searchResult.verifyOnwardLegLinks("NextDay")), "<b>Actual Result:</b> Successfully validated Prev day/Next day search option are available on Onward leg in SRP", "<b>Actual Result:</b> Prev day/Next day search option are not available on Onwards leg in SRP", driver);
+				Log.assertThat((searchResult.verifyReturnLegLinks("PrevDay") && searchResult.verifyReturnLegLinks("NextDay")), "<b>Actual Result:</b> Successfully validated Prev day/Next day search option are not available on Return leg in SRP", "<b>Actual Result:</b> Prev day/Next day search option are not available on Return leg in SRP", driver);
+				Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+
+		@Test( description = "Validating the Prev day/Next day for MC search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_153(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String origin1 = testData.get("Origin");
+			String origin2 = testData.get("Origin_Multicity");
+			String tripType = testData.get("TripType");
+			String destination1 = testData.get("Destination");
+			String destination2 = testData.get("Destination_Multicity");
+			String departureDate1 = testData.get("DepartureDate");
+			String departureDate2 = testData.get("ReturnDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");		
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'Multicity' option in search Home Page ");
+		
+				//step: selectMulticity Search fields in HomePage
+				homePage.selectMultiCityFlightSearchFields(origin1, destination1, departureDate1, origin2, destination2, departureDate2, passengerInfo, passengerClass);
+				Log.message("3.Successfully filled the search details for 'Multicity'");
+							
+				// step: click 'Search' button in Yatra Home page
+				SearchResult searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");			
+				BrowserActions.nap(12);						
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validated the Prev day/Next day for MC search");
+				Log.assertThat(searchResult.verifyOnwardLegLinks("PrevDay"), "<b>Actual Result:</b> Successfully validated Prev day day search option is available on Onward leg in SRP", "<b>Actual Result:</b> Prev day day search option is not available on Onwards leg in SRP", driver);
+				Log.assertThat( searchResult.verifyReturnLegLinks("NextDay"), "<b>Actual Result:</b> Successfully validated Next day search option is not available on Return leg in SRP", "<b>Actual Result:</b> Next day search option is not available on Return leg in SRP", driver);
+				Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
 // ********************************End of Test cases ***************************************************************************************
 } //FlightSearch

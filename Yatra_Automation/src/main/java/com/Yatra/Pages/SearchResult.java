@@ -68,10 +68,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(xpath = "//article[@class='full result-card animation-on item-0']//p[@class='new-blue-button .js-bookNow book-btn relative tc']") // div[class='fr
 																																				// pr
-																																				// partial-pay'																																	// p:nth-child(1)
+																																				// partial-pay']
+																																				// p:nth-child(1)
 	private WebElement btnBookNowINT_New; //
 
-	@FindBys({@FindBy(css = "div[ng-controller='productFareDetailsController']") })
+	@FindBys({
+
+			@FindBy(css = "div[ng-controller='productFareDetailsController']") })
 	private List<WebElement> el;
 	private List<WebElement> moduleFareDetails;
 
@@ -427,9 +430,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "div[id='resultList_1'] a[class='next-day']")
 	private WebElement lnkNextDay_ReturnLeg;
-	
+
 	@FindBy(css = "#signInBtn")
 	private WebElement btnSignIn;
+
 	@FindBy(css = "div[class='menu']>div>ul>li[id='userSignInStrip']>a")
 	private WebElement btnMyAccount;
 
@@ -483,19 +487,18 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(xpath = "//div[@class='reviewSrch btnSearchBook js_review_search_btn'][1]")
 	private WebElement flightDetailsInRecentSearch;
-	
+
 	@FindBy(css = "ul[class='full city-details tripO']>li:nth-child(1)>p[class*='city-name']")
 	private WebElement txtOriginName;
-	
+
 	@FindBy(css = "ul[class='full city-details tripO']>li:nth-child(2)>p[class*='city-name']")
 	private WebElement txtDestinationName;
-	
+
 	@FindBy(css = "p[class='full txt-ar text-error fs-xs line-hn mt5']")
 	private WebElement txtSeatLeftMessage;
-	
+
 	@FindBy(css = "h3[class='trip-price fr']>span[class='fs-11 text-error block tr mb5']")
 	private WebElement txtSeatLeftMessageInFlightDetails;
-	
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -630,9 +633,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	/*
 	 * public void clickAirlineMatrix() throws Exception {
 	 * BrowserActions.clickOnElement(matrixStrip, driver, "Airline Matrix Strip"
-	 * ); Utils.waitForPageLoad(driver);
-	 * 
-	 * }
+	 * ); Utils.waitForPageLoad(driver); }
 	 */
 
 	/**
@@ -2288,10 +2289,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button - INTL");
 	}
-		
+
 	/**
-	 * To get text Destination from header
-	 *  Section
+	 * To get text Destination from header Section
 	 * 
 	 * @throws Exception
 	 */
@@ -2300,10 +2300,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String Destination = txtDestinationName.getText();
 		return Destination;
 	}
-	
-	 /**
-	 * To get text Seats Left in that Flight
-	 *  Section
+
+	/**
+	 * To get text Seats Left in that Flight Section
 	 * 
 	 * @throws Exception
 	 */
@@ -2312,169 +2311,167 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String SeatLeft = txtSeatLeftMessage.getText();
 		return SeatLeft;
 	}
-	
-		/**
-		 * To get text Seats Left in that Flight details Pop Up
-		 *  Section
-		 * 
-		 * @throws Exception
-		 */
 
-		public String getTextSeatLeftInFlightDetailPopUp() throws Exception {
+	/**
+	 * To get text Seats Left in that Flight details Pop Up Section
+	 * 
+	 * @throws Exception
+	 */
+
+	public String getTextSeatLeftInFlightDetailPopUp() throws Exception {
 		String SeatLeft = txtSeatLeftMessageInFlightDetails.getText();
 		return SeatLeft;
-		}	
-/**
- * To get text Text from Recent search pop Up
- * 
- * @throws Exception
- */
+	}
 
-public String getTextRecentSearchPopUp() throws Exception {
-	String Details = txtRecentSearchPopUp.getText();
-	return Details;
-}
+	public LoginPage navigateToSignIn() throws Exception {
 
-/**
- * To Click on Get Fare Alert Link
- * 
- * @throws Exception
- */
-public void clickOnGetFareAlert() throws Exception {
-	Utils.waitForPageLoad(driver);
-	BrowserActions.clickOnElement(lnkFareCall, driver, "Click on Get Fare Alert Link");
-}
+		WebElement lnkMyAccount = driver.findElement(By.cssSelector("li[id='userSignInStrip']>a"));
+		Point point = lnkMyAccount.getLocation();
+		int xCord = point.getX();
+		int yCord = point.getY();
 
-/**
- * To Fill Price(Amount) in Fare Details In Pop Up
- * 
- * @throws Exception
- */
-public String enterGetFareDetailsPrice(String Price) throws Exception {
-	Utils.waitForPageLoad(driver);
-	BrowserActions.typeOnTextField(txtFldMaxAmount, Price, driver, "To Fill Amount in fare Alert Pop Up");
-	Thread.sleep(1000);
-	String errorMessage = errorMessageFromFareDetailPopUP.getText();
-	return errorMessage;
-}
-
-/**
- * To Fill Email in Fare Details In Pop Up
- * 
- * @throws Exception
- */
-
-public String enterGetFareDetailsEmail(String Email) throws Exception {
-	Utils.waitForPageLoad(driver);
-	BrowserActions.typeOnTextField(txtFldEmail, Email, driver, "To Fill Email in fare Alert Pop up");
-	Thread.sleep(1000);
-	String errorMessage = errorMessageEmailFromFareDetailPopUP.getText();
-	return errorMessage;
-}
-
-/**
- * To Fill PhoneNumber in Fare Details In Pop Up
- * 
- * @throws Exception
- */
-public String enterGetFareDetailsPhoneNumber(String PhoneNumber) throws Exception {
-	Utils.waitForPageLoad(driver);
-	BrowserActions.typeOnTextField(txtFldPhoneNumber, PhoneNumber, driver,
-			"To Fill Phone number in fare Alert Pop up");
-	Thread.sleep(1000);
-	String errorMessage = errorMessagePhoneNumberFromFareDetailPopUP.getText();
-	return errorMessage;
-}
-/**
- * To Click on [X] button in Flights Detail
- * 
- * @throws Exception
- */
-public void clickOnCloseInFlightDetailPopUp() throws Exception {
-	BrowserActions.javascriptClick(closeInFlightDetailPopUp, driver, "Click on [X] button in Flight Detail");
-}
-
-/**
- * To get text from Number Of Stops
- * 
- * @throws Exception
- */
-
-public String getTextNoOfStops() throws Exception {
-	String Details = txtNoOfStops.getText();
-	return Details;
-}
-/**
- * To get text from Number Of Stops
- * 
- * @throws Exception
- */
-public boolean verifySelectedFlightName() throws Exception {
-	String flightname = BrowserActions.getText(driver, preferredFlightName, "Flight Name");
-	for (int i = 0; i < lstflightNameSRP.size(); i++) {
-		String flightNameRow = BrowserActions.getText(driver, lstflightNameSRP.get(i),
-				"Getting txt of the flight name by rows.");
-		if (flightname.equalsIgnoreCase(flightNameRow)) {
-			return true;
+		if (BrowserType.fromConfiguration("ie") == BrowserType.IE) {
+			Robot robot = new Robot();
+			robot.mouseMove(xCord, yCord);
 		}
+		btnMyAccount.click();
+		BrowserActions.javascriptClick(btnSignIn, driver, "Sign In");
+		Utils.waitForPageLoad(driver);
+		return new LoginPage(driver).get();
 	}
-	return false;
-}
 
-public void clickOnRecentSearch() throws Exception {
-	BrowserActions.javascriptClick(btnRecentSearch, driver, "Click on [X] button in Flight Detail");
-}
+	/**
+	 * To get text Text from Recent search pop Up
+	 * 
+	 * @throws Exception
+	 */
 
-/**
- * To get text origin from header
- *  Section
- * 
- * @throws Exception
- */
-
-public String getTextOfOrigiNameHeader() throws Exception {
-	Utils.waitForPageLoad(driver);
-	String Origin = txtOriginName.getText();
-	return Origin;
-}
-/**
- * To Scroll To Bottom of SRP
- * 
- * @throws Exception
- */
-public void scrollToBottom() throws Exception {
-	BrowserActions.scrollToView(yatraFooterPanel, driver);
-}
-
-/**
- * To Scroll To Up of SRP
- * 
- * @throws Exception
- */
-public void ClickOnScrollUpButton() throws Exception {
-	BrowserActions.clickOnElement(btnScrollUpSRP, driver, "");
-}
-/**
- * To navigate to SignIn Page
- * 
- * @throws Exception
- */
-public LoginPage navigateToSignIn() throws Exception {
-
-	WebElement lnkMyAccount = driver.findElement(By.cssSelector("li[id='userSignInStrip']>a"));
-	Point point = lnkMyAccount.getLocation();
-	int xCord = point.getX();
-	int yCord = point.getY();
-
-	if (BrowserType.fromConfiguration("ie") == BrowserType.IE) {
-		Robot robot = new Robot();
-		robot.mouseMove(xCord, yCord);
+	public String getTextRecentSearchPopUp() throws Exception {
+		String Details = txtRecentSearchPopUp.getText();
+		return Details;
 	}
-	btnMyAccount.click();
-	BrowserActions.javascriptClick(btnSignIn, driver, "Sign In");
-	Utils.waitForPageLoad(driver);
-	return new LoginPage(driver).get();
-}
+
+	/**
+	 * To Click on Get Fare Alert Link
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnGetFareAlert() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(lnkFareCall, driver, "Click on Get Fare Alert Link");
+	}
+
+	/**
+	 * To Fill Price(Amount) in Fare Details In Pop Up
+	 * 
+	 * @throws Exception
+	 */
+	public String enterGetFareDetailsPrice(String Price) throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.typeOnTextField(txtFldMaxAmount, Price, driver, "To Fill Amount in fare Alert Pop Up");
+		Thread.sleep(1000);
+		String errorMessage = errorMessageFromFareDetailPopUP.getText();
+		return errorMessage;
+	}
+
+	/**
+	 * To Fill Email in Fare Details In Pop Up
+	 * 
+	 * @throws Exception
+	 */
+
+	public String enterGetFareDetailsEmail(String Email) throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.typeOnTextField(txtFldEmail, Email, driver, "To Fill Email in fare Alert Pop up");
+		Thread.sleep(1000);
+		String errorMessage = errorMessageEmailFromFareDetailPopUP.getText();
+		return errorMessage;
+	}
+
+	/**
+	 * To Fill PhoneNumber in Fare Details In Pop Up
+	 * 
+	 * @throws Exception
+	 */
+	public String enterGetFareDetailsPhoneNumber(String PhoneNumber) throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.typeOnTextField(txtFldPhoneNumber, PhoneNumber, driver,
+				"To Fill Phone number in fare Alert Pop up");
+		Thread.sleep(1000);
+		String errorMessage = errorMessagePhoneNumberFromFareDetailPopUP.getText();
+		return errorMessage;
+	}
+
+	/**
+	 * To Click on [X] button in Flights Detail
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnCloseInFlightDetailPopUp() throws Exception {
+		BrowserActions.javascriptClick(closeInFlightDetailPopUp, driver, "Click on [X] button in Flight Detail");
+	}
+
+	/**
+	 * To get text from Number Of Stops
+	 * 
+	 * @throws Exception
+	 */
+
+	public String getTextNoOfStops() throws Exception {
+		String Details = txtNoOfStops.getText();
+		return Details;
+	}
+
+	/**
+	 * To Scroll To Bottom of SRP
+	 * 
+	 * @throws Exception
+	 */
+	public void scrollToBottom() throws Exception {
+		BrowserActions.scrollToView(yatraFooterPanel, driver);
+	}
+
+	/**
+	 * To Scroll To Up of SRP
+	 * 
+	 * @throws Exception
+	 */
+	public void ClickOnScrollUpButton() throws Exception {
+		BrowserActions.clickOnElement(btnScrollUpSRP, driver, "");
+	}
+
+	/**
+	 * To get text from Number Of Stops
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifySelectedFlightName() throws Exception {
+		String flightname = BrowserActions.getText(driver, preferredFlightName, "Flight Name");
+		for (int i = 0; i < lstflightNameSRP.size(); i++) {
+			String flightNameRow = BrowserActions.getText(driver, lstflightNameSRP.get(i),
+					"Getting txt of the flight name by rows.");
+			if (flightname.equalsIgnoreCase(flightNameRow)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void clickOnRecentSearch() throws Exception {
+		BrowserActions.javascriptClick(btnRecentSearch, driver, "Click on [X] button in Flight Detail");
+	}
+
+	/**
+	 * To get text origin from header Section
+	 * 
+	 * @throws Exception
+	 */
+
+	public String getTextOfOrigiNameHeader() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Origin = txtOriginName.getText();
+		return Origin;
+	}
 
 	// *******************************End of SRP
 	// Functions********************************************************************************************

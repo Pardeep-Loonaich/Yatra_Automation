@@ -36,7 +36,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 ********************************* WebElements of Yatra ReviewPage ***********************************
 	 **********************************************************************************************/
 
-
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	private WebElement btnChngeFlight;
 
@@ -52,8 +51,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath = "//ul[@class = 'promo-options']/li[@class='ng-scope']")
 	private WebElement lnkPromoCoupon;
 
-	//@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
-	@FindBy(xpath= "//Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]")
+	// @FindBy(xpath =
+	// ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
+	@FindBy(xpath = "//Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]")
 	private WebElement btnContinueReviewPage;
 
 	@FindBy(xpath = ".//*[@id='travellerf0']")
@@ -107,13 +107,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = ".overlay-content>p[class='text-center']>button[class='button primary rounded']")
 	private WebElement ContinueInPopUp;
 
-	@FindBy(css="[ng-show='priceChangeDiv']>div>div[class='overlay-content ']")
+	@FindBy(css = "[ng-show='priceChangeDiv']>div>div[class='overlay-content ']")
 	private WebElement popupFareChange;
 
-	@FindBy(css="[ng-show='priceChangeDiv']>div>div[class='overlay-content ']>div[class='row mt10 btn-box text-center']>button")
+	@FindBy(css = "[ng-show='priceChangeDiv']>div>div[class='overlay-content ']>div[class='row mt10 btn-box text-center']>button")
 	private WebElement ContinueInpopUpFareSlashed;
 
-	@FindBy(css="[ng-show='priceChangeDiv']>div>div[class='overlay-content ']>div[class='row mt10 btn-box']>button[ng-click='continueSameFlight()']")
+	@FindBy(css = "[ng-show='priceChangeDiv']>div>div[class='overlay-content ']>div[class='row mt10 btn-box']>button[ng-click='continueSameFlight()']")
 	private WebElement ContinueInFareChangeAlertPopUp;
 
 	@FindBy(css = " div[class='center-block text-center mt-1 mb-1 sticky-sm-bottom hide-under-overlay']>button[ng-disabled='isContinueBtnDisabled']")
@@ -128,71 +128,63 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "[id='checkoutBase']>div:not([class])>main>div>aside>div[class='box ng-scope']>div[class='box-content hide-under-overlay']>div>ul[class='list list-border']")
 	private WebElement contentFareDetails;
 
-	@FindBy(xpath= "//*[@ng-repeat='traveller in travellerDetails']")
-	private List<WebElement> modTravellerDetails ;
+	@FindBy(xpath = "//*[@ng-repeat='traveller in travellerDetails']")
+	private List<WebElement> modTravellerDetails;
 
 	@FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
 	private WebElement moduleFareRules;
 
 	@FindBy(css = "div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")
 	private WebElement formReviewHeading;
-    
+
 	@FindBy(css = "div[class='overlay-content ']")
-	private WebElement  popUpFareAlert;
+	private WebElement popUpFareAlert;
 
-	@FindBy(css="div[ng-controller='productFareDetailsController']>div[class='box-content hide-under-overlay']>div[ng-show='showFareDetails']>ul[class='list list-border']>li[class='ng-scope']>span[class='pull-right tr alignment']>span")
-	private List <WebElement> lstPayAmount;
+	@FindBy(css = "div[ng-controller='productFareDetailsController']>div[class='box-content hide-under-overlay']>div[ng-show='showFareDetails']>ul[class='list list-border']>li[class='ng-scope']>span[class='pull-right tr alignment']>span")
+	private List<WebElement> lstPayAmount;
 
-	@FindBy(css="div[class='text-right alignment ng-scope']>span[class='block fs-xlg gray-dark u-pay ng-binding']:not([class='rs'])")
+	@FindBy(css = "div[class='text-right alignment ng-scope']>span[class='block fs-xlg gray-dark u-pay ng-binding']:not([class='rs'])")
 	private WebElement totalPayAmount;
-	
-	@FindBy(css= "input[id='promoListInput']")
-	private WebElement  fldContentPromoCode;
-	
-	@FindBy(css= "span[class*='pull-left w85perc ng-binding']")
-	private WebElement  PromoCodeErrorMessage;
 
-	@FindBy(css= "button[class='button sleek-btn promo-btn ng-binding']")
-	private WebElement  btnApplyPromoCode;
+	@FindBy(css = "input[id='promoListInput']")
+	private WebElement fldContentPromoCode;
 
-	//@Harveer
-	@FindBy(xpath="(//div[@class='overlay modal-new'])[1]")
+	@FindBy(css = "span[class*='pull-left w85perc ng-binding']")
+	private WebElement PromoCodeErrorMessage;
+
+	@FindBy(css = "button[class='button sleek-btn promo-btn ng-binding']")
+	private WebElement btnApplyPromoCode;
+
+	// @Harveer
+	@FindBy(xpath = "(//div[@class='overlay modal-new'])[1]")
 	private WebElement priceChangeDiv;
 
-	
-	@FindBy(css= "div[class='box hide-under-overlay ng-scope']>h3[class='box-title fs-md normal ng-binding']")
-	private WebElement  txtReviewYourBooking;
-	
-	@FindBy(css= "h3>span[class='pull-left w85perc ng-binding']")
-	private WebElement  txtPromoDiscountApplied;
-	
-	@FindBy(css= "div[class='text-right alignment ng-scope']>span[class='block fs-xlg gray-dark u-pay ng-binding']")
-	private WebElement  totalAmountInreviewPage;
-	
-	@FindBy(css= "ul[class='list list-border']>li:nth-child(5)>span[class='pull-right tr alignment']>a[class='remove-btn']")
-	private WebElement  btnRemove;
-	
-	@FindBy(css= "div[class='col-sm-6 promo-select-ui width-increased']>a")
-	private WebElement  btnClosePromoBox;
-	
-	@FindBy(css= "ul[class='list list-border ng-scope']>li[ng-show='yatraExtra.eCash && yatraExtra.eCash.amount']")
-	private WebElement  txtTotalEcashEarned;
-	
-	@FindBy(css= "div[ng-show='showFareDetails']>ul[class='list list-border']>li:nth-child(4)")
-	private WebElement  txtFeeAndSurcharge;
-	
-	
-	
-	
-	
-	/**********************************************
-	 ************************************************
-=======
-	private WebElement  totalAmountInreviewPage;
+	@FindBy(css = "div[class='box hide-under-overlay ng-scope']>h3[class='box-title fs-md normal ng-binding']")
+	private WebElement txtReviewYourBooking;
 
-	/**********************************************************************************************
->>>>>>> refs/remotes/origin/Framework_Development
-	 ********************************* WebElements of Yatra ReviewPage - Ends ****************************
+	@FindBy(css = "h3>span[class='pull-left w85perc ng-binding']")
+	private WebElement txtPromoDiscountApplied;
+
+	@FindBy(css = "div[class='text-right alignment ng-scope']>span[class='block fs-xlg gray-dark u-pay ng-binding']")
+	private WebElement totalAmountInreviewPage;
+
+	@FindBy(css = "ul[class='list list-border']>li:nth-child(5)>span[class='pull-right tr alignment']>a[class='remove-btn']")
+	private WebElement btnRemove;
+
+	@FindBy(css = "div[class='col-sm-6 promo-select-ui width-increased']>a")
+	private WebElement btnClosePromoBox;
+
+	@FindBy(css = "ul[class='list list-border ng-scope']>li[ng-show='yatraExtra.eCash && yatraExtra.eCash.amount']")
+	private WebElement txtTotalEcashEarned;
+
+	@FindBy(css = "div[ng-show='showFareDetails']>ul[class='list list-border']>li:nth-child(4)")
+	private WebElement txtFeeAndSurcharge;
+
+	@FindBy(css = "div[ng-show='showFareDetails'] div[class='text-right alignment ng-scope']>span:nth-child(2)")
+	private WebElement txtshowFlightFareDetails;
+
+	/**********************************
+	 * WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
 
 	/**
@@ -346,10 +338,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.scrollToView(drpPromoCode, driver);
 		BrowserActions.clickOnElement(drpPromoCode, driver, "To click on Promo code Dropdown.");
 	}
-	
+
 	public void selectPromoByIndex(int Index) throws Exception {
-		driver.findElement(By.cssSelector("div[class='col-sm-6 promo-select-ui width-increased']>ul>li:nth-child("+Index+")>label")).click();;
+		driver.findElement(By.cssSelector(
+				"div[class='col-sm-6 promo-select-ui width-increased']>ul>li:nth-child(" + Index + ")>label")).click();
+		;
 	}
+
 	/**
 	 * To click promo drop down on Review page fetch coupon text from the
 	 * dropdown submit the received coupon and click on Apply button on Review
@@ -428,9 +423,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.javascriptClick(lnkFeeSurchrge, driver, "Clicked on Fees & Surcharge link.");
 	}
 
-
-	@FindBy(css="button[ng-click='continueSameFlight();']")
+	@FindBy(css = "button[ng-click='continueSameFlight();']")
 	WebElement ContinueInFarePopUp;
+
 	/**
 	 * Clicking Continue In Price Increase Pop Up
 	 * 
@@ -439,22 +434,22 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 */
 
 	public void popUpAppear() throws Exception {
-		//if (driver.findElements(By.cssSelector(".update-fare.pt10.ico-right")).size()>0)		
-		if(PricePopUp.isDisplayed()){
+		// if
+		// (driver.findElements(By.cssSelector(".update-fare.pt10.ico-right")).size()>0)
+		if (PricePopUp.isDisplayed()) {
 			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
 		}
 
-		else if (popupFareChange.isDisplayed()) 
-			if(ContinueInFareChangeAlertPopUp.isDisplayed())
-			{
-				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver, "Clicked on continue in Fare Change Alert Popup");
-			}
-			else if(ContinueInpopUpFareSlashed.isDisplayed())
-			{
-				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver, "Clicked on continue in fare slashed popup");
-			}
+		else if (popupFareChange.isDisplayed())
+			if (ContinueInFareChangeAlertPopUp.isDisplayed()) {
+				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,
+						"Clicked on continue in Fare Change Alert Popup");
+			} else if (ContinueInpopUpFareSlashed.isDisplayed()) {
+				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver,
+						"Clicked on continue in fare slashed popup");
+			} else
+				Log.event("No PopUp appear.");
 	}
-
 
 	/**
 	 * Getting the text from the fare details panel
@@ -471,17 +466,18 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	/**
 	 * getting the amount we need to pay step by step and then summing them
+	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public int calculatingAmountToPay() throws Exception {
 
-		int chrgedAmount=0;
+		int chrgedAmount = 0;
 
 		for (int i = 0; i < lstPayAmount.size(); i++) {
-			String amount = BrowserActions.getText(driver,lstPayAmount.get(i), "lstPayAmount").trim().replace(",","");
+			String amount = BrowserActions.getText(driver, lstPayAmount.get(i), "lstPayAmount").trim().replace(",", "");
 			int amount1 = Integer.parseInt(amount);
-			chrgedAmount = amount1+chrgedAmount;
+			chrgedAmount = amount1 + chrgedAmount;
 		}
 		return chrgedAmount;
 
@@ -489,135 +485,158 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	/**
 	 * getting the text from the Total amount from the fare detail panel
+	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public String gettingTotalPayAmount()throws Exception {
-		String amount =BrowserActions.getText(driver,totalPayAmount, "Getting txt of total payment amount").trim().replace(",","");
+	public String gettingTotalPayAmount() throws Exception {
+		String amount = BrowserActions.getText(driver, totalPayAmount, "Getting txt of total payment amount").trim()
+				.replace(",", "");
 		return amount;
 	}
-	
-		public String getTextOfReviewHeading() throws Exception {
-			String formReview = BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")), "Getting text of Review Form Heading.");
-			return formReview;
-		}
-		
-		
-		/**
-		 * Enter Promo Code in review page and Click Apply
-		 * 
-		 * @param String
-		 * @throws Exception
-		 */
-		public void enterPromo(String promo) throws Exception {
-			BrowserActions.typeOnTextField(fldContentPromoCode, promo, driver, "Enter Promo");
-			BrowserActions.clickOnElement(btnApplyPromoCode, driver, "Apply Button");
-		}
-		/**
-		 * Getting the text of Promo Code Error Message
-		 * 
-		 * @return String
-		 * @throws Exception
-		 */
-		
-		public String getTextFromPromoMessage() throws Exception {
-			Utils.waitForPageLoad(driver);
-			String ErrorMessage = BrowserActions.getText(driver, PromoCodeErrorMessage, "Getting Error text from the Promo Code");
-			return ErrorMessage;
 
-		}
-		/**
-		 * Description: to handle price change pop up, if pop appear <br>
-		 *  it will navigate to back to SRP Paage
-		 */
-		
-		public void handlePriceChangeWindow()
-		{
-			// @harveer- i have hard coded these value because this pop up will be available in some scenario 
-		if (driver.findElements(By.xpath("(//div[@class='overlay modal-new'])[1]")).size()>0)
-		{
-			
+	public String getTextOfReviewHeading() throws Exception {
+		String formReview = BrowserActions.getText(driver,
+				driver.findElement(By.cssSelector(
+						"div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")),
+				"Getting text of Review Form Heading.");
+		return formReview;
+	}
+
+	/**
+	 * Enter Promo Code in review page and Click Apply
+	 * 
+	 * @param String
+	 * @throws Exception
+	 */
+	public void enterPromo(String promo) throws Exception {
+		BrowserActions.typeOnTextField(fldContentPromoCode, promo, driver, "Enter Promo");
+		BrowserActions.clickOnElement(btnApplyPromoCode, driver, "Apply Button");
+	}
+
+	/**
+	 * Getting the text of Promo Code Error Message
+	 * 
+	 * @return String
+	 * @throws Exception
+	 */
+
+	public String getTextFromPromoMessage() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String ErrorMessage = BrowserActions.getText(driver, PromoCodeErrorMessage,
+				"Getting Error text from the Promo Code");
+		return ErrorMessage;
+
+	}
+
+	/**
+	 * Description: to handle price change pop up, if pop appear <br>
+	 * it will navigate to back to SRP Paage
+	 */
+
+	public void handlePriceChangeWindow() {
+		// @harveer- i have hard coded these value because this pop up will be
+		// available in some scenario
+		if (driver.findElements(By.xpath("(//div[@class='overlay modal-new'])[1]")).size() > 0) {
+
 			driver.findElement(By.cssSelector("button[class='button rounded primary']")).click();
 		}
-		}
-		/**
-		 * Getting the text of text Review Your Booking
-		 * 
-		 * @return String
-		 * @throws Exception
-		 */
-		public String getTextReviewBooking() throws Exception {
-			Utils.waitForPageLoad(driver);
-			String Message = BrowserActions.getText(driver, txtReviewYourBooking, "Getting Error text Review Your Booking");
-			return Message;
-		}
-		/**
-		 * Getting the text of Promo Applied
-		 * 
-		 * @return String
-		 * @throws Exception
-		 */
-		public String getTextPromotinalMessage() throws Exception {
-			Utils.waitForPageLoad(driver);
-			String Message = BrowserActions.getText(driver, txtPromoDiscountApplied, "Getting Text of Promo Applied");
-			return Message;
-		}
-		/**
-		 * Getting Text of Total Amount
-		 * 
-		 * @return String
-		 * @throws Exception
-		 */
-		public String getTextTotalAmount() throws Exception {
-			Utils.waitForPageLoad(driver);
-			String Amount = BrowserActions.getText(driver, totalAmountInreviewPage, "Getting Text of Total Amount");
-			return Amount;
-		}
-		/**
-		 * To Click On Remove Button on Fare Details Section
-		 * 
-		 * @return String
-		 * @throws Exception
-		 */
-		public void ClickOnRemoveButton() throws Exception {
-			Utils.waitForPageLoad(driver);
-			btnRemove.click();
-		}
-		
-		/**
-		 * To Click On Close Button on Promo Box
-		 * 
-		 * @return String
-		 * @throws Exception
-		 */
-		public void ClickOnCloseButtonInPromoBox() throws Exception {
-			Utils.waitForPageLoad(driver);
-			btnClosePromoBox.click();
-		}
-		
-		/**
-		 * Getting Text Ecash Earned
-		 * 
-		 * @return String
-		 * @throws Exception
-		 */
-		public String getTextEcashFareDetails() throws Exception {
-			Utils.waitForPageLoad(driver);
-			String Ecash = BrowserActions.getText(driver, txtTotalEcashEarned, "Getting Text of Ecash Added In Account");
-			return Ecash;
-		}
+	}
 
-		/**
-		 * Getting Text Fee and Surcharge in Fare Details
-		 * 
-		 * @return String
-		 * @throws Exception
-		 */
-		public String getTextFeeAndSurcharge() throws Exception {
-			Utils.waitForPageLoad(driver);
-			String Ecash = BrowserActions.getText(driver, txtFeeAndSurcharge, "Getting Text of Fee and Surcharge in Fare Details");
-			return Ecash;
-		}
-		
-		//
-} //ReviewPage
+	/**
+	 * Getting the text of text Review Your Booking
+	 * 
+	 * @return String
+	 * @throws Exception
+	 */
+	public String getTextReviewBooking() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Message = BrowserActions.getText(driver, txtReviewYourBooking, "Getting Error text Review Your Booking");
+		return Message;
+	}
+
+	/**
+	 * Getting the text of Promo Applied
+	 * 
+	 * @return String
+	 * @throws Exception
+	 */
+	public String getTextPromotinalMessage() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Message = BrowserActions.getText(driver, txtPromoDiscountApplied, "Getting Text of Promo Applied");
+		return Message;
+	}
+
+	/**
+	 * Getting Text of Total Amount
+	 * 
+	 * @return String
+	 * @throws Exception
+	 */
+	public String getTextTotalAmount() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Amount = BrowserActions.getText(driver, totalAmountInreviewPage, "Getting Text of Total Amount");
+		return Amount;
+	}
+
+	/**
+	 * To Click On Remove Button on Fare Details Section
+	 * 
+	 * @return String
+	 * @throws Exception
+	 */
+	public void ClickOnRemoveButton() throws Exception {
+		Utils.waitForPageLoad(driver);
+		btnRemove.click();
+	}
+
+	/**
+	 * To Click On Close Button on Promo Box
+	 * 
+	 * @return String
+	 * @throws Exception
+	 */
+	public void ClickOnCloseButtonInPromoBox() throws Exception {
+		Utils.waitForPageLoad(driver);
+		btnClosePromoBox.click();
+	}
+
+	/**
+	 * Getting Text Ecash Earned
+	 * 
+	 * @return String
+	 * @throws Exception
+	 */
+	public String getTextEcashFareDetails() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Ecash = BrowserActions.getText(driver, txtTotalEcashEarned, "Getting Text of Ecash Added In Account");
+		return Ecash;
+	}
+
+	/**
+	 * Getting Text Fee and Surcharge in Fare Details
+	 * 
+	 * @return String
+	 * @throws Exception
+	 */
+	public String getTextFeeAndSurcharge() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Ecash = BrowserActions.getText(driver, txtFeeAndSurcharge,
+				"Getting Text of Fee and Surcharge in Fare Details");
+		return Ecash;
+	}
+
+	/**
+	 * Getting the text from Flight Price in Review page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFlightPrice() throws Exception {
+		Utils.waitForElement(driver, txtshowFlightFareDetails);
+		String flightPriceGetTxt = BrowserActions.getText(driver, txtshowFlightFareDetails,
+				"Flight Price should be displayed");
+		return flightPriceGetTxt;
+	}
+	//
+} // ReviewPage
