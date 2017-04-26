@@ -61,6 +61,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "p[class='new-blue-button .js-bookNow book-btn relative tc']")
 	private WebElement btnBookNowINT;
+	
+	@FindBy(xpath = "//article[@class='full result-card animation-on item-0']//p[@class='new-blue-button .js-bookNow book-btn relative tc']")  //div[class='fr pr partial-pay'] p:nth-child(1)
+	private WebElement btnBookNowINT_New; //
 
 	@FindBys({
 
@@ -296,6 +299,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "//label[@class='filter-label nowrap']//span[@class='clip-overflow']")
 	private List<WebElement> txtAirlineName_AirlineFilters;
 	
+	@FindBy(xpath = "//div[@ng-show='open_stop']//span[@class='full bxs txt-ac']")
+	private List<WebElement> lnkSops_Filters;
+	
 	@FindBy(css = "div[id='resultList_0'] a[datep-obj='findLowesFare']")  
 	private WebElement lnkOnwardLFF;
 	
@@ -313,7 +319,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "div[id='resultList_0'] h6[class='full']")  
 	private WebElement txtCalender_OnwardLFF;
-
 	
 	@FindBy(css = "i[class='ico ico-fare-cal-fixed']")  
 	private WebElement lnkFareAlert;
@@ -400,7 +405,19 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	private WebElement txtShareButton_ShareItinerary;
 	
 	@FindBy(css = "div[class='overlay-content']>p[class='text-success tc']")  
-	private WebElement txtPopupMessage_ShareItinerary;
+	private WebElement txtPopupMessage_ShareItinerary;	
+	
+	@FindBy(css = "div[id='resultList_0'] a[class='prev-day']")  
+	private WebElement lnkPrevDay_OnwardLeg;
+	
+	@FindBy(css = "div[id='resultList_0'] a[class='next-day']")  
+	private WebElement lnkNextDay_OnwardLeg;
+	
+	@FindBy(css = "div[id='resultList_1'] a[class='prev-day']")  
+	private WebElement lnkPrevDay_ReturnLeg;
+	
+	@FindBy(css = "div[id='resultList_1'] a[class='next-day']")  
+	private WebElement lnkNextDay_ReturnLeg;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -501,15 +518,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-	
-	
+	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {	
 		closeINotificationAtTopSRP();
 		WebElement wBookNow=driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])["+index+"]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.nap(2);
-		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
-		
+		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");		
 		return new ReviewPage(driver).get();
 	}
 
@@ -1876,7 +1890,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickShareItinerary() throws Exception {
-		BrowserActions.nap(10);
+		BrowserActions.nap(30);
 		Utils.waitForElement(driver, lnkShareItinerary);
 		BrowserActions.clickOnElement(lnkShareItinerary, driver, "Click Share Itinerary");
 		BrowserActions.nap(2);
@@ -1954,7 +1968,171 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForElement(driver, txtPopupMessage_ShareItinerary);
 		String shareItineraryPouUpMessageGetTxt = BrowserActions.getText(driver, txtPopupMessage_ShareItinerary, "Share Itinerary popup message should be displayed");
 		return shareItineraryPouUpMessageGetTxt;
+	}	
+		
+	/**
+	 * To verify Onward Legs is displayed
+	 * @param links : PrevDay and NextDay in Onward leg links
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean verifyOnwardLegLinks(String links) throws Exception {
+		boolean status = false;
+		if (links == "PrevDay") {
+			Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);			
+			if (BrowserActions.isElementPresent(driver, lnkPrevDay_OnwardLeg) == true) {
+				status = true;
+			}
+		} else if (links == "NextDay") {
+			Utils.waitForElement(driver, lnkNextDay_OnwardLeg);			
+			if (BrowserActions.isElementPresent(driver, lnkNextDay_OnwardLeg) == true) {
+				status = true;
+			}
+		}
+		return status;
 	}
+	
+	/**
+	 * To verify Return leg links is displayed
+	 * @param links : PrevDay and NextDay in Return leg links
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean verifyReturnLegLinks(String links) throws Exception {
+		boolean status = false;
+		if (links == "PrevDay") {
+			Utils.waitForElement(driver, lnkPrevDay_ReturnLeg);			
+			if (BrowserActions.isElementPresent(driver, lnkPrevDay_ReturnLeg) == true) {
+				status = true;
+			}
+		} else if (links == "NextDay") {
+			Utils.waitForElement(driver, lnkPrevDay_ReturnLeg);			
+			if (BrowserActions.isElementPresent(driver, lnkNextDay_ReturnLeg) == true) {
+				status = true;
+			}
+		}
+		return status;
+	}
+	
+
+	 /* To select Preferred Airline in Airline Filters 
+	 * @param airlineName : Airline Name
+	 * @return
+	 * @throws Exception
+	 */
+	public void selectAirlineInAirlineFilters(String airlineName) throws Exception {	
+		for (int i = 1; i < txtAirlineName_AirlineFilters.size(); i++) {
+			WebElement airlineFareDetails = driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='clip-overflow']"));
+			String airline = airlineFareDetails.getText().toString().trim();			
+			if (airlineName.equalsIgnoreCase(airline)){				
+				WebElement chkAirline = driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='checkbox']"));
+				BrowserActions.clickOnElement(chkAirline, driver, "Click Airline in Airlines Filters, Selected Airline is:" +airline);
+				break;
+			}else if(airline == null){
+				Log.event("Preferred Airline("+airlineName+") is not available, so its going to click Book Now Button with Random Flights");	
+			}
+		}
+		
+	}
+	
+	/*
+	 * To select Connecting flight or Direct flight in Stops filter
+	 * 
+	 * @param stops : stops
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unused")
+	public void selectFlightStopsInFilters(String stops) throws Exception {
+		for (int i = 1; i < lnkSops_Filters.size(); i++) {
+			WebElement stop = driver.findElement(By.cssSelector("div[ng-show='open_stop'] li:nth-child(" + i + ") span[class='full bxs txt-ac']"));
+			String stopText = stop.getText().toString().trim();
+			if (stopText.equalsIgnoreCase(stops)) {
+				// WebElement chkAirline =driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='checkbox']>input"));
+				BrowserActions.clickOnElement(stop, driver, "Click Stop in Stops Filters, Selected Stop is:" + stop);
+				break;
+			} else if(stopText == null){
+				Log.event("Flight Stop is not available so All flights(connecting and Random) visible by default");		
+			}
+		}
+
+	}
+
+	/**
+	 * To select OneWay Flight search Fields
+	 * 
+	 * @throws Exception
+	 */
+
+	public ReviewPage selectAirlineBookNowInOW(String domain, String stops, String airlines) throws Exception {
+		BrowserActions.nap(2);
+		if (domain.equalsIgnoreCase("DOM")) {
+			// Select Connecting flight or Direct flight in Stops filter
+			if (stops.equalsIgnoreCase("All")) {
+				Log.event("All flights visible by default");
+			} else {
+				selectFlightStopsInFilters(stops);
+				Log.event("Successfully selected " + stops + " button in Stops Filter");
+			}
+
+			// click book now based on Any or Preferred airlines
+			if (airlines.equalsIgnoreCase("Any")) {
+				clickOnBookNowInOW(2); // select Book now
+				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
+			} else {
+				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
+				clickOnBookNowInOW(2); // select Book Now Airlines
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
+			}
+			Log.event("Successfully selected OneWay Flight Search fields");
+		} else if (domain.equalsIgnoreCase("INTL")) {
+			// Select Connecting flight or Direct flight in Stops filter
+			if (stops.equalsIgnoreCase("All")) {
+				Log.event("All flights visible by default");
+			} else {
+				selectFlightStopsInFilters(stops);
+				Log.event("Successfully selected " + stops + " button in Stops Filter");
+			}
+
+			// click book now based on Any or Preferred airlines
+			if (airlines.equalsIgnoreCase("Any")) {
+				clickOnBookNowInDOM_INTL(); // select Book now
+				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
+			} else {
+				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
+				clickOnBookNowInDOM_INTL(); // select Book Now Airlines
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
+			}
+			Log.event("Successfully selected OneWay Flight Search fields");
+		}
+		return new ReviewPage(driver).get();
+	}
+	
+	public void clickOnBookNowInOW(int index) throws Exception {
+		Utils.waitForElement(driver, btnBookNowINT_New);	
+		closeINotificationAtTopSRP();
+		WebElement wBookNow=driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])["+index+"]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
+		BrowserActions.scrollToView(wBookNow, driver);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button-DOM");		
+	}
+	
+	
+	/**
+	 * to click on Book now button in OneWay Trip for International flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnBookNowInDOM_INTL() throws Exception {
+		Utils.waitForElement(driver, btnBookNowINT);	
+		//closeINotificationAtTopSRP();
+		BrowserActions.scrollToView(btnBookNowINT, driver);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button - INTL");		
+	}
+	
   //*******************************End of SRP Functions********************************************************************************************
 
 } // SearchResult
