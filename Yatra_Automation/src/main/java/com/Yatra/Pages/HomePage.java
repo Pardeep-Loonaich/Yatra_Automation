@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -25,6 +27,8 @@ import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.BrowserType;
 import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
@@ -38,6 +42,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
 	Utils utils;
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
+
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -217,19 +224,19 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "li.ac_even.ac_over")
 	private WebElement txtCityOver;
-	
+
 	@FindBy(css = "input[id='BE_activity_destination']")
 	private WebElement txtActivitesOrigin;
-	
+
 	@FindBy(css = "div[class='journey-details clearfix']>div>div[class='ripple-parent']>input")
 	private WebElement btnSearchActivties;
-	
+
 	@FindBy(css = "div[class='ac_results act-look']>ul[class='mac-scroll scrollable']")
 	private WebElement listautoSuggestion;	
-	
+
 	@FindBy(css = "a[for='BE_flight_non_stop']>i")
 	private WebElement chkNonStopFlights;
-	
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -267,22 +274,31 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@Override
 	protected void isLoaded() {
-		if (!isPageLoaded) {
+
+		timer.end();
+		if (!isPageLoaded) 
+		{
 			Assert.fail();
 		}
 
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnSearch))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnSearch))) 
+		{
+			
 			Log.fail("Home Page did not open up. Site might be down.", driver);
 
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
 
 	}// isLoaded
 
 	@Override
-	protected void load() {
+	protected void load() 
+	{
+		timer.start();
 		isPageLoaded = true;
 		driver.get(appURL);
 		Utils.waitForPageLoad(driver);
+
 	}// load
 
 
@@ -298,7 +314,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.typeOnTextField(txtOrigin, origin, driver, "Select Origin");
 		BrowserActions.nap(3);
 		Utils.waitForElement(driver, txtCityOver);			
-		Log.event("Entered the Origin: " + origin);		
+		Log.event("Entered the Origin: "+origin);		
 	}
 
 	/**
@@ -349,7 +365,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int infant = Integer.parseInt(passengers.split("_")[2]);
 		int passengerClass = Integer.parseInt(passengers.split("_")[3]);
 		for (int i = 1; i < adult; i++) {
-			updatePassengers.get(0).click();
 		}
 
 		for (int i = 0; i < child; i++) {
@@ -1149,7 +1164,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
-	
+
 
 
 	public Boolean incorrectCity() throws Exception {
@@ -1384,8 +1399,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public String getErrorTextAfterInvalidTxt() throws Exception{
 		return BrowserActions.getText(driver, txtErrorMsgIncorrectCity, "Getting error message after entering invalid city");
 	}
-	
-	
+
+
 	@FindBy(css="div[class='overview']>li[class*='ac']>strong")
 	private WebElement lstOriginSuggestion;
 	/**
@@ -1429,7 +1444,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 				"Getting text from the Auto Suggestion City Name");
 		return txtDetails;
 	}
-	
+
 
 	/**
 	 * To click Non Stop Flights Checkbox

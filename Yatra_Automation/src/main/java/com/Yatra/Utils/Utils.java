@@ -655,13 +655,13 @@ public class Utils {
 	 * @throws MalformedURLException,IOException: this method will through IO and  MalformedURl exception
 	 *  
 	 */
-	public static int getResponseCode(String urlString) throws MalformedURLException, IOException{
+	public static int getResponseCode(String urlString) throws MalformedURLException, IOException
+	{
 	    URL url = new URL(urlString);
 	    HttpURLConnection huc = (HttpURLConnection)url.openConnection();
 	    huc.setRequestMethod("GET");
 	    huc.connect();
 	    return huc.getResponseCode();
 	}
-
 
 }
