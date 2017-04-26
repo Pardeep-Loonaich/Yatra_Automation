@@ -703,7 +703,7 @@ public class BrowserActions {
 	}
 	
 	/**
-	 * @author 
+	 * @author : Narayana
 	 * 
 	 * @param driver
 	 * @param sring
@@ -716,10 +716,15 @@ public class BrowserActions {
 		return dataToBeReturn;
 	}
 	
+	
 	/**
-	 * Description: iframe handling 
-	 * @param: driver- provide current driver instance.
-	 * @param: WebElement
+	 * @author : Narayana
+	 * @Description: verification on element present
+	 * @param driver
+	 *            : WebDriver Instances
+	 * @param locator
+	 *            : WebElement
+	 * @return: boolean
 	 */
 	public static boolean isElementPresent(WebDriver driver, WebElement locator) {
 		try {
@@ -730,6 +735,16 @@ public class BrowserActions {
 		}
 	}
 
+	/**
+	 * 
+	 * @author : Narayana
+	 * @Description: verification on element visible
+	 * @param driver
+	 *            : WebDriver Instances
+	 * @param locator
+	 *            : WebElement
+	 * @return: boolean
+	 */
 	public static boolean isElementVisible(WebDriver driver, WebElement locator) {
 		try {
 			locator.isEnabled();
@@ -737,8 +752,17 @@ public class BrowserActions {
 		} catch (Exception e) {
 			return false;
 		}
-	}	
-	
+	}
+
+	/**
+	 * @author : Narayana
+	 * @Description: verification on element selection
+	 * @param driver
+	 *            : WebDriver Instances
+	 * @param locator
+	 *            : WebElement
+	 * @return: boolean
+	 */
 	public static boolean isElementSelected(WebDriver driver, WebElement locator) {
 		try {
 			locator.isEnabled();

@@ -166,6 +166,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	@FindBy(css= "div[class='text-right alignment ng-scope']>span[class='block fs-xlg gray-dark u-pay ng-binding']")
 	private WebElement  totalAmountInreviewPage;
+	
+	@FindBy(css = "div[ng-show='showFareDetails'] div[class='text-right alignment ng-scope']>span:nth-child(2)")  
+	private WebElement txtshowFlightFareDetails;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra ReviewPage - Ends ****************************
@@ -415,8 +418,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 */
 
 	public void popUpAppear() throws Exception {
-		if (driver.findElements(By.cssSelector(".update-fare.pt10.ico-right")).size()>0) 
-		{
+		//if (driver.findElements(By.cssSelector(".update-fare.pt10.ico-right")).size()>0)		
+		if(PricePopUp.isDisplayed()){
 			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
 		}
 
@@ -546,6 +549,18 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		public String getTextTotalAmount() throws Exception {
 			String Amount = BrowserActions.getText(driver, totalAmountInreviewPage, "Getting Text of Total Amount");
 			return Amount;
+		}
+		
+		/**
+		 * Getting the text from Flight Price in Review page
+		 * 
+		 * @return
+		 * @throws Exception
+		 */
+		public String getTextFlightPrice() throws Exception {
+			Utils.waitForElement(driver, txtshowFlightFareDetails);
+			String flightPriceGetTxt = BrowserActions.getText(driver, txtshowFlightFareDetails, "Flight Price should be displayed");
+			return flightPriceGetTxt;
 		}
 		//
 } //ReviewPage

@@ -449,6 +449,7 @@ public class Train {
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			
+
 			trainSearchResult.selectTrainByIndexAndBook(1);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
@@ -459,6 +460,16 @@ public class Train {
         	Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("modalArriveInfo"), trainSearchResult),
 					"<b>Actual Result:</b> The Popup is displayed and the Boarding Points available are:"+trainSearchResult.gettingBoardingPoints(),
 					"<b>Actual Result:</b> The Popup is not displayed", driver);
+
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify that after selecting train,it should show availability of seats..");
+        	Log.message("<br>");
+        	/*Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"), trainSearchResult),
+					"<b>Actual Result:</b> Successfully navigated to 'Train Search' page and the available seats for the selected train are:"+trainSearchResult.checkAvailableSeatsBySelectingTrainNClassByRow(1),
+					"<b>Actual Result:</b> Unable to navigate to 'Train Search' page and the availabe seats are not visible.", driver);
+*/
+			
 
 
 		} catch (Exception e) {
