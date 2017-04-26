@@ -225,7 +225,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 	private WebElement btnSearchActivties;
 	
 	@FindBy(css = "div[class='ac_results act-look']>ul[class='mac-scroll scrollable']")
-	private WebElement listautoSuggestion;
+	private WebElement listautoSuggestion;	
+	
+	@FindBy(css = "a[for='BE_flight_non_stop']>i")
+	private WebElement chkNonStopFlights;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -307,6 +311,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void enterDestination(String destination) throws Exception {		
 		Utils.waitForElement(driver, txtDestination);
 		BrowserActions.typeOnTextField(txtDestination, destination, driver, "Select Destination");		
+		BrowserActions.nap(3);
 		Utils.waitForElement(driver, txtCityOver);		
 		Log.event("Entered the Destination: " + destination);
 	}
@@ -767,10 +772,11 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
+		Utils.waitForElement(driver, dateReturn);
 		BrowserActions.scrollToViewElement(dateReturn, driver);
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
 		selectMonth.get(month - 2).click();
-		Utils.waitForPageLoad(driver, 7);
+		Utils.waitForPageLoad(driver, 15); 
 		driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")).click();
 
 		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
@@ -1424,4 +1430,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return txtDetails;
 	}
 	
+
+	/**
+	 * To click Non Stop Flights Checkbox
+	 * 
+	 * @throws Exception
+	 */
+	public void clickNonStopFlightsCheckbox() throws Exception {
+		Utils.waitForElement(driver, chkNonStopFlights);	
+		BrowserActions.clickOnElement(chkNonStopFlights, driver, "Click Non Stop Flights Checkbox");
+		Log.event("Clicked Non Stop Flights in HomePage");
+	}
 }// HomePage
