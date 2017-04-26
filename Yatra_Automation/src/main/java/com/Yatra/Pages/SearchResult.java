@@ -2020,9 +2020,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public void selectAirlineInAirlineFilters(String airlineName) throws Exception {	
+	public void selectAirlineInAirlineFilters(String airlineName) throws Exception {		
 		for (int i = 1; i < txtAirlineName_AirlineFilters.size(); i++) {
 			WebElement airlineFareDetails = driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='clip-overflow']"));
+			BrowserActions.scrollToView(airlineFareDetails, driver);
 			String airline = airlineFareDetails.getText().toString().trim();			
 			if (airlineName.equalsIgnoreCase(airline)){				
 				WebElement chkAirline = driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='checkbox']"));
@@ -2096,11 +2097,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 			// click book now based on Any or Preferred airlines
 			if (airlines.equalsIgnoreCase("Any")) {
-				clickOnBookNowInDOM_INTL(); // select Book now
+				clickOnBookNowInDOM_INTL(1); // select Book now
 				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
 			} else {
 				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
-				clickOnBookNowInDOM_INTL(); // select Book Now Airlines
+				clickOnBookNowInDOM_INTL(1); // select Book Now Airlines
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
 			}
 			Log.event("Successfully selected OneWay Flight Search fields");
@@ -2109,7 +2110,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	public void clickOnBookNowInOW(int index) throws Exception {
-		Utils.waitForElement(driver, btnBookNowINT_New);	
+		BrowserActions.nap(2);
+		//Utils.waitForElement(driver, btnBookNowOW);	
 		closeINotificationAtTopSRP();
 		WebElement wBookNow=driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])["+index+"]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
@@ -2125,12 +2127,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public void clickOnBookNowInDOM_INTL() throws Exception {
-		Utils.waitForElement(driver, btnBookNowINT);	
-		//closeINotificationAtTopSRP();
-		BrowserActions.scrollToView(btnBookNowINT, driver);
+	public void clickOnBookNowInDOM_INTL(int index) throws Exception {
 		BrowserActions.nap(2);
-		BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button - INTL");		
+		//closeINotificationAtTopSRP();
+		WebElement wBookNow=driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["+index+"]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
+		//WebElement wBookNow=driver.findElement(By.cssSelector("div[ng-controller='scheduleController'] div[class='js-flightItem'] p[class='new-blue-button .js-bookNow book-btn relative tc']"));
+		BrowserActions.scrollToView(wBookNow, driver);
+		BrowserActions.nap(2);		
+		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button - INTL");		
 	}
 	
   //*******************************End of SRP Functions********************************************************************************************

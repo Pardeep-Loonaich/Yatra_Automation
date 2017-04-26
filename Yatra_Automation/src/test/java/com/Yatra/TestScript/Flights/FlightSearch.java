@@ -3039,7 +3039,7 @@ public class FlightSearch {
 		}
 	}	
 	
-	@Test( description = "Flight pricing on any airline", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "DOM flight pricing - OW ( Any airline)", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_122(HashMap<String, String> testData) throws Exception {		
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
 		String browser = testData.get("browser");
@@ -3048,33 +3048,46 @@ public class FlightSearch {
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("Class");		
+		String passengerClass = testData.get("Class");
+		String domain = testData.get("Domain");
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			homePage = new HomePage(driver, webSite).get();
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
 
+			// step: select OneWay Search fields in HomePage
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully selected OneWay Flight Search Fields!");
 
+			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
-
+			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			Log.message("5. Successfully clicked Book Now Button with Random Flights");
+			
+			//handle popup if displayed in Review page
+			reviewPage.popUpAppear();	
+			
+			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Flight pricing on any airline!");
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("fldContentFare"), searchResult),
-					"<b>Actual Result:</b> Prices for all flights are visible",
-					"<b>Actual Result:</b> Prices for all flights are not visible",
-					driver);
+			Log.message("<b>Expected Result:</b> Validated DOM Flight pricing - OW ( Any airline)");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
+					"<b>Actual Result:</b> Flight Prices is visible, Flight Price : "+ flightPrice,
+					"<b>Actual Result:</b> Flight Prices is not visible",	driver);			
 			
-			
-			Log.testCaseResult();
-			
+			Log.testCaseResult();			
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -3082,9 +3095,9 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
-	@Test( description = "Flight pricing of preferred Airline", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_123(HashMap<String, String> testData) throws Exception {
-		
+
+	@Test( description = "DOM flight pricing - OW ( Preferred airline)", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_123(HashMap<String, String> testData) throws Exception {		
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -3093,37 +3106,45 @@ public class FlightSearch {
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
-		String airlineName = testData.get("AirLineName");
-		
+		String domain = testData.get("Domain");
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			homePage = new HomePage(driver, webSite).get();
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
 
+			// step: select OneWay Search fields in HomePage
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully selected OneWay Flight Search Fields!");
 
+			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
-
-			searchResult.selectAirline(airlineName);
-			Log.message("5.Selected Flight of the chioce!");
+			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
 			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain,stops, airlines);	
+			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");
+			
+			//handle popup if displayed in Review page
+			reviewPage.popUpAppear();	
+			
+			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Flight pricing on any airline!");
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("fldContentFare"), searchResult),
-					"<b>Actual Result:</b> Prices for preferred flights are visible",
-					"<b>Actual Result:</b> Prices for preferred flights are not visible",
-					driver);
+			Log.message("<b>Expected Result:</b> Validated DOM Flight pricing - OW ( Preferred airline)");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
+					"<b>Actual Result:</b> Flight Prices is visible, Flight Price : "+ flightPrice,
+					"<b>Actual Result:</b> Flight Prices is not visible",	driver);			
 			
-			
-			Log.testCaseResult();
-			
+			Log.testCaseResult();			
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -3131,55 +3152,7 @@ public class FlightSearch {
 			Log.endTestCase();
 		}
 	}
-	@Test( description = "Error alert for price increase/decrease/pricing failure cases", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_124(HashMap<String, String> testData) throws Exception {
-		
-		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
-		String browser = testData.get("browser");
-		String origin = testData.get("Origin");
-		String tripType = testData.get("TripType");
-		String destination = testData.get("Destination");
-		String departureDate = testData.get("DepartureDate");
-		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("Class");
-		
-
-		// Get the web driver instance
-		final WebDriver driver = WebDriverFactory.get(browser);
-		Log.testCaseInfo(testData);
-		try {
-			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-			
-			homePage.selectTripType(tripType);
-			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
-
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-			Log.message("3.Successfully selected OneWay Flight Search Fields!");
-
-			searchResult = homePage.clickBtnSearch();
-			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
-			
-			reviewPage =searchResult.clickOnBookNowINT();
-			Log.message("5. clicked On Book Now Button!");
-			
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Flight pricing on any airline!");
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("popUpFareAlert"), reviewPage),
-					"<b>Actual Result:</b> Prices for all flights are visible",
-					"<b>Actual Result:</b> Prices for all flights are not visible",
-					driver);
-			
-			
-			Log.testCaseResult();
-			
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			driver.quit();
-			Log.endTestCase();
-		}
-	}
+	
 	@Test( description = "Preferred Airline search (modify Search) INTL-OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_120(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
