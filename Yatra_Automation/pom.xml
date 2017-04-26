@@ -80,7 +80,7 @@
 						<outputDirectory>${basedir}/test-output</outputDirectory>
 						<suiteXmlFiles>
 
-							<suiteXmlFile>.\testxml\{SUITE_NAME}</suiteXmlFile>
+							<suiteXmlFile>.\testxml\${SUITE_NAME}</suiteXmlFile>
 
 						</suiteXmlFiles>
 					</configuration>
