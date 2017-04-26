@@ -429,6 +429,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			{
 				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver, "Clicked on continue in fare slashed popup");
 			}
+			else
+				Log.event("No PopUp appear.");
 	}
 
 

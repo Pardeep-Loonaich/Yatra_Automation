@@ -17,6 +17,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.Yatra.Pages.HomePage;
+import com.Yatra.Pages.PaymentPage;
 import com.Yatra.Pages.TrainSearchResult;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
@@ -289,8 +290,9 @@ public class Train {
 		}
 	}
 
-	@Test(groups = { "desktop" }, description = "Available class should be shown for selecting the train.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Train_014(HashMap<String, String> testData) throws Exception {
+	
+	@Test(groups = { "desktop" }, description = "On selecting train,it should show availability of seats.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_008(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -319,7 +321,7 @@ public class Train {
 			Log.message("<b>Expected Result:</b> Verify that after selecting train,it should show availability of seats..");
         	Log.message("<br>");
         	Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"), trainSearchResult),
-					"<b>Actual Result:</b> Successfully navigated to 'Train Search' page and the available seats for the selected train are:"+trainSearchResult.checkAvailableClassBySelectingTrainByRow(1),
+					"<b>Actual Result:</b> Successfully navigated to 'Train Search' page and the available seats for the selected train are:"+trainSearchResult.checkAvailableSeatsBySelectingTrainNClassByRow(2),
 					"<b>Actual Result:</b> Unable to navigate to 'Train Search' page and the availabe seats are not visible.", driver);
 
 			
@@ -331,7 +333,6 @@ public class Train {
 			Log.endTestCase();
 		}
 	}
-
 	@Test(groups = { "desktop" }, description = "Check for Quota drop down of seats.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Train_009(HashMap<String, String> testData) throws Exception {
 
@@ -359,7 +360,7 @@ public class Train {
 			 
 			
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verify that quota dropdown of train seats,it should show availabile quota..");
+			Log.message("<b>Expected Result:</b> Verify that quota dropdown of train seats,it should show available quota..");
         	Log.message("<br>");
         	Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"), trainSearchResult),
 					"<b>Actual Result:</b> Successfully navigated to 'Train Search' page and the available seats quota for the selected train are:"+trainSearchResult.selectQuota(),
@@ -423,8 +424,8 @@ public class Train {
 	}
 
 
-	@Test(groups = { "desktop" }, description = "On selecting train,it should show availability of seats.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Train_008(HashMap<String, String> testData) throws Exception {
+	@Test(groups = { "desktop" }, description = "Verify after selecting seat it should open pop-up for boarding point selection.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_011(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -447,16 +448,18 @@ public class Train {
 			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
-			 
 			
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verify that after selecting train,it should show availability of seats..");
-        	Log.message("<br>");
-        	Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"), trainSearchResult),
-					"<b>Actual Result:</b> Successfully navigated to 'Train Search' page and the available seats for the selected train are:"+trainSearchResult.checkAvailableSeatsBySelectingTrainNClassByRow(1),
-					"<b>Actual Result:</b> Unable to navigate to 'Train Search' page and the availabe seats are not visible.", driver);
+			trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
-			
+			Thread.sleep(2000);
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify after selecting seat it should open pop-up for boarding point selection.");
+        	Log.message("<br>");
+        	Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("modalArriveInfo"), trainSearchResult),
+					"<b>Actual Result:</b> The Popup is displayed and the Boarding Points available are:"+trainSearchResult.gettingBoardingPoints(),
+					"<b>Actual Result:</b> The Popup is not displayed", driver);
+
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -465,7 +468,7 @@ public class Train {
 			Log.endTestCase();
 		}
 	}
-
+	
 	@Test(groups = { "desktop" }, description = "Check for Prev/Next day tabs.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Train_012(HashMap<String, String> testData) throws Exception {
 
@@ -508,5 +511,253 @@ public class Train {
 			Log.endTestCase();
 		}
 	}
+	
+	@Test(groups = { "desktop" }, description = "Should show pop-up with other options of flight and bus.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_013(HashMap<String, String> testData) throws Exception {
 
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
+			 
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify that Other Travelling options of flight and bus Popup should display  in case available..");
+        	Log.message("<br>");
+        	Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("popupOtherRoute"), trainSearchResult),
+					"<b>Actual Result:</b> Other Travelling Options Popup displayed for the selected train are as:"+trainSearchResult.getTxtFromOtherTravelOption(),
+					"<b>Actual Result:</b> Other Travelling Options Popup not displayed for the selected train.", driver);
+
+        	trainSearchResult.closeOtherTravelOptionPopup();
+			Log.message("4.Successfully close the Other Travelling OptionPopup.");
+
+        	Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("popupOtherRouteInSideNav"), trainSearchResult),
+					"<b>Actual Result:</b> Other Travelling Option displayed in Left Navigation Panel.",
+					"<b>Actual Result:</b> Other Travelling Option not displayed", driver);
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	@Test(groups = { "desktop" }, description = "Available class should be shown for selecting the train.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_014(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
+			 
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify that after selecting train,it should show availability of seats..");
+        	Log.message("<br>");
+        	Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"), trainSearchResult),
+					"<b>Actual Result:</b> Successfully navigated to 'Train Search' page and the available seats for the selected train are:"+trainSearchResult.checkAvailableClassBySelectingTrainByRow(1),
+					"<b>Actual Result:</b> Unable to navigate to 'Train Search' page and the availabe seats are not visible.", driver);
+
+			
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
+	
+	@Test(groups = { "desktop" }, description = "Verify pop-up with option to change boarding points.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_016(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
+			
+			trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify pop-up with option to change boarding points should display.");
+        
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("modalArriveInfo"), trainSearchResult),
+					"<b>Actual Result:</b> The Popup is displayed after booking a seat.",
+					"<b>Actual Result:</b> The Popup is not displayed", driver);
+
+			String initialBoardingPoint = trainSearchResult.verifyBoardingPointChange();
+			Log.message("   The initial Boarding Point:"+initialBoardingPoint);
+			
+			trainSearchResult.changeBoardingPoint();
+			Log.message("5.Changing the default Boarding Point.");
+
+			String finalBoardingPoint = trainSearchResult.verifyBoardingPointChange();
+			Log.message("   The Selected Boarding Point:"+finalBoardingPoint);
+			
+			Log.message("<br>");
+        	Log.assertThat(!initialBoardingPoint.equals(finalBoardingPoint),
+					"<b>Actual Result:</b> The user is able to select the other option of Boarding Point.",
+					"<b>Actual Result:</b> The user is not able to select the other option of Boarding Point.", driver);
+
+        
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
+	@Test(groups = { "desktop" }, description = "Verify pop-up should show correct boarding point options.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_017(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
+			
+			
+			trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify pop-up should show correct boarding point options.");
+        
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("modalArriveInfo"), trainSearchResult),
+					"<b>Actual Result:</b> The Popup is displayed after booking a seat.",
+					"<b>Actual Result:</b> The Popup is not displayed", driver);
+
+		
+			
+			Log.message("<br>");
+        	Log.assertThat(trainSearchResult.verifySelectedBoardingPoint(origin),
+					"<b>Actual Result:</b> The Correct Boarding Point is displayed in the popup.",
+					"<b>Actual Result:</b> The Correct Boarding Point is not displayed in the popup.", driver);
+
+        
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
+	@Test(groups = { "desktop" }, description = "Verify Dropping point,Boarding point,depart time,arrival time in fliters.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_018(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
+			
+			
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify Dropping point,Boarding point,depart time,arrival time in fliters.");
+        
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("lftNavSection"), trainSearchResult),
+					"<b>Actual Result:</b> The Left Navigation is present and the sections are displayed with the headings.:"+trainSearchResult.getLeftNavHeading(),
+					"<b>Actual Result:</b> The Left Navigation is not present", driver);
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
 }

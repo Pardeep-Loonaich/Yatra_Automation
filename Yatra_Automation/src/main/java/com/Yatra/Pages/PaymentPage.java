@@ -980,17 +980,28 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 	public void cancelHdfcPayment(String browser) throws Exception{
-		BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 		if(browser.equalsIgnoreCase("chrome_windows")){
+			BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
 		}
 		else if(browser.equalsIgnoreCase("iexplorer_windows")){
+			BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
+
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 		}
 		else if(browser.equalsIgnoreCase("FireFox_windows")){
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 		}
 	}
+
+	public void cancelHdfcPaymentIe() throws Exception{
+		
+			
+		JavascriptExecutor js = (JavascriptExecutor) driver; 
+		js.executeScript("window.history.go(-1)");
+		//driver.switchTo().alert().accept();
+	}
+	
 
 	/**
 	 * to click on cancel button in SBI payment portal in case of ATM to cancel transaction 
@@ -1220,15 +1231,24 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	}
 
 
-	public void navigateBackFromMobileWallet(String walletName) throws Exception{
+	public void navigateBackFromMobileWallet(String walletName,String browser) throws Exception{
 		switch (walletName){
 		case "mobikwik":
 			driver.navigate().back();
 			break;
 
 		case "oxigen":
+			if(browser.equalsIgnoreCase("chrome_windows")){
 			BrowserActions.javascriptClick(btnBckToYatraOxygen, driver, "Clicked on 'Back to Yatra' button.");
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
+			}
+			if(browser.equalsIgnoreCase("iexplorer_windows")){
+				JavascriptExecutor js = (JavascriptExecutor) driver; 
+				js.executeScript("window.history.go(-2)");
+				driver.navigate().refresh();
+				driver.switchTo().alert().accept();
+			}
+			
 			break;
 
 		case "payu":
