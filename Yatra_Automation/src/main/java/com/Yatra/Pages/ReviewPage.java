@@ -182,7 +182,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	@FindBy(css = "div[ng-show='showFareDetails'] div[class='text-right alignment ng-scope']>span:nth-child(2)")
 	private WebElement txtshowFlightFareDetails;
-
+	
+	@FindBy(css = "button.primary.rounded.pull-right")
+	private WebElement btnFareChangeContinue;
 	/**********************************
 	 * WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -437,7 +439,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		// if
 		// (driver.findElements(By.cssSelector(".update-fare.pt10.ico-right")).size()>0)
 		if (PricePopUp.isDisplayed()) {
+			
+			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
+				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
+			}else
+			
 			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
+		
 		}
 
 		else if (popupFareChange.isDisplayed())

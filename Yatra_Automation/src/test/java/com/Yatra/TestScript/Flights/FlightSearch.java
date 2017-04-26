@@ -2436,22 +2436,22 @@ public class FlightSearch {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected Round Trip Radio button",	"<b>Actual Result:</b> Not selected Round Trip Radio button");
-            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP, Orgin City:  <b> "+ destination+ "</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
-            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP, Destination City:  <b> "+ origin+ "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
+            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City, Orgin City:  <b> "+ destination+ "</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
+            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City, Destination City:  <b> "+ origin+ "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
 		    
            //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
 	        String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
 			String[] depart = deprtDateText.split("/"); 
 			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
-					"<b>Actual Result:</b> Successfully verified selected Departure date with HP, Departure Date is: <b> "+ deprtDateText+"</b>",
-					"<b>Actual Result:</b> Not matched selected Departure date with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Departure date, Departure Date is: <b> "+ deprtDateText+"</b>",
+					"<b>Actual Result:</b> Not matched selected Departure date</b> ", driver);
 			
 			//TODO: To change the logic for return date verification (like 10, 20, 30 dates in moth level)
 			String returnDateText = searchResult.getTextReturnDate_ModifySearch();
 			String[] arrayReturndate = returnDateText.split("/"); 
 			Log.assertThat(returndate.equalsIgnoreCase(arrayReturndate[2]+"_"+arrayReturndate[1].replace("0", "")+"_"+arrayReturndate[0].replace("0", "")),
-					"<b>Actual Result:</b> Successfully verified selected Return date with HP, Return Date is: <b> "+ returnDateText+"</b>",
-					"<b>Actual Result:</b> Not matched selected Return date with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Return date, Return Date is: <b> "+ returnDateText+"</b>",
+					"<b>Actual Result:</b> Not matched selected Return date</b> ", driver);
 			
             String[] pax= passengerInfo.split("_");
 			String adult =pax[0]; String child =pax[1]; String infant =pax[2]; 
@@ -2459,21 +2459,21 @@ public class FlightSearch {
 			String childText = searchResult.getTextChild_ModifySearch();
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
-					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP, Selected Adult is:  <b> " + adult+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Adult passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Adult passenger details, Selected Adult is:  <b> " + adult+ "</b>",
+					"<b>Actual Result:</b> Not matched selected Adult passenger details</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
-					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP, Selected Child is:  <b> " + child+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Child passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Child passenger details, Selected Child is:  <b> " + child+ "</b>",
+					"<b>Actual Result:</b> Not matched selected Child passenger details</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
-					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP, Selected Infant is:  <b> " + infant+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Infant passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Infant passenger details, Selected Infant is:  <b> " + infant+ "</b>",
+					"<b>Actual Result:</b> Not matched selected Infant passenger details</b> ", driver);
 					
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClass.contains(passengerClassText),
-					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
-					"<b>Actual Result:</b> Not matched selected passenger class details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected passenger class details, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
+					"<b>Actual Result:</b> Not matched selected passenger class details</b> ", driver);
 					
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2555,8 +2555,8 @@ public class FlightSearch {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected Multicity Radio button",	"<b>Actual Result:</b> Not selected Multicity Radio button");
-            Log.assertThat(originCityText.contains(destination1), "<b>Actual Result:</b> Successfully verified Multicity Origin1 City name with HP Orgin1 name", "<b>Actual Result:</b> Not Matched Multicity Origin1 City name with HP Orgin1 name");
-            Log.assertThat(destCityText.contains(origin1), "<b>Actual Result:</b> Successfully verified Multicity Destination1 City with HP HP Destination1 name","<b>Actual Result:</b> Not Matched Multicity Destination1 City name with HP Destination1 name");
+            Log.assertThat(originCityText.contains(destination1), "<b>Actual Result:</b> Successfully verified Multicity Origin1 City name ", "<b>Actual Result:</b> Not Matched Multicity Origin1 City name with HP Orgin1 name");
+            Log.assertThat(destCityText.contains(origin1), "<b>Actual Result:</b> Successfully verified Multicity Destination1 City name","<b>Actual Result:</b> Not Matched Multicity Destination1 City name with HP Destination1 name");
 		    
            //TODO: To change the logic for depart1 date verification (like 10, 20, 30 dates in moth level)
             String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
@@ -2569,8 +2569,8 @@ public class FlightSearch {
 			String originCityText_MC = searchResult.getTextOrigin1_ModifySearch();		
 			String destCityText_MC = searchResult.getTextDestination1_ModifySearch();			
 			//Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected One Way Radio button",	"<b>Actual Result:</b> Not selected One Way Radio button");
-            Log.assertThat(originCityText_MC.contains(destination2), "<b>Actual Result:</b> Successfully verified Multicity Origin2 City name with HP Orgin2 name", "<b>Actual Result:</b> Not Matched Multicity Origin2 City name with HP Orgin2 name");
-            Log.assertThat(destCityText_MC.contains(origin2), "<b>Actual Result:</b> Successfully verified Multicity Destination1 City with HP HP Destination2 name","<b>Actual Result:</b> NNot Matched Multicity Destination2 City name with HP Destination2 name");
+            Log.assertThat(originCityText_MC.contains(destination2), "<b>Actual Result:</b> Successfully verified Multicity Origin2 City name ", "<b>Actual Result:</b> Not Matched Multicity Origin2 City name with HP Orgin2 name");
+            Log.assertThat(destCityText_MC.contains(origin2), "<b>Actual Result:</b> Successfully verified Multicity Destination1 City name","<b>Actual Result:</b> NNot Matched Multicity Destination2 City name with HP Destination2 name");
 		    
            //TODO: To change the logic for depart2 date verification (like 10, 20, 30 dates in moth level)
             String deprtDateText_MC = searchResult.getTextDepartDate1_ModifySearch();
@@ -2586,22 +2586,22 @@ public class FlightSearch {
 			String childText = searchResult.getTextChild_ModifySearch();
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
-					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP, Selected Adult is:  <b> " + adult+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Adult passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Adult passenger details, Selected Adult is:  <b> " + adult+ "</b>",
+					"<b>Actual Result:</b> Not matched selected Adult passenger details</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
-					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP, Selected Child is:  <b> " + child+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Child passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Child passenger details, Selected Child is:  <b> " + child+ "</b>",
+					"<b>Actual Result:</b> Not matched selected Child passenger details</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
-					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP, Selected Infant is:  <b> " + infant+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Infant passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Infant passenger details, Selected Infant is:  <b> " + infant+ "</b>",
+					"<b>Actual Result:</b> Not matched selected Infant passenger details</b> ", driver);
 			
 			
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClassText.contains(passengerClass),
-					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
-					"<b>Actual Result:</b> Not matched selected passenger class details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected passenger class details, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
+					"<b>Actual Result:</b> Not matched selected passenger class details</b> ", driver);
 						
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -3039,120 +3039,6 @@ public class FlightSearch {
 		}
 	}	
 	
-	@Test( description = "DOM flight pricing - OW ( Any airline)", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_122(HashMap<String, String> testData) throws Exception {		
-		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
-		String browser = testData.get("browser");
-		String origin = testData.get("Origin");
-		String tripType = testData.get("TripType");
-		String destination = testData.get("Destination");
-		String departureDate = testData.get("DepartureDate");
-		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("Class");
-		String domain = testData.get("Domain");
-		String stops = testData.get("Stops");
-		String airlines = testData.get("Airlines");
-
-		// Get the web driver instance
-		final WebDriver driver = WebDriverFactory.get(browser);
-		Log.testCaseInfo(testData);
-		try {
-			// step: Navigate to Yatra Home Page
-			HomePage homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-
-			// step: Select Trip Type
-			homePage.selectTripType(tripType);
-			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
-
-			// step: select OneWay Search fields in HomePage
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-			Log.message("3.Successfully selected OneWay Flight Search Fields!");
-
-			// step: click 'Search' button in Yatra Home page
-			searchResult = homePage.clickBtnSearch();
-			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
-			
-			// step: select Airlines Book Now for One Way search
-			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
-			Log.message("5. Successfully clicked Book Now Button with Random Flights");
-			
-			//handle popup if displayed in Review page
-			reviewPage.popUpAppear();	
-			
-			String flightPrice = reviewPage.getTextFlightPrice();
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Validated DOM Flight pricing - OW ( Any airline)");
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
-					"<b>Actual Result:</b> Flight Prices is visible, Flight Price : "+ flightPrice,
-					"<b>Actual Result:</b> Flight Prices is not visible",	driver);			
-			
-			Log.testCaseResult();			
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			driver.quit();
-			Log.endTestCase();
-		}
-	}
-
-	@Test( description = "DOM flight pricing - OW ( Preferred airline)", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_123(HashMap<String, String> testData) throws Exception {		
-		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
-		String browser = testData.get("browser");
-		String origin = testData.get("Origin");
-		String tripType = testData.get("TripType");
-		String destination = testData.get("Destination");
-		String departureDate = testData.get("DepartureDate");
-		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("Class");
-		String domain = testData.get("Domain");
-		String stops = testData.get("Stops");
-		String airlines = testData.get("Airlines");
-
-		// Get the web driver instance
-		final WebDriver driver = WebDriverFactory.get(browser);
-		Log.testCaseInfo(testData);
-		try {
-			// step: Navigate to Yatra Home Page
-			HomePage homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-
-			// step: Select Trip Type
-			homePage.selectTripType(tripType);
-			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
-
-			// step: select OneWay Search fields in HomePage
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-			Log.message("3.Successfully selected OneWay Flight Search Fields!");
-
-			// step: click 'Search' button in Yatra Home page
-			searchResult = homePage.clickBtnSearch();
-			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
-			
-			// step: select Airlines Book Now for One Way search
-			reviewPage = searchResult.selectAirlineBookNowInOW(domain,stops, airlines);	
-			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");
-			
-			//handle popup if displayed in Review page
-			reviewPage.popUpAppear();	
-			
-			String flightPrice = reviewPage.getTextFlightPrice();
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Validated DOM Flight pricing - OW ( Preferred airline)");
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
-					"<b>Actual Result:</b> Flight Prices is visible, Flight Price : "+ flightPrice,
-					"<b>Actual Result:</b> Flight Prices is not visible",	driver);			
-			
-			Log.testCaseResult();			
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			driver.quit();
-			Log.endTestCase();
-		}
-	}
-	
 	@Test( description = "Preferred Airline search (modify Search) INTL-OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_120(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -3186,8 +3072,8 @@ public class FlightSearch {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected One Way Radio button",	"<b>Actual Result:</b> Not selected One Way Radio button");
-            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP", "<b>Actual Result:</b> Not verified Origin City with HP");
-            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP","<b>Actual Result:</b> Not verified Destination City with HP");
+            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City ", "<b>Actual Result:</b> Not verified Origin City");
+            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City P","<b>Actual Result:</b> Not verified Destination City ");
 						         
             String[] pax= passengerInfo.split("_");
 			String adult =pax[0]; String child =pax[1]; String infant =pax[2]; 
@@ -3195,22 +3081,22 @@ public class FlightSearch {
 			String childText = searchResult.getTextChild_ModifySearch();
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
-					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP </b> " + adultText,
-					"<b>Actual Result:</b> Not matched selected Adult passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Adult passenger details </b> " + adultText,
+					"<b>Actual Result:</b> Not verified selected Adult passenger details </b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
-					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP </b>" +childText,
-					"<b>Actual Result:</b> Not matched selected Child passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Child passenger details  </b>" +childText,
+					"<b>Actual Result:</b> Not verified selected Child passenger details </b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
-					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP </b>"+ infantText,
-					"<b>Actual Result:</b> Not matched selected Infant passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Infant passenger details </b>"+ infantText,
+					"<b>Actual Result:</b> Not verified selected Infant passenger details </b> ", driver);
 			
 			
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClassText.contains(passengerClass),
-					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP</b> ",
-					"<b>Actual Result:</b> Not matched selected passenger class details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified selected passenger class details </b> ",
+					"<b>Actual Result:</b> Not verified selected passenger class details </b> ", driver);
 			
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -3496,22 +3382,22 @@ public class FlightSearch {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected Round Trip Radio button",	"<b>Actual Result:</b> Not selected Round Trip Radio button");
-            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP, Origin: <b> " +destination +"</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
-            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP, Destination: <b> " +origin +"</b>","<b>Actual Result:</b> Not verified Destination City with HP");
+            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City, Origin: <b> " +destination +"</b>", "<b>Actual Result:</b> Not verified Origin City ");
+            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City, Destination: <b> " +origin +"</b>","<b>Actual Result:</b> Not verified Destination City ");
 		    
            //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
 	        String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
 			String[] depart = deprtDateText.split("/"); 
 			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
-					"<b>Actual Result:</b> Successfully verified selected Departure date with HP, Departure Date: <b> " +returndate +"</b>",
-					"<b>Actual Result:</b> Not matched selected selected Departure date with HP", driver);
+					"<b>Actual Result:</b> Successfully verified selected Departure date, Departure Date: <b> " +returndate +"</b>",
+					"<b>Actual Result:</b> Not verified selected selected Departure date ", driver);
 			
 			//TODO: To change the logic for return date verification (like 10, 20, 30 dates in moth level)
 			String returnDateText = searchResult.getTextReturnDate_ModifySearch();
 			String[] arrayReturndate = returnDateText.split("/"); 
 			Log.assertThat(returndate.equalsIgnoreCase(arrayReturndate[2]+"_"+arrayReturndate[1].replace("0", "")+"_"+arrayReturndate[0].replace("0", "")),
-					"<b>Actual Result:</b> Successfully verified selected Return date with HP, Return Date: <b> " +returndate +"</b>" ,
-					"<b>Actual Result:</b> Not matched selected selected Return date with HP", driver);
+					"<b>Actual Result:</b> Successfully verified selected Return date , Return Date: <b> " +returndate +"</b>" ,
+					"<b>Actual Result:</b> Not verified selected selected Return date ", driver);
 			
             String[] pax= passengerInfo.split("_");
 			String adult =pax[0]; String child =pax[1]; String infant =pax[2]; 
@@ -3519,21 +3405,21 @@ public class FlightSearch {
 			String childText = searchResult.getTextChild_ModifySearch();
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
-					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP , Selected Adult is:  <b> " + adult+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Adult passenger details with HP ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Adult passenger details , Selected Adult is:  <b> " + adult+ "</b>",
+					"<b>Actual Result:</b> Not verified selected Adult passenger details ", driver);
 			
 			Log.assertThat(childText.contains(child),
-					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP, Selected Child is:  <b> " + child+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Child passenger details with HP< ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Child passenger details, Selected Child is:  <b> " + child+ "</b>",
+					"<b>Actual Result:</b> Not verified selected Child passenger details  ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
-					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP , Selected Infant is:  <b> " + infant+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Infant passenger details with HP ", driver);
+					"<b>Actual Result:</b> Successfully verified selected Infant passenger details , Selected Infant is:  <b> " + infant+ "</b>",
+					"<b>Actual Result:</b> Not verified selected Infant passenger details", driver);
 					
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClass.contains(passengerClassText),
-					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
-					"<b>Actual Result:</b> Not matched selected passenger class details with HP ", driver);
+					"<b>Actual Result:</b> Successfully verified selected passenger class details, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
+					"<b>Actual Result:</b> Not verified selected passenger class details ", driver);
 					
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -3682,196 +3568,6 @@ public class FlightSearch {
 			}
 		}
 		
-		@Test(description = "eCash redemption on payswift page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-		public void TC_Yatra_Flight_091(HashMap<String, String> testData) throws Exception {
-			Utils.testCaseConditionalSkip(testData.get("RunMode"));
-			String browser = testData.get("browser");
-			String emailId = testData.get("EmailAddress");
-			String password = testData.get("Password");
-			String origin = testData.get("Origin");
-			String destination = testData.get("Destination");
-			String departureDate = testData.get("DepartureDate");
-			String passengerInfo = testData.get("PassengerInfo");
-			String passengerClass = testData.get("Class");
-			String infant = testData.get("Infant");
-			String[] infantDOB = infant.split(",");
-
-			// Get the web driver instance
-			final WebDriver driver = WebDriverFactory.get(browser);
-			Log.testCaseInfo(testData);
-			try {
-				// step: Navigate to Yatra Home Page
-				HomePage homePage = new HomePage(driver, webSite).get();
-				Log.message("1. Navigated to 'Yatra' Home Page!");
-
-				// step: verify Yatra title bar text
-				if (driver.getTitle().contains("Flight")) {
-					Log.message("2.Verified Yatra Title text");
-				}
-
-				// selected trip as one way and enter the search details
-				homePage.selectOneWayTrip();
-				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-				Log.message("4.Successfully filled the search details for 'ONE WAY' trip.");
-
-				// step: click 'Search' button in Yatra Home page
-				searchResult = homePage.clickBtnSearch();
-				Log.message("5.Clicked on 'Search' in Yatra Homepage.");
-
-				Thread.sleep(6000);
-				Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-						"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
-						"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
-
-				// clicked on book now button in one way
-				reviewPage = searchResult.clickOnBookNowInOneWay(2);
-				Log.message("6.Clicked on 'Book Now' button in Search Result Page.");
-				Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
-						"<b>Actual Result:</b> Successfully navigated on Review Page.",
-						"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
-
-				// click on continue button
-				reviewPage.clickOnContinue();
-				Log.message("7.Clicked on Continue button in Review Page Step-1.");
-
-				reviewPage.clickOnExistingUser();
-				travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
-				Log.message("8.Successfully Logged in Yatra account!");
-
-				travellerPage.fillTravellerDetails_DOM(infantDOB);
-				Log.message("9. Filled Traveller Details for domestic Flights.");
-
-				paymentPage = travellerPage.clickOnContinue();
-				Log.message("10.Clicked on Continue button in Review Page Step-2.");
-
-				paymentPage.clickingOnRedeemNow();
-				Log.message("11.Clicked on Redeem Now Button to add ecash.");
-
-				paymentPage.clickingOnGotIt();
-				Log.message("12.Clicked on 'OK,Got It' link to confirm redeem ecash.");
-
-				Log.message("<br>");
-				Log.message("<b>Expected Result:</b> Ecash should be applied and balance amount should be deducted from the total payment under Payment method.");
-				Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("msgEcashRedeem"), paymentPage),
-						"<b>Actual Result1:</b> Ecash is applied successfully and the message is displayed under Payment method."
-								+ paymentPage.getMsgFromEcashRedeemSuccess(),
-						"<b>Actual Result1:</b> Ecash is not applied and the message is not displayed under Payment method.",
-						driver);
-
-				Log.assertThat(	paymentPage.elementLayer.verifyPageElements(Arrays.asList("msgEcashRedeemBalance"), paymentPage),
-						"<b>Actual Result2:</b> Balance is successfully deducted and the message is displayed under Payment method."
-								+ paymentPage.getMsgFromEcashBalanceDeduction(),
-						"<b>Actual Result2:</b> Balance is not deducted and the message is not displayed under Payment method.",
-						driver);
-
-			} catch (Exception e) {
-				Log.exception(e);
-			} finally {
-				driver.quit();
-				Log.endTestCase();
-			}
-		}
-		
-		@Test(description = "Change flight link verification on Review page - DOM", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-		public void TC_Yatra_Flight_106(HashMap<String, String> testData) throws Exception {
-			Utils.testCaseConditionalSkip(testData.get("RunMode"));
-			String browser = testData.get("browser");
-			String origin = testData.get("Origin");
-			String tripType = testData.get("TripType");
-			String destination = testData.get("Destination");
-			String departureDate = testData.get("DepartureDate");
-			String passengerInfo = testData.get("PassengerInfo");
-			String passengerClass = testData.get("Class");
-
-			// Get the web driver instance
-			final WebDriver driver = WebDriverFactory.get(browser);
-			Log.testCaseInfo(testData);
-			try {
-				// step: Navigate to Yatra Home Page
-				homePage = new HomePage(driver, webSite).get();
-				Log.message("1. Navigated to 'Yatra' Home Page!");
-
-				// step: Select Trip Type
-				homePage.selectTripType(tripType);
-				Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
-
-				// step: select OneWay Flight Search fields
-				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-				Thread.sleep(5000);
-
-				// step: click 'Search' button in Yatra Home page
-				searchResult = homePage.clickBtnSearch();
-				Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
-
-				// step: Click on 'Book Now' button in Yatra Home page
-				ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(2);
-				Log.message("4.Clicked on 'Book Now' button in Search Result Page ");
-				Thread.sleep(5000);
-
-				Log.message("<br>");
-				Log.message("<b>Expected Result:</b> Check Change Flight link.");
-				Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
-						"<b>Actual Result:</b> The Change Flight link is displayed on Review page.",
-						"<b>Actual Result:</b> The Change Flight link is not displayed on Review Page.", driver);
-
-			} catch (Exception e) {
-				Log.exception(e);
-			} finally {
-				driver.quit();
-				Log.endTestCase();
-			}
-		}
-
-		@Test(description = "Change flight link verification on Review page - INTL", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-		public void TC_Yatra_Flight_107(HashMap<String, String> testData) throws Exception {
-			Utils.testCaseConditionalSkip(testData.get("RunMode"));
-			String browser = testData.get("browser");
-			String origin = testData.get("Origin");
-			String tripType = testData.get("TripType");
-			String destination = testData.get("Destination");
-			String departureDate = testData.get("DepartureDate");
-			String passengerInfo = testData.get("PassengerInfo");
-			String passengerClass = testData.get("Class");
-
-			// Get the web driver instance
-			final WebDriver driver = WebDriverFactory.get(browser);
-			Log.testCaseInfo(testData);
-			try {
-				// step: Navigate to Yatra Home Page
-				homePage = new HomePage(driver, webSite).get();
-				Log.message("1. Navigated to 'Yatra' Home Page!");
-
-				// step: Select Trip Type
-				homePage.selectTripType(tripType);
-				Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
-
-				// step: select OneWay Flight Search fields
-				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-				Log.message("3.Successfully selected OneWay Flight Search Fields ");
-				Thread.sleep(5000);
-
-				// step: click 'Search' button in Yatra Home page
-				searchResult = homePage.clickBtnSearch();
-				// Thread.sleep(5000);
-				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
-
-				ReviewPage reviewPage = searchResult.clickOnBookNowINT();
-				Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
-				Thread.sleep(5000);
-
-				Log.message("<br>");
-				Log.message("<b>Expected Result:</b> Check Change Flight link.");
-				Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
-						"<b>Actual Result:</b> The Change Flight link is displayed on Review page.",
-						"<b>Actual Result:</b> The Change Flight link is not displayed on Review Page.", driver);
-
-			} catch (Exception e) {
-				Log.exception(e);
-			} finally {
-				driver.quit();
-				Log.endTestCase();
-			}
-		}
 		
 		@Test( description = "Validating the UI of Airline Matrix", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 		public void TC_Yatra_Flight_030(HashMap<String, String> testData) throws Exception {
