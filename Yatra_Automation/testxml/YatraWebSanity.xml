@@ -13,8 +13,7 @@
 		<!-- <groups> <run> <include name="Sanity"></include> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch">
-				<methods>
-					<include name="TC_Yatra_Flight_124"></include>
+				<methods>					
 					<include name="TC_Yatra_Flight_127"></include>
 					<include name="TC_Yatra_Flight_001"></include>
 					<include name="TC_Yatra_Flight_018"></include>
@@ -37,15 +36,13 @@
 					<include name="TC_Yatra_Flight_121"></include>
 					<include name="TC_Yatra_Flight_122"></include>
 					<include name="TC_Yatra_Flight_123"></include>
-
 					<include name="TC_Yatra_Flight_125"></include>
 					<include name="TC_Yatra_Flight_126"></include>
 					<include name="TC_Yatra_Flight_127"></include>
 					<include name="TC_Yatra_Flight_128"></include>
 					<include name="TC_Yatra_Flight_129"></include>
 					<include name="TC_Yatra_Flight_130"></include>
-					<include name="TC_Yatra_Flight_131"></include>
-				
+					<include name="TC_Yatra_Flight_131"></include>				
 				</methods>
 			</class>
 		</classes>
