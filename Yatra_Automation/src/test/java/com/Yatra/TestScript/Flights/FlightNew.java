@@ -44,12 +44,69 @@ public class FlightNew {
 	String webSite;
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
-	@BeforeTest(alwaysRun = true)
+	/*@BeforeTest(alwaysRun = true)
 	public void init(ITestContext context) {
 
 		webSite = (System.getProperty("webSite") != null ? System.getProperty("webSite")
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
+	*/
+	@BeforeTest(alwaysRun = true)
+	public void init(ITestContext context) {
+		
+		webSite = (System.getProperty("webSite") != null ? System.getProperty("webSite")
+				: context.getCurrentXmlTest().getParameter("webSite"));
+	}
+	@Test(description = "Validate SRP if there is no flight available for respective search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_069(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+	
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validate SRP if there is no flight available for respective search");
+			Thread.sleep(2000);
+			Log.assertThat(
+					searchResult.elementLayer.verifyPageElements(Arrays.asList("txtSeatLeftMessage"), searchResult),
+					"<b>Actual Result :</b> Seat left message is Displayed on Search Result Page : " ,
+					"<b>Actual Result :</b> Yatra Page Footer is not visible on Search Result Page", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
 	@Test(description = "Validate that there should appear Seat Left message below Price in Result strip for OW/RT/MC search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_083(HashMap<String, String> testData) throws Exception {
 

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
-<suite name=" Yatra Activites Search Automation Test" verbose="3" parallel="true" thread-count="5">
-	
+<suite name="Yatra Payment Automation Test" verbose="3" parallel="false"
+	thread-count="500">
 	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
-	<parameter name="sheetName" value="FlightNew"/>
+	<parameter name="sheetName" value="FlightNew" />
 
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
@@ -12,9 +11,18 @@
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
-	<test name="Activites Search" thread-count="1" parallel="true">
+
+	<test name="Payment" thread-count="1" parallel="true">
+
+		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightNew"></class>          
+			<class name="com.Yatra.TestScript.Flights.FlightNew">
+			</class>
+			<!-- <methods>
+				<include name="TC_Yatra_Payment_004"></include>
+			</methods>
+ -->
+
 		</classes>
 	</test>
 </suite>
