@@ -11,3 +11,4 @@
 *.css
 .classpath
 .gitignore
+*.log
