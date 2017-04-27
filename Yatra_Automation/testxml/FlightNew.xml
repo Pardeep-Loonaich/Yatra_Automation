@@ -4,7 +4,7 @@
 <suite name=" Yatra Activites Search Automation Test" verbose="3" parallel="true" thread-count="5">
 	
 	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
-	<parameter name="sheetName" value="FlightNew"/>
+	<parameter name="sheetName" value="FlightNew2"/>
 
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
