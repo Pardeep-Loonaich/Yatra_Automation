@@ -9,9 +9,8 @@
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
-	<test name="Flight Pricing" thread-count="4" parallel="true">
+	<test name="Flight Pricing" thread-count="1" parallel="true">
 
-		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing"> </class>			
 		</classes>

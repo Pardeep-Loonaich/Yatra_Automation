@@ -482,6 +482,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 */
 
 	public void selectSeat(int number) throws Exception {
+		Utils.waitForPageLoad(driver);
 		if(txtSeatType.isDisplayed()){
 		for (int i = 0; i < number; i++) {
 			driver.findElement(By.cssSelector(

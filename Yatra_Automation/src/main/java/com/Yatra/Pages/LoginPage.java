@@ -122,4 +122,16 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 
 	}
 
+	/**
+	 * To Login to Yatra Account
+	 * 
+	 * @throws Exception
+	 */
+	public SearchResult loginYatraAccountFromSearchResult(String emailId, String password) throws Exception {
+		enterEmailID(emailId); // enter email address
+		enterPassword(password); // enter password
+		clickBtnSignIn(); // click signin button
+		return new SearchResult(driver).get();
+
+	}
 }

@@ -1373,7 +1373,7 @@ public class BusSearchTest {
 
 			searchResultBus.selectReturnSeat(2);
 			Log.message("10. Seat Selected Return Jounrey!");
-
+			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User Should See Select RT Seats");
 			Log.assertThat(searchResultBus.elementLayer.verifyPageElements(Arrays.asList("PopUp_RT"), searchResultBus),

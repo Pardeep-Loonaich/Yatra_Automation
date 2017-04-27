@@ -104,9 +104,7 @@ public class ExcelUtils
 				listOfHeaderName.add(sheet.getRow(0).getCell(i).getStringCellValue());
 			}    
 		}
-
 		return listOfHeaderName;
-
 	}//getHeaders
 
 }
