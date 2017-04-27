@@ -14,14 +14,10 @@
 
 	<test name="Payment" thread-count="1" parallel="true">
 
-		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightNew">
 			</class>
-			<!-- <methods>
-				<include name="TC_Yatra_Payment_004"></include>
-			</methods>
- -->
+			
 
 		</classes>
 	</test>
