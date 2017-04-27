@@ -84,7 +84,4 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 		Utils.waitForPageLoad(driver);
 	}// load
 
-    public void loginAsGuestUser() throws Exception(){
-    	BrowserActions.
-    }
-}
+}//TrainTravellerPageEnd
