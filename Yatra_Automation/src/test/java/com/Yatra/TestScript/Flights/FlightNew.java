@@ -209,7 +209,7 @@ public class FlightNew {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			// driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -802,7 +802,7 @@ public class FlightNew {
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify functionality of Airline Only filter");
 			Log.assertThat(searchResult.verifySelectedFlightName(),
-					"<b>Actual Result :</b> User see only " + flightname + " Flights after applying Filter",
+					"<b>Actual Result :</b> User see only  --> " + flightname + "  <-- Flights after applying Filter",
 					"<b>Actual Result :</b> All Flights are dispalyed to user after applying filter", driver);
 
 			Log.testCaseResult();
