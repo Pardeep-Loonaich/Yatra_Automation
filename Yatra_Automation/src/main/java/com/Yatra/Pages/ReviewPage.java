@@ -171,6 +171,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "ul[class='list list-border']>li:nth-child(5)>span[class='pull-right tr alignment']>a[class='remove-btn']")
 	private WebElement btnRemove;
 
+	@FindBy(css = "a[ng-click='cancelPromotionalEcash()']")
+	private WebElement btnRemoveEcash;
+	
 	@FindBy(css = "div[class='col-sm-6 promo-select-ui width-increased']>a")
 	private WebElement btnClosePromoBox;
 
@@ -363,9 +366,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	}
 
 	public void selectPromoByIndex(int Index) throws Exception {
+		Thread.sleep(1000);;
 		driver.findElement(By.cssSelector(
-				"div[class='col-sm-6 promo-select-ui width-increased']>ul>li:nth-child(" + Index + ")>label")).click();
-		;
+				"div[class='col-sm-6 promo-select-ui width-increased']>ul>li:nth-child("+Index+")>label")).click();
+		
 	}
 
 	/**
@@ -616,9 +620,14 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 */
 	public void ClickOnRemoveButton() throws Exception {
 		Utils.waitForPageLoad(driver);
-		btnRemove.click();
+		if(btnRemove.isDisplayed()){
+			btnRemove.click();
+		}
+		else if(btnRemoveEcash.isDisplayed())
+		{
+		btnRemoveEcash.click();
+		}
 	}
-
 	/**
 	 * To Click On Close Button on Promo Box
 	 * 

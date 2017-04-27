@@ -500,6 +500,30 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "h3[class='trip-price fr']>span[class='fs-11 text-error block tr mb5']")
 	private WebElement txtSeatLeftMessageInFlightDetails;
 
+	@FindBy(css = "Span[class='fs-13 block mb20']")
+	private WebElement txterrorMessageNoFlights;
+
+	@FindBy(css = "span[class='ecash-amount']")
+	private WebElement txtEcashEarned;
+
+	@FindBy(css = "input[id='origin_0']")
+	private WebElement txtOriginModifySearch;
+	
+	@FindBy(css = "input[id='destination_0']")
+	private WebElement txtDestinationModifySearch;
+	
+	@FindBy(css = "form[id='modifySearch']>div>input")
+	private WebElement btnSearchModifySearch;
+	
+	@FindBy(css = "li[class='simple-dropdown login-li clearfix']>span")
+	private WebElement txtUserSignUp;
+
+	@FindBy(css = "span[id='userShowName']")
+	private WebElement txtUserNameOnHeader;
+	
+	
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -1208,7 +1232,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickModifySearch() throws Exception {
-		BrowserActions.nap(30);
+		BrowserActions.nap(10);
 		Utils.waitForElement(driver, btnModifySearchIcon);	
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
 		BrowserActions.nap(3);
@@ -2116,7 +2140,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			String airline = airlineFareDetails.getText().toString().trim();			
 			if (airlineName.equalsIgnoreCase(airline)){				
 				WebElement chkAirline = driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='checkbox']"));
-				BrowserActions.clickOnElement(chkAirline, driver, "Click Airline in Airlines Filters, Selected Airline is:" +airline);
+				BrowserActions.javascriptClick(chkAirline, driver, "Click Airline in Airlines Filters, Selected Airline is:" +airline);
 				break;
 			}else if(airline == null){
 				Log.event("Preferred Airline("+airlineName+") is not available, so its going to click Book Now Button with Random Flights");	
@@ -2414,7 +2438,78 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String Origin = txtOriginName.getText();
 		return Origin;
 	}
+	
+	/**
+	 * To click on Flight Link
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnFlightLinks() throws Exception {
+		List<WebElement> lstFlight = driver.findElements(By.cssSelector("div[class='js-flightRow js-flightItem']"));
+		for(int i=0;i<lstFlight.size();i++)
+		{
+			WebElement srt = lstFlight.get(i).findElement(By.cssSelector("article>div[class='my-res-info full']>ul>li[class='book-now']>p[class*='full txt-ar text-error fs-xs line-hn mt5']"));
+			if(srt.isDisplayed()){
+			String seat = BrowserActions.getText(driver,srt , "Getting text");
+			BrowserActions.javascriptClick( lstFlight.get(i).findElement(By.cssSelector("article>footer>ul[class='res-footer-list fl uprcse']>li:not([ng-class*='viewedData'])>a")), driver, "Clicked on flight details link.s");
+			break;
+			}
+		}
+	}
+	/**
+	 * To get text No Flight Visible
+	 * 
+	 * @throws Exception
+	 */
+	public String getTextOfNoFlightAvaliable() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Message = txterrorMessageNoFlights.getText();
+		return Message;
+	}
 
+	@FindBy(css = "div[class='lob-logo']>i[class='ico ico-rc-plane']")
+	private WebElement priceRecentSearch;
+	
+	public void scrollToRecentSearch() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.scrollToView(priceRecentSearch, driver);	
+	}
+	/**
+	 * To get text Of Ecash Earned Below Book Now Button
+	 * 
+	 * @throws Exception
+	 */
+
+	public String getTextEcashEarned() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Ecash = txtEcashEarned.getText();
+		return Ecash;
+	}
+	/**
+	 * To Enter Details in Modify Search
+	 * 
+	 * @throws Exception
+	 */
+	public void enterNewFlightDetails(String Origin,String Destination) throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.typeOnTextField(txtOriginModifySearch, Origin, driver, "To Enter Origin In Modify Search");
+		Thread.sleep(2000);
+		BrowserActions.typeOnTextField(txtDestinationModifySearch, Destination, driver, "To Enter Destination In Modify Search");
+		Thread.sleep(2000);
+		BrowserActions.javascriptClick(btnSearchModifySearch, driver, "Click on Search Flight In Modify Search");
+	}
+	
+	/**
+	 * To get text Of User Name From Header
+	 * 
+	 * @throws Exception
+	 */
+
+	public String getTextUserNameFromHeader() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Name = txtUserNameOnHeader.getText();
+		return Name;
+	}
 	/**
 	 * To click on Book now button in Round Trip for Domestic Any and Preferred flights based on filter values
 	 * 
@@ -2524,7 +2619,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.nap(3);
 		BrowserActions.clickOnElement(prefferedFlightBookNow, driver, "To click on Book now button-DOM");		
 	}
-	
+
 	// *******************************End of SRP Functions*************************************************************
 
 } // SearchResult

@@ -33,6 +33,9 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	@FindBy(css= "input[title='Find Trains']")
 	private WebElement btnFindTrain;
 
+	@FindBy(css = "button[title='Find Buses']")
+	private WebElement btnFindBuses;
+
 	@FindBy(xpath = "//*[@id='trainSrp']/div/p")
 	private WebElement fldContentTrainMsgBox; 
 
@@ -71,32 +74,37 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
 	@FindBy(css="[id='alternettRoutDiv']>li")
 	private List<WebElement> txtOtherTravelOption;
-	
+
 	@FindBy(css="ul[id='srcContainer']>li")
 	private List<WebElement> lstBordingPoint;	
-	
+
 	@FindBy(css="li[class='hide detailBox trainDetailContainer']>article:not([class='trainNo bookNow'])")
 	private List<WebElement> trainDetail; 
 
 	@FindBy(css="ul[id='srcContainer']>li>label>span[class='ico-radio']")
 	private WebElement inactiveBoardingPoint;
-	
+
 	@FindBy(css="ul[id='srcContainer']>li>label>span[class='ico-radio ico-active']")
 	private WebElement activeBoardingPoint;
-	
+
 	@FindBy(css="ul[id='srcContainer']>li>label>span[class='ico-radio ico-active']>input")
 	private WebElement getTxtActBoardingPoint;
-	
+
 	@FindBy(css="ul[id='destContainer']>li>label>span[class='ico-radio ico-active']>input")
 	private WebElement getTxtActDestinationPoint;
-	
+
 	@FindBy(css="div[id='sidebarFilter']>section[class*='result-module']")
 	private List<WebElement> lstLeftNavSection;
-	
-	
+
+	@FindBy(css= "span[class='srcStations']")
+	private WebElement txtSourceStation;
+
+	@FindBy(css="[id='trainSrp']>ul[class*='train-info-block true']>li[class='trainDepart']>p")
+	private List<WebElement> txtDepartTime;
+
 	@FindBy(css="div[id='sidebarFilter']")
 	private WebElement lftNavSection;
-	
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Train Search Result Page - Ends ****************************
 	 **********************************************************************************************/
@@ -252,8 +260,9 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public ArrayList<String>  checkAvailableSeatsBySelectingTrainNClassByRow(int index) throws Exception{
-		ArrayList<String> lstClass = new ArrayList<String>();
+	public ArrayList<String>  checkDetailsBySelectingTrainNClassByRow(int index,String typeToVerify) throws Exception{
+		ArrayList<String> lstOfSeat = new ArrayList<String>();
+
 		List<WebElement> lstClss = driver.findElements(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p"));
 
 		for(int i=0;i<lstClss.size();i++){
@@ -261,17 +270,45 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 			BrowserActions.clickOnElement(lstClss.get(i),driver, "Clicked on available class of the train one by one.");
 			String classAvail = BrowserActions.getText(driver, lstClss.get(i), "Selected class");
 			for(int j=0;j<trainDetail.size();j++){
-			String seatAvail = BrowserActions.getText(driver, trainDetail.get(j), "Selected class").concat(classAvail);
-			if(seatAvail.contains("AVAILABLE")){
-				lstClass.add(seatAvail);
+				ArrayList<String> lstSeat = new ArrayList<String>();
 
-			}
-			}
+				String seatAvail = BrowserActions.getText(driver, trainDetail.get(j), "Selected class");
+				lstSeat.add(seatAvail);
+				String strofSeat = lstSeat.get(0).concat("---"+classAvail);
+				String[] splitterofSeat = strofSeat.split("\n");
+				String date = splitterofSeat[0];
+				String day = splitterofSeat[1];
+				String quota = splitterofSeat[2];
+				String availability = splitterofSeat[3];
 
-		}       
-		return lstClass;
+				switch (typeToVerify){				
+
+				case "AVAILABLE":
+					if(availability.startsWith("AVAILABLE"))
+						lstOfSeat.add(strofSeat);
+					break;
+
+				case "General":
+					if(quota.equals("General"))
+						lstOfSeat.add(strofSeat);
+					break;
+
+				case "Ladies Quota":
+					if(quota.equals("Ladies Quota"))
+						lstOfSeat.add(strofSeat);
+					break;
+
+				case "Tatkal":
+					if(quota.equals("Tatkal"))
+						lstOfSeat.add(strofSeat);
+					break;
+
+				}
+			}
+		}
+		return lstOfSeat;
 	}
-	
+
 	/**
 	 * this method selects the train by index and Book the default seat of the first available class 
 	 * @param index
@@ -282,7 +319,59 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
 
 	}
-	
+
+	/**
+	 * this method selects the train by index 
+	 * @param index
+	 * @throws Exception
+	 */
+	public boolean verifyBookNowByselectingTrainByIndex(int index) throws Exception{
+		List<WebElement> lstClss = driver.findElements(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p"));
+		boolean flag= false;
+		for(int i=0;i<lstClss.size();i++){
+			Thread.sleep(1000);
+			BrowserActions.clickOnElement(lstClss.get(i),driver, "Clicked on available class of the train one by one.");
+			String classAvail = BrowserActions.getText(driver, lstClss.get(i), "Selected class");
+			for(int j=0;j<trainDetail.size();j++){
+				String seatAvail = BrowserActions.getText(driver, trainDetail.get(j), "Selected class").concat(classAvail);
+				if(seatAvail.contains("NOT AVAILABLE")){
+					// flag = BrowserActions.isElementVisible(driver, btnBookNow);
+					if (!btnBookNow.isDisplayed()){
+						flag=true;
+					}
+				}	
+			}
+
+		}
+		return flag;       
+	}
+
+
+	/**
+	 * to verify that the selected train contains seat of the selected Quota only.
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean verifyQuotaByselectingTrainByIndex(int index,String quota) throws Exception{
+		List<WebElement> lstClss = driver.findElements(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p"));
+		boolean flag= false;
+		for(int i=0;i<lstClss.size();i++){
+			Thread.sleep(1000);
+			BrowserActions.clickOnElement(lstClss.get(i),driver, "Clicked on available class of the train one by one.");
+			String classAvail = BrowserActions.getText(driver, lstClss.get(i), "Selected class");
+			for(int j=0;j<trainDetail.size();j++){
+				String seatAvail = BrowserActions.getText(driver, trainDetail.get(j), "Selected class").concat(classAvail);
+				if(seatAvail.contains(quota)){
+					flag=true;
+
+				}	
+			}
+
+		}
+		return flag;       
+	}
+
 	/**
 	 * to get the list of Boarding Points 
 	 * @return
@@ -294,27 +383,27 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 			String borPoints = BrowserActions.getText(driver,lstBordingPoint.get(i) ,"Getting Bording Points.");
 			lstBordingPoints.add(borPoints);
 		}
-       return lstBordingPoints;
+		return lstBordingPoints;
 	}
-	
-	
+
+
 	/**
 	 * In this method getting the station name of the selected Boarding/Departure Point with the help of its attribute
 	 * @return
 	 * @throws Exception
 	 */
-	
+
 	public String verifyBoardingPointChange() throws Exception{
 		if(activeBoardingPoint.isDisplayed()){
 			String bordPoint = BrowserActions.getTextFromAttribute(driver, getTxtActBoardingPoint, "data-stnname", "Getting the text of the active Boarding Point.");
-        	return bordPoint;
+			return bordPoint;
 		}
-		
+
 		else
 			return null;
 	}
-	
-	
+
+
 	/**
 	 * selecting the other option for boarding point
 	 * @throws Exception
@@ -322,7 +411,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	public void changeBoardingPoint() throws Exception{
 		BrowserActions.clickOnElement(inactiveBoardingPoint, driver, "Selecting the inactive Boarding Point.");
 	}
-	
+
 	/**
 	 * in the method we are verifying that the Active Boarding Point should be the entered origin
 	 * @param origin
@@ -330,16 +419,16 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	 * @throws Exception
 	 */
 	public boolean verifySelectedBoardingPoint(String origin) throws Exception{
-    	String boardPoint = BrowserActions.getTextFromAttribute(driver, getTxtActBoardingPoint, "data-stnname", "Getting the text of the active Boarding Point.");
-    	Log.event(" Boarding Point:"+boardPoint);
-			if(origin.contains(boardPoint)){
-				return true;		
-			}
-			else
-				return false;
+		String boardPoint = BrowserActions.getTextFromAttribute(driver, getTxtActBoardingPoint, "data-stnname", "Getting the text of the active Boarding Point.");
+		Log.event(" Boarding Point:"+boardPoint);
+		if(origin.contains(boardPoint)){
+			return true;		
+		}
+		else
+			return false;
 	}
-	
-	
+
+
 	/**
 	 * to get the text from the heading in left navigation filter panel 
 	 * @return
@@ -348,17 +437,97 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	public ArrayList<String> getLeftNavHeading() throws Exception{	
 		ArrayList<String> lstleftNavHeadings = new ArrayList<String>();
 
-			String departHeading = BrowserActions.getText(driver, lstLeftNavSection.get(0).findElement(By.cssSelector("div>h3>span")), "Getting text of the Source station.");
-			lstleftNavHeadings.add(departHeading);
-			String arrivalHeading = BrowserActions.getText(driver, lstLeftNavSection.get(1).findElement(By.cssSelector("div>h3>span")), "Getting text of the destination station.");
-			lstleftNavHeadings.add(arrivalHeading);
-        	String departureStation =BrowserActions.getText(driver, lstLeftNavSection.get(2).findElement(By.cssSelector("form>h3>span>span")), "Getting text of the Departure time.");
-			lstleftNavHeadings.add(departureStation);
-        	String destinationStation =BrowserActions.getText(driver, lstLeftNavSection.get(3).findElement(By.cssSelector("form>h3>span>span")), "Getting text of the Arrival time.");
-			lstleftNavHeadings.add(destinationStation);
+		String departHeading = BrowserActions.getText(driver, lstLeftNavSection.get(0).findElement(By.cssSelector("div>h3>span")), "Getting text of the Source station.");
+		lstleftNavHeadings.add(departHeading);
+		String arrivalHeading = BrowserActions.getText(driver, lstLeftNavSection.get(1).findElement(By.cssSelector("div>h3>span")), "Getting text of the destination station.");
+		lstleftNavHeadings.add(arrivalHeading);
+		String departureStation =BrowserActions.getText(driver, lstLeftNavSection.get(2).findElement(By.cssSelector("form>h3>span>span")), "Getting text of the Departure time.");
+		lstleftNavHeadings.add(departureStation);
+		String destinationStation =BrowserActions.getText(driver, lstLeftNavSection.get(3).findElement(By.cssSelector("form>h3>span>span")), "Getting text of the Arrival time.");
+		lstleftNavHeadings.add(destinationStation);
 
-			return lstleftNavHeadings;
+		return lstleftNavHeadings;
+	}
+
+
+	/**
+	 * clicked on FindBus Button by selecting train by index and then checking in every class for FindBus option
+	 * @param index
+	 * @throws Exception
+	 */
+	public void clickingOnFindBusButton(int index) throws Exception{	
+		List<WebElement> lstClss = driver.findElements(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p"));
+
+		for(int i=0;i<lstClss.size();i++){
+			Thread.sleep(1000);
+			BrowserActions.clickOnElement(lstClss.get(i),driver, "Clicked on available class of the train one by one.");
+			String classAvail = BrowserActions.getText(driver, lstClss.get(i), "Selected class");
+			WebElement sec_FindBus = driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainBusDivert']"));
+
+			if(sec_FindBus.isDisplayed()){
+				BrowserActions.clickOnElement(sec_FindBus.findElement(By.cssSelector("div>div>div[class='bus-deatail']>div[class='find-bus-btn']")), driver, "Clicked on 'Find Bus' button.");
+				Log.event("Bus option is available in '"+classAvail+"' class.");
+
+				break;
+			}
+			else
+				Log.event("No Bus option is available in '"+classAvail+"' class.");
 		}
+	}
+
+
+	/**
+	 * to select the Quota from the Quota dropdown
+	 * @param QuotaType
+	 * @throws Exception
+	 */
+	public void selectQuotaFrmDrpDown(String QuotaType) throws Exception{
+		BrowserActions.clickOnElement(drpQuota, driver, "Clicked on Select Quota dropdown.");
+		List<WebElement> lstQuota = drpQuota.findElements(By.cssSelector("option"));	
+
+		for (WebElement e : lstQuota) {
+			String quota = BrowserActions.getText(driver, e, "Getting text from attribute.");
+			if (quota.equalsIgnoreCase(QuotaType)) {
+				BrowserActions.scrollToViewElement(e, driver);
+				BrowserActions.clickOnElement(e, driver, "Selected Quota Type");
+				break;
+
+			}
+		}
+	}
+
+
+	/**
+	 * verifying Confirmation Popup details
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean verifyConfirmationPopUpDetails(int index) throws Exception{
+		List<WebElement> lstClss = driver.findElements(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p"));
+
+		String sourceStation = BrowserActions.getText(driver, txtSourceStation, "Getting text of the Source station.");
+		String departureTime =BrowserActions.getText(driver, txtDepartTime.get(index-1), "Getting text of the Departure time.");
+
+		BrowserActions.clickOnElement(lstClss.get(0),driver, "Clicked on available class of the train one by one.");
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		Thread.sleep(1000);
+		String boardPoint = BrowserActions.getTextFromAttribute(driver, getTxtActBoardingPoint, "data-stnname", "Getting the text of the active Boarding Point.");
+		String boardTime = BrowserActions.getTextFromAttribute(driver, getTxtActBoardingPoint, "data-dt", "Getting the text of the active Boarding Point dept time.");
+
+		if((boardPoint.contains(sourceStation))&&(boardTime.equalsIgnoreCase(departureTime))){
+			return true;
+		}
+
+		return false;
+	}
 	
+	@FindBy(css = "#bookNowBtn")
+	private WebElement btnContinueToPaxPage;
+	
+	public TrainTravellerPage clickOnContinue()throws Exception{
+		BrowserActions.clickOnElement(btnContinueToPaxPage, driver, "Click on Continue inConfirmation Popup to book Train.");
+		return new TrainTravellerPage(driver).get();
+	}
 	
 }

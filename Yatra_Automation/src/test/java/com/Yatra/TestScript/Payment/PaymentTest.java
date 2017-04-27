@@ -138,7 +138,6 @@ public class PaymentTest {
 			travellerPage = reviewPage.clickOnContinue();
 			Log.message("7. Clicked on Continue button on Review Page.");
 
-			reviewPage.popUpAppear();
 			/*reviewPage.clickOnExistingUser();
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("7. Successfully Logged in Yatra account as 'Existing' User!");
@@ -1788,7 +1787,9 @@ public class PaymentTest {
 			Log.message("14. Clicked on Cancel button.");
 
 			driver.navigate().back();
+			driver.navigate().refresh();
 			Log.message("15. Navigating back to 'Yatra' page.");
+			
 
 			Utils.waitForPageLoad(driver);
 			Log.message("<br>");
@@ -5132,7 +5133,7 @@ public class PaymentTest {
 
 
 	@Test(groups = { "desktop" }, description = "Verify Other NetBanking SubOption:YESBANK", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Payment_047(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Payment_0470(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
@@ -5245,7 +5246,6 @@ public class PaymentTest {
 			Log.endTestCase();
 		}
 	}
-
 
 
 }//PaymentTest
