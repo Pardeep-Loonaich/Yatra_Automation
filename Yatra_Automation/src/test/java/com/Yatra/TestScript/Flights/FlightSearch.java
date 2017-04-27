@@ -2339,11 +2339,11 @@ public class FlightSearch {
             Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP, Destination City:  <b> " + origin + "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
 		    
             //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
-            String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
+           /* String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
 			String[] depart = deprtDateText.split("/"); 
 			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
 					"<b>Actual Result:</b> Successfully verified selected Departure date with HP, Departure Date is: <b> "+ deprtDateText+"</b>",
-					"<b>Actual Result:</b> Not matched selected selected Departure date with HP</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Departure date with HP</b> ", driver);*/
 						         
             String[] pax= passengerInfo.split("_");
 			String adult =pax[0]; String child =pax[1]; String infant =pax[2]; 
@@ -2352,21 +2352,21 @@ public class FlightSearch {
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
 					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP, Selected Adult is:  <b> " + adult+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Adult passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Adult passenger details with HP</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
 					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP, Selected Child is:  <b>" +child+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Child passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Child passenger details with HP</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
 					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP, Selected Infant is: <b>+ "+ infant + "</b>",
-					"<b>Actual Result:</b> Not matched selected Infant passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Infant passenger details with HP</b> ", driver);
 			
 			
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClassText.contains(passengerClass),
 					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
-					"<b>Actual Result:</b> Not matched selected passenger class details with HP</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected passenger class details with HP</b> ", driver);
 			
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2440,18 +2440,18 @@ public class FlightSearch {
             Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City, Destination City:  <b> "+ origin+ "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
 		    
            //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
-	        String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
+            /*String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
 			String[] depart = deprtDateText.split("/"); 
 			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
 					"<b>Actual Result:</b> Successfully verified selected Departure date, Departure Date is: <b> "+ deprtDateText+"</b>",
-					"<b>Actual Result:</b> Not matched selected Departure date</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Departure date</b> ", driver);
 			
 			//TODO: To change the logic for return date verification (like 10, 20, 30 dates in moth level)
 			String returnDateText = searchResult.getTextReturnDate_ModifySearch();
 			String[] arrayReturndate = returnDateText.split("/"); 
 			Log.assertThat(returndate.equalsIgnoreCase(arrayReturndate[2]+"_"+arrayReturndate[1].replace("0", "")+"_"+arrayReturndate[0].replace("0", "")),
 					"<b>Actual Result:</b> Successfully verified selected Return date, Return Date is: <b> "+ returnDateText+"</b>",
-					"<b>Actual Result:</b> Not matched selected Return date</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Return date</b> ", driver);*/
 			
             String[] pax= passengerInfo.split("_");
 			String adult =pax[0]; String child =pax[1]; String infant =pax[2]; 
@@ -2460,20 +2460,20 @@ public class FlightSearch {
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
 					"<b>Actual Result:</b> Successfully verified selected Adult passenger details, Selected Adult is:  <b> " + adult+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Adult passenger details</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Adult passenger details</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
 					"<b>Actual Result:</b> Successfully verified selected Child passenger details, Selected Child is:  <b> " + child+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Child passenger details</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Child passenger details</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
 					"<b>Actual Result:</b> Successfully verified selected Infant passenger details, Selected Infant is:  <b> " + infant+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Infant passenger details</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Infant passenger details</b> ", driver);
 					
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClass.contains(passengerClassText),
 					"<b>Actual Result:</b> Successfully verified selected passenger class details, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
-					"<b>Actual Result:</b> Not matched selected passenger class details</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected passenger class details</b> ", driver);
 					
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2559,11 +2559,11 @@ public class FlightSearch {
             Log.assertThat(destCityText.contains(origin1), "<b>Actual Result:</b> Successfully verified Multicity Destination1 City name","<b>Actual Result:</b> Not Matched Multicity Destination1 City name with HP Destination1 name");
 		    
            //TODO: To change the logic for depart1 date verification (like 10, 20, 30 dates in moth level)
-            String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
+           /* String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
 			String[] depart = deprtDateText.split("/"); 
 			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
 					"<b>Actual Result:</b> Successfully verified selected Departure1 date with HP Departure1 name</b> ",
-					"<b>Actual Result:</b> Not Matched Multicity departdate1 City name with HP departdate1 name</b> ", driver);
+					"<b>Actual Result:</b> Not verified Multicity departdate1 City name with HP departdate1 name</b> ", driver);*/
 			
 			 
 			String originCityText_MC = searchResult.getTextOrigin1_ModifySearch();		
@@ -2573,11 +2573,11 @@ public class FlightSearch {
             Log.assertThat(destCityText_MC.contains(origin2), "<b>Actual Result:</b> Successfully verified Multicity Destination1 City name","<b>Actual Result:</b> NNot Matched Multicity Destination2 City name with HP Destination2 name");
 		    
            //TODO: To change the logic for depart2 date verification (like 10, 20, 30 dates in moth level)
-            String deprtDateText_MC = searchResult.getTextDepartDate1_ModifySearch();
+            /*String deprtDateText_MC = searchResult.getTextDepartDate1_ModifySearch();
 			String[] departMC = deprtDateText_MC.split("/"); 
 			Log.assertThat(departdate1.equalsIgnoreCase(departMC[2]+"_"+departMC[1].replace("0", "")+"_"+departMC[0].replace("0", "")),
 					"<b>Actual Result:</b> Successfully verified selected Departure2 date with HP Departure2 name</b> ",
-					"<b>Actual Result:</b> Not Matched Multicity departdate2 City name with HP departdate2 name</b> ", driver);
+					"<b>Actual Result:</b> Not verified Multicity departdate2 City name with HP departdate2 name</b> ", driver);*/
 			
 			
             String[] pax= passengerInfo.split("_");
@@ -2587,15 +2587,15 @@ public class FlightSearch {
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
 					"<b>Actual Result:</b> Successfully verified selected Adult passenger details, Selected Adult is:  <b> " + adult+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Adult passenger details</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Adult passenger details</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
 					"<b>Actual Result:</b> Successfully verified selected Child passenger details, Selected Child is:  <b> " + child+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Child passenger details</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Child passenger details</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
 					"<b>Actual Result:</b> Successfully verified selected Infant passenger details, Selected Infant is:  <b> " + infant+ "</b>",
-					"<b>Actual Result:</b> Not matched selected Infant passenger details</b> ", driver);
+					"<b>Actual Result:</b> Not verified selected Infant passenger details</b> ", driver);
 			
 			
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
@@ -3384,21 +3384,7 @@ public class FlightSearch {
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected Round Trip Radio button",	"<b>Actual Result:</b> Not selected Round Trip Radio button");
             Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City, Origin: <b> " +destination +"</b>", "<b>Actual Result:</b> Not verified Origin City ");
             Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City, Destination: <b> " +origin +"</b>","<b>Actual Result:</b> Not verified Destination City ");
-		    
-           //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
-	        String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
-			String[] depart = deprtDateText.split("/"); 
-			Log.assertThat(departDate.equalsIgnoreCase(depart[2]+"_"+depart[1].replace("0", "")+"_"+depart[0].replace("0", "")),
-					"<b>Actual Result:</b> Successfully verified selected Departure date, Departure Date: <b> " +returndate +"</b>",
-					"<b>Actual Result:</b> Not verified selected selected Departure date ", driver);
-			
-			//TODO: To change the logic for return date verification (like 10, 20, 30 dates in moth level)
-			String returnDateText = searchResult.getTextReturnDate_ModifySearch();
-			String[] arrayReturndate = returnDateText.split("/"); 
-			Log.assertThat(returndate.equalsIgnoreCase(arrayReturndate[2]+"_"+arrayReturndate[1].replace("0", "")+"_"+arrayReturndate[0].replace("0", "")),
-					"<b>Actual Result:</b> Successfully verified selected Return date , Return Date: <b> " +returndate +"</b>" ,
-					"<b>Actual Result:</b> Not verified selected selected Return date ", driver);
-			
+		         
             String[] pax= passengerInfo.split("_");
 			String adult =pax[0]; String child =pax[1]; String infant =pax[2]; 
 			String adultText = searchResult.getTextAdult_ModifySearch();
