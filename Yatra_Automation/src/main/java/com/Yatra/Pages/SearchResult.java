@@ -2173,11 +2173,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 
 	/**
-	 * To select OneWay Flight search Fields
+	 * To click on Book now button in One Way for Domestic Any and Preferred flights based on filter values
 	 * 
+	 * @param domain : DOM or INTL
+	 * @param stops : Stops
+	 * @param airlines : Airline Name
+	 * @return
 	 * @throws Exception
 	 */
-
 	public ReviewPage selectAirlineBookNowInOW(String domain, String stops, String airlines) throws Exception {
 		BrowserActions.nap(2);
 		if (domain.equalsIgnoreCase("DOM")) {
@@ -2195,10 +2198,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
 			} else {
 				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
-				clickOnBookNowInOW(2); // select Book Now Airlines
+				clickOnPrefferedFlightsBookNowInOW(1); // select Book Now 
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
 			}
-			Log.event("Successfully selected OneWay Flight Search fields");
+			Log.event("Successfully clicked Book Now for Round Trip");
 		} else if (domain.equalsIgnoreCase("INTL")) {
 			// Select Connecting flight or Direct flight in Stops filter
 			if (stops.equalsIgnoreCase("All")) {
@@ -2214,37 +2217,40 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
 			} else {
 				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
-				clickOnBookNowInDOM_INTL(1); // select Book Now Airlines
+				clickOnBookNowInDOM_INTL(1); // select Book Now 
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
 			}
-			Log.event("Successfully selected OneWay Flight Search fields");
+			Log.event("Successfully clicked Book Now for Round Trip");
 		}
 		return new ReviewPage(driver).get();
 	}
 	
+	/**
+	 * to click on Book now button in One Way for Domestic Any flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
 	public void clickOnBookNowInOW(int index) throws Exception {
-		BrowserActions.nap(2);
-		//Utils.waitForElement(driver, btnBookNowOW);	
-		closeINotificationAtTopSRP();
+		BrowserActions.nap(5);
 		WebElement wBookNow=driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])["+index+"]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button-DOM");		
 	}
 	
-	
+		
 	/**
-	 * to click on Book now button in OneWay Trip for International flights
+	 * to click on Book now button in One Way for INTL flights
 	 * 
 	 * @param index
 	 * @return
 	 * @throws Exception
 	 */
 	public void clickOnBookNowInDOM_INTL(int index) throws Exception {
-		BrowserActions.nap(2);
-		//closeINotificationAtTopSRP();
+		BrowserActions.nap(5);		
 		WebElement wBookNow=driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["+index+"]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
-		//WebElement wBookNow=driver.findElement(By.cssSelector("div[ng-controller='scheduleController'] div[class='js-flightItem'] p[class='new-blue-button .js-bookNow book-btn relative tc']"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.nap(2);		
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button - INTL");		
@@ -2455,7 +2461,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-
 	public String getTextOfNoFlightAvaliable() throws Exception {
 		Utils.waitForPageLoad(driver);
 		String Message = txterrorMessageNoFlights.getText();
@@ -2505,6 +2510,116 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String Name = txtUserNameOnHeader.getText();
 		return Name;
 	}
+	/**
+	 * To click on Book now button in Round Trip for Domestic Any and Preferred flights based on filter values
+	 * 
+	 * @param domain : DOM or INTL
+	 * @param stops : Stops
+	 * @param airlines : Airline Name
+	 * @return
+	 * @throws Exception
+	 */
+	public ReviewPage selectAirlineBookNowInRT(String domain, String stops, String airlines) throws Exception {
+		BrowserActions.nap(2);
+		if (domain.equalsIgnoreCase("DOM")) {
+			// Select Connecting flight or Direct flight in Stops filter
+			if (stops.equalsIgnoreCase("All")) {
+				Log.event("All flights visible by default");
+			} else {
+				selectFlightStopsInFilters(stops);
+				Log.event("Successfully selected " + stops + " button in Stops Filter");
+			}
+
+			// click book now based on Any or Preferred airlines
+			if (airlines.equalsIgnoreCase("Any")) {
+				BrowserActions.nap(5);
+				clickOnBookNowInRT_DOM(1, 2, 2, 7); // select Book Now Airlines
+				Log.event("All flights details are visible by default and clicked Book Now Random flight-DOM");
+			} else {
+				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
+				BrowserActions.nap(5);
+				clickOnBookNowInRT(1, 1); // select Book Now Airlines
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now - DOM");
+			}
+			Log.event("Successfully clicked Book Now for Round Trip");
+		} else if (domain.equalsIgnoreCase("INTL")) {
+			// Select Connecting flight or Direct flight in Stops filter
+			if (stops.equalsIgnoreCase("All")) {
+				Log.event("All flights visible by default");
+			} else {
+				selectFlightStopsInFilters(stops);
+				Log.event("Successfully selected " + stops + " button in Stops Filter");
+			}
+
+			// click book now based on Any or Preferred airlines
+			if (airlines.equalsIgnoreCase("Any")) {
+				clickOnBookNowInDOM_INTL(1); // select Book now
+				Log.event("All flights details are visible by default and clicked Book Now Random flight -RT");
+			} else {
+				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
+				clickOnBookNowInDOM_INTL(1); // select Book Now Airlines
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now RT ");
+			}
+			Log.event("Successfully clicked Book Now for Round Trip");
+		}
+		return new ReviewPage(driver).get();
+	}
+	
+	/**
+	 * to click on Book now button in Round Trip for Domestic any flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnBookNowInRT_DOM(int onwardList, int onwardFlight, int returnList, int returnFlight) throws Exception {
+		BrowserActions.nap(5);
+		WebElement onwardflight = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + onwardList
+				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + onwardFlight
+				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
+		WebElement returnflight = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + returnList
+				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + returnFlight
+				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
+		BrowserActions.scrollToView(onwardflight, driver);
+		BrowserActions.clickOnElement(onwardflight, driver, "To select Flight from one list.");
+		BrowserActions.scrollToView(returnflight, driver);
+		BrowserActions.clickOnElement(returnflight, driver, "To select Flight from second list.");
+		BrowserActions.clickOnElement(btnBookNowRoundTrip, driver, "Click on Book Now for RoundTrip for Domestic any flights");
+		
+	}
+	
+	/**
+	 * to click on Book now button in Round Trip for Domestic Preferred flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnBookNowInRT(int onwardFlight, int returnFlight) throws Exception {
+		WebElement onwardflight = driver.findElement(By.xpath("//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem']["+onwardFlight+"]//p[@class='new-blue-button fr book-button']"));
+		WebElement returnflight = driver.findElement(By.xpath("//div[@id='resultList_1']//div[@class='js-flightRow js-flightItem']["+onwardFlight+"]//p[@class='new-blue-button fr book-button']"));
+		BrowserActions.scrollToView(onwardflight, driver);
+		BrowserActions.clickOnElement(onwardflight, driver, "To select Flight from one list.");
+		BrowserActions.scrollToView(returnflight, driver);
+		BrowserActions.clickOnElement(returnflight, driver, "To select Flight from second list.");
+		BrowserActions.clickOnElement(btnBookNowRoundTrip, driver, "Click on Book Now for RoundTrip for Domestic Preferred flights");
+		
+	}
+	/**
+	 * to click on Book now button in Round Trip for Domestic Preferred flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnPrefferedFlightsBookNowInOW(int index) throws Exception {
+		BrowserActions.nap(3);
+		WebElement prefferedFlightBookNow = driver.findElement(By.xpath("(//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem']["+index+"])//p[@class='new-blue-button fr book-button js-bookNow relative tc']"));
+		BrowserActions.scrollToView(prefferedFlightBookNow, driver);
+		BrowserActions.nap(3);
+		BrowserActions.clickOnElement(prefferedFlightBookNow, driver, "To click on Book now button-DOM");		
+	}
+
 	// *******************************End of SRP Functions*************************************************************
 
 } // SearchResult
