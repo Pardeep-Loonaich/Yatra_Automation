@@ -184,7 +184,28 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	private WebElement txtshowFlightFareDetails;
 	
 	@FindBy(css = "button.primary.rounded.pull-right")
-	private WebElement btnFareChangeContinue;
+	private WebElement btnFareChangeContinue; // remove later
+	
+	@FindBy(css = "div[ng-show='priceChangeDiv']")
+	private WebElement altFareChange;
+	
+	@FindBy(css = "div[class='change-status bull-green']]")
+	private WebElement txtFareSlashed;
+	
+	@FindBy(css = "div[class='change-status bull-red']")
+	private WebElement txtFareOops;
+	
+	@FindBy(css = "div[class='row mt10 btn-box text-center']>button")
+	private WebElement btnFareSlashedContune;
+	
+	@FindBy(css = "button.primary.rounded.pull-right")
+	private WebElement btnFareOopsContune;
+	
+	
+	
+	
+	
+	//div[@class='change-status bull-green']
 	/**********************************
 	 * WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -646,5 +667,51 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 				"Flight Price should be displayed");
 		return flightPriceGetTxt;
 	}
-	//
+	
+	/**
+	 * To verify Fare Slashed & Fare Opps Alert Pop up is displayed
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean fareChangeAlertPopUpNotAppear() throws Exception {
+		boolean status = false;
+		if (!altFareChange.isDisplayed()) {
+			status = true;
+			Log.event("Flight fare change alert poupup is not displayed ");
+		} else if (altFareChange.isDisplayed()) {
+			Log.event("Flight fare change alert poupup is displayed ");
+			status = false;
+		}
+		return status;
+	}
+	
+	/**
+	 * Clicking Continue in Fare Slashed & Fare Opps Alert Popup 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean fareChangeAlertPopUpAppear() throws Exception {
+		boolean status = false;		
+		if (altFareChange.isDisplayed()){
+			if (BrowserActions.isElementVisible(driver, txtFareSlashed)) {
+				BrowserActions.clickOnElement(btnFareSlashedContune, driver, "Clicked on continue in Fare Slashed Alert Popup");
+				status = true;
+			} else if (BrowserActions.isElementVisible(driver, txtFareOops)) {
+				BrowserActions.clickOnElement(btnFareOopsContune, driver,"Clicked on continue in Fare Oops Alert Popup");
+				status = true;
+			} else if (BrowserActions.isElementVisible(driver, altFareChange))
+				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
+			status = true;
+			Log.event("Flight fare change alert poupup is displayed ");
+		}else{
+			Log.event("Flight fare change alert poupup is not displayed ");
+			status = true;
+		}
+    return status;
+	}
+	
+	
+	//i ewant to restart eclipse -- ok
 } // ReviewPage
