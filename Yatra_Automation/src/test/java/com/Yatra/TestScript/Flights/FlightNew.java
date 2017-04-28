@@ -1,5 +1,6 @@
 package com.Yatra.TestScript.Flights;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 //-----------------------------------------------------------------------------------------------------------
@@ -49,6 +50,184 @@ public class FlightNew {
 	public void init(ITestContext context) {
 		webSite = (System.getProperty("webSite") != null ? System.getProperty("webSite")
 				: context.getCurrentXmlTest().getParameter("webSite"));
+	}
+	@Test(description = "Validate via flight check on review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_062(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: click 'Flight Details' button
+			Thread.sleep(3000);
+			searchResult.clickOnlnkFlightDetails_INTL();
+			Log.message("5. Successfully clicked 'Flight Details'!");
+			
+			// step: click on Book Now in Flight Details
+			Thread.sleep(3000);
+			reviewPage = searchResult.clickOnBookNowInFlightDetails_INTL();
+			Log.message("6. Successfully clicked Book Now in Flight Details Pop Up!");
+			Thread.sleep(2000);
+			ArrayList<String> FlightDetails = reviewPage.getTextAirlinename();
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> Validate via flight check on review page");
+			Thread.sleep(2000);
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result :</b> In Review Page Flight Details are displayed as : \n" + FlightDetails,
+					"<b>Actual Result :</b> In Review Page Via Flights are not Displayed", driver);
+		
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "Validate the action on clicking on 'Book Now' button from Flight Details section", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_063(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: click 'Flight Details' button
+			Thread.sleep(3000);
+			searchResult.clickOnlnkFlightDetails_INTL();
+			Log.message("5. Successfully clicked 'Flight Details'!");
+			
+			// step: click on Book Now in Flight Details
+			Thread.sleep(3000);
+			reviewPage = searchResult.clickOnBookNowInFlightDetails_INTL();
+			Log.message("6. Successfully clicked Book Now in Flight Details Pop Up!");
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> Validate the action on clicking on 'Book Now' button from Flight Details section");
+			Thread.sleep(2000);
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+					"<b>Actual Result :</b> In Flight Detail Pop Up No Book Now Button is visible to the user",
+					"<b>Actual Result :</b> In Flight Detail Pop Up Book Now Button is visible to the user", driver);
+			
+			
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "Validate that for RT and MC search Book Now button should not be available on Flight Details section", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_064(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'Round Trip' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo,
+					passengerClass);
+			Log.message("3. Successfully filled the search details for Round Trip!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: click 'Flight Details' button
+			Thread.sleep(3000);
+			searchResult.clickOnFlightDetailsInRT(5, 0);
+			Log.message("5. Successfully clicked 'Flight Details'!");
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> Validate that for RT and MC search Book Now button should not be available on Flight Details section");
+			Thread.sleep(2000);
+			Log.assertThat(
+					searchResult.elementLayer.verifyPageElementsDoNotExist(Arrays.asList("btnBookNowFlightDeatilPopUp"),
+							searchResult),
+					"<b>Actual Result :</b> In Flight Detail Pop Up No Book Now Button is visible to the user",
+					"<b>Actual Result :</b> In Flight Detail Pop Up Book Now Button is visible to the user", driver);
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
 	}
 
 	@Test(description = "Validate that if there is no flight available for respective search-Error Message Should display", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
@@ -153,6 +332,57 @@ public class FlightNew {
 		}
 	}
 
+	@Test(description = "Validate that in case of INT search new SRP page should open", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_070(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+			String originHeader = searchResult.getTextOfOrigiNameHeader();
+			String departureHeader = searchResult.getTextOfDestinatioNameHeader();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validate that in case of INT search new SRP page should open");
+			Thread.sleep(2000);
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("headerLogo"), searchResult),
+					"<b>Actual Result :</b> User navigated to Search result page and origin is displayed as :"
+							+ originHeader + "  and Deapture is displayed as :" + departureHeader,
+					"<b>Actual Result :</b> User didn't navigated to Search result page and", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
 	@Test(description = "Validate that for logged in User Offer strip should appear with user name", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_072(HashMap<String, String> testData) throws Exception {
 
@@ -165,8 +395,7 @@ public class FlightNew {
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("Class");	
-
+		String passengerClass = testData.get("Class");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -179,7 +408,7 @@ public class FlightNew {
 			loginPage = homePage.navigateToSignIn();
 			loginPage.loginYatraAccount(emailId, password);
 			Log.message("2. Successfully Logged in Yatra account");
-			
+
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("3. Successfully clicked 'One Way' option in search Home Page!");
@@ -193,16 +422,14 @@ public class FlightNew {
 			Log.message("5. Successfully clicked 'Search'!");
 			String name = searchResult.getTextUserNameFromHeader();
 
-			
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Validate that for logged in User Offer strip should appear with user name");
 			Thread.sleep(2000);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("txtUserNameOnHeader"), searchResult),
-					"<b>Actual Result :</b> If user is Logged in,User name is displayed as : "
-							+ name,
-					"<b>Actual Result :</b> No user name is visible to the user",
-					driver);
+			Log.assertThat(
+					searchResult.elementLayer.verifyPageElements(Arrays.asList("txtUserNameOnHeader"), searchResult),
+					"<b>Actual Result :</b> If user is Logged in,User name is displayed as : " + name,
+					"<b>Actual Result :</b> No user name is visible to the user", driver);
 
 			Log.testCaseResult();
 
@@ -259,57 +486,6 @@ public class FlightNew {
 							+ name,
 					"<b>Actual Result :</b> If user is not Logged No 'Login Button' is dispalyed under My account",
 					driver);
-
-			Log.testCaseResult();
-
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			driver.quit();
-			Log.endTestCase();
-		}
-	}
-
-	@Test(description = "Validate that in case of INT search new SRP page should open", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_070(HashMap<String, String> testData) throws Exception {
-
-		Utils.testCaseConditionalSkip(testData.get("RunMode"));
-		String browser = testData.get("browser");
-		String tripType = testData.get("TripType");
-		String origin = testData.get("Origin");
-		String destination = testData.get("Destination");
-		String departureDate = testData.get("DepartureDate");
-		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("Class");
-
-		// Get the web driver instance
-		final WebDriver driver = WebDriverFactory.get(browser);
-		Log.testCaseInfo(testData);
-		try {
-			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-
-			// step: Select Trip Type
-			homePage.selectTripType(tripType);
-			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
-
-			// step: select OneWay Search fields in HomePage
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-			Log.message("3. Successfully filled the search details for OneWay!");
-
-			// step: click 'Search' button
-			searchResult = homePage.clickBtnSearch();
-			Log.message("4. Successfully clicked 'Search'!");
-			String originHeader = searchResult.getTextOfOrigiNameHeader();
-			String departureHeader = searchResult.getTextOfDestinatioNameHeader();
-
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Validate that in case of INT search new SRP page should open");
-			Thread.sleep(2000);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("headerLogo"), searchResult),
-					"<b>Actual Result :</b> User navigated to Search result page and origin is displayed as :"
-							+ originHeader + "  and Deapture is displayed as :" + departureHeader,
-					"<b>Actual Result :</b> User didn't navigated to Search result page and", driver);
 
 			Log.testCaseResult();
 
@@ -477,7 +653,7 @@ public class FlightNew {
 			Thread.sleep(2000);
 			Log.assertThat(
 					searchResult.elementLayer.verifyPageElements(Arrays.asList("txtSeatLeftMessage"), searchResult),
-					"<b>Actual Result :</b> Seat left message is Displayed on Flight Details Pop up : " + seatLeft,
+					"<b>Actual Result :</b> Seat left message is Displayed on Flight Details Pop up as : " + seatLeft,
 					"<b>Actual Result :</b> Yatra Page Footer is not visible on Flight Details Pop up", driver);
 
 			Log.testCaseResult();
@@ -800,10 +976,68 @@ public class FlightNew {
 			Log.message("5. Successfully Selected 'Preferred Flight'!");
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verify functionality of Airline Only filter");
+			Log.message("<b>Expected Result:</b> Validate tool tip message on selection of flights");
 			Log.assertThat(searchResult.verifySelectedFlightName(),
 					"<b>Actual Result :</b> User see only  --> " + flightname + "  <-- Flights after applying Filter",
 					"<b>Actual Result :</b> All Flights are dispalyed to user after applying filter", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "Validate tool tip message on selection of flights", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_138(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo,
+					passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: filling user details
+			loginPage = searchResult.navigateToSignIn();
+			searchResult = loginPage.loginYatraAccountFromSearchResult(emailId, password);
+			Log.message("5. Login 'Yatra' account successfully!");
+			Thread.sleep(3000);
+			String message = searchResult.getTextContinueWithSearchMessage();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validate tool tip message on selection of flights");
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("headerLogo"), searchResult),
+					"<b>Actual Result :</b> After Log in a tool tip message is diplayed as :" + message,
+					"<b>Actual Result :</b> No Tool tip message is displayed to the user", driver);
 
 			Log.testCaseResult();
 

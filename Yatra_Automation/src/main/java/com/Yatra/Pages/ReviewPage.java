@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.jsoup.select.Evaluator.ContainsOwnText;
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByCssSelector;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -655,5 +656,22 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 				"Flight Price should be displayed");
 		return flightPriceGetTxt;
 	}
-	//
+	
+
+	public ArrayList<String> getTextAirlinename() throws Exception{
+		List<WebElement> name = driver.findElements(By.cssSelector("article[class='row review-article ng-scope']>div[class='text-sm-center col-sm-2 text-xs-left sm-gutter-bottom']>p>span[class='ib ng-binding']"));
+		ArrayList<String> airLineList = new ArrayList<String>();
+		for (int i =0;i<name.size();i++){
+		String airlineName = 	BrowserActions.getText(driver, name.get(i), "Getting name of Airlines In Pop Up");
+		airLineList.add(airlineName);
+		}
+		return airLineList;	
+	}
+	
+	
+	
+	
+	
+	
+	
 } // ReviewPage
