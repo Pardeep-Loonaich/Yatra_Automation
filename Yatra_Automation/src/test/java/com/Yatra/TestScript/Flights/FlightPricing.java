@@ -1346,5 +1346,477 @@ public class FlightPricing {
 		}
 	}
 	
+	@Test( description = "DOM-RT Flight pricing - Failure on fare change", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_162(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String domain = testData.get("Domain");
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+	
+			//step: select Round Trip Search fields in HomePage
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for Round Trip");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Clicked on 'Search' in Yatra Homepage");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);	
+			Log.message("5. Successfully clicked Book Now Button with Random Flights");
+											
+			String flightPrice = reviewPage.getTextFlightPrice();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test failed if flight fare change alert popup is appear for DOM-RT");
+			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
+					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
+					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+			
+			Log.testCaseResult();			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "DOM-OW Flight pricing - Failure on fare change", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_163(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String domain = testData.get("Domain");
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			Log.message("5. Successfully clicked Book Now Button with Random Flights");
+			
+			String flightPrice = reviewPage.getTextFlightPrice();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test failed if flight fare change alert popup is appear for DOM-OW");
+			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
+					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
+					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+				
+			
+			Log.testCaseResult();			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "INTL-RT Flight pricing - Failure on fare change", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_164(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String domain = testData.get("Domain");
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+	
+			//step: select Round Trip Search fields in HomePage
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for Round Trip");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Clicked on 'Search' in Yatra Homepage");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);	
+			Log.message("5. Successfully clicked Book Now Button with Random Flights");
+			
+			String flightPrice = reviewPage.getTextFlightPrice();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test failed if flight fare change alert popup is appear for INTL-RT");
+			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
+					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
+					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+					
+			
+			Log.testCaseResult();			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "INTL-OW Flight pricing - Failure on fare change", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_165(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String domain = testData.get("Domain");
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			Log.message("5. Successfully clicked Book Now Button with Random Flights");
+			
+			String flightPrice = reviewPage.getTextFlightPrice();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test failed if flight fare change alert popup is appear for INTL-OW");
+			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
+					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
+					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+					
+			
+			Log.testCaseResult();			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test( description = "DOM-RT Flight pricing - Test Pass on fare change", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_166(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String domain = testData.get("Domain");
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+	
+			//step: select Round Trip Search fields in HomePage
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for Round Trip");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Clicked on 'Search' in Yatra Homepage");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);	
+			Log.message("5. Successfully clicked Book Now Button with Random Flights");
+			
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+				Log.message("6.Handled Flight fare change alert popup");
+			} else {
+				Log.message("6.Flight fare change alert poupup is not displayed");
+			}		
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed for DOM-RT");
+			//Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup if displayed", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
+			String flightPrice = reviewPage.getTextFlightPrice();
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
+					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
+					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);		
+			
+			Log.testCaseResult();			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "DOM-OW Flight pricing - Test Pass on fare change", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_167(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String domain = testData.get("Domain");
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			Log.message("5. Successfully clicked Book Now Button with Random Flights");
+			
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+				Log.message("6.Handled Flight fare change alert popup");
+			} else {
+				Log.message("6.Flight fare change alert poupup is not displayed");
+			}
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed for DOM-OW");
+			//Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup if displayed", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
+			String flightPrice = reviewPage.getTextFlightPrice();
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
+					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
+					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+			
+			Log.testCaseResult();			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "INTL-RT Flight pricing - Test Pass on fare change", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_168(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String domain = testData.get("Domain");
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+	
+			//step: select Round Trip Search fields in HomePage
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for Round Trip");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Clicked on 'Search' in Yatra Homepage");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);	
+			Log.message("5. Successfully clicked Book Now Button with Random Flights");
+			
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+				Log.message("6.Handled Flight fare change alert popup");
+			} else {
+				Log.message("6.Flight fare change alert poupup is not displayed");
+			}
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed for INTL-RT");
+			//Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup if displayed", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
+			String flightPrice = reviewPage.getTextFlightPrice();
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
+					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
+					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+			
+			Log.testCaseResult();			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "INTL-OW Flight pricing - Test Pass on fare change", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_169(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String domain = testData.get("Domain");
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+			// step: click 'Search' button in Yatra Home page
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			Log.message("5. Successfully clicked Book Now Button with Random Flights");
+			
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+				Log.message("6.Handled Flight fare change alert popup");
+			} else {
+				Log.message("6.Flight fare change alert poupup is not displayed");
+			}
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed fo INTL-OW");
+			//Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup if displayed", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
+			String flightPrice = reviewPage.getTextFlightPrice();
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
+					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
+					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+			
+			Log.testCaseResult();			
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 	
 } //Flight Pricing
