@@ -95,7 +95,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "div[class='short-details']>h3>p")
 	private WebElement btnBookNowFlightDeatilPopUp;
-
+	
+	@FindBy(css = "p[class='new-blue-button book-btn fd-btn']")
+	private WebElement btnBookNowFlightDeatilPopUp_INTL;
+	
 	@FindBy(css = "div[class='short-details']>div")
 	private WebElement fldContentFlightDetails;
 
@@ -521,8 +524,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "span[id='userShowName']")
 	private WebElement txtUserNameOnHeader;
 	
-	
-	
+	@FindBy(css = "div[id='book-now-tooltip']>div")
+	private WebElement txtContinueWithSearchMessage;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -2619,7 +2622,41 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.nap(3);
 		BrowserActions.clickOnElement(prefferedFlightBookNow, driver, "To click on Book now button-DOM");		
 	}
+	/**
+	 * To get text 'Continue with ur search' Only in RT
+	 * 
+	 * @throws Exception
+	 */
 
+	public String getTextContinueWithSearchMessage() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Message = txtContinueWithSearchMessage.getText();
+		return Message;
+	}
+	/**
+	 * to click on Book Flight Details Link In Round Trip 
+	 * Only 0 or 1 can be passed in Second argument as o is onward and 1 is return flight
+	 * @param index and i
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnFlightDetailsInRT(int index,int i) throws Exception {
+		
+		WebElement onwardflight = driver.findElement(By.cssSelector("div[id='resultBoxSlider']>div[id='resultList_"+i+"']>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("+index+")>article>footer>ul[class='res-footer-list fl uprcse']>li:not([class='ng-hide'])>a"));
+		BrowserActions.clickOnElement(onwardflight, driver, "To select Flight Details from one list");	
+	}
+	/**
+	 * to click on Book Now In Flight Details 
+	 * 
+	 * @param 
+	 * @return
+	 * @throws Exception
+	 */
+	public ReviewPage clickOnBookNowInFlightDetails_INTL() throws Exception {
+		btnBookNowFlightDeatilPopUp_INTL.click();
+		return new ReviewPage(driver).get();
+	}
+	
 	// *******************************End of SRP Functions*************************************************************
 
 } // SearchResult

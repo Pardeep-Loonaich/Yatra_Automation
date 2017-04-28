@@ -136,6 +136,7 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	}
 
 
+
     /**
      * filling details as 'Guest' user and clicked on Book as Guest
      * @param userName
@@ -305,4 +306,5 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	}
 	
 }//TrainTravellerPage
+
 
