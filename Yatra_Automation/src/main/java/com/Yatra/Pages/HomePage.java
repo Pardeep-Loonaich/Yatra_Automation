@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -1269,6 +1270,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 
 	public void clickTrainTab() throws Exception {
+		
+		
 		// final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
 		Utils.waitForPageLoad(driver);

@@ -5133,7 +5133,7 @@ public class PaymentTest {
 
 
 	@Test(groups = { "desktop" }, description = "Verify Other NetBanking SubOption:YESBANK", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Payment_0470(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Payment_047(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");
