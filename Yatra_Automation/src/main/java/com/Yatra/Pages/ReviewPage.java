@@ -716,11 +716,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			Log.event("Flight fare change alert poupup is displayed ");
 		}else{
 			Log.event("Flight fare change alert poupup is not displayed ");
-			status = true;
+			status = false;
 		}
-    return status;
+    reurn status;
 	}
 	
-	
-	//i ewant to restart eclipse -- ok
+
 } // ReviewPage

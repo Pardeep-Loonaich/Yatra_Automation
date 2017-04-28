@@ -1384,13 +1384,11 @@ public class FlightPricing {
 			// step: select Airlines Book Now for One Way search
 			reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);	
 			Log.message("5. Successfully clicked Book Now Button with Random Flights");
-			
-			//verifying Fare Change Alert pop up is displayed in Review page				
-			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
-					
+											
 			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verified Flight pricing and Flight Fare Change Alert is not displayed in DOM-RT");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test failed if flight fare change alert popup is appear for DOM-RT");
+			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
 					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
 					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
@@ -1442,15 +1440,14 @@ public class FlightPricing {
 			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
 			Log.message("5. Successfully clicked Book Now Button with Random Flights");
 			
-			//verifying Fare Change Alert pop up is displayed in Review page				
-			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
-			
 			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verified Flight pricing and Flight Fare Change Alert is not displayed in DOM-OW");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test failed if flight fare change alert popup is appear for DOM-OW");
+			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
 					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
 					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+				
 			
 			Log.testCaseResult();			
 		} catch (Exception e) {
@@ -1500,15 +1497,14 @@ public class FlightPricing {
 			reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);	
 			Log.message("5. Successfully clicked Book Now Button with Random Flights");
 			
-			//verifying Fare Change Alert pop up is displayed in Review page				
-			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
-			
 			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verified Flight pricing and Flight Fare Change Alert is not displayed in INTL-RT");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test failed if flight fare change alert popup is appear for INTL-RT");
+			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
 					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
 					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+					
 			
 			Log.testCaseResult();			
 		} catch (Exception e) {
@@ -1557,15 +1553,14 @@ public class FlightPricing {
 			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
 			Log.message("5. Successfully clicked Book Now Button with Random Flights");
 			
-			//verifying Fare Change Alert pop up is displayed in Review page				
-			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
-						
 			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verified Flight pricing and Flight Fare Change Alert is not displayed in INTL-OW");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test failed if flight fare change alert popup is appear for INTL-OW");
+			Log.assertThat(reviewPage.fareChangeAlertPopUpNotAppear(), "<b>Actual Result:</b> Flight Fare Change Alert is not displayed ", "<b>Actual Result:</b> Flight Fare Change Alert is displayed", driver);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
 					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
 					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+					
 			
 			Log.testCaseResult();			
 		} catch (Exception e) {
@@ -1615,15 +1610,20 @@ public class FlightPricing {
 			reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);	
 			Log.message("5. Successfully clicked Book Now Button with Random Flights");
 			
-			//handle popup if displayed in Review page				
-			Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup ", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
-					
-			String flightPrice = reviewPage.getTextFlightPrice();
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+				Log.message("6.Handled Flight fare change alert popup");
+			} else {
+				Log.message("6.Flight fare change alert poupup is not displayed");
+			}		
+			
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verified Flight pricing for DOM-RT");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed for DOM-RT");
+			//Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup if displayed", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
+			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
 					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
-					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
+					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);		
 			
 			Log.testCaseResult();			
 		} catch (Exception e) {
@@ -1672,12 +1672,16 @@ public class FlightPricing {
 			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
 			Log.message("5. Successfully clicked Book Now Button with Random Flights");
 			
-			//handle popup if displayed in Review page				
-			Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup ", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
-			
-			String flightPrice = reviewPage.getTextFlightPrice();
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+				Log.message("6.Handled Flight fare change alert popup");
+			} else {
+				Log.message("6.Flight fare change alert poupup is not displayed");
+			}
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verified Flight pricing for DOM-OW");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed for DOM-OW");
+			//Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup if displayed", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
+			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
 					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
 					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
@@ -1730,12 +1734,17 @@ public class FlightPricing {
 			reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);	
 			Log.message("5. Successfully clicked Book Now Button with Random Flights");
 			
-			//handle popup if displayed in Review page				
-			Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup ", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+				Log.message("6.Handled Flight fare change alert popup");
+			} else {
+				Log.message("6.Flight fare change alert poupup is not displayed");
+			}
 			
-			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verified Flight pricing for INTL-RT");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed for INTL-RT");
+			//Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup if displayed", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
+			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
 					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
 					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
@@ -1787,12 +1796,16 @@ public class FlightPricing {
 			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
 			Log.message("5. Successfully clicked Book Now Button with Random Flights");
 			
-			//handle popup if displayed in Review page				
-			Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup ", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
-						
-			String flightPrice = reviewPage.getTextFlightPrice();
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+				Log.message("6.Handled Flight fare change alert popup");
+			} else {
+				Log.message("6.Flight fare change alert poupup is not displayed");
+			}
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verified Flight pricing for INTL-OW");
+			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed fo INTL-OW");
+			//Log.assertThat(reviewPage.fareChangeAlertPopUpAppear(), "<b>Actual Result:</b> Handled Flight Fare Change Alert poupup if displayed", "<b>Actual Result:</b> Not handled Flight Fare Change Alert poupup", driver);
+			String flightPrice = reviewPage.getTextFlightPrice();
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
 					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
 					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
