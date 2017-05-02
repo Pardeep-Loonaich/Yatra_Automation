@@ -527,6 +527,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[id='book-now-tooltip']>div")
 	private WebElement txtContinueWithSearchMessage;
 	
+	@FindBy(css = "div[ng-show='open_ftype'] input[ yatratrackable='Flights|Search|filter - fare_type|refundable']")
+	private WebElement chkRefundable;
+	
+	@FindBy(xpath = "//div[@class='js-flightRow js-flightItem']//li[@ng-if='flt.ft==1']")
+	private List<WebElement> lstRefundableFlights;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -2122,7 +2128,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				status = true;
 			}
 		} else if (links == "NextDay") {
-			Utils.waitForElement(driver, lnkPrevDay_ReturnLeg);			
+			Utils.waitForElement(driver, lnkNextDay_ReturnLeg);			
 			if (BrowserActions.isElementPresent(driver, lnkNextDay_ReturnLeg) == true) {
 				status = true;
 			}
@@ -2655,6 +2661,83 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public ReviewPage clickOnBookNowInFlightDetails_INTL() throws Exception {
 		btnBookNowFlightDeatilPopUp_INTL.click();
 		return new ReviewPage(driver).get();
+	}
+	
+	/**
+	 * Getting the text from Prev Day buttons on Onward leg in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextOnwardPrevDaySearch() throws Exception {
+		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
+		String prevDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkPrevDay_OnwardLeg, "title",  "Prev Day title");
+		return prevDayGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Next Day buttons on Onward leg in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextOnwardNextDaySearch() throws Exception {
+		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
+		String nextDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkNextDay_OnwardLeg, "title",  "Next Day title");
+		return nextDayGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Prev Day buttons on Return leg in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextReturnPrevDaySearch() throws Exception {
+		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
+		String prevDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkPrevDay_ReturnLeg, "title",  "Prev Day title");
+		return prevDayGetTxt;
+	}
+	
+	/**
+	 * Getting the text from Next Day buttons on Return leg in SRP
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextReturnNextDaySearch() throws Exception {
+		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
+		String nextDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkNextDay_ReturnLeg, "title",  "Next Day title");
+		return nextDayGetTxt;
+	}
+	
+		
+	/**
+	 * To click Refundable Checkbox in Fare Type filters
+	 * 
+	 * @throws Exception
+	 */
+	public void clickRefundableCheckbox() throws Exception {
+		Utils.waitForElement(driver, chkRefundable);	
+		BrowserActions.clickOnElement(chkRefundable, driver, "Click Refundable Checkbox");
+		Log.event("Clicked Refundable option checkbox");
+	}
+	
+		
+	/**
+	 * To verify the Refundable flights in Flight Grid
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyRefundableFlights() throws Exception {	
+		for (int i = 0; i < lstRefundableFlights.size(); i++) {
+			WebElement refundableEle = driver.findElement(By.xpath("(//div[@class='js-flightRow js-flightItem']["+i+"])//li[@ng-if='flt.ft==1']"));
+			String flightRow = BrowserActions.getText(driver, refundableEle, "Getting txt of the Refundable in flight rows.");
+			if (flightRow.equalsIgnoreCase("Refundable")) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	// *******************************End of SRP Functions*************************************************************
