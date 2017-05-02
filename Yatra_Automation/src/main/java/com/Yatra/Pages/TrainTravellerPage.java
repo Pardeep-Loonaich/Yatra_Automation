@@ -81,7 +81,13 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	@FindBy(css="div[class='alert-irctc-msgs']>span")
 	private WebElement closePopupInvalidIrctcId;
 	
-	@FindBy(css="#irctcBtnID")
+	@FindBy(css="input[id='irctcIdTxt']")
+	private WebElement txtIrctcIDAfterReg;
+	
+	@FindBy(css=".forgot-holder>a")
+	private WebElement btnResetIrctcPsswrd;
+	
+	@FindBy(css="span[class='edit-det']>a[id='irctcBtnID']")
 	private WebElement btnEditIrctcId; 
 	
 	@FindBy(css=".editmobileid")
@@ -98,6 +104,24 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	
 	@FindBy(css="#popoverWindow>h3>span[title='Close']")
 	private WebElement closeMobileNoUpdateMsgPopUp;
+	
+	@FindBy(css="#sendNewPass")
+	private WebElement btnResetIrctcPswrd;
+	
+	@FindBy(css="#Forgot-pwd-div>label[for='showSecurity']>span")
+	private WebElement rdoSendRegMail;
+	
+	@FindBy(css="#Forgot-pwd-div>label[for='showOTP']>span")
+	private WebElement rdoSendRegMobile;
+	
+	@FindBy(css="#emailSent")
+	private WebElement lblEmailResetPwd;
+	
+	@FindBy(css="#mobileSent")
+	private WebElement lblMobileResetPwd;
+	
+	@FindBy(css=".top-forgot-pwd")
+	WebElement btnResetPwd;
 	
 	
 	
@@ -265,10 +289,12 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	 * click on edit link to edit IRCTC id and then save it
 	 * @throws Exception
 	 */
-	public void clickOnEditIrctcIDLink() throws Exception{
-		for(int i=0;i<2;i++){
-		BrowserActions.clickOnElement(btnEditIrctcId, driver, "Clicked on 'Edit' IRCTC Id link.");
-		}
+	public void clickOnEditIrctcIDLink(String irctcId) throws Exception{
+		BrowserActions.javascriptClick(btnEditIrctcId, driver, "Clicked on 'Edit' IRCTC Id link.");
+		BrowserActions.typeOnTextField(txtIrctcIDAfterReg, irctcId, driver, "Ënter the new IRCTC Id.");
+		BrowserActions.javascriptClick(btnEditIrctcId, driver, "Clicked on 'Edit' IRCTC Id link.");
+
+		
 	}
 	
 	
@@ -300,9 +326,33 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	 */
 	public String getSuccessMsgFromUpdateMobileNoPopUp() throws Exception{
 		String successMsg = BrowserActions.getText(driver, msgMobileNoUpdate, "Getting Success Message after Updating MobileNo.");
-		BrowserActions.mouseHover(driver, closeMobileNoUpdateMsgPopUp);
+		BrowserActions.moveToElementJS(driver, closeMobileNoUpdateMsgPopUp);
 		BrowserActions.clickOnElement(closeMobileNoUpdateMsgPopUp, driver, "Close the Success Message after Updating Mobile no Popup.");
 		return successMsg;
+	}
+	
+	
+	/**
+	 * clicked on 'Reset Irctc Password' button.
+	 * @throws Exception
+	 */
+	public void clickOnIRCTCResetPassword() throws Exception{
+		BrowserActions.clickOnElement(btnResetPwd, driver, "Clicked on 'Reset IRCTC Password' button.");
+	}
+	
+	public void selectResetPasswordOption(String ResetOption) throws Exception{
+		switch(ResetOption){
+		
+		case "Mobile":
+		BrowserActions.clickOnElement(rdoSendRegMobile, driver, "Selected 'Send Password on Mobile.'");
+        break;
+        
+		case "Email":
+			BrowserActions.clickOnElement(rdoSendRegMail, driver, "Selected 'Send Password on Email.'");
+	        break;
+         
+         
+		}
 	}
 	
 }//TrainTravellerPage
