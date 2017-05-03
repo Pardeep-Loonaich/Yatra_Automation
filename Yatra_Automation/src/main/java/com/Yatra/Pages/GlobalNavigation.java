@@ -1,5 +1,7 @@
 package com.Yatra.Pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +12,7 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -23,7 +26,7 @@ public class GlobalNavigation extends LoadableComponent<GlobalNavigation> {
 	String sSub_Nav_Option="";
 	final String  sMAIN_NAV_OPTION_OBJECT="//div[@class='menu']//a[contains(.,'"+sMian_Nav_Option+"')]";
 	final String  sMAIN_NAV_SUBMENU_OPTION_OBJECT="//div[@class='menu']//a[contains(.,'"+sSub_Nav_Option+"')]";
-
+	ExecutionTimer timer=new ExecutionTimer();
 
 
 	/**********************************************************************************************
@@ -73,6 +76,7 @@ public class GlobalNavigation extends LoadableComponent<GlobalNavigation> {
 
 	@Override
 	protected void isLoaded() {
+		timer.end();
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
@@ -80,12 +84,12 @@ public class GlobalNavigation extends LoadableComponent<GlobalNavigation> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnSearch))) {
 			Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
-
-
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 	}
 
 	@Override
 	protected void load() {
+		timer.start();
 		isPageLoaded = true;
 		driver.get(appURL);
 		Utils.waitForPageLoad(driver);

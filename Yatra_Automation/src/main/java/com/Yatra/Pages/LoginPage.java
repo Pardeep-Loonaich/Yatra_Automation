@@ -1,5 +1,7 @@
 package com.Yatra.Pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +12,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -17,6 +20,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 
 	private final WebDriver driver;
 	private boolean isPageLoaded;
+	ExecutionTimer timer=new ExecutionTimer();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Login Page ***********************************
@@ -56,7 +60,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 
 	@Override
 	protected void isLoaded() {
-
+		timer.end();
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
@@ -64,10 +68,13 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, divLoginBox))) {
 			Log.fail("SignIn page didn't open up", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+		
 	}
 
 	@Override
 	protected void load() {
+		timer.start();
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}

@@ -111,7 +111,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
-					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
+					"<b>Actual Result:</b> User should not navigated on SearchResult page", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -179,7 +179,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
-					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
+					"<b>Actual Result:</b> User should not navigated on SearchResult page", driver);
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -252,11 +252,11 @@ public class FlightSearch {
 			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with DOM-Multicity flight result");
+			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page for DOM-Multicity ");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> User should navigated on SearchResult page with DOM-Multicity flight resulte",
-					"<b>Actual Result:</b> User should navigated on SearchResult page with DOM-Multicity flight result",
+					"<b>Actual Result:</b> User should navigated on SearchResult page for  DOM-Multicity",
+					"<b>Actual Result:</b> User should not navigated on SearchResult page for DOM-Multicity",
 					driver);
 
 			Log.testCaseResult();
@@ -333,11 +333,11 @@ public class FlightSearch {
 			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result");
+			Log.message("<b>Expected Result:</b> User should navigated on SearchResult page for INTL-Multicity");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result",
-					"<b>Actual Result:</b> User should navigated on SearchResult page with INTL-Multicity flight result",
+					"<b>Actual Result:</b> User should navigated on SearchResult page for INTL-Multicity",
+					"<b>Actual Result:</b> User should not navigated on SearchResult page for INTL-Multicity",
 					driver);
 
 			Log.testCaseResult();
@@ -908,7 +908,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
-					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
+					"<b>Actual Result:</b> User should not navigated on SearchResult page", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -977,7 +977,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
-					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
+					"<b>Actual Result:</b> User should not navigated on SearchResult page", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -1662,11 +1662,11 @@ public class FlightSearch {
 			String recentSearchText = searchResult.getTextRecentSearch();	
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b>User should navigated on SRP, validated the Yatra-Logo and Headers");
+			Log.message("<b>Expected Result:</b>User should navigated on SRP and validated the Yatra-Logo and Headers");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon", "lnkYatraLogo"), searchResult),
-					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Yatra logo is displayed,  My Account is dispalyed as <b>: " + myAccountText +"</b>, Support is dispalyed as <b>: " + supportText +"</b>, Special Deals is dispalyed as <b>: " + splDealsText +"</b>, Recent Search is dispalyed as : <b>" + recentSearchText +"</b> ",
-					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the Yatra logo is displayed, My Account is not dispalyed as <b>: " + myAccountText +"</b>, Support is not dispalyed as <b>: " + supportText +"</b>, Special Deals is not dispalyed as <b>: " + splDealsText +"</b>, Recent Search is not dispalyed as : <b>" + recentSearchText +"</b> ", driver);
+					"<b>Actual Result:</b> Yatra logo and Headers are displayed, The Headers title names are My Account is displayed as: <b>: " + myAccountText +"</b>, Support is dispalyed as <b>: " + supportText +"</b>, Special Deals is dispalyed as <b>: " + splDealsText +"</b>, Recent Search is dispalyed as : <b>" + recentSearchText +"</b> ",
+					"<b>Actual Result:</b> Yatra logo and Headers are not displayed", driver);
 		
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -1736,8 +1736,8 @@ public class FlightSearch {
 			Log.message("<br>");			
 			Log.message("<b>Expected Result:</b> Validated the action on clicking on Yatra logo.");
 			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("btnSearch"), homePage),
-					"<b>Actual Result:</b> Validated the action on clicking on Yatra logo and User should redirected to yatra Homepage" ,
-					"<b>Actual Result:</b> Not validated the action on clicking on Yatra logo and User should not redirected to Yatra Homepage",  driver);
+					"<b>Actual Result:</b> Yatra.com tooltip should appeared and redirected to Yatra Homepage" ,
+					"<b>Actual Result:</b> Yatra.com tooltip should not appeared and not redirected to Yatra Homepage",  driver);
 		
 			BrowserActions.nap(2);
 			Log.testCaseResult();
@@ -1812,8 +1812,8 @@ public class FlightSearch {
 			Log.message("<b>Expected Result:</b> Validated the SRP Header for logged in User");
 			BrowserActions.nap(3);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon", "lnkYatraLogo"), searchResult),
-					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Yatra logo is displayed,  UserName is dispalyed as <b>: " + userAcctNametText +"</b>, Support is dispalyed as <b>: " + supportText +"</b>, Special Deals is dispalyed as <b>: " + splDealsText +"</b>, Recent Search is dispalyed as : <b>" + recentSearchText +"</b> ",
-					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the Yatra logo is not displayed, UserName is not dispalyed as <b>: " + userAcctNametText +"</b>, Support is not dispalyed as <b>: " + supportText +"</b>, Special Deals is not dispalyed as <b>: " + splDealsText +"</b>, Recent Search is not dispalyed as : <b>" + recentSearchText +"</b> ", driver);
+					"<b>Actual Result:</b> Yatra logo is displayed and SRP page Headers displayed as UserName is <b>: " + userAcctNametText +"</b>, Support is dispalyed as <b>: " + supportText +"</b>, Special Deals is dispalyed as <b>: " + splDealsText +"</b>, Recent Search is dispalyed as : <b>" + recentSearchText +"</b> ",
+					"<b>Actual Result:</b> Yatra logo and Page Headers are not dsiplayed", driver);
 		
 			BrowserActions.nap(2);
 			Log.testCaseResult();
@@ -1885,8 +1885,8 @@ public class FlightSearch {
 			Log.message("<b>Expected Result:</b> Validated the action on clicking on My Account header Menu items");
 			BrowserActions.nap(3);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon", "lnkYatraLogo"), searchResult),
-					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Login is dispalyed as <b>: " + loginText +"</b>, SignUp is dispalyed as <b>: " + signUpText +"</b>, Corporate Login is dispalyed as <b>: " + corporateLoginText +"</b>, Agent Login is dispalyed as : <b>" + agentLoginText +"</b>, My Bookings is dispalyed as : <b>" + myBookingText +"</b> ",
-					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the Login is not dispalyed as <b>: " + loginText +"</b>, SignUp is not dispalyed as <b>: " + signUpText +"</b>, Corporate Login is not dispalyed as <b>: " + corporateLoginText +"</b>, Agent Login is not dispalyed as : <b>" + agentLoginText +"</b>, My Bookings is not dispalyed as : <b>" + myBookingText +"</b> ", driver);
+					"<b>Actual Result:</b> Successfully displayed My Account header menu items, and the Login is dispalyed as <b>: " + loginText +"</b>, SignUp is dispalyed as <b>: " + signUpText +"</b>, Corporate Login is dispalyed as <b>: " + corporateLoginText +"</b>, Agent Login is dispalyed as : <b>" + agentLoginText +"</b>, My Bookings is dispalyed as : <b>" + myBookingText +"</b> ",
+					"<b>Actual Result:</b> Not displayed My Account header Menu items ", driver);
 		
 			BrowserActions.nap(2);
 			Log.testCaseResult();
@@ -1954,15 +1954,15 @@ public class FlightSearch {
 			String totalValues=searchResult.getCountofTotalFlightsAndDuration();	
 			
 			Log.assertThat(totalValues.equals("Found "+flightCount+ " flights IN "+duration+" SECONDS"),
-					"<b>Actual Result:</b> Successfully verified Flight Count and Flight duration</b> ",
-					"<b>Actual Result:</b> Not verified Flight Count and Flight search duration</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Flight count and Flight search duration</b> ",
+					"<b>Actual Result:</b> Not verified Flight count and Flight search duration</b> ", driver);
 			
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Checked total flight count");
+			Log.message("<b>Expected Result:</b> Verified Flight count and Flight search duration");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> User should navigated on SearchResult page, and the total flight count is dispalyed as <b>: " + totalFlightCountText +"</b>, Flight Search durarion is dispalyed as <b>: " + flightSearchDurationText +"</b> ",
-					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the total flight count is not dispalyed as <b>: " + totalFlightCountText +"</b>, Flight Search durarion is not dispalyed as <b>: " + flightSearchDurationText +"</b> ", driver);
+					"<b>Actual Result:</b> User should navigated on SearchResult page, and the total flight count is dispalyed as <b>: " + flightCount +"</b>, Flight search durarion is dispalyed as <b>: " + duration +"</b> ",
+					"<b>Actual Result:</b> Not verified Flight count and Flight search duration", driver);
 		
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2031,7 +2031,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Source city is dispalyed as <b>: " + sourceCityText +"</b>, Source Date is dispalyed as <b>: " + sourceDateText +"</b> Destination city is dispalyed as <b>: " + destCityText +"</b> ",
-					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the Source city is not dispalyed as <b>: " + sourceCityText +"</b>, Source Date is not dispalyed as <b>: " + sourceDateText +"</b> , Destination city is not dispalyed as <b>: " + destCityText +"</b>", driver);
+					"<b>Actual Result:</b> Should not displayed Matrix result header with flight icons", driver);
 				
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2105,7 +2105,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Source city is dispalyed as <b>: " + sourceCityText +"</b>, Source Date is dispalyed as <b>: " + sourceDateText +"</b>, Destination city is dispalyed as <b>: " + destCityText +"</b>, Destination date is dispalyed as <b>: " + destDateText +"</b>" ,
-					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the Source city is not dispalyed as <b>: " + sourceCityText +"</b>, Source Date is not dispalyed as <b>: " + sourceDateText +"</b> , Destination city is not dispalyed as <b>: " + destCityText +"</b>, Destination date is not dispalyed as <b>: " + destDateText +"</b>" , driver);
+					"<b>Actual Result:</b> Should not displayed Matrix result header with flight icons" , driver);
 					
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2194,7 +2194,7 @@ public class FlightSearch {
 			BrowserActions.nap(3);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page, and the starting Source city is dispalyed as <b>: " + startSourceCityText +"</b>, starting Source Date is dispalyed as <b>: " + startSourceDateText +"</b>, starting Destination city is dispalyed as <b>: " + startDestCityText +"</b>, ending Source city is dispalyed as <b>: " + endSourceCityText +"</b>,  ending Source date is dispalyed as <b>: " + endSourceDateText +"</b>, ending Destination city is dispalyed as <b>: " + endDestCityText +"</b>" ,
-					"<b>Actual Result:</b> User should not navigated on SearchResult page, and the starting Source city is not dispalyed as <b>: " + startSourceCityText +"</b>, starting Source Date is not dispalyed as <b>: " + startSourceDateText +"</b> , starting Destination city is not dispalyed as <b>: " + startDestCityText +"</b>, ending Source city is not dispalyed as <b>: " + endSourceCityText +"</b>, ending Source date is dispalyed as <b>: " + endSourceDateText +"</b>, ending Destination city is dispalyed as <b>: " + endDestCityText +"</b>" , driver);
+					"<b>Actual Result:</b> Should not displayed Matrix result header with flight icons" , driver);
 		    Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -2256,8 +2256,8 @@ public class FlightSearch {
 			searchResult.clickFlightDetails();
 			String flightDetailsPouUpDurationText = searchResult.getTextFlightDetailsPouUpDuration();
 			Log.assertThat(flightDurationText.equals(flightDetailsPouUpDurationText),
-					"<b>Actual Result:</b> Validated that flight duration and flight details popup duration should appear in 'hh mm' format",
-					"<b>Actual Result:</b> Validated that flight duration and flight details popup duration should not appear in 'hh mm' format");
+					"<b>Actual Result:</b> Flight duration format is dispalyed as like 'hh mm' format",
+					"<b>Actual Result:</b> Flight duration format is not dispalyed as like 'hh mm' format");
 			
 			
 			searchResult.closeFlightDetailsPouUp();
@@ -3587,7 +3587,7 @@ public class FlightSearch {
 				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");			
 				BrowserActions.nap(12);
 				Log.message("<br>");
-				Log.message("<b>Expected Result:</b> Validating the UI of Airline Matrix");
+				Log.message("<b>Expected Result:</b> User should redirected to SRP and Validating the UI of Airline Matrix");
 				Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> 'All Airlines' option should appear with by deafult selection ", "<b>Actual Result:</b> 'All Airlines' option should not appear with by deafult selection", driver);
 				Log.assertThat(searchResult.verifyAirlinelogoInMatrix(), "<b>Actual Result:</b> Successfully displayed Airline Logo's in Airline Matrix strip ", "<b>Actual Result:</b> Not displayed Airline Logo's in Airline Matrix strip", driver);
 				List<String> airlineNames = searchResult.getAirlineNamesInMatrix();				
@@ -3886,11 +3886,23 @@ public class FlightSearch {
 				String fareAlertTitleText = searchResult.getTextFareAlertPopupTitle();			
 				Log.assertThat(fareAlertTitleText.contains(Constants.C_FareAlert_Title),"<b>Actual Result:</b> Successfully verified Fare Alert popup title text:  <b>"+ fareAlertTitleText+"</b>", "<b>Actual Result:</b> Not verified Fare Alert popup title text</b> ", driver);
 				
+				String leavingfromText = searchResult.getTextLeavingFromInFareAlert();	
+				String goingToText =  searchResult.getTextGoingToInFareAlert();	
+				String ExactDatesText =  searchResult.getTextExactDatesInFareAlert();
+				String daysText =  searchResult.getTextDaysInFareAlert();											
+				Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("txtOrigin_FareAlert", "txtDestination_FareAlert"), searchResult),
+						"<b>Actual Result:</b> Successfully appeared Leaving from and Going to prefilled text boxes with Depart and Destination city's are <b>"+ leavingfromText + "</b> , <b>"+goingToText+"</b> and Successfully appeared Exact Dates / +-3 Days option are : <b>"+ ExactDatesText + "</b> , <b>"+daysText+"</b>",
+						"<b>Actual Result:</b> Not appeared Leaving from and Going to prefilled text boxes with Depart and Destination city's and  Exact Dates / +-3 Days option in Fare Alerts popup", driver);
+				
+				
 				searchResult.enterMaxPriceInFareAlert("10000");	
 				searchResult.enterEmailInFareAlert(email);	
 				searchResult.selectMobileSTDInFareAlert("91");
-				searchResult.enterMobileInFareAlert(mobile);	
-				
+				searchResult.enterMobileInFareAlert(mobile);				
+				Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("txtMaxPrice_FareAlert", "txtEmail_FareAlert" , "txtMobile_FareAlert", "btnSetAlert_FareAlert"), searchResult),
+						"<b>Actual Result:</b> Successfully appeared Max Price, Email, Mobile, Set Alert button options in Fare Alert popup</b>",
+						"<b>Actual Result:</b> Not Max Price, Email, Mobile, Set Alert button options in Fare Alert popup", driver);
+								
 				//step: click Fare alert pop up
 				searchResult.clickSetAlertButtonInFareAlertp();
 				Log.message("6.Successfully clicked 'Set Alert' button on Fare Laert popup");	
@@ -3899,9 +3911,6 @@ public class FlightSearch {
 				Log.message("<b>Expected Result:</b> Validated the functionality of 'Fare Alerts ");
 				String successMessageText = searchResult.getTextFareAlertSuccessMesaage();			
 				Log.assertThat(successMessageText.contains(Constants.C_FareAlert_Message),"<b>Actual Result:</b> Successfully verified Fare Alert Message text:  <b>"+ successMessageText+"</b>", "<b>Actual Result:</b> Not verified Fare Alert popup Message text</b> ", driver);
-				
-				
-				
 				
 			    Log.testCaseResult();
 			} catch (Exception e) {
@@ -4115,7 +4124,7 @@ public class FlightSearch {
 				Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");				
 				BrowserActions.nap(12);					
 				Log.message("<br>");
-				Log.message("<b>Expected Result:</b> Validated that Prev day/Next day should not be availble for OW search");
+				Log.message("<b>Expected Result:</b> Prev day/Next day search option should not be available on SRP for OW search");
 				Log.assertThat(!(searchResult.verifyOnwardAndReturnLFF("PrevDay") && searchResult.verifyOnwardAndReturnLFF("NextDay")), "<b>Actual Result:</b> Successfully validated Prev day/Next day search option are not available on SRP", "<b>Actual Result:</b> Prev day/Next day search option are available on SRP", driver);
 			    Log.testCaseResult();
 			} catch (Exception e) {
@@ -4158,7 +4167,7 @@ public class FlightSearch {
 				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");	
 				BrowserActions.nap(12);						
 				Log.message("<br>");
-				Log.message("<b>Expected Result:</b> Validated the Prev day/Next day for RT search");
+				Log.message("<b>Expected Result:</b> Prev day/Next day search option should be available above Result Grid for both Onward and Return leg in SRP");
 				Log.assertThat((searchResult.verifyOnwardLegLinks("PrevDay") && searchResult.verifyOnwardLegLinks("NextDay")), "<b>Actual Result:</b> Successfully validated Prev day/Next day search option are available on Onward leg in SRP", "<b>Actual Result:</b> Prev day/Next day search option are not available on Onwards leg in SRP", driver);
 				Log.assertThat((searchResult.verifyReturnLegLinks("PrevDay") && searchResult.verifyReturnLegLinks("NextDay")), "<b>Actual Result:</b> Successfully validated Prev day/Next day search option are not available on Return leg in SRP", "<b>Actual Result:</b> Prev day/Next day search option are not available on Return leg in SRP", driver);
 				Log.testCaseResult();
@@ -4204,10 +4213,107 @@ public class FlightSearch {
 				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");			
 				BrowserActions.nap(12);						
 				Log.message("<br>");
-				Log.message("<b>Expected Result:</b> Validated the Prev day/Next day for MC search");
-				Log.assertThat(searchResult.verifyOnwardLegLinks("PrevDay"), "<b>Actual Result:</b> Successfully validated Prev day day search option is available on Onward leg in SRP", "<b>Actual Result:</b> Prev day day search option is not available on Onwards leg in SRP", driver);
-				Log.assertThat( searchResult.verifyReturnLegLinks("NextDay"), "<b>Actual Result:</b> Successfully validated Next day search option is not available on Return leg in SRP", "<b>Actual Result:</b> Next day search option is not available on Return leg in SRP", driver);
+				Log.message("<b>Expected Result:</b> Prev day/Next day search option should be available above Result Grid for both Onward and Return leg in SRP");
+				/*Log.assertThat(searchResult.verifyOnwardLegLinks("PrevDay"), "<b>Actual Result:</b> Successfully validated Prev day day search option is available on Onward leg in SRP", "<b>Actual Result:</b> Prev day day search option is not available on Onwards leg in SRP", driver);
+				Log.assertThat( searchResult.verifyReturnLegLinks("NextDay"), "<b>Actual Result:</b> Successfully validated Next day search option is not available on Return leg in SRP", "<b>Actual Result:</b> Next day search option is not available on Return leg in SRP", driver);*/
+				Log.assertThat((searchResult.verifyOnwardLegLinks("PrevDay") && searchResult.verifyOnwardLegLinks("NextDay")), "<b>Actual Result:</b> Successfully validated Prev day/Next day search option are available on Onward leg in SRP", "<b>Actual Result:</b> Prev day/Next day search option are not available on Onwards leg in SRP", driver);
+				Log.assertThat((searchResult.verifyReturnLegLinks("PrevDay") && searchResult.verifyReturnLegLinks("NextDay")), "<b>Actual Result:</b> Successfully validated Prev day/Next day search option are not available on Return leg in SRP", "<b>Actual Result:</b> Prev day/Next day search option are not available on Return leg in SRP", driver);
 				Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+		
+		@Test( description = "Validate the tool tips for Prev day/Next day search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_036(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String tripType = testData.get("TripType");
+			String origin = testData.get("Origin");		
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String returnDate = testData.get("ReturnDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");		
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'RoundTrip' option in search Home Page ");
+		
+				//step: select Round Trip Search fields in HomePage
+				homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully filled the search details for Round Trip");
+							
+				// step: click 'Search' button in Yatra Home page
+				SearchResult searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");	
+				BrowserActions.nap(12);						
+				Log.message("<br>");			
+				String onwardPrevDayText = searchResult.getTextOnwardPrevDaySearch();
+				String onwardNextDayText = searchResult.getTextOnwardNextDaySearch();
+				String nextPrevDayText = searchResult.getTextReturnPrevDaySearch();
+				String nextNextDayText = searchResult.getTextReturnNextDaySearch();
+				Log.message("<b>Expected Result:</b> Prev day/Next day search button tool tips text should appear in SRP");
+				Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkPrevDay_OnwardLeg", "lnkNextDay_OnwardLeg"), searchResult),
+						"<b>Actual Result:</b> Successfully appeared tool tip of Prev/Next dates on Onwards Leg: <b>"+ onwardPrevDayText + "</b> / <b>"+onwardNextDayText+"</b> and Successfully appeared tool tip of Prev/Next dates on Return leg: <b>"+ nextPrevDayText + "</b> / <b>"+nextNextDayText+"</b>",
+						"<b>Actual Result:</b> Not Prev day/Next day search button tool tips text should appear in SRP", driver);
+				Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+
+		@Test( description = "Validate the functionality of Filter options", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_045(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+			String browser = testData.get("browser");
+			String origin = testData.get("Origin");
+			String tripType = testData.get("TripType");
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");				
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+				
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+				//step: select OneWay Search fields in HomePage
+				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+				searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");	
+				
+				//searchResult.clickRefundableCheckbox();
+				Log.message("4.Successfully clicked 'Refundable' option in SRP");	
+				
+				BrowserActions.nap(6);					
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Flight results have updated with Refundable option only in SRP");
+				//Log.assertThat(searchResult.verifyRefundableFlights(), "<b>Actual Result:</b> Successfully Flight results have updated with Refundable option only in SRP", "<b>Actual Result:</b> Not filtered Refundbale Flights in SRP", driver);
+				
+			    Log.testCaseResult();
 			} catch (Exception e) {
 				Log.exception(e);
 			} finally {
