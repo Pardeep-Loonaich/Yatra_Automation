@@ -135,7 +135,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "#userShowName")
 	private WebElement txtUserAcctName;
 
-	@FindBy(css = ".simple-dropdown")
+	@FindBy(css = "a[title='My Bookings']")
 	private WebElement txtMyBookings;
 
 	@FindBy(css = "#signInBtn")
