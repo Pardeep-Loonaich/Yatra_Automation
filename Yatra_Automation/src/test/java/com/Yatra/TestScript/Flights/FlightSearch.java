@@ -40,6 +40,7 @@ import com.Yatra.Utils.WebDriverFactory;
  */
 @Listeners(EmailReport.class)
 public class FlightSearch {
+	
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	HomePage homePage;
@@ -76,6 +77,8 @@ public class FlightSearch {
 			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
+			String tempTitle=driver.getTitle().trim();
+			Log.assertThat(tempTitle.equals(Constants.YATRA_HOME_PAGE_TITLE), "Home page title verified !!", "Hompage Title did not match !!!",driver);
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
