@@ -4305,13 +4305,13 @@ public class FlightSearch {
 				searchResult = homePage.clickBtnSearch();
 				Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");	
 				
-				//searchResult.clickRefundableCheckbox();
-				Log.message("4.Successfully clicked 'Refundable' option in SRP");	
+				searchResult.clickRefundableCheckbox();
+				Log.message("5.Successfully clicked 'Refundable' option in SRP");	
 				
 				BrowserActions.nap(6);					
 				Log.message("<br>");
 				Log.message("<b>Expected Result:</b> Flight results have updated with Refundable option only in SRP");
-				//Log.assertThat(searchResult.verifyRefundableFlights(), "<b>Actual Result:</b> Successfully Flight results have updated with Refundable option only in SRP", "<b>Actual Result:</b> Not filtered Refundbale Flights in SRP", driver);
+				Log.assertThat(searchResult.verifyRefundableFlights(), "<b>Actual Result:</b> Successfully Flight results have updated with Refundable option only in SRP", "<b>Actual Result:</b> Not filtered Refundbale Flights in SRP", driver);
 				
 			    Log.testCaseResult();
 			} catch (Exception e) {

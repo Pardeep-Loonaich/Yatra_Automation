@@ -526,7 +526,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[id='book-now-tooltip']>div")
 	private WebElement txtContinueWithSearchMessage;
 	
-	@FindBy(css = "div[ng-show='open_ftype'] input[ yatratrackable='Flights|Search|filter - fare_type|refundable']")
+	@FindBy(css = "div[ng-show='open_ftype'] li:nth-child(1) span[class='checkbox']")
 	private WebElement chkRefundable;
 	
 	@FindBy(xpath = "//div[@class='js-flightRow js-flightItem']//li[@ng-if='flt.ft==1']")
@@ -2714,12 +2714,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 		
 	/**
-	 * To click Refundable Checkbox in Fare Type filters
+	 * To click Refundable check box in Fare Type filters
 	 * 
 	 * @throws Exception
 	 */
 	public void clickRefundableCheckbox() throws Exception {
-		Utils.waitForElement(driver, chkRefundable);	
+		Utils.waitForElement(driver, chkRefundable);		
 		BrowserActions.clickOnElement(chkRefundable, driver, "Click Refundable Checkbox");
 		Log.event("Clicked Refundable option checkbox");
 	}
@@ -2731,14 +2731,17 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public boolean verifyRefundableFlights() throws Exception {	
-		for (int i = 0; i < lstRefundableFlights.size(); i++) {
-			WebElement refundableEle = driver.findElement(By.xpath("(//div[@class='js-flightRow js-flightItem']["+i+"])//li[@ng-if='flt.ft==1']"));
+		boolean status = false;
+		for (int i = 1; i < lstRefundableFlights.size(); i++) {
+			WebElement refundableEle = driver.findElement(By.cssSelector("div[class='js-flightRow js-flightItem']:nth-child("+i+") li[ng-if='flt.ft==1']"));
 			String flightRow = BrowserActions.getText(driver, refundableEle, "Getting txt of the Refundable in flight rows.");
-			if (flightRow.equalsIgnoreCase("Refundable")) {
-				return true;
-			}
+			if (flightRow.equalsIgnoreCase("REFUNDABLE")) {
+				status = true;	break;			
+			} /*else if(!flightRow.equalsIgnoreCase("REFUNDABLE")){
+				status = false;
+			}*/
 		}
-		return false;
+		return status;
 	}
 	
 	// *******************************End of SRP Functions*************************************************************
