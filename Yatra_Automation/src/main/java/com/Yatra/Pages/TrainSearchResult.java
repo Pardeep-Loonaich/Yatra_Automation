@@ -3,6 +3,7 @@ package com.Yatra.Pages;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,8 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -25,6 +28,8 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Train Search Result Page ***********************************
@@ -104,6 +109,9 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
 	@FindBy(css="div[id='sidebarFilter']")
 	private WebElement lftNavSection;
+	
+	@FindBy(css = "#bookNowBtn")
+	private WebElement btnContinueToPaxPage;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Train Search Result Page - Ends ****************************
@@ -126,6 +134,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	}
 	@Override
 	protected void isLoaded() {
+		timer.end();
 
 		if (!isPageLoaded) {
 			Assert.fail();
@@ -134,10 +143,14 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindTrain))) {
 			Log.fail("Train Search Result page didn't open up", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+
 	}
 
 	@Override
 	protected void load() {
+		timer.start();
+
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}
@@ -522,11 +535,14 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		return false;
 	}
 	
-	@FindBy(css = "#bookNowBtn")
-	private WebElement btnContinueToPaxPage;
-	
+
+	/**
+	 * To click on continue button to navigate on Review page 
+	 * @return
+	 * @throws Exception
+	 */
 	public TrainTravellerPage clickOnContinue()throws Exception{
-		BrowserActions.clickOnElement(btnContinueToPaxPage, driver, "Click on Continue inConfirmation Popup to book Train.");
+		BrowserActions.clickOnElement(btnContinueToPaxPage, driver, "Click on Continue in Confirmation Popup to book Train.");
 		return new TrainTravellerPage(driver).get();
 	}
 	

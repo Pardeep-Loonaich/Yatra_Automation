@@ -1,6 +1,7 @@
 package com.Yatra.Pages;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -15,6 +16,8 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 import com.gargoylesoftware.htmlunit.AlertHandler;
@@ -25,6 +28,8 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
 	Utils utils;
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -120,21 +125,29 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 			elementLayer = new ElementLayer(driver);
 		}// PaymentPageBus
 
-	@Override
-	protected void isLoaded() {
-		if (!isPageLoaded) {
-			Assert.fail();
-		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, headerPayemntMethod))) {
-			Log.fail("Payment Page did not open up. Site might be down.", driver);
-		}
-	}// isLoaded
+		@Override
+		protected void isLoaded() {
 
-	@Override
-	protected void load() {
-		isPageLoaded = true;
-		Utils.waitForPageLoad(driver);
-	}
+			timer.end();
+			if (!isPageLoaded) 
+			{
+				Assert.fail();
+			}
+			if (isPageLoaded && !(Utils.waitForElement(driver, headerPayemntMethod))) 
+			{
+			Log.fail("Payment Page did not open up. Site might be down.", driver);
+			}
+			Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+		}// isLoaded
+
+		@Override
+		protected void load() 
+		{
+			timer.start();
+			isPageLoaded = true;
+			Utils.waitForPageLoad(driver);
+		}// load
+
 	
 	/**
      * To Click on Booking Summary

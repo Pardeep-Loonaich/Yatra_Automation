@@ -1,5 +1,7 @@
 package com.Yatra.Pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +12,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -17,6 +20,7 @@ public class Bookings extends LoadableComponent<Bookings>  {
 	
 	private boolean isPageLoaded;
 	private WebDriver driver;
+	ExecutionTimer timer=new ExecutionTimer();
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Bookings ***********************************
@@ -108,19 +112,24 @@ public class Bookings extends LoadableComponent<Bookings>  {
 
 	
 	@Override
-	protected void load() {
+	protected void isLoaded() {
+		timer.end();
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
+
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnSubmit))) {
-			Log.fail("Agent Login Page did not open up. Site might be down.", driver);
-		}	
+			Log.fail("Complete Booking page didn't open up", driver);
+		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+		
 	}
 
 	@Override
-	protected void isLoaded() throws Error { 
-		Utils.waitForPageLoad(driver);
+	protected void load() {
+		timer.start();
 		isPageLoaded = true;
+		Utils.waitForPageLoad(driver);
 	}
 	 public void signIn(String loginId , String password) throws Exception{
 		    BrowserActions.typeOnTextField(txtEmailId, loginId, driver, "Email Id");

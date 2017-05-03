@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -26,6 +27,8 @@ import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -36,49 +39,50 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	public ElementLayer elementLayer;
 	Utils utils;
 	SearchResultBus searchResult;
-	// @Harveer- make all element private under findby annotation
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 	@FindBy(css = "div[id='paxListBox']")
-	WebElement fldContentPaxDetails;
+	private WebElement fldContentPaxDetails;
 
 	@FindBy(css = "input[id='paxname1']")
-	WebElement txtBoxName;
+	private WebElement txtBoxName;
 
 	@FindBy(css = "input[class='ytBtn-chek ytBtnOrange-chek eventTrackable']")
-	WebElement btnContinue;
+	private WebElement btnContinue;
 
 	@FindBy(css = "div[class='toasterHolder']")
-	WebElement txtErrorMsg;
+	private WebElement txtErrorMsg;
 
 	@FindBy(css = "span[id='editMobileNo']>a")
-	WebElement lnkEditButton;
+	private WebElement lnkEditButton;
 
 	@FindBy(css = "input[id='userMobile']")
-	WebElement fldContentUserMobileNo;
+	private WebElement fldContentUserMobileNo;
 
 	@FindBy(css = "#userMobile")
-	WebElement fldUserMobileNo;
+	private WebElement fldUserMobileNo;
 
 	@FindBy(css = "span[class='custom-checkbox']>input")
-	WebElement chkBoxAddonsFirst;
+	private WebElement chkBoxAddonsFirst;
 
 	@FindBy(css = "div[class='wfull']>span>input")
-	WebElement chkBoxAddonsSecond;
+	private WebElement chkBoxAddonsSecond;
 
 	@FindBy(css = "div[class='agreeToContNxt']>a")
-	WebElement lnkTermAndCond;
+	private WebElement lnkTermAndCond;
 	
 	@FindBy(css = "div[class='yatra-promo']>input")
-	WebElement txtFldPromoCode;
+	private WebElement txtFldPromoCode;
 	
 	@FindBy(css = "span[class='promo-heading ml10']")
-	WebElement txtPromoMessage;
+	private WebElement txtPromoMessage;
 	
 	@FindBy(css = "input[id='promoValidate']")
-	WebElement btnApply;
+	private WebElement btnApply;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -101,19 +105,28 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 
 	@Override
 	protected void isLoaded() {
-		if (!isPageLoaded) {
+
+		timer.end();
+		if (!isPageLoaded) 
+		{
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, fldContentPaxDetails))) {
-			Log.fail("Traveller Page did not open up. Site might be down.", driver);
+		if (isPageLoaded && !(Utils.waitForElement(driver, fldContentPaxDetails))) 
+		{
+		Log.fail("Travellers Page did not open up. Site might be down.", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+
 	}// isLoaded
 
 	@Override
-	protected void load() {
+	protected void load() 
+	{
+		timer.start();
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
-	}
+	}// load
+
 
 	public void TravellerDetails(String name) throws Exception {
 		Utils.waitForPageLoad(driver);

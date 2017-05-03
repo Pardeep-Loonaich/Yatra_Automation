@@ -3,6 +3,7 @@ package com.Yatra.Pages;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,6 +25,8 @@ import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
@@ -35,6 +38,8 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	public ElementLayer elementLayer;
 	Utils utils;
 	SearchResultBus searchResult;
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -191,24 +196,27 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		PageFactory.initElements(finder, this);
 		elementLayer = new ElementLayer(driver);
 	}// SearchResultBus
-
+	
 	@Override
 	protected void isLoaded() {
+		timer.end();
 		if (!isPageLoaded) {
+
 			Assert.fail();
 		}
-
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindBus))) {
 			Log.fail("SearchResultBus Page did not open up. Site might be down.", driver);
+			Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 	}// isLoaded
 
 	@Override
 	protected void load() {
+		timer.start();
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
-
-	}
+	}// load
 
 	/**
 	 * Getting the text from the Bus Deatils

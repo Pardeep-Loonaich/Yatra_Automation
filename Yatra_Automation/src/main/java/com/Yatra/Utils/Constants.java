@@ -2,9 +2,6 @@ package com.Yatra.Utils;
 
 public class Constants {
 
-	//yatra Home page title
-	public static final String YATRA_HOME_PAGE_TITLE = "Flight, Cheap Air Tickets , "
-			+ "Hotels, Holiday, Trains Package Booking - Yatra.com";
 	// >>> Flights Trip type
 	public static final String C_ONEWAY = "ONEWAY";
 	public static final String C_ROUNDTRIP = "ROUNDTRIP";

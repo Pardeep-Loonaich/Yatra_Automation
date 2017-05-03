@@ -3,12 +3,12 @@ package com.Yatra.Pages;
 import java.awt.Robot;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
@@ -20,18 +20,20 @@ import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.BrowserType;
 import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-
-import bsh.util.Util;
 
 public class SearchResult extends LoadableComponent<SearchResult> {
 
 	private String appURL;
-
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	ExecutionTimer timer=new ExecutionTimer();
+
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Result Page
@@ -66,15 +68,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "p[class='new-blue-button .js-bookNow book-btn relative tc']")
 	private WebElement btnBookNowINT;
 
-	@FindBy(xpath = "//article[@class='full result-card animation-on item-0']//p[@class='new-blue-button .js-bookNow book-btn relative tc']") // div[class='fr
-																																				// pr
-																																				// partial-pay']
-																																				// p:nth-child(1)
-	private WebElement btnBookNowINT_New; //
+	@FindBy(xpath = "//article[@class='full result-card animation-on item-0']//p[@class='new-blue-button .js-bookNow book-btn relative tc']") 
+	private WebElement btnBookNowINT_New; 
 
-	@FindBys({
-
-			@FindBy(css = "div[ng-controller='productFareDetailsController']") })
+	@FindBys({@FindBy(css = "div[ng-controller='productFareDetailsController']") })
 	private List<WebElement> el;
 	private List<WebElement> moduleFareDetails;
 
@@ -102,7 +99,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='short-details']>div")
 	private WebElement fldContentFlightDetails;
 
-	@FindBy(css = "div[class='my-fare-grid']>ul[class='tab fs-md']>li[ng-hide='isBYOPPage']")
+	@FindBy(css = "div[class='overlay-content']>div[class='my-fare-grid']>ul[class='tab fs-md']>li[analytics='Fare Details Pop up|Fare Rules']")
 	private WebElement lnkFareSummaryandRules;
 
 	@FindBy(css = ".one-fourth")
@@ -135,7 +132,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "#userShowName")
 	private WebElement txtUserAcctName;
 
-	@FindBy(css = ".simple-dropdown")
+	@FindBy(css = "a[title='My Bookings']")
 	private WebElement txtMyBookings;
 
 	@FindBy(css = "#signInBtn")
@@ -527,7 +524,25 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[id='book-now-tooltip']>div")
 	private WebElement txtContinueWithSearchMessage;
 	
-	@FindBy(css = "div[ng-show='open_ftype'] input[ yatratrackable='Flights|Search|filter - fare_type|refundable']")
+	@FindBy(css = "small[class='fs-xs block mt5 lt-gray full']")
+	private WebElement conformingUrSeatPopUp;
+	
+	@FindBy(css = "span[class='checkbox']>input[analytics*='Filter Option Click|Airline']")
+	private List<WebElement> chkBoxAirline;
+	
+	@FindBy(css = "footer[class='row my-res-footer full']>ul[class='res-footer-list fr']>li[ng-if*='flt.ft']")
+	private WebElement lnkRefundableAndNonRefundable_DOM;
+
+	@FindBy(css = "span[class='ref-ui']")
+	private WebElement txtRefundableAndNonRefundableInFlightDetails;
+	
+	@FindBy(css = "div[class='one-fourth']")
+	private WebElement txtFareSummaryInFlighDeatils;
+	
+	@FindBy(css = "div[class='one-sixth']")
+	private WebElement txtFareRulesInFlighDeatils;
+	
+	@FindBy(css = "div[ng-show='open_ftype'] li:nth-child(1) span[class='checkbox']")
 	private WebElement chkRefundable;
 	
 	@FindBy(xpath = "//div[@class='js-flightRow js-flightItem']//li[@ng-if='flt.ft==1']")
@@ -569,6 +584,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@Override
 	protected void isLoaded() {
+		timer.end();
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
@@ -576,13 +592,15 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnModifySearchIcon))) {
 			Log.fail("Search Result page didn't open up", driver);
 		}
+
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 		// elementLayer = new ElementLayer(driver);
 	}
 
 	@Override
 	protected void load() {
-		isPageLoaded = true;
-
+		timer.start();
+    	isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}// load
 
@@ -634,13 +652,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		closeINotificationAtTopSRP();
-		WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
-				+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
-		BrowserActions.scrollToView(wBookNow, driver);
-		BrowserActions.nap(2);
-		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
-		return new ReviewPage(driver).get();
+			//closeINotificationAtTopSRP();
+			WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
+					+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
+			BrowserActions.scrollToView(wBookNow, driver);
+			BrowserActions.nap(2);
+			BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
+			return new ReviewPage(driver).get();
 	}
 
 	/**
@@ -2664,7 +2682,33 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * Getting the text from Prev Day buttons on Onward leg in SRP
+<<<<<<< HEAD
+	 * to click on Book Now In Flight Details with void  
+	 * 
+	 * @param 
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnBookNowInFlightDetail_INTL() throws Exception {
+		btnBookNowFlightDeatilPopUp_INTL.click();
+	}
+	
+	public boolean verifyChkBoxAirlineFilter() throws Exception {
+		return BrowserActions.isRadioOrCheckBoxSelected(chkBoxAirline.get(0));
+	}
+	/**
+	 * to Get Text Flight Type(Refundable Or NonRefundable)
+	 * @return
+	 * @param 
+	 * 
+	 * @throws Exception
+	 */
+	public String getTextFareTypeInFligthDetail_DOM() throws Exception {
+		String FlightType = txtRefundableAndNonRefundableInFlightDetails.getText();
+		return FlightType;
+	}
+	
+	/* Getting the text from Prev Day buttons on Onward leg in SRP
 	 * 
 	 * @return
 	 * @throws Exception
@@ -2713,12 +2757,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 		
 	/**
-	 * To click Refundable Checkbox in Fare Type filters
+	 * To click Refundable check box in Fare Type filters
 	 * 
 	 * @throws Exception
 	 */
 	public void clickRefundableCheckbox() throws Exception {
-		Utils.waitForElement(driver, chkRefundable);	
+		Utils.waitForElement(driver, chkRefundable);		
 		BrowserActions.clickOnElement(chkRefundable, driver, "Click Refundable Checkbox");
 		Log.event("Clicked Refundable option checkbox");
 	}
@@ -2730,16 +2774,19 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public boolean verifyRefundableFlights() throws Exception {	
-		for (int i = 0; i < lstRefundableFlights.size(); i++) {
-			WebElement refundableEle = driver.findElement(By.xpath("(//div[@class='js-flightRow js-flightItem']["+i+"])//li[@ng-if='flt.ft==1']"));
+		boolean status = false;
+		for (int i = 1; i < lstRefundableFlights.size(); i++) {
+			WebElement refundableEle = driver.findElement(By.cssSelector("div[class='js-flightRow js-flightItem']:nth-child("+i+") li[ng-if='flt.ft==1']"));
 			String flightRow = BrowserActions.getText(driver, refundableEle, "Getting txt of the Refundable in flight rows.");
-			if (flightRow.equalsIgnoreCase("Refundable")) {
-				return true;
-			}
+			if (flightRow.equalsIgnoreCase("REFUNDABLE")) {
+				status = true;	break;			
+			} /*else if(!flightRow.equalsIgnoreCase("REFUNDABLE")){
+				status = false;
+			}*/
 		}
-		return false;
+		return status;
 	}
-	
+
 	// *******************************End of SRP Functions*************************************************************
 
 } // SearchResult
