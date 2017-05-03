@@ -107,7 +107,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='short-details']>div")
 	private WebElement fldContentFlightDetails;
 
-	@FindBy(css = "div[class='my-fare-grid']>ul[class='tab fs-md']>li[ng-hide='isBYOPPage']")
+	@FindBy(css = "div[class='overlay-content']>div[class='my-fare-grid']>ul[class='tab fs-md']>li[analytics='Fare Details Pop up|Fare Rules']")
 	private WebElement lnkFareSummaryandRules;
 
 	@FindBy(css = ".one-fourth")
@@ -532,6 +532,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[id='book-now-tooltip']>div")
 	private WebElement txtContinueWithSearchMessage;
 	
+	@FindBy(css = "small[class='fs-xs block mt5 lt-gray full']")
+	private WebElement conformingUrSeatPopUp;
+	
+	@FindBy(css = "span[class='checkbox']>input[analytics*='Filter Option Click|Airline']")
+	private List<WebElement> chkBoxAirline;
+	
+	@FindBy(css = "footer[class='row my-res-footer full']>ul[class='res-footer-list fr']>li[ng-if*='flt.ft']")
+	private WebElement lnkRefundableAndNonRefundable_DOM;
+	
+	@FindBy(css = "span[class='ref-ui']")
+	private WebElement txtRefundableAndNonRefundableInFlightDetails;
+	
+	@FindBy(css = "div[class='one-fourth']")
+	private WebElement txtFareSummaryInFlighDeatils;
+	
+	@FindBy(css = "div[class='one-sixth']")
+	private WebElement txtFareRulesInFlighDeatils;
+	
 	@FindBy(css = "div[ng-show='open_ftype'] input[ yatratrackable='Flights|Search|filter - fare_type|refundable']")
 	private WebElement chkRefundable;
 	
@@ -646,13 +664,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		closeINotificationAtTopSRP();
-		WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
-				+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
-		BrowserActions.scrollToView(wBookNow, driver);
-		BrowserActions.nap(2);
-		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
-		return new ReviewPage(driver).get();
+			//closeINotificationAtTopSRP();
+			WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
+					+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
+			BrowserActions.scrollToView(wBookNow, driver);
+			BrowserActions.nap(2);
+			BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
+			return new ReviewPage(driver).get();
 	}
 
 	/**
@@ -2676,7 +2694,33 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * Getting the text from Prev Day buttons on Onward leg in SRP
+<<<<<<< HEAD
+	 * to click on Book Now In Flight Details with void  
+	 * 
+	 * @param 
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnBookNowInFlightDetail_INTL() throws Exception {
+		btnBookNowFlightDeatilPopUp_INTL.click();
+	}
+	
+	public boolean verifyChkBoxAirlineFilter() throws Exception {
+		return BrowserActions.isRadioOrCheckBoxSelected(chkBoxAirline.get(0));
+	}
+	/**
+	 * to Get Text Flight Type(Refundable Or NonRefundable)
+	 * @return
+	 * @param 
+	 * 
+	 * @throws Exception
+	 */
+	public String getTextFareTypeInFligthDetail_DOM() throws Exception {
+		String FlightType = txtRefundableAndNonRefundableInFlightDetails.getText();
+		return FlightType;
+	}
+	
+	/* Getting the text from Prev Day buttons on Onward leg in SRP
 	 * 
 	 * @return
 	 * @throws Exception
@@ -2750,8 +2794,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			}
 		}
 		return false;
-	}
-	
+	}	
 	// *******************************End of SRP Functions*************************************************************
 
 } // SearchResult

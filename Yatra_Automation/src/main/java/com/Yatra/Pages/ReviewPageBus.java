@@ -11,6 +11,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -26,6 +27,8 @@ import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -36,7 +39,8 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 	public ElementLayer elementLayer;
 	Utils utils;
 	SearchResultBus searchResult;
-	//@Harveer- all element should be private
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -93,22 +97,29 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 			elementLayer = new ElementLayer(driver);
 		}// ReviewPageBus
 
-	@Override
-	protected void isLoaded() {
-		if (!isPageLoaded) {
-			Assert.fail();
-		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, BtnChangeBus))) {
+		@Override
+		protected void isLoaded() {
+
+			timer.end();
+			if (!isPageLoaded) 
+			{
+				Assert.fail();
+			}
+			if (isPageLoaded && !(Utils.waitForElement(driver, BtnChangeBus))) 
+			{
 			Log.fail("Review Page did not open up. Site might be down.", driver);
-		}
-	}// isLoaded
+			}
+			Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+		}// isLoaded
 
-	@Override
-	protected void load() {
-		isPageLoaded = true;
-		Utils.waitForPageLoad(driver);
+		@Override
+		protected void load() 
+		{
+			timer.start();
+			isPageLoaded = true;
+			Utils.waitForPageLoad(driver);
+		}// load
 
-	}
 	/**
 	 * Getting the text from the Bus Info
 	 * 
