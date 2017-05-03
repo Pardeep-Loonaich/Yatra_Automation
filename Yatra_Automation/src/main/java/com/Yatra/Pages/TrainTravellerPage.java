@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -17,6 +18,8 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -27,6 +30,8 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 
 	/**********************************************************************************************
@@ -121,7 +126,10 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	private WebElement lblMobileResetPwd;
 	
 	@FindBy(css=".top-forgot-pwd")
-	WebElement btnResetPwd;
+	private WebElement btnResetPwd;
+	
+	@FindBy(css="#mobileOTPR")
+	private WebElement txtMobileIrctcResetPwrd;
 	
 	
 	
@@ -143,6 +151,7 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	}
 	@Override
 	protected void isLoaded() {
+		timer.end();
 
 		if (!isPageLoaded) {
 			Assert.fail();
@@ -151,10 +160,14 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, divPaxContainer))) {
 			Log.fail("Train Search Result page didn't open up", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+
 	}
 
 	@Override
 	protected void load() {
+		timer.start();
+
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}
@@ -354,6 +367,8 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
          
 		}
 	}
+	
+	
 	
 }//TrainTravellerPage
 
