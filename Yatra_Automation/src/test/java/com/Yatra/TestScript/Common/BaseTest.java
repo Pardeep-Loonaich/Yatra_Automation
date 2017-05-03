@@ -1,9 +1,12 @@
 package com.Yatra.TestScript.Common;
 import org.testng.ITest;
+import org.testng.ITestContext;
 import org.testng.Reporter;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.testng.annotations.BeforeMethod;
 
@@ -16,6 +19,7 @@ import com.Yatra.Utils.ExtentReporter;
  */
 public class BaseTest implements ITest{
 	private String testCaseId = "";
+	static List<String> listOfCompletedTestcase;
 	int iCount=1;
 
 	@Override
@@ -30,16 +34,38 @@ public class BaseTest implements ITest{
 	} 
 	
 	@BeforeMethod(alwaysRun = true)
-	public void nameChanger(Method method, Object[] parameters){
+	public void nameChanger(ITestContext context, Method method, Object[] parameters ){
 
 		UseAsTestName useAsTestName = method.getAnnotation(UseAsTestName.class);
 		HashMap<String, String> data = (HashMap<String, String>) parameters[0];
-		String testName =Reporter.getCurrentTestResult().getName();
-		//testCaseId=ExtentReporter.getTestName();
-		//if(ExtentReporter.tests.containsKey(""))
-		setTestName("");
+		testCaseId=data.get("TestID");
+		if(verifyReportContainsTestcaseId(testCaseId))
+		{
+			setTestName(testCaseId+"."+iCount);
+			iCount++;
+		}
+		else
+		{
+			setTestName(testCaseId);
+			iCount=1;
+		}
+	}
+	
+	public static boolean verifyReportContainsTestcaseId(String testCaseId)
+	
+	{
+		boolean dataTobereturn=false;
+		listOfCompletedTestcase = new ArrayList<String>(ExtentReporter.tests.keySet());
+		for(int i=0; i<listOfCompletedTestcase.size();i++)
+		{
+			if(listOfCompletedTestcase.get(i).trim().contains(testCaseId.trim()))
+			{
+				dataTobereturn=true;
+				break;
+			}
+			
+		}
 		
-		
-		
+		return dataTobereturn;
 	}
 }

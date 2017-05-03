@@ -23,6 +23,8 @@ import com.Yatra.Pages.PaymentPage;
 import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Pages.TravellerPage;
+import com.Yatra.TestScript.Common.BaseTest;
+import com.Yatra.TestScript.Common.UseAsTestName;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.DataProviderUtils;
@@ -39,7 +41,7 @@ import com.Yatra.Utils.WebDriverFactory;
  *
  */
 @Listeners(EmailReport.class)
-public class FlightSearch {
+public class FlightSearch extends BaseTest {
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	HomePage homePage;
@@ -56,7 +58,7 @@ public class FlightSearch {
 		webSite = (System.getProperty("webSite") != null ? System.getProperty("webSite")
 				: context.getCurrentXmlTest().getParameter("webSite"));
 	}
-
+ //@UseAsTestName(idx=0)
 	@Test( description = "Flight Search DOM - OW with  Booking Class Of Choice", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_001(HashMap<String, String> testData) throws Exception {		
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
