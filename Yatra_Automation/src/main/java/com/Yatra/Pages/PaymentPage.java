@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.Alert;
@@ -26,6 +27,8 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -37,6 +40,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 
 
@@ -422,6 +427,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	@Override
 	protected void isLoaded() {
+		timer.end();
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
@@ -429,13 +435,15 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnPayNow))) {
 			Log.fail("PaymentPage didn't open up", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+
 		// elementLayer = new ElementLayer(driver);
 	}
 
 	@Override
 	protected void load() {
-		isPageLoaded = true;
-
+		timer.start();
+        isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}// load
 

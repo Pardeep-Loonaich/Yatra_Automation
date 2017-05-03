@@ -15,6 +15,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
@@ -26,15 +27,17 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
-	public Utils utils;
+	Utils utils;
 	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
+
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra ReviewPage ***********************************
 	 **********************************************************************************************/
 
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
-	private WebElement btnChngeFlight;
+	private WebElement btnChangeFlight;
 
 	@FindBy(css = "[id='checkoutBase']>div:nth-child(3)>main>div>aside>div[ng-controller='productFareDetailsController']")
 	private WebElement moduleFareDetails;
@@ -201,7 +204,11 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "button.primary.rounded.pull-right")
 	private WebElement btnFareOopsContune;
 	
-	
+	@FindBy(css = "table[class='int-fare-rules ng-scope']>tbody:nth-child(2)")
+	private WebElement txtFareRules;
+
+	@FindBy(css = "a[analytics='Flights - Review Itinerary - INT|Current Selection|View Fare Rules']")
+	private WebElement BtnViewRules;
 	
 	
 	
@@ -243,7 +250,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@Override
 	protected void isLoaded() {
 		timer.end();
-		if (!isPageLoaded) {
+	if (!isPageLoaded) {
 			Assert.fail();
 		}
 
@@ -253,9 +260,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnChngeFlight))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnChangeFlight))) {
 			Log.fail("ReviewPage didn't open up", driver);
 		}
+
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 		
 		// elementLayer = new ElementLayer(driver);
@@ -264,7 +272,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@Override
 	protected void load() {
 		timer.start();
-		isPageLoaded = true;
+    	isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}// load
 
@@ -735,5 +743,30 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			status = false;
 		}
     return status;
+	}
+	/**
+	 * To click on Change Flight button on Review page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickOnChangeFlight() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.scrollToView(btnChangeFlight, driver);
+		BrowserActions.clickOnElement(btnChangeFlight, driver, "To click on Change Flight button on Review page");
+	}
+	
+	/**
+	 * To click on View Rules on Review page and also getting the text
+	 * @return String
+	 * @throws Exception
+	 */
+
+	
+	public String getTextFareRules() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(BtnViewRules, driver, "To click on View Rules on Review page");
+		String abc = txtFareRules.getText();
+		return abc;
 	}
 } // ReviewPage
