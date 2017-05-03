@@ -1,20 +1,20 @@
 /target/
 
 
+
 /test-output/
+
 
 
 /bin/
 
-*.html
 
+*.html
 /.settings/
 
-/testng.xml
+
 
 *.class
-
 *.css
 .classpath
 .gitignore
-*.log
