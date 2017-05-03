@@ -140,7 +140,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css= "a[title='Oxigen Wallet']")
 	private WebElement logoOxyGenWallet;
 
-	@FindBy(css= "div[class='pymnt_main']>div>a[class='icon-payumoney']")
+	@FindBy(css= "div[class='header']>a[class='icon-payumoney']")
 	private WebElement logoPayUWallet;
 
 	@FindBy(css= ".img-responsive")

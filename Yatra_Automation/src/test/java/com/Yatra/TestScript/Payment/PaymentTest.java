@@ -7,23 +7,17 @@ package com.Yatra.TestScript.Payment;
 //Modified on/By :   -
 //-----------------------------------------------------------------------------------------------------------
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.asserts.IAssert;
 
 import com.Yatra.Pages.Bookings;
 import com.Yatra.Pages.HomePage;
@@ -32,7 +26,6 @@ import com.Yatra.Pages.PaymentPage;
 import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Pages.TravellerPage;
-import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -3281,8 +3274,10 @@ public class PaymentTest {
 			Log.message("14. Clicked on Cancel button.");
 
 			driver.navigate().back();
+			driver.navigate().refresh();
 			Log.message("15. Navigating back to 'Yatra' page.");
 
+			
 			paymentPage.selectNewCreditCard();
 			Log.message("14. Selected 'Use New Card' radio button.");
 
@@ -3521,6 +3516,7 @@ public class PaymentTest {
 			Log.message("12. Clicked on 'Pay Now' for making payment.");
 			Utils.waitForPageLoad(driver);
 
+			Thread.sleep(2000);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected "+paymentType+" Page.");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoPayUWallet"), paymentPage),
@@ -3535,7 +3531,7 @@ public class PaymentTest {
 			Utils.waitForPageLoad(driver);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
 					"<b>Actual Result:</b> Unable to navigated back on Yatra Page.", driver);
 
@@ -5133,7 +5129,7 @@ public class PaymentTest {
 
 
 	@Test(groups = { "desktop" }, description = "Verify Other NetBanking SubOption:YESBANK", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Payment_0470(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Payment_047(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String emailId = testData.get("EmailAddress");

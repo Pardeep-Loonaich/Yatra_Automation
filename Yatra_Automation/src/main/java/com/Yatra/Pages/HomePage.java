@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -274,7 +275,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@Override
 	protected void isLoaded() {
-
 		timer.end();
 		if (!isPageLoaded) 
 		{
@@ -284,13 +284,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 		{
 		Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
 
 	}// isLoaded
 
 	@Override
-	protected void load() 
-	{
+	protected void load(){
 		timer.start();
 		isPageLoaded = true;
 		driver.get(appURL);
@@ -1266,6 +1265,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 
 	public void clickTrainTab() throws Exception {
+		
+		
 		// final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
 		Utils.waitForPageLoad(driver);

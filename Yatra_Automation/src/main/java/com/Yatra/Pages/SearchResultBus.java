@@ -40,7 +40,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	SearchResultBus searchResult;
 	ExecutionTimer timer=new ExecutionTimer();
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
-	
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
@@ -199,23 +199,20 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	
 	@Override
 	protected void isLoaded() {
-
 		timer.end();
-		if (!isPageLoaded) 
-		{
+		if (!isPageLoaded) {
+
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindBus))) 
-		{
-		Log.fail("SearchResult Page did not open up. Site might be down.", driver);
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindBus))) {
+			Log.fail("SearchResultBus Page did not open up. Site might be down.", driver);
+			Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
-
 	}// isLoaded
 
 	@Override
-	protected void load() 
-	{
+	protected void load() {
 		timer.start();
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
