@@ -38,7 +38,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 **********************************************************************************************/
 
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
-	private WebElement btnChngeFlight;
+	private WebElement btnChangeFlight;
 
 	@FindBy(css = "[id='checkoutBase']>div:nth-child(3)>main>div>aside>div[ng-controller='productFareDetailsController']")
 	private WebElement moduleFareDetails;
@@ -205,7 +205,11 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "button.primary.rounded.pull-right")
 	private WebElement btnFareOopsContune;
 	
-	
+	@FindBy(css = "table[class='int-fare-rules ng-scope']>tbody:nth-child(2)")
+	private WebElement txtFareRules;
+
+	@FindBy(css = "a[analytics='Flights - Review Itinerary - INT|Current Selection|View Fare Rules']")
+	private WebElement BtnViewRules;
 	
 	
 	
@@ -256,7 +260,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnChngeFlight))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnChangeFlight))) {
 			Log.fail("ReviewPage didn't open up", driver);
 		}
 		// elementLayer = new ElementLayer(driver);
@@ -736,5 +740,30 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			status = false;
 		}
     return status;
+	}
+	/**
+	 * To click on Change Flight button on Review page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickOnChangeFlight() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.scrollToView(btnChangeFlight, driver);
+		BrowserActions.clickOnElement(btnChangeFlight, driver, "To click on Change Flight button on Review page");
+	}
+	
+	/**
+	 * To click on View Rules on Review page and also getting the text
+	 * @return String
+	 * @throws Exception
+	 */
+
+	
+	public String getTextFareRules() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(BtnViewRules, driver, "To click on View Rules on Review page");
+		String abc = txtFareRules.getText();
+		return abc;
 	}
 } // ReviewPage
