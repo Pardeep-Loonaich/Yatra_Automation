@@ -5,6 +5,7 @@
 /bin/
 *.html
 /.settings/
+/testng.xml
 *.class
 
 *.css
