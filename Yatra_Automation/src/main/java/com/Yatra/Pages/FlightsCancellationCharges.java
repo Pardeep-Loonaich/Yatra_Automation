@@ -1,5 +1,7 @@
 package com.Yatra.Pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +12,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -17,6 +20,7 @@ public class FlightsCancellationCharges extends LoadableComponent<FlightsCancell
 
 	private WebDriver driver;
 	private boolean isPageLoaded;
+	ExecutionTimer timer=new ExecutionTimer();
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -54,7 +58,7 @@ public class FlightsCancellationCharges extends LoadableComponent<FlightsCancell
 	
 	@Override
 	protected void isLoaded() {
-
+		timer.end();
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
@@ -62,10 +66,13 @@ public class FlightsCancellationCharges extends LoadableComponent<FlightsCancell
 		if (isPageLoaded && !(Utils.waitForElement(driver, txtBookingNo))) {
 			Log.fail("Flight Cancellation page didn't open up", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+		
 	}
 
 	@Override
 	protected void load() {
+		timer.start();
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}

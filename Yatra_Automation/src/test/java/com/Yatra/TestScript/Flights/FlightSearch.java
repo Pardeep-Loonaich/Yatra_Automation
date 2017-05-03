@@ -111,7 +111,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
-					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
+					"<b>Actual Result:</b> User should not navigated on SearchResult page", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -179,7 +179,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
-					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
+					"<b>Actual Result:</b> User should not navigated on SearchResult page", driver);
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -256,7 +256,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page for  DOM-Multicity",
-					"<b>Actual Result:</b> User should navigated on SearchResult page for DOM-Multicity",
+					"<b>Actual Result:</b> User should not navigated on SearchResult page for DOM-Multicity",
 					driver);
 
 			Log.testCaseResult();
@@ -337,7 +337,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page for INTL-Multicity",
-					"<b>Actual Result:</b> User should navigated on SearchResult page for INTL-Multicity",
+					"<b>Actual Result:</b> User should not navigated on SearchResult page for INTL-Multicity",
 					driver);
 
 			Log.testCaseResult();
@@ -908,7 +908,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
-					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
+					"<b>Actual Result:</b> User should not navigated on SearchResult page", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -977,7 +977,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page",
-					"<b>Actual Result:</b> User should navigated on SearchResult page", driver);
+					"<b>Actual Result:</b> User should not navigated on SearchResult page", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {

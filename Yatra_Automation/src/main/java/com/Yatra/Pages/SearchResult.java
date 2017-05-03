@@ -3,12 +3,12 @@ package com.Yatra.Pages;
 import java.awt.Robot;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
@@ -20,18 +20,17 @@ import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.BrowserType;
 import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-
-import bsh.util.Util;
 
 public class SearchResult extends LoadableComponent<SearchResult> {
 
 	private String appURL;
-
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	ExecutionTimer timer=new ExecutionTimer();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Result Page
@@ -569,6 +568,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@Override
 	protected void isLoaded() {
+		timer.end();
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
@@ -576,13 +576,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnModifySearchIcon))) {
 			Log.fail("Search Result page didn't open up", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 		// elementLayer = new ElementLayer(driver);
 	}
 
 	@Override
 	protected void load() {
+		timer.start();
 		isPageLoaded = true;
-
 		Utils.waitForPageLoad(driver);
 	}// load
 
