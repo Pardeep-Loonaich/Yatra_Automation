@@ -548,6 +548,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "//div[@class='js-flightRow js-flightItem']//li[@ng-if='flt.ft==1']")
 	private List<WebElement> lstRefundableFlights;
 	
+	@FindBy(xpath = "//div[@class='js-flightRow js-flightItem']//small[@class='fs-sm gray fl ml5 name carrier-name']")
+	private List<WebElement> lstFlightResultGrid;
+	
+	@FindBy(css = "a[class='under-link fr']")
+	private WebElement lnkResetAll;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
 	 **********************************************************************************************/
@@ -2785,6 +2792,37 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			}*/
 		}
 		return status;
+	}
+	
+	/**
+	 * To verify the Flight name titles in Result Grid
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyFlightNameTitlesInResultGrid(String flghtname) throws Exception {	
+		boolean status = false;
+		for (int i = 1; i < lstFlightResultGrid.size(); i++) {
+			WebElement Ele = driver.findElement(By.xpath("//div[@class='js-flightRow js-flightItem']["+i+"]//small[@class='fs-sm gray fl ml5 name carrier-name']"));
+			String flightName = BrowserActions.getText(driver, Ele, "Getting txt of the Refundable in flight rows.");
+			if (flightName.equalsIgnoreCase(flghtname)) {
+				status = true;				
+			} else if(!flightName.equalsIgnoreCase(flghtname)){
+				status = false; break;
+			}
+		}
+		return status;
+	}
+	
+	/**
+	 * To click Reset All in SRP
+	 * 
+	 * @throws Exception
+	 */
+	public void clickResetAll() throws Exception {
+		Utils.waitForElement(driver, lnkResetAll);
+		BrowserActions.clickOnElement(lnkResetAll, driver, "Click Reset All");
+		Utils.waitForPageLoad(driver);
+		Log.event("Click Reset All");
 	}
 
 	// *******************************End of SRP Functions*************************************************************
