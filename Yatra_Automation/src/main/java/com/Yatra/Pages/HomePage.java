@@ -285,7 +285,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		{
 		Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 
 	}// isLoaded
 
