@@ -4305,13 +4305,64 @@ public class FlightSearch {
 				searchResult = homePage.clickBtnSearch();
 				Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");	
 				
-				//searchResult.clickRefundableCheckbox();
-				Log.message("4.Successfully clicked 'Refundable' option in SRP");	
+				searchResult.clickRefundableCheckbox();
+				Log.message("5.Successfully clicked 'Refundable' option in SRP");	
 				
 				BrowserActions.nap(6);					
 				Log.message("<br>");
-				Log.message("<b>Expected Result:</b> Flight results have updated with Refundable option only in SRP");
-				//Log.assertThat(searchResult.verifyRefundableFlights(), "<b>Actual Result:</b> Successfully Flight results have updated with Refundable option only in SRP", "<b>Actual Result:</b> Not filtered Refundbale Flights in SRP", driver);
+				Log.message("<b>Expected Result:</b> Flight results have updated with Refundable option in SRP");
+				Log.assertThat(searchResult.verifyRefundableFlights(), "<b>Actual Result:</b> Successfully Flight results have updated with Refundable option in SRP", "<b>Actual Result:</b> Not filtered Refundbale Flights in SRP", driver);
+				
+			    Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+		
+		@Test( description = "Validate the functionality of Reset All link", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_046(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+			String browser = testData.get("browser");
+			String origin = testData.get("Origin");
+			String tripType = testData.get("TripType");
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");	
+			String airlines = testData.get("Airlines");
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+				
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+				//step: select OneWay Search fields in HomePage
+				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+				searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");	
+				
+				searchResult.selectAirlineInAirlineFilters(airlines);
+				Log.message("5.Successfully clicked Airline in SRP");
+			
+				Log.assertThat(searchResult.verifyFlightNameTitlesInResultGrid(airlines), "<b>Actual Result:</b> Successfully Flight results have updated with selected Airline option ", "<b>Actual Result:</b> Not filtered Flight Result grid in SRP", driver);
+											
+				searchResult.clickResetAll();
+				Log.message("6.Successfully clicked Reset All option in SRP");	
+				BrowserActions.nap(6);					
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validate the functionality of Reset All link.");
+				Log.assertThat(!searchResult.verifyFlightNameTitlesInResultGrid(airlines), "<b>Actual Result:</b> Successfully displayed complete result set after clicked Reset All ", "<b>Actual Result:</b> Not displayed complete result set after clicked Reset All", driver);
 				
 			    Log.testCaseResult();
 			} catch (Exception e) {
