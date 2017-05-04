@@ -390,6 +390,16 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	
 	@FindBy(css= "#rejectPaymentReq")
 	private WebElement btnCancelIdea;
+	
+	@FindBy(xpath= "//Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]")
+	private WebElement btnContinueReviewPage;
+	
+	@FindBy(css ="select[id='nprBank']>option")
+	private List<WebElement> lstselectOtherNetBank;
+	
+	@FindBy(css ="select[id='nprBank']")
+	private WebElement drpselectOtherNetBank;
+	
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
@@ -806,11 +816,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 	
-	@FindBy(css ="select[id='nprBank']>option")
-	private List<WebElement> lstselectOtherNetBank;
-	
-	@FindBy(css ="select[id='nprBank']")
-	private WebElement drpselectOtherNetBank;
 	
 
 
@@ -1296,8 +1301,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		}
 	}
 	
-	@FindBy(xpath= "//Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]")
-	private WebElement btnContinueReviewPage;
 	
 
 	public boolean verifyPage() throws Exception{

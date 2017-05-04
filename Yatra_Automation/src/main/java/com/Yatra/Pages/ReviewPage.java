@@ -15,10 +15,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
-<<<<<<< HEAD
 import com.Yatra.Utils.EnvironmentPropertiesReader;
-=======
->>>>>>> refs/remotes/origin/Framework_Development
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;

@@ -20,10 +20,8 @@ import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.BrowserType;
 import com.Yatra.Utils.Constants;
-<<<<<<< HEAD
 import com.Yatra.Utils.EnvironmentPropertiesReader;
-=======
->>>>>>> refs/remotes/origin/Framework_Development
+
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
@@ -593,10 +591,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@Override
 	protected void isLoaded() {
 		timer.end();
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/Framework_Development
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
