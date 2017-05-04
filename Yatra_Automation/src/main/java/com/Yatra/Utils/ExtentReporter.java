@@ -120,7 +120,7 @@ public class ExtentReporter {
 			}
 		} else {
 			test = getReportInstance(Reporter.getCurrentTestResult()).startTest(testName, description);
-			test.assignCategory(Reporter.getCurrentTestResult().getMethod().getGroups());
+			//test.assignCategory(Reporter.getCurrentTestResult().getMethod().getGroups());
 			tests.put(testName, test);
 		}
 		return test;
@@ -245,7 +245,7 @@ public class ExtentReporter {
 				if (!tests.containsKey(testName)) {
 					extentTest = report.startTest(testName, iTestResult.getMethod().getDescription() == null ? "" : iTestResult.getMethod().getDescription());
 					extentTest.setStartedTime(getTime(iTestResult.getStartMillis()));
-					//extentTest.assignCategory(iTestResult.getMethod().getGroups());
+					extentTest.assignCategory(iTestResult.getMethod().getGroups());
 					setInterruptedTestStatus(iTestResult, extentTest);
 					extentTest.setEndedTime(getTime(iTestResult.getEndMillis()));
 					tests.put(testName, extentTest);
