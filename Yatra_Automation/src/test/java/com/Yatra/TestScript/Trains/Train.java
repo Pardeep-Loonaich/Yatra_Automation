@@ -962,53 +962,6 @@ public class Train {
 		}
 	}
 	
-	@Test(groups = { "desktop" }, description = "Verify for FB login also(Verifying FB Link only).", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Train_025(HashMap<String, String> testData) throws Exception {
-
-		String browser = testData.get("browser");
-		String origin = testData.get("Origin");
-		String destination = testData.get("Destination");
-		String trainDepartureDate = testData.get("DepartureDate");
-
-		// Get the web driver instance
-		final WebDriver driver = WebDriverFactory.get(browser);
-		Log.testCaseInfo(testData);
-		try {
-			// step1: Navigate to Yatra Home Page
-			HomePage homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-
-			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
-			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
-			Log.message("2.Successfully filled the search details for 'Train' trip.");
-
-			// step: click 'Search' button in Yatra Home page
-			trainSearchResult = homePage.clickTrainBtnSearch();
-			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
-		
-		    trainSearchResult.selectTrainByIndexAndBook(1);
-			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
-
-			trainTravellerPage = trainSearchResult.clickOnContinue();
-			Log.message("5.Clicked on 'Continue' button.");
-
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Verify for FB login also(Verifying FB Link only).");
-        	Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("lnkFB"),trainTravellerPage ),
-					"<b>Actual Result:</b> When Login as Guest User the 'Login as Facebook User' link is displayed.",
-					"<b>Actual Result:</b> When Login as Guest User the 'Login as Facebook User' link is not displayed.", driver);
-
-			
-        	Log.testCaseResult();
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			driver.quit();
-			Log.endTestCase();
-		}
-	}
 	
 	@Test(groups = { "desktop" }, description = "Verify for guest user flow.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Train_023(HashMap<String, String> testData) throws Exception {
@@ -1160,6 +1113,54 @@ public class Train {
         	Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"),paymentPage ),
 					"<b>Actual Result:</b> Successfully navigated to Payment Page.",
 					"<b>Actual Result:</b> Unable to navigated to Payment Page.", driver);
+
+			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Verify for FB login also(Verifying FB Link only).", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_025(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify for FB login also(Verifying FB Link only).");
+        	Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("lnkFB"),trainTravellerPage ),
+					"<b>Actual Result:</b> When Login as Guest User the 'Login as Facebook User' link is displayed.",
+					"<b>Actual Result:</b> When Login as Guest User the 'Login as Facebook User' link is not displayed.", driver);
 
 			
         	Log.testCaseResult();
@@ -1572,6 +1573,226 @@ public class Train {
 		}
 	}
 	
+	
+	
+	@Test(groups = { "desktop" }, description = "Check for Mobile Number validation.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_036(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String mobile = testData.get("MobileNumber");
+		String irctcId = testData.get("IRCTC_ID");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsSignedUser(email, password);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(irctcId);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+	        trainTravellerPage.clickOnIRCTCResetPassword();
+			Log.message("8.Clicked on 'Reset IRCTC password' button.");
+			
+			trainTravellerPage.selectResetPasswordOption("Mobile");
+			Log.message("9.Send Reset IRCTC password on mobile.");
+			
+			trainTravellerPage.enterMobileNmberToRestIrctcPswd(mobile);
+			Log.message("10.Entered Mobile Number to Reset IRCTC password on mobile.");
+			String msg = trainTravellerPage.getErrorMsgForInvalidMbleNmbr();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify should show proper validation messages.");
+        	Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("lblMobileResetPwd"),trainTravellerPage ),
+					"<b>Actual Result:</b> Proper validation message is displayed in case of invalids number as:"+msg,
+					"<b>Actual Result:</b> Proper validation message is not displayed.", driver);
+
+        	
+        	
+ 			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Should show steps and links to create new IRCTC profile.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_037(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String irctcId = testData.get("IRCTC_ID");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsSignedUser(email, password);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(irctcId);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+	        trainTravellerPage.clickOnIRCTCResetPassword();
+			Log.message("8.Clicked on 'Reset IRCTC password' button.");
+			
+	        trainTravellerPage.clickOnCreateNewIrctcAccLnk();
+	        Log.message("9.Clicked on 'Creat New' IRCTC Account Link.");
+	    	
+	        String msg= trainTravellerPage.getCreateNewIrctcAccSteps();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify should display steps and links to create new IRCTC profile,after clicking on Create New Link.");
+        	Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("lnkAsIndianRes","lnkAsNonIndianResStep1","lnkAsNonIndianResStep2","lnkAsNonIndianResStep3"),trainTravellerPage ),
+					"<b>Actual Result:</b> Steps and Links are displayed to create new IRCTC profile as:"+msg,
+					"<b>Actual Result:</b> Steps and Links are not displayed to create new IRCTC profile.", driver);
+
+        	
+        	
+ 			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Should show message 'Wrong userLoginId or mobile.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_038(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String mobile = testData.get("MobileNumber");
+		String irctcId = testData.get("IRCTC_ID");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsSignedUser(email, password);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(irctcId);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+	        trainTravellerPage.clickOnIRCTCResetPassword();
+			Log.message("8.Clicked on 'Reset IRCTC password' button.");
+			
+			trainTravellerPage.selectResetPasswordOption("Mobile");
+			Log.message("9.Send Reset IRCTC password on mobile.");
+			
+			trainTravellerPage.enterMobileNmberToRestIrctcPswd(mobile);
+			Log.message("10.Entered Mobile Number to Reset IRCTC password on mobile.");
+			String msg = trainTravellerPage.getErrorMsgForInvalidMbleNmbr();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify should show message 'Wrong userLoginId or mobile.");
+        	Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("lblMobileResetPwd"),trainTravellerPage ),
+					"<b>Actual Result:</b> Proper validation message is displayed in case of wrong number as:"+msg,
+					"<b>Actual Result:</b> Proper validation message is not displayed.", driver);
+
+        	
+        	
+ 			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 	@Test(groups = { "desktop" }, description = "Verify user should be able to change ID and save.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Train_039(HashMap<String, String> testData) throws Exception {
 
@@ -1637,6 +1858,396 @@ public class Train {
 		}
 	}
 	
+	@Test(groups = { "desktop" }, description = "Check for coach Id validations and validation for accepting policy.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_040(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String mobile = testData.get("MobileNumber");
+		String Id[] = testData.get("IRCTC_ID").split(",");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsGuestUser(email, mobile);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(Id[0]);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+			trainTravellerPage.fillTravellerDetails();
+			Log.message("8.Filling traveller details on PaxPage.");
+			
+			trainTravellerPage.fillCoachId(Id[1]);
+			Log.message("9.Entered invalid CoachId on PaxPage.");
+
+		    trainTravellerPage.clickOnContinueBtnInPaxPage();
+			Log.message("10.Clicking on 'Continue' in PaxPage.");
+			
+			String msg = trainTravellerPage.getErrorTxtFromTheToader();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify for coach Id validations and validation for accepting policy.");
+        	Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("btnContinue"),trainTravellerPage ),
+					"<b>Actual Result:</b> Unable to navigate to Review Page in case of invalid coach ID and the invalid message is :"+msg,
+					"<b>Actual Result:</b> Navigated to Review Page with an invalid coach ID.", driver);
+        	
+		    trainTravellerPage.deleteCoachId();
+			Log.message("11.Deleted Entered CoachId in PaxPage.");
+
+		    trainTravellerPage.clickOnContinueBtnInPaxPage();
+			Log.message("12.Clicking on 'Continue' in PaxPage.");
+			
+			String msg1 = trainTravellerPage.getErrorTxtFromTheToader();
+
+			Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("btnContinue"),trainTravellerPage ),
+					"<b>Actual Result:</b> Unable to navigate to Review Page in case of we don't accept terms & conditions  and the invalid message is :"+msg1,
+					"<b>Actual Result:</b> Navigated to Review Page without accepting terms & conditions.", driver);
+        	
+			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 	
+	@Test(groups = { "desktop" }, description = "Check for modify traveller.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_041(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String mobile = testData.get("MobileNumber");
+		String irctcId = testData.get("IRCTC_ID");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsGuestUser(email, mobile);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(irctcId);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+			trainTravellerPage.fillTravellerDetails();
+			Log.message("8.Filling traveller details on PaxPage.");
+
+			trainTravellerPage.clickToAcceptInsurance();
+			Log.message("9.Clicking on 'Accept' Travel Insurance checkbox.");
+
+			trainTravellerPage.checkBookingPolicy();
+			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
+
+			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
+			Log.message("11.Clicking on 'Continue' in PaxPage.");
+			
+			trainTravellerPage = trainReviewPage.clickOnModifyTraveller();
+			Log.message("12.Clicking on 'Modify Traveller' in ReviewPage.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify after clicking on Modify traveller button in Review Page,should redirect back to Pax page.");
+        	Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("btnResetPwd"),trainTravellerPage ),
+					"<b>Actual Result:</b> Successfully navigated back to Pax Page.",
+					"<b>Actual Result:</b> Unable to navigated back to Pax Page.", driver);
+
+			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
+	@Test(groups = { "desktop" }, description = "Check details of Pax, selected train and travel time & date.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_042(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String mobile = testData.get("MobileNumber");
+		String irctcId = testData.get("IRCTC_ID");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsGuestUser(email, mobile);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(irctcId);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+			trainTravellerPage.fillTravellerDetails();
+			Log.message("8.Filling traveller details on PaxPage.");
+
+			trainTravellerPage.clickToAcceptInsurance();
+			Log.message("9.Clicking on 'Accept' Travel Insurance checkbox.");
+
+			trainTravellerPage.checkBookingPolicy();
+			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
+
+			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
+			Log.message("11.Clicking on 'Continue' in PaxPage.");
+			
+			String infoTrain = trainReviewPage.getTripInfo();
+			String infoPax = trainReviewPage.getPaxInfo();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify details of Pax, selected train and travel time & date.");
+        	Log.assertThat(trainReviewPage.elementLayer.verifyPageElements(Arrays.asList("btnModifyItinerary"),trainReviewPage ),
+					"<b>Actual Result:</b> Successfully navigated to Review Page and the details are displayed as: \n TRAIN DETAILS: \n"+infoTrain+"\n\nPAX DETAILS:\n"+infoPax,
+					"<b>Actual Result:</b> Unable to navigated back to Pax Page.", driver);
+
+			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Check for modify itinerary.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_043(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String mobile = testData.get("MobileNumber");
+		String irctcId = testData.get("IRCTC_ID");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsGuestUser(email, mobile);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(irctcId);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+			trainTravellerPage.fillTravellerDetails();
+			Log.message("8.Filling traveller details on PaxPage.");
+
+			trainTravellerPage.clickToAcceptInsurance();
+			Log.message("9.Clicking on 'Accept' Travel Insurance checkbox.");
+
+			trainTravellerPage.checkBookingPolicy();
+			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
+
+			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
+			Log.message("11.Clicking on 'Continue' in PaxPage.");
+			
+			trainSearchResult = trainReviewPage.clickOnModifyIternary();
+			Log.message("12.Clicking on 'Modify Iternary' in ReviewPage.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify after clicking on Modify Iternary button in Review Page,should redirect to TrainSearch page.");
+        	Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Successfully navigated back to TrainSearch Page.",
+					"<b>Actual Result:</b> Unable to navigated back to TrainSearch Page.", driver);
+
+			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Verify Session strip should come on review page.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_044(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String mobile = testData.get("MobileNumber");
+		String irctcId = testData.get("IRCTC_ID");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsGuestUser(email, mobile);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(irctcId);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+			trainTravellerPage.fillTravellerDetails();
+			Log.message("8.Filling traveller details on PaxPage.");
+
+			trainTravellerPage.clickToAcceptInsurance();
+			Log.message("9.Clicking on 'Accept' Travel Insurance checkbox.");
+
+			trainTravellerPage.checkBookingPolicy();
+			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
+
+			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
+			Log.message("11.Clicking on 'Continue' in PaxPage.");
+			
+			String time = trainReviewPage.getTimeFromStrip();
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify Strip should show session for 5 minutes.");
+        	Log.assertThat(trainReviewPage.elementLayer.verifyPageElements(Arrays.asList("timeStrip"),trainReviewPage ),
+					"<b>Actual Result:</b> Strip showing time session is displayed and the time displayed is '"+time+"' minutes.",
+					"<b>Actual Result:</b> Strip showing time session is not displayed.", driver);
+
+			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 	
 }

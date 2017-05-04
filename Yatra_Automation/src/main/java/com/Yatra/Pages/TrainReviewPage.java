@@ -3,6 +3,7 @@ package com.Yatra.Pages;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -16,6 +17,8 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -26,6 +29,8 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 
 	/**********************************************************************************************
@@ -37,6 +42,22 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 
 	@FindBy(css="#itineraryCont")
 	private WebElement btnContinueIternary;
+	
+	@FindBy(css="#modifyPaxBtn")
+	private WebElement btnModifyTraveller;
+	
+	@FindBy(css=".tripInfo")
+	private WebElement tripInfo;
+	
+	@FindBy(css="#paxTable")
+	private WebElement paxInfo;
+	
+	@FindBy(css="div[id='time-label']>span")
+	private WebElement timeOnStrip;
+	
+	@FindBy(css="div[id='time-label']")
+	private WebElement timeStrip;
+	
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of TrainReviewPage - Ends ****************************
@@ -56,6 +77,7 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 	}
 	@Override
 	protected void isLoaded() {
+		timer.end();
 
 		if (!isPageLoaded) {
 			Assert.fail();
@@ -64,10 +86,14 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnModifyItinerary))) {
 			Log.fail("TrainReviewPage page didn't open up", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+
 	}
 
 	@Override
 	protected void load() {
+		timer.start();
+
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}
@@ -83,5 +109,56 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 		BrowserActions.scrollToView(btnContinueIternary, driver);
 		BrowserActions.clickOnElement(btnContinueIternary, driver, "Clicked on continue in Review Iternary.");
 		return new PaymentPage(driver).get();
+	}
+	
+	/**
+	 * to click on Modify Traveller Button in the Review Page
+	 * @return
+	 * @throws Exception
+	 */
+	public TrainTravellerPage clickOnModifyTraveller() throws Exception{
+		BrowserActions.scrollToView(btnModifyTraveller, driver);
+		BrowserActions.clickOnElement(btnModifyTraveller, driver, "Clicked on Modify Traveller Button in Review Page.");
+		return new TrainTravellerPage(driver).get();
+	}
+	
+	/**
+	 * to click on Modify Iternary Button in the Review Page
+	 * @return
+	 * @throws Exception
+	 */
+	public TrainSearchResult clickOnModifyIternary() throws Exception{
+		BrowserActions.scrollToView(btnModifyItinerary, driver);
+		BrowserActions.clickOnElement(btnModifyItinerary, driver, "Clicked on Modify Iternary Button in Review Page.");
+		return new TrainSearchResult(driver).get();
+	}
+	
+	
+	
+	/**
+	 * getting text of the train info
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTripInfo() throws Exception{
+		return BrowserActions.getText(driver, tripInfo, "Getting text from the Trip Info");
+	}
+	
+	/**
+	 * getting text from the Pax info
+	 * @return
+	 * @throws Exception
+	 */
+	public String getPaxInfo() throws Exception{
+		return BrowserActions.getText(driver, paxInfo, "Getting text from the Pax Info");
+	}
+	
+	/**
+	 * to get the time from the time strip
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTimeFromStrip() throws Exception{
+		return BrowserActions.getText(driver, timeOnStrip, "Getting time from the Time Strip.");
 	}
 }

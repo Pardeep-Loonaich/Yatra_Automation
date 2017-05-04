@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -17,6 +18,8 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -27,6 +30,8 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 
 	/**********************************************************************************************
@@ -121,7 +126,38 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	private WebElement lblMobileResetPwd;
 	
 	@FindBy(css=".top-forgot-pwd")
-	WebElement btnResetPwd;
+	private WebElement btnResetPwd;
+	
+	@FindBy(css="#mobileOTPR")
+	private WebElement txtMobileIrctcResetPwrd;
+	
+	@FindBy(css="#resetError")
+	private WebElement txtErrorMobileIrctcResetPwrd;
+	
+	@FindBy(css="#createLink>a")
+	private WebElement lnkCreateNewIrctc;
+	
+	@FindBy(css="#loginwithoutirctc")
+	private WebElement irctcLoginSteps;
+	
+	@FindBy(css="li[class*='irctcID']>ul>li>a[href*='eticketing/userSignUp.jsf']")
+	private WebElement lnkAsIndianRes;
+	
+	@FindBy(css="li[class*='EmailID']>ul>li>a[href*='eticketing/userSignUp.jsf']")
+	private WebElement lnkAsNonIndianResStep1;
+	
+	@FindBy(css="li[class*='EmailID']>ul>li>a[href*='eticketing/contact.jsf']")
+	private WebElement lnkAsNonIndianResStep2;
+	
+	@FindBy(css="li[class*='EmailID']>ul>li>a[href*='eticketing/contact.jsf']")
+	private WebElement lnkAsNonIndianResStep3;
+	
+	@FindBy(css=".toasterHolder")
+	private WebElement toaderErrorMsg;
+	
+	@FindBy(css="#coachId")
+	private WebElement txtCoachId;
+	
 	
 	
 	
@@ -143,6 +179,7 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	}
 	@Override
 	protected void isLoaded() {
+		timer.end();
 
 		if (!isPageLoaded) {
 			Assert.fail();
@@ -151,10 +188,14 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, divPaxContainer))) {
 			Log.fail("Train Search Result page didn't open up", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+
 	}
 
 	@Override
 	protected void load() {
+		timer.start();
+
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}
@@ -241,6 +282,15 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 		BrowserActions.scrollToView(btnContinue, driver);
 		BrowserActions.clickOnElement(btnContinue, driver, "Clicked on Continue in Pax Page.");
 		return new TrainReviewPage(driver).get();
+	}
+	
+	/**
+	 * clicked on Continue In paxPage in case we fill invalid details and we are not navigated to review page.
+	 * @throws Exception
+	 */
+	public void clickOnContinueBtnInPaxPage() throws Exception{
+		BrowserActions.scrollToView(btnContinue, driver);
+		BrowserActions.clickOnElement(btnContinue, driver, "Clicked on Continue in Pax Page.");
 	}
 	
 	
@@ -353,6 +403,72 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
          
          
 		}
+	}
+	
+	/**
+	 * to enter the Mobile Number to reset Password 
+	 * @param number
+	 * @throws Exception
+	 */
+	
+	public void enterMobileNmberToRestIrctcPswd(String number) throws Exception{
+		BrowserActions.typeOnTextField(txtMobileIrctcResetPwrd, number, driver, "Entered the mobile number to reset Password.");
+	}
+	
+	/**
+	 * to get error message after adding the invalid number 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getErrorMsgForInvalidMbleNmbr() throws Exception{
+		BrowserActions.clickOnElement(btnResetIrctcPswrd, driver, "Clicked on 'Reset Password' button");
+		return BrowserActions.getText(driver,txtErrorMobileIrctcResetPwrd , "To get the text from the error msg on invalid mobile number.");
+
+	}
+	
+	/**
+	 * to click on 'Create New' Irctc account link
+	 * @throws Exception
+	 */
+	public void clickOnCreateNewIrctcAccLnk() throws Exception{
+		BrowserActions.scrollToView(lnkCreateNewIrctc, driver);
+		BrowserActions.clickOnElement(lnkCreateNewIrctc, driver, "Clicked on 'Create New Account' link.");
+	}
+	
+	/**
+	 * to get the steps for the new Account Creation 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getCreateNewIrctcAccSteps() throws Exception{
+		return BrowserActions.getText(driver,irctcLoginSteps, "Getting text from the Login Steps.");
+	}
+	
+	/**
+	 * to get text from the invalid toader messages that appear after invalid data enteries
+	 * @return
+	 * @throws Exception
+	 */
+	public String getErrorTxtFromTheToader() throws Exception{
+		return BrowserActions.getText(driver, toaderErrorMsg, "Getting Text from the Toader's invalid error messages.");
+	}
+	
+	/**
+	 * to enter the Coach Id in coach id text field
+	 * @param coachId
+	 * @throws Exception
+	 */
+	public void fillCoachId(String coachId) throws Exception{
+		BrowserActions.typeOnTextField(txtCoachId, coachId, driver, "Entered CoachId.");
+	}
+	
+	/**
+	 * to enter the Coach Id in coach id text field
+	 * @param coachId
+	 * @throws Exception
+	 */
+	public void deleteCoachId() throws Exception{
+		txtCoachId.clear();
 	}
 	
 }//TrainTravellerPage

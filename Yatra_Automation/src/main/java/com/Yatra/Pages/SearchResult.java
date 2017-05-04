@@ -21,6 +21,10 @@ import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.BrowserType;
 import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+
+import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
@@ -31,7 +35,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
-	ExecutionTimer timer = new ExecutionTimer();
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Result Page
@@ -66,15 +71,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "p[class='new-blue-button .js-bookNow book-btn relative tc']")
 	private WebElement btnBookNowINT;
 
-	@FindBy(xpath = "//article[@class='full result-card animation-on item-0']//p[@class='new-blue-button .js-bookNow book-btn relative tc']") // div[class='fr
-																																				// pr
-																																				// partial-pay']
-																																				// p:nth-child(1)
-	private WebElement btnBookNowINT_New; //
+	@FindBy(xpath = "//article[@class='full result-card animation-on item-0']//p[@class='new-blue-button .js-bookNow book-btn relative tc']") 
+	private WebElement btnBookNowINT_New; 
 
-	@FindBys({
-
-			@FindBy(css = "div[ng-controller='productFareDetailsController']") })
+	@FindBys({@FindBy(css = "div[ng-controller='productFareDetailsController']") })
 	private List<WebElement> el;
 	private List<WebElement> moduleFareDetails;
 
@@ -545,12 +545,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='one-sixth']")
 	private WebElement txtFareRulesInFlighDeatils;
 
-	@FindBy(css = "div[ng-show='open_ftype'] input[ yatratrackable='Flights|Search|filter - fare_type|refundable']")
+	//@FindBy(css = "div[ng-show='open_ftype'] input[ yatratrackable='Flights|Search|filter - fare_type|refundable']")
+
+	@FindBy(css = "div[ng-show='open_ftype'] li:nth-child(1) span[class='checkbox']")
 	private WebElement chkRefundable;
 
 	@FindBy(xpath = "//div[@class='js-flightRow js-flightItem']//li[@ng-if='flt.ft==1']")
 	private List<WebElement> lstRefundableFlights;
-
+	
 	@FindBy(css = "span[class='rz-pointer']:nth-child(4)")
 	private WebElement AmountSlider;
 
@@ -559,6 +561,33 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "span[class='rz-bubble set-middle']")
 	private WebElement amountSliderAfterChange;
+	
+	@FindBy(xpath = "//div[@class='js-flightRow js-flightItem']//small[@class='fs-sm gray fl ml5 name carrier-name']")
+	private List<WebElement> lstFlightResultGrid;
+	
+	@FindBy(css = "a[class='under-link fr']")
+	private WebElement lnkResetAll;
+	
+	@FindBy(css = "div[class='header-container']")
+	private WebElement lnkHeaders;
+	
+	@FindBy(css = "div[class='full filter-wrapper accordion-wrappper']")
+	private WebElement lnkFilters;
+	
+	@FindBy(css = "div[class='matrix-wrapper day-matrix new-theme day-matrix-responsive']")
+	private WebElement lnkAirlinematrix_OW;
+	
+	@FindBy(css = "div[class='matrix-slide-wrapper has-next-prev matrix-small-screen']")
+	private WebElement lnkAirlinematrix;
+	
+	@FindBy(css = "div[id='resultBoxSlider']")
+	private WebElement lnkResultGrid;
+	
+	@FindBy(css = "div[class='fare-cal-fixed']")
+	private WebElement lnkSetFareAlerts;
+	
+	@FindBy(css = "div[class='footer-beetle-new dom']")
+	private WebElement lnkFooter;
 	
 	@FindBy(css = "div[class='new-gray-button fr']")
 	private WebElement btnBookNowBottom_RT;
@@ -621,13 +650,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		Log.message("Total time taken by #" + this.getClass().getTypeName() + " to load is:- " + timer.duration() + " "
 				+ TimeUnit.SECONDS);
-		// elementLayer = new ElementLayer(driver);
+		elementLayer = new ElementLayer(driver);
 	}
 
 	@Override
 	protected void load() {
 		timer.start();
-		isPageLoaded = true;
+    	isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}// load
 
@@ -2881,6 +2910,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextReturnPrevDaySearch() throws Exception {
+
 		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
 		String prevDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkPrevDay_ReturnLeg, "title",
 				"Prev Day title");
@@ -2901,7 +2931,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 
 	/**
-	 * To click Refundable Checkbox in Fare Type filters
+	 * To click Refundable check box in Fare Type filters
 	 * 
 	 * @throws Exception
 	 */
@@ -2916,17 +2946,133 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	public boolean verifyRefundableFlights() throws Exception {
-		for (int i = 0; i < lstRefundableFlights.size(); i++) {
-			WebElement refundableEle = driver.findElement(
-					By.xpath("(//div[@class='js-flightRow js-flightItem'][" + i + "])//li[@ng-if='flt.ft==1']"));
-			String flightRow = BrowserActions.getText(driver, refundableEle,
-					"Getting txt of the Refundable in flight rows.");
+	/*public boolean verifyRefundableFlights() throws Exception {
+	for (int i = 0; i < lstRefundableFlights.size(); i++) {
+	WebElement refundableEle = driver.findElement(
+	By.xpath("(//div[@class='js-flightRow js-flightItem'][" + i + "])//li[@ng-if='flt.ft==1']"));
+	String flightRow = BrowserActions.getText(driver, refundableEle,"Getting txt of the Refundable in flight rows.");
 			if (flightRow.equalsIgnoreCase("Refundable")) {
 				return true;
 			}
+		BrowserActions.nap(2);		
+		boolean status = false;
+		for (int i = 1; i < lstRefundableFlights.size(); i++) {
+			WebElement refundableEle1 = driver.findElement(By.cssSelector("div[class='js-flightRow js-flightItem']:nth-child("+i+") li[ng-if='flt.ft==1']"));
+			String flightRow = BrowserActions.getText(driver, refundableEle1, "Getting txt of the Refundable in flight rows.");
+			if (flightRow.equalsIgnoreCase("REFUNDABLE")) {
+				status = true;	break;			
+			} else if(!flightRow.equalsIgnoreCase("REFUNDABLE")){
+				status = false;
+			}
 		}
-		return false;
+		return status;
+	}*/
+	/**
+	 * To verify the Refundable flights in Flight Grid
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyRefundableFlight() throws Exception {			
+		boolean status = false;	
+			WebElement refundableEle = driver.findElement(By.cssSelector("div[class='js-flightRow js-flightItem'] li[ng-if='flt.ft==1']"));
+			String flightRow = BrowserActions.getText(driver, refundableEle, "Getting txt of the Refundable in flight rows.");
+			if (flightRow.equalsIgnoreCase("REFUNDABLE")) {
+				status = true;			
+			} else if(!flightRow.equalsIgnoreCase("REFUNDABLE")){
+				status = false;
+			}		
+		return status;
+	}
+	/**
+	 * To verify the Flight name titles in Result Grid
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyFlightNameTitlesInResultGrid(String flghtname) throws Exception {	
+		boolean status = false;
+		for (int i = 1; i < lstFlightResultGrid.size(); i++) {
+			WebElement Ele = driver.findElement(By.xpath("//div[@class='js-flightRow js-flightItem']["+i+"]//small[@class='fs-sm gray fl ml5 name carrier-name']"));
+			String flightName = BrowserActions.getText(driver, Ele, "Getting txt of the Refundable in flight rows.");
+			if (flightName.equalsIgnoreCase(flghtname)) {
+				status = true;				
+			} else if(!flightName.equalsIgnoreCase(flghtname)){
+				status = false;
+				break;
+			}
+		}
+
+		return status;
+	}
+	
+	/**
+	 * To click Reset All in SRP
+	 * 
+	 * @throws Exception
+	 */
+	public void clickResetAll() throws Exception {
+		Utils.waitForElement(driver, lnkResetAll);
+		BrowserActions.clickOnElement(lnkResetAll, driver, "Click Reset All");
+		Utils.waitForPageLoad(driver);
+		Log.event("Click Reset All");
+	}
+	
+	/**
+	 * To verify SRP Menu's for RT
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifySRPMenu(String tripType) throws Exception {
+		boolean status = false;
+		Utils.waitForElement(driver, lnkHeaders);
+		boolean boolHeaders = BrowserActions.isElementPresent(driver, lnkHeaders);
+		boolean boolModifySearch = BrowserActions.isElementPresent(driver, btnModifySearchIcon);
+		boolean boolFilters = BrowserActions.isElementPresent(driver, lnkFilters);		
+		boolean boolResultGrid = BrowserActions.isElementPresent(driver, lnkResultGrid);
+		boolean boolSetFareAlerts = BrowserActions.isElementPresent(driver, lnkSetFareAlerts);
+		boolean boolSahreIntinerary = BrowserActions.isElementPresent(driver, lnkShareItinerary);
+		boolean boolFooter = BrowserActions.isElementPresent(driver, lnkFooter);
+		/*boolean boolAirlineMatrix = BrowserActions.isElementPresent(driver, lnkAirlinematrix);
+		boolean boolPrevDay = BrowserActions.isElementPresent(driver, lnkPrevDay_OnwardLeg);
+		boolean boolNextDay = BrowserActions.isElementPresent(driver, lnkNextDay_OnwardLeg);
+		boolean boolOLL = BrowserActions.isElementPresent(driver, lnkOnwardLFF);
+		boolean boolRLL = BrowserActions.isElementPresent(driver, lnkReturnLFF);*/
+		if (tripType.equals(Constants.C_ONEWAY)) {
+			boolean boolAirlineMatrix_OW = BrowserActions.isElementPresent(driver, lnkAirlinematrix_OW);
+			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix_OW == true && boolResultGrid == true && boolSetFareAlerts == true&& boolSahreIntinerary == true && boolFooter == true) {
+				Log.event("Successfully verified SRP Menu for One Way");
+				status = true;				
+			} else {
+				status = false;
+			}		
+			
+		} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
+			boolean boolAirlineMatrix = BrowserActions.isElementPresent(driver, lnkAirlinematrix);
+			boolean boolOLL = BrowserActions.isElementPresent(driver, lnkOnwardLFF);
+			boolean boolPrevDay = BrowserActions.isElementPresent(driver, lnkPrevDay_OnwardLeg);
+			boolean boolNextDay = BrowserActions.isElementPresent(driver, lnkNextDay_OnwardLeg);
+			boolean boolRLL = BrowserActions.isElementPresent(driver, lnkReturnLFF);
+			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix == true	&& boolPrevDay == true && boolNextDay == true && boolOLL == true && boolRLL == true	&& 
+					boolResultGrid == true && boolSetFareAlerts == true && boolSahreIntinerary == true && boolFooter == true) {
+				Log.event("Successfully verified SRP Menu for Round Trip");
+				status = true;
+			} else {
+				status = false;
+			}
+			
+		} else if (tripType.equals(Constants.C_MULTICITY)) {
+			boolean boolAirlineMatrix = BrowserActions.isElementPresent(driver, lnkAirlinematrix);
+			boolean boolPrevDay = BrowserActions.isElementPresent(driver, lnkPrevDay_OnwardLeg);
+			boolean boolNextDay = BrowserActions.isElementPresent(driver, lnkNextDay_OnwardLeg);
+			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix == true
+					&& boolPrevDay == true && boolNextDay == true && boolResultGrid == true && boolSetFareAlerts == true && boolSahreIntinerary == true && boolFooter == true) {
+				Log.event("Successfully verified SRP Menu for Round Trip");				
+				status = true;
+			} else {
+				status = false;
+			}			
+		}		
+		Utils.waitForPageLoad(driver);
+		return status;
 	}
 
 	/**
