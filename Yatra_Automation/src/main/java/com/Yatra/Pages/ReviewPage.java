@@ -263,8 +263,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnChangeFlight))) {
 			Log.fail("ReviewPage didn't open up", driver);
 		}
-
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+		timer.end();
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
 		
 		// elementLayer = new ElementLayer(driver);
 	}

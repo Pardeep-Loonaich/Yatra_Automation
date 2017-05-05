@@ -77,10 +77,10 @@
 					<configuration>
 						<parallel>methods</parallel>
 						<threadCount>5</threadCount>
-						<outputDirectory>${basedir}/test-output</outputDirectory>
+	
 						<suiteXmlFiles>
 
-							<suiteXmlFile>.\testxml\${SUITE_NAME}</suiteXmlFile>
+							<suiteXmlFile>.\testxml\flightSearch.xml</suiteXmlFile>
 
 						</suiteXmlFiles>
 					</configuration>
@@ -102,6 +102,7 @@
 						<source>${compiler.version}</source>
 						<target>${compiler.version}</target>
 					</configuration>       
+
 </plugin>
 			</plugins>
 		</pluginManagement>
@@ -124,20 +125,4 @@
 			<url>http://www.soapui.org/repository/maven2/</url>
 		</repository>
 	</repositories>
-<reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <!-- select non-aggregate reports -->
-              <report>report</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-    </plugins>
-  </reporting>
 </project>

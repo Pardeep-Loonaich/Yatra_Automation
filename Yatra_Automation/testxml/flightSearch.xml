@@ -11,7 +11,7 @@
 	    <parameter name="webSite" value="https://www.yatra.com/"/>
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch">	
-			<!-- <methods>
+			<!--  <methods>
 			<include name ="TC_Yatra_Flight_001"/>
 			<include name ="TC_Yatra_Flight_002"/>
 		
