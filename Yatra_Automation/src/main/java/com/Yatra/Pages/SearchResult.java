@@ -589,6 +589,21 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='footer-beetle-new dom']")
 	private WebElement lnkFooter;
 	
+	@FindBy(css = "div[id='resultBoxSlider'] a[title= 'Sort By Airline']")
+	private WebElement lnkAirlineColumn;
+	
+	@FindBy(css = "div[id='resultBoxSlider'] a[title= 'Sort By Depart']")
+	private WebElement lnkDepartColumn;
+	
+	@FindBy(css = "div[id='resultBoxSlider'] a[title= 'Sort By Arrive']")
+	private WebElement lnkArriveColumn;
+	
+	@FindBy(css = "div[id='resultBoxSlider'] a[title= 'Sort By Duration']")
+	private WebElement lnkDurationColumn;
+	
+	@FindBy(css = "div[id='resultBoxSlider'] a[title= 'Sort By Price']")
+	private WebElement lnkPriceColumn;
+	
 	@FindBy(css = "div[class='new-gray-button fr']")
 	private WebElement btnBookNowBottom_RT;
 	
@@ -3017,7 +3032,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * To verify SRP Menu's for RT
+	 * To verify SRP Menu's 
 	 * 
 	 * @throws Exception
 	 */
@@ -3083,6 +3098,48 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public void scrollSliderOfFilterAmount(int value) {
 		Actions action = new Actions(driver);
 		action.dragAndDropBy(AmountSlider, value, 0).build().perform();
+	}
+
+	
+	 /* To verify Result Grid Coulmns
+	 * 
+	 * @throws Exception
+	 */
+	public boolean verifyResultGridColumns() throws Exception {
+		boolean status = false;
+		Utils.waitForElement(driver, lnkAirlineColumn);
+		boolean boolAirline = BrowserActions.isElementPresent(driver, lnkAirlineColumn);
+		boolean boolDepart = BrowserActions.isElementPresent(driver, lnkDepartColumn);
+		boolean boolArrive = BrowserActions.isElementPresent(driver, lnkArriveColumn);
+		boolean boolDuration = BrowserActions.isElementPresent(driver, lnkDurationColumn);
+		boolean boolPrice = BrowserActions.isElementPresent(driver, lnkPriceColumn);
+		if (boolAirline == true && boolDepart == true && boolArrive == true && boolDuration == true	&& boolPrice == true) {
+			Log.event("Successfully verified Result Grid Coulmns");
+			status = true;
+		} else {
+			status = false;
+		}
+		Utils.waitForPageLoad(driver);
+		return status;
+	}
+
+	/**
+	 * Getting the text from Passenger class Drop down in Modify Search panel
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> getResultGridColumns() throws Exception {
+		List<String> resultGridCoulmns = new ArrayList<String>();
+		String airline = BrowserActions.getText(driver, lnkAirlineColumn, "Airline Column Text");
+		String depart = BrowserActions.getText(driver, lnkDepartColumn, "Airline Column Text");
+		String arrive = BrowserActions.getText(driver, lnkArriveColumn, "Airline Column Text");
+		String duration = BrowserActions.getText(driver, lnkDurationColumn, "Airline Column Text");
+		String price = BrowserActions.getText(driver, lnkPriceColumn, "Airline Column Text");
+		resultGridCoulmns.add(airline);	resultGridCoulmns.add(depart); resultGridCoulmns.add(arrive);
+		resultGridCoulmns.add(duration); resultGridCoulmns.add(price);
+		Log.event("Result Grid Headers coulmns are : " + resultGridCoulmns);
+		return resultGridCoulmns;
 	}
 
 	/**

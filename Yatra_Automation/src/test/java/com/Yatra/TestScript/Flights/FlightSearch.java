@@ -1664,7 +1664,7 @@ public class FlightSearch extends BaseTest {
 			String recentSearchText = searchResult.getTextRecentSearch();	
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b>User should navigated on SRP and validated the Yatra-Logo and Headers");
+			Log.message("<b>Expected Result:</b>Validated the SRP Header");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon", "lnkYatraLogo"), searchResult),
 					"<b>Actual Result:</b> Yatra logo and Headers are displayed, The Headers title names are My Account is displayed as: <b>: " + myAccountText +"</b>, Support is dispalyed as <b>: " + supportText +"</b>, Special Deals is dispalyed as <b>: " + splDealsText +"</b>, Recent Search is dispalyed as : <b>" + recentSearchText +"</b> ",
@@ -1811,11 +1811,11 @@ public class FlightSearch extends BaseTest {
 			String recentSearchText = searchResult.getTextRecentSearch();	
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Validated the SRP Header for logged in User");
+			Log.message("<b>Expected Result:</b> Validated Yatra logo and logged in User menu items");
 			BrowserActions.nap(3);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon", "lnkYatraLogo"), searchResult),
-					"<b>Actual Result:</b> Yatra logo is displayed and SRP page Headers displayed as UserName is <b>: " + userAcctNametText +"</b>, Support is dispalyed as <b>: " + supportText +"</b>, Special Deals is dispalyed as <b>: " + splDealsText +"</b>, Recent Search is dispalyed as : <b>" + recentSearchText +"</b> ",
-					"<b>Actual Result:</b> Yatra logo and Page Headers are not dsiplayed", driver);
+					"<b>Actual Result:</b> Yatra logo and logged in User menu items are displayed, UserName is <b>: " + userAcctNametText +"</b>, Support is dispalyed as <b>: " + supportText +"</b>, Special Deals is dispalyed as <b>: " + splDealsText +"</b>, Recent Search is dispalyed as : <b>" + recentSearchText +"</b> ",
+					"<b>Actual Result:</b> Yatra logo and logged in User menu items are not dsiplayed", driver);
 		
 			BrowserActions.nap(2);
 			Log.testCaseResult();
@@ -1963,7 +1963,7 @@ public class FlightSearch extends BaseTest {
 			Log.message("<b>Expected Result:</b> Verified Flight count and Flight search duration");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> User should navigated on SearchResult page, and the total flight count is dispalyed as <b>: " + flightCount +"</b>, Flight search durarion is dispalyed as <b>: " + duration +"</b> ",
+					"<b>Actual Result:</b> Successfully verified Flight count and Search duration, and the total Flight Count: <b> " + flightCount +"</b>, Flight search durarion: <b> " + duration +"</b> ",
 					"<b>Actual Result:</b> Not verified Flight count and Flight search duration", driver);
 		
 			Log.testCaseResult();
@@ -2032,8 +2032,8 @@ public class FlightSearch extends BaseTest {
 			Log.message("<b>Expected Result:</b> Validated the Matrix Result finder for OW search");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Source city is dispalyed as <b>: " + sourceCityText +"</b>, Source Date is dispalyed as <b>: " + sourceDateText +"</b> Destination city is dispalyed as <b>: " + destCityText +"</b> ",
-					"<b>Actual Result:</b> Should not displayed Matrix result header with flight icons", driver);
+					"<b>Actual Result:</b> Successfully validated Matrix result, Source city: <b> " + sourceCityText +"</b>, Source Date: <b> " + sourceDateText +"</b> and Destination city:<b> " + destCityText +"</b> ",
+					"<b>Actual Result:</b> Not displayed Matrix results header with flight icons", driver);
 				
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2106,8 +2106,8 @@ public class FlightSearch extends BaseTest {
 			Log.message("<b>Expected Result:</b> Validated the Matrix Result finder for RT search");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> User should navigated on SearchResult page, and the Source city is dispalyed as <b>: " + sourceCityText +"</b>, Source Date is dispalyed as <b>: " + sourceDateText +"</b>, Destination city is dispalyed as <b>: " + destCityText +"</b>, Destination date is dispalyed as <b>: " + destDateText +"</b>" ,
-					"<b>Actual Result:</b> Should not displayed Matrix result header with flight icons" , driver);
+					"<b>Actual Result:</b> Successfully validated Matrix result, and the Source city is dispalyed as <b>: " + sourceCityText +"</b>, Source Date is dispalyed as <b>: " + sourceDateText +"</b>, Destination city is dispalyed as <b>: " + destCityText +"</b>, Destination date is dispalyed as <b>: " + destDateText +"</b>" ,
+					"<b>Actual Result:</b> Not displayed Matrix results header with flight icons" , driver);
 					
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2195,8 +2195,8 @@ public class FlightSearch extends BaseTest {
 			Log.message("<b>Expected Result:</b> Validated the Matrix Result finder for MC search");
 			BrowserActions.nap(3);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> User should navigated on SearchResult page, and the starting Source city is dispalyed as <b>: " + startSourceCityText +"</b>, starting Source Date is dispalyed as <b>: " + startSourceDateText +"</b>, starting Destination city is dispalyed as <b>: " + startDestCityText +"</b>, ending Source city is dispalyed as <b>: " + endSourceCityText +"</b>,  ending Source date is dispalyed as <b>: " + endSourceDateText +"</b>, ending Destination city is dispalyed as <b>: " + endDestCityText +"</b>" ,
-					"<b>Actual Result:</b> Should not displayed Matrix result header with flight icons" , driver);
+					"<b>Actual Result:</b> Successfully validated Matrix result, and the starting Source city: <b>: " + startSourceCityText +"</b>, Source Date:  <b> " + startSourceDateText +"</b>, Destination city: <b> " + startDestCityText +"</b>, and Ending Source city: <b> " + endSourceCityText +"</b>, Source date:<b> " + endSourceDateText +"</b>, Destination city: <b> " + endDestCityText +"</b>" ,
+					"<b>Actual Result:</b> Not displayed Matrix results header with flight icons" , driver);
 		    Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -2337,8 +2337,8 @@ public class FlightSearch extends BaseTest {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected One Way Radio button",	"<b>Actual Result:</b> Not selected One Way Radio button");
-            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City with HP, Orgin City:  <b> "+ destination+ "</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
-            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City with HP, Destination City:  <b> " + origin + "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
+            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Modify Search Origin City, Orgin City:  <b> "+ destination+ "</b>", "<b>Actual Result:</b> Not verified Modify Searcch Origin City");
+            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Modify Search Destination City, Destination City:  <b> " + origin + "</b>","<b>Actual Result:</b> Not verified Modify Search Destination City");
 		    
             //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
            /* String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
@@ -2353,22 +2353,22 @@ public class FlightSearch extends BaseTest {
 			String childText = searchResult.getTextChild_ModifySearch();
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
-					"<b>Actual Result:</b> Successfully verified selected Adult passenger details with HP, Selected Adult is:  <b> " + adult+ "</b>",
-					"<b>Actual Result:</b> Not verified selected Adult passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search Adult passenger details, Selected Adult is:  <b> " + adult+ "</b>",
+					"<b>Actual Result:</b> Not verified Modify Search Adult passenger details</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
-					"<b>Actual Result:</b> Successfully verified selected Child passenger details with HP, Selected Child is:  <b>" +child+ "</b>",
-					"<b>Actual Result:</b> Not verified selected Child passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search Child passenger details, Selected Child is:  <b>" +child+ "</b>",
+					"<b>Actual Result:</b> Not verified Modify Search Child passenger details</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
-					"<b>Actual Result:</b> Successfully verified selected Infant passenger details with HP, Selected Infant is: <b>+ "+ infant + "</b>",
-					"<b>Actual Result:</b> Not verified selected Infant passenger details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search Infant passenger details, Selected Infant is: <b>+ "+ infant + "</b>",
+					"<b>Actual Result:</b> Not verified Modify Search Infant passenger details</b> ", driver);
 			
 			
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClassText.contains(passengerClass),
-					"<b>Actual Result:</b> Successfully verified selected passenger class details with HP, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
-					"<b>Actual Result:</b> Not verified selected passenger class details with HP</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search passenger class details, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
+					"<b>Actual Result:</b> Not verified Modify Search passenger class details</b> ", driver);
 			
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2438,8 +2438,8 @@ public class FlightSearch extends BaseTest {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected Round Trip Radio button",	"<b>Actual Result:</b> Not selected Round Trip Radio button");
-            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Origin City, Orgin City:  <b> "+ destination+ "</b>", "<b>Actual Result:</b> Not verified Origin City with HP");
-            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Destination City, Destination City:  <b> "+ origin+ "</b>","<b>Actual Result:</b> Not verified Destination City with HP");
+            Log.assertThat(originCityText.contains(destination), "<b>Actual Result:</b> Successfully verified Modify Search prefilled Origin City, Orgin City:  <b> "+ destination+ "</b>", "<b>Actual Result:</b> Not verified Modify Search Origin City");
+            Log.assertThat(destCityText.contains(origin), "<b>Actual Result:</b> Successfully verified Modify Search prefilled Destination City, Destination City:  <b> "+ origin+ "</b>","<b>Actual Result:</b> Not verified Modify Search Destination City");
 		    
            //TODO: To change the logic for depart date verification (like 10, 20, 30 dates in moth level)
             /*String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
@@ -2461,21 +2461,21 @@ public class FlightSearch extends BaseTest {
 			String childText = searchResult.getTextChild_ModifySearch();
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
-					"<b>Actual Result:</b> Successfully verified selected Adult passenger details, Selected Adult is:  <b> " + adult+ "</b>",
-					"<b>Actual Result:</b> Not verified selected Adult passenger details</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search prefilled Adult passenger details, Selected Adult is:  <b> " + adult+ "</b>",
+					"<b>Actual Result:</b> Not verified Modify Search prefilled Adult passenger details</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
-					"<b>Actual Result:</b> Successfully verified selected Child passenger details, Selected Child is:  <b> " + child+ "</b>",
-					"<b>Actual Result:</b> Not verified selected Child passenger details</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search prefilled Child passenger details, Selected Child is:  <b> " + child+ "</b>",
+					"<b>Actual Result:</b> Not verified Modify Search prefilled Child passenger details</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
-					"<b>Actual Result:</b> Successfully verified selected Infant passenger details, Selected Infant is:  <b> " + infant+ "</b>",
-					"<b>Actual Result:</b> Not verified selected Infant passenger details</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search prefilled Infant passenger details, Selected Infant is:  <b> " + infant+ "</b>",
+					"<b>Actual Result:</b> Not verified Modify Search prefilled Infant passenger details</b> ", driver);
 					
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClass.contains(passengerClassText),
-					"<b>Actual Result:</b> Successfully verified selected passenger class details, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
-					"<b>Actual Result:</b> Not verified selected passenger class details</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search prefilled passenger class details, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
+					"<b>Actual Result:</b> Not verified Modify Search prefilled passenger class details</b> ", driver);
 					
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2557,8 +2557,8 @@ public class FlightSearch extends BaseTest {
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected Multicity Radio button",	"<b>Actual Result:</b> Not selected Multicity Radio button");
-            Log.assertThat(originCityText.contains(destination1), "<b>Actual Result:</b> Successfully verified Multicity Origin1 City name ", "<b>Actual Result:</b> Not Matched Multicity Origin1 City name with HP Orgin1 name");
-            Log.assertThat(destCityText.contains(origin1), "<b>Actual Result:</b> Successfully verified Multicity Destination1 City name","<b>Actual Result:</b> Not Matched Multicity Destination1 City name with HP Destination1 name");
+            Log.assertThat(originCityText.contains(destination1), "<b>Actual Result:</b> Successfully verified Modify Search prefilled  Origin1 City ", "<b>Actual Result:</b> Not verified Modify Search prefilled  Origin1 City");
+            Log.assertThat(destCityText.contains(origin1), "<b>Actual Result:</b> Successfully verified Modify Search prefilled Destination1  City ","<b>Actual Result:</b> Not verified Modify Search prefilled Multicity City");
 		    
            //TODO: To change the logic for depart1 date verification (like 10, 20, 30 dates in moth level)
            /* String deprtDateText = searchResult.getTextDepartDate_ModifySearch();
@@ -2570,9 +2570,8 @@ public class FlightSearch extends BaseTest {
 			 
 			String originCityText_MC = searchResult.getTextOrigin1_ModifySearch();		
 			String destCityText_MC = searchResult.getTextDestination1_ModifySearch();			
-			//Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected One Way Radio button",	"<b>Actual Result:</b> Not selected One Way Radio button");
-            Log.assertThat(originCityText_MC.contains(destination2), "<b>Actual Result:</b> Successfully verified Multicity Origin2 City name ", "<b>Actual Result:</b> Not Matched Multicity Origin2 City name with HP Orgin2 name");
-            Log.assertThat(destCityText_MC.contains(origin2), "<b>Actual Result:</b> Successfully verified Multicity Destination1 City name","<b>Actual Result:</b> NNot Matched Multicity Destination2 City name with HP Destination2 name");
+            Log.assertThat(originCityText_MC.contains(destination2), "<b>Actual Result:</b> Successfully verified Modify Search prefilled Origin2 City  ", "<b>Actual Result:</b> Not verified Modify Search prefilled Origin2 City");
+            Log.assertThat(destCityText_MC.contains(origin2), "<b>Actual Result:</b> Successfully verified Modify Search prefilled Destination2 City name","<b>Actual Result:</b> Not verified Modify Search prefilled Multicity City");
 		    
            //TODO: To change the logic for depart2 date verification (like 10, 20, 30 dates in moth level)
             /*String deprtDateText_MC = searchResult.getTextDepartDate1_ModifySearch();
@@ -2588,22 +2587,21 @@ public class FlightSearch extends BaseTest {
 			String childText = searchResult.getTextChild_ModifySearch();
 			String infantText = searchResult.getTextInfant_ModifySearch();
 			Log.assertThat(adultText.contains(adult),
-					"<b>Actual Result:</b> Successfully verified selected Adult passenger details, Selected Adult is:  <b> " + adult+ "</b>",
-					"<b>Actual Result:</b> Not verified selected Adult passenger details</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search prefilled Adult passenger details, Selected Adult is:  <b> " + adult+ "</b>",
+					"<b>Actual Result:</b> Not verified Modify Search prefilled Adult passenger details</b> ", driver);
 			
 			Log.assertThat(childText.contains(child),
-					"<b>Actual Result:</b> Successfully verified selected Child passenger details, Selected Child is:  <b> " + child+ "</b>",
-					"<b>Actual Result:</b> Not verified selected Child passenger details</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search prefilled Child passenger details, Selected Child is:  <b> " + child+ "</b>",
+					"<b>Actual Result:</b> Not verified Modify Search prefilled Child passenger details</b> ", driver);
 			
 			Log.assertThat(infantText.contains(infant),
-					"<b>Actual Result:</b> Successfully verified selected Infant passenger details, Selected Infant is:  <b> " + infant+ "</b>",
-					"<b>Actual Result:</b> Not verified selected Infant passenger details</b> ", driver);
-			
-			
+					"<b>Actual Result:</b> Successfully verified selectModify Search prefilleded Infant passenger details, Selected Infant is:  <b> " + infant+ "</b>",
+					"<b>Actual Result:</b> Not verified Modify Search prefilled Infant passenger details</b> ", driver);
+						
 			String passengerClassText = searchResult.getTextPassengerClass_ModifySearch();			
 			Log.assertThat(passengerClassText.contains(passengerClass),
-					"<b>Actual Result:</b> Successfully verified selected passenger class details, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
-					"<b>Actual Result:</b> Not matched selected passenger class details</b> ", driver);
+					"<b>Actual Result:</b> Successfully verified Modify Search prefilled passenger class details, Selected Passenger Class: <b>"+ passengerClassText+ " </b> ",
+					"<b>Actual Result:</b> Not verified Modify Search prefilled passenger class details</b> ", driver);
 						
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -2706,7 +2704,7 @@ public class FlightSearch extends BaseTest {
 			BrowserActions.nap(8);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search",
-					"<b>Actual Result:</b> The Weekly fare Matrix  displayed on the SRP page for RT Search",
+					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
 					driver);
 			
 			Log.testCaseResult();
@@ -2808,8 +2806,8 @@ public class FlightSearch extends BaseTest {
 			Log.message("<b>Expected Result:</b> Validated that for DOM search Class dropdown would not contain First Class option");
 			BrowserActions.nap(2);
 			Log.assertThat(!passengerClassNames.contains("First Class"),
-					"<b>Actual Result:</b> DOM Flights Passenger Class dropdown sholud not contain First Class option</b>, Passenger Class List are : "+ passengerClassNames ,
-					"<b>Actual Result:</b> DOM Flights Passenger Class dropdown sholud contain First Class option</b> Passenger Class List are : " + passengerClassNames , driver);
+					"<b>Actual Result:</b> DOM Flights Passenger Class dropdown sholud not contain First Class option</b>, Passenger Class List are :<b> "+ passengerClassNames +"<b>",
+					"<b>Actual Result:</b> DOM Flights Passenger Class dropdown sholud contain First Class option</b> Passenger Class List are : <b> " + passengerClassNames  +"<b>", driver);
 			
 		   Log.testCaseResult();
 		} catch (Exception e) {
@@ -2859,8 +2857,8 @@ public class FlightSearch extends BaseTest {
 			Log.message("<b>Expected Result:</b> Validated that for INT search Class dropdown contain First Class option");
 			BrowserActions.nap(2);
 			Log.assertThat(passengerClassNames.contains("First Class"),
-					"<b>Actual Result:</b> INT Flights Passenger Class dropdown sholud contain First Class option</b>, Passenger Class List are : "+ passengerClassNames ,
-					"<b>Actual Result:</b> INT Flights Passenger Class dropdown sholud not contain First Class option</b> Passenger Class List are : " + passengerClassNames , driver);
+					"<b>Actual Result:</b> INT Flights Passenger Class dropdown sholud contain First Class option</b>, Passenger Class List are :<b>  "+ passengerClassNames +"<b>",
+					"<b>Actual Result:</b> INT Flights Passenger Class dropdown sholud not contain First Class option</b> Passenger Class List are :<b> " + passengerClassNames+"<b>" , driver);
 			
 		   Log.testCaseResult();
 		} catch (Exception e) {
@@ -2904,7 +2902,7 @@ public class FlightSearch extends BaseTest {
 			BrowserActions.nap(12);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated the Airline Matrix");
-			Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> 'All Airlines' option should appear with by deafult selection ", "<b>Actual Result:</b> 'All Airlines' option should not appear with by deafult selection", driver);
+			Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> 'All Airlines' option should appear with deafult selection ", "<b>Actual Result:</b> 'All Airlines' option should not appear with deafult selection", driver);
 			List<String> airlineMatrixFareDetails = searchResult.getAirlineMatrixFareDetails();	
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
 					"<b>Actual Result:</b> Airline Matrix flights arranged to increasing orderwise fare: <b>"+ airlineMatrixFareDetails + "</b>",
@@ -3161,7 +3159,7 @@ public class FlightSearch extends BaseTest {
 			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
 
 
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
 
@@ -3595,8 +3593,8 @@ public class FlightSearch extends BaseTest {
 				List<String> airlineNames = searchResult.getAirlineNamesInMatrix();				
 				List<String> airlineMatrixFareDetails = searchResult.getAirlineMatrixFareDetails();	
 				Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
-						"<b>Actual Result:</b> Airline Names: <b>"+ airlineNames + "</b>, and lowest fare of respective Airlines <b>"+ airlineMatrixFareDetails + "</b> on Airline Matrix in Search Result page ",
-						"<b>Actual Result:</b> Airline Names and lowest fare of respective Airlines is not displayed on Airline Matrix in Search Result page", driver);
+						"<b>Actual Result:</b> Airline Matrix flights arranged to increasing lowest fare orderwise, Airline Names: <b>"+ airlineNames + "</b>, and lowest fare of respective Airlines <b>"+ airlineMatrixFareDetails + "</b>",
+						"<b>Actual Result:</b> Airline Matrix flights not arranged to increasing lowest fare orderwise", driver);
 				
 				Log.testCaseResult();
 			} catch (Exception e) {
@@ -4432,8 +4430,8 @@ public class FlightSearch extends BaseTest {
 				Log.message("<br>");
 				Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for OneWay(OW) search");
 				BrowserActions.nap(2);
-				Log.assertThat(searchResult.verifySRPMenu(tripType), "<b>Actual Result:</b> SRP Page should appeared with Header, Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer",
-						"<b>Actual Result:</b> SRP Page should not appeared with Header, Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer", driver);
+				Log.assertThat(searchResult.verifySRPMenu(tripType), "<b>Actual Result:</b> SRP Page should appeared with <b>Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers",
+						"<b>Actual Result:</b> SRP Page should not appeared with <b> Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers", driver);
 				Log.testCaseResult();
 			} catch (Exception e) {
 				Log.exception(e);
@@ -4498,8 +4496,8 @@ public class FlightSearch extends BaseTest {
 				Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for Round Trip(RT) search");
 				BrowserActions.nap(2);
 				Log.assertThat(searchResult.verifySRPMenu(tripType),
-						"<b>Actual Result:</b> SRP Page should appeared with Header, Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer",
-						"<b>Actual Result:</b> SRP Page should not appeared with Header, Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer", driver);
+						"<b>Actual Result:</b> SRP Page should appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers",
+						"<b>Actual Result:</b> SRP Page should not appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer headers </b>", driver);
 				Log.testCaseResult();
 			} catch (Exception e) {
 				Log.exception(e);
@@ -4575,9 +4573,8 @@ public class FlightSearch extends BaseTest {
 				Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for MultiCity(MC) search ");
 				BrowserActions.nap(2);
 				Log.assertThat(searchResult.verifySRPMenu(tripType),
-						"<b>Actual Result:</b> SRP Page should appeared with Header, Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer",
-						"<b>Actual Result:</b> SRP Page should not appeared with Header, Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer",
-						driver);
+						"<b>Actual Result:</b> SRP Page should appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer</b> headers",
+						"<b>Actual Result:</b> SRP Page should not appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer</b> headers", driver);
 
 				Log.testCaseResult();
 			} catch (Exception e) {
@@ -4588,5 +4585,51 @@ public class FlightSearch extends BaseTest {
 			}
 		}
 
+		
+		@Test( description = "Validate that Column Headers present in the Result Grid", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_Flight_052(HashMap<String, String> testData) throws Exception {
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));		
+			String browser = testData.get("browser");
+			String origin = testData.get("Origin");
+			String tripType = testData.get("TripType");
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");			
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+				
+				//step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
+
+				//step: select OneWay Search fields in HomePage
+				homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+				Log.message("3.Successfully selected OneWay Flight Search Fields!");
+
+				//step: click 'Search' button in Yatra Home page
+				searchResult = homePage.clickBtnSearch();
+				Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");				
+				
+				List<String> resultGridColumns = searchResult.getResultGridColumns();
+				BrowserActions.nap(2);					
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Validate that Column Headers present in the Result Grid");
+				Log.assertThat(searchResult.verifyResultGridColumns(), "<b>Actual Result:</b> Successfully Validated Result Grid Column Headers, Column names are: <b>" + resultGridColumns +"</b>", "<b>Actual Result:</b> Not validated Result Grid Column Headers", driver);
+				
+			    Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+		
 // ********************************End of Test cases ***************************************************************************************
 } //FlightSearch

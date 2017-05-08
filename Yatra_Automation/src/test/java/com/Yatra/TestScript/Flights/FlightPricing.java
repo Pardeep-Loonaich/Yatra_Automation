@@ -1,3 +1,4 @@
+
 package com.Yatra.TestScript.Flights;
 
 import java.util.Arrays;
@@ -23,7 +24,7 @@ import com.Yatra.Pages.PaymentPage;
 import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Pages.TravellerPage;
-import com.Yatra.TestScript.Common.BaseTest;
+import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -32,7 +33,7 @@ import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
-public class FlightPricing extends BaseTest{
+public class FlightPricing {
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	HomePage homePage;
@@ -91,12 +92,12 @@ public class FlightPricing extends BaseTest{
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check to price calculation for DOM flight-one way.");
-			Thread.sleep(5000);
-
+			BrowserActions.nap(2);
+			reviewPage.popUpAppear();
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareDetails"), reviewPage),
 					"<b>Actual Result:</b> The Fare details module is displayed on Review Page.",
 					"<b>Actual Result:</b> The Fare details module is not displayed on Review Page.", driver);
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -144,22 +145,22 @@ public class FlightPricing extends BaseTest{
 			// clicked on book now
 			reviewPage = searchResult.clickOnBookNowInRound(1, 2, 2, 7);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
 
 			// clicked on fees & surcharge link
 			reviewPage.clickOnFeeSurchrgeLink();
-			Log.message("6.Clicked on 'Fees & Surcharge' details link in Review Page.");
+			Log.message("6.Clicked on 'Fees & Surcharge' details link in Review Page.");			
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Fees & Surcharge details as Signed User should be displayed after clicking on Fees & Surcharge Link in Fare Details module.");
-
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFeeSurchrge"), reviewPage),
 					"<b>Actual Result:</b> The Fare details module is displayed on Review Page.",
 					"<b>Actual Result:</b> The Fare details module is not displayed on Review Page.", driver);
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -208,8 +209,9 @@ public class FlightPricing extends BaseTest{
 			// clicked on book now button
 			reviewPage = searchResult.clickOnBookNowInOneWay(3);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
 
@@ -218,16 +220,15 @@ public class FlightPricing extends BaseTest{
 
 			reviewPage.clickOnExistingUser();
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
-			Log.message("7.Successfully Logged in Yatra account!");
+			Log.message("7.Successfully Logged in Yatra account!");			
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Travel Assistance and Insurance amount should be inculded in the Fare Detail.");
-
 			Log.assertThat(travellerPage.getTextFromFareDetails().contains("Travel Assistance and Insurance"),
 					"<b>Actual Result:</b> Travel Assistance and Insurance amount included in the Fare details and is displayed as:",
 					"<b>Actual Result:</b> Travel Assistance and Insurance amount not included in the Fare details",
 					driver);
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -274,10 +275,11 @@ public class FlightPricing extends BaseTest{
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
 			// clicked on book now button in one way
-			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			reviewPage = searchResult.clickOnBookNowInOneWay(3);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
 
@@ -291,11 +293,9 @@ public class FlightPricing extends BaseTest{
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Travel Assistance and Insurance amount should be inculded in the Fare Detail.");
 
-			Log.assertThat(travellerPage.verifyInsuranceCheckbox()
-							&& travellerPage.getTextFromFareDetails().contains("Travel Assistance and Insurance"),
+			Log.assertThat(travellerPage.verifyInsuranceCheckbox()	&& travellerPage.getTextFromFareDetails().contains("Travel Assistance and Insurance"),
 					"<b>Actual Result:</b> Insurance checkbox is checked and Travel Assistance and Insurance amount is included in the Fare Details. ",
-					"<b>Actual Result:</b> Insurance checkbox is not checked and the Travel Assistance and Insurance amount is not displayed in Fare Details.",
-					driver);
+					"<b>Actual Result:</b> Insurance checkbox is not checked and the Travel Assistance and Insurance amount is not displayed in Fare Details.",	driver);
 
 			// clicked on Insurance
 			travellerPage.uncheckingInsuranceCheckbox();
@@ -303,9 +303,8 @@ public class FlightPricing extends BaseTest{
 
 			Log.assertThat(!travellerPage.verifyInsuranceCheckbox()	&& (!travellerPage.getTextFromFareDetails().contains("Travel Assistance and Insurance")),
 					"<b>Actual Result:</b> Insurance checkbox is unchecked and Travel Assistance and Insurance amount not included in the Fare Details. ",
-					"<b>Actual Result:</b> Insurance checkbox is not unchecked and the Travel Assistance and Insurance amount is displayed in Fare Details.",
-					driver);
-
+					"<b>Actual Result:</b> Insurance checkbox is not unchecked and the Travel Assistance and Insurance amount is displayed in Fare Details.", driver);
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -339,23 +338,24 @@ public class FlightPricing extends BaseTest{
 
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-			Thread.sleep(5000);
+			BrowserActions.nap(2);
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 
 			// step: Click on 'Book Now' button in Yatra Home page
-			ReviewPage reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(1);
 			Log.message("4.Clicked on 'Book Now' button in Search Result Page ");
-			Thread.sleep(5000);
+			reviewPage.popUpAppear();
+			BrowserActions.nap(2);
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check Change Flight link.");
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> The Change Flight link is displayed on Review page.",
 					"<b>Actual Result:</b> The Change Flight link is not displayed on Review Page.", driver);
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -390,23 +390,22 @@ public class FlightPricing extends BaseTest{
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully selected OneWay Flight Search Fields ");
-			Thread.sleep(5000);
+			BrowserActions.nap(2);
 
 			// step: click 'Search' button in Yatra Home page
-			searchResult = homePage.clickBtnSearch();
-			// Thread.sleep(5000);
+			searchResult = homePage.clickBtnSearch();		
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
 
-			ReviewPage reviewPage = searchResult.clickOnBookNowINT();
+			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
-			Thread.sleep(5000);
+			reviewPage.popUpAppear();	
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check Change Flight link.");
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> The Change Flight link is displayed on Review page.",
 					"<b>Actual Result:</b> The Change Flight link is not displayed on Review Page.", driver);
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -441,27 +440,27 @@ public class FlightPricing extends BaseTest{
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully selected OneWay Flight Search Fields ");
-			Thread.sleep(5000);
-
+			
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
+			
 
 			// step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
+			reviewPage.popUpAppear();
 
 			// step: Click on 'Promo Drop Down' in Review page
 			reviewPage.clickOnPromoDrpDwn();
 			Log.message("6. Clicked  on 'Promo Drop Down' in Review page");
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Check Promo Code Dropdown.");
-
+			Log.message("<b>Expected Result:</b> Check Promo Code Dropdown");
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("fldContentpromo"), reviewPage),
-					"<b>Actual Result:</b> Promo Code Dropdown is displayed on Review page.",
-					"<b>Actual Result:</b> Promo Code Dropdown is not displayed on Review Page.", driver);
-
+					"<b>Actual Result:</b> Promo Code Dropdown is displayed on Review page",
+					"<b>Actual Result:</b> Promo Code Dropdown is not displayed on Review Page", driver);
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -496,7 +495,7 @@ public class FlightPricing extends BaseTest{
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully selected OneWay Flight Search Fields ");
-			Thread.sleep(5000);
+			BrowserActions.nap(5);
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
@@ -505,11 +504,12 @@ public class FlightPricing extends BaseTest{
 			// step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
+			reviewPage.popUpAppear();
 
 			// step: Click on 'Promo Drop Down' in Review page and select Promo Coupon
 			reviewPage.clickOnPromoCoupon();
 			Log.message("6. Clicked  on 'Promo Drop Down' in Review page and selected coupon");
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -548,11 +548,12 @@ public class FlightPricing extends BaseTest{
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("5.Successfully clicked 'Search' in Yatra Homepage ");
-			Thread.sleep(4000);
+			BrowserActions.nap(4);
 
 			// step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
+			reviewPage.popUpAppear();
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("lnkHavePromoCode"), reviewPage),
 					"<b>Actual Result:</b> Hava a Promo code link is displayed on Review page.",
@@ -561,7 +562,7 @@ public class FlightPricing extends BaseTest{
 			// step: Click on 'Have a coupon' link in Review page
 			reviewPage.clickOnHavePromoCode();
 			Log.message("6.Clicked on 'Have a Promo Code' link in Review Page ");
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -596,7 +597,7 @@ public class FlightPricing extends BaseTest{
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully selected OneWay Flight Search Fields ");
-			Thread.sleep(5000);
+			BrowserActions.nap(2);
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
@@ -605,6 +606,7 @@ public class FlightPricing extends BaseTest{
 			// step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
+			reviewPage.popUpAppear();
 
 			/*
 			 * Click on 'Promo Drop Down' in Review page and select Promo Coupon
@@ -613,7 +615,7 @@ public class FlightPricing extends BaseTest{
 			 */
 			reviewPage.getPromoCode();
 			Log.message("6.Successfully Applied the Promo Code.");
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -680,27 +682,24 @@ public class FlightPricing extends BaseTest{
 			searchResult = homePage.clickBtnSearch();
 			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> User should navigated on SearchResult page with DOM-Multicity flight result",
-					"<b>Actual Result:</b> User not navigated on SearchResult page with DOM-Multicity flight result",
-					driver);
+					"<b>Actual Result:</b> User not navigated on SearchResult page with DOM-Multicity flight result", driver);
 
 			reviewPage = searchResult.clickOnBookNowInMulticity(1, 1, 2, 4);
 			Log.message("12.Clicked on 'Book Now' button in Search Result Page ");
-
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
-					"<b>Actual Result:</b> Successfully navigated on Review Page.",
-					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
-
 			reviewPage.popUpAppear();
+
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",	"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+			
 			// clicked on fees & surcharge link
 			reviewPage.clickOnFareRulesLink();
 			Log.message("13.Clicked on 'Fare Rules' details link in Review Page.");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Fare Rules popup as Signed User should be displayed after clicking on View Fare Rules Link in Fare Details module.");
-
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareRules"), reviewPage),
 					"<b>Actual Result:</b> The Fare Rules module is displayed on Review Page.",
 					"<b>Actual Result:</b> The Fare Rules module is not displayed on Review Page.", driver);
@@ -749,17 +748,16 @@ public class FlightPricing extends BaseTest{
 			searchResult = homePage.clickBtnSearch();
 			Log.message("5.Clicked on 'Search' in Yatra Homepage.");
 
-			Thread.sleep(6000);
+			BrowserActions.nap(2);
 			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
-					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.", "<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(3);
+			reviewPage.popUpAppear();
 			Log.message("6.Clicked on 'Book Now' button in Search Result Page.");
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
-					"<b>Actual Result:</b> Successfully navigated on Review Page.",
-					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",	"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
 
 			// clicke on continue button
 			reviewPage.clickOnContinue();
@@ -785,16 +783,12 @@ public class FlightPricing extends BaseTest{
 			Log.message("<b>Expected Result:</b> Ecash should be applied and balance amount should be deducted from the total payment under Payment method.");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("msgEcashRedeem"), paymentPage),
 					"<b>Actual Result1:</b> Ecash is applied successfully and the message is displayed under Payment method."
-							+ paymentPage.getMsgFromEcashRedeemSuccess(),
-					"<b>Actual Result1:</b> Ecash is not applied and the message is not displayed under Payment method.",
-					driver);
+					+ paymentPage.getMsgFromEcashRedeemSuccess(), "<b>Actual Result1:</b> Ecash is not applied and the message is not displayed under Payment method.",	driver);
 
 			Log.assertThat(	paymentPage.elementLayer.verifyPageElements(Arrays.asList("msgEcashRedeemBalance"), paymentPage),
 					"<b>Actual Result2:</b> Balance is successfully deducted and the message is displayed under Payment method."
-							+ paymentPage.getMsgFromEcashBalanceDeduction(),
-					"<b>Actual Result2:</b> Balance is not deducted and the message is not displayed under Payment method.",
-					driver);
-
+					+ paymentPage.getMsgFromEcashBalanceDeduction(), "<b>Actual Result2:</b> Balance is not deducted and the message is not displayed under Payment method.",	driver);
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -839,16 +833,14 @@ public class FlightPricing extends BaseTest{
 			Log.message("4.Clicked on 'Search' in Yatra Homepage.");
 
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
-					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.",
-					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
+					"<b>Actual Result:</b> Successfully navigated to SearchResult Page.", "<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(3);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page.");
-
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChngeFlight"), reviewPage),
-					"<b>Actual Result:</b> Successfully navigated on Review Page.",
-					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
+			reviewPage.popUpAppear();
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
+					"<b>Actual Result:</b> Successfully navigated on Review Page.",	"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
 
 			// clicke on continue button
 			reviewPage.clickOnContinue();
@@ -875,9 +867,8 @@ public class FlightPricing extends BaseTest{
 			Log.assertThat(	paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnRedeemNow"), paymentPage)
 							&& (!paymentPage.getTextFromPaymentDetailsModule().contains("eCash Redeemed")),
 					"<b>Actual Result1:</b> Ecash Redeem is cancelled and is not displayed under Payment method.",
-					"<b>Actual Result1:</b> Ecash is applied and the message is displayed under Payment method.",
-					driver);
-
+					"<b>Actual Result1:</b> Ecash is applied and the message is displayed under Payment method.", driver);
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
