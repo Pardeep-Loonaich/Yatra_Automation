@@ -4770,58 +4770,6 @@ public class FlightSearch {
 			}
 		}
 		
-		@Test( description = "Validating the Pax Details section on Modify Search pop up", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-		public void TC_Yatra_Flight_023(HashMap<String, String> testData) throws Exception {
-			Utils.testCaseConditionalSkip(testData.get("RunMode"));		
-			String browser = testData.get("browser");
-			String origin = testData.get("Origin");
-			String tripType = testData.get("TripType");
-			String destination = testData.get("Destination");
-			String departureDate = testData.get("DepartureDate");
-			String returnDate = testData.get("ReturnDate");
-			String passengerInfo = testData.get("PassengerInfo");
-			String passengerClass = testData.get("Class");
-
-			// Get the web driver instance
-			final WebDriver driver = WebDriverFactory.get(browser);
-			Log.testCaseInfo(testData);
-			try {
-				// step: Navigate to Yatra Home Page
-				homePage = new HomePage(driver, webSite).get();
-				Log.message("1. Navigated to 'Yatra' Home Page!");
-
-				// step: Select Trip Type
-				homePage.selectTripType(tripType);
-				Log.message("2.Successfully clicked 'Round Trip' option in search Home Page ");
-
-				// step: select RoundTrip Flight Search fields
-				homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
-				Log.message("3.Successfully filled the search details for 'Round Trip' trip.");
-
-				//step: click 'Search' button in Yatra Home page
-				searchResult = homePage.clickBtnSearch();
-				Log.message("4.Successfully clicked 'Search' in Yatra Homepage");	
-				
-				// step: click 'Search' button in Yatra Home page
-				searchResult.clickModifySearch(); 
-				Log.message("5.Successfully clicked 'Modify Search' link in SRP ");	
-				
-				String adultDetails = searchResult.getTextAdultDetails_ModifySearch();
-				System.out.println(adultDetails);
-				
-				BrowserActions.nap(2);					
-				Log.message("<br>");
-				Log.message("<b>Expected Result:</b> Validated the Pax Details section on Modify Search pop up");
-				Log.assertThat((searchResult.verifySelectedFlightInCurrentSelectionBox("Onward") && searchResult.verifySelectedFlightInCurrentSelectionBox("Return")), "<b>Actual Result:</b> Selected flights should be marked on flight listing", 
-						       "<b>Actual Result:</b> Selected flights should not be marked on flight listing", driver);
-				
-			    Log.testCaseResult();
-			} catch (Exception e) {
-				Log.exception(e);
-			} finally {
-				driver.quit();
-				Log.endTestCase();
-			}
-		}
+		
 // ********************************End of Test cases ***************************************************************************************
 } //FlightSearch

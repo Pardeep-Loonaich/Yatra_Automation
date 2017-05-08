@@ -3321,7 +3321,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}	
 	
 	
-	
 // *******************************End of SRP Functions***********************************/
 
 } // SearchResult
