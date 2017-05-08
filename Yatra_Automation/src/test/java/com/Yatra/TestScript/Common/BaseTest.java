@@ -1,6 +1,7 @@
 package com.Yatra.TestScript.Common;
 import org.testng.ITest;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
 import org.testng.Reporter;
 
 import java.lang.reflect.Method;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import com.Yatra.Utils.ExtentReporter;
@@ -67,5 +69,18 @@ public class BaseTest implements ITest{
 		}
 		
 		return dataTobereturn;
+	}
+	
+	/**
+	 * @Description: it will execute after mail after every test case <br>
+	 * 
+	 * @param result
+	 */
+	@AfterMethod
+	public void  afterTestExecutor(ITestResult result)
+	
+	{
+		
+		
 	}
 }
