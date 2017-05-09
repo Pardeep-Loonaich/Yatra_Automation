@@ -337,6 +337,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public SearchResult clickBtnSearch() throws Exception {		
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 		Utils.waitForPageLoad(driver);
+		BrowserActions.nap(5);
 		return new SearchResult(driver).get();
 
 	}
@@ -714,14 +715,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public void selectRoundTripFlightSearchFields(String origin, String destination, String departureDate,	String returnDate, String passengerInfo, String passengerClass) throws Exception {
-		// selectRoundTrip();
 		BrowserActions.nap(2);
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
 		selectDepartureDate(departureDate); // select Departure Date
 		selectReturnDate(returnDate); // select Return Date
-		specifyPassengerInfo(passengerInfo); // select Passengers details
-		// (Adult, Child, Infant)
+		specifyPassengerInfo(passengerInfo); // select Passengers details (Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
 		BrowserActions.nap(3);
 		clickDoneButtonInPassengerBox(); // click Done button
@@ -754,20 +753,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
-		Utils.waitForElement(driver, dateDeparture);
-
-		//Utils.waitForElement(driver, calenderDeptdate);
+		Utils.waitForElement(driver, dateDeparture);		
 		BrowserActions.clickOnElement(dateDeparture, driver, "clicking on departure date icon..");
 		selectMonth.get(month - 2).click();
-
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")));
 		Utils.waitForPageLoad(driver, 7);
-		driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")).click();
-
-		//List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		//Utils.waitForElement(driver, datePicker.get(0), 5);
-		//datePicker.get(0).click();
-
+		driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")).click();		
 		Log.event("Selected Departure Date: " + date + "(YYYY/MM/DD)");
 		return date;
 	}
@@ -788,10 +779,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.clickOnElement(dateReturn, driver, "clicking on return date icon");
 		selectMonth.get(month - 2).click();
 		Utils.waitForPageLoad(driver, 15); 
+		BrowserActions.nap(2);
 		driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")).click();
-
-		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		datePicker.get(0).click();*/
 		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
