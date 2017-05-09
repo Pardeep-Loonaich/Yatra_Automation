@@ -287,6 +287,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(xpath = "/html/body//*[@class='close close-icon']//*[@class='wewidgeticon we_close']")
 	private WebElement btnCloseIframeNotification;
+	
+	@FindBy(css = "a[id='webklipper-publisher-widget-container-notification-close-div']")
+	private WebElement btnCloseIframeNotification_Double;
+
 
 	@FindBy(css = "label[id*='fare']")
 	private WebElement fldContentFare;
@@ -780,7 +784,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		 closeINotificationAtTopSRP();
+		 closeINotificationAtTopSRP(); 
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
 				+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
@@ -1726,16 +1730,17 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	public void closeINotificationAtTopSRP() throws Exception {
-		// boolean boolFrameNotification = BrowserActions.isElementPresent(driver, iFrameNotification);
-		if (driver.findElements(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"))
-				.size() > 0) {
-			WebElement iFrameNotification = driver
-					.findElement(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"));
-			BrowserActions.switchToIframe(driver, iFrameNotification);
+
+	public void closeINotificationAtTopSRP() throws Exception {		
+		WebElement offerPopup= driver.findElement(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"));
+		if (BrowserActions.isElementPresent(driver, offerPopup) == true) {
+			BrowserActions.switchToIframe(driver, offerPopup);
 			BrowserActions.nap(2);
-			BrowserActions.clickOnElement(btnCloseIframeNotification, driver,
-					"Button to close Iframe Notification at top on SRP");
+			if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true){
+				BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
+			}else if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification_Double) == true){
+				BrowserActions.clickOnElement(btnCloseIframeNotification_Double, driver, "Button to close Iframe Notification at Left side bottom on SRP");
+			}		
 			BrowserActions.switchToDefault(driver);
 		} else {
 			Log.event("Not displayed Iframe Notification at top on SRP ");
