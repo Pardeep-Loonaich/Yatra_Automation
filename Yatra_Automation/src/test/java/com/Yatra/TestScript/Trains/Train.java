@@ -2,6 +2,8 @@ package com.Yatra.TestScript.Trains;
 
 
 
+import java.util.ArrayList;
+
 //-----------------------------------------------------------------------------------------------------------
 //Description    :   All the Train module test Cases would be designed in this class 
 //Creator        :   Aspire Team
@@ -11,7 +13,9 @@ package com.Yatra.TestScript.Trains;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Set;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
@@ -416,10 +420,11 @@ public class Train {
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			 
-			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindBus"), trainSearchResult),
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"), trainSearchResult),
 					"<b>Actual Result:</b> Successfully navigated to 'Train Search' page.",
 					"<b>Actual Result:</b> Unable to navigate to 'Train Search' page.", driver);
 
+			trainSearchResult.selectTrainByIndex(1);
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify that select bus option should display in case of no seat available..");
@@ -647,9 +652,20 @@ public class Train {
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			
+			Thread.sleep(2000);
+			String winHandleBefore = driver.getWindowHandle();
+			// Perform the click operation that opens new window
 			trainSearchResult.clickingOnFindBusButton(1);
 			Log.message("4.Clicked on 'FindBus' button.");
+			
 
+			Set<String> handles = driver.getWindowHandles(); 
+			for(String winHandle : handles){
+				if(!winHandle.equals(winHandleBefore)){
+					driver.switchTo().window(winHandle);
+					break;
+				}
+			}
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify after clicking on FindBus button page should redirect to Bus SRP with same sectors .");
@@ -1156,6 +1172,7 @@ public class Train {
 			trainTravellerPage = trainSearchResult.clickOnContinue();
 			Log.message("5.Clicked on 'Continue' button.");
 
+			Thread.sleep(1000);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify for FB login also(Verifying FB Link only).");
         	Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("lnkFB"),trainTravellerPage ),
@@ -1911,7 +1928,7 @@ public class Train {
 			Log.message("9.Entered invalid CoachId on PaxPage.");
 
 		    trainTravellerPage.clickOnContinueBtnInPaxPage();
-			Log.message("10.Clicking on 'Continue' in PaxPage.");
+			Log.message("10.Clicking on 'Continue' on PaxPage.");
 			
 			String msg = trainTravellerPage.getErrorTxtFromTheToader();
 
@@ -1922,10 +1939,10 @@ public class Train {
 					"<b>Actual Result:</b> Navigated to Review Page with an invalid coach ID.", driver);
         	
 		    trainTravellerPage.deleteCoachId();
-			Log.message("11.Deleted Entered CoachId in PaxPage.");
+			Log.message("11.Deleted Entered CoachId on PaxPage.");
 
 		    trainTravellerPage.clickOnContinueBtnInPaxPage();
-			Log.message("12.Clicking on 'Continue' in PaxPage.");
+			Log.message("12.Clicking on 'Continue' on PaxPage.");
 			
 			String msg1 = trainTravellerPage.getErrorTxtFromTheToader();
 
@@ -1999,10 +2016,10 @@ public class Train {
 			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
 
 			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
-			Log.message("11.Clicking on 'Continue' in PaxPage.");
+			Log.message("11.Clicking on 'Continue' on PaxPage.");
 			
 			trainTravellerPage = trainReviewPage.clickOnModifyTraveller();
-			Log.message("12.Clicking on 'Modify Traveller' in ReviewPage.");
+			Log.message("12.Clicking on 'Modify Traveller' on ReviewPage.");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify after clicking on Modify traveller button in Review Page,should redirect back to Pax page.");
@@ -2077,7 +2094,7 @@ public class Train {
 			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
 
 			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
-			Log.message("11.Clicking on 'Continue' in PaxPage.");
+			Log.message("11.Clicking on 'Continue' on PaxPage.");
 			
 			String infoTrain = trainReviewPage.getTripInfo();
 			String infoPax = trainReviewPage.getPaxInfo();
@@ -2153,10 +2170,10 @@ public class Train {
 			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
 
 			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
-			Log.message("11.Clicking on 'Continue' in PaxPage.");
+			Log.message("11.Clicking on 'Continue' on PaxPage.");
 			
 			trainSearchResult = trainReviewPage.clickOnModifyIternary();
-			Log.message("12.Clicking on 'Modify Iternary' in ReviewPage.");
+			Log.message("12.Clicking on 'Modify Iternary' on ReviewPage.");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify after clicking on Modify Iternary button in Review Page,should redirect to TrainSearch page.");
@@ -2230,7 +2247,7 @@ public class Train {
 			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
 
 			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
-			Log.message("11.Clicking on 'Continue' in PaxPage.");
+			Log.message("11.Clicking on 'Continue' on PaxPage.");
 			
 			String time = trainReviewPage.getTimeFromStrip();
 			
@@ -2239,6 +2256,258 @@ public class Train {
         	Log.assertThat(trainReviewPage.elementLayer.verifyPageElements(Arrays.asList("timeStrip"),trainReviewPage ),
 					"<b>Actual Result:</b> Strip showing time session is displayed and the time displayed is '"+time+"' minutes.",
 					"<b>Actual Result:</b> Strip showing time session is not displayed.", driver);
+
+			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Check for all payment options.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_045(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String mobile = testData.get("MobileNumber");
+		String irctcId = testData.get("IRCTC_ID");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsGuestUser(email, mobile);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(irctcId);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+			trainTravellerPage.fillTravellerDetails();
+			Log.message("8.Filling traveller details on PaxPage.");
+
+			trainTravellerPage.clickToAcceptInsurance();
+			Log.message("9.Clicking on 'Accept' Travel Insurance checkbox.");
+
+			trainTravellerPage.checkBookingPolicy();
+			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
+
+			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
+			Log.message("11.Clicking on 'Continue' on PaxPage.");
+			
+			paymentPage = trainReviewPage.continueInReviewIternary();
+			Log.message("12.Clicking on 'Continue' on ReviewPage.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify for all payment options.");
+        	Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("lstPaymentMetod"),paymentPage ),
+					"<b>Actual Result:</b> All the payment options are displayed on PaymentPage.",
+					"<b>Actual Result:</b> All the payment options are not displayed on PaymentPage.", driver);
+
+			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
+	@Test(groups = { "desktop" }, description = "Check for eWallet div.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_047(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String mobile = testData.get("MobileNumber");
+		String irctcId = testData.get("IRCTC_ID");
+		String paymentType = testData.get("PaymentType");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsGuestUser(email, mobile);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(irctcId);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+			trainTravellerPage.fillTravellerDetails();
+			Log.message("8.Filling traveller details on PaxPage.");
+
+			trainTravellerPage.clickToAcceptInsurance();
+			Log.message("9.Clicking on 'Accept' Travel Insurance checkbox.");
+
+			trainTravellerPage.checkBookingPolicy();
+			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
+
+			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
+			Log.message("11.Clicking on 'Continue' on PaxPage.");
+			
+			paymentPage = trainReviewPage.continueInReviewIternary();
+			Log.message("12.Clicking on 'Continue' on ReviewPage.");
+			
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("13.Selected '"+paymentType+"' as payment option on PaymentPage.");
+
+			ArrayList<String> lstMW = paymentPage.getMobileWalletPaymentOptions();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify for eWallet div.");
+        	Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("msgMW"),paymentPage ),
+					"<b>Actual Result:</b> eWallet payment options are displayed on PaymentPage. \n eWallet Payment Options are:"+lstMW,
+					"<b>Actual Result:</b> eWallet payment options are not displayed on PaymentPage.", driver);
+
+			
+        	Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = { "desktop" }, description = "Should show proper message on payment page,after cancelling transaction.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Train_049(HashMap<String, String> testData) throws Exception {
+
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String trainDepartureDate = testData.get("DepartureDate");
+		String email = testData.get("EmailAddress");
+		String mobile = testData.get("MobileNumber");
+		String irctcId = testData.get("IRCTC_ID");
+		String paymentType = testData.get("PaymentType");
+		String walletType = testData.get("BankName");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickTrainTab();
+		
+			// step: select Train Search fields
+			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
+			Log.message("2.Successfully filled the search details for 'Train' trip.");
+
+			// step: click 'Search' button in Yatra Home page
+			trainSearchResult = homePage.clickTrainBtnSearch();
+			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
+		
+			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"),trainSearchResult ),
+					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
+					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
+
+		    trainSearchResult.selectTrainByIndexAndBook(1);
+			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
+
+			trainTravellerPage = trainSearchResult.clickOnContinue();
+			Log.message("5.Clicked on 'Continue' button.");
+
+			trainTravellerPage.loginAsGuestUser(email, mobile);
+			Log.message("6.SignIn as 'Guest' user.");
+
+			Thread.sleep(2000);
+	    	trainTravellerPage.enterIrctcId(irctcId);
+			Log.message("7.Filling IRCTC ID if option is visible.");
+
+			trainTravellerPage.fillTravellerDetails();
+			Log.message("8.Filling traveller details on PaxPage.");
+
+			trainTravellerPage.clickToAcceptInsurance();
+			Log.message("9.Clicking on 'Accept' Travel Insurance checkbox.");
+
+			trainTravellerPage.checkBookingPolicy();
+			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
+
+			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
+			Log.message("11.Clicking on 'Continue' on PaxPage.");
+			
+			paymentPage = trainReviewPage.continueInReviewIternary();
+			Log.message("12.Clicking on 'Continue' on ReviewPage.");
+			
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("13.Selected '"+paymentType+"' as payment option on PaymentPage.");
+			
+			paymentPage.selectMobileWallet(walletType);
+			Log.message("14.Selected '"+walletType+"' from the payment option on PaymentPage.");
+			
+			paymentPage.clickOnPayNow();
+			Log.message("15.Clicked 'Pay Now' button on PaymentPage.");
+
+			paymentPage.navigateBackFromMobileWallet(walletType, browser);
+			Log.message("16.Cancel transaction on the payment gateway.");
+
+			String errorMsg = paymentPage.getTextFromTheFailedTransactionMsg();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify after cancelling transaction should show proper message on payment page.");
+        	Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("msgFailedTransctn"),paymentPage ),
+					"<b>Actual Result:</b> Proper message is displayed on Paymentpage after the failed transaction.:\n ERROR MESSAGE:"+errorMsg,
+					"<b>Actual Result:</b> Proper message is not displayed on Paymentpage after the failed transaction.", driver);
 
 			
         	Log.testCaseResult();
