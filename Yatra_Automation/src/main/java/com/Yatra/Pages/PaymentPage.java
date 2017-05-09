@@ -136,7 +136,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css="a[title='yatra.com']")
 	private WebElement logoYatra;
 
-	@FindBy(css ="#cpmt_tabContainer>ul")
+	@FindBy(css ="#cpmt_tabContainer")
 	private WebElement lstPaymentMetod;
 
 	@FindBy(css= "div[id='signinlyr']>h2")
@@ -400,7 +400,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css ="select[id='nprBank']")
 	private WebElement drpselectOtherNetBank;
 	
-
+	@FindBy(css="div[id='tab_mw']>article[class='cpmt_net cpmt_lastInfo']>ul>li>label>label")
+	List<WebElement> lstMobileWallet;
+	
+	@FindBy(css="div[class='pmt_msg_WARNING mw_payop_msg']")
+	WebElement msgMW;
+	
+	@FindBy(css="span[id='failed_msg_container']")
+	WebElement msgFailedTransctn;
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -1325,4 +1332,28 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	}
 
+	
+	
+	/**
+	 * to get the text MW-Mobile Wallet options
+	 * @return
+	 * @throws Exception
+	 */
+	public ArrayList<String> getMobileWalletPaymentOptions() throws Exception{
+		ArrayList<String> lstMW = new ArrayList<String>();
+		for(int i=0;i<lstMobileWallet.size();i++){
+		String mwName = BrowserActions.getTextFromAttribute(driver, lstMobileWallet.get(i), "class", "Getting Mobile Wallet options.");
+		lstMW.add(mwName);
+		}
+		return lstMW;
+	}
+	
+	/**
+	 * getting message of the failed transaction
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFromTheFailedTransactionMsg() throws Exception{
+		return BrowserActions.getText(driver, msgFailedTransctn, "Getting text from the failed transaction message.");
+	}
 }
