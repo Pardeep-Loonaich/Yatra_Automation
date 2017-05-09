@@ -603,6 +603,34 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "li[ng-if='flt.freemeal']")
 	private WebElement txtFreeMeal_DOM;
+	
+	@FindBy(css = "div[class='full smart-search bxs']")
+	private WebElement smartBox;
+	
+	@FindBy(css = "div[class='selection-box new-theme seg-2']")
+	private WebElement selectionDivision;
+	
+	@FindBy(css = "p[class='mb10']")
+	private WebElement errorMessageAfterApplyingFilter;
+	
+	@FindBy(css = "h2[class='fs-lg fl hand-cursor']")
+	private WebElement priceSelectionBox;
+
+	@FindBy(css = "div[id='fareSummaryPopup'")
+	private WebElement fareSummaryPopUp;
+	
+	@FindBy(css = "span[class='full bxs txt-ac']")
+	private List<WebElement> stopsFilter;
+	
+	@FindBy(css = "div[class='reviewSrch btnSearchBook js_review_search_btn']")
+	private WebElement fareRecentSearch;
+	
+	@FindBy(css = "div[class='spinner']>span[class='spin-count']")
+	private List<WebElement> txtPaxDeatilInModify;
+	
+	@FindBy(css = "div[class='spinner']>span[class='spin-count']")
+	private WebElement PaxDeatilInModify;
+	
 	/*
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -2581,7 +2609,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 
 	public void clickOnRecentSearch() throws Exception {
-		BrowserActions.javascriptClick(btnRecentSearch, driver, "Click on [X] button in Flight Detail");
+		BrowserActions.javascriptClick(btnRecentSearch, driver, "Click on Recent Search Button");
 	}
 
 	/**
@@ -3194,6 +3222,105 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 return flag;
 }
+	/**
+	 * Getting the text from Selected Flight
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextSelectedFlight() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String Message = BrowserActions.getText(driver, selectionDivision,"Selected Flight");
+		return Message;
+	}
+	/**
+	 * Clicking On Book Now In RoundTrip
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	
+	public void ClickOnBookNow_DOM_RT() throws Exception{
+		Utils.waitForPageLoad(driver);
+		btnBookNowRoundTrip.click();
+}
+	/**
+	 * Getting the text from Error Message After Applying Filter 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextErrorMessageAfterApplyingFilter() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String errorMessage = BrowserActions.getText(driver, errorMessageAfterApplyingFilter,"Error Message");
+		return errorMessage;
+	}
+	
+	//
+	
+	/**
+	 * Getting the text from Selection Box RT Domestic 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFareSummarySelectionBox_DOM() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.scrollToView(priceSelectionBox, driver);
+		BrowserActions.mouseHover(driver, priceSelectionBox);
+		String errorMessage = BrowserActions.getText(driver, fareSummaryPopUp,"Fare Summary");
+		return errorMessage;
+	}
+	/**
+	 * Selecting the Stops Filter 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void selectStopsFilter(int NumberOfStops) throws Exception {
+		Utils.waitForPageLoad(driver);
+		for(int i =0;i<stopsFilter.size();i++){
+			String Filters = BrowserActions.getText(driver,stopsFilter.get(i),"Fare Summary");
+			int Filter = Integer.parseInt(Filters);
+			if(Filter == (NumberOfStops)){
+			BrowserActions.javascriptClick(stopsFilter.get(i), driver, "Selected Filter");
+			break;
+			}
+		}
+	}
+	
+	
+	public void ClickOnCrossInRecentSearch() throws Exception{
+		BrowserActions.mouseHover(driver, btnRecentSearch);
+		BrowserActions.mouseHover(driver, fareRecentSearch);
+		BrowserActions.clickOnElement(lnkcloseFlightDetailsPopUp, driver, "Close [X] Button Recent Search");
+	}
+	/**
+	 * Getting Pax Details From Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public ArrayList<String> getTextPaxDetails() throws Exception{
+		ArrayList<String> PaxDetails = new ArrayList<String>();
+		for (int i =0;i<txtPaxDeatilInModify.size();i++){
+		String PaxDetail = 	BrowserActions.getText(driver, txtPaxDeatilInModify.get(i), "Getting name of Airlines In Pop Up");
+		PaxDetails.add(PaxDetail);
+		}
+		return PaxDetails;	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// *******************************End of SRP Functions***********************************/
 
 } // SearchResult

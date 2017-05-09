@@ -212,8 +212,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "a[analytics='Flights - Review Itinerary - INT|Current Selection|View Fare Rules']")
 	private WebElement BtnViewRules;
 	
-	
-	
 	//div[@class='change-status bull-green']
 	/**********************************
 	 * WebElements of Yatra ReviewPage - Ends ****************************
