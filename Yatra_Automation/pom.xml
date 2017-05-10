@@ -88,7 +88,7 @@
 
 						<suiteXmlFiles>
 
-							<suiteXmlFile>.\testxml\${SUITE_NAME}</suiteXmlFile>
+							<suiteXmlFile>.\testxml\YatraWebSanity.xml</suiteXmlFile>
 
 						</suiteXmlFiles>
 					</configuration>
