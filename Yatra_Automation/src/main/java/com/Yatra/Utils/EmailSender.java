@@ -49,7 +49,7 @@ public class EmailSender {
 	public EmailSender(String fileName, String testCaseId,String sCurrentPageURL)
 	{
 		this.fileName=fileName;
-		this.sPricingURL=sPricingURL;
+		//this.sPricingURL=sPricingURL;
 		this.sCurrentPageURL=sCurrentPageURL;
 		this.testCaseId=testCaseId;
 	}
