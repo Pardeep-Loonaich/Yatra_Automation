@@ -1642,11 +1642,10 @@ public class FlightSearch {
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated that Weekly fare Matrix will be available for OW search");
-			BrowserActions.nap(2);
+			BrowserActions.nap(3);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for OW Search",
-					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for OW Search",
-					driver);
+					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for OW Search",	driver);
 			
 			Log.assertThat(searchResult.verifyCurrentDateSelectionInWeeklyMatrix(), "<b>Actual Result:</b> Successfully selected Current date in weekly matrix", "<b>Actual Result:</b> Not selected Current date in weekly matrix");
 			String currentdateFareText = searchResult.getTextCurrentDateFareInWeeklyMatrix();
@@ -1699,7 +1698,7 @@ public class FlightSearch {
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated that Weekly fare Matrix will not be available for RT search");
-			BrowserActions.nap(8);
+			BrowserActions.nap(20);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
@@ -2449,7 +2448,7 @@ public class FlightSearch {
 			Log.message("4.Successfully clicked Search in Yatra Homepage!");				
 			
 			String shareItineraryText = searchResult.getTextShareItinerary();	
-			Log.assertThat(shareItineraryText.contains("Share Itinerary"),"<b>Actual Result:</b> Successfully should appeared tool tip is Share Itinerary", "<b>Actual Result:</b> Not appeared tool tip is 'Share Itinerary ");
+			Log.assertThat(shareItineraryText.contains("Share Itinerary"),"<b>Actual Result:</b> Successfully should appeared Share Itinerary tool tip ", "<b>Actual Result:</b> Not appeared Share Itinerary tool tip ");
 							
 			//step: click Share Itinerary
 			searchResult.clickShareItinerary();
@@ -2865,7 +2864,7 @@ public class FlightSearch {
 			BrowserActions.nap(2);					
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate that Result Grid can be sorted on the basis of column headers present");
-			Log.assertThat(searchResult.verifyPriceSorting("Upper"), "<b>Actual Result:</b> Result grid should sorted on the basis of selection made with Price Sort Arrow and should appeared highlighted heading downwards", 
+			Log.assertThat(searchResult.verifyPriceSorting("Downwards"), "<b>Actual Result:</b> Result grid should sorted on the basis of selection made with Price Sort Arrow and should appeared highlighted heading downwards", 
 					       "<b>Actual Result:</b> Result grid should not sorted on the basis of selection made with Price Sort Arrow and should not appeared highlighted heading downwards", driver);
 			
 		    Log.testCaseResult();
@@ -3140,7 +3139,7 @@ public class FlightSearch {
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
-
+		
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
@@ -3160,7 +3159,7 @@ public class FlightSearch {
 			// step: click 'Search' button in Yatra Home page
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
-
+						
 			searchResult.clickOnlnkFlightDetails_INTL();
 			Log.message("5.Clicked On Flight Detail Link!");
 			String Message = searchResult.getTextDisclamierMessage();
@@ -3195,6 +3194,9 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
+		String domain = testData.get("Domain");	
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -3215,9 +3217,13 @@ public class FlightSearch {
 			// step: click 'Search' button in Yatra Home page
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(2);
-			Log.message("5. Clicked On Book Now Button!");
+			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			//Log.message("5. Clicked On Book Now Button!");
 
 			reviewPage.clickOnContinue();
 			Log.message("6. Clicked On Continue Button on Review Page!");
@@ -3266,6 +3272,9 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
+		String domain = testData.get("Domain");		
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -3287,8 +3296,11 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(2);
-			Log.message("5. Clicked On Book Now Button!");
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");			
+			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			//Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
 			reviewPage.clickOnContinue();
@@ -3344,6 +3356,9 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
+		String domain = testData.get("Domain");		
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -3365,8 +3380,12 @@ public class FlightSearch {
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(2);
-			Log.message("5. Clicked On Book Now Button!");
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");
+			
+			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			//Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
 			reviewPage.clickOnContinue();
@@ -3409,6 +3428,9 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
+		String domain = testData.get("Domain");		
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -3430,8 +3452,11 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(2);
-			Log.message("5. Clicked On Book Now Button!");
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");
+			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			//Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
 			reviewPage.clickOnContinue();
@@ -3482,6 +3507,9 @@ public class FlightSearch {
 		String passengerClass = testData.get("Class");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
+		String domain = testData.get("Domain");	
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -3503,8 +3531,11 @@ public class FlightSearch {
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(2);
-			Log.message("5. Clicked On Book Now Button!");
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");
+			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			//Log.message("5. Clicked On Book Now Button!");
 			reviewPage.popUpAppear();
 
 			reviewPage.clickOnContinue();

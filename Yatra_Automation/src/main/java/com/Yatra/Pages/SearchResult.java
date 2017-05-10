@@ -288,6 +288,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "/html/body//*[@class='close close-icon']//*[@class='wewidgeticon we_close']")
 	private WebElement btnCloseIframeNotification;
 	
+	@FindBy(xpath = "//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
+	private WebElement IframeNotification;
+	
 	@FindBy(css = "a[id='webklipper-publisher-widget-container-notification-close-div']")
 	private WebElement btnCloseIframeNotification_Double;
 
@@ -1731,19 +1734,19 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 
-	public void closeINotificationAtTopSRP() throws Exception {		
-		WebElement offerPopup= driver.findElement(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"));
-		if (BrowserActions.isElementPresent(driver, offerPopup) == true) {
-			BrowserActions.switchToIframe(driver, offerPopup);
-			BrowserActions.nap(2);
-			if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true){
+	public void closeINotificationAtTopSRP() throws Exception {	
+		BrowserActions.nap(2);		
+		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {
+		//if(IframeNotification.isDisplayed()){
+			BrowserActions.switchToIframe(driver, IframeNotification);			
+			if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true){ 
 				BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
 			}else if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification_Double) == true){
 				BrowserActions.clickOnElement(btnCloseIframeNotification_Double, driver, "Button to close Iframe Notification at Left side bottom on SRP");
 			}		
 			BrowserActions.switchToDefault(driver);
 		} else {
-			Log.event("Not displayed Iframe Notification at top on SRP ");
+			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
 		}
 	}
 
@@ -3310,6 +3313,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public boolean verifyPriceSorting(String priceSortArrow) throws Exception {
+		BrowserActions.nap(10);
 		boolean status = false;
 		if (priceSortArrow == "Upwards") {
 			Utils.waitForElement(driver, lnkPriceUpwards);
