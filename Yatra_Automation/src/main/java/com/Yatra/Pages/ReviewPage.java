@@ -15,7 +15,9 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
+import com.Yatra.TestScript.Common.BaseTest;
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.EmailSender;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -248,6 +250,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
 		elementLayer = new ElementLayer(driver);
+		
 	}
 
 	@Override
@@ -268,8 +271,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		}
 		timer.end();
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
-		
-		// elementLayer = new ElementLayer(driver);
+		//set value for pricing URL (if it require in case of test case fail, to send a mail with this URL)
+		new EmailSender(driver.getCurrentUrl().trim());
 	}
 
 	@Override
