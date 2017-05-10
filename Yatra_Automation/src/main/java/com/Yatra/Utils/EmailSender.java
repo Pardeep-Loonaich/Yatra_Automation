@@ -98,7 +98,7 @@ public class EmailSender {
 
 		for(String toEmail:toAddressArray)
 		{
-			InternetAddress[] toAddresses = {  };
+			//InternetAddress[] toAddresses = {  };
 			//msg.addRecipient(Message.RecipientType.TO, toAddresses);
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
 

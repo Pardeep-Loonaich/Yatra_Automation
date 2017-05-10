@@ -18,6 +18,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import com.Yatra.Utils.EmailSender;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExtentReporter;
 import com.Yatra.Utils.Log;
 
@@ -28,6 +29,7 @@ import com.Yatra.Utils.Log;
  */
 public class BaseTest implements ITest
 {
+	EnvironmentPropertiesReader propReader=EnvironmentPropertiesReader.getInstance();
 	private String testCaseId = "";
 	private static WebDriver driver;
 	public  String inputFile;
@@ -92,38 +94,39 @@ public class BaseTest implements ITest
 	 * @throws AddressException 
 	 * @throws IOException 
 	 */
-@AfterMethod
+	@AfterMethod
 	public void  afterTestExecutor(ITestResult result) 
 
 	{
-	System.out.println("Executing After Mehtod ..");
-		if(true)			//if test case fail perform below task
+		System.out.println("Executing After Mehtod ..");
+
+		try
 		{
-			try
+			if(result.getStatus()==ITestResult.FAILURE&&propReader.getProperty("SEND_EMAIL_ON_FAILIURE").equalsIgnoreCase("TRUE"))			//if test case fail perform below task
 			{
-			inputFile=Log.takeScreenShot(driver);
-			
-			testCaseId=result.getName();
-			String sCurrentURL=driver.getCurrentUrl();
-			EmailSender email=new EmailSender(inputFile, testCaseId, sCurrentURL);
-			email.sendHtmlEmail();
+				inputFile=Log.takeScreenShot(driver);
+
+				testCaseId=result.getName();
+				String sCurrentURL=driver.getCurrentUrl();
+				EmailSender email=new EmailSender(inputFile, testCaseId, sCurrentURL);
+				email.sendHtmlEmail();
 			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-			finally
-			{
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
 			driver.quit();
-			}
-			
 		}
 
+
 	}
-/**
- * to set webdriver for every test case (as of now setting in WebDriverFactory Class)
- * @param drivers
- */
+	/**
+	 * to set webdriver for every test case (as of now setting in WebDriverFactory Class)
+	 * @param drivers
+	 */
 	public static void setBaseDriver(WebDriver drivers)
 	{
 		driver=drivers;
