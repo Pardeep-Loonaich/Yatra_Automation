@@ -4,7 +4,7 @@
 <suite name="Yatra Web Automation Test" verbose="3" parallel="tests" thread-count="250">
 <suite-files>
   <suite-file path=".\testxml\flightSearch.xml"></suite-file>
-   <suite-file path=".\testxml\flightNew.xml"></suite-file>
- 
+  <suite-file path=".\testxml\FlightNew.xml"></suite-file>
+  <suite-file path=".\testxml\flightPricing.xml"></suite-file>    
 </suite-files>
 </suite>
