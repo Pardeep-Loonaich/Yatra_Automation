@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -334,6 +335,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	}
 
 	public void clickOnAddMeal() throws Exception {
+		BrowserActions.nap(2);
 		Utils.waitForElement(driver, btnAddMeal);
 		BrowserActions.scrollToView(btnAddMeal, driver);
 		BrowserActions.javascriptClick(btnAddMeal, driver, "Add Meal Button");
