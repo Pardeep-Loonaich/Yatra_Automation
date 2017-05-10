@@ -28,7 +28,7 @@ import com.Yatra.Pages.ReviewPage;
 public class EmailSender {
 
 	private  String testCaseId="";
-	private   String sCurrentPageURL="";
+	private   String sCurrentPageURL=ReviewPage.sPricingURL;;
 	public static  String sPricingURL="";
 	private  String fileName="";
 
@@ -44,7 +44,7 @@ public class EmailSender {
 	 */
 	public EmailSender(String sPricingURL)
 	{
-		this.sPricingURL=ReviewPage.sPricingURL;
+		this.sPricingURL=sPricingURL;
 	}
 	public EmailSender(String fileName, String testCaseId,String sCurrentPageURL)
 	{
