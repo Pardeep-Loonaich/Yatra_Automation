@@ -103,7 +103,7 @@ public class BaseTest implements ITest
 
 		try
 		{
-			if(result.getStatus()==ITestResult.FAILURE&&propReader.getProperty("SEND_EMAIL_ON_FAILIURE").equalsIgnoreCase("TRUE"))			//if test case fail perform below task
+			if(true)			//if test case fail perform below task
 			{
 				driver=WebDriverFactory.baseTestDriver;
 				inputFile=Log.takeScreenShot(driver);
