@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	@FindBy(css="button[class*='train-nextDay']")
 	private WebElement tabNextDay;
 
-	@FindBy(css="[class='find-bus-btn']")
+	@FindBy(css="div[class='bus-block with-price']>div[class='bus-deatail']>div[class='find-bus-btn']")
 	private WebElement btnFindBus;
 
 	@FindBy(css="select[id='quotaSelectdd']")
@@ -109,7 +110,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
 	@FindBy(css="div[id='sidebarFilter']")
 	private WebElement lftNavSection;
-	
+
 	@FindBy(css = "#bookNowBtn")
 	private WebElement btnContinueToPaxPage;
 
@@ -334,6 +335,16 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	}
 
 	/**
+	 * this method selects the train by index the default seat of the first available class 
+	 * @param index
+	 * @throws Exception
+	 */
+	public void selectTrainByIndex(int index) throws Exception{
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
+	}
+
+
+	/**
 	 * this method selects the train by index 
 	 * @param index
 	 * @throws Exception
@@ -433,8 +444,9 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	 */
 	public boolean verifySelectedBoardingPoint(String origin) throws Exception{
 		String boardPoint = BrowserActions.getTextFromAttribute(driver, getTxtActBoardingPoint, "data-stnname", "Getting the text of the active Boarding Point.");
-		Log.event(" Boarding Point:"+boardPoint);
-		if(origin.contains(boardPoint)){
+		String[] boardP = boardPoint.split(" ");
+		Log.event(" Boarding Point:"+boardP[0]);
+		if(origin.contains(boardP[0])){
 			return true;		
 		}
 		else
@@ -472,13 +484,16 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		List<WebElement> lstClss = driver.findElements(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p"));
 
 		for(int i=0;i<lstClss.size();i++){
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			BrowserActions.clickOnElement(lstClss.get(i),driver, "Clicked on available class of the train one by one.");
 			String classAvail = BrowserActions.getText(driver, lstClss.get(i), "Selected class");
 			WebElement sec_FindBus = driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainBusDivert']"));
+			Thread.sleep(2000);
 
 			if(sec_FindBus.isDisplayed()){
-				BrowserActions.clickOnElement(sec_FindBus.findElement(By.cssSelector("div>div>div[class='bus-deatail']>div[class='find-bus-btn']")), driver, "Clicked on 'Find Bus' button.");
+				//BrowserActions.clickOnElement(sec_FindBus.findElement(By.cssSelector("div>div>div[class='bus-deatail']>div[class='find-bus-btn']")), driver, "Clicked on 'Find Bus' button.");
+				BrowserActions.clickOnElement(btnFindBus, driver, "Clicked on 'Find Bus' button.");
+
 				Log.event("Bus option is available in '"+classAvail+"' class.");
 
 				break;
@@ -534,7 +549,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
 		return false;
 	}
-	
+
 
 	/**
 	 * To click on continue button to navigate on Review page 
@@ -545,5 +560,5 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		BrowserActions.clickOnElement(btnContinueToPaxPage, driver, "Click on Continue in Confirmation Popup to book Train.");
 		return new TrainTravellerPage(driver).get();
 	}
-	
+
 }
