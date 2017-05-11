@@ -1,3 +1,4 @@
+
 package com.Yatra.TestScript.Activities;
 
 //-----------------------------------------------------------------------------------------------------------
@@ -576,13 +577,113 @@ public class ActivitiesTest {
 
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
-
+			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should see the date pop up after clicking on book Now Button");
 			Thread.sleep(4000);
 			Log.assertThat(
 					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("dateCalendar"),
 							activityDetailPage),
+					"<b>Actual Result:</b> Date Pop Up is visible after clicking on Book Now Button",
+					"<b>Actual Result:</b> Date Pop Up is not visible after clicking on Book Now Button", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Validate Traveller packs option is there", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_023(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
+			Log.message("5. Clicked On Book Now Button!");
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+		
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validate Traveller packs option is there");
+			Thread.sleep(4000);
+			Log.assertThat(
+					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("PaxInfo"),
+							activityDetailPage),
+					"<b>Actual Result:</b> Traveller packs is visible after clicking on Book Now Button",
+					"<b>Actual Result:</b> Traveller packs is not visible after clicking on Book Now Button", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verify after Clicking on Book Now date Pop Up should be displayed in red colour", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_024(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
+			Log.message("5. Clicked On Book Now Button!");
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+			
+			activityDetailPage.clickOnSelectActivitiesDate();
+			Log.message("7. Selected Activity Date!");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify after Clicking on Book Now date Pop Up should be displayed in red colour");
+			Log.assertThat(activityDetailPage.verifySelectedDateColour(),
 					"<b>Actual Result:</b> Date Pop Up is visible after clicking on Book Now Button",
 					"<b>Actual Result:</b> Date Pop Up is not visible after clicking on Book Now Button", driver);
 
