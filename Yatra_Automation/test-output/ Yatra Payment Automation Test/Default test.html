@@ -1,0 +1,237 @@
+<html>
+<head>
+<title>TestNG:  Default test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Default test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
+</tr><tr>
+<td>Started on:</td><td>Fri Apr 21 17:36:50 IST 2017</td>
+</tr>
+<tr><td>Total time:</td><td>158 seconds (158047 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.Yatra.TestScript.Payment.PaymentTest.TC_Yatra_Payment_001()'><b>TC_Yatra_Payment_001</b><br>Test class: com.Yatra.TestScript.Payment.PaymentTest<br>Test method: verify Ecash Redemption <br>Parameters: (Browser: chrome, Hub: aspireggn55, Node: LOCALHOST), chrome_XP<br/>
+<a href="#Output-1995250556" onClick='toggleBox("Output-1995250556", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1995250556" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1995250556">
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:36:50 608 - TestCaseID:: TC_Yatra_Payment_001</small> </font> </div><br/>
+&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">Verify Ecash Redemption</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;<br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:00 779 - Page URL:: https://www.yatra.com/</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:00 962 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: input#BE_flight_flsearch_btn]</small> </font> </div><br/>
+<div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:02 565 - Page URL:: https://secure.yatra.com/social/common/yatra/signin.htm</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:02 712 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //button[@id='signInBtn']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:02 849 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: #emailId]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:02 970 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: #emailId]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:03 236 - Entered the Email Id: vandna.yatra@gmail.com</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:03 357 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: #password]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:03 449 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: #password]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:03 660 - Entered the Password: password1</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:03 767 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: #signInBtn]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:07 111 - Page URL:: https://www.yatra.com/</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:09 632 - Page URL:: https://www.yatra.com/</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:09 875 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: input#BE_flight_flsearch_btn]</small> </font> </div><br/>
+<div class="test-message">&emsp;2. Login 'Yatra' account successfully.</div><br/>
+<div class="test-message">&emsp;3. Verified Yatra Title text</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:10 185 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: a[title='One Way']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:10 618 - Page URL:: https://www.yatra.com/</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:12 788 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: input#BE_flight_origin_city]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:12 922 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: input#BE_flight_origin_city]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:16 623 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: li.ac_even.ac_over]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:16 624 - Entered the Origin: DEL</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:16 769 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: input#BE_flight_arrival_city]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:16 859 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: input#BE_flight_arrival_city]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:17 590 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: li.ac_even.ac_over]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:17 591 - Entered the Destination: CJB</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:21 719 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: input#BE_flight_depart_date]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:21 815 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: input#BE_flight_depart_date]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:23 228 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: (//table[@class='day-container-table']//a[@id='a_2017_4_26']//span[@class='day-num'])[1]]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:23 280 - Page URL:: https://www.yatra.com/</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:23 546 - Selected Departure Date: 2017_4_26(YYYY/MM/DD)</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:27 779 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: div[id='BE_flight_paxInfoBox']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:28 152 - Selected 'Economy' Class </small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:28 152 - Successfully selected OneWay Flight Search fields</small> </font> </div><br/>
+<div class="test-message">&emsp;4. Successfully filled the search details for 'ONE WAY' trip.</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:28 231 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: input#BE_flight_flsearch_btn]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:28 439 - Page URL:: https://www.yatra.com/</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:28 496 - Page URL:: https://www.yatra.com/</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:33 424 - Page URL:: https://flight.yatra.com/air-search-ui/dom2/trigger?type=o&viewname=normal&flexi=0&noofsegments=1&origin=del&origincountry=in&destination=cjb&destinationcountry=in&flight_depart_date=26/04/2017&adt=1&chd=1&inf=0&class=economy&source=fresco-home</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:33 611 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: p[class='new-gray-button fl small link-button']]</small> </font> </div><br/>
+<div class="test-message">&emsp;5. Clicked on 'Search' in Yatra Homepage.</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:33 941 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: p[class='new-gray-button fl small link-button']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:37:33 942 - All elements checked on this page:: [btnModifySearchIcon]</small> </font> </div><br/>
+<div class="test-message">&emsp;<b>Actual Result:</b> Successfully navigated to SearchResult Page.&emsp;<a href=".\ScreenShot\TC_Yatra_Payment_001_1.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:35 118 - Not displayed Iframe Notification at top on SRP </small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:37 229 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: (//div[@data-gaeclist='Search Results Page'])[1]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:37 445 - Page URL:: https://flight.yatra.com/air-search-ui/dom2/trigger?type=o&viewname=normal&flexi=0&noofsegments=1&origin=del&origincountry=in&destination=cjb&destinationcountry=in&flight_depart_date=26/04/2017&adt=1&chd=1&inf=0&class=economy&source=fresco-home</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:37 495 - Page URL:: https://flight.yatra.com/air-search-ui/dom2/trigger?type=o&viewname=normal&flexi=0&noofsegments=1&origin=del&origincountry=in&destination=cjb&destinationcountry=in&flight_depart_date=26/04/2017&adt=1&chd=1&inf=0&class=economy&source=fresco-home</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:47 619 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: button[class='button grey-btn rounded sleek-btn ng-binding']]</small> </font> </div><br/>
+<div class="test-message">&emsp;6. Clicked on 'Book Now' button in Search Result Page.</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:47 705 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: button[class='button grey-btn rounded sleek-btn ng-binding']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:47 706 - All elements checked on this page:: [btnChngeFlight]</small> </font> </div><br/>
+<div class="test-message">&emsp;<b>Actual Result:</b> Successfully navigated on Review Page.&emsp;<a href=".\ScreenShot\TC_Yatra_Payment_001_2.png" target="_blank" >[ScreenShot]</a></div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:53 977 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:56 150 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:56 792 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=a2d815cd-642a-4863-aa75-5fd7f0773702&msid=a2d815cd-642a-4863-aa75-5fd7f0773702&mode=background&bpc=false&issr=false&unique=1492776517765&variation=0&flightidcsv=delcjb6e90820170426&flightprice=17804&sc=6eapi&pid=b9bc6c62-5045-4625-8468-a73090dd43c3&ref=2104780257367</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:56 821 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=a2d815cd-642a-4863-aa75-5fd7f0773702&msid=a2d815cd-642a-4863-aa75-5fd7f0773702&mode=background&bpc=false&issr=false&unique=1492776517765&variation=0&flightidcsv=delcjb6e90820170426&flightprice=17804&sc=6eapi&pid=b9bc6c62-5045-4625-8468-a73090dd43c3&ref=2104780257367</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:38:56 857 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=a2d815cd-642a-4863-aa75-5fd7f0773702&msid=a2d815cd-642a-4863-aa75-5fd7f0773702&mode=background&bpc=false&issr=false&unique=1492776517765&variation=0&flightidcsv=delcjb6e90820170426&flightprice=17804&sc=6eapi&pid=b9bc6c62-5045-4625-8468-a73090dd43c3&ref=2104780257367</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:06 978 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: div[id='checkoutBase']>div:nth-child(3)>main>div>div[class='col-md-9']>form[name='travellerForm']]</small> </font> </div><br/>
+<div class="test-message">&emsp;7. Clicked on Continue button on Review Page.</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:07 266 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-1 col-xs-3 min-width70']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:07 502 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:07 535 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:07 635 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=a2d815cd-642a-4863-aa75-5fd7f0773702&msid=a2d815cd-642a-4863-aa75-5fd7f0773702&mode=background&bpc=false&issr=false&unique=1492776517765&variation=0&flightidcsv=delcjb6e90820170426&flightprice=17804&sc=6eapi&pid=b9bc6c62-5045-4625-8468-a73090dd43c3&ref=2104780257367</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:07 714 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:07 951 - Successfully entered Passenger1 FirstName: evyhq</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:08 009 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:08 233 - Successfully entered Passenger1 Last Name: czfbv</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:09 447 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //*[@id='paxNum1']/div[@class='col-md-1 col-xs-3 min-width70']]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:09 638 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //*[@id='paxNum1']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:09 721 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //*[@id='paxNum1']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:09 808 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=a2d815cd-642a-4863-aa75-5fd7f0773702&msid=a2d815cd-642a-4863-aa75-5fd7f0773702&mode=background&bpc=false&issr=false&unique=1492776517765&variation=0&flightidcsv=delcjb6e90820170426&flightprice=17804&sc=6eapi&pid=b9bc6c62-5045-4625-8468-a73090dd43c3&ref=2104780257367</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:09 860 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //*[@id='paxNum1']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:10 086 - Successfully entered Passenger2 FirstName: eefcj</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:10 146 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: //*[@id='paxNum1']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:10 407 - Successfully entered Passenger2 Last Name: aaiyz</small> </font> </div><br/>
+<div class="test-message">&emsp;8. Filled Traveller Details for domestic Flights.</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:17 574 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: .//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:19 708 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> xpath: .//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button]</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:19 954 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=a2d815cd-642a-4863-aa75-5fd7f0773702&msid=a2d815cd-642a-4863-aa75-5fd7f0773702&mode=background&bpc=false&issr=false&unique=1492776517765&variation=0&flightidcsv=delcjb6e90820170426&flightprice=17804&sc=6eapi&pid=b9bc6c62-5045-4625-8468-a73090dd43c3&ref=2104780257367</small> </font> </div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:19 997 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=a2d815cd-642a-4863-aa75-5fd7f0773702&msid=a2d815cd-642a-4863-aa75-5fd7f0773702&mode=background&bpc=false&issr=false&unique=1492776517765&variation=0&flightidcsv=delcjb6e90820170426&flightprice=17804&sc=6eapi&pid=b9bc6c62-5045-4625-8468-a73090dd43c3&ref=2104780257367</small> </font> </div><br/>
+<div class="test-message">&emsp;9. Clicked on Continue button on Travellers Page.</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:27 028 - Element is displayed:: [[RemoteWebDriver: chrome on XP (aa058574-3139-4172-890b-ccc5d50a2e30)] -> css selector: a[id='cancelRedemption']]</small> </font> </div><br/>
+<div class="test-message">&emsp;. Clicked on Cancel ecash.</div><br/>
+<div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 21 Apr 17:39:27 222 - No eCash at the moment...</small> </font> </div><br/>
+<!--FAIL--><br/>
+<div class="test-result"><br><font color="red"><strong> null </strong></font> </div>&emsp;<br/>
+</div>
+</td>
+<td><div><pre>java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at com.Yatra.TestScript.Payment.PaymentTest.TC_Yatra_Payment_001(PaymentTest.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
+	at org.testng.TestNG.run(TestNG.java:1024)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+</pre></div><a href='#' onClick='toggleBox("stack-trace1995250556", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1995250556'><pre>java.lang.NumberFormatException: null
+	at java.lang.Integer.parseInt(Unknown Source)
+	at java.lang.Integer.parseInt(Unknown Source)
+	at com.Yatra.TestScript.Payment.PaymentTest.TC_Yatra_Payment_001(PaymentTest.java:157)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:85)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:639)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:816)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1124)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:108)
+	at org.testng.TestRunner.privateRun(TestRunner.java:774)
+	at org.testng.TestRunner.run(TestRunner.java:624)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:359)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:354)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:312)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:261)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1191)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1116)
+	at org.testng.TestNG.run(TestNG.java:1024)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:132)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:236)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:81)
+</pre></div></td>
+<td>153</td>
+<td>com.Yatra.TestScript.Payment.PaymentTest@cb644e</td></tr>
+</table><p>
+</body>
+</html>
