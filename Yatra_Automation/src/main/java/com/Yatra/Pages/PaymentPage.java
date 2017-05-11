@@ -424,6 +424,11 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css="div[id='time-label']")
 	private WebElement lblTimerTrain;
 
+
+	
+	@FindBy(css = "#qb_ccCVV0")
+	private WebElement txtSavedcreditCardCvv;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -492,24 +497,28 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		String randomCvv = RandomStringUtils.randomNumeric(3);
 
-		BrowserActions.typeOnTextField(creditCardNumber,cardNumber, driver, "Credit card Number");
-		BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
-		BrowserActions.clickOnElement(monthCC, driver, "Date");
-		if (lstMonthsCC.size() != 0) {
-			int rand = Utils.getRandom(1, lstMonthsCC.size());
-			BrowserActions.clickOnElement(lstMonthsCC.get(rand), driver, "Month Selected");
-			Utils.waitForPageLoad(driver);
+		if (BrowserActions.isElementPresent(driver, txtSavedcreditCardCvv) == true) {
+			BrowserActions.typeOnTextField(txtSavedcreditCardCvv, randomCvv, driver, "Enter CVV for Saved Credit card");
+		} else if (BrowserActions.isElementPresent(driver, creditCardNumber) == true) {
+			BrowserActions.typeOnTextField(creditCardNumber, cardNumber, driver, "Credit card Number");
+			BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
+			BrowserActions.clickOnElement(monthCC, driver, "Date");
+			if (lstMonthsCC.size() != 0) {
+				int rand = Utils.getRandom(1, lstMonthsCC.size());
+				BrowserActions.clickOnElement(lstMonthsCC.get(rand), driver, "Month Selected");
+				Utils.waitForPageLoad(driver);
+			}
+			Thread.sleep(2000);
+			BrowserActions.clickOnElement(yearCC, driver, "Year");
+			if (lstYearsCC.size() != 0) {
+				int rand = Utils.getRandom(1, lstYearsCC.size());
+				BrowserActions.clickOnElement(lstYearsCC.get(rand), driver, "Year Selected");
+				Utils.waitForPageLoad(driver);
+			}
+			Thread.sleep(2000);
+			BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
+			BrowserActions.clickOnElement(lblSaveCCInQB, driver, "Unchecking Save QB");
 		}
-		Thread.sleep(2000);
-		BrowserActions.clickOnElement(yearCC, driver, "Year");
-		if (lstYearsCC.size() != 0) {
-			int rand = Utils.getRandom(1, lstYearsCC.size());
-			BrowserActions.clickOnElement(lstYearsCC.get(rand), driver, "Year Selected");
-			Utils.waitForPageLoad(driver);
-		}
-		Thread.sleep(2000);
-		BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
-		BrowserActions.clickOnElement(lblSaveCCInQB,driver ,"Unchecking Save QB");
 	}
 
 	/**

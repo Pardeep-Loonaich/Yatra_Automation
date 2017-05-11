@@ -25,7 +25,7 @@ import com.relevantcodes.extentreports.LogStatus;
 public class ExtentReporter {
 
 	private static ExtentReports report = null;
-	private static HashMap<String, ExtentTest> tests = new HashMap<String, ExtentTest>();
+	public static HashMap<String, ExtentTest> tests = new HashMap<String, ExtentTest>();
 	private static File configFile = new File(System.getProperty("user.dir") + File.separator + "ReportConfig.xml");
 
 	/**
@@ -35,7 +35,7 @@ public class ExtentReporter {
 	 * @param iTestResult
 	 * @return String - test name
 	 */
-	private static String getTestName(ITestResult iTestResult) {
+	public static String getTestName(ITestResult iTestResult) {
 		String testClassName = iTestResult.getTestClass().getRealClass().getName();
 		String testMethodName = iTestResult.getName();
 		return testClassName + "#" + testMethodName;
@@ -120,7 +120,7 @@ public class ExtentReporter {
 			}
 		} else {
 			test = getReportInstance(Reporter.getCurrentTestResult()).startTest(testName, description);
-			test.assignCategory(Reporter.getCurrentTestResult().getMethod().getGroups());
+			//test.assignCategory(Reporter.getCurrentTestResult().getMethod().getGroups());
 			tests.put(testName, test);
 		}
 		return test;

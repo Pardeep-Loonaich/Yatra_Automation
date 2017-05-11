@@ -29,7 +29,7 @@ import org.openqa.selenium.JavascriptExecutor;
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 
-	public static final int maxElementWait = 100;
+	public static final int maxElementWait = 30;
 
 
 	/**

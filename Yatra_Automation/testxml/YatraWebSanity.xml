@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Yatra Web Automation Test" verbose="3">
+
+<suite name="Yatra Web Sanity  Automation Test" verbose="3">
 	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
 	<parameter name="sheetName" value="Sanity" />
 
