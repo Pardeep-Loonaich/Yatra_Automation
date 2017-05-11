@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -113,6 +114,17 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	@FindBy(css = "#bookNowBtn")
 	private WebElement btnContinueToPaxPage;
 
+	@FindBy(css = "ul[class='train-info']>li[class='train_head trainDuration']")
+	private WebElement lstHeadDuration;
+	
+	@FindBy(css="li[class='trainDuration']")
+	private List<WebElement> trainDuration;
+	
+	@FindBy(css="ul[id='dstations']>li[class='all-label']")
+	private WebElement chkDestStatn;
+
+	@FindBy(css="#reset-filter")
+	private WebElement btnResetFltr;
 	/**********************************************************************************************
 	 ********************************* WebElements of Train Search Result Page - Ends ****************************
 	 **********************************************************************************************/
@@ -180,6 +192,30 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		for (int i = 1; i < time.size(); i++) {
 			if (time.get(i - 1).compareTo(time.get(i)) > 0)
 				Flag = false;
+		}
+		return Flag;
+	}
+
+	/**
+	 * To check Duration in Sorted Form
+	 * 
+	 * @throws Exception
+	 */
+	public boolean sortByDuration() throws Exception {
+		boolean Flag = false;
+		ArrayList<String> time = new ArrayList<String>();
+		for(int i=0;i<=1;i++){
+		BrowserActions.clickOnElement(lstHeadDuration, driver, "Clicked on Duration List tab.");
+		}
+
+		for (int j = 1; j < trainDuration.size(); j++) {
+			time.add(trainDuration.get(j).getText());
+		}
+
+		Collections.sort(time);
+		for (int i = 1; i < time.size(); i++) {
+			if (time.get(i - 1).compareTo(time.get(i)) <= 0)
+				Flag = true;
 		}
 		return Flag;
 	}
@@ -328,6 +364,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	 * @throws Exception
 	 */
 	public void selectTrainByIndexAndBook(int index) throws Exception{
+		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
 		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
 
@@ -558,6 +595,14 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	public TrainTravellerPage clickOnContinue()throws Exception{
 		BrowserActions.clickOnElement(btnContinueToPaxPage, driver, "Click on Continue in Confirmation Popup to book Train.");
 		return new TrainTravellerPage(driver).get();
+	}
+	
+	/**
+	 * to click on reset filter button
+	 * @throws Exception
+	 */
+	public void clickOnReset() throws Exception{
+		BrowserActions.clickOnElement(btnResetFltr, driver, "Clicked on 'Reset Filter' button.");
 	}
 	
 }

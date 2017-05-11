@@ -404,10 +404,26 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	List<WebElement> lstMobileWallet;
 	
 	@FindBy(css="div[class='pmt_msg_WARNING mw_payop_msg']")
-	WebElement msgMW;
+	private WebElement msgMW;
 	
 	@FindBy(css="span[id='failed_msg_container']")
-	WebElement msgFailedTransctn;
+	private WebElement msgFailedTransctn;
+	
+	@FindBy(css="#lblTotalAmount")
+	private WebElement txtTotalAmtOxygn;
+	
+	@FindBy(css="div[title='View Booking Summary']")
+	private WebElement modBookingSummry;
+	
+	@FindBy(css="div[class='busSumCont']>ul>li")
+	private WebElement bookngSummryDetails;
+	
+	@FindBy(css="div[class='popover window fade in']")
+	private WebElement popupSessionEnd;
+	
+	@FindBy(css="div[id='time-label']")
+	private WebElement lblTimerTrain;
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -1356,4 +1372,48 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTextFromTheFailedTransactionMsg() throws Exception{
 		return BrowserActions.getText(driver, msgFailedTransctn, "Getting text from the failed transaction message.");
 	}
+	
+	/**
+	 * getting total amount to be pay from the oxygen page
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTotalAmountFromOxygen() throws Exception{
+		return BrowserActions.getText(driver, txtTotalAmtOxygn, "Getting total amount from the oxygen gateway.");
+	}
+	
+	/**
+	 * to get the detail from the booking summary module
+	 * @return
+	 * @throws Exception
+	 */
+	public String gettingBookingSummary_Train() throws Exception{
+		BrowserActions.clickOnElement(modBookingSummry, driver, "Clicking on 'Booking Summary' panel.");
+
+		String bookDetail = BrowserActions.getText(driver, bookngSummryDetails, "Getting Booking Detail");
+		//String detail[] = bookDetail.split("\n");
+		return bookDetail;
+	}
+
+	public boolean verifyExpireSessionInTrain() throws Exception{
+		boolean result = false;
+		//Utils.waitForElement(driver, popupSessionEnd, 60000);
+		while(popupSessionEnd.isDisplayed()){
+         if (driver.getCurrentUrl().contains("passenger-details")){
+        	 return !result;
+         }
+		}
+         return result;
+	}
+@FindBy(css="div[id='time-label']>span")
+private WebElement timeOnStrip;
+
+/**
+ * to get the time from the time strip
+ * @return
+ * @throws Exception
+ */
+public String getTimeFromStrip() throws Exception{
+	return BrowserActions.getText(driver, timeOnStrip, "Getting time from the Time Strip.");
+}
 }
