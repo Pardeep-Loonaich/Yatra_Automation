@@ -3,12 +3,12 @@ package com.Yatra.Pages;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
@@ -21,7 +21,8 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
+import com.Yatra.Pages.ElementLayer;
+import com.Yatra.Pages.SearchResultActivites;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.Log;
@@ -64,6 +65,20 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	@FindBy(css = "div[class='ng-isolate-scope ng-valid']")
 	private WebElement dateCalendar;
 	
+	@FindBy(css = "div[class='select-wrapper fr ng-isolate-scope']>div[class='label-block fr ng-scope']")
+	private WebElement PaxInfo;
+	
+	@FindBy(css = "span[class='price-sec ng-binding ng-scope']")
+	private List<WebElement> AvaliableDatesForActivity;
+	
+	@FindBy(css = "span[class='price-sec ng-binding ng-scope']")
+	private WebElement AvaliableDate;
+	
+	@FindBy(css = "span[class='ico cal-arr-right']")
+	private WebElement nextMonth;
+	
+	@FindBy(css = "span[class='date-act ng-binding lowest-activity current-date']")
+	private WebElement selectedDate;
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -169,16 +184,32 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(btnBookNow, driver, "Click On Book Now Button");
 	}
+	/**
+	 * Click On to select Activities Date
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnSelectActivitiesDate() throws Exception {
+		Utils.waitForPageLoad(driver);
+		if(AvaliableDate.isDisplayed()){
+		int rand = Utils.getRandom(0, AvaliableDatesForActivity.size());
+		BrowserActions.clickOnElement(AvaliableDatesForActivity.get(rand), driver, "Click On Select Date");
+		}
+	else
+	{
+		BrowserActions.clickOnElement(nextMonth, driver, "Click On Next Month");
+		int rand = Utils.getRandom(0, AvaliableDatesForActivity.size());
+		BrowserActions.clickOnElement(AvaliableDatesForActivity.get(rand), driver, "Click On Select Date");
 	
+		}
+}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public boolean verifySelectedDateColour() throws Exception {
+	boolean status3 = false;
+	String rgbvalue = "rgb(243, 71, 71)";
+	BrowserActions.getText(driver, selectedDate, "Getting Selected Date.");
+	status3= Utils.verifyCssPropertyForElement(selectedDate,"",rgbvalue);
+	return status3;
+	}
 }//ActivityDetailPage

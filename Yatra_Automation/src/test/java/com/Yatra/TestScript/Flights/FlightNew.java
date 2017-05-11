@@ -90,12 +90,13 @@ public class FlightNew {
 			searchResult.clickModifySearch();
 			Log.message("5. Successfully clicked 'Modify Search'!");
 			ArrayList<String> PaxDetails = searchResult.getTextPaxDetails();
-	
+
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> Validating the Pax Details section on Modify Search pop up");
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("PaxDeatilInModify"), searchResult),
-					"<b>Actual Result :</b> Pax Details In Modify Search is visible to the user and deatils are displayed as \n:" + PaxDetails,
+			Log.message("<b>Expected Result:</b> Validating the Pax Details section on Modify Search pop up");
+			Log.assertThat(
+					searchResult.elementLayer.verifyPageElements(Arrays.asList("PaxDeatilInModify"), searchResult),
+					"<b>Actual Result :</b> Pax Details In Modify Search is visible to the user and deatils are displayed as \n:"
+							+ PaxDetails,
 					"<b>Actual Result :</b> Pax Details In Modify Search is not visible to the user", driver);
 
 			Log.testCaseResult();
@@ -107,6 +108,7 @@ public class FlightNew {
 			Log.endTestCase();
 		}
 	}
+
 	@Test(description = "Validate the functionality of Undo Last Filters", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_047(HashMap<String, String> testData) throws Exception {
 
@@ -278,6 +280,7 @@ public class FlightNew {
 		}
 	}
 
+	
 	@Test(description = "Validate the action on hovering mouse over Price", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_050(HashMap<String, String> testData) throws Exception {
 
@@ -310,7 +313,7 @@ public class FlightNew {
 			// step: click 'Search' button
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4. Successfully clicked 'Search'!");
-			Thread.sleep(2000);
+			
 			String FareDetails = searchResult.getTextFareSummarySelectionBox_DOM();
 
 			Log.message("<br>");
@@ -327,7 +330,7 @@ public class FlightNew {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -795,6 +798,131 @@ public class FlightNew {
 			Log.endTestCase();
 		}
 	}
+	@Test(description = "Validate that on doing Change Flight from Review Page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_065(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String AirlinesName = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'Round Trip' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for One Way Trip!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: Applied Filter
+			searchResult.selectAirlineInAirlineFilters(AirlinesName);
+			Log.message("5. Successfully Applied Filter On SRP!");
+			int NoOfResults = searchResult.getSizeofResult();
+			
+			// step: click 'Book Now' button
+			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			Log.message("6. Successfully clicked 'Book Now'!");
+			
+			// step: click 'Change Flight' Link
+			reviewPage.clickOnChangeFlight();
+			Log.message("7. Successfully clicked 'Change Flight' Link!");
+			Thread.sleep(2000);
+			int NoOfResultsAfterChangeFlight = searchResult.getSizeofResult();
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validate that on doing Change Flight from review Page");
+			Thread.sleep(2000);
+			Log.assertThat(NoOfResultsAfterChangeFlight != NoOfResults,
+					"<b>Actual Result :</b> After Clicking On Change Flight Button On Review Page All Filter reset to default value",
+					"<b>Actual Result :</b> After Clicking On Change Flight Button On Review Page All Filter are not reset to default value", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	@Test(description = "Validate that on doing Change Flight from review Page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_066(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'Round Trip' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for One Way Trip!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+			String Date = searchResult.getTextDepatureDate();
+			String originName = searchResult.getTextOfOrigiNameHeader();
+			String DestinationName = searchResult.getTextOfDestinatioNameHeader();
+			
+			// step: click 'Book Now' button
+			reviewPage = searchResult.clickOnBookNowINT();
+			Log.message("5. Successfully clicked 'Book Now'!");
+			
+			// step: click 'Change Flight' Link
+			reviewPage.clickOnChangeFlight();
+			Log.message("6. Successfully clicked 'Change Flight' Link!");
+			Thread.sleep(2000);
+			String DateAfterFlightChange = searchResult.getTextDepatureDate();
+			String originNameAfterFlightChange = searchResult.getTextOfOrigiNameHeader();
+			String DestinationNameAfterFlightChange = searchResult.getTextOfDestinatioNameHeader();
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validate that on doing Change Flight from review Page");
+			Thread.sleep(2000);
+			Log.assertThat(Date.equals(DateAfterFlightChange) && originName.equals(originNameAfterFlightChange) && DestinationName.equals(DestinationNameAfterFlightChange),
+					"<b>Actual Result :</b> After Clicking On Change Flight Button On Review Page All the fields remain same Orgin,destination and date",
+					"<b>Actual Result :</b> After Clicking On Change Flight Button On Review Page All the fields remain same Orgin,destination and date", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 
 	@Test(description = "Validate that if user has selected any preferred airline from Airline matrix then on clicking on Change Flight SRP should render with 'All Airlines' selected", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_067(HashMap<String, String> testData) throws Exception {
@@ -831,18 +959,17 @@ public class FlightNew {
 			// step: click one Option From 'Airline Filter'
 			searchResult.selectAirlineInAirlineFilters(AirlinesName);
 			Log.message("5. Successfully Selected one Option From Airline Filter!");
-			boolean resultBeforeChangeFlight = searchResult.verifyChkBoxAirlineFilter();
-			Log.message("" + resultBeforeChangeFlight);
+			ArrayList<String> resultBeforeChangeFlight = searchResult.verifyChkBoxAirlineFilter();
 
 			// step: click on 'Book Now'
-			reviewPage = searchResult.clickOnBookNowInOneWay(15);
+			reviewPage = searchResult.clickOnBookNowInOneWay(1);
 			Log.message("6. Successfully Clicked Book Now!");
 
 			// step: click on 'Change Flight'
 			Thread.sleep(2000);
 			reviewPage.clickOnChangeFlight();
 			Log.message("7. Successfully Clicked On Change Flight Button!");
-			boolean resultAfterChangeFlight = searchResult.verifyChkBoxAirlineFilter();
+			ArrayList<String> resultAfterChangeFlight = searchResult.verifyChkBoxAirlineFilter();
 
 			Log.message("<br>");
 			Log.message(
@@ -857,7 +984,7 @@ public class FlightNew {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			// driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1339,7 +1466,8 @@ public class FlightNew {
 		}
 	}
 
-	@Test(description = "Validate that Flight Details pop should also appear with Seat left message", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(groups = {
+			"desktop" }, description = "Validate that Flight Details pop should also appear with Seat left message", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_084(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1380,9 +1508,10 @@ public class FlightNew {
 					"<b>Expected Result:</b> Verify that Flight Details pop should also appear with Seat left message");
 			Thread.sleep(2000);
 			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("txtSeatLeftMessage"), searchResult),
+					searchResult.elementLayer.verifyPageElements(Arrays.asList("txtSeatLeftMessageInFlightDetails"),
+							searchResult),
 					"<b>Actual Result :</b> Seat left message is Displayed on Flight Details Pop up as : " + seatLeft,
-					"<b>Actual Result :</b> Yatra Page Footer is not visible on Flight Details Pop up", driver);
+					"<b>Actual Result :</b> Seat left message is not Displayed on Flight Details", driver);
 
 			Log.testCaseResult();
 
@@ -1601,7 +1730,7 @@ public class FlightNew {
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate Time Difference functionality between RT flights");
 			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("btnBookNowBottom_RT"), searchResult),
+					searchResult.elementLayer.verifyPageElements(Arrays.asList("yatraFooterPanel"), searchResult),
 					"<b>Actual Result :</b> If Flight Difference is Less the 3 Hrs then Book Now should be disabled and Error Message is displayed as :"
 							+ error,
 					"<b>Actual Result :</b>  If Flight Difference is Less the 3 Hrs then Book Now should not be disabled",
@@ -1908,7 +2037,6 @@ public class FlightNew {
 		String passengerClass = testData.get("Class");
 		String emailId = testData.get("EmailAddress");
 		String password = testData.get("Password");
-
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -2458,4 +2586,3 @@ public class FlightNew {
 		}
 	}
 }// FlightNewEnd
-

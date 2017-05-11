@@ -3,7 +3,6 @@
 <suite name="Yatra Payment Automation Test" verbose="3" parallel="false"
 	thread-count="500">
 	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
-
 	<parameter name="sheetName" value="FlightNew" />
 
 	<!-- parameter for device host and port -->
