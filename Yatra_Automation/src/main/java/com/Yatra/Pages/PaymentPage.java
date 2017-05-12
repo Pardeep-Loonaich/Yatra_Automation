@@ -404,10 +404,32 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	List<WebElement> lstMobileWallet;
 	
 	@FindBy(css="div[class='pmt_msg_WARNING mw_payop_msg']")
-	WebElement msgMW;
+	private WebElement msgMW;
 	
 	@FindBy(css="span[id='failed_msg_container']")
-	WebElement msgFailedTransctn;
+	private WebElement msgFailedTransctn;
+	
+	@FindBy(css="#lblTotalAmount")
+	private WebElement txtTotalAmtOxygn;
+	
+	@FindBy(css="div[title='View Booking Summary']")
+	private WebElement modBookingSummry;
+	
+	@FindBy(css="div[class='busSumCont']>ul>li")
+	private WebElement bookngSummryDetails;
+	
+	@FindBy(css="div[class='popover window fade in']")
+	private WebElement popupSessionEnd;
+	
+	@FindBy(css="div[id='time-label']")
+	private WebElement lblTimerTrain;
+
+	@FindBy(xpath = "//label[@id='qb_newCreditCard']//span[@class='box']")
+	private WebElement chkNewCCcard;
+	
+	@FindBy(css = "#qb_ccCVV0")
+	private WebElement txtSavedcreditCardCvv;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -464,7 +486,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		Utils.waitForPageLoad(driver);
 	}// load
 
-
+	
 
 	/**
 	 * Filling Credit Card Details
@@ -475,26 +497,31 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public void enterCreditCardDetails(String cardNumber) throws Exception {
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		String randomCvv = RandomStringUtils.randomNumeric(3);
-
-		BrowserActions.typeOnTextField(creditCardNumber,cardNumber, driver, "Credit card Number");
-		BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
-		BrowserActions.clickOnElement(monthCC, driver, "Date");
-		if (lstMonthsCC.size() != 0) {
-			int rand = Utils.getRandom(1, lstMonthsCC.size());
-			BrowserActions.clickOnElement(lstMonthsCC.get(rand), driver, "Month Selected");
-			Utils.waitForPageLoad(driver);
+		/*if (BrowserActions.isElementPresent(driver, txtSavedcreditCardCvv) == true) {
+			BrowserActions.typeOnTextField(txtSavedcreditCardCvv, randomCvv, driver, "Enter CVV for Saved Credit card");
+		} else if (BrowserActions.isElementPresent(driver, creditCardNumber) == true) {*/
+			
+		    BrowserActions.clickOnElement(chkNewCCcard, driver, "Month Selected");
+		    BrowserActions.typeOnTextField(creditCardNumber, cardNumber, driver, "Credit card Number");
+			BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
+			BrowserActions.clickOnElement(monthCC, driver, "Date");
+			if (lstMonthsCC.size() != 0) {
+				int rand = Utils.getRandom(1, lstMonthsCC.size());
+				BrowserActions.clickOnElement(lstMonthsCC.get(rand), driver, "Month Selected");
+				Utils.waitForPageLoad(driver);
+			}
+			Thread.sleep(2000);
+			BrowserActions.clickOnElement(yearCC, driver, "Year");
+			if (lstYearsCC.size() != 0) {
+				int rand = Utils.getRandom(1, lstYearsCC.size());
+				BrowserActions.clickOnElement(lstYearsCC.get(rand), driver, "Year Selected");
+				Utils.waitForPageLoad(driver);
+			}
+			Thread.sleep(2000);
+			BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
+			BrowserActions.clickOnElement(lblSaveCCInQB, driver, "Unchecking Save QB");
 		}
-		Thread.sleep(2000);
-		BrowserActions.clickOnElement(yearCC, driver, "Year");
-		if (lstYearsCC.size() != 0) {
-			int rand = Utils.getRandom(1, lstYearsCC.size());
-			BrowserActions.clickOnElement(lstYearsCC.get(rand), driver, "Year Selected");
-			Utils.waitForPageLoad(driver);
-		}
-		Thread.sleep(2000);
-		BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
-		BrowserActions.clickOnElement(lblSaveCCInQB,driver ,"Unchecking Save QB");
-	}
+	//}
 
 	/**
 	 * to save the credit card details in quick book
@@ -1356,4 +1383,48 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTextFromTheFailedTransactionMsg() throws Exception{
 		return BrowserActions.getText(driver, msgFailedTransctn, "Getting text from the failed transaction message.");
 	}
+	
+	/**
+	 * getting total amount to be pay from the oxygen page
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTotalAmountFromOxygen() throws Exception{
+		return BrowserActions.getText(driver, txtTotalAmtOxygn, "Getting total amount from the oxygen gateway.");
+	}
+	
+	/**
+	 * to get the detail from the booking summary module
+	 * @return
+	 * @throws Exception
+	 */
+	public String gettingBookingSummary_Train() throws Exception{
+		BrowserActions.clickOnElement(modBookingSummry, driver, "Clicking on 'Booking Summary' panel.");
+
+		String bookDetail = BrowserActions.getText(driver, bookngSummryDetails, "Getting Booking Detail");
+		//String detail[] = bookDetail.split("\n");
+		return bookDetail;
+	}
+
+	public boolean verifyExpireSessionInTrain() throws Exception{
+		boolean result = false;
+		//Utils.waitForElement(driver, popupSessionEnd, 60000);
+		while(popupSessionEnd.isDisplayed()){
+         if (driver.getCurrentUrl().contains("passenger-details")){
+        	 return !result;
+         }
+		}
+         return result;
+	}
+@FindBy(css="div[id='time-label']>span")
+private WebElement timeOnStrip;
+
+/**
+ * to get the time from the time strip
+ * @return
+ * @throws Exception
+ */
+public String getTimeFromStrip() throws Exception{
+	return BrowserActions.getText(driver, timeOnStrip, "Getting time from the Time Strip.");
+}
 }

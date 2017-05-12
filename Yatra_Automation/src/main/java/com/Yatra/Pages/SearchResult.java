@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByCssSelector;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +19,10 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
+import com.Yatra.Pages.ElementLayer;
+import com.Yatra.Pages.HomePage;
+import com.Yatra.Pages.LoginPage;
+import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.BrowserType;
 import com.Yatra.Utils.Constants;
@@ -28,6 +33,7 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
+import com.gargoylesoftware.htmlunit.javascript.host.Element;
 
 public class SearchResult extends LoadableComponent<SearchResult> {
 
@@ -35,8 +41,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
-	ExecutionTimer timer=new ExecutionTimer();
-	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
+	ExecutionTimer timer = new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader = EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Result Page
@@ -71,10 +77,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "p[class='new-blue-button .js-bookNow book-btn relative tc']")
 	private WebElement btnBookNowINT;
 
-	@FindBy(xpath = "//article[@class='full result-card animation-on item-0']//p[@class='new-blue-button .js-bookNow book-btn relative tc']") 
-	private WebElement btnBookNowINT_New; 
+	@FindBy(xpath = "//article[@class='full result-card animation-on item-0']//p[@class='new-blue-button .js-bookNow book-btn relative tc']")
+	private WebElement btnBookNowINT_New;
 
-	@FindBys({@FindBy(css = "div[ng-controller='productFareDetailsController']") })
+	@FindBys({ @FindBy(css = "div[ng-controller='productFareDetailsController']") })
 	private List<WebElement> el;
 	private List<WebElement> moduleFareDetails;
 
@@ -287,10 +293,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(xpath = "/html/body//*[@class='close close-icon']//*[@class='wewidgeticon we_close']")
 	private WebElement btnCloseIframeNotification;
-	
-	@FindBy(css = "a[id='webklipper-publisher-widget-container-notification-close-div']")
-	private WebElement btnCloseIframeNotification_Double;
-
 
 	@FindBy(css = "label[id*='fare']")
 	private WebElement fldContentFare;
@@ -535,7 +537,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	private WebElement conformingUrSeatPopUp;
 
 	@FindBy(css = "span[class='checkbox']>input[analytics*='Filter Option Click|Airline']")
-	private List<WebElement> chkBoxAirline;
+	private WebElement chkBoxAirline;
 
 	@FindBy(css = "footer[class='row my-res-footer full']>ul[class='res-footer-list fr']>li[ng-if*='flt.ft']")
 	private WebElement lnkRefundableAndNonRefundable_DOM;
@@ -549,14 +551,15 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='one-sixth']")
 	private WebElement txtFareRulesInFlighDeatils;
 
-	//@FindBy(css = "div[ng-show='open_ftype'] input[ yatratrackable='Flights|Search|filter - fare_type|refundable']")
+	// @FindBy(css = "div[ng-show='open_ftype'] input[
+	// yatratrackable='Flights|Search|filter - fare_type|refundable']")
 
 	@FindBy(css = "div[ng-show='open_ftype'] li:nth-child(1) span[class='checkbox']")
 	private WebElement chkRefundable;
 
 	@FindBy(xpath = "//div[@class='js-flightRow js-flightItem']//li[@ng-if='flt.ft==1']")
 	private List<WebElement> lstRefundableFlights;
-	
+
 	@FindBy(css = "span[class='rz-pointer']:nth-child(4)")
 	private WebElement AmountSlider;
 
@@ -565,108 +568,111 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "span[class='rz-bubble set-middle']")
 	private WebElement amountSliderAfterChange;
-	
+
 	@FindBy(xpath = "//div[@class='js-flightRow js-flightItem']//small[@class='fs-sm gray fl ml5 name carrier-name']")
 	private List<WebElement> lstFlightResultGrid;
-	
+
 	@FindBy(css = "a[class='under-link fr']")
 	private WebElement lnkResetAll;
-	
+
 	@FindBy(css = "div[class='header-container']")
 	private WebElement lnkHeaders;
-	
+
 	@FindBy(css = "div[class='full filter-wrapper accordion-wrappper']")
 	private WebElement lnkFilters;
-	
+
 	@FindBy(css = "div[class='matrix-wrapper day-matrix new-theme day-matrix-responsive']")
 	private WebElement lnkAirlinematrix_OW;
-	
+
 	@FindBy(css = "div[class='matrix-slide-wrapper has-next-prev matrix-small-screen']")
 	private WebElement lnkAirlinematrix;
-	
+
 	@FindBy(css = "div[id='resultBoxSlider']")
 	private WebElement lnkResultGrid;
-	
+
 	@FindBy(css = "div[class='fare-cal-fixed']")
 	private WebElement lnkSetFareAlerts;
-	
+
 	@FindBy(css = "div[class='footer-beetle-new dom']")
 	private WebElement lnkFooter;
-	
+
 	@FindBy(css = "div[id='resultBoxSlider'] a[title= 'Sort By Airline']")
 	private WebElement lnkAirlineColumn;
-	
+
 	@FindBy(css = "div[id='resultBoxSlider'] a[title= 'Sort By Depart']")
 	private WebElement lnkDepartColumn;
-	
+
 	@FindBy(css = "div[id='resultBoxSlider'] a[title= 'Sort By Arrive']")
 	private WebElement lnkArriveColumn;
-	
+
 	@FindBy(css = "div[id='resultBoxSlider'] a[title= 'Sort By Duration']")
 	private WebElement lnkDurationColumn;
-	
+
 	@FindBy(css = "div[id='resultBoxSlider'] a[title= 'Sort By Price']")
 	private WebElement lnkPriceColumn;
-	
+
 	@FindBy(css = "div[class='new-gray-button fr']")
 	private WebElement btnBookNowBottom_RT;
-	
+
 	@FindBy(css = "div[ng-show='selSumBeforeTime']")
 	private WebElement txtErrorMessageFlightDifference;
 
 	@FindBy(css = "div[ng-if='flt.freemeal']>p")
 	private WebElement txtFreeMeal;
-	
+
 	@FindBy(css = "i[class='hs-22 fs fs-inclusions-dinner']")
 	private WebElement logoFreeMeal;
-	
+
 	@FindBy(css = "li[ng-if='flt.freemeal']")
 	private WebElement txtFreeMeal_DOM;
-	
+
 	@FindBy(css = "div[class='full smart-search bxs']")
 	private WebElement smartBox;
-	
+
 	@FindBy(css = "div[class='selection-box new-theme seg-2']")
 	private WebElement selectionDivision;
-	
+
 	@FindBy(css = "p[class='mb10']")
 	private WebElement errorMessageAfterApplyingFilter;
-	
+
 	@FindBy(css = "h2[class='fs-lg fl hand-cursor']")
 	private WebElement priceSelectionBox;
 
 	@FindBy(css = "div[id='fareSummaryPopup'")
 	private WebElement fareSummaryPopUp;
-	
+
 	@FindBy(css = "span[class='full bxs txt-ac']")
 	private List<WebElement> stopsFilter;
-	
+
 	@FindBy(css = "div[class='reviewSrch btnSearchBook js_review_search_btn']")
 	private WebElement fareRecentSearch;
-	
+
 	@FindBy(css = "div[class='spinner']>span[class='spin-count']")
 	private List<WebElement> txtPaxDeatilInModify;
-	
+
 	@FindBy(css = "div[class='spinner']>span[class='spin-count']")
 	private WebElement PaxDeatilInModify;
-	
+
 	@FindBy(css = "a[class='under-link js-sortlink active']")
 	private WebElement lnkPriceUpwards;
 
 	@FindBy(css = "a[class='under-link js-sortlink active down']")
-	private WebElement lnkPriceDownwards;	
-	
+	private WebElement lnkPriceDownwards;
+
 	@FindBy(css = "div[id='resultList_0'] p[class='new-blue-button fr book-button active']")
 	private WebElement lnkOnwardFlightSelection;
 
 	@FindBy(css = "div[id='resultList_1'] p[class='new-blue-button fr book-button active']")
 	private WebElement lnkReturnFlightSelection;
-	
+
 	@FindBy(css = "div[id='resultList_1'] p[class='new-blue-button fr book-button active'] span[class='mobl']")
 	private WebElement lnkReturnSelectedFlightFare;
-	
+
 	@FindBy(css = "div[id='resultList_0'] p[class='new-blue-button fr book-button active'] span[class='mobl']")
 	private WebElement txtOnwardsSelectedFlightFare;
+
+	@FindBy(css = "p[class='fs-10 ltr-gray uprcse mt2 tl']")
+	private WebElement txtDepartureDate;
 	
 	@FindBy(css = "div[id='resultList_0'] div[class='js-flightRow js-flightItem']:nth-child(1) div[ class='my-res-info full']")
 	private WebElement upperPartResultGridHeader;
@@ -674,11 +680,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[id='resultList_0'] div[class='js-flightRow js-flightItem']:nth-child(1) footer[class='row my-res-footer full']")
 	private WebElement lowerPartResultGridHeader;
 	
-	@FindBy(css = "div[id='resultList_0'] p[class='full fs-10 ltr-gray uprcse']")
-	private WebElement txtDepartureDate;
-	
-	//div[@id='resultList_0']//p[@class='full fs-10 ltr-gray uprcse']
-	
+//	@FindBy(css = "div[id='resultList_0'] p[class='full fs-10 ltr-gray uprcse']")
+//	private WebElement txtDepartureDate; 
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -732,7 +735,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@Override
 	protected void load() {
 		timer.start();
-    	isPageLoaded = true;
+		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}// load
 
@@ -784,7 +787,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		 closeINotificationAtTopSRP(); 
+		// closeINotificationAtTopSRP();
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
 				+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
@@ -1701,7 +1704,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			WebElement airlineFareDetails = driver
 					.findElement(By.cssSelector("ul[class='matrix-slide-list tabs matrix-ul'] li:nth-child(" + i
 							+ ") p:nth-child(3)[class='matrix-label uprcse']"));
-			String airlineFare = airlineFareDetails.getText().toString().trim().replace("RS.","");;
+			String airlineFare = airlineFareDetails.getText().toString().trim().replace("RS.", "");
+			;
 			airlineMatrixFareDetailsList.add(airlineFare);
 		}
 		Log.event("Airline Matrix fare details : " + airlineMatrixFareDetailsList);
@@ -1730,17 +1734,17 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-
-	public void closeINotificationAtTopSRP() throws Exception {		
-		WebElement offerPopup= driver.findElement(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"));
-		if (BrowserActions.isElementPresent(driver, offerPopup) == true) {
-			BrowserActions.switchToIframe(driver, offerPopup);
+	public void closeINotificationAtTopSRP() throws Exception {
+		// boolean boolFrameNotification =
+		// BrowserActions.isElementPresent(driver, iFrameNotification);
+		if (driver.findElements(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"))
+				.size() > 0) {
+			WebElement iFrameNotification = driver
+					.findElement(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"));
+			BrowserActions.switchToIframe(driver, iFrameNotification);
 			BrowserActions.nap(2);
-			if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true){
-				BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
-			}else if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification_Double) == true){
-				BrowserActions.clickOnElement(btnCloseIframeNotification_Double, driver, "Button to close Iframe Notification at Left side bottom on SRP");
-			}		
+			BrowserActions.clickOnElement(btnCloseIframeNotification, driver,
+					"Button to close Iframe Notification at top on SRP");
 			BrowserActions.switchToDefault(driver);
 		} else {
 			Log.event("Not displayed Iframe Notification at top on SRP ");
@@ -2235,7 +2239,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextShareItinerary() throws Exception {
 		Utils.waitForElement(driver, txtShareItineraryTooltipText);
-		BrowserActions.mouseHover(driver, txtShareItineraryTooltipText); // FF issue
+		BrowserActions.mouseHover(driver, txtShareItineraryTooltipText); // FF
+																			// issue
 		String shareItineraryPouUpMessageGetTxt = BrowserActions.getText(driver, txtShareItineraryTooltipText,
 				"Share Itinerary Tooltip Text should be displayed");
 		return shareItineraryPouUpMessageGetTxt;
@@ -2348,15 +2353,19 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public void selectAirlineInAirlineFilters(String airlineName) throws Exception {
 		for (int i = 1; i < txtAirlineName_AirlineFilters.size(); i++) {
-			WebElement airlineFareDetails = driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child(" + i + ") span[class='clip-overflow']"));
+			WebElement airlineFareDetails = driver.findElement(
+					By.cssSelector("div[ng-show='open_airline'] li:nth-child(" + i + ") span[class='clip-overflow']"));
 			BrowserActions.scrollToView(airlineFareDetails, driver);
 			String airline = airlineFareDetails.getText().toString().trim();
 			if (airlineName.equalsIgnoreCase(airline)) {
-				WebElement chkAirline = driver.findElement(	By.cssSelector("div[ng-show='open_airline'] li:nth-child(" + i + ") span[class='checkbox']"));
-				BrowserActions.javascriptClick(chkAirline, driver,	"Click Airline in Airlines Filters, Selected Airline is:" + airline);
+				WebElement chkAirline = driver.findElement(
+						By.cssSelector("div[ng-show='open_airline'] li:nth-child(" + i + ") span[class='checkbox']"));
+				BrowserActions.javascriptClick(chkAirline, driver,
+						"Click Airline in Airlines Filters, Selected Airline is:" + airline);
 				break;
 			} else if (airline == null) {
-				Log.event("Preferred Airline(" + airlineName+ ") is not available, so its going to click Book Now Button with Random Flights");
+				Log.event("Preferred Airline(" + airlineName
+						+ ") is not available, so its going to click Book Now Button with Random Flights");
 			}
 		}
 
@@ -2378,7 +2387,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 					By.cssSelector("div[ng-show='open_stop'] li:nth-child(" + i + ") span[class='full bxs txt-ac']"));
 			String stopText = stop.getText().toString().trim();
 			if (stopText.equalsIgnoreCase(stops)) {
-				// WebElement chkAirline =driver.findElement(By.cssSelector("div[ng-show='open_airline'] li:nth-child("+i+") span[class='checkbox']>input"));
+				// WebElement chkAirline
+				// =driver.findElement(By.cssSelector("div[ng-show='open_airline']
+				// li:nth-child("+i+") span[class='checkbox']>input"));
 				BrowserActions.clickOnElement(stop, driver, "Click Stop in Stops Filters, Selected Stop is:" + stop);
 				break;
 			} else if (stopText == null) {
@@ -2417,7 +2428,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				clickOnBookNowInOW(2); // select Book now
 				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
 			} else {
-				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
+				selectAirlineInAirlineFilters(airlines); // Select Preferred
+															// Airline in
+															// Airline Filters
 				clickOnPrefferedFlightsBookNowInOW(1); // select Book Now
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
 			}
@@ -2436,7 +2449,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				clickOnBookNowInDOM_INTL(1); // select Book now
 				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
 			} else {
-				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
+				selectAirlineInAirlineFilters(airlines); // Select Preferred
+															// Airline in
+															// Airline Filters
 				clickOnBookNowInDOM_INTL(1); // select Book Now
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
 			}
@@ -2894,7 +2909,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickOnFlightDetailsInRT(int index, int i) throws Exception {
-
 		WebElement onwardflight = driver.findElement(By.cssSelector("div[id='resultBoxSlider']>div[id='resultList_" + i
 				+ "']>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index
 				+ ")>article>footer>ul[class='res-footer-list fl uprcse']>li:not([class='ng-hide'])>a"));
@@ -2924,8 +2938,21 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		btnBookNowFlightDeatilPopUp_INTL.click();
 	}
 
-	public boolean verifyChkBoxAirlineFilter() throws Exception {
-		return BrowserActions.isRadioOrCheckBoxSelected(chkBoxAirline.get(0));
+	public ArrayList<String> verifyChkBoxAirlineFilter() throws Exception {
+		boolean result = false;
+		ArrayList<String> airlineName = new ArrayList<String>();
+		List<WebElement> Airline = driver
+				.findElements(By.cssSelector("span[class='checkbox']>input[analytics*='Filter Option Click|Airline']"));
+		List<WebElement> Airline_Nme = driver.findElements(By.cssSelector("span[class='clip-overflow']"));
+		for (int i = 0; i < Airline.size(); i++) {
+			result = BrowserActions.isRadioOrCheckBoxSelected(Airline.get(i));
+			if (result == true) {
+				String airline_Name = Airline_Nme.get(i).getText();
+				airlineName.add(airline_Name);
+				return airlineName;
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -2950,7 +2977,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextOnwardPrevDaySearch() throws Exception {
 		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
-		String prevDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkPrevDay_OnwardLeg, "title", "Prev Day title");
+		String prevDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkPrevDay_OnwardLeg, "title",
+				"Prev Day title");
 		return prevDayGetTxt;
 	}
 
@@ -2962,7 +2990,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextOnwardNextDaySearch() throws Exception {
 		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
-		String nextDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkNextDay_OnwardLeg, "title", "Next Day title");
+		String nextDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkNextDay_OnwardLeg, "title",
+				"Next Day title");
 		return nextDayGetTxt;
 	}
 
@@ -2975,7 +3004,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public String getTextReturnPrevDaySearch() throws Exception {
 
 		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
-		String prevDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkPrevDay_ReturnLeg, "title", "Prev Day title");
+		String prevDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkPrevDay_ReturnLeg, "title",
+				"Prev Day title");
 		return prevDayGetTxt;
 	}
 
@@ -2987,7 +3017,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextReturnNextDaySearch() throws Exception {
 		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
-		String nextDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkNextDay_ReturnLeg, "title", "Next Day title");
+		String nextDayGetTxt = BrowserActions.getTextFromAttribute(driver, lnkNextDay_ReturnLeg, "title",
+				"Next Day title");
 		return nextDayGetTxt;
 	}
 
@@ -3007,56 +3038,59 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	/*public boolean verifyRefundableFlights() throws Exception {
-	for (int i = 0; i < lstRefundableFlights.size(); i++) {
-	WebElement refundableEle = driver.findElement(
-	By.xpath("(//div[@class='js-flightRow js-flightItem'][" + i + "])//li[@ng-if='flt.ft==1']"));
-	String flightRow = BrowserActions.getText(driver, refundableEle,"Getting txt of the Refundable in flight rows.");
-			if (flightRow.equalsIgnoreCase("Refundable")) {
-				return true;
-			}
-		BrowserActions.nap(2);		
-		boolean status = false;
-		for (int i = 1; i < lstRefundableFlights.size(); i++) {
-			WebElement refundableEle1 = driver.findElement(By.cssSelector("div[class='js-flightRow js-flightItem']:nth-child("+i+") li[ng-if='flt.ft==1']"));
-			String flightRow = BrowserActions.getText(driver, refundableEle1, "Getting txt of the Refundable in flight rows.");
-			if (flightRow.equalsIgnoreCase("REFUNDABLE")) {
-				status = true;	break;			
-			} else if(!flightRow.equalsIgnoreCase("REFUNDABLE")){
-				status = false;
-			}
-		}
-		return status;
-	}*/
+	/*
+	 * public boolean verifyRefundableFlights() throws Exception { for (int i =
+	 * 0; i < lstRefundableFlights.size(); i++) { WebElement refundableEle =
+	 * driver.findElement( By.xpath(
+	 * "(//div[@class='js-flightRow js-flightItem'][" + i +
+	 * "])//li[@ng-if='flt.ft==1']")); String flightRow =
+	 * BrowserActions.getText(driver, refundableEle,
+	 * "Getting txt of the Refundable in flight rows."); if
+	 * (flightRow.equalsIgnoreCase("Refundable")) { return true; }
+	 * BrowserActions.nap(2); boolean status = false; for (int i = 1; i <
+	 * lstRefundableFlights.size(); i++) { WebElement refundableEle1 =
+	 * driver.findElement(By.cssSelector(
+	 * "div[class='js-flightRow js-flightItem']:nth-child("+i+
+	 * ") li[ng-if='flt.ft==1']")); String flightRow =
+	 * BrowserActions.getText(driver, refundableEle1,
+	 * "Getting txt of the Refundable in flight rows."); if
+	 * (flightRow.equalsIgnoreCase("REFUNDABLE")) { status = true; break; } else
+	 * if(!flightRow.equalsIgnoreCase("REFUNDABLE")){ status = false; } } return
+	 * status; }
+	 */
 	/**
 	 * To verify the Refundable flights in Flight Grid
 	 * 
 	 * @throws Exception
 	 */
-	public boolean verifyRefundableFlight() throws Exception {			
-		boolean status = false;	
-			WebElement refundableEle = driver.findElement(By.cssSelector("div[class='js-flightRow js-flightItem'] li[ng-if='flt.ft==1']"));
-			String flightRow = BrowserActions.getText(driver, refundableEle, "Getting txt of the Refundable in flight rows.");
-			if (flightRow.equalsIgnoreCase("REFUNDABLE")) {
-				status = true;			
-			} else if(!flightRow.equalsIgnoreCase("REFUNDABLE")){
-				status = false;
-			}		
+	public boolean verifyRefundableFlight() throws Exception {
+		boolean status = false;
+		WebElement refundableEle = driver
+				.findElement(By.cssSelector("div[class='js-flightRow js-flightItem'] li[ng-if='flt.ft==1']"));
+		String flightRow = BrowserActions.getText(driver, refundableEle,
+				"Getting txt of the Refundable in flight rows.");
+		if (flightRow.equalsIgnoreCase("REFUNDABLE")) {
+			status = true;
+		} else if (!flightRow.equalsIgnoreCase("REFUNDABLE")) {
+			status = false;
+		}
 		return status;
 	}
+
 	/**
 	 * To verify the Flight name titles in Result Grid
 	 * 
 	 * @throws Exception
 	 */
-	public boolean verifyFlightNameTitlesInResultGrid(String flghtname) throws Exception {	
+	public boolean verifyFlightNameTitlesInResultGrid(String flghtname) throws Exception {
 		boolean status = false;
 		for (int i = 1; i < lstFlightResultGrid.size(); i++) {
-			WebElement Ele = driver.findElement(By.xpath("//div[@class='js-flightRow js-flightItem']["+i+"]//small[@class='fs-sm gray fl ml5 name carrier-name']"));
+			WebElement Ele = driver.findElement(By.xpath("//div[@class='js-flightRow js-flightItem'][" + i
+					+ "]//small[@class='fs-sm gray fl ml5 name carrier-name']"));
 			String flightName = BrowserActions.getText(driver, Ele, "Getting txt of the Refundable in flight rows.");
 			if (flightName.equalsIgnoreCase(flghtname)) {
-				status = true;				
-			} else if(!flightName.equalsIgnoreCase(flghtname)){
+				status = true;
+			} else if (!flightName.equalsIgnoreCase(flghtname)) {
 				status = false;
 				break;
 			}
@@ -3064,7 +3098,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 		return status;
 	}
-	
+
 	/**
 	 * To click Reset All in SRP
 	 * 
@@ -3076,9 +3110,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForPageLoad(driver);
 		Log.event("Clicked Reset All");
 	}
-	
+
 	/**
-	 * To verify SRP Menu's 
+	 * To verify SRP Menu's
 	 * 
 	 * @throws Exception
 	 */
@@ -3087,51 +3121,60 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Utils.waitForElement(driver, lnkHeaders);
 		boolean boolHeaders = BrowserActions.isElementPresent(driver, lnkHeaders);
 		boolean boolModifySearch = BrowserActions.isElementPresent(driver, btnModifySearchIcon);
-		boolean boolFilters = BrowserActions.isElementPresent(driver, lnkFilters);		
+		boolean boolFilters = BrowserActions.isElementPresent(driver, lnkFilters);
 		boolean boolResultGrid = BrowserActions.isElementPresent(driver, lnkResultGrid);
 		boolean boolSetFareAlerts = BrowserActions.isElementPresent(driver, lnkSetFareAlerts);
 		boolean boolSahreIntinerary = BrowserActions.isElementPresent(driver, lnkShareItinerary);
 		boolean boolFooter = BrowserActions.isElementPresent(driver, lnkFooter);
-		/*boolean boolAirlineMatrix = BrowserActions.isElementPresent(driver, lnkAirlinematrix);
-		boolean boolPrevDay = BrowserActions.isElementPresent(driver, lnkPrevDay_OnwardLeg);
-		boolean boolNextDay = BrowserActions.isElementPresent(driver, lnkNextDay_OnwardLeg);
-		boolean boolOLL = BrowserActions.isElementPresent(driver, lnkOnwardLFF);
-		boolean boolRLL = BrowserActions.isElementPresent(driver, lnkReturnLFF);*/
+		/*
+		 * boolean boolAirlineMatrix = BrowserActions.isElementPresent(driver,
+		 * lnkAirlinematrix); boolean boolPrevDay =
+		 * BrowserActions.isElementPresent(driver, lnkPrevDay_OnwardLeg);
+		 * boolean boolNextDay = BrowserActions.isElementPresent(driver,
+		 * lnkNextDay_OnwardLeg); boolean boolOLL =
+		 * BrowserActions.isElementPresent(driver, lnkOnwardLFF); boolean
+		 * boolRLL = BrowserActions.isElementPresent(driver, lnkReturnLFF);
+		 */
 		if (tripType.equals(Constants.C_ONEWAY)) {
 			boolean boolAirlineMatrix_OW = BrowserActions.isElementPresent(driver, lnkAirlinematrix_OW);
-			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix_OW == true && boolResultGrid == true && boolSetFareAlerts == true&& boolSahreIntinerary == true && boolFooter == true) {
+			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix_OW == true
+					&& boolResultGrid == true && boolSetFareAlerts == true && boolSahreIntinerary == true
+					&& boolFooter == true) {
 				Log.event("Successfully verified SRP Menu for One Way");
-				status = true;				
+				status = true;
 			} else {
 				status = false;
-			}		
-			
+			}
+
 		} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
 			boolean boolAirlineMatrix = BrowserActions.isElementPresent(driver, lnkAirlinematrix);
 			boolean boolOLL = BrowserActions.isElementPresent(driver, lnkOnwardLFF);
 			boolean boolPrevDay = BrowserActions.isElementPresent(driver, lnkPrevDay_OnwardLeg);
 			boolean boolNextDay = BrowserActions.isElementPresent(driver, lnkNextDay_OnwardLeg);
 			boolean boolRLL = BrowserActions.isElementPresent(driver, lnkReturnLFF);
-			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix == true	&& boolPrevDay == true && boolNextDay == true && boolOLL == true && boolRLL == true	&& 
-					boolResultGrid == true && boolSetFareAlerts == true && boolSahreIntinerary == true && boolFooter == true) {
+			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix == true
+					&& boolPrevDay == true && boolNextDay == true && boolOLL == true && boolRLL == true
+					&& boolResultGrid == true && boolSetFareAlerts == true && boolSahreIntinerary == true
+					&& boolFooter == true) {
 				Log.event("Successfully verified SRP Menu for Round Trip");
 				status = true;
 			} else {
 				status = false;
 			}
-			
+
 		} else if (tripType.equals(Constants.C_MULTICITY)) {
 			boolean boolAirlineMatrix = BrowserActions.isElementPresent(driver, lnkAirlinematrix);
 			boolean boolPrevDay = BrowserActions.isElementPresent(driver, lnkPrevDay_OnwardLeg);
 			boolean boolNextDay = BrowserActions.isElementPresent(driver, lnkNextDay_OnwardLeg);
 			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix == true
-					&& boolPrevDay == true && boolNextDay == true && boolResultGrid == true && boolSetFareAlerts == true && boolSahreIntinerary == true && boolFooter == true) {
-				Log.event("Successfully verified SRP Menu for Round Trip");				
+					&& boolPrevDay == true && boolNextDay == true && boolResultGrid == true && boolSetFareAlerts == true
+					&& boolSahreIntinerary == true && boolFooter == true) {
+				Log.event("Successfully verified SRP Menu for Round Trip");
 				status = true;
 			} else {
 				status = false;
-			}			
-		}		
+			}
+		}
 		Utils.waitForPageLoad(driver);
 		return status;
 	}
@@ -3146,8 +3189,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		action.dragAndDropBy(AmountSlider, value, 0).build().perform();
 	}
 
-	
-	 /* To verify Result Grid Columns
+	/*
+	 * To verify Result Grid Coulmns
 	 * 
 	 * @throws Exception
 	 */
@@ -3159,7 +3202,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		boolean boolArrive = BrowserActions.isElementPresent(driver, lnkArriveColumn);
 		boolean boolDuration = BrowserActions.isElementPresent(driver, lnkDurationColumn);
 		boolean boolPrice = BrowserActions.isElementPresent(driver, lnkPriceColumn);
-		if (boolAirline == true && boolDepart == true && boolArrive == true && boolDuration == true	&& boolPrice == true) {
+		if (boolAirline == true && boolDepart == true && boolArrive == true && boolDuration == true
+				&& boolPrice == true) {
 			Log.event("Successfully verified Result Grid Coulmns");
 			status = true;
 		} else {
@@ -3170,7 +3214,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 
 	/**
-	 * Getting the text from result grid column headers titles
+	 * Getting the text from Passenger class Drop down in Modify Search panel
 	 * 
 	 * @return
 	 * @throws Exception
@@ -3178,12 +3222,15 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public List<String> getResultGridColumns() throws Exception {
 		List<String> resultGridCoulmns = new ArrayList<String>();
 		String airline = BrowserActions.getText(driver, lnkAirlineColumn, "Airline Column Text");
-		String depart = BrowserActions.getText(driver, lnkDepartColumn, "Deaprt Column Text");
-		String arrive = BrowserActions.getText(driver, lnkArriveColumn, "Arrive Column Text");
-		String duration = BrowserActions.getText(driver, lnkDurationColumn, "Duration Column Text");
-		String price = BrowserActions.getText(driver, lnkPriceColumn, "Price Column Text");
-		resultGridCoulmns.add(airline);	resultGridCoulmns.add(depart); resultGridCoulmns.add(arrive);
-		resultGridCoulmns.add(duration); resultGridCoulmns.add(price);
+		String depart = BrowserActions.getText(driver, lnkDepartColumn, "Airline Column Text");
+		String arrive = BrowserActions.getText(driver, lnkArriveColumn, "Airline Column Text");
+		String duration = BrowserActions.getText(driver, lnkDurationColumn, "Airline Column Text");
+		String price = BrowserActions.getText(driver, lnkPriceColumn, "Airline Column Text");
+		resultGridCoulmns.add(airline);
+		resultGridCoulmns.add(depart);
+		resultGridCoulmns.add(arrive);
+		resultGridCoulmns.add(duration);
+		resultGridCoulmns.add(price);
 		Log.event("Result Grid Headers coulmns are : " + resultGridCoulmns);
 		return resultGridCoulmns;
 	}
@@ -3255,27 +3302,33 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			}
 		}
 	}
+
 	/**
-	 * Getting the text from Book Now If Time between RT flights on the same day is  less the 3 hrs
+	 * Getting the text from Book Now If Time between RT flights on the same day
+	 * is less the 3 hrs
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextErrorMessageOnBookNowIfTimeIsLessThen3Hrs() throws Exception {
-		String ErrorMessage = BrowserActions.getText(driver, txtErrorMessageFlightDifference,"Getting the text from Book Now If Time between RT flights on the same day is  less the 3 hrs");
+		String ErrorMessage = BrowserActions.getText(driver, txtErrorMessageFlightDifference,
+				"Getting the text from Book Now If Time between RT flights on the same day is  less the 3 hrs");
 		return ErrorMessage;
 	}
+
 	/**
-	 * Getting the text from Book Now If Time between RT flights on the same day is  less the 3 hrs
+	 * Getting the text from Book Now If Time between RT flights on the same day
+	 * is less the 3 hrs
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextFreeMeal_INTL() throws Exception {
 		BrowserActions.scrollToView(logoFreeMeal, driver);
-		String Message = BrowserActions.getText(driver, txtFreeMeal,"Free Meal Message");
+		String Message = BrowserActions.getText(driver, txtFreeMeal, "Free Meal Message");
 		return Message;
 	}
+
 	/**
 	 * To Verify Free Meal options In SpiceJet,GoAir,Indigo
 	 * 
@@ -3298,9 +3351,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			}
 		}
 		return flag;
-	}	
-	
-	
+	}
+
 	/**
 	 * To verify Price Sort arrows are displayed
 	 * 
@@ -3323,8 +3375,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			}
 		}
 		return status;
-	}	
-	
+	}
 
 	/**
 	 * To click Price Sort arrow
@@ -3336,7 +3387,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.clickOnElement(lnkPriceUpwards, driver, "Click Price Sort Arrow");
 		Utils.waitForPageLoad(driver);
 		Log.event("Clicked Price Sort Arrow");
-		}
+	}
 
 	/**
 	 * Getting the text from Selected Flight
@@ -3346,89 +3397,96 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextSelectedFlight() throws Exception {
 		Utils.waitForPageLoad(driver);
-		String Message = BrowserActions.getText(driver, selectionDivision,"Selected Flight");
+		String Message = BrowserActions.getText(driver, selectionDivision, "Selected Flight");
 		return Message;
 	}
+
 	/**
 	 * Clicking On Book Now In RoundTrip
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	
-	public void ClickOnBookNow_DOM_RT() throws Exception{
+
+	public void ClickOnBookNow_DOM_RT() throws Exception {
 		Utils.waitForPageLoad(driver);
 		btnBookNowRoundTrip.click();
-}
+	}
+
 	/**
-	 * Getting the text from Error Message After Applying Filter 
+	 * Getting the text from Error Message After Applying Filter
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextErrorMessageAfterApplyingFilter() throws Exception {
 		Utils.waitForPageLoad(driver);
-		String errorMessage = BrowserActions.getText(driver, errorMessageAfterApplyingFilter,"Error Message");
+		String errorMessage = BrowserActions.getText(driver, errorMessageAfterApplyingFilter, "Error Message");
 		return errorMessage;
 	}
-	
+
 	//
-	
+
 	/**
-	 * Getting the text from Selection Box RT Domestic 
+	 * Getting the text from Selection Box RT Domestic
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public String getTextFareSummarySelectionBox_DOM() throws Exception {
 		Utils.waitForPageLoad(driver);
+		Thread.sleep(1000);
 		BrowserActions.scrollToView(priceSelectionBox, driver);
 		BrowserActions.mouseHover(driver, priceSelectionBox);
-		String errorMessage = BrowserActions.getText(driver, fareSummaryPopUp,"Fare Summary");
+		String errorMessage = BrowserActions.getText(driver, fareSummaryPopUp, "Fare Summary");
 		return errorMessage;
 	}
+
 	/**
-	 * Selecting the Stops Filter 
+	 * Selecting the Stops Filter
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
 	public void selectStopsFilter(int NumberOfStops) throws Exception {
 		Utils.waitForPageLoad(driver);
-		for(int i =0;i<stopsFilter.size();i++){
-			String Filters = BrowserActions.getText(driver,stopsFilter.get(i),"Fare Summary");
+		for (int i = 0; i < stopsFilter.size(); i++) {
+			String Filters = BrowserActions.getText(driver, stopsFilter.get(i), "Fare Summary");
 			int Filter = Integer.parseInt(Filters);
-			if(Filter == (NumberOfStops)){
-			BrowserActions.javascriptClick(stopsFilter.get(i), driver, "Selected Filter");
-			break;
+			if (Filter == (NumberOfStops)) {
+				BrowserActions.javascriptClick(stopsFilter.get(i), driver, "Selected Filter");
+				break;
 			}
 		}
 	}
-	public void ClickOnCrossInRecentSearch() throws Exception{
+
+	public void ClickOnCrossInRecentSearch() throws Exception {
 		BrowserActions.mouseHover(driver, btnRecentSearch);
 		BrowserActions.mouseHover(driver, fareRecentSearch);
 		BrowserActions.clickOnElement(lnkcloseFlightDetailsPopUp, driver, "Close [X] Button Recent Search");
 	}
+
 	/**
 	 * Getting Pax Details From Modify Search
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	public ArrayList<String> getTextPaxDetails() throws Exception{
+	public ArrayList<String> getTextPaxDetails() throws Exception {
 		ArrayList<String> PaxDetails = new ArrayList<String>();
-		for (int i =0;i<txtPaxDeatilInModify.size();i++){
-		String PaxDetail = 	BrowserActions.getText(driver, txtPaxDeatilInModify.get(i), "Getting name of Airlines In Pop Up");
-		PaxDetails.add(PaxDetail);
+		for (int i = 0; i < txtPaxDeatilInModify.size(); i++) {
+			String PaxDetail = BrowserActions.getText(driver, txtPaxDeatilInModify.get(i),
+					"Getting name of Airlines In Pop Up");
+			PaxDetails.add(PaxDetail);
 		}
-		return PaxDetails;	
+		return PaxDetails;
 	}
-	
+
 	/**
-	 * To verify selected Flights in current selection box
+	 * To verify Price Sort arrows are displayed
 	 * 
-	 * @param selection
-	 *            : selected flights for Onwards and Return 
+	 * @param links
+	 *            : Price Sort arrows are displayed with Upwards and Downwards
 	 * @return
 	 * @throws Exception
 	 */
@@ -3446,8 +3504,78 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			}
 		}
 		return status;
-	}	
-	
+	}
+
+	public int getSizeofResult() throws Exception {
+		Utils.waitForPageLoad(driver);
+		List<WebElement> abc = driver.findElements(By.cssSelector(
+				"#resultBoxSlider>div[id='resultList_0']>div[class='results']>div[class='js-flightRow js-flightItem']>article>div[class='my-res-info full']>ul>li[class='timing']>div[class='end']>span"));
+		return abc.size();
+	}
+
+	public String getTextDepatureDate() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String date = txtDepartureDate.getText();
+		return date;
+	}
+
+	/**
+	 * Getting the text from result grid column headers titles
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> getPriceFromSelectedFlightInCurrentSelectionBox() throws Exception {
+		List<String> price = new ArrayList<String>();
+		String onwardFare = BrowserActions.getText(driver, txtOnwardsSelectedFlightFare,
+				"Onward Seleccted Flight Fare");
+		String returnFare = BrowserActions.getText(driver, lnkReturnSelectedFlightFare, "Return Seleccted Flight Fare");
+		price.add(onwardFare);
+		price.add(returnFare);
+		Log.event("Price From Selected Flight In Current Selection Box : " + price);
+		return price;
+	}
+
+	/**
+	 * Getting the text from Origin in Modify Search
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getDepartureDate() throws Exception {
+		Utils.waitForElement(driver, txtDepartureDate);
+		String departureDate = BrowserActions.getText(driver, txtDepartureDate, "Onward Seleccted Flight Fare");
+		return departureDate;
+	}
+
+	/**
+	 * To click Modify Search link in SRP
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnwardNextDayButton() throws Exception {
+		// BrowserActions.nap(10);
+		Utils.waitForElement(driver, lnkNextDay_OnwardLeg);
+		BrowserActions.clickOnElement(lnkNextDay_OnwardLeg, driver, "Click NextDay Button");
+		BrowserActions.nap(3);
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicked NextDay Button");
+	}
+
+	/**
+	 * To click Modify Search link in SRP
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnwardPrevDayButton() throws Exception {
+		BrowserActions.nap(10);
+		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
+		BrowserActions.clickOnElement(lnkPrevDay_OnwardLeg, driver, "Click Prev Day Button");
+		BrowserActions.nap(3);
+		Utils.waitForPageLoad(driver);
+		Log.event("Clicked Prev Day Button");
+	}
+
 	/**
 	 * To verify Result Grid Column headers
 	 * 
@@ -3471,61 +3599,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		return status;
 	}
-	
-	/**
-	 * Getting the text from result grid column headers titles
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public List<String> getPriceFromSelectedFlightInCurrentSelectionBox() throws Exception {
-		List<String> price = new ArrayList<String>();
-		String onwardFare = BrowserActions.getText(driver, txtOnwardsSelectedFlightFare, "Onward Seleccted Flight Fare");
-		String returnFare = BrowserActions.getText(driver, lnkReturnSelectedFlightFare, "Return Seleccted Flight Fare");
-		price.add(onwardFare);	price.add(returnFare); 		
-		Log.event("Price From Selected Flight In Current Selection Box : " + price);
-		return price;
-	}
-	
-	/**
-	 * Getting the text from Origin in Modify Search
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public String getDepartureDate() throws Exception {
-		Utils.waitForElement(driver, txtDepartureDate);
-		String departureDate = BrowserActions.getText(driver, txtDepartureDate, "Onward Seleccted Flight Fare");
-		return departureDate;
-	}
-	
-	/**
-	 * To click Modify Search link in SRP
-	 * 
-	 * @throws Exception
-	 */
-	public void clickOnwardNextDayButton() throws Exception {
-		//BrowserActions.nap(10);
-		Utils.waitForElement(driver, lnkNextDay_OnwardLeg);
-		BrowserActions.clickOnElement(lnkNextDay_OnwardLeg, driver, "Click NextDay Button");
-		BrowserActions.nap(3);
-		Utils.waitForPageLoad(driver);
-		Log.event("Clicked NextDay Button");
-	}
 
-	/**
-	 * To click Modify Search link in SRP
-	 * 
-	 * @throws Exception
-	 */
-	public void clickOnwardPrevDayButton() throws Exception {
-		BrowserActions.nap(10);
-		Utils.waitForElement(driver, lnkPrevDay_OnwardLeg);
-		BrowserActions.clickOnElement(lnkPrevDay_OnwardLeg, driver, "Click Prev Day Button");
-		BrowserActions.nap(3);
-		Utils.waitForPageLoad(driver);
-		Log.event("Clicked Prev Day Button");
-	}
-
-// *******************************End of SRP Functions***********************************/
+	// *******************************End of SRP
+	// Functions***********************************/
 } // SearchResult

@@ -158,7 +158,17 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	@FindBy(css="#coachId")
 	private WebElement txtCoachId;
 	
+	@FindBy(xpath="//*[@id='summaryContainer']/ul/li/div/label/select[@class='boardingStnListClass']")
+	private WebElement drpBoardingPnt;
 	
+	@FindBy(css="select[class='boardingStnListClass']>option")
+	private List<WebElement> lstBoardingPnt;
+	
+	@FindBy(css = ".boardingMessage")
+	private WebElement msgChngeBoardngPoint;
+	
+	@FindBy(css="ul[id='paxStripContainer']>li[class='horzSeprB pb5']")
+	private List<WebElement> lstPax;
 	
 	
 	/**********************************************************************************************
@@ -235,9 +245,9 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	 * @throws Exception
 	 */
 	public void fillTravellerDetails()  throws Exception{
-		List<WebElement> lstPax = driver.findElements(By.cssSelector("ul[id='paxStripContainer']>li[class='horzSeprB pb5']"));
-
+        List<WebElement> lstPax = driver.findElements(By.cssSelector("ul[id='paxStripContainer']>li[class='horzSeprB pb5']"));
 		for(int i=0;i<lstPax.size();i++){
+			//BrowserActions.scrollToView(lstPax.get(i).findElement(By.cssSelector("div[class='flL ml10 select-input relative']>label")), driver);
 			BrowserActions.clickOnElement(lstPax.get(i).findElement(By.cssSelector("div[class='flL ml10 select-input relative']>label")), driver, "Clicked on title dropdown.");
 			List<WebElement> lstTitle = lstPax.get(i).findElements(By.cssSelector("div[class='flL ml10 select-input relative']>label>select>option"));
              if(lstTitle.size()!=0){
@@ -272,6 +282,7 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 		
 		}
 	}
+	
 	
 	
 	/**
@@ -471,6 +482,52 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 		txtCoachId.clear();
 	}
 	
+	
+	
+	/**
+	 * selecting boarding point from the boarding point dropdown
+	 * @throws Exception
+	 */
+	public void selectBoardingPointFrmDrpdwn() throws Exception{
+		BrowserActions.clickOnElement(drpBoardingPnt, driver, "Clicked on Boarding dropdown.");
+		if(lstBoardingPnt.size()>0){
+			int rand = Utils.getRandom(2, lstBoardingPnt.size());
+            Utils.waitForElement(driver, lstBoardingPnt.get(rand));
+			BrowserActions.clickOnElement(lstBoardingPnt.get(rand), driver, "Boarding Point selected");
+			Utils.waitForPageLoad(driver);
+		}
+	}
+	
+	/**
+	 * getting message text after changing boarding point in left nav panel
+	 * @return
+	 * @throws Exception
+	 */
+	public String getSuccessMsgAfterChngBoardPnt() throws Exception{
+		return BrowserActions.getText(driver, msgChngeBoardngPoint, "Getting message after changing Boarding Point.");
+	}
+	
+	/**
+	 * to verify the pax detail section 
+	 * @throws Exception
+	 */
+	public void verifyPaxDetails() throws Exception{
+	String randomName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
+	BrowserActions.scrollToView(lstPax.get(0).findElement(By.cssSelector("input")), driver);
+	BrowserActions.typeOnTextField(lstPax.get(0).findElement(By.cssSelector("input")), randomName, driver, "First Name");
+	Log.event("Successfully entered Passenger name:"+randomName);
+	clickOnContinueBtnInPaxPage();
+	}
+	
+	
+	public void verifyInfantDetails() throws Exception{
+		String randomInfntName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
+		BrowserActions.scrollToView(driver.findElement(By.cssSelector("#childName1")), driver);
+		BrowserActions.typeOnTextField(driver.findElement(By.cssSelector("#childName1")), randomInfntName, driver, "First Infant Name");
+		Log.event("Successfully entered Infant name:"+randomInfntName);
+		clickOnContinueBtnInPaxPage();
+
+	}
 }//TrainTravellerPage
 
 

@@ -980,13 +980,266 @@ public class FlightPricing {
 			Log.message("<b>Expected Result:</b> Validated DOM Flight pricing - OW ( Preferred airline)");
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtshowFlightFareDetails"), reviewPage),
 					"<b>Actual Result:</b> Successfully displayed Flight Price in Review Page, Flight Price : "+ flightPrice,
-					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);			
-			
+					"<b>Actual Result:</b> Flight Prices is not displayed",	driver);				
 			Log.testCaseResult();			
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
 			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Verification Promo functionality from drop down", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_144(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: click 'Book Now' button
+			reviewPage = searchResult.clickOnBookNowINT();
+			Log.message("5. Successfully clicked 'Search' !");
+
+			// step: click on 'Promo' DropDown
+			reviewPage.clickOnPromoDrpDwn();
+			Log.message("6. Successfully clicked 'Promo' DropDown!");
+
+			// step: selected 'Promotion' from the DropDown
+			reviewPage.selectPromoByIndex(2);
+			Log.message("7. Successfully Selected 'Promotion' from the DropDown!");
+			Thread.sleep(3000);
+			String Ecash = reviewPage.getTextEcashFareDetails();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verification Promo functionality from drop down");
+			Log.assertThat(	reviewPage.elementLayer.verifyPageElements(Arrays.asList("totalAmountInreviewPage"), reviewPage),
+					"<b>Actual Result :</b> When Promo Type is Ecash, after applying Promo Ecash Message is displayed as :\n"
+					+ Ecash, "<b>Actual Result :</b> No Promotion is visible to the user", driver);
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "Remove Promo Code Functionality from Fare Details", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_148(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: click 'Book Now' button
+			reviewPage = searchResult.clickOnBookNowINT();
+			Log.message("5. Successfully clicked 'Search' !");
+
+			// step: click on 'Promo' DropDown
+			reviewPage.clickOnPromoDrpDwn();
+			Log.message("6. Successfully clicked 'Promo' DropDown!");
+
+			// step: selected 'Promotion' from the DropDown
+			reviewPage.selectPromoByIndex(1);
+			Log.message("7. Successfully Selected 'Promotion' from the DropDown!");
+			Thread.sleep(2000);
+			String amount = reviewPage.getTextTotalAmount();
+
+			// step: clicked On Remove Button
+			reviewPage.ClickOnRemoveButton();
+			Log.message("8. Successfully Clicked On 'Remove' Button!");
+			String amountafterRemovingPromo = reviewPage.getTextTotalAmount();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verification Remove Promo Code Functionality from Promo Apply Box");
+			Log.assertThat(	reviewPage.elementLayer.verifyPageElements(Arrays.asList("totalAmountInreviewPage"), reviewPage),
+					"<b>Actual Result :</b> Amount When Promo Code is  applied is = :  " + amount + " \n Amount after clicking Remove Button is displayed as = : " + amountafterRemovingPromo,
+					"<b>Actual Result :</b> No Amount is changed after applying Promo and Unable to Click On Remove Button On FAre Details Section",	driver);
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "Remove Promo Code Functionality from Promo Apply Box", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_149(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: click 'Book Now' button
+			reviewPage = searchResult.clickOnBookNowINT();
+			Log.message("5. Successfully clicked 'Search' !");
+
+			// step: click on 'Promo' DropDown
+			reviewPage.clickOnPromoDrpDwn();
+			Log.message("6. Successfully clicked 'Promo' DropDown!");
+
+			// step: selected 'Promotion' from the DropDown
+			reviewPage.selectPromoByIndex(1);
+			Log.message("7. Successfully Selected 'Promotion' from the DropDown!");
+			Thread.sleep(2000);
+			String amount = reviewPage.getTextTotalAmount();
+
+			// step: clicked On Remove Button
+			reviewPage.ClickOnCloseButtonInPromoBox();
+			Log.message("8. Successfully Clicked On 'Remove' Button!");
+			String amountafterRemovingPromo = reviewPage.getTextTotalAmount();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verification Remove Promo Code Functionality from Promo Apply Box");
+			Log.assertThat(	reviewPage.elementLayer.verifyPageElements(Arrays.asList("totalAmountInreviewPage"), reviewPage),
+					"<b>Actual Result :</b> Amount When Promo Code is  applied is = :  " + amount	+ " \n Amount after Clicking Close Button is Displayed as  = : " + amountafterRemovingPromo,
+					"<b>Actual Result :</b> Unable to click on Close Button in Promo Box and No Price is Changed",	driver);
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "Verification Change Promo", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_150(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
+
+			// step: select OneWay Search fields in HomePage
+			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = homePage.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: click 'Book Now' button
+			reviewPage = searchResult.clickOnBookNowINT();
+			Log.message("5. Successfully clicked 'Search' !");
+
+			// step: click on 'Promo' DropDown
+			reviewPage.clickOnPromoDrpDwn();
+			Log.message("6. Successfully clicked 'Promo' DropDown!");
+
+			// step: selected First 'Promotion' from the DropDown
+			reviewPage.selectPromoByIndex(1);
+			Log.message("7. Successfully Selected First 'Promotion' from the DropDown!");
+			Thread.sleep(2000);
+			String firstPromoDiscount = reviewPage.getTextPromotinalMessage();
+
+			// step: click on 'Promo' DropDown
+			reviewPage.clickOnPromoDrpDwn();
+			Log.message("8. Successfully clicked 'Promo' DropDown!");
+
+			// step: selected Second 'Promotion' from the DropDown
+			reviewPage.selectPromoByIndex(2);
+			Log.message("9. Successfully Selected second 'Promotion' from the DropDown!");
+			Thread.sleep(2000);
+			String SecondPromoDiscount = reviewPage.getTextPromotinalMessage();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verification Change Promo");
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoDiscountApplied"), reviewPage),
+					"<b>Actual Result :</b> Promotional Discount For First promo code is :  " + firstPromoDiscount + " \n Promotional Discount For second Promo is : " + SecondPromoDiscount,
+					"<b>Actual Result :</b> User did not navigated to review Page", driver);
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
