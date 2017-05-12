@@ -21,7 +21,6 @@ import com.Yatra.Utils.EmailSender;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExtentReporter;
 import com.Yatra.Utils.Log;
-import com.Yatra.Utils.WebDriverFactory;
 
 /**
  * Description: To rename test case name at runtime<br>
@@ -103,9 +102,8 @@ public class BaseTest implements ITest
 
 		try
 		{
-			if(result.getStatus()==ITestResult.FAILURE&&propReader.getProperty("SEND_EMAIL_ON_FAILIURE").equalsIgnoreCase("true"))			//if test case fail perform below task
+			if(result.getStatus()==ITestResult.FAILURE&&propReader.getProperty("SEND_EMAIL_ON_FAILIURE").equalsIgnoreCase("TRUE"))			//if test case fail perform below task
 			{
-				driver=WebDriverFactory.baseTestDriver;
 				inputFile=Log.takeScreenShot(driver);
 
 				testCaseId=result.getName();
@@ -131,6 +129,6 @@ public class BaseTest implements ITest
 	 */
 	public static void setBaseDriver(WebDriver drivers)
 	{
-		driver=WebDriverFactory.baseTestDriver;
+		driver=drivers;
 	}
 }

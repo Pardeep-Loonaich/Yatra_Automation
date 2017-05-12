@@ -24,7 +24,6 @@ import com.Yatra.Pages.PaymentPage;
 import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.Pages.TravellerPage;
-import com.Yatra.TestScript.Common.BaseTest;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
@@ -34,7 +33,7 @@ import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
-public class FlightPricing extends BaseTest {
+public class FlightPricing {
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	HomePage homePage;

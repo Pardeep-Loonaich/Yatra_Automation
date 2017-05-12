@@ -45,6 +45,8 @@ import org.testng.Reporter;
 import org.testng.SkipException;
 import org.testng.xml.XmlTest;
 
+import com.Yatra.TestScript.Common.BaseTest;
+
 //import com.saucelabs.selenium.client.factory.SeleniumFactory;
 
 /*import net.lightbody.bmp.core.har.Har;
@@ -60,7 +62,6 @@ import net.lightbody.bmp.core.har.HarLog;*/
  */
 
 public class WebDriverFactory {
-	public static WebDriver  baseTestDriver;
 
 	private static Logger logger = LoggerFactory.getLogger(WebDriverFactory.class);
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
@@ -464,8 +465,7 @@ public class WebDriverFactory {
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		//Log.event("Driver::initialize::Get", StopWatch.elapsedTime(startTime));
 		Log.addTestRunMachineInfo(driver);
-		baseTestDriver=driver;
-		//BaseTest.setBaseDriver(driver);
+		BaseTest.setBaseDriver(driver);
 		return driver;
 
 	}

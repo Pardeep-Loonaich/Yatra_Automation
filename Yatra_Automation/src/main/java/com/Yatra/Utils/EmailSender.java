@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -23,12 +22,10 @@ import javax.mail.internet.MimeMultipart;
 
 import org.testng.Reporter;
 
-import com.Yatra.Pages.ReviewPage;
-
 public class EmailSender {
 
 	private  String testCaseId="";
-	private   String sCurrentPageURL=ReviewPage.sPricingURL;;
+	private   String sCurrentPageURL="";
 	public static  String sPricingURL="";
 	private  String fileName="";
 
@@ -49,7 +46,7 @@ public class EmailSender {
 	public EmailSender(String fileName, String testCaseId,String sCurrentPageURL)
 	{
 		this.fileName=fileName;
-		//this.sPricingURL=sPricingURL;
+		this.sPricingURL=sPricingURL;
 		this.sCurrentPageURL=sCurrentPageURL;
 		this.testCaseId=testCaseId;
 	}
