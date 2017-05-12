@@ -1553,6 +1553,8 @@ public class Train {
 	    	trainTravellerPage.enterIrctcId(irctcId);
 			Log.message("7.Filling IRCTC ID if option is visible.");
 
+			Thread.sleep(2000);
+
 			trainTravellerPage.fillTravellerDetails();
 			Log.message("8.Filling traveller details on PaxPage.");
 
@@ -1697,6 +1699,7 @@ public class Train {
 		    trainSearchResult.selectTrainByIndexAndBook(1);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
+			Thread.sleep(2000);
 			trainTravellerPage = trainSearchResult.clickOnContinue();
 			Log.message("5.Clicked on 'Continue' button.");
 
