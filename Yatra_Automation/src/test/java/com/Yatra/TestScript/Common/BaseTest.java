@@ -98,12 +98,12 @@ public class BaseTest implements ITest
 	public void  afterTestExecutor(ITestResult result) 
 
 	{
-		System.out.println("Executing After Mehtod ..");
 
 		try
 		{
 			if(result.getStatus()==ITestResult.FAILURE&&propReader.getProperty("SEND_EMAIL_ON_FAILIURE").equalsIgnoreCase("TRUE"))			//if test case fail perform below task
 			{
+				Log.message("triggering email in for failed test case");
 				inputFile=Log.takeScreenShot(driver);
 
 				testCaseId=result.getName();
