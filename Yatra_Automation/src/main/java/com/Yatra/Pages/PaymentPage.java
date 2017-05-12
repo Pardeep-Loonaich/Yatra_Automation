@@ -424,7 +424,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css="div[id='time-label']")
 	private WebElement lblTimerTrain;
 
-
+	@FindBy(xpath = "//label[@id='qb_newCreditCard']//span[@class='box']")
+	private WebElement chkNewCCcard;
 	
 	@FindBy(css = "#qb_ccCVV0")
 	private WebElement txtSavedcreditCardCvv;
@@ -485,7 +486,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		Utils.waitForPageLoad(driver);
 	}// load
 
-
+	
 
 	/**
 	 * Filling Credit Card Details
@@ -496,11 +497,12 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public void enterCreditCardDetails(String cardNumber) throws Exception {
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		String randomCvv = RandomStringUtils.randomNumeric(3);
-
-		if (BrowserActions.isElementPresent(driver, txtSavedcreditCardCvv) == true) {
+		/*if (BrowserActions.isElementPresent(driver, txtSavedcreditCardCvv) == true) {
 			BrowserActions.typeOnTextField(txtSavedcreditCardCvv, randomCvv, driver, "Enter CVV for Saved Credit card");
-		} else if (BrowserActions.isElementPresent(driver, creditCardNumber) == true) {
-			BrowserActions.typeOnTextField(creditCardNumber, cardNumber, driver, "Credit card Number");
+		} else if (BrowserActions.isElementPresent(driver, creditCardNumber) == true) {*/
+			
+		    BrowserActions.clickOnElement(chkNewCCcard, driver, "Month Selected");
+		    BrowserActions.typeOnTextField(creditCardNumber, cardNumber, driver, "Credit card Number");
 			BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
 			BrowserActions.clickOnElement(monthCC, driver, "Date");
 			if (lstMonthsCC.size() != 0) {
@@ -519,7 +521,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
 			BrowserActions.clickOnElement(lblSaveCCInQB, driver, "Unchecking Save QB");
 		}
-	}
+	//}
 
 	/**
 	 * to save the credit card details in quick book
