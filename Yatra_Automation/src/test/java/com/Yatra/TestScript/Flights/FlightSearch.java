@@ -120,7 +120,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -187,7 +187,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -251,7 +251,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -320,7 +320,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -399,7 +399,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -481,7 +481,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -543,7 +543,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -610,7 +610,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -688,7 +688,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -757,7 +757,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -829,7 +829,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -905,7 +905,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -977,7 +977,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1051,7 +1051,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1119,7 +1119,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1195,7 +1195,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1291,7 +1291,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1398,7 +1398,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1607,7 +1607,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1658,7 +1658,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1712,7 +1712,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1760,7 +1760,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1808,7 +1808,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1856,7 +1856,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1906,7 +1906,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1956,7 +1956,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1997,7 +1997,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2041,7 +2041,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2094,7 +2094,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2147,7 +2147,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2197,7 +2197,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2242,7 +2242,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2283,7 +2283,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2338,7 +2338,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2389,7 +2389,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2463,7 +2463,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2531,7 +2531,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2590,7 +2590,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2636,7 +2636,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2684,7 +2684,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2738,7 +2738,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2945,7 +2945,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2992,7 +2992,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3037,7 +3037,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3081,7 +3081,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3130,7 +3130,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3174,7 +3174,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4373,7 +4373,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4425,7 +4425,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4481,7 +4481,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4536,7 +4536,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4587,7 +4587,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4633,10 +4633,8 @@ public class FlightSearch extends BaseTest{
 			// step: select Airlines Book Now for One Way search
 			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
 			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");
-
-			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
-			//Log.message("5. Clicked On Book Now Button!");
-
+			reviewPage.popUpAppear();
+			
 			reviewPage.clickOnContinue();
 			Log.message("6. Clicked On Continue Button on Review Page!");
 
@@ -4665,7 +4663,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4711,8 +4709,7 @@ public class FlightSearch extends BaseTest{
 			// step: select Airlines Book Now for One Way search
 			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
 			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");			
-			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
-			//Log.message("5. Clicked On Book Now Button!");
+			
 			reviewPage.popUpAppear();
 
 			reviewPage.clickOnContinue();
@@ -4749,7 +4746,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4821,7 +4818,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4900,7 +4897,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4983,7 +4980,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5138,7 +5135,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			 ////driver.quit();
+			 driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5190,7 +5187,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5250,7 +5247,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5313,7 +5310,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5387,7 +5384,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5461,7 +5458,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5548,7 +5545,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5595,7 +5592,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5642,7 +5639,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5710,7 +5707,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5803,7 +5800,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5873,7 +5870,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5940,7 +5937,7 @@ public class FlightSearch extends BaseTest{
 	
 		} catch (Exception e) {
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6004,7 +6001,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6066,7 +6063,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6129,7 +6126,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6187,7 +6184,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6275,7 +6272,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -7022,7 +7019,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			////driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
