@@ -21,6 +21,7 @@ import com.Yatra.Utils.EmailSender;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExtentReporter;
 import com.Yatra.Utils.Log;
+import com.Yatra.Utils.WebDriverFactory;
 
 /**
  * Description: To rename test case name at runtime<br>
@@ -31,7 +32,7 @@ public class BaseTest implements ITest
 {
 	EnvironmentPropertiesReader propReader=EnvironmentPropertiesReader.getInstance();
 	private String testCaseId = "";
-	private static WebDriver driver;
+	private static WebDriver driver=WebDriverFactory.baseDriver;
 	public  String inputFile;
 
 
@@ -129,6 +130,6 @@ public class BaseTest implements ITest
 	 */
 	public static void setBaseDriver(WebDriver drivers)
 	{
-		driver=drivers;
+		//driver=drivers;
 	}
 }
