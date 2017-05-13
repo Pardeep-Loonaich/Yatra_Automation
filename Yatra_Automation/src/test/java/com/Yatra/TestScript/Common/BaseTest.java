@@ -32,7 +32,7 @@ public class BaseTest implements ITest
 {
 	EnvironmentPropertiesReader propReader=EnvironmentPropertiesReader.getInstance();
 	private String testCaseId = "";
-	private static WebDriver driver=WebDriverFactory.baseDriver;
+	private static WebDriver driver;
 	public  String inputFile;
 
 
@@ -104,6 +104,7 @@ public class BaseTest implements ITest
 		{
 			if(result.getStatus()==ITestResult.FAILURE&&propReader.getProperty("SEND_EMAIL_ON_FAILIURE").equalsIgnoreCase("TRUE"))			//if test case fail perform below task
 			{
+				driver=WebDriverFactory.baseDriver;
 				Log.message("triggering email in for failed test case");
 				inputFile=Log.takeScreenShot(driver);
 
