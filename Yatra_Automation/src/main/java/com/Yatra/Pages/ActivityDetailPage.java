@@ -3,12 +3,13 @@ package com.Yatra.Pages;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
@@ -21,9 +22,12 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
+import com.Yatra.Pages.ElementLayer;
+import com.Yatra.Pages.SearchResultActivites;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
@@ -35,6 +39,8 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	public ElementLayer elementLayer;
 	Utils utils;
 	public SearchResultActivites searchResultActivites;
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -64,6 +70,33 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	@FindBy(css = "div[class='ng-isolate-scope ng-valid']")
 	private WebElement dateCalendar;
 	
+	@FindBy(css = "div[class='select-wrapper fr ng-isolate-scope']>div[class='label-block fr ng-scope']")
+	private WebElement PaxInfo;
+	
+	@FindBy(css = "span[class='price-sec ng-binding ng-scope']")
+	private List<WebElement> AvaliableDatesForActivity;
+	
+	@FindBy(css = "span[class='price-sec ng-binding ng-scope']")
+	private WebElement AvaliableDate;
+	
+	@FindBy(css = "span[class='ico cal-arr-right']")
+	private WebElement nextMonth;
+	
+	@FindBy(css = "span[class='date-act ng-binding lowest-activity current-date']")
+	private WebElement selectedDate;
+
+	@FindBy(css = "span[class ='date-act ng-binding no-activity']")
+	private WebElement noActivity;
+	
+	@FindBy(css = "span[class='no-activity-tip']")
+	private WebElement ErrorMessageNoActivity;
+
+	@FindBy(css = "button[data-trackaction='Check Availability']")
+	private WebElement btnCheckAvailability;
+	
+	@FindBy(css = "div[class='col-left product-det']>button[data-trackaction='Book Now']")
+	private WebElement btnBookNowAfterCheckAvailability;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -87,15 +120,17 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 
 	@Override
 	protected void isLoaded() {
-		if (!isPageLoaded) {
+		timer.end();
+		if (!isPageLoaded) 
+		{
 			Assert.fail();
 		}
-
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnBookNow))) {
-			Log.fail("Activity Detail Page did not open up. Site might be down.", driver);
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnBookNow))) 
+		{
+		Log.fail("Activity Detail Page did not open up. Site might be down.", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
 	}// isLoaded
-
 	@Override
 	protected void load() {
 		isPageLoaded = true;
@@ -169,16 +204,76 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(btnBookNow, driver, "Click On Book Now Button");
 	}
+	/**
+	 * Click On to select Activities Date
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnSelectActivitiesDate() throws Exception {
+		Utils.waitForPageLoad(driver);
+		if(AvaliableDate.isDisplayed()){
+		int rand = Utils.getRandom(0, AvaliableDatesForActivity.size());
+		BrowserActions.clickOnElement(AvaliableDatesForActivity.get(rand), driver, "Click On Select Date");
+		}
+	else
+	{
+		BrowserActions.clickOnElement(nextMonth, driver, "Click On Next Month");
+		int rand = Utils.getRandom(0, AvaliableDatesForActivity.size());
+		BrowserActions.clickOnElement(AvaliableDatesForActivity.get(rand), driver, "Click On Select Date");
 	
+		}
+}
 	
+	/**
+	 * Verify Color Of the Selected Activity
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	
+	public boolean verifySelectedDateColour() throws Exception {
+	boolean status3 = false;
+	String rgbvalue = "243, 71, 71";
+	BrowserActions.getText(driver, selectedDate, "Getting Selected Date.");
+	status3= Utils.verifyCssPropertyForElement(selectedDate,"background-color",rgbvalue);
+	return status3;
+	}
 	
+	/**
+	 * To Get Error Message From NO Activity Date
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	
-	
-	
-	
-	
-	
-	
-	
+	public String getTextErrorMessageNoActivities() throws Exception {
+	String Message = null;
+	if(noActivity.isDisplayed()){
+	BrowserActions.mouseHover(driver, noActivity);	
+	Message = BrowserActions.getText(driver, ErrorMessageNoActivity, "Error Messaeg No Activities");
+	}
+	return Message;
+}	
+	/**
+	 * Click On Check Availability
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnCheckAvailability() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnCheckAvailability, driver, "Click On Check Availability Button");
+	}
+	/**
+	 * Click On Book Now After Check Availability
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public ProductDescriptionActivities clickOnBookNowAfterCheckAvailability() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnBookNowAfterCheckAvailability, driver, "Click On Book Now After Check Availability Button");
+		return new ProductDescriptionActivities(driver).get();
+	}
 }//ActivityDetailPage

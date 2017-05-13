@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
+import java.util.stream.IntStream;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +16,6 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
@@ -171,6 +170,7 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	private List<WebElement> lstPax;
 	
 	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of TrainTravellerPage - Ends ****************************
 	 **********************************************************************************************/
@@ -257,19 +257,24 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
  				Utils.waitForPageLoad(driver);
  			  }
 		
-        
+        int range[] = {12,13,14,15,16,17,34,45,48,49,50,54,35,23};
 		String randomName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
-		String age = RandomStringUtils.randomNumeric(2);
-		int age1 = Integer.parseInt(age);
+	/*	String age = RandomStringUtils.randomNumeric(2);
+		int age1 = Integer.parseInt(age);*/
+		Random rand1 = new Random();
+		int index = rand1.nextInt(range.length);
+		int age = range[index];
+		String Age = String.valueOf(age);
 		BrowserActions.typeOnTextField(lstPax.get(i).findElement(By.cssSelector("input")), randomName, driver, "First Name");
 		Log.event("Successfully entered Passenger name:"+randomName);
-		BrowserActions.typeOnTextField(lstPax.get(i).findElement(By.cssSelector("div[class*='ageSel ']>input")), age, driver, "Age");
-		Log.event("Successfully entered Passenger name:"+age);
-		if(age1>=60){
-			BrowserActions.clickOnElement(lstPax.get(i).findElement(By.cssSelector("div[id*='SnrCtzn']>label")), driver, "Checked 'Senior Citizen' checkbox in case of 60 and above.");
-			
-		}
 		
+			
+		BrowserActions.typeOnTextField(lstPax.get(i).findElement(By.cssSelector("div[class*='ageSel ']>input")),Age, driver, "Age");
+		Log.event("Successfully entered Passenger name:"+rand1);
+	/*	if(age1>=60){
+			BrowserActions.clickOnElement(lstPax.get(i).findElement(By.cssSelector("div[id*='SnrCtzn']>label")), driver, "Checked 'Senior Citizen' checkbox in case of 60 and above.");
+		
+		*/
 		BrowserActions.clickOnElement(lstPax.get(i).findElement(By.cssSelector("div[class*='berthPref']>label")), driver, "Clicked on Berth dropdown.");
 		List<WebElement> lstBerth = lstPax.get(i).findElements(By.cssSelector("div[class*='berthPref']>label>select>option"));
          if(lstBerth.size()!=0){

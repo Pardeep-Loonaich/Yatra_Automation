@@ -2032,7 +2032,7 @@ public class PaymentTest {
 			travellerPage = reviewPage.clickOnContinue();
 			Log.message("7. Clicked on Continue button on Review Page.");
 
-			reviewPage.popUpAppear();
+			//reviewPage.popUpAppear();
 			/*reviewPage.clickOnExistingUser();
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("7. Successfully Logged in Yatra account as 'Existing' User!");
@@ -2170,7 +2170,7 @@ public class PaymentTest {
 			travellerPage = reviewPage.clickOnContinue();
 			Log.message("7. Clicked on Continue button on Review Page.");
 
-			reviewPage.popUpAppear();
+			//reviewPage.popUpAppear();
 			/*reviewPage.clickOnExistingUser();
 			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
 			Log.message("7. Successfully Logged in Yatra account as 'Existing' User!");
@@ -3237,7 +3237,7 @@ public class PaymentTest {
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
 
-			reviewPage.popUpAppear();
+			//reviewPage.popUpAppear();
 
 			// clicke on continue button
 			travellerPage = reviewPage.clickOnContinue();

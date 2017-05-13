@@ -70,6 +70,9 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	@FindBy(css = "article[class='my-res fr eventTrackable ng-scope']:nth-child(3)>div[class='my-res-info']>div[class='my-price tr']>ul>li:not([class='left'])>h3")
 	private WebElement price;
 	
+	@FindBy(css = "article[class='my-res fr eventTrackable ng-scope']>div[class='my-res-info']>div[class='my-price tr']>a")
+	private List<WebElement> btnBookNow;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -211,18 +214,10 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @return
 	 * @throws Exception
 	 */
-	public ActivityDetailPage ClickBookNowByIndex(int index) throws Exception {
+	public ActivityDetailPage ClickBookNow() throws Exception {
 	Utils.waitForPageLoad(driver);
-	driver.findElement(By.cssSelector("article[class='my-res fr eventTrackable ng-scope']:nth-child("+index+")>div[class='my-res-info']>div[class='my-price tr']>a")).click();
+	int rand = Utils.getRandom(0,btnBookNow.size());
+	BrowserActions.clickOnElement(btnBookNow.get(rand), driver, "Click On Select Date");
 	return new ActivityDetailPage(driver).get();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-}//SearchResultActivitesPageEnd
+	}//SearchResultActivitesPageEnd
