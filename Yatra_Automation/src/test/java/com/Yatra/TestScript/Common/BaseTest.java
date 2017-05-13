@@ -95,16 +95,16 @@ public class BaseTest implements ITest
 	 * @throws AddressException 
 	 * @throws IOException 
 	 */
-	@AfterMethod
+	//@AfterMethod
 	public void  afterTestExecutor(ITestResult result) 
 
 	{
-
+		driver=WebDriverFactory.baseDriver;
 		try
 		{
 			if(result.getStatus()==ITestResult.FAILURE&&propReader.getProperty("SEND_EMAIL_ON_FAILIURE").equalsIgnoreCase("TRUE"))			//if test case fail perform below task
 			{
-				driver=WebDriverFactory.baseDriver;
+				
 				Log.message("triggering email in for failed test case");
 				inputFile=Log.takeScreenShot(driver);
 

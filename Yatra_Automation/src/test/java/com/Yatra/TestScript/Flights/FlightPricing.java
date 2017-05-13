@@ -18,6 +18,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import test.abstractconfmethod.B;
+
 import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.LoginPage;
 import com.Yatra.Pages.PaymentPage;
@@ -33,7 +35,7 @@ import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
-public class FlightPricing {
+public class FlightPricing extends B{
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	HomePage homePage;
