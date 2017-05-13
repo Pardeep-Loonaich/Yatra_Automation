@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -22,6 +23,8 @@ import javax.mail.internet.MimeMultipart;
 
 import org.testng.Reporter;
 
+import com.Yatra.Pages.ReviewPage;
+
 public class EmailSender {
 
 	private  String testCaseId="";
@@ -39,14 +42,9 @@ public class EmailSender {
 	 * @param sCurrentPageURL
 	 * @param sPricingURL
 	 */
-	public EmailSender(String sPricingURL)
-	{
-		this.sPricingURL=sPricingURL;
-	}
 	public EmailSender(String fileName, String testCaseId,String sCurrentPageURL)
 	{
 		this.fileName=fileName;
-		this.sPricingURL=sPricingURL;
 		this.sCurrentPageURL=sCurrentPageURL;
 		this.testCaseId=testCaseId;
 	}
@@ -65,7 +63,7 @@ public class EmailSender {
 				+ "<br>"
 				+ "<br>"
 				+ "<br>"
-				+ "<br>Pricing URL: <b><font color=blue>"+sPricingURL+"</font></b>"
+				+ "<br>Pricing URL: <b><font color=blue>"+ReviewPage.sPricingURL+"</font></b>"
 				+ "<br>"
 				+ "<br>"
 				+ "Note:- Please find screenshot in Attachment. </b>"

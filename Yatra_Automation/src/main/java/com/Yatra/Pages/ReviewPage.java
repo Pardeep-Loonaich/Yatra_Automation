@@ -14,11 +14,6 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
-import com.Yatra.TestScript.Common.BaseTest;
-import com.Yatra.Utils.BrowserActions;
-import com.Yatra.Utils.EmailSender;
-import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
@@ -33,6 +28,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
 	Utils utils;
+	public static String sPricingURL;
 	ExecutionTimer timer=new ExecutionTimer();
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
@@ -272,7 +268,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		timer.end();
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
 		//set value for pricing URL (if it require in case of test case fail, to send a mail with this URL)
-		new EmailSender(driver.getCurrentUrl().trim());
+		sPricingURL=driver.getCurrentUrl().trim();
+		//new EmailSender(driver.getCurrentUrl().trim());
 	}
 
 	@Override
