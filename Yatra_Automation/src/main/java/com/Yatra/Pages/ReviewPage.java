@@ -272,6 +272,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		//new EmailSender(driver.getCurrentUrl().trim());
 	}
 
+	
 	@Override
 	protected void load() {
 		timer.start();
@@ -765,4 +766,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		String abc = txtFareRules.getText();
 		return abc;
 	}
+	/**
+	 * to get pricing URL at run time
+	 * @return: it will return pricing url 
+	 */
+	public static String getPricingURL()
+	
+	{	
+		return sPricingURL;
+		}
 } // ReviewPage

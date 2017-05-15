@@ -63,7 +63,7 @@ public class EmailSender {
 				+ "<br>"
 				+ "<br>"
 				+ "<br>"
-				+ "<br>Pricing URL: <b><font color=blue>"+ReviewPage.sPricingURL+"</font></b>"
+				+ "<br>Pricing URL: <b><font color=blue>"+ReviewPage.getPricingURL()+"</font></b>"
 				+ "<br>"
 				+ "<br>"
 				+ "Note:- Please find screenshot in Attachment. </b>"

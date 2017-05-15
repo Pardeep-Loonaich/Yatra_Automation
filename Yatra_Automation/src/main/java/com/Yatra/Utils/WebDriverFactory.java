@@ -693,6 +693,15 @@ public class WebDriverFactory {
 		chromeCapabilities.setCapability(ChromeOptions.CAPABILITY, opt);
 		return chromeCapabilities;
 	}
+	/**
+	 * Description: to get driver instance in Base Test calass
+	 * @return: we driver instance
+	 */
+	
+	public static WebDriver getCurrentDriverInstance()
+	{
+		return baseDriver;
+	}
 
 	/**
 	 * To print the Har Summary details
