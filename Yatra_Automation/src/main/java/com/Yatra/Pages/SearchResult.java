@@ -755,6 +755,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInRound(int list1, int index1, int list2, int index2) throws Exception {
+		closeINotificationAtTopSRP();
 		WebElement e1 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list1
 				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index1
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
@@ -858,6 +859,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	// it will fail in future
 	// for any issue discuss with me
 	public ReviewPage clickOnBookNowInMulticity(int list1, int index1, int list2, int index2) throws Exception {
+		closeINotificationAtTopSRP();
 		WebElement e1 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list1
 				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index1
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>p"));
@@ -1751,7 +1753,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 
 	public void closeINotificationAtTopSRP() throws Exception {	
-		BrowserActions.nap(2);		
+		BrowserActions.nap(4);		
 		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {
 		//if(IframeNotification.isDisplayed()){
 			BrowserActions.switchToIframe(driver, IframeNotification);			
@@ -1761,6 +1763,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				BrowserActions.clickOnElement(btnCloseIframeNotification_Double, driver, "Button to close Iframe Notification at Left side bottom on SRP");
 			}		
 			BrowserActions.switchToDefault(driver);
+			BrowserActions.nap(2);	
 		} else {
 			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
 		}
@@ -2429,8 +2432,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage selectAirlineBookNowInOW(String domain, String stops, String airlines) throws Exception {
-		BrowserActions.nap(2);
-		 closeINotificationAtTopSRP();
+		closeINotificationAtTopSRP();
 		if (domain.equalsIgnoreCase("DOM")) {
 			// Select Connecting flight or Direct flight in Stops filter
 			if (stops.equalsIgnoreCase("All")) {
@@ -2788,7 +2790,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage selectAirlineBookNowInRT(String domain, String stops, String airlines) throws Exception {
-		BrowserActions.nap(2);
+		closeINotificationAtTopSRP();
 		if (domain.equalsIgnoreCase("DOM")) {
 			// Select Connecting flight or Direct flight in Stops filter
 			if (stops.equalsIgnoreCase("All")) {
@@ -2809,8 +2811,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 															// Airline Filters
 				BrowserActions.nap(5);
 				clickOnBookNowInRT(1, 1); // select Book Now Airlines
-				Log.event(
-						"Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now - DOM");
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now - DOM");
 			}
 			Log.event("Successfully clicked Book Now for Round Trip");
 		} else if (domain.equalsIgnoreCase("INTL")) {
@@ -2845,8 +2846,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public void clickOnBookNowInRT_DOM(int onwardList, int onwardFlight, int returnList, int returnFlight)
-			throws Exception {
+	public void clickOnBookNowInRT_DOM(int onwardList, int onwardFlight, int returnList, int returnFlight)	throws Exception {
 		BrowserActions.nap(5);
 		WebElement onwardflight = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child("
 				+ onwardList + ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
