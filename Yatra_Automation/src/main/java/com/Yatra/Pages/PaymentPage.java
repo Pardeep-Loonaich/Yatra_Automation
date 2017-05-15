@@ -706,6 +706,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickingOnRedeemNow() throws Exception{
+		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
 
 	}
