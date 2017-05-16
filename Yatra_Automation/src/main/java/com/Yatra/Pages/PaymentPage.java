@@ -497,10 +497,10 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		String randomCvv = RandomStringUtils.randomNumeric(3);
 
-		if (BrowserActions.isElementPresent(driver, txtSavedcreditCardCvv) == true) {
+		/*if (BrowserActions.isElementPresent(driver, txtSavedcreditCardCvv) == true) {
 			BrowserActions.typeOnTextField(txtSavedcreditCardCvv, randomCvv, driver, "Enter CVV for Saved Credit card");
 		} else if (BrowserActions.isElementPresent(driver, creditCardNumber) == true) {
-			BrowserActions.typeOnTextField(creditCardNumber, cardNumber, driver, "Credit card Number");
+		*/	BrowserActions.typeOnTextField(creditCardNumber, cardNumber, driver, "Credit card Number");
 			BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
 			BrowserActions.clickOnElement(monthCC, driver, "Date");
 			if (lstMonthsCC.size() != 0) {
@@ -519,7 +519,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
 			BrowserActions.clickOnElement(lblSaveCCInQB, driver, "Unchecking Save QB");
 		}
-	}
+	//}
 
 	/**
 	 * to save the credit card details in quick book
@@ -1016,6 +1016,22 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			driver.navigate().refresh();
 
 		}	
+		if(browser.equalsIgnoreCase("iexplorer_windows")){
+			String winHandleBefore = driver.getWindowHandle();
+
+			JavascriptExecutor js = (JavascriptExecutor) driver; 
+			js.executeScript("window.history.go(-1)");
+			Set<String> handles = driver.getWindowHandles(); 
+			for(String winHandle : handles){
+				if(!winHandle.equals(winHandleBefore)){
+					driver.switchTo().window(winHandle);
+					break;
+				}
+			}
+			driver.switchTo().alert().accept();
+			driver.navigate().refresh();
+
+		}	
 
 	}
 
@@ -1029,25 +1045,20 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		if(browser.equalsIgnoreCase("chrome_windows")){
 			BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
+			driver.navigate().back();
+            driver.navigate().refresh();
 		}
 		else if(browser.equalsIgnoreCase("iexplorer_windows")){
-			BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
-
-			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
+			JavascriptExecutor js = (JavascriptExecutor) driver; 
+			js.executeScript("window.history.go(-1)");
+            driver.navigate().refresh();
+            driver.switchTo().alert().accept();
 		}
 		else if(browser.equalsIgnoreCase("FireFox_windows")){
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 		}
 	}
 
-	public void cancelHdfcPaymentIe() throws Exception{
-		
-			
-		JavascriptExecutor js = (JavascriptExecutor) driver; 
-		js.executeScript("window.history.go(-1)");
-		//driver.switchTo().alert().accept();
-	}
-	
 
 	/**
 	 * to click on cancel button in SBI payment portal in case of ATM to cancel transaction 
@@ -1302,7 +1313,10 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			break;
 
 		case "sbibuddy":
-			BrowserActions.javascriptClick(btnBckToYatraSBIBuddy, driver, "Clicked on 'Back to Yatra' button.");
+			BrowserActions.clickOnElement(btnBckToYatraSBIBuddy, driver, "Clicked on 'Back to Yatra' button.");
+			if(browser.equalsIgnoreCase("iexplorer_windows")){
+				driver.switchTo().alert().accept();
+			}
 			break;
 
 		case "reliancejio":
