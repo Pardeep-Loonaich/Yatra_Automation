@@ -5039,6 +5039,7 @@ public class FlightSearch extends BaseTest{
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked On continue Button!");
 
+			paymentPage.cancelCreditCardDetails();
 			paymentPage.enterCreditCardDetails(cardNumber);
 			Log.message("10. Fill Credit Card Details!");
 
