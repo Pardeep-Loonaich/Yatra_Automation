@@ -2760,24 +2760,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				selectFlightStopsInFilters(stops);
 				Log.event("Successfully selected " + stops + " button in Stops Filter");
 			}
-
+			
 			// click book now based on Any or Preferred airlines
 			if (airlines.equalsIgnoreCase("Any")) {
 				BrowserActions.nap(5);
 				clickOnBookNowInRT_DOM(1, 2, 2, 7); // select Book Now Airlines
 				Log.event("All flights details are visible by default and clicked Book Now Random flight-DOM");
 			} else {
-				selectAirlineInAirlineFilters(airlines); // Select Preferred
-															// Airline in
-															// Airline Filters
+				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
 				BrowserActions.nap(5);
 				clickOnBookNowInRT(1, 1); // select Book Now Airlines
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now - DOM");
 			}
 			Log.event("Successfully clicked Book Now for Round Trip");
+			
 		} else if (domain.equalsIgnoreCase("INTL")) {
 			// Select Connecting flight or Direct flight in Stops filter
 			if (stops.equalsIgnoreCase("All")) {
+				BrowserActions.nap(5);
 				Log.event("All flights visible by default");
 			} else {
 				selectFlightStopsInFilters(stops);
@@ -2786,6 +2786,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 			// click book now based on Any or Preferred airlines
 			if (airlines.equalsIgnoreCase("Any")) {
+				BrowserActions.nap(5);
 				clickOnBookNowInDOM_INTL(1); // select Book now
 				Log.event("All flights details are visible by default and clicked Book Now Random flight -RT");
 			} else {
@@ -2797,6 +2798,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			}
 			Log.event("Successfully clicked Book Now for Round Trip");
 		}
+		BrowserActions.nap(3);
 		return new ReviewPage(driver).get();
 	}
 

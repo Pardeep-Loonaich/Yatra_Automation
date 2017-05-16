@@ -480,9 +480,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		if (PricePopUp.isDisplayed()) {			
 			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
 				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
-			}else			
+			}else
 			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
-		}else if (popupFareChange.isDisplayed())
+		}
+		else if (popupFareChange.isDisplayed())
 			if (ContinueInFareChangeAlertPopUp.isDisplayed()) {
 				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,
 						"Clicked on continue in Fare Change Alert Popup");

@@ -1,1 +1,11 @@
 /target/
+
+/.settings/
+*.class
+*.css
+*.html
+*.classpath
+*.project
+*.png
+/test-output/
+/
