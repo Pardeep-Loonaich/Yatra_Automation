@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-_Yatra_Flight_Search_Automation_Test">
+              <span class="suite-name border-passed"> Yatra Flight Search Automation Test</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-_Yatra_Flight_Search_Automation_Test">
+                    <span>D:\YatraGitRepo\Yatra_Automation\testxml\flightSearch.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-_Yatra_Flight_Search_Automation_Test">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-_Yatra_Flight_Search_Automation_Test">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-_Yatra_Flight_Search_Automation_Test">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-_Yatra_Flight_Search_Automation_Test">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-_Yatra_Flight_Search_Automation_Test">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-_Yatra_Flight_Search_Automation_Test">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">1 method,   1 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-_Yatra_Flight_Search_Automation_Test" class="hide-methods passed suite-_Yatra_Flight_Search_Automation_Test"> (hide)</a> <!-- hide-methods passed suite-_Yatra_Flight_Search_Automation_Test -->
+                      <a href="#" panel-name="suite-_Yatra_Flight_Search_Automation_Test" class="show-methods passed suite-_Yatra_Flight_Search_Automation_Test"> (show)</a> <!-- show-methods passed suite-_Yatra_Flight_Search_Automation_Test -->
+                    </span>
+                    <div class="method-list-content passed suite-_Yatra_Flight_Search_Automation_Test">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-_Yatra_Flight_Search_Automation_Test" title="com.Yatra.TestScript.Flights.FlightSearch" hash-for-method="TC_Yatra_Flight_104((Browser: chrome, Hub: aspire1282, Node: LOCALHOST), chrome_WIN8_1)">TC_Yatra_Flight_104((Browser: chrome, Hub: aspire1282, Node: LOCALHOST), chrome_WIN8_1)</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-_Yatra_Flight_Search_Automation_Test -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-_Yatra_Flight_Search_Automation_Test" class="panel _Yatra_Flight_Search_Automation_Test">
+          <div class="suite-_Yatra_Flight_Search_Automation_Test-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">com.Yatra.TestScript.Flights.FlightSearch</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="TC_Yatra_Flight_104((Browser: chrome, Hub: aspire1282, Node: LOCALHOST), chrome_WIN8_1)">
+                  </a> <!-- TC_Yatra_Flight_104((Browser: chrome, Hub: aspire1282, Node: LOCALHOST), chrome_WIN8_1) -->
+                  <span class="method-name">TC_Yatra_Flight_104</span>
+                  <span class="parameters">((Browser: chrome, Hub: aspire1282, Node: LOCALHOST), chrome_WIN8_1)</span>
+                  <em>
+(Failed payment flow with Credit card flight type, travel type, booking class of your choice)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-_Yatra_Flight_Search_Automation_Test-class-passed -->
+        </div> <!-- panel _Yatra_Flight_Search_Automation_Test -->
+        <div panel-name="test-xml-_Yatra_Flight_Search_Automation_Test" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">D:\YatraGitRepo\Yatra_Automation\testxml\flightSearch.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite thread-count=&quot;500&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;3&quot; name=&quot; Yatra Flight Search Automation Test&quot; parallel=&quot;tests&quot;&gt;
+  &lt;parameter name=&quot;sheetName&quot; value=&quot;FlightSearch&quot;/&gt;
+  &lt;parameter name=&quot;deviceHost&quot; value=&quot;localhost&quot;/&gt;
+  &lt;parameter name=&quot;workBookName&quot; value=&quot;testdata\\data\\Flights.xls&quot;/&gt;
+  &lt;parameter name=&quot;devicePort&quot; value=&quot;4444&quot;/&gt;
+  &lt;test thread-count=&quot;1&quot; name=&quot;Flight Search on chrome&quot; parallel=&quot;true&quot;&gt;
+    &lt;parameter name=&quot;webSite&quot; value=&quot;https://www.yatra.com/&quot;/&gt;
+    &lt;parameter name=&quot;browserName&quot; value=&quot;chrome_windows&quot;/&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;com.Yatra.TestScript.Flights.FlightSearch&quot;&gt;
+        &lt;methods&gt;
+          &lt;include name=&quot;TC_Yatra_Flight_104&quot;/&gt;
+        &lt;/methods&gt;
+      &lt;/class&gt; &lt;!-- com.Yatra.TestScript.Flights.FlightSearch --&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Flight Search on chrome --&gt;
+&lt;/suite&gt; &lt;!--  Yatra Flight Search Automation Test --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-_Yatra_Flight_Search_Automation_Test" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for  Yatra Flight Search Automation Test</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Flight Search on chrome (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-_Yatra_Flight_Search_Automation_Test" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for  Yatra Flight Search Automation Test</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-_Yatra_Flight_Search_Automation_Test" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for  Yatra Flight Search Automation Test</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData__Yatra_Flight_Search_Automation_Test');
+function tableData__Yatra_Flight_Search_Automation_Test() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(1);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'TC_Yatra_Flight_104')
+data.setCell(0, 2, 'com.Yatra.TestScript.Flights.FlightSearch')
+data.setCell(0, 3, 233254);
+window.suiteTableData['_Yatra_Flight_Search_Automation_Test']= { tableData: data, tableDiv: 'times-div-_Yatra_Flight_Search_Automation_Test'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 3 minutes</span>
+              <div id="times-div-_Yatra_Flight_Search_Automation_Test">
+              </div> <!-- times-div-_Yatra_Flight_Search_Automation_Test -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-_Yatra_Flight_Search_Automation_Test" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for  Yatra Flight Search Automation Test</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="reporter-method-div">
+              <span class="reporter-method-name">TC_Yatra_Flight_104((Browser: chrome, Hub: aspire1282, Node: LOCALHOST), chrome_WIN8_1)</span>
+              <div class="reporter-method-output-div">
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:46:41 572 - TestCaseID:: TC_Yatra_Flight_104</small> </font> </div></span>
+                <span class="reporter-method-output">&emsp;<div class="test-title"> <strong><font size = "3" color = "#000080">Failed payment flow with Credit card (flight type, travel type, booking class of your choice)</font> </strong> </div>&emsp;<div><strong>Steps:</strong></div><!-- Report -->&emsp;</span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:14 388 - Page URL:: https://www.yatra.com/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:14 586 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_flsearch_btn]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;Total time taken by #com.Yatra.Pages.HomePage to load is:- 21 SECONDS&emsp;<a href=".\ScreenShot\TC_Yatra_Flight_104_1.png" target="_blank" >[ScreenShot]</a></div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;1. Navigated to 'Yatra' Home Page!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:15 862 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: a[title='One Way']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:16 154 - Page URL:: https://www.yatra.com/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:16 155 - Successfully selected OneWay option in Search Fields</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;2.Successfully clicked 'One Way' option in search Home Page!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:18 335 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_origin_city]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:18 462 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_origin_city]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:22 516 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: li.ac_even.ac_over]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:22 517 - Entered the Origin: DEL</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:22 694 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_arrival_city]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:22 818 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_arrival_city]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:26 580 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: li.ac_even.ac_over]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:26 581 - Entered the Destination: BLR</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:30 760 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_depart_date]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:30 878 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_depart_date]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:33 421 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: (//table[@class='day-container-table']//a[@id='a_2017_5_24']//span[@class='day-num'])[1]]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:33 457 - Page URL:: https://www.yatra.com/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:35 251 - Selected Departure Date: 2017_5_24(YYYY/MM/DD)</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:39 466 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: div[id='BE_flight_paxInfoBox']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:39 842 - Selected 'Economy' Class </small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:39 843 - Successfully selected OneWay Flight Search fields</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;3.Successfully filled the search details for 'ONE WAY' trip!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:40 024 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_flsearch_btn]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:47:40 376 - Page URL:: https://www.yatra.com/</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:48:05 906 - Page URL:: https://flight.yatra.com/air-search-ui/dom2/trigger?type=o&viewname=normal&flexi=0&noofsegments=1&origin=del&origincountry=in&destination=blr&destinationcountry=in&flight_depart_date=24/05/2017&adt=1&chd=0&inf=0&class=economy&source=fresco-home</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:48:06 032 - Page URL:: https://flight.yatra.com/air-search-ui/dom2/trigger?type=o&viewname=normal&flexi=0&noofsegments=1&origin=del&origincountry=in&destination=blr&destinationcountry=in&flight_depart_date=24/05/2017&adt=1&chd=0&inf=0&class=economy&source=fresco-home</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:48:06 293 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: p[class='new-gray-button fl small link-button']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;Total time taken by #com.Yatra.Pages.SearchResult to load is:- 1 SECONDS</div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;4.Successfully clicked 'Search' in Yatra Homepage!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:48:42 352 - Not displayed Iframe Notification at Top or Bottom on SRP </small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:48:46 524 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: (//div[@data-gaeclist='Search Results Page'])[2]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:13 549 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:13 585 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:23 758 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: button[class='button grey-btn rounded sleek-btn ng-binding']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;Total time taken by #com.Yatra.Pages.ReviewPage to load is:- 10 SECONDS&emsp;<a href=".\ScreenShot\TC_Yatra_Flight_104_2.png" target="_blank" >[ScreenShot]</a></div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;5. Clicked On Book Now Button!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:30 196 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:32 354 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:32 978 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:33 032 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:33 068 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:43 241 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: div[id='checkoutBase']>div:nth-child(3)>main>div>div[class='col-md-9']>form[name='travellerForm']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;Total time taken by #com.Yatra.Pages.TravellerPageto load is:- 0 SECONDS</div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;6. Clicked On Continue Button on Review Page!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:43 427 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //span[@class='account-msg ui-checkbox']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:43 770 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //div[@ng-show='showLoginRegister']/form/div[@class='row']/input[@name = 'email']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:43 894 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //div[@ng-show='showLoginRegister']/form/div[@class='row']/input[@name = 'email']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:44 498 - Entered the Email Id: test.user@gmail.com</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:44 721 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //div[@id='regUserDiv']/input[@type='password']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:44 844 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //div[@id='regUserDiv']/input[@type='password']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:45 244 - Entered the Password : password1</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:47 478 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //div[@ng-show='showLoginRegister']/form/div[@class='row']/button]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:48 779 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:48 816 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:58 934 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: div[id='checkoutBase']>div:nth-child(3)>main>div>div[class='col-md-9']>form[name='travellerForm']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;Total time taken by #com.Yatra.Pages.TravellerPageto load is:- 0 SECONDS</div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;7.Successfully Logged in Yatra account!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:59 256 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-1 col-xs-3 min-width70']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:59 714 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:59 760 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:59 867 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:49:59 969 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:00 386 - Successfully entered Passenger1 FirstName: djyxe</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:00 488 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:00 801 - Successfully entered Passenger1 Last Name: bmeve</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;8. Enter User Details!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:07 985 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: .//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:10 145 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: .//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:10 322 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:10 387 - Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;9. Clicked On continue Button!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:30 879 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_cno_id]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:31 734 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_cardholder_name_id]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:32 416 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_expm_id]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:32 760 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_expm_id>option]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:32 870 - Page URL:: https://secure.yatra.com/payswift/payment</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:35 039 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_expy_id]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:35 464 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_expy_id>option]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:35 587 - Page URL:: https://secure.yatra.com/payswift/payment</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:37 756 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_cvv_id]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:38 296 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_SaveOptionDiv>label]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;10. Fill Credit Card Details!</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:40 641 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //input[@id= 'payNow']]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:40 789 - Page URL:: https://secure.yatra.com/payswift/payment</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;11.Click On Pay Now!</div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;<br></div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;<b>Expected Result:</b> Failed payment flow with Credit card (flight type, travel type, booking class of your choice)</div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:41 094 - Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #toater_20]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-event"> <font color="maroon"> <small> &emsp; &emsp;--- 16 May 15:50:41 095 - All elements checked on this page:: [popUpInvalidCardNumber]</small> </font> </div></span>
+                <span class="reporter-method-output"><div class="test-message">&emsp;<b>Actual Result:</b> Payment is failed and error Msg is Displayed as :Enter valid card number&emsp;<a href=".\ScreenShot\TC_Yatra_Flight_104_3.png" target="_blank" >[ScreenShot]</a></div></span>
+                <span class="reporter-method-output"><div class="test-result"><br><font color="green"><strong> Test Passed. </strong></font> </div>&emsp;</span>
+              </div> <!-- reporter-method-output-div -->
+            </div> <!-- reporter-method-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-_Yatra_Flight_Search_Automation_Test" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">116 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="ignored-class-div">
+              <span class="ignored-class-name">com.Yatra.TestScript.Flights.FlightSearch</span>
+              <div class="ignored-methods-div">
+                <span class="ignored-method-name">TC_Yatra_Flight_006</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_127</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_003</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_005</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_126</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_125</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_004</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_007</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_128</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_009</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_129</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_008</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_083</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_002</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_085</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_084</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_120</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_001</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_121</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_093</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_017</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_138</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_014</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_135</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_016</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_137</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_015</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_136</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_139</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_018</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_097</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_130</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_019</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_094</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_134</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_013</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_095</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_010</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_131</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_098</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_012</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_133</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_011</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_132</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_099</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_060</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_105</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_069</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_102</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_103</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_064</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_061</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_101</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_068</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_063</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_062</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_065</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_100</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_067</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_066</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_070</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_116</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_113</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_115</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_114</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_117</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_119</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_118</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_072</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_112</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_079</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_073</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_076</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_077</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_047</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_049</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_048</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_042</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_046</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_041</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_040</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_043</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_045</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_044</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_059</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_053</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_050</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_057</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_052</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_051</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_054</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_056</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_055</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_028</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_025</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_027</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_026</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_029</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_141</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_024</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_142</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_023</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_143</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_039</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_036</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_038</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_037</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_152</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_031</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_035</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_151</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_030</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_032</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_153</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_034</span>
+                <br/>
+                <span class="ignored-method-name">TC_Yatra_Flight_033</span>
+                <br/>
+              </div> <!-- ignored-methods-div -->
+            </div> <!-- ignored-class-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-_Yatra_Flight_Search_Automation_Test" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">com.Yatra.TestScript.Flights.FlightSearch</div> <!-- chronological-class-name -->
+              <div class="configuration-test before">
+                <span class="method-name">init(org.testng.TestRunner@35983561)</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-test before -->
+              <div class="configuration-method before">
+                <span class="method-name">nameChanger(org.testng.TestRunner@35983561, public void com.Yatra.TestScript.Flights.FlightSearch.TC_Yatra_Fligh...)</span>
+                <span class="method-start">448 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">TC_Yatra_Flight_104((Browser: chrome, Hub: aspire1282, Node: LOCALHOST), chrome_WIN8_1)</span>
+                <span class="method-start">10688 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">afterTestExecutor([TestResult name=TC_Yatra_Flight_104 status=SUCCESS method=FlightSearch.TC_Yatra_Flight_104(java.uti...)</span>
+                <span class="method-start">244643 ms</span>
+              </div> <!-- configuration-method after -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

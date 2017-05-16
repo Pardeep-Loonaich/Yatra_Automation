@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="500" guice-stage="DEVELOPMENT" verbose="3" name="Failed suite [ Yatra Flight Pricing Automation Test]" parallel="tests">
+  <parameter name="webSite" value="https://www.yatra.com/"/>
+  <parameter name="sheetName" value="FlightPricing"/>
+  <parameter name="deviceHost" value="localhost"/>
+  <parameter name="workBookName" value="testdata\\data\\Flights.xls"/>
+  <parameter name="devicePort" value="4444"/>
+  <parameter name="browserName" value="chrome_windows"/>
+  <test name="Flight Pricing(failed)" parallel="true">
+    <classes>
+      <class name="com.Yatra.TestScript.Flights.FlightPricing">
+        <methods>
+          <include name="TC_Yatra_Flight_150" invocation-numbers="0"/>
+          <include name="init"/>
+          <include name="TC_Yatra_Flight_144" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_163" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_092" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_154" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_148" invocation-numbers="0"/>
+          <include name="TC_Yatra_Flight_159" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.Yatra.TestScript.Flights.FlightPricing -->
+    </classes>
+  </test> <!-- Flight Pricing(failed) -->
+</suite> <!-- Failed suite [ Yatra Flight Pricing Automation Test] -->

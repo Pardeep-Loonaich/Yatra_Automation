@@ -1,0 +1,98 @@
+16-May-2017 15:46:51:572 INFO  [pool-1-thread-1]  
+16-May-2017 15:46:51:578 INFO  [pool-1-thread-1] ****             Failed payment flow with Credit card (flight type, travel type, booking class of your choice)             ***** 
+16-May-2017 15:46:51:578 INFO  [pool-1-thread-1]  
+16-May-2017 15:47:14:388 DEBUG [pool-1-thread-1] Page URL:: https://www.yatra.com/ 
+16-May-2017 15:47:14:586 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_flsearch_btn] 
+16-May-2017 15:47:15:666 INFO  [pool-1-thread-1] Total time taken by #com.Yatra.Pages.HomePage to load is:- 21 SECONDS 
+16-May-2017 15:47:15:667 INFO  [pool-1-thread-1] 1. Navigated to 'Yatra' Home Page! 
+16-May-2017 15:47:15:862 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: a[title='One Way']] 
+16-May-2017 15:47:16:155 DEBUG [pool-1-thread-1] Page URL:: https://www.yatra.com/ 
+16-May-2017 15:47:16:156 DEBUG [pool-1-thread-1] Successfully selected OneWay option in Search Fields 
+16-May-2017 15:47:16:156 INFO  [pool-1-thread-1] 2.Successfully clicked 'One Way' option in search Home Page! 
+16-May-2017 15:47:18:335 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_origin_city] 
+16-May-2017 15:47:18:462 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_origin_city] 
+16-May-2017 15:47:22:516 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: li.ac_even.ac_over] 
+16-May-2017 15:47:22:517 DEBUG [pool-1-thread-1] Entered the Origin: DEL 
+16-May-2017 15:47:22:694 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_arrival_city] 
+16-May-2017 15:47:22:818 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_arrival_city] 
+16-May-2017 15:47:26:581 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: li.ac_even.ac_over] 
+16-May-2017 15:47:26:581 DEBUG [pool-1-thread-1] Entered the Destination: BLR 
+16-May-2017 15:47:30:760 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_depart_date] 
+16-May-2017 15:47:30:878 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_depart_date] 
+16-May-2017 15:47:33:421 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: (//table[@class='day-container-table']//a[@id='a_2017_5_24']//span[@class='day-num'])[1]] 
+16-May-2017 15:47:33:457 DEBUG [pool-1-thread-1] Page URL:: https://www.yatra.com/ 
+16-May-2017 15:47:35:252 DEBUG [pool-1-thread-1] Selected Departure Date: 2017_5_24(YYYY/MM/DD) 
+16-May-2017 15:47:39:466 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: div[id='BE_flight_paxInfoBox']] 
+16-May-2017 15:47:39:842 DEBUG [pool-1-thread-1] Selected 'Economy' Class  
+16-May-2017 15:47:39:843 DEBUG [pool-1-thread-1] Successfully selected OneWay Flight Search fields 
+16-May-2017 15:47:39:844 INFO  [pool-1-thread-1] 3.Successfully filled the search details for 'ONE WAY' trip! 
+16-May-2017 15:47:40:024 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: input#BE_flight_flsearch_btn] 
+16-May-2017 15:47:40:376 DEBUG [pool-1-thread-1] Page URL:: https://www.yatra.com/ 
+16-May-2017 15:48:05:907 DEBUG [pool-1-thread-1] Page URL:: https://flight.yatra.com/air-search-ui/dom2/trigger?type=o&viewname=normal&flexi=0&noofsegments=1&origin=del&origincountry=in&destination=blr&destinationcountry=in&flight_depart_date=24/05/2017&adt=1&chd=0&inf=0&class=economy&source=fresco-home 
+16-May-2017 15:48:06:032 DEBUG [pool-1-thread-1] Page URL:: https://flight.yatra.com/air-search-ui/dom2/trigger?type=o&viewname=normal&flexi=0&noofsegments=1&origin=del&origincountry=in&destination=blr&destinationcountry=in&flight_depart_date=24/05/2017&adt=1&chd=0&inf=0&class=economy&source=fresco-home 
+16-May-2017 15:48:06:293 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: p[class='new-gray-button fl small link-button']] 
+16-May-2017 15:48:06:294 INFO  [pool-1-thread-1] Total time taken by #com.Yatra.Pages.SearchResult to load is:- 1 SECONDS 
+16-May-2017 15:48:06:295 INFO  [pool-1-thread-1] 4.Successfully clicked 'Search' in Yatra Homepage! 
+16-May-2017 15:48:42:353 DEBUG [pool-1-thread-1] Not displayed Iframe Notification at Top or Bottom on SRP  
+16-May-2017 15:48:46:524 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: (//div[@data-gaeclist='Search Results Page'])[2]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']] 
+16-May-2017 15:49:13:549 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397 
+16-May-2017 15:49:13:585 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397 
+16-May-2017 15:49:23:758 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: button[class='button grey-btn rounded sleek-btn ng-binding']] 
+16-May-2017 15:49:23:939 INFO  [pool-1-thread-1] Total time taken by #com.Yatra.Pages.ReviewPage to load is:- 10 SECONDS 
+16-May-2017 15:49:23:950 INFO  [pool-1-thread-1] 5. Clicked On Book Now Button! 
+16-May-2017 15:49:30:196 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]] 
+16-May-2017 15:49:32:355 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]] 
+16-May-2017 15:49:32:978 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397 
+16-May-2017 15:49:33:033 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397 
+16-May-2017 15:49:33:068 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397 
+16-May-2017 15:49:43:241 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: div[id='checkoutBase']>div:nth-child(3)>main>div>div[class='col-md-9']>form[name='travellerForm']] 
+16-May-2017 15:49:43:242 INFO  [pool-1-thread-1] Total time taken by #com.Yatra.Pages.TravellerPageto load is:- 0 SECONDS 
+16-May-2017 15:49:43:243 INFO  [pool-1-thread-1] 6. Clicked On Continue Button on Review Page! 
+16-May-2017 15:49:43:427 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //span[@class='account-msg ui-checkbox']] 
+16-May-2017 15:49:43:770 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //div[@ng-show='showLoginRegister']/form/div[@class='row']/input[@name = 'email']] 
+16-May-2017 15:49:43:894 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //div[@ng-show='showLoginRegister']/form/div[@class='row']/input[@name = 'email']] 
+16-May-2017 15:49:44:498 DEBUG [pool-1-thread-1] Entered the Email Id: test.user@gmail.com 
+16-May-2017 15:49:44:721 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //div[@id='regUserDiv']/input[@type='password']] 
+16-May-2017 15:49:44:844 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //div[@id='regUserDiv']/input[@type='password']] 
+16-May-2017 15:49:45:244 DEBUG [pool-1-thread-1] Entered the Password : password1 
+16-May-2017 15:49:47:478 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //div[@ng-show='showLoginRegister']/form/div[@class='row']/button] 
+16-May-2017 15:49:48:779 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397 
+16-May-2017 15:49:48:817 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397 
+16-May-2017 15:49:58:934 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: div[id='checkoutBase']>div:nth-child(3)>main>div>div[class='col-md-9']>form[name='travellerForm']] 
+16-May-2017 15:49:58:935 INFO  [pool-1-thread-1] Total time taken by #com.Yatra.Pages.TravellerPageto load is:- 0 SECONDS 
+16-May-2017 15:49:58:935 INFO  [pool-1-thread-1] 7.Successfully Logged in Yatra account! 
+16-May-2017 15:49:59:256 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-1 col-xs-3 min-width70']] 
+16-May-2017 15:49:59:714 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option] 
+16-May-2017 15:49:59:761 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option] 
+16-May-2017 15:49:59:867 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397 
+16-May-2017 15:49:59:969 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input] 
+16-May-2017 15:50:00:387 DEBUG [pool-1-thread-1] Successfully entered Passenger1 FirstName: djyxe 
+16-May-2017 15:50:00:488 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //*[@id='paxNum0']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input] 
+16-May-2017 15:50:00:801 DEBUG [pool-1-thread-1] Successfully entered Passenger1 Last Name: bmeve 
+16-May-2017 15:50:01:828 INFO  [pool-1-thread-1] 8. Enter User Details! 
+16-May-2017 15:50:07:985 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: .//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button] 
+16-May-2017 15:50:10:145 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: .//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button] 
+16-May-2017 15:50:10:322 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397 
+16-May-2017 15:50:10:387 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/checkout-ui/dom2/price?searchid=85aada34-ef60-a863-c9a8-fdfd74e2285c&msid=ddfc8680-f5d3-4287-9820-ef7d285dc2e8&mode=background&bpc=false&issr=false&unique=1494929932345&variation=0&flightidcsv=delblrg811320170524_g8cp&flightprice=8352&sc=g8cp&pid=d3cce2bf-168f-4f14-ab5b-2e7531743436&ref=1605717200397 
+16-May-2017 15:50:10:399 INFO  [pool-1-thread-1] 9. Clicked On continue Button! 
+16-May-2017 15:50:30:880 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_cno_id] 
+16-May-2017 15:50:31:734 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_cardholder_name_id] 
+16-May-2017 15:50:32:417 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_expm_id] 
+16-May-2017 15:50:32:760 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_expm_id>option] 
+16-May-2017 15:50:32:870 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/payswift/payment 
+16-May-2017 15:50:35:039 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_expy_id] 
+16-May-2017 15:50:35:465 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_expy_id>option] 
+16-May-2017 15:50:35:587 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/payswift/payment 
+16-May-2017 15:50:37:756 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_cvv_id] 
+16-May-2017 15:50:38:296 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #cc_SaveOptionDiv>label] 
+16-May-2017 15:50:38:418 INFO  [pool-1-thread-1] 10. Fill Credit Card Details! 
+16-May-2017 15:50:40:641 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> xpath: //input[@id= 'payNow']] 
+16-May-2017 15:50:40:790 DEBUG [pool-1-thread-1] Page URL:: https://secure.yatra.com/payswift/payment 
+16-May-2017 15:50:40:790 INFO  [pool-1-thread-1] 11.Click On Pay Now! 
+16-May-2017 15:50:40:889 INFO  [pool-1-thread-1] <br> 
+16-May-2017 15:50:40:942 INFO  [pool-1-thread-1] <b>Expected Result:</b> Failed payment flow with Credit card (flight type, travel type, booking class of your choice) 
+16-May-2017 15:50:41:095 DEBUG [pool-1-thread-1] Element is displayed:: [[RemoteWebDriver: chrome on WIN8_1 (24419b35-b441-49ed-9eca-cd3a64920e6f)] -> css selector: #toater_20] 
+16-May-2017 15:50:41:096 DEBUG [pool-1-thread-1] All elements checked on this page:: [popUpInvalidCardNumber] 
+16-May-2017 15:50:41:278 INFO  [pool-1-thread-1] <b>Actual Result:</b> Payment is failed and error Msg is Displayed as :Enter valid card number 
+16-May-2017 15:50:41:278 INFO  [pool-1-thread-1] Test Passed. 
+16-May-2017 15:50:44:779 INFO  [pool-1-thread-1] ****             -E---N---D-             ***** 
