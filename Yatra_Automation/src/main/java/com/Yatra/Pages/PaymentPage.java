@@ -693,7 +693,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void verifyCancelEcash() throws Exception{
-		if(blckRedeem.getAttribute("style").contains("margin-bottom: 10px; display: none;")){
+		if(lnkCancelRedem.isDisplayed()){
 			BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on Cancel ecash redeem.");
 		}
 		
@@ -715,6 +715,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String eCashAmount() throws Exception{
+		Utils.waitForPageLoad(driver);
 		if(scrollSlider.isDisplayed()){
 		Utils.waitForElement(driver, appliedEcash);
 		String ecash = appliedEcash.getText();

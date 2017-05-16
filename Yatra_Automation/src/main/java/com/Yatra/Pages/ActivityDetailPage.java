@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,6 +26,8 @@ import com.Yatra.Pages.ElementLayer;
 import com.Yatra.Pages.SearchResultActivites;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
@@ -36,6 +39,8 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	public ElementLayer elementLayer;
 	Utils utils;
 	public SearchResultActivites searchResultActivites;
+	ExecutionTimer timer=new ExecutionTimer();
+	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
@@ -79,6 +84,28 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	
 	@FindBy(css = "span[class='date-act ng-binding lowest-activity current-date']")
 	private WebElement selectedDate;
+
+	@FindBy(css = "span[class ='date-act ng-binding no-activity']")
+	private WebElement noActivity;
+	
+	@FindBy(css = "span[class='no-activity-tip']")
+	private WebElement ErrorMessageNoActivity;
+
+	@FindBy(css = "button[data-trackaction='Check Availability']")
+	private WebElement btnCheckAvailability;
+	
+	@FindBy(css = "div[class='col-left product-det']>button[data-trackaction='Book Now']")
+	private WebElement btnBookNowAfterCheckAvailability;
+
+	@FindBy(css = "a[class='fs-12 under-link']")
+	private WebElement btnCancellationPolicy;
+	
+	@FindBy(css = "ul[class='cancelation-policy']")
+	private WebElement txtCancellationPolicy;
+	
+	@FindBy(css = "p[class='view-details']>a[class='fs-12 under-link']>span[class='']")
+	private WebElement btnCancellationPolicyHide;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -102,15 +129,17 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 
 	@Override
 	protected void isLoaded() {
-		if (!isPageLoaded) {
+		timer.end();
+		if (!isPageLoaded) 
+		{
 			Assert.fail();
 		}
-
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnBookNow))) {
-			Log.fail("Activity Detail Page did not open up. Site might be down.", driver);
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnBookNow))) 
+		{
+		Log.fail("Activity Detail Page did not open up. Site might be down.", driver);
 		}
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
 	}// isLoaded
-
 	@Override
 	protected void load() {
 		isPageLoaded = true;
@@ -181,7 +210,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 * @throws Exception
 	 */
 	public void clickOnBookNowButton() throws Exception {
-		Utils.waitForPageLoad(driver);
+		Utils.waitForElement(driver, btnBookNow);
 		BrowserActions.clickOnElement(btnBookNow, driver, "Click On Book Now Button");
 	}
 	/**
@@ -205,11 +234,88 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 		}
 }
 	
+	/**
+	 * Verify Color Of the Selected Activity
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	
 	public boolean verifySelectedDateColour() throws Exception {
 	boolean status3 = false;
-	String rgbvalue = "rgb(243, 71, 71)";
+	String rgbvalue = "243, 71, 71";
 	BrowserActions.getText(driver, selectedDate, "Getting Selected Date.");
-	status3= Utils.verifyCssPropertyForElement(selectedDate,"",rgbvalue);
+	status3= Utils.verifyCssPropertyForElement(selectedDate,"background-color",rgbvalue);
 	return status3;
+	}
+	
+	/**
+	 * To Get Error Message From NO Activity Date
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	
+	public String getTextErrorMessageNoActivities() throws Exception {
+	String Message = null;
+	if(noActivity.isDisplayed()){
+	BrowserActions.mouseHover(driver, noActivity);	
+	Message = BrowserActions.getText(driver, ErrorMessageNoActivity, "Error Messaeg No Activities");
+	}
+	return Message;
+}	
+	/**
+	 * Click On Check Availability
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnCheckAvailability() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnCheckAvailability, driver, "Click On Check Availability Button");
+	}
+	/**
+	 * Click On Book Now After Check Availability
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public ActivitiesReviewPage clickOnBookNowAfterCheckAvailability() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnBookNowAfterCheckAvailability, driver, "Click On Book Now After Check Availability Button");
+		return new ActivitiesReviewPage(driver).get();
+	}
+	/**
+	 * Click On Cancellation Policy Button
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnCancellationPolicyButton() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnCancellationPolicy, driver, "Click On Cancellation Policy Button");
+	}
+	/**
+	 * Getting the text from the the Cancellation Policy
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextCancellationPolicy() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String txtDetails = BrowserActions.getText(driver, txtCancellationPolicy,
+				"Getting text from the Cancellation Policy");
+		return txtDetails;
+	}
+	
+	/**
+	 * Click On Hide Cancellation Policy Button
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnHideCancellationPolicyButton() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnCancellationPolicyHide, driver, "Click On Hide Cancellation Policy Button");
 	}
 }//ActivityDetailPage
