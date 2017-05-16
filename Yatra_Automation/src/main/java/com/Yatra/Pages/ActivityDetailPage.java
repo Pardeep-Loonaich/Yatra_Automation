@@ -96,6 +96,15 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	
 	@FindBy(css = "div[class='col-left product-det']>button[data-trackaction='Book Now']")
 	private WebElement btnBookNowAfterCheckAvailability;
+
+	@FindBy(css = "a[class='fs-12 under-link']")
+	private WebElement btnCancellationPolicy;
+	
+	@FindBy(css = "ul[class='cancelation-policy']")
+	private WebElement txtCancellationPolicy;
+	
+	@FindBy(css = "p[class='view-details']>a[class='fs-12 under-link']>span[class='']")
+	private WebElement btnCancellationPolicyHide;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -201,7 +210,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 * @throws Exception
 	 */
 	public void clickOnBookNowButton() throws Exception {
-		Utils.waitForPageLoad(driver);
+		Utils.waitForElement(driver, btnBookNow);
 		BrowserActions.clickOnElement(btnBookNow, driver, "Click On Book Now Button");
 	}
 	/**
@@ -271,9 +280,46 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 * @return
 	 * @throws Exception
 	 */
-	public ProductDescriptionActivities clickOnBookNowAfterCheckAvailability() throws Exception {
+	public ActivitiesReviewPage clickOnBookNowAfterCheckAvailability() throws Exception {
 		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(btnBookNowAfterCheckAvailability, driver, "Click On Book Now After Check Availability Button");
-		return new ProductDescriptionActivities(driver).get();
+		return new ActivitiesReviewPage(driver).get();
 	}
+	/**
+	 * Click On Cancellation Policy Button
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnCancellationPolicyButton() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnCancellationPolicy, driver, "Click On Cancellation Policy Button");
+	}
+	/**
+	 * Getting the text from the the Cancellation Policy
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextCancellationPolicy() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String txtDetails = BrowserActions.getText(driver, txtCancellationPolicy,
+				"Getting text from the Cancellation Policy");
+		return txtDetails;
+	}
+	
+	/**
+	 * Click On Hide Cancellation Policy Button
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void clickOnHideCancellationPolicyButton() throws Exception {
+		Utils.waitForPageLoad(driver);
+		BrowserActions.clickOnElement(btnCancellationPolicyHide, driver, "Click On Hide Cancellation Policy Button");
+	}
+	
+	
+	
+	
 }//ActivityDetailPage

@@ -10,22 +10,16 @@ package com.Yatra.TestScript.Activities;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Set;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.Yatra.Pages.ActivitiesReviewPage;
 import com.Yatra.Pages.ActivityDetailPage;
 import com.Yatra.Pages.HomePage;
-import com.Yatra.Pages.PaymentPageBus;
-import com.Yatra.Pages.ProductDescriptionActivities;
-import com.Yatra.Pages.ReviewPageBus;
 import com.Yatra.Pages.SearchResultActivites;
-import com.Yatra.Pages.SearchResultBus;
-import com.Yatra.Pages.TravellerPageBus;
-import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -40,7 +34,7 @@ public class ActivitiesTest {
 	String webSite;
 	SearchResultActivites searchResultActivites;
 	ActivityDetailPage activityDetailPage;
-	ProductDescriptionActivities productDescriptionActivities;
+	ActivitiesReviewPage activitiesReviewPage;
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
@@ -789,15 +783,15 @@ public class ActivitiesTest {
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("7. Clicked On Check Availability Button!");
 
-			productDescriptionActivities = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
 			Log.message("8. Clicked On Book Now After Check Availability Button!");
 
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Verification after Clicking on Check Availability User Should redirect to product description page");
 			Log.assertThat(
-					productDescriptionActivities.elementLayer.verifyPageElements(Arrays.asList("btnContinue"),
-							productDescriptionActivities),
+					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("btnContinue"),
+							activitiesReviewPage),
 					"<b>Actual Result:</b> After Clicking On Check Availability Button user is redirected to Product Description Page",
 					"<b>Actual Result:</b> After Clicking On Check Availability Button user is not redirected to Product Description Page",
 					driver);
@@ -813,7 +807,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification after Clicking on Check Availability User Should redirect to product description page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+			"desktop" }, description = "Verification after Clicking on Cancellation policy it show Cancellation policy", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_027(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -846,18 +840,20 @@ public class ActivitiesTest {
 
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("7. Clicked On Check Availability Button!");
-
-			productDescriptionActivities = activityDetailPage.clickOnBookNowAfterCheckAvailability();
-			Log.message("8. Clicked On Book Now After Check Availability Button!");
-
+			
+			activityDetailPage.clickOnCancellationPolicyButton();
+			Log.message("8. Clicked On Cancellation Policy Button!");
+			Thread.sleep(3000);
+			String Message =activityDetailPage.getTextCancellationPolicy();
+		
 			Log.message("<br>");
 			Log.message(
-					"<b>Expected Result:</b> Verification after Clicking on Check Availability User Should redirect to product description page");
+					"<b>Expected Result:</b> Verification after Clicking on Cancellation policy it show Cancellation policy");
 			Log.assertThat(
-					productDescriptionActivities.elementLayer.verifyPageElements(Arrays.asList("btnContinue"),
-							productDescriptionActivities),
-					"<b>Actual Result:</b> After Clicking On Check Availability Button user is redirected to Product Description Page",
-					"<b>Actual Result:</b> After Clicking On Check Availability Button user is not redirected to Product Description Page",
+					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("txtCancellationPolicy"),
+							activityDetailPage),
+					"<b>Actual Result:</b> After Clicking On Cancellation policy Button Cancellation policy Division is visible and message is Displayed as " + Message,
+					"<b>Actual Result:</b> After Clicking On Cancellation policy Button Cancellation policy Division is not visible",
 					driver);
 
 			Log.testCaseResult();
@@ -871,7 +867,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification after Clicking on Check Availability User Should redirect to product description page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+			"desktop" }, description = "Verification after Clicking on Cancellation policy it show Cancellation policy", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_028(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -904,18 +900,22 @@ public class ActivitiesTest {
 
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("7. Clicked On Check Availability Button!");
-
-			productDescriptionActivities = activityDetailPage.clickOnBookNowAfterCheckAvailability();
-			Log.message("8. Clicked On Book Now After Check Availability Button!");
+			
+			activityDetailPage.clickOnCancellationPolicyButton();
+			Log.message("8. Clicked On Show Cancellation Policy Button!");
+			
+			Thread.sleep(3000);
+			activityDetailPage.clickOnHideCancellationPolicyButton();
+			Log.message("9. Clicked On Hide Cancellation Policy Button!");
 
 			Log.message("<br>");
 			Log.message(
-					"<b>Expected Result:</b> Verification after Clicking on Check Availability User Should redirect to product description page");
+					"<b>Expected Result:</b> Verification after Clicking on Hide Cancellation policy it Hide Cancellation policy");
 			Log.assertThat(
-					productDescriptionActivities.elementLayer.verifyPageElements(Arrays.asList("btnContinue"),
-							productDescriptionActivities),
-					"<b>Actual Result:</b> After Clicking On Check Availability Button user is redirected to Product Description Page",
-					"<b>Actual Result:</b> After Clicking On Check Availability Button user is not redirected to Product Description Page",
+					activityDetailPage.elementLayer.verifyPageElementsDoNotExist(Arrays.asList("txtCancellationPolicy"),
+							activityDetailPage),
+					"<b>Actual Result:</b> After Clicking On Hide Cancellation policy Button No text is visible to the user",
+					"<b>Actual Result:</b> After Clicking On Check Availability Button text is visible to user",
 					driver);
 
 			Log.testCaseResult();

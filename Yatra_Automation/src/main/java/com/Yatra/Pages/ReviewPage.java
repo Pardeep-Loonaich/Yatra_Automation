@@ -477,18 +477,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 */
 
 	public void popUpAppear() throws Exception {
-		// if
-		// (driver.findElements(By.cssSelector(".update-fare.pt10.ico-right")).size()>0)
 		if (PricePopUp.isDisplayed()) {
 			
 			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
 				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
 			}else
-			
 			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
-		
 		}
-
 		else if (popupFareChange.isDisplayed())
 			if (ContinueInFareChangeAlertPopUp.isDisplayed()) {
 				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,
