@@ -272,9 +272,11 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickBtnSelectSeat() throws Exception {
+	public void clickBtnSelectSeat() throws Exception {	
+		BrowserActions.nap(2);
 		Utils.waitForPageLoad(driver);
 		int rand = Utils.getRandom(0, 5);
+		BrowserActions.scrollToViewElement(btnSelectSeat.get(rand), driver);
 		BrowserActions.clickOnElement(btnSelectSeat.get(rand), driver, "Select Seat");
 		Utils.waitForPageLoad(driver);
 	}
@@ -651,4 +653,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector("a[class*='flL ytBtn ytBtnBlue txtL LatoBold seat_map_continue tooltip']")).click(); 
 	}
+	
+	
+	
 }// SRPBUS

@@ -237,6 +237,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "a[for='BE_flight_non_stop']>i")
 	private WebElement chkNonStopFlights;
+	
+	@FindBy(xpath = "//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
+	private WebElement IframeNotification;
+	
+	@FindBy(css = "a[id='webklipper-publisher-widget-container-notification-close-div']")
+	private WebElement btnCloseIframeNotification_Double;
+
+	@FindBy(xpath = "/html/body//*[@class='close close-icon']//*[@class='wewidgeticon we_close']")
+	private WebElement btnCloseIframeNotification;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -1083,7 +1092,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public SearchResultBus clickBtnSearchBus() throws Exception {
-		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
+		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");	
+		//closeINotificationAtTopSRP();
 		return new SearchResultBus(driver).get();
 	}
 	/**
@@ -1444,6 +1454,31 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Log.event("Clicked Non Stop Flights in HomePage");
 	}
 	
+		
+	
+	/**
+	 * Description: to close notification which display randomly on SRP page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void closeINotificationAtTopSRP() throws Exception {	
+		BrowserActions.nap(4);		
+		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {
+		//if(IframeNotification.isDisplayed()){
+			BrowserActions.switchToIframe(driver, IframeNotification);			
+			if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true){ 
+				BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
+			}else if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification_Double) == true){
+				BrowserActions.clickOnElement(btnCloseIframeNotification_Double, driver, "Button to close Iframe Notification at Left side bottom on SRP");
+			}		
+			BrowserActions.switchToDefault(driver);
+			BrowserActions.nap(2);	
+		} else {
+			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
+		}
+	}
+
 	
 	
 }// HomePage
