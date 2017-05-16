@@ -438,7 +438,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	}
 
-	public TravellerPage clickOnContinue() throws Exception {
+	public TravellerPage clickOnContinue() throws Exception {		
 		BrowserActions.nap(6);
 		Utils.waitForElement(driver, btnContinueReviewPage);
 		BrowserActions.scrollToView(btnContinueReviewPage, driver);
@@ -475,10 +475,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @return
 	 * @throws Exception
 	 */
-
-	public void popUpAppear() throws Exception {
-		if (PricePopUp.isDisplayed()) {
-			
+	//TODO : Need to look on - Narayana
+	public void popUpAppear() throws Exception {		
+		if (PricePopUp.isDisplayed()) {			
 			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
 				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
 			}else
