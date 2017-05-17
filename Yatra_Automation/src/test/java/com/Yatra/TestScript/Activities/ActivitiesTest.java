@@ -922,15 +922,160 @@ public class ActivitiesTest {
 			activitiesReviewPage.clickOnContinue();
 			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
 			
-			activitiesReviewPage.enterEmailAddress(email);
-			Log.message("11. Entered Email address on the SignIn Popup.");
-
+			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify if user have yatra account then password field is required.");
-			Log.assertThat(activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtEmailId"), activitiesReviewPage),
-					"<b>Actual Result:</b> Successfully entered Email address on Sign-in Page and the error message after entering inavlid email address is:."+activitiesReviewPage.enterInvlidEmailAddressErrorMsg(),
-					"<b>Actual Result:</b> Unable to enter Email address on Sign-in Page.", driver);
+			Log.assertThat(activitiesReviewPage.elementLayer.verifyPageElementsDoNotExist(Arrays.asList("txtPasswrd"), activitiesReviewPage),
+					"<b>Actual Result:</b> Password field is not displayed on Sign-In Page.",
+					"<b>Actual Result:</b> Password field is displayed on Sign-In Page.", driver);
+			
+			activitiesReviewPage.enterEmailAddress(email);
+			Log.message("11. Entered Email address on the SignIn Popup.");
+			
+			
+			activitiesReviewPage.clickOnYatraAccountChkbox();
+			Log.message("12. Clicking on having 'Yatra Account' checkbox on the SignIn Popup.");
+			
+			
+			Log.assertThat(activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPasswrd"), activitiesReviewPage),
+					"<b>Actual Result:</b> Password field is displayed on Sign-In Page after clicking the checkbox.",
+					"<b>Actual Result:</b> Password field is not displayed on Sign-In Page after clicking the checkbox.", driver);
+			
 
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
+	@Test(groups = {"desktop" }, description = "Verify if user do not have yatra account then it should be able to enter the phone number.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_038(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String email = testData.get("EmailAddress");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			Thread.sleep(2000);
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
+			Log.message("5. Clicked On Book Now Button!");
+
+			Thread.sleep(2000);
+			
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnSelectActivitiesDate();
+			Log.message("7. Selected Activity Date!");
+			
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("9. Clicked on 'Book Now' button in the Select product popup.");
+
+			activitiesReviewPage.clickOnContinue();
+			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify if user have yatra account then password field is required.");
+			
+			activitiesReviewPage.enterEmailAddress(email);
+			Log.message("11. Entered Email address on the SignIn Popup.");
+			
+			boolean result = activitiesReviewPage.verifyYatraUserCheckboxInLogin();
+
+			Log.assertThat((activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtMobileNumber"), activitiesReviewPage)&&result==false),
+					"<b>Actual Result:</b> PhoneNumber field is displayed on Sign-In Page if user dont have Yatra Account.",
+					"<b>Actual Result:</b> PhoneNumber field is not displayed on Sign-In Page if user have Yatra Account.", driver);
+			
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
+	@Test(groups = {"desktop" }, description = "Verify user should be able to see the facebook.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_039(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			Thread.sleep(2000);
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
+			Log.message("5. Clicked On Book Now Button!");
+
+			Thread.sleep(2000);
+			
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnSelectActivitiesDate();
+			Log.message("7. Selected Activity Date!");
+			
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("9. Clicked on 'Book Now' button in the Select product popup.");
+
+			activitiesReviewPage.clickOnContinue();
+			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user should be able to see the facebook.");
+			Log.assertThat(activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("logoFB"), activitiesReviewPage),
+					"<b>Actual Result:</b> Facebook button is displayed on Sign-In Page.",
+					"<b>Actual Result:</b> Facebook button is not displayed on Sign-In Page.", driver);
+			
 			Log.testCaseResult();
 
 		} catch (Exception e) {
