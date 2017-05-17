@@ -52,7 +52,7 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	private WebElement txtNoResultFound;
 	
 	//no-activity-tip
-	@FindBy(css = "div[class='my-price tr']>ul>li:not([class='left'])>h3")
+	@FindBy(css = "article[class*='eventTrackable']>div[class='my-res-info']>div[class='my-price tr']>ul>li:not([class='left'])>h3:not(i)")
 	private List<WebElement> txtPriceValue;
 	
 	@FindBy(css = "span[class='ico-rating rating-4']")
@@ -70,9 +70,8 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	@FindBy(css = "article[class='my-res fr eventTrackable ng-scope']:nth-child(3)>div[class='my-res-info']>div[class='my-price tr']>ul>li:not([class='left'])>h3")
 	private WebElement price;
 	
-	@FindBy(css = "article[class='my-res fr eventTrackable ng-scope']>div[class='my-res-info']>div[class='my-price tr']>a")
-	private List<WebElement> btnBookNow;
-	
+	@FindBy(css="a[title='Price']")
+	private WebElement arrwPrice;
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -148,17 +147,20 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @throws Exception
 	 */
 	public boolean getSortedPrice() throws Exception {
-		boolean Flag = true;
+		boolean Flag = false;
 		ArrayList<String> price = new ArrayList<String>();
-		for (int j = 6; j < txtPriceValue.size(); j++) {
-			price.add(driver
-					.findElement(By.cssSelector("div[class='my-price tr']>ul>li:not([class='left'])>h3")).getText());
+		for(int i=0;i<2;i++){
+		BrowserActions.clickOnElement(arrwPrice, driver, "Arranging Price in ascending order.");
 		}
-		Collections.sort(price);
+		Utils.waitForPageLoad(driver);
+		for (int j = 1; j < txtPriceValue.size(); j++) {
+			String price_Txt = BrowserActions.getText(driver, txtPriceValue.get(j), "Getting text of the price.").trim().replace("Rs.", "").replace(",", "");
+			price.add(price_Txt);
+		}
 		System.out.println(price);
 		for (int i = 1; i < price.size(); i++) {
-			if (price.get(i - 1).compareTo(price.get(i)) > 0)
-				Flag = false;
+			if (price.get(i - 1).compareTo(price.get(i)) <= 0)
+			Flag=true;			
 		}
 		return Flag;
 	}
@@ -178,8 +180,9 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 		Collections.sort(popular);
 		System.out.println(popular);
 		for (int i = 1; i < popular.size(); i++) {
-			if (popular.get(i - 1).compareTo(popular.get(i)) > 0)
+			if (popular.get(i - 1).compareTo(popular.get(i)) > 0){
 				Flag = false;
+			}
 		}
 		return Flag;
 	}
@@ -214,10 +217,18 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @return
 	 * @throws Exception
 	 */
-	public ActivityDetailPage ClickBookNow() throws Exception {
+	public ActivityDetailPage ClickBookNowByIndex(int index) throws Exception {
 	Utils.waitForPageLoad(driver);
-	int rand = Utils.getRandom(0,btnBookNow.size());
-	BrowserActions.clickOnElement(btnBookNow.get(rand), driver, "Click On Select Date");
+	driver.findElement(By.cssSelector("article[class='my-res fr eventTrackable ng-scope']:nth-child("+index+")>div[class='my-res-info']>div[class='my-price tr']>a")).click();
 	return new ActivityDetailPage(driver).get();
 	}
-	}//SearchResultActivitesPageEnd
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}//SearchResultActivitesPageEnd

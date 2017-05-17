@@ -122,6 +122,7 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(1);	
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
 			
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
@@ -142,6 +143,9 @@ public class PaymentTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated on paymentPage.",
+					"<b>Actual Result:</b> Unable to navigated on paymentPage.", driver);
 			Thread.sleep(1000);
 			paymentPage.verifyCancelEcash();
 			Log.message(". Clicked on Cancel ecash.");
@@ -269,6 +273,7 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);	
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
@@ -402,6 +407,7 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);	
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
@@ -524,6 +530,7 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);	
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
@@ -633,6 +640,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -746,6 +755,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(6);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -859,6 +870,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -969,6 +982,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -1076,6 +1091,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -1184,6 +1201,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -1293,6 +1312,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -1399,6 +1420,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -1512,6 +1535,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -1622,6 +1647,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -1735,6 +1762,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);	
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
@@ -1784,7 +1813,10 @@ public class PaymentTest {
 			driver.navigate().refresh();
 			Log.message("15. Navigating back to 'Yatra' page.");
 			
-
+              if(paymentPage.verifyPage()==true){
+      			travellerPage = reviewPage.clickOnContinue();
+    			paymentPage = travellerPage.clickOnContinue();
+              }
 			Utils.waitForPageLoad(driver);
 			Log.message("<br>");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
@@ -1857,6 +1889,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -1938,6 +1972,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -2024,6 +2060,7 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);	
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
@@ -2044,6 +2081,9 @@ public class PaymentTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated on paymentPage.",
+					"<b>Actual Result:</b> Unable to navigated on paymentPage.", driver);
 			Thread.sleep(1000);
 			paymentPage.verifyCancelEcash();
 
@@ -2162,6 +2202,7 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);	
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
@@ -2182,6 +2223,9 @@ public class PaymentTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated on paymentPage.",
+					"<b>Actual Result:</b> Unable to navigated on paymentPage.", driver);
 			String initialTotalAmount1 = paymentPage.getTextFromTotalAmount();
 			int initialTotalAmount = Integer.parseInt(initialTotalAmount1);
 			Log.message("  Initial Total Amount:"+initialTotalAmount);
@@ -2295,6 +2339,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -2380,6 +2426,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -2472,6 +2520,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -2573,6 +2623,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -2659,6 +2711,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -2746,6 +2800,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -2832,6 +2888,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -2918,6 +2976,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -3005,6 +3065,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -3097,6 +3159,7 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);	
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
@@ -3234,6 +3297,7 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);	
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
@@ -3325,7 +3389,7 @@ public class PaymentTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3380,6 +3444,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -3489,6 +3555,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -3599,6 +3667,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(4);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -3709,6 +3779,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(6);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -3818,6 +3890,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -3929,6 +4003,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -4041,6 +4117,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -4152,6 +4230,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -4262,6 +4342,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -4371,6 +4453,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -4481,6 +4565,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -4597,6 +4683,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -4712,6 +4800,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -4827,6 +4917,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -4943,6 +5035,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -5062,6 +5156,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
@@ -5181,6 +5277,8 @@ public class PaymentTest {
 			// clicked on book now button in one way
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
+			reviewPage.popUpAppear();
+
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnChangeFlight"), reviewPage),
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
