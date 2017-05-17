@@ -116,6 +116,9 @@ public class ActivitiesReviewPage  extends LoadableComponent<ActivitiesReviewPag
 		BrowserActions.typeOnTextField(txtEmailId, email, driver, "Enter the email address in the Email Address text field.");
 	}
 	
+	public void clickOnYatraAccountChkbox() throws Exception{
+		
+	}
 	/***
 	 * entered the email address in the email address field
 	 * @param email
