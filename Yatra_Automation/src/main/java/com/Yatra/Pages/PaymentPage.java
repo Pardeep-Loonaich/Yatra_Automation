@@ -511,14 +511,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			 BrowserActions.clickOnElement(lstMonthsCC.get(rand), driver, "Month Selected");
 			 Utils.waitForPageLoad(driver);
 		 }
-		 Thread.sleep(2000);
+		 BrowserActions.nap(2);;
 		 BrowserActions.clickOnElement(yearCC, driver, "Year");
 		 if (lstYearsCC.size() != 0) {
 			 int rand = Utils.getRandom(1, lstYearsCC.size());
 			 BrowserActions.clickOnElement(lstYearsCC.get(rand), driver, "Year Selected");
 			 Utils.waitForPageLoad(driver);
 		 }
-		 Thread.sleep(2000);
+		 BrowserActions.nap(2);;
 		 BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
 		 BrowserActions.clickOnElement(lblSaveCCInQB, driver, "Unchecking Save QB");
 	}
@@ -580,6 +580,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.scrollToView(btnPayNow, driver);
 		BrowserActions.javascriptClick(btnPayNow, driver, "Pay Now");
 		Utils.waitForPageLoad(driver);
+		BrowserActions.nap(2);
 	}
 
 
@@ -611,14 +612,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.clickOnElement(lstMonthsDC.get(rand), driver, "Month Selected");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 		BrowserActions.clickOnElement(yearDC, driver, "Year");
 		if (lstYearsDC.size() != 0) {
 			int rand = Utils.getRandom(1, lstYearsDC.size());
 			BrowserActions.clickOnElement(lstYearsDC.get(rand), driver, "Year Selected");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 		BrowserActions.typeOnTextField(debitCardCvv, cardCVV, driver, "Debit card Cvv");
 
 
@@ -971,7 +972,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.clickOnElement(lstMonthEMI.get(rand), driver, "Month Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 
 		BrowserActions.clickOnElement(creditCardYearInEMI, driver, "Clicked on Year dropdown.");
 		if (lstYearEMI.size() != 0) {
@@ -979,7 +980,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.clickOnElement(lstYearEMI.get(rand), driver, "Year Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 
 		BrowserActions.typeOnTextField(creditCardCvvInEMI, randomCvv, driver, "Credit card Cvv");
 
@@ -1035,7 +1036,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			driver.navigate().refresh();
 
 		}	
-
+		BrowserActions.nap(3);
 	}
 
 	/**
@@ -1232,7 +1233,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.clickOnElement(drplstMonthRewards.get(rand), driver, "Month Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 
 		BrowserActions.clickOnElement(creditCardYearInRewards, driver, "Clicked on Year dropdown.");
 		if (drplstYearRewards.size() != 0) {
@@ -1240,7 +1241,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.clickOnElement(drplstYearRewards.get(rand), driver, "Year Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 
 		BrowserActions.typeOnTextField(txtcreditCardCvvInRewards, randomCvv, driver, "Credit card Cvv");
 		BrowserActions.typeOnTextField(txtRewardPointInRewards, randomRewardPoint, driver, "Enter random Reward point");
@@ -1348,7 +1349,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.javascriptClick(btnCancelIdea, driver, "Clicked on 'Back to Yatra' button");
 			break;
 
-		}
+		}BrowserActions.nap(3);
 	}
 
 

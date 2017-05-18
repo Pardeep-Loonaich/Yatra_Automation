@@ -782,6 +782,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowINT() throws Exception {
+		BrowserActions.nap(2);	
 		closeINotificationAtTopSRP();
 		BrowserActions.scrollToView(btnBookNowINT, driver);
 		BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button.");
@@ -2858,9 +2859,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickOnFlightDetailsInRT(int index, int i) throws Exception {
+		BrowserActions.nap(5);
+		/*WebElement onwardflight = driver.findElement(By.cssSelector("div[id='resultBoxSlider']>div[id='resultList_" + i
+				+ "']>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index
+				+ ")>article>footer>ul[class='res-footer-list fl uprcse']>li:not([class='ng-hide'])>a"));*/
 		WebElement onwardflight = driver.findElement(By.cssSelector("div[id='resultBoxSlider']>div[id='resultList_" + i
 				+ "']>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index
-				+ ")>article>footer>ul[class='res-footer-list fl uprcse']>li:not([class='ng-hide'])>a"));
+				+ ")>article>footer>ul[class='res-footer-list fl uprcse'] a[title='Flight Details']"));
+		BrowserActions.scrollToView(onwardflight, driver);
 		BrowserActions.clickOnElement(onwardflight, driver, "To select Flight Details from one list");
 	}
 

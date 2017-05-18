@@ -3559,7 +3559,7 @@ public class FlightSearch extends BaseTest{
 		}
 	}
 
-	@Test(description = "Validate that for RT and MC search Book Now button should not be available on Flight Details section", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test(description = "Validate that for RT search Book Now button should not be available on Flight Details section", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_064(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -3592,12 +3592,12 @@ public class FlightSearch extends BaseTest{
 			Log.message("4. Successfully clicked 'Search'!");
 
 			// step: click 'Flight Details' button
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 			searchResult.clickOnFlightDetailsInRT(5, 0);
 			Log.message("5. Successfully clicked 'Flight Details'!");
 
 			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Validate that for RT and MC search Book Now button should not be available on Flight Details section");
+			Log.message("<b>Expected Result:</b> Validate that for RT search Book Now button should not be available on Flight Details section");
 			Thread.sleep(2000);
 			Log.assertThat(	searchResult.elementLayer.verifyPageElementsDoNotExist(Arrays.asList("btnBookNowFlightDeatilPopUp"),searchResult),
 					"<b>Actual Result :</b> In Flight Detail Pop Up No Book Now Button is visible to the user",
@@ -6104,7 +6104,8 @@ public class FlightSearch extends BaseTest{
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
-			reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page!");
 
 			reviewPage.clickOnHavePromoCode();
