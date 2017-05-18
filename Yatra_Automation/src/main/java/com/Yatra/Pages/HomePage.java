@@ -284,7 +284,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@Override
 	protected void isLoaded() {
-		timer.end();
+		
 		if (!isPageLoaded) 
 		{
 			Assert.fail();
@@ -293,6 +293,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		{
 		Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
+		timer.end();
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
 
 	}// isLoaded

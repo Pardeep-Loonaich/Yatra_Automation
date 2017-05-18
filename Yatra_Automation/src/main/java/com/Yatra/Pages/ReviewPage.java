@@ -14,11 +14,6 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
-//import com.Yatra.TestScript.Common.BaseTest;
-import com.Yatra.Utils.BrowserActions;
-import com.Yatra.Utils.EmailSender;
-import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
@@ -32,8 +27,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
-	public static String sPricingURL;
 	Utils utils;
+	public static String sPricingURL;
 	ExecutionTimer timer=new ExecutionTimer();
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
@@ -277,6 +272,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		//new EmailSender(driver.getCurrentUrl().trim());
 	}
 
+	
 	@Override
 	protected void load() {
 		timer.start();
@@ -771,4 +767,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		String abc = txtFareRules.getText();
 		return abc;
 	}
+	/**
+	 * to get pricing URL at run time
+	 * @return: it will return pricing url 
+	 */
+	public static String getPricingURL()
+	
+	{	
+		return sPricingURL;
+		}
 } // ReviewPage
