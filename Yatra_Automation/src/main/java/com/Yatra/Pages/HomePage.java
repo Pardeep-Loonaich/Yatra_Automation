@@ -293,7 +293,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		{
 		Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 
 	}// isLoaded
 
@@ -1002,9 +1002,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		}
 	}
 
-
-
-
 	public void selectTripTypeBus(String tripType) throws Exception {
 		if (tripType.equals(Constants.C_ONEWAY)) {
 			BrowserActions.javascriptClick(lnkOneWayBus, driver, "One Way");
@@ -1092,8 +1089,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public SearchResultBus clickBtnSearchBus() throws Exception {
-		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");	
-		//closeINotificationAtTopSRP();
+		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
 		return new SearchResultBus(driver).get();
 	}
 	/**
@@ -1133,12 +1129,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		enterDestinationBus(destination); // enter Destination value
 		BrowserActions.nap(2);
-
 		Utils.setMousePositionOffPage(driver);
-		Utils.scrollPage(driver, Constants.C_Page_Top);		
-
+		Utils.scrollPage(driver, Constants.C_Page_Top);	
 		selectDepartureDateBus(departureDate); // select Departure Date
-
 		Utils.setMousePositionOffPage(driver);
 		Utils.scrollPage(driver, Constants.C_Page_Top);
 		BrowserActions.nap(2);

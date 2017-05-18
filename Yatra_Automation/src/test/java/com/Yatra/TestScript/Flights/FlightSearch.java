@@ -1749,7 +1749,7 @@ public class FlightSearch extends BaseTest{
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated that Weekly fare Matrix will not be available for RT search");
-			Thread.sleep(3000);
+			Thread.sleep(10000);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
