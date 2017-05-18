@@ -427,8 +427,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	private WebElement btnChangeFlight;
 
-
-
 	@FindBy(css = "#qb_ccCVV0")
 	private WebElement txtSavedcreditCardCvv;
 

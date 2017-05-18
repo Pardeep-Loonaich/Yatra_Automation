@@ -64,7 +64,8 @@ public class ActivitiesReviewPage  extends LoadableComponent<ActivitiesReviewPag
 	@FindBy(css="[class='paymentSprite yatraFb']")
 	private WebElement logoFB;
 	
-	
+	@FindBy(xpath = "//button[@ng-model='userType' and contains(text(),'Login')]")
+	private WebElement btnLogin;
 	/**********************************************************************************************
 	 ********************************* WebElements of ActivitiesReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -157,4 +158,19 @@ public class ActivitiesReviewPage  extends LoadableComponent<ActivitiesReviewPag
 		return BrowserActions.isRadioOrCheckBoxSelected(driver.findElement(By.cssSelector("div[class='row']>label>span[class='account-msg my-checkbox']>input")));
 	}
 
-}
+	/**
+	 * to login as Guest user on the review page
+	 * @param email
+	 * @param number
+	 * @throws Exception
+	 */
+	public ActivitiesTravellerPage loginAsGuestUser(String email,String number) throws Exception{
+		BrowserActions.typeOnTextField(txtEmailId, email, driver, "Enter the email address.");
+		BrowserActions.typeOnTextField(txtMobileNumber, number, driver, "Enter the Contact number.");
+        BrowserActions.clickOnElement(btnLoginInAsGuest, driver, "Clicked on Login as 'Guest' user button.");
+        return new ActivitiesTravellerPage(driver).get();
+	}
+	
+	
+	
+}//ActivitiesReviewPageEnd

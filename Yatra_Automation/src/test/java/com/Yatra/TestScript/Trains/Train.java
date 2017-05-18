@@ -1810,6 +1810,11 @@ public class Train {
 			paymentPage = trainReviewPage.continueInReviewIternary();
 			Log.message("12.Clicking on 'Continue' on ReviewPage.");
 			
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"),paymentPage ),
+					"<b>Actual Result:</b> Succesfully navigated to Payment Page.",
+					"<b>Actual Result:</b> Unable to navigated to Payment Page.", driver);
+
+			
 			paymentPage.scrollSliderOfEcashRedeem(-80);
             String amt = paymentPage.eCashAmount();
 			
