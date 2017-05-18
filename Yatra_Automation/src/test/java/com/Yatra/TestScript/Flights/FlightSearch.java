@@ -1110,7 +1110,6 @@ public class FlightSearch extends BaseTest{
 		
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated the Matrix Result finder for OW search");
-			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnModifySearchIcon"), searchResult),
 					"<b>Actual Result:</b> Successfully validated Matrix result, Source city: <b> " + sourceCityText +"</b>, Source Date: <b> " + sourceDateText +"</b> and Destination city:<b> " + destCityText +"</b> ",
 					"<b>Actual Result:</b> Not displayed Matrix results header with flight icons", driver);
@@ -1745,18 +1744,19 @@ public class FlightSearch extends BaseTest{
 			Log.message("3.Successfully filled the search details for Round Trip");
 						
 			// step: click 'Search' button in Yatra Home page
-			SearchResult searchResult = homePage.clickBtnSearch();
+			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated that Weekly fare Matrix will not be available for RT search");
-			BrowserActions.nap(20);
+			Thread.sleep(3000);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
 					driver);
 			
 			Log.testCaseResult();
+			
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -1843,9 +1843,10 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Search' button in Yatra Home page
 			SearchResult searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage ");			
-			BrowserActions.nap(12);
+			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated the Airline Matrix");
+			Utils.waitForPageLoad(driver);
 			Log.assertThat(searchResult.verifyAllAirlineMatrixSelection(), "<b>Actual Result:</b> 'All Airlines' option should appear with deafult selection ", "<b>Actual Result:</b> 'All Airlines' option should not appear with deafult selection", driver);
 			List<String> airlineMatrixFareDetails = searchResult.getAirlineMatrixFareDetails();	
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
@@ -1853,6 +1854,7 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> Airline Matrix flights increasing fare is not displayed on Search Result page", driver);
 			
 			Log.testCaseResult();
+			
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -2722,10 +2724,14 @@ public class FlightSearch extends BaseTest{
 			
 			//step: select Airline in Airline Filters
 			searchResult.selectAirlineInAirlineFilters(airlines);
-			Log.message("5.Successfully clicked Airline in SRP");			
-			Log.assertThat(searchResult.verifyFlightNameTitlesInResultGrid(airlines), "<b>Actual Result:</b> Successfully Flight results have updated with selected Airline option ", "<b>Actual Result:</b> Not filtered Flight Result grid in SRP", driver);
+			Log.message("5.Successfully clicked Airline in SRP");		
+			Thread.sleep(1000);
+			Log.assertThat(searchResult.verifyFlightNameTitlesInResultGrid(airlines), 
+			"<b>Actual Result:</b> Successfully Flight results have updated with selected Airline option ",
+			"<b>Actual Result:</b> Not filtered Flight Result grid in SRP", driver);
 						
 			//step: select Rest All link in Filters
+			searchResult.ClickOnScrollUpButton();
 			searchResult.clickResetAll();
 			Log.message("6.Successfully clicked Reset All option in SRP");	
 			
@@ -2982,7 +2988,7 @@ public class FlightSearch extends BaseTest{
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage");			
 			List<String> flightFare = searchResult.getPriceFromSelectedFlightInCurrentSelectionBox();
-			BrowserActions.nap(2);					
+							
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Selected flights should be marked on flight listing");
 			Log.assertThat((searchResult.verifySelectedFlightInCurrentSelectionBox("Onward") && searchResult.verifySelectedFlightInCurrentSelectionBox("Return")), "<b>Actual Result:</b> Selected flights should be marked on flight listing, Selectd Flights fares : <b>"+flightFare+"</b>", 
@@ -3364,7 +3370,6 @@ public class FlightSearch extends BaseTest{
 			Log.message("4. Successfully clicked 'Search'!");
 
 			// step: click 'Flight Details' button
-			Thread.sleep(3000);
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5. Successfully clicked Book Now'!");
 			Thread.sleep(2000);
@@ -3481,7 +3486,6 @@ public class FlightSearch extends BaseTest{
 			Log.message("5. Successfully clicked 'Flight Details'!");
 
 			// step: click on Book Now in Flight Details
-			Thread.sleep(3000);
 			reviewPage = searchResult.clickOnBookNowInFlightDetails_INTL();
 			Log.message("6. Successfully clicked Book Now in Flight Details Pop Up!");
 			Thread.sleep(2000);
@@ -3776,11 +3780,12 @@ public class FlightSearch extends BaseTest{
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate that if user has selected any preferred airline from Airline matrix then on clicking on Change Flight SRP should render with 'All Airlines' Selected");
-			Thread.sleep(2000);
 			Log.assertThat(resultBeforeChangeFlight != (resultAfterChangeFlight),
-					"<b>Actual Result :</b> Error Message is displayed when No Flight is visible for user and \n message is displayed as : ",
-					"<b>Actual Result :</b> No  Error Message is displayed when No Flight is visible for user", driver);
+					"<b>Actual Result :</b> After clicking on change flight on Review page,all airline option are visible",
+					"<b>Actual Result :</b> After clicking on change flight on Review page, only last selected flight is visible", driver);
+			
 			Log.testCaseResult();
+			
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -5039,7 +5044,6 @@ public class FlightSearch extends BaseTest{
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked On continue Button!");
 
-			paymentPage.cancelCreditCardDetails();
 			paymentPage.enterCreditCardDetails(cardNumber);
 			Log.message("10. Fill Credit Card Details!");
 
@@ -5798,6 +5802,7 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> Not verified selected passenger class details ", driver);
 					
 			Log.testCaseResult();
+			
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -5866,7 +5871,7 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> The price is calculated properly in the Fare Detail module on Review Page.",
 					"<b>Actual Result:</b> The price is not calculated properly in the Fare Detail module on Review Page.", driver);
 			
-
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -5918,8 +5923,6 @@ public class FlightSearch extends BaseTest{
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check to price calculation for INTL flight");
-			Thread.sleep(5000);
-
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareDetails"), reviewPage),
 					"<b>Actual Result:</b> The Fare details module is displayed on Review Page.",
 					"<b>Actual Result:</b> The Fare details module is not displayed on Review Page.", driver);
@@ -5936,6 +5939,8 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> The price is calculated properly in the Fare Detail module on Review Page.",
 					"<b>Actual Result:</b> The price is not calculated properly in the Fare Detail module on Review Page.", driver);
 	
+			Log.testCaseResult();
+			
 		} catch (Exception e) {
 		} finally {
 			driver.quit();
@@ -5998,6 +6003,7 @@ public class FlightSearch extends BaseTest{
 							+ Flightfare,	"<b>Actual Result:</b> After Clicking on Fare And Rule Details, Fare Deatils are not properly displayed",	driver);
 
 			Log.testCaseResult();
+			
 		} catch (Exception e) {
 			Log.exception(e);
 
@@ -6061,6 +6067,7 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> After Clicking Baggage Tab,Baggage Details are not displayed properly",	driver);
 
 			Log.testCaseResult();
+			
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -6124,6 +6131,7 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> If valid Promo Code is Applied no message is dispalyed",	driver);
 						
 			Log.testCaseResult();
+			
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -6181,6 +6189,8 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> Travel Assistance and Insurance amount included in the Fare details",
 					"<b>Actual Result:</b> Travel Assistance and Insurance amount not included in the Fare details",
 					driver);
+			
+			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
@@ -6594,7 +6604,9 @@ public class FlightSearch extends BaseTest{
 
 	@Test(description = "Validate tool tip message on selection of flights", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_138(HashMap<String, String> testData) throws Exception {
+		
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
 		String origin = testData.get("Origin");
