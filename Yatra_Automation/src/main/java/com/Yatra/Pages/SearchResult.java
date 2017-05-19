@@ -782,7 +782,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowINT() throws Exception {
-		BrowserActions.nap(2);	
+		BrowserActions.nap(5);	
 		closeINotificationAtTopSRP();
 		BrowserActions.scrollToView(btnBookNowINT, driver);
 		BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button.");
@@ -1376,7 +1376,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public void clickModifySearch() throws Exception {
 		BrowserActions.nap(2);
 		closeINotificationAtTopSRP();	
-		BrowserActions.nap(10);
+		BrowserActions.nap(20);
 		Utils.waitForElement(driver, btnModifySearchIcon);
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Modify Search button");
 		BrowserActions.nap(3);
@@ -1725,7 +1725,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				BrowserActions.clickOnElement(btnCloseIframeNotification_Double, driver, "Iframe Left side bottom close button Notification");
 			}		
 			BrowserActions.switchToDefault(driver);
-			BrowserActions.nap(2);	
+			BrowserActions.nap(6);	
 		} else {
 			Log.event("Not displayed Iframe Notification at Top and Bottom on SRP ");
 		}

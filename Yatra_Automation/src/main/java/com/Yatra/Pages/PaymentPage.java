@@ -499,7 +499,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public void enterCreditCardDetails(String cardNumber) throws Exception {
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		String randomCvv = RandomStringUtils.randomNumeric(3);
-
+		BrowserActions.nap(5);
 		/*if (BrowserActions.isElementPresent(driver, txtSavedcreditCardCvv) == true) {
 			BrowserActions.typeOnTextField(txtSavedcreditCardCvv, randomCvv, driver, "Enter CVV for Saved Credit card");
 		} else if (BrowserActions.isElementPresent(driver, creditCardNumber) == true) {

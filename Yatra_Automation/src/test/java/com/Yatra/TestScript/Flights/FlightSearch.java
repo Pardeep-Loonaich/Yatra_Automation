@@ -1473,12 +1473,12 @@ public class FlightSearch extends BaseTest{
 			String destCityText = searchResult.getTextDestination_ModifySearch();			
 			Log.assertThat(searchResult.verifyTripTypeInModifySearch(tripType), "<b>Actual Result:</b> Successfully selected Multicity Radio button",	"<b>Actual Result:</b> Not selected Multicity Radio button");
             Log.assertThat(originCityText.contains(destination1), "<b>Actual Result:</b> Successfully verified Modify Search prefilled  Origin1 City ", "<b>Actual Result:</b> Not verified Modify Search prefilled  Origin1 City");
-            Log.assertThat(destCityText.contains(origin1), "<b>Actual Result:</b> Successfully verified Modify Search prefilled Destination1  City ","<b>Actual Result:</b> Not verified Modify Search prefilled Multicity City");
+            Log.assertThat(destCityText.contains(origin1), "<b>Actual Result:</b> Successfully verified Modify Search prefilled Destination1  City ","<b>Actual Result:</b> Not verified Modify Search prefilled Destination1 City");
 		 	 
 			String originCityText_MC = searchResult.getTextOrigin1_ModifySearch();		
 			String destCityText_MC = searchResult.getTextDestination1_ModifySearch();			
             Log.assertThat(originCityText_MC.contains(destination2), "<b>Actual Result:</b> Successfully verified Modify Search prefilled Origin2 City  ", "<b>Actual Result:</b> Not verified Modify Search prefilled Origin2 City");
-            Log.assertThat(destCityText_MC.contains(origin2), "<b>Actual Result:</b> Successfully verified Modify Search prefilled Destination2 City name","<b>Actual Result:</b> Not verified Modify Search prefilled Multicity City");
+            Log.assertThat(destCityText_MC.contains(origin2), "<b>Actual Result:</b> Successfully verified Modify Search prefilled Destination2 City name","<b>Actual Result:</b> Not verified Modify Search prefilled Destination2 City");
 		               
             String[] pax= passengerInfo.split("_");
 			String adult =pax[0]; String child =pax[1]; String infant =pax[2]; 
@@ -1749,7 +1749,7 @@ public class FlightSearch extends BaseTest{
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated that Weekly fare Matrix will not be available for RT search");
-			Thread.sleep(10000);
+			BrowserActions.nap(25);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
@@ -2374,6 +2374,7 @@ public class FlightSearch extends BaseTest{
 			//Step: click Search button
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");	
+			BrowserActions.nap(10);	
 			
 			//step: click Fare alert Popup
 			searchResult.clickFareAlertPopup();
@@ -2725,11 +2726,11 @@ public class FlightSearch extends BaseTest{
 			//step: select Airline in Airline Filters
 			searchResult.selectAirlineInAirlineFilters(airlines);
 			Log.message("5.Successfully clicked Airline in SRP");		
-			Thread.sleep(1000);
+			BrowserActions.nap(2);	
 			Log.assertThat(searchResult.verifyFlightNameTitlesInResultGrid(airlines), 
 			"<b>Actual Result:</b> Successfully Flight results have updated with selected Airline option ",
 			"<b>Actual Result:</b> Not filtered Flight Result grid in SRP", driver);
-						
+			BrowserActions.nap(6);			
 			//step: select Rest All link in Filters
 			searchResult.ClickOnScrollUpButton();
 			searchResult.clickResetAll();
@@ -2778,7 +2779,7 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Search' button
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4. Successfully clicked 'Search'!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 
 			// step: click First 'Filter' Link
 			searchResult.preferredFlightFirst();
@@ -2787,7 +2788,7 @@ public class FlightSearch extends BaseTest{
 			// step: click Second 'Filter' Link
 			searchResult.scrollSliderOfFilterAmount(-200);
 			Log.message("6. Successfully Applied Second Filter For Price!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			String Error = searchResult.getTextErrorMessageAfterApplyingFilter();
 			Log.message("<b> After Applying Filters error message is displayed as </b>:" + Error);
 
@@ -2838,7 +2839,7 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Search' button
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4. Successfully clicked 'Search'!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 
 			// step: click Second 'Filter' Link
 			searchResult.scrollSliderOfFilterAmount(-100);
@@ -2889,12 +2890,12 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Search' button
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4. Successfully clicked 'Search'!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			String FlightDetails = searchResult.getTextSelectedFlight();
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate the Current Selection box on SRP at Footer");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("selectionDivision"), searchResult),
 					"<b>Actual Result :</b> Current Selection box on SRP at Footer is visible to the user with all detaila such as :\n"	+ FlightDetails,
 					"<b>Actual Result :</b> Current Selection box on SRP at Footer is not visible to the user", driver);
@@ -2943,7 +2944,7 @@ public class FlightSearch extends BaseTest{
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate the action on hovering mouse over Price");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("selectionDivision"), searchResult),
 					"<b>Actual Result :</b> After Mouse Hover on Price User is able to see Fare Summary Pop Up and Details are Displayed as :\n"+ FareDetails,
 					"<b>Actual Result :</b> After Mouse Hover on Price, NO Fare Summary Pop Up is visible", driver);
@@ -3214,7 +3215,7 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Search' button
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4. Successfully clicked 'Search'!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 
 			// step: click 'Flight Details' Link
 			searchResult.clickOnlnkFlightDetails_INTL();
@@ -3318,15 +3319,15 @@ public class FlightSearch extends BaseTest{
 			Log.message("4. Successfully clicked 'Search'!");
 
 			// step: click on Book Now in Flight Details
-			Thread.sleep(3000);
+			BrowserActions.nap(3);
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5. Successfully clicked Book Now!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			String FareRules = reviewPage.getTextFareRules();
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate via flight check on review page");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtFareRules"), reviewPage),
 					"<b>Actual Result :</b> In Review Page Fare Rules are displayed as : \n" + FareRules,
 					"<b>Actual Result :</b> In Review Page Fare Rules is not displayed", driver);
@@ -3368,11 +3369,12 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Search' button
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4. Successfully clicked 'Search'!");
-
+			BrowserActions.nap(5);
+			
 			// step: click 'Flight Details' button
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5. Successfully clicked Book Now'!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			String FlightDetails = reviewPage.getTextFromFareDetails();
 			String Totalfare = reviewPage.getTextTotalAmount();
 
@@ -3425,19 +3427,19 @@ public class FlightSearch extends BaseTest{
 			Log.message("5. Successfully clicked 'Stop Filter'!");
 
 			// step: click 'Flight Details' button
-			Thread.sleep(3000);
+			BrowserActions.nap(3);
 			searchResult.clickOnlnkFlightDetails_INTL();
 			Log.message("6. Successfully clicked 'Flight Details'!");
 
 			// step: click on Book Now in Flight Details
-			Thread.sleep(3000);
+			BrowserActions.nap(3);
 			reviewPage = searchResult.clickOnBookNowInFlightDetails_INTL();
 			Log.message("7. Successfully clicked Book Now in Flight Details Pop Up!");
 			ArrayList<String> FlightDetails = reviewPage.getTextAirlinename();
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate flight details on review page");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnContinueReviewPage"), reviewPage),
 					"<b>Actual Result :</b> In Review Page Flight Details are displayed as : \n" + FlightDetails,
 					"<b>Actual Result :</b> In Review Page Via Flights are not Displayed", driver);
@@ -3481,19 +3483,19 @@ public class FlightSearch extends BaseTest{
 			Log.message("4. Successfully clicked 'Search'!");
 
 			// step: click 'Flight Details' button
-			Thread.sleep(3000);
+			BrowserActions.nap(3);
 			searchResult.clickOnlnkFlightDetails_INTL();
 			Log.message("5. Successfully clicked 'Flight Details'!");
 
 			// step: click on Book Now in Flight Details
 			reviewPage = searchResult.clickOnBookNowInFlightDetails_INTL();
 			Log.message("6. Successfully clicked Book Now in Flight Details Pop Up!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			ArrayList<String> FlightDetails = reviewPage.getTextAirlinename();
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate via flight check on review page");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("btnContinueReviewPage"), reviewPage),
 					"<b>Actual Result :</b> In Review Page Flight Details are displayed as : \n" + FlightDetails,
 					"<b>Actual Result :</b> In Review Page Via Flights are not Displayed", driver);
@@ -3537,7 +3539,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("4. Successfully clicked 'Search'!");
 
 			// step: click 'Flight Details' button
-			Thread.sleep(3000);
+			BrowserActions.nap(3);
 			searchResult.clickOnlnkFlightDetails_INTL();
 			Log.message("5. Successfully clicked 'Flight Details'!");
 
@@ -3592,13 +3594,13 @@ public class FlightSearch extends BaseTest{
 			Log.message("4. Successfully clicked 'Search'!");
 
 			// step: click 'Flight Details' button
-			Thread.sleep(5000);
+			BrowserActions.nap(5);
 			searchResult.clickOnFlightDetailsInRT(5, 0);
 			Log.message("5. Successfully clicked 'Flight Details'!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate that for RT search Book Now button should not be available on Flight Details section");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(	searchResult.elementLayer.verifyPageElementsDoNotExist(Arrays.asList("btnBookNowFlightDeatilPopUp"),searchResult),
 					"<b>Actual Result :</b> In Flight Detail Pop Up No Book Now Button is visible to the user",
 					"<b>Actual Result :</b> In Flight Detail Pop Up Book Now Button is visible to the user", driver);
@@ -3654,12 +3656,12 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Change Flight' Link
 			reviewPage.clickOnChangeFlight();
 			Log.message("7. Successfully clicked 'Change Flight' Link!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			int NoOfResultsAfterChangeFlight = searchResult.getSizeofResult();
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate that on doing Change Flight from review Page");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(NoOfResultsAfterChangeFlight != NoOfResults,
 					"<b>Actual Result :</b> After Clicking On Change Flight Button On Review Page All Filter reset to default value",
 					"<b>Actual Result :</b> After Clicking On Change Flight Button On Review Page All Filter are not reset to default value", driver);
@@ -3712,14 +3714,14 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Change Flight' Link
 			reviewPage.clickOnChangeFlight();
 			Log.message("6. Successfully clicked 'Change Flight' Link!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			String DateAfterFlightChange = searchResult.getTextDepatureDate();
 			String originNameAfterFlightChange = searchResult.getTextOfOrigiNameHeader();
 			String DestinationNameAfterFlightChange = searchResult.getTextOfDestinatioNameHeader();
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate that on doing Change Flight from review Page");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(Date.equals(DateAfterFlightChange) && originName.equals(originNameAfterFlightChange) && DestinationName.equals(DestinationNameAfterFlightChange),
 					"<b>Actual Result :</b> After Clicking On Change Flight Button On Review Page All the fields remain same Orgin,destination and date",
 					"<b>Actual Result :</b> After Clicking On Change Flight Button On Review Page All the fields remain same Orgin,destination and date", driver);
@@ -3773,7 +3775,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("6. Successfully Clicked Book Now!");
 
 			// step: click on 'Change Flight'
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			reviewPage.clickOnChangeFlight();
 			Log.message("7. Successfully Clicked On Change Flight Button!");
 			ArrayList<String> resultAfterChangeFlight = searchResult.verifyChkBoxAirlineFilter();
@@ -3828,7 +3830,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Validate SRP if there is no flight available for respective search-Error Message Should Display");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("txterrorMessageNoFlights"),	searchResult),
 					"<b>Actual Result :</b> Error Message is displayed when No Flight is visible for user and \n message is displayed as : " + ErrorMessage,
 					"<b>Actual Result :</b> No  Error Message is displayed when No Flight is visible for user", driver);
@@ -3873,7 +3875,7 @@ public class FlightSearch extends BaseTest{
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate SRP if there is no flight available for respective search");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(
 					Arrays.asList("headerLogo", "btnModifySearchIcon", "txterrorMessageNoFlights"), searchResult),
 					"<b>Actual Result :</b> All Fields are displayed on Search Result Page Header,ModifyButton and Error Message",
@@ -3921,7 +3923,7 @@ public class FlightSearch extends BaseTest{
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate that in case of INT search new SRP page should open");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("headerLogo"), searchResult),
 					"<b>Actual Result :</b> User navigated to Search result page and origin is displayed as :"	+ originHeader + "  and Deapture is displayed as :" + departureHeader,
 					"<b>Actual Result :</b> User didn't navigated to Search result page and", driver);
@@ -3975,7 +3977,7 @@ public class FlightSearch extends BaseTest{
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate that for logged in User Offer strip should appear with user name");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("txtUserNameOnHeader"), searchResult),
 					"<b>Actual Result :</b> If user is Logged in,User name is displayed as : " + name,
 					"<b>Actual Result :</b> No user name is visible to the user", driver);
@@ -4026,7 +4028,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Valiadte that if user is not logged in Offer strip should not contain user name It should appear like Congratulations Guest");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("headerLogo"), searchResult),
 					"<b>Actual Result :</b> If user is not Logged in 'Login Button' is dispalyed under My account section and text as : USER "	+ name,
 					"<b>Actual Result :</b> If user is not Logged No 'Login Button' is dispalyed under My account",	driver);
@@ -4177,7 +4179,7 @@ public class FlightSearch extends BaseTest{
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validate that there should appear Ecash earned amount in Result strip aligned to Flight Details link below Book Now button if configured from xdist for respective Airline");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("txtEcashEarned"), searchResult),
 					"<b>Actual Result :</b> Ecash for different flights is displayed and amount is Rs." + Ecash	+ "\n and for other Flight amount is : " + EcashNew,
 					"<b>Actual Result :</b> Ecash is not displayed to the user", driver);
@@ -4224,7 +4226,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Validate that there should appear Seat Left message below Price in Result strip for OW/RT/MC search");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(	searchResult.elementLayer.verifyPageElements(Arrays.asList("txtSeatLeftMessage"), searchResult),
 					"<b>Actual Result :</b> Seat left message is Displayed on Search Result Page : " + seatLeft,
 					"<b>Actual Result :</b> Yatra Page Footer is not visible on Search Result Page", driver);
@@ -4277,7 +4279,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Verify that Flight Details pop should also appear with Seat left message");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("txtSeatLeftMessageInFlightDetails"),	searchResult),
 					"<b>Actual Result :</b> Seat left message is Displayed on Flight Details Pop up as : " + seatLeft,
 					"<b>Actual Result :</b> Seat left message is not Displayed on Flight Details", driver);
@@ -4322,7 +4324,7 @@ public class FlightSearch extends BaseTest{
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify the Yatra page Footer");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("yatraFooterPanel"), searchResult),
 					"<b>Actual Result :</b> Yatra Page Footer is visible on Search Result Page",
 					"<b>Actual Result :</b> Yatra Page Footer is not visible on Search Result Page", driver);
@@ -5043,7 +5045,7 @@ public class FlightSearch extends BaseTest{
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked On continue Button!");
-
+			BrowserActions.nap(10);
 			paymentPage.enterCreditCardDetails(cardNumber);
 			Log.message("10. Fill Credit Card Details!");
 
@@ -5179,7 +5181,7 @@ public class FlightSearch extends BaseTest{
 			// step: Click on 'Book Now' button in Yatra Home page
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("6.Clicked on 'Book Now' button in Search Result Page ");
-			// Thread.sleep(5000);
+			// BrowserActions.nap(5);
 
 			reviewPage.clickOnContinue();
 			Log.message("<br>");
@@ -5346,7 +5348,7 @@ public class FlightSearch extends BaseTest{
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
-			// Thread.sleep(3000);
+			// BrowserActions.nap(3);
 
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
@@ -5853,7 +5855,7 @@ public class FlightSearch extends BaseTest{
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check to price calculation for DOM flight");
-			Thread.sleep(5000);
+			BrowserActions.nap(5);
 
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareDetails"), reviewPage),
 					"<b>Actual Result:</b> The Fare details module is displayed on Review Page.",
@@ -6231,7 +6233,7 @@ public class FlightSearch extends BaseTest{
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("3.Successfully clicked 'One Way' option in search Home Page ");
-			// Thread.sleep(3000);
+			// BrowserActions.nap(3);
 
 			// step: select OneWay Flight Search fields
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
@@ -6325,7 +6327,7 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Get Fare' Link
 			searchResult.clickOnGetFareAlert();
 			Log.message("5. Successfully clicked on 'Get Fare Alert' Link!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			String ErrorMessagePrice = searchResult.enterGetFareDetailsPrice(Price);
 			String ErrorMessageEmail = searchResult.enterGetFareDetailsEmail(Email);
 			String ErrorMessagePhoneNumber = searchResult.enterGetFareDetailsPhoneNumber(PhoneNumber);
@@ -6381,13 +6383,13 @@ public class FlightSearch extends BaseTest{
 			Log.message("5. Successfully clicked on 'Flight Details Link'!");
 
 			// step: click '[X]' button in Fare Details
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			searchResult.clickOnCloseInFlightDetailPopUp();
 			Log.message("6. Successfully clicked on 'Close' Button!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify Fare Details viewed info");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("btnViewed"), searchResult),
 					"<b>Actual Result :</b> After Closing Flight Details Pop Up, viewed button is visible",
 					"<b>Actual Result :</b> After Closing Flight Details Pop Up, No viewed button is visible", driver);
@@ -6483,12 +6485,12 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Search' button
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4. Successfully clicked 'Search'!");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			String Stops = searchResult.getTextNoOfStops();
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify Stops info in each flight card");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("txtNoOfStops"), searchResult),
 					"<b>Actual Result :</b> Stops are visible on all flight card and its shown as : " + Stops,
 					"<b>Actual Result :</b> Stops on all Flight card are not visible", driver);
@@ -6539,7 +6541,7 @@ public class FlightSearch extends BaseTest{
 			searchResult.ClickOnScrollUpButton();
 			Log.message("6. Successfully Clicked on Scroll To Top Button!");
 
-			Thread.sleep(1000);
+			BrowserActions.nap(1);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify functionality of 'Go to TOP' button");
 			Log.assertThat(	searchResult.elementLayer.verifyPageElementsDoNotExist(Arrays.asList("btnScrollUpSRP"),	searchResult),
@@ -6812,7 +6814,7 @@ public class FlightSearch extends BaseTest{
 			loginPage = searchResult.navigateToSignIn();
 			searchResult = loginPage.loginYatraAccountFromSearchResult(emailId, password);
 			Log.message("5. Login 'Yatra' account successfully!");
-			Thread.sleep(1000);
+			BrowserActions.nap(1);
 			String Txt = searchResult.getTextRecentSearchPopUp();
 
 			Log.message("<br>");
@@ -6863,7 +6865,7 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Book Now' button
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5. Successfully clicked 'Search' !");
-			Thread.sleep(2000);
+			BrowserActions.nap(2);
 			String feeandSurcharge = reviewPage.getTextFeeAndSurcharge();
 
 			Log.message("<br>");
@@ -6918,13 +6920,13 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Fare and Summary' Link
 			searchResult.clickOnFareAndSummaryFlightDetail();
 			Log.message("6. Successfully clicked 'Fare and Rule Detail Link' in Flight Detail Pop Up!");
-			Thread.sleep(1000);
+			BrowserActions.nap(1);
 			String fare = searchResult.getTextFareDetailsandRuleInPopUp();
 
 			// step: click 'Baggage' Link
 			searchResult.clickOnBaggageFlightDetail();
 			Log.message("7. Successfully clicked 'Baggage Link' in Flight Detail Pop Up!");
-			Thread.sleep(1000);
+			BrowserActions.nap(1);
 			String Baggage = searchResult.getTextBaggageInfoFlightDetail();
 
 			Log.message("<br>");
