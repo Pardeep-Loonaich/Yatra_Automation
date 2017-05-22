@@ -191,6 +191,7 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
  	 	 */
 
  	 	public TravellerPageBus fillUserDetailsAsLogin(String email, String Password) throws Exception {
+ 	 		BrowserActions.nap(2);
  	 		Utils.waitForPageLoad(driver);
  	 		Utils.waitForElement(driver, chkBoxYatraUser);
  	 		BrowserActions.clickOnElement(chkBoxYatraUser, driver, "Existing Yatra User Check Box");

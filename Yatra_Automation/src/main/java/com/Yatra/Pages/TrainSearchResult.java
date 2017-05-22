@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import org.apache.poi.hssf.record.ContinueRecord;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -126,8 +124,6 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
 	@FindBy(css="#reset-filter")
 	private WebElement btnResetFltr;
-	
-	
 	/**********************************************************************************************
 	 ********************************* WebElements of Train Search Result Page - Ends ****************************
 	 **********************************************************************************************/
@@ -366,23 +362,11 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	 * @param index
 	 * @throws Exception
 	 */
-	
-	
 	public void selectTrainByIndexAndBook(int index) throws Exception{
 		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-
-		if(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class='hide detailBox trainDetailContainer']")).getText().contains("parsererror")){
-			for(int i=0;i<=1;i++){
-			BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-			BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
-
-			}
-		}
-		else
-		{
 		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
-		}
+
 	}
 	
 	/**

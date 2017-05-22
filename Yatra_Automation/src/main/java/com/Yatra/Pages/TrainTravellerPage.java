@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +16,6 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
@@ -275,7 +273,6 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 		Log.event("Successfully entered Passenger name:"+rand1);
 	/*	if(age1>=60){
 			BrowserActions.clickOnElement(lstPax.get(i).findElement(By.cssSelector("div[id*='SnrCtzn']>label")), driver, "Checked 'Senior Citizen' checkbox in case of 60 and above.");
-			
 		
 		*/
 		BrowserActions.clickOnElement(lstPax.get(i).findElement(By.cssSelector("div[class*='berthPref']>label")), driver, "Clicked on Berth dropdown.");

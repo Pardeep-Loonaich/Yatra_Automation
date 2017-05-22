@@ -162,13 +162,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = ".left.fl p.fs-10.ltr-gray.uprcse.mt2")
 	private WebElement txtFlightSearchDuration;
 
-	@FindBy(css = "div[class='fl center']>ul[class='full city-details tripO']>li:nth-child(1)>p[class='city-name']")
+	@FindBy(css = "ul[class='full city-details tripO']>li:nth-child(1)>p[class='city-name']")
 	private WebElement txtSourceCity_OW;
 
-	@FindBy(css = "div[class='fl center']>ul[class='full city-details tripO']>li:nth-child(1)>p[class*='fs-10']")
+	@FindBy(css = "ul[class='full city-details tripO']>li:nth-child(1)>p[class='fs-10 ltr-gray uprcse mt2 tl']")
 	private WebElement txtSourceDate_OW;
 
-	@FindBy(css = "div[class='fl center']>ul[class='full city-details tripO']>li:nth-child(2)>p[class='city-name']")
+	@FindBy(css = "ul[class='full city-details tripO']>li:nth-child(2)>p[class='city-name']")
 	private WebElement txtDestCity_OW;
 
 	@FindBy(css = "ul[class='full city-details tripR']>li:nth-child(1)>p[class='city-name']")
@@ -201,7 +201,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class*='center']>ul:nth-child(3)>li:nth-child(2)>p[class='fl city-name tl']")
 	private WebElement txtEndDestCity;
 
-	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) div[class='time']>span")
+	@FindBy(css = "div[id='resultList_0']>div>div[data-gaeclist='Search Results Page']>article>div[class='my-res-info full']>ul[class='table-listing my-res-table']>li>div[class='time']>span")
 	private WebElement txtFlightDuration;
 
 	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) a[class='under-link']")
@@ -210,7 +210,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='row itinerary-details'] li[class='trip-type'] time")
 	private WebElement txtFlightDetailsPopupDuration;
 
-	@FindBy(css = "span[class='ico ico-close overlay-close']")
+	@FindBy(css = "span[class='ytfi-cancel']")
 	private WebElement lnkcloseFlightDetailsPopUp;
 
 	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) span[class='ml5 hidden-sm']")
@@ -341,7 +341,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[id='resultList_0'] h6[class='full']")
 	private WebElement txtCalender_OnwardLFF;
 
-	@FindBy(css = "i[class='ico ico-fare-cal-fixed']")
+	@FindBy(css = "i[class='ytfi-bell ico-fare-cal-fixed']")
 	private WebElement lnkFareAlert;
 
 	@FindBy(css = "div[id='fareAlertPopup'] span[class='bold']")
@@ -476,7 +476,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "li[class='mobile-details']>p[class='error-msg']")
 	private WebElement errorMessagePhoneNumberFromFareDetailPopUP;
 
-	@FindBy(xpath = "//div[@class='overlay no-pad flight-details-overlay']/div[@class='overlay-header']/span[@class='ico ico-close overlay-close']")
+	@FindBy(xpath = "//div[@class='overlay no-pad flight-details-overlay']/div[@class='overlay-header']/span[@class='ytfi-cancel']")
 	private WebElement closeInFlightDetailPopUp;
 
 	@FindBy(css = "span[class='ml5 hidden-sm']")
@@ -488,7 +488,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='yatraSecure']")
 	private WebElement yatraFooterPanel;
 
-	@FindBy(css = "div[class='up-scroll ico ico-up-arrow-white']")
+	@FindBy(css = "div[class='up-scroll ytfi-up-open']")
 	private WebElement btnScrollUpSRP;
 
 	@FindBy(css = "div[class='js-flightItem']>article>div[class='full result-card-content']>ul>li[class='result-grid-airline hidden-sm']>div>p[class='full airline-name']")
@@ -620,7 +620,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[ng-if='flt.freemeal']>p")
 	private WebElement txtFreeMeal;
 
-	@FindBy(css = "i[class='hs-22 fs fs-inclusions-dinner']")
+	@FindBy(css = "i[class='ytfi-free-meal']")
 	private WebElement logoFreeMeal;
 
 	@FindBy(css = "li[ng-if='flt.freemeal']")
@@ -659,16 +659,16 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "a[class='under-link js-sortlink active down']")
 	private WebElement lnkPriceDownwards;
 
-	@FindBy(css = "div[id='resultList_0'] p[class='new-blue-button fr book-button active']")
+	@FindBy(css = "div[id='resultList_0'] p[class='new-blue-button fr book-button ytfi-ok-circled']")
 	private WebElement lnkOnwardFlightSelection;
 
-	@FindBy(css = "div[id='resultList_1'] p[class='new-blue-button fr book-button active']")
+	@FindBy(css = "div[id='resultList_1'] p[class='new-blue-button fr book-button ytfi-ok-circled']")
 	private WebElement lnkReturnFlightSelection;
 
-	@FindBy(css = "div[id='resultList_1'] p[class='new-blue-button fr book-button active'] span[class='mobl']")
+	@FindBy(css = "div[id='resultList_1'] p[class='new-blue-button fr book-button ytfi-ok-circled'] span[class='mobl']")
 	private WebElement lnkReturnSelectedFlightFare;
 
-	@FindBy(css = "div[id='resultList_0'] p[class='new-blue-button fr book-button active'] span[class='mobl']")
+	@FindBy(css = "div[id='resultList_0'] p[class='new-blue-button fr book-button ytfi-ok-circled'] span[class='mobl']")
 	private WebElement txtOnwardsSelectedFlightFare;
 
 	@FindBy(css = "p[class='fs-10 ltr-gray uprcse mt2 tl']")
@@ -682,6 +682,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 //	@FindBy(css = "div[id='resultList_0'] p[class='full fs-10 ltr-gray uprcse']")
 //	private WebElement txtDepartureDate; 
+	
+
+	@FindBy(xpath = "//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
+	private WebElement IframeNotification;
+	
+	@FindBy(css = "a[id='webklipper-publisher-widget-container-notification-close-div']")
+	private WebElement btnCloseIframeNotification_Double;
+
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -747,6 +755,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInRound(int list1, int index1, int list2, int index2) throws Exception {
+		closeINotificationAtTopSRP();
 		WebElement e1 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list1
 				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index1
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
@@ -760,6 +769,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.clickOnElement(e2, driver, "To select Flight from second list.");
 
 		BrowserActions.clickOnElement(btnBookNowRoundTrip, driver, "Click on Book Now for RoundTrip.");
+		popUpAppear();
 		return new ReviewPage(driver).get();
 	}
 
@@ -774,6 +784,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		closeINotificationAtTopSRP();
 		BrowserActions.scrollToView(btnBookNowINT, driver);
 		BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button.");
+		popUpAppear();
 		return new ReviewPage(driver).get();
 	}
 
@@ -787,13 +798,15 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		// closeINotificationAtTopSRP();
+		 closeINotificationAtTopSRP();
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
 				+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button.");
+		popUpAppear();
 		return new ReviewPage(driver).get();
+		
 	}
 
 	/**
@@ -846,6 +859,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	// it will fail in future
 	// for any issue discuss with me
 	public ReviewPage clickOnBookNowInMulticity(int list1, int index1, int list2, int index2) throws Exception {
+		closeINotificationAtTopSRP();
 		WebElement e1 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list1
 				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index1
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>p"));
@@ -919,6 +933,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickOnlnkFlightDetails_INTL() throws Exception {
+		closeINotificationAtTopSRP();
 		BrowserActions.nap(2);
 		BrowserActions.scrollToView(lnkFlightDetails_INTL, driver);
 		BrowserActions.clickOnElement(lnkFlightDetails_INTL, driver, "Link Flight Details For International One Way");
@@ -1330,9 +1345,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void closeFlightDetailsPouUp() throws Exception {
-		Utils.waitForElement(driver, lnkcloseFlightDetailsPopUp);
+		Utils.waitForPageLoad(driver);
+		if(lnkcloseFlightDetailsPopUp.isDisplayed())
+		{
 		BrowserActions.clickOnElement(lnkcloseFlightDetailsPopUp, driver, "Click Flight Details PopUp close button");
 		Utils.waitForPageLoad(driver);
+		}
 		Log.event("Clicked Flight Details PopUp close button");
 	}
 
@@ -1343,7 +1361,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextResultStrip() throws Exception {
-		Utils.waitForElement(driver, txtResultStripView);
+		Utils.waitForPageLoad(driver);
 		String resultStripGetTxt = BrowserActions.getText(driver, txtResultStripView,
 				"Result Strip view should be displayed in SRP ");
 		return resultStripGetTxt;
@@ -1356,7 +1374,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextSourceCity_OW() throws Exception {
-		Utils.waitForElement(driver, txtSourceCity);
+		Utils.waitForPageLoad(driver);
 		String sourceCityGetTxt = BrowserActions.getText(driver, txtSourceCity_OW,
 				"Source City Should be displayed in SRP Page");
 		return sourceCityGetTxt;
@@ -1369,7 +1387,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextSourceDate_OW() throws Exception {
-		Utils.waitForElement(driver, txtSourceDate);
+		Utils.waitForPageLoad(driver);
 		String sourceDateGetTxt = BrowserActions.getText(driver, txtSourceDate_OW,
 				"Source date Should be displayed in SRP Page");
 		return sourceDateGetTxt;
@@ -1382,7 +1400,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextDestinationCity_OW() throws Exception {
-		Utils.waitForElement(driver, txtDestCity);
+		Utils.waitForPageLoad(driver);
 		String destCityGetTxt = BrowserActions.getText(driver, txtDestCity_OW,
 				"Destination City Should be displayed in SRP Page");
 		return destCityGetTxt;
@@ -1394,6 +1412,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void clickModifySearch() throws Exception {
+		BrowserActions.nap(2);
+		closeINotificationAtTopSRP();	
 		BrowserActions.nap(10);
 		Utils.waitForElement(driver, btnModifySearchIcon);
 		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Click Modify Search");
@@ -1734,22 +1754,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	public void closeINotificationAtTopSRP() throws Exception {
-		// boolean boolFrameNotification =
-		// BrowserActions.isElementPresent(driver, iFrameNotification);
-		if (driver.findElements(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"))
-				.size() > 0) {
-			WebElement iFrameNotification = driver
-					.findElement(By.xpath("//iframe[@id='webklipper-publisher-widget-container-notification-frame']"));
-			BrowserActions.switchToIframe(driver, iFrameNotification);
-			BrowserActions.nap(2);
-			BrowserActions.clickOnElement(btnCloseIframeNotification, driver,
-					"Button to close Iframe Notification at top on SRP");
+
+	public void closeINotificationAtTopSRP() throws Exception {	
+		BrowserActions.nap(4);		
+		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {
+		//if(IframeNotification.isDisplayed()){
+			BrowserActions.switchToIframe(driver, IframeNotification);			
+			if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true){ 
+				BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
+			}else if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification_Double) == true){
+				BrowserActions.clickOnElement(btnCloseIframeNotification_Double, driver, "Button to close Iframe Notification at Left side bottom on SRP");
+			}		
 			BrowserActions.switchToDefault(driver);
+			BrowserActions.nap(2);	
 		} else {
-			Log.event("Not displayed Iframe Notification at top on SRP ");
+			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
 		}
 	}
+
 
 	/**
 	 * Getting the text form Airline Names
@@ -2413,7 +2435,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage selectAirlineBookNowInOW(String domain, String stops, String airlines) throws Exception {
-		BrowserActions.nap(2);
+		closeINotificationAtTopSRP();
 		if (domain.equalsIgnoreCase("DOM")) {
 			// Select Connecting flight or Direct flight in Stops filter
 			if (stops.equalsIgnoreCase("All")) {
@@ -2457,6 +2479,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			}
 			Log.event("Successfully clicked Book Now for Round Trip");
 		}
+		popUpAppear();
 		return new ReviewPage(driver).get();
 	}
 
@@ -2770,7 +2793,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage selectAirlineBookNowInRT(String domain, String stops, String airlines) throws Exception {
-		BrowserActions.nap(2);
+		closeINotificationAtTopSRP();
 		if (domain.equalsIgnoreCase("DOM")) {
 			// Select Connecting flight or Direct flight in Stops filter
 			if (stops.equalsIgnoreCase("All")) {
@@ -2779,25 +2802,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				selectFlightStopsInFilters(stops);
 				Log.event("Successfully selected " + stops + " button in Stops Filter");
 			}
-
+			
 			// click book now based on Any or Preferred airlines
 			if (airlines.equalsIgnoreCase("Any")) {
 				BrowserActions.nap(5);
 				clickOnBookNowInRT_DOM(1, 2, 2, 7); // select Book Now Airlines
 				Log.event("All flights details are visible by default and clicked Book Now Random flight-DOM");
 			} else {
-				selectAirlineInAirlineFilters(airlines); // Select Preferred
-															// Airline in
-															// Airline Filters
+				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
 				BrowserActions.nap(5);
 				clickOnBookNowInRT(1, 1); // select Book Now Airlines
-				Log.event(
-						"Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now - DOM");
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now - DOM");
 			}
 			Log.event("Successfully clicked Book Now for Round Trip");
+			
 		} else if (domain.equalsIgnoreCase("INTL")) {
 			// Select Connecting flight or Direct flight in Stops filter
 			if (stops.equalsIgnoreCase("All")) {
+				BrowserActions.nap(5);
 				Log.event("All flights visible by default");
 			} else {
 				selectFlightStopsInFilters(stops);
@@ -2806,6 +2828,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 			// click book now based on Any or Preferred airlines
 			if (airlines.equalsIgnoreCase("Any")) {
+				BrowserActions.nap(5);
 				clickOnBookNowInDOM_INTL(1); // select Book now
 				Log.event("All flights details are visible by default and clicked Book Now Random flight -RT");
 			} else {
@@ -2817,6 +2840,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			}
 			Log.event("Successfully clicked Book Now for Round Trip");
 		}
+		BrowserActions.nap(3);
 		return new ReviewPage(driver).get();
 	}
 
@@ -2827,8 +2851,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public void clickOnBookNowInRT_DOM(int onwardList, int onwardFlight, int returnList, int returnFlight)
-			throws Exception {
+	public void clickOnBookNowInRT_DOM(int onwardList, int onwardFlight, int returnList, int returnFlight)	throws Exception {
 		BrowserActions.nap(5);
 		WebElement onwardflight = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child("
 				+ onwardList + ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
@@ -3085,8 +3108,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public boolean verifyFlightNameTitlesInResultGrid(String flghtname) throws Exception {
 		boolean status = false;
 		for (int i = 1; i < lstFlightResultGrid.size(); i++) {
-			WebElement Ele = driver.findElement(By.xpath("//div[@class='js-flightRow js-flightItem'][" + i
-					+ "]//small[@class='fs-sm gray fl ml5 name carrier-name']"));
+			WebElement Ele = driver.findElement(By.xpath("//div[@class='js-flightRow js-flightItem'][" + i + "]//small[@class='fs-sm gray fl ml5 name carrier-name']"));
 			String flightName = BrowserActions.getText(driver, Ele, "Getting txt of the Refundable in flight rows.");
 			if (flightName.equalsIgnoreCase(flghtname)) {
 				status = true;
@@ -3325,6 +3347,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextFreeMeal_INTL() throws Exception {
 		BrowserActions.scrollToView(logoFreeMeal, driver);
+		BrowserActions.mouseHover(driver, logoFreeMeal);
 		String Message = BrowserActions.getText(driver, txtFreeMeal, "Free Meal Message");
 		return Message;
 	}
@@ -3599,7 +3622,47 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		return status;
 	}
+	@FindBy(css = "button.primary.rounded.pull-right")
+	private WebElement btnFareChangeContinue; // remove later
+	@FindBy(css = "button[ng-click='continueSameFlight();']")
+	WebElement ContinueInFarePopUp;
+	@FindBy(css = "[ng-show='priceChangeDiv']>div>div[class='overlay-content ']>div[class='row mt10 btn-box']>button[ng-click='continueSameFlight()']")
+	private WebElement ContinueInFareChangeAlertPopUp;
+	@FindBy(css = ".update-fare.pt10.ico-right")
+	private WebElement PricePopUp;
+	@FindBy(css = "[ng-show='priceChangeDiv']>div>div[class='overlay-content ']")
+	private WebElement popupFareChange;
+	@FindBy(css = "[ng-show='priceChangeDiv']>div>div[class='overlay-content ']>div[class='row mt10 btn-box text-center']>button")
+	private WebElement ContinueInpopUpFareSlashed;
 
+	
+	
+	/**
+	 * Clicking Continue In Price Increase Pop Up
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+
+	//TODO : Need to look on - Narayana
+	public void popUpAppear() throws Exception {		
+		if (PricePopUp.isDisplayed()) {			
+			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
+				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
+			}else			
+			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
+		}else if (popupFareChange.isDisplayed())
+			if (ContinueInFareChangeAlertPopUp.isDisplayed()) {
+				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,
+						"Clicked on continue in Fare Change Alert Popup");
+			} else if (ContinueInpopUpFareSlashed.isDisplayed()) {
+				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver,
+						"Clicked on continue in fare slashed popup");
+			} else
+				Log.event("No PopUp appear.");
+	}
+	
+	
 	// *******************************End of SRP
 	// Functions***********************************/
 } // SearchResult

@@ -99,13 +99,14 @@ public class BaseTest implements ITest
 	public void  afterTestExecutor(ITestResult result) 
 
 	{
-		System.out.println("Executing After Mehtod ..");
-
+		driver=WebDriverFactory.getCurrentDriverInstance();
+		
 		try
 		{
-			if(true)			//if test case fail perform below task
+			if(result.getStatus()==ITestResult.FAILURE&&propReader.getProperty("SEND_EMAIL_ON_FAILIURE").equalsIgnoreCase("TRUE"))			//if test case fail perform below task
 			{
-				driver=WebDriverFactory.baseTestDriver;
+				
+				Log.message("triggering email in for failed test case");
 				inputFile=Log.takeScreenShot(driver);
 
 				testCaseId=result.getName();
@@ -131,6 +132,6 @@ public class BaseTest implements ITest
 	 */
 	public static void setBaseDriver(WebDriver drivers)
 	{
-		driver=WebDriverFactory.baseTestDriver;
+		//driver=drivers;
 	}
 }

@@ -14,11 +14,6 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
-//import com.Yatra.TestScript.Common.BaseTest;
-import com.Yatra.Utils.BrowserActions;
-import com.Yatra.Utils.EmailSender;
-import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
@@ -32,8 +27,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
-	public static String sPricingURL;
 	Utils utils;
+	public static String sPricingURL;
 	ExecutionTimer timer=new ExecutionTimer();
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
@@ -277,6 +272,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		//new EmailSender(driver.getCurrentUrl().trim());
 	}
 
+	
 	@Override
 	protected void load() {
 		timer.start();
@@ -438,7 +434,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	}
 
-	public TravellerPage clickOnContinue() throws Exception {
+	public TravellerPage clickOnContinue() throws Exception {		
 		BrowserActions.nap(6);
 		Utils.waitForElement(driver, btnContinueReviewPage);
 		BrowserActions.scrollToView(btnContinueReviewPage, driver);
@@ -475,20 +471,14 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @return
 	 * @throws Exception
 	 */
-
-	public void popUpAppear() throws Exception {
-		// if
-		// (driver.findElements(By.cssSelector(".update-fare.pt10.ico-right")).size()>0)
-		if (PricePopUp.isDisplayed()) {
-			
+	//TODO : Need to look on - Narayana
+	public void popUpAppear() throws Exception {		
+		if (PricePopUp.isDisplayed()) {			
 			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
 				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
 			}else
-			
 			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
-		
 		}
-
 		else if (popupFareChange.isDisplayed())
 			if (ContinueInFareChangeAlertPopUp.isDisplayed()) {
 				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,
@@ -777,4 +767,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		String abc = txtFareRules.getText();
 		return abc;
 	}
+	/**
+	 * to get pricing URL at run time
+	 * @return: it will return pricing url 
+	 */
+	public static String getPricingURL()
+	
+	{	
+		return sPricingURL;
+		}
 } // ReviewPage
