@@ -441,6 +441,147 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
+	
+	@Test(groups = {"desktop" }, description = "Verify result should be sorted by Events and Shows.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_011(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String categoryNme = testData.get("CategoryName");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			String categryNumb = searchResultActivites.selectCategory(categoryNme);
+			Log.message("5. Selecting category as 'Events and Shows' and get searched category number.");
+
+			String resultNum = searchResultActivites.gettingTxtFrmResultFoundStrip();
+			Log.message("6. Getting selected result category number from the result strip.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify result should be sorted by Events and Shows.");
+			Log.assertThat(resultNum.contains(categryNumb),
+					"<b>Actual Result:</b> The result is sorted by Events and Shows category. ",
+					"<b>Actual Result:</b> The result is not sorted by Events and Shows category.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {"desktop" }, description = "Verify result should be sorted by Tours & Sightseeing.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_012(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String categoryNme = testData.get("CategoryName");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			String categryNumb = searchResultActivites.selectCategory(categoryNme);
+			Log.message("5. Selecting category as 'Tours & Sightseeing' and get searched category number.");
+
+			String resultNum = searchResultActivites.gettingTxtFrmResultFoundStrip();
+			Log.message("6. Getting selected result category number from the result strip.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify result should be sorted by Tours & Sightseeing.");
+			Log.assertThat(resultNum.contains(categryNumb),
+					"<b>Actual Result:</b> The result is sorted by Tours & Sightseeing category. ",
+					"<b>Actual Result:</b> The result is not sorted by Tours & Sightseeing category.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {"desktop" }, description = "Verify result should be sorted by Food.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_013(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String categoryNme = testData.get("CategoryName");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			String categryNumb = searchResultActivites.selectCategory(categoryNme);
+			Log.message("5. Selecting category as 'Food' and get searched category number.");
+
+			String resultNum = searchResultActivites.gettingTxtFrmResultFoundStrip();
+			Log.message("6. Getting selected result category number from the result strip.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify result should be sorted by Food.");
+			Log.assertThat(resultNum.contains(categryNumb),
+					"<b>Actual Result:</b> The result is sorted by Food category. ",
+					"<b>Actual Result:</b> The result is not sorted by Food category.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 
 
 
