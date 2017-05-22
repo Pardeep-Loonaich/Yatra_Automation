@@ -12,7 +12,7 @@
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
-	<test name="Activites Search" thread-count="1" parallel="true">
+	<test name="Activites Search" thread-count="3" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.Activities.ActivitiesTest"></class>          
 		</classes>

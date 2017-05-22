@@ -1381,7 +1381,7 @@ public class ActivitiesTest {
 
 			boolean result = activitiesReviewPage.verifyYatraUserCheckboxInLogin();
 
-			Log.assertThat((activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtMobileNumber"), activitiesReviewPage)&&result==false),
+			Log.assertThat((activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtMobileNum"), activitiesReviewPage)&&result==false),
 					"<b>Actual Result:</b> PhoneNumber field is displayed on Sign-In Page if user dont have Yatra Account.",
 					"<b>Actual Result:</b> PhoneNumber field is not displayed on Sign-In Page if user have Yatra Account.", driver);
 
@@ -1635,7 +1635,7 @@ public class ActivitiesTest {
 
 			Thread.sleep(2000);
 
-			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(3);
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
@@ -1668,7 +1668,7 @@ public class ActivitiesTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify all payment options.");
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("paymentType"), paymentPage),
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("lstPaymentMetod"), paymentPage),
 					"<b>Actual Result:</b> All the Payment options are displayed.",
 					"<b>Actual Result:</b> All the Payment options are not displayed.", driver);
 
@@ -1692,8 +1692,7 @@ public class ActivitiesTest {
 		String email = testData.get("EmailAddress");
 		String number = testData.get("MobileNumber");
 		String paymentType = testData.get("PaymentType");
-		String itzName = testData.get("BankName");
-
+        String cardNumber = "6799990100000000019";
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
@@ -1744,18 +1743,14 @@ public class ActivitiesTest {
 			Log.message("13. Clicked on 'Continue' button in the TravellerPage.");
 
 			paymentPage.selectPaymentType(paymentType);
-			Log.message("13.Selected '"+paymentType+"' as payment option on PaymentPage.");
+			Log.message("14.Selected '"+paymentType+"' as payment option on PaymentPage.");
 
+			paymentPage.enterPartialDebitCardDetails(cardNumber);
 
 			paymentPage.clickOnPayNow();
 			Log.message("15.Clicked 'Pay Now' button on PaymentPage.");
 
-			paymentPage.selectITZCashRan(itzName);
-			Log.message("10. Selected "+itzName+" from ITZ options");
-
-
-			paymentPage.cancelOrderForITZCash();
-			Log.message("13. Navigating back to 'Yatra' page after cancelling ITZ Cash Payment.");
+		
 
 
 			String errorMsg = paymentPage.getTextFromTheFailedTransactionMsg();

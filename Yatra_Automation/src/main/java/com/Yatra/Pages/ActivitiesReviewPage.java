@@ -52,8 +52,19 @@ public class ActivitiesReviewPage  extends LoadableComponent<ActivitiesReviewPag
 	@FindBy(css = "button[class*='login-btn ']")
 	private WebElement btnLoginInAsGuest;
 
-	@FindBy(css = "input[name='mobile']")
+	@FindBy(css = "button[class*='login-btn']")
+	private WebElement btnLogin;
+
+	@FindBy(css = "form[name='userForm']>div[ng-show='!registered']>input[name='mobile']")
 	private WebElement txtMobileNum;
+	
+	@FindBy(css = "input[name='password']")
+	private WebElement txtPasswrd;
+	
+	@FindBy(css = "button[class='paymentSprite yatraFb']")
+	private WebElement logoFB;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of ActivitiesReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -118,6 +129,10 @@ public class ActivitiesReviewPage  extends LoadableComponent<ActivitiesReviewPag
 		BrowserActions.typeOnTextField(txtEmailId, email, driver, "Enter the email address in the Email Address text field.");
 	}
 	
+	/**
+	 * to click on 'I hve yatra account checkbox'
+	 * @throws Exception
+	 */
 	public void clickOnYatraAccountChkbox() throws Exception{
 		BrowserActions.clickOnElement(chkSignedAsLogin, driver, "Clicking on having 'Yatra Account' checkbox.");
 
@@ -151,7 +166,7 @@ public class ActivitiesReviewPage  extends LoadableComponent<ActivitiesReviewPag
 	 */
 	public ActivitiesTravellerPage loginAsGuestUser(String email,String number) throws Exception{
 		BrowserActions.typeOnTextField(txtEmailId, email, driver, "Enter Email address.");
-		BrowserActions.typeOnTextField(txtMobileNum, email, driver, "Enter Phone number.");
+		BrowserActions.typeOnTextField(txtMobileNum, number, driver, "Enter Phone number.");
 		BrowserActions.clickOnElement(btnLoginInAsGuest, driver, "Click on Login as guest");
 		return new ActivitiesTravellerPage(driver).get();
 	}
