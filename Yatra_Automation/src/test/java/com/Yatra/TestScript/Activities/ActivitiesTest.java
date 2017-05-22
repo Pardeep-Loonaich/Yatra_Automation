@@ -301,6 +301,149 @@ public class ActivitiesTest {
 	}
 
 
+	@Test(groups = {"desktop" }, description = "Verify result should be sorted by TRANSFERS & TRANSPORT.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_008(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String categoryNme = testData.get("CategoryName");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			String categryNumb = searchResultActivites.selectCategory(categoryNme);
+			Log.message("5. Selecting category as 'Transfers & Transport' and get searched category number.");
+
+			String resultNum = searchResultActivites.gettingTxtFrmResultFoundStrip();
+			Log.message("6. Getting selected result category number from the result strip.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify result should be sorted by TRANSFERS & TRANSPORT.");
+			Log.assertThat(resultNum.contains(categryNumb),
+					"<b>Actual Result:</b> The result is sorted by TRANSFERS & TRANSPORT category. ",
+					"<b>Actual Result:</b> The result is not sorted by TRANSFERS & TRANSPORT category.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(groups = {"desktop" }, description = "Verify result should be sorted by OUTDOOR FUN.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_009(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String categoryNme = testData.get("CategoryName");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			String categryNumb = searchResultActivites.selectCategory(categoryNme);
+        	Log.message("5. Selecting category as 'OUTDOOR FUN' and get searched category number.");
+
+			String resultNum = searchResultActivites.gettingTxtFrmResultFoundStrip();
+			Log.message("6. Getting selected result category number from the result strip.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify result should be sorted by OUTDOOR FUN.");
+			Log.assertThat(resultNum.contains(categryNumb),
+					"<b>Actual Result:</b> The result is sorted by OUTDOOR FUN category. ",
+					"<b>Actual Result:</b> The result is not sorted by OUTDOOR FUN category.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+
+	@Test(groups = {"desktop" }, description = "Verify result should be sorted by Extreme Adventure.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_010(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String categoryNme = testData.get("CategoryName");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			String categryNumb = searchResultActivites.selectCategory(categoryNme);
+			Log.message("5. Selecting category as 'Extreme Adventure' and get searched category number.");
+
+			String resultNum = searchResultActivites.gettingTxtFrmResultFoundStrip();
+			Log.message("6. Getting selected result category number from the result strip.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify result should be sorted by Extreme Adventure.");
+			Log.assertThat(resultNum.contains(categryNumb),
+					"<b>Actual Result:</b> The result is sorted by Extreme Adventure category. ",
+					"<b>Actual Result:</b> The result is not sorted by Extreme Adventure category.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+
 
 	@Test(groups = {
 	"desktop" }, description = "Verify Modify Search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
@@ -747,8 +890,8 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
-	
+
+
 	@Test(groups = {"desktop" }, description = "Verify User will be directed to sign-in page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_035(HashMap<String, String> testData) throws Exception {
 
@@ -779,13 +922,13 @@ public class ActivitiesTest {
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
-			
+
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
 			activityDetailPage.clickOnSelectActivitiesDate();
 			Log.message("7. Selected Activity Date!");
-			
+
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
 
@@ -810,8 +953,8 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
-	
+
+
 	@Test(groups = {"desktop" }, description = "Verify user should be able to enter email adress", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_036(HashMap<String, String> testData) throws Exception {
 
@@ -843,13 +986,13 @@ public class ActivitiesTest {
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
-			
+
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
 			activityDetailPage.clickOnSelectActivitiesDate();
 			Log.message("7. Selected Activity Date!");
-			
+
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
 
@@ -858,7 +1001,7 @@ public class ActivitiesTest {
 
 			activitiesReviewPage.clickOnContinue();
 			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
-			
+
 			activitiesReviewPage.enterEmailAddress(email);
 			Log.message("11. Entered Email address on the SignIn Popup.");
 
@@ -877,8 +1020,8 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
-	
+
+
 	@Test(groups = {"desktop" }, description = "Verify if user have yatra account then password field is required.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_037(HashMap<String, String> testData) throws Exception {
 
@@ -910,13 +1053,13 @@ public class ActivitiesTest {
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
-			
+
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
 			activityDetailPage.clickOnSelectActivitiesDate();
 			Log.message("7. Selected Activity Date!");
-			
+
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
 
@@ -925,26 +1068,26 @@ public class ActivitiesTest {
 
 			activitiesReviewPage.clickOnContinue();
 			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
-			
-			
+
+
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify if user have yatra account then password field is required.");
 			Log.assertThat(activitiesReviewPage.elementLayer.verifyPageElementsDoNotExist(Arrays.asList("txtPasswrd"), activitiesReviewPage),
 					"<b>Actual Result:</b> Password field is not displayed on Sign-In Page.",
 					"<b>Actual Result:</b> Password field is displayed on Sign-In Page.", driver);
-			
+
 			activitiesReviewPage.enterEmailAddress(email);
 			Log.message("11. Entered Email address on the SignIn Popup.");
-			
-			
+
+
 			activitiesReviewPage.clickOnYatraAccountChkbox();
 			Log.message("12. Clicking on having 'Yatra Account' checkbox on the SignIn Popup.");
-			
-			
+
+
 			Log.assertThat(activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPasswrd"), activitiesReviewPage),
 					"<b>Actual Result:</b> Password field is displayed on Sign-In Page after clicking the checkbox.",
 					"<b>Actual Result:</b> Password field is not displayed on Sign-In Page after clicking the checkbox.", driver);
-			
+
 
 			Log.testCaseResult();
 
@@ -955,8 +1098,8 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
-	
+
+
 	@Test(groups = {"desktop" }, description = "Verify if user do not have yatra account then it should be able to enter the phone number.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_038(HashMap<String, String> testData) throws Exception {
 
@@ -988,13 +1131,13 @@ public class ActivitiesTest {
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
-			
+
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
 			activityDetailPage.clickOnSelectActivitiesDate();
 			Log.message("7. Selected Activity Date!");
-			
+
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
 
@@ -1003,19 +1146,19 @@ public class ActivitiesTest {
 
 			activitiesReviewPage.clickOnContinue();
 			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
-			
+
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify if user have yatra account then password field is required.");
-			
+
 			activitiesReviewPage.enterEmailAddress(email);
 			Log.message("11. Entered Email address on the SignIn Popup.");
-			
+
 			boolean result = activitiesReviewPage.verifyYatraUserCheckboxInLogin();
 
 			Log.assertThat((activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtMobileNumber"), activitiesReviewPage)&&result==false),
 					"<b>Actual Result:</b> PhoneNumber field is displayed on Sign-In Page if user dont have Yatra Account.",
 					"<b>Actual Result:</b> PhoneNumber field is not displayed on Sign-In Page if user have Yatra Account.", driver);
-			
+
 
 			Log.testCaseResult();
 
@@ -1026,8 +1169,8 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
-	
+
+
 	@Test(groups = {"desktop" }, description = "Verify user should be able to see the facebook.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_039(HashMap<String, String> testData) throws Exception {
 
@@ -1058,13 +1201,13 @@ public class ActivitiesTest {
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
-			
+
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
 			activityDetailPage.clickOnSelectActivitiesDate();
 			Log.message("7. Selected Activity Date!");
-			
+
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
 
@@ -1073,13 +1216,13 @@ public class ActivitiesTest {
 
 			activitiesReviewPage.clickOnContinue();
 			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
-			
+
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user should be able to see the facebook.");
 			Log.assertThat(activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("logoFB"), activitiesReviewPage),
 					"<b>Actual Result:</b> Facebook button is displayed on Sign-In Page.",
 					"<b>Actual Result:</b> Facebook button is not displayed on Sign-In Page.", driver);
-			
+
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -1089,8 +1232,8 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
-	
+
+
 	@Test(groups = {"desktop" }, description = "Verify user is redirected to payment page.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_040(HashMap<String, String> testData) throws Exception {
 
@@ -1123,13 +1266,13 @@ public class ActivitiesTest {
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
-			
+
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
 			activityDetailPage.clickOnSelectActivitiesDate();
 			Log.message("7. Selected Activity Date!");
-			
+
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
 			Thread.sleep(2000);
@@ -1139,23 +1282,23 @@ public class ActivitiesTest {
 
 			activitiesReviewPage.clickOnContinue();
 			Log.message("10. Clicked on 'Continue' button in the ReviewPage.");
-			
+
 			activitiesTravellerPage = activitiesReviewPage.loginAsGuestUser(email, number);
 			Log.message("11. Login as 'Guest' user.");
-			
+
 			activitiesTravellerPage.fillTravellerDetails();
 			Log.message("12. Filled traveller details.");
-			
+
 			paymentPage = activitiesTravellerPage.clickOnContinueInTravellerPage(); 
 			Log.message("13. Clicked on 'Continue' button in the TravellerPage.");
-	
+
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is redirected to payment page.");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated to PaymentPage.",
 					"<b>Actual Result:</b> Unable to navigated to PaymentPage.", driver);
-			
+
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -1165,8 +1308,8 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
-	
+
+
 	@Test(groups = {"desktop" }, description = "Verify if user is registerd with yatra then login option displayed.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_041(HashMap<String, String> testData) throws Exception {
 
@@ -1198,13 +1341,13 @@ public class ActivitiesTest {
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
-			
+
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
 			activityDetailPage.clickOnSelectActivitiesDate();
 			Log.message("7. Selected Activity Date!");
-			
+
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
 			Thread.sleep(2000);
@@ -1214,20 +1357,20 @@ public class ActivitiesTest {
 
 			activitiesReviewPage.clickOnContinue();
 			Log.message("10. Clicked on 'Continue' button in the ReviewPage.");
-			
+
 			activitiesReviewPage.enterEmailAddress(email);
 			Log.message("11. Enter 'Email' address in SignIn Page.");
-			
-	        activitiesReviewPage.clickOnYatraAccountChkbox();
+
+			activitiesReviewPage.clickOnYatraAccountChkbox();
 			Log.message("12. Select 'Having Yatra's Account' checkbox in SignIn Page.");
-			
-			
+
+
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify if user is registerd with yatra then login option displayed.");
 			Log.assertThat(activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("btnLogin"), activitiesReviewPage),
 					"<b>Actual Result:</b> Login option is displayed for the registered user.",
 					"<b>Actual Result:</b> Login option is not displayed for the registered user.", driver);
-			
+
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -1237,7 +1380,7 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
+
 	@Test(groups = {"desktop" }, description = "Verify all payment options.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_042(HashMap<String, String> testData) throws Exception {
 
@@ -1270,13 +1413,13 @@ public class ActivitiesTest {
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
-			
+
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
 			activityDetailPage.clickOnSelectActivitiesDate();
 			Log.message("7. Selected Activity Date!");
-			
+
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
 			Thread.sleep(2000);
@@ -1286,23 +1429,23 @@ public class ActivitiesTest {
 
 			activitiesReviewPage.clickOnContinue();
 			Log.message("10. Clicked on 'Continue' button in the ReviewPage.");
-			
+
 			activitiesTravellerPage = activitiesReviewPage.loginAsGuestUser(email, number);
 			Log.message("11. Login as 'Guest' user.");
-			
+
 			activitiesTravellerPage.fillTravellerDetails();
 			Log.message("12. Filled traveller details.");
-			
+
 			paymentPage = activitiesTravellerPage.clickOnContinueInTravellerPage(); 
 			Log.message("13. Clicked on 'Continue' button in the TravellerPage.");
-	
+
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify all payment options.");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("paymentType"), paymentPage),
 					"<b>Actual Result:</b> All the Payment options are displayed.",
 					"<b>Actual Result:</b> All the Payment options are not displayed.", driver);
-			
+
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -1312,5 +1455,98 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
+
+
+	@Test(groups = {"desktop" }, description = "Verify should show proper message on payment page.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_046(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String email = testData.get("EmailAddress");
+		String number = testData.get("MobileNumber");
+		String paymentType = testData.get("PaymentType");
+		String itzName = testData.get("BankName");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			Thread.sleep(2000);
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
+			Log.message("5. Clicked On Book Now Button!");
+
+			Thread.sleep(2000);
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnSelectActivitiesDate();
+			Log.message("7. Selected Activity Date!");
+
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
+			Thread.sleep(2000);
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("9. Clicked on 'Book Now' button in the Select product popup.");
+
+			activitiesReviewPage.clickOnContinue();
+			Log.message("10. Clicked on 'Continue' button in the ReviewPage.");
+
+			activitiesTravellerPage = activitiesReviewPage.loginAsGuestUser(email, number);
+			Log.message("11. Login as 'Guest' user.");
+
+			activitiesTravellerPage.fillTravellerDetails();
+			Log.message("12. Filled traveller details.");
+
+			paymentPage = activitiesTravellerPage.clickOnContinueInTravellerPage(); 
+			Log.message("13. Clicked on 'Continue' button in the TravellerPage.");
+
+			paymentPage.selectPaymentType(paymentType);
+			Log.message("13.Selected '"+paymentType+"' as payment option on PaymentPage.");
+
+
+			paymentPage.clickOnPayNow();
+			Log.message("15.Clicked 'Pay Now' button on PaymentPage.");
+
+			paymentPage.selectITZCashRan(itzName);
+			Log.message("10. Selected "+itzName+" from ITZ options");
+
+
+			paymentPage.cancelOrderForITZCash();
+			Log.message("13. Navigating back to 'Yatra' page after cancelling ITZ Cash Payment.");
+
+
+			String errorMsg = paymentPage.getTextFromTheFailedTransactionMsg();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify after cancelling transaction should show proper message on payment page.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("msgFailedTransctn"),paymentPage ),
+					"<b>Actual Result:</b> Proper message is displayed on Paymentpage after the failed transaction.:\n ERROR MESSAGE:"+errorMsg,
+					"<b>Actual Result:</b> Proper message is not displayed on Paymentpage after the failed transaction.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
 }// ActivitiesTestCasesEnd

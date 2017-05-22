@@ -1831,6 +1831,11 @@ public class Train {
 			String totalAmount = paymentPage.gettingTotalPayAmount();
 			int tAmt = Integer.parseInt(totalAmount);
             System.out.println(tAmt);
+            
+        	Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"),paymentPage ),
+					"<b>Actual Result:</b> Succesfully navigated to Payment Page.",
+					"<b>Actual Result:</b> Unable to navigated to Payment Page.", driver);
+
 			paymentPage.clickOnPayNow();
 			Log.message("16.Clicked 'Pay Now' button on PaymentPage.");
 			Log.message("<br>");
