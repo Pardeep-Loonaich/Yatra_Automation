@@ -78,6 +78,14 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	
 	@FindBy(css="div[class='left fl']>p[class*='fs-12']")
 	private WebElement txtResultStrip;
+	
+	@FindBy(css="a[title='Recommended']")
+	private WebElement txtRecommended;
+	
+	@FindBy(css="a[title='Popular']")
+	private WebElement txtPopular;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -259,5 +267,26 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	}
 	
 	
+	/**
+	 * Verify Color Of Sort By Activity
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	
+	public boolean verifySortByGivenCategory(String categoryNme) throws Exception {
+	boolean status3 = false;
+	String rgbvalue = "243, 71, 71";
+	switch (categoryNme){
+	case "Recommended":
+		status3= Utils.verifyCssPropertyForElement(txtRecommended,"color",rgbvalue);
+		break;
+	case "Popular":
+		BrowserActions.clickOnElement(txtPopular, driver, "Selected Popular as SortBy option.");
+		status3= Utils.verifyCssPropertyForElement(txtPopular,"color",rgbvalue);
+		break;
+	}
+	return status3;
+	}
 	
 }//SearchResultActivitesPageEnd
