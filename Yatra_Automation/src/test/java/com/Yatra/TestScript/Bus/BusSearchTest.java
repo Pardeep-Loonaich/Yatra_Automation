@@ -452,9 +452,6 @@ public class BusSearchTest {
 			homePage.enterDestinationBus(InvalidDestination);
 			String ErrorMessage = homePage.getTextErrorIncorrectCity();
 
-			// homePage.clickOnSearchBus();
-			// Log.message("5. Clicked On Search Button!");
-
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> User Should get a Error Message On Entering incorrectCity Name for onward or return");
