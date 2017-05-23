@@ -233,6 +233,7 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 */
 	public ActivityDetailPage ClickBookNowByIndex(int index) throws Exception {
 	Utils.waitForPageLoad(driver);
+	Thread.sleep(3000);
 	driver.findElement(By.cssSelector("article[class='my-res fr eventTrackable ng-scope']:nth-child("+index+")>div[class='my-res-info']>div[class='my-price tr']>a")).click();
 	return new ActivityDetailPage(driver).get();
 	}

@@ -208,7 +208,6 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 			Log.fail("SearchResultBus Page did not open up. Site might be down.", driver);
 			Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 	}// isLoaded
 
 	@Override
@@ -273,7 +272,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * @throws Exception
 	 */
 	public void clickBtnSelectSeat() throws Exception {	
-		BrowserActions.nap(2);
+		BrowserActions.nap(3);
 		Utils.waitForPageLoad(driver);
 		int rand = Utils.getRandom(0, 5);
 		BrowserActions.scrollToViewElement(btnSelectSeat.get(rand), driver);
@@ -648,7 +647,6 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * 
 	 * @throws Exception
 	 */
-
 	public void clickOnContinue() throws Exception {
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector("a[class*='flL ytBtn ytBtnBlue txtL LatoBold seat_map_continue tooltip']")).click(); 
