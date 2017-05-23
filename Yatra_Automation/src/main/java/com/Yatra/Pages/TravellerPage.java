@@ -234,7 +234,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	 */
 	public void fillTravellerDetails_DOM(String[] Infant) throws Exception {	
 		// Infant DOB dates 
-
+		BrowserActions.nap(5);
 		int infant = 1;	int passengerNum = 1;		
 		for (int i = 0; i < modTravellerDetails.size(); i++) {
 			String formPaxDetail = "//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']";
