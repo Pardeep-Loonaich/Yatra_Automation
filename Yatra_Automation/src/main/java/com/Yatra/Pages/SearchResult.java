@@ -1373,15 +1373,23 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickModifySearch() throws Exception {
-		BrowserActions.nap(2);
-		closeINotificationAtTopSRP();	
+	public boolean clickModifySearch() throws Exception {
+		boolean status = false;
+		BrowserActions.nap(20);
+		closeINotificationAtTopSRP();
 		BrowserActions.nap(20);
 		Utils.waitForElement(driver, btnModifySearchIcon);
-		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Modify Search button");
-		BrowserActions.nap(3);
-		Utils.waitForPageLoad(driver);
-		Log.event("Clicked Modify Search link in SRP");
+		if (BrowserActions.isElementPresent(driver, btnModifySearchIcon) == true) {
+			BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Modify Search button");
+			Log.event("Clicked Modify Search link in SRP");
+			status = true;
+		} else {
+			Log.event("Not clicked Modify Search link in SRP");
+			status = true;
+		}
+		BrowserActions.nap(5);
+		Utils.waitForPageLoad(driver);		
+		return status;
 	}
 
 	/**

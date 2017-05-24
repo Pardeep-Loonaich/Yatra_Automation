@@ -3,7 +3,7 @@
 <suite name="Yatra Payment Automation Test" verbose="3" parallel="false"
 	thread-count="500">
 	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
-	<parameter name="sheetName" value="FlightNew" />
+	<parameter name="sheetName" value="FlightSearch" />
 
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
@@ -14,7 +14,14 @@
 
 	<test name="FlightNew" thread-count="1" parallel="true">
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightNew">
+			<class name="com.Yatra.TestScript.Flights.FlightSearch">
+				<methods>
+					<include name="TC_Yatra_Flight_018"></include>
+					<include name="TC_Yatra_Flight_027"></include>
+					<include name="TC_Yatra_Flight_091"></include>
+					<include name="TC_Yatra_Flight_099"></include>
+					<include name="TC_Yatra_Flight_104"></include>
+				</methods>
 			</class>
 		</classes>
 	</test>

@@ -1247,7 +1247,12 @@ public class FlightSearch extends BaseTest{
 			Log.message("8.Successfully clicked 'Search' in Yatra Homepage!");
 
 			// step: click 'Search' button in Yatra Home page
-			searchResult.clickModifySearch(); 
+			//searchResult.clickModifySearch();
+			Boolean boolModifySearch = searchResult.clickModifySearch();
+			if (boolModifySearch == true) {
+			} else {
+				searchResult.clickModifySearch();
+			}
 			Log.message("9.Successfully clicked 'Modify Search' link in SRP ");				
 			
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
@@ -1346,9 +1351,13 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("9.Successfully clicked 'Search' in Yatra Homepage!");
-
+						
 			// step: click 'Search' button in Yatra Home page
-			searchResult.clickModifySearch(); 
+			Boolean boolModifySearch = searchResult.clickModifySearch();
+			if (boolModifySearch == true) {
+			} else {
+				searchResult.clickModifySearch();
+			}
 			Log.message("10.Successfully clicked 'Modify Search' link in SRP ");	
 			
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
@@ -1465,7 +1474,12 @@ public class FlightSearch extends BaseTest{
 			Log.message("11.Successfully clicked 'Search' button in Yatra Homepage ");
 
 			// step: click 'Search' button in Yatra Home page
-			searchResult.clickModifySearch(); 
+			//searchResult.clickModifySearch(); 
+			Boolean boolModifySearch = searchResult.clickModifySearch();
+			if (boolModifySearch == true) {
+			} else {
+				searchResult.clickModifySearch();
+			}
 			Log.message("12.Successfully clicked 'Modify Search' link in SRP ");	
 			
 			
@@ -1542,7 +1556,12 @@ public class FlightSearch extends BaseTest{
 			Log.message("4. Successfully clicked 'Search'!");
 
 			// step: click 'Modify Search' button
-			searchResult.clickModifySearch();
+			//searchResult.clickModifySearch();
+			Boolean boolModifySearch = searchResult.clickModifySearch();
+			if (boolModifySearch == true) {
+			} else {
+				searchResult.clickModifySearch();
+			}
 			Log.message("5. Successfully clicked 'Modify Search'!");
 			ArrayList<String> PaxDetails = searchResult.getTextPaxDetails();
 
@@ -1591,7 +1610,12 @@ public class FlightSearch extends BaseTest{
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
 			// step: click 'Search' button in Yatra Home page
-			searchResult.clickModifySearch(); 
+			//searchResult.clickModifySearch(); 
+			Boolean boolModifySearch = searchResult.clickModifySearch();
+			if (boolModifySearch == true) {
+			} else {
+				searchResult.clickModifySearch();
+			}
 			Log.message("5.Successfully clicked 'Modify Search' link in SRP ");				
 			
 			List<String> passengerClassNames = searchResult.getPassengerClasssDetailsInMofifySearch();		
@@ -1642,7 +1666,12 @@ public class FlightSearch extends BaseTest{
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 
 			// step: click 'Search' button in Yatra Home page
-			searchResult.clickModifySearch(); 
+			//searchResult.clickModifySearch(); 
+			Boolean boolModifySearch = searchResult.clickModifySearch();
+			if (boolModifySearch == true) {
+			} else {
+				searchResult.clickModifySearch();
+			}
 			Log.message("5.Successfully clicked 'Modify Search' link in SRP ");				
 			
 			List<String> passengerClassNames = searchResult.getPassengerClasssDetailsInMofifySearch();		
@@ -1749,7 +1778,7 @@ public class FlightSearch extends BaseTest{
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated that Weekly fare Matrix will not be available for RT search");
-			BrowserActions.nap(25);
+			BrowserActions.nap(50);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
@@ -4169,7 +4198,12 @@ public class FlightSearch extends BaseTest{
 			String Ecash = searchResult.getTextEcashEarned();
 
 			// step: click 'Modify Search' button
-			searchResult.clickModifySearch();
+			//searchResult.clickModifySearch();
+			Boolean boolModifySearch = searchResult.clickModifySearch();
+			if (boolModifySearch == true) {
+			} else {
+				searchResult.clickModifySearch();
+			}
 			Log.message("5. Successfully clicked 'Modify Search'!");
 
 			// step: Search New Flight
@@ -5045,7 +5079,9 @@ public class FlightSearch extends BaseTest{
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked On continue Button!");
+			
 			BrowserActions.nap(10);
+			paymentPage.cancelCreditCardDetails();
 			paymentPage.enterCreditCardDetails(cardNumber);
 			Log.message("10. Fill Credit Card Details!");
 
@@ -5056,7 +5092,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Failed payment flow with Credit card (flight type, travel type, booking class of your choice)");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("popUpInvalidCardNumber"), paymentPage),
-					"<b>Actual Result:</b> Payment is failed and error Msg is Displayed as :" + ErrorMsg,
+					"<b>Actual Result:</b> Payment is failed and error Msg is Displayed as :<b>" +  ErrorMsg + "</b>",
 					"<b>Actual Result:</b> Payment is successfully On Payment Page", driver);
 
 			Log.testCaseResult();
@@ -5678,7 +5714,12 @@ public class FlightSearch extends BaseTest{
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 		
-			searchResult.clickModifySearch(); 
+			//searchResult.clickModifySearch(); 
+			Boolean boolModifySearch = searchResult.clickModifySearch();
+			if (boolModifySearch == true) {
+			} else {
+				searchResult.clickModifySearch();
+			}
 			Log.message("5.Successfully clicked 'Modify Search' link in SRP ");				
 			
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
@@ -5772,7 +5813,12 @@ public class FlightSearch extends BaseTest{
 			Log.message("9.Successfully clicked 'Search' in Yatra Homepage!");
 
 			// step: click 'Search' button in Yatra Home page
-			searchResult.clickModifySearch(); 
+			//searchResult.clickModifySearch(); 
+			Boolean boolModifySearch = searchResult.clickModifySearch();
+			if (boolModifySearch == true) {
+			} else {
+				searchResult.clickModifySearch();
+			}
 			Log.message("10.Successfully clicked 'Modify Search' link in SRP ");	
 			
 			String originCityText = searchResult.getTextOrigin_ModifySearch();		
