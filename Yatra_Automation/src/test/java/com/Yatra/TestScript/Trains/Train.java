@@ -68,7 +68,6 @@ public class Train {
 		try {
 			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
-			System.out.println(homePage);
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();

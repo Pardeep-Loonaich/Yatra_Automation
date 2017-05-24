@@ -21,7 +21,13 @@
  -->
 		<classes>
 			<class name="com.Yatra.TestScript.Trains.Train">
-				
+				<!-- <methods>
+			<include name= "TC_Yatra_Train_034"/>
+			<include name= "TC_Yatra_Train_037"/>
+			<include name= "TC_Yatra_Train_047"/>
+			<include name= "TC_Yatra_Train_051"/>
+			<include name= "TC_Yatra_Train_053"/>
+			</methods>    -->
 			</class>
 		</classes>
 	</test>

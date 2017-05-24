@@ -14,7 +14,8 @@
 
 	<test name="Activites Search" thread-count="3" parallel="true">
 		<classes>
-			<class name="com.Yatra.TestScript.Activities.ActivitiesTest"></class>          
+			<class name="com.Yatra.TestScript.Activities.ActivitiesTest"></class>       
+			
 		</classes>
 	</test>
 </suite>
