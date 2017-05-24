@@ -689,6 +689,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "a[id='webklipper-publisher-widget-container-notification-close-div']")
 	private WebElement btnCloseIframeNotification_Double;
+	
+	@FindBy(css="#progressbar")
+	private WebElement progressBar;
 
 
 	/**********************************************************************************************
@@ -731,8 +734,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
-
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnModifySearchIcon))) {
+		boolean ajaxCallStatus=Utils.waitForAjaxToComplete(progressBar, "style", "none");
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnModifySearchIcon))&&ajaxCallStatus) {
 			Log.fail("Search Result page didn't open up", driver);
 		}
 		Log.message("Total time taken by #" + this.getClass().getTypeName() + " to load is:- " + timer.duration() + " "
