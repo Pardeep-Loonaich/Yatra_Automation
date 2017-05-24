@@ -307,6 +307,7 @@ public class PaymentTest {
 			paymentPage.clickOnPayNow();
 			Log.message("12. Clicked on 'PayNow' button on Payment Page.");
 
+			Thread.sleep(5000);
 			Utils.waitForPageLoad(driver);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected Bank Page.");

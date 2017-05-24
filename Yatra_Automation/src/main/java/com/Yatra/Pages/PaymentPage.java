@@ -993,12 +993,12 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 
 	public void returnFromCreditCardPage(String browser,int ran) throws Exception{
-		if(browser.equalsIgnoreCase("firefox_windows")){
+		/*if(browser.equalsIgnoreCase("firefox_windows")){
 			for(int i=0;i<ran;i++){
 				driver.navigate().back();
 			}
-		}
-		else if(browser.equalsIgnoreCase("iexplorer_windows")){
+		}*/
+		 if(browser.equalsIgnoreCase("iexplorer_windows")){
 		}
 		driver.navigate().back();
 		driver.navigate().refresh();
@@ -1059,6 +1059,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			driver.switchTo().alert().accept();
 		}
 		else if(browser.equalsIgnoreCase("FireFox_windows")){
+			BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
+
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 		}
 	}
