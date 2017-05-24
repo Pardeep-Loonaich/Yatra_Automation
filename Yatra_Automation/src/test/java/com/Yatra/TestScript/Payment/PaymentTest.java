@@ -916,6 +916,7 @@ public class PaymentTest {
 			Log.message("13. Navigating back to 'Yatra' page.");
 			Utils.waitForPageLoad(driver);
 
+			Thread.sleep(2000);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back to Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -2229,13 +2230,14 @@ public class PaymentTest {
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated on paymentPage.",
 					"<b>Actual Result:</b> Unable to navigated on paymentPage.", driver);
-			String initialTotalAmount1 = paymentPage.getTextFromTotalAmount();
-			int initialTotalAmount = Integer.parseInt(initialTotalAmount1);
-			Log.message("  Initial Total Amount:"+initialTotalAmount);
+			
 
 			BrowserActions.nap(2);
 			paymentPage.verifyCancelEcash();
-
+			String initialTotalAmount1 = paymentPage.getTextFromTotalAmount();
+			int initialTotalAmount = Integer.parseInt(initialTotalAmount1);
+			Log.message("  Initial Total Amount:"+initialTotalAmount);
+			
 			String initialEcash1 = paymentPage.eCashAmount();
 			int initialEcash = Integer.parseInt(initialEcash1);
 			Log.message("  Initial eCash Amount in payment module before applying eCash:"+initialEcash);

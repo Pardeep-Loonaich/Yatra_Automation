@@ -50,7 +50,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify Domestic Activities", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify Domestic Activities", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_001(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -63,6 +63,7 @@ public class ActivitiesTest {
 		try {
 			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
+			System.out.println(homePage);
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickActivities();
@@ -88,7 +89,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify International Activities", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify International Activities", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_002(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -126,7 +127,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify auto suggestion of search results", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify auto suggestion of search results", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_003(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -153,7 +154,7 @@ public class ActivitiesTest {
 			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("listautoSuggestion"), homePage),
 					"<b>Actual Result:</b> Auto Suggestion is visible with Place name and activities are listed as : "
 							+ Activities,
-					"<b>Actual Result:</b> Auto Suggestion is  not visible", driver);
+							"<b>Actual Result:</b> Auto Suggestion is  not visible", driver);
 
 			Log.testCaseResult();
 
@@ -166,7 +167,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify User should naviagte to SRP page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify User should naviagte to SRP page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_004(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -209,7 +210,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify error message in case of no result", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify error message in case of no result", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_005(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -241,7 +242,7 @@ public class ActivitiesTest {
 							searchResultActivites),
 					"<b>Actual Result:</b> User see an error message if Origin is mot correct and Messasge is Displayed as : "
 							+ Error,
-					"<b>Actual Result:</b> No Error Message is Visible on Search result page", driver);
+							"<b>Actual Result:</b> No Error Message is Visible on Search result page", driver);
 
 			Log.testCaseResult();
 
@@ -254,7 +255,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify results should be sorted by price in asc order.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify results should be sorted by price in asc order.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_006(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -283,6 +284,55 @@ public class ActivitiesTest {
 			Log.assertThat(searchResultActivites.getSortedPrice(),
 					"<b>Actual Result:</b> Price is sorted in asc order. ",
 					"<b>Actual Result:</b> Price is not sorted in asc order.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+
+	@Test(groups = {
+	"desktop" }, description = "Verify results should be sorted by Category.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_007(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String categoryNme = testData.get("CategoryName");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			String categryNumb = searchResultActivites.selectCategory(categoryNme);
+			Log.message("5. Selecting category as 'Classes & Workshops' and get searched category number.");
+
+			String resultNum = searchResultActivites.gettingTxtFrmResultFoundStrip();
+			Log.message("6. Getting selected result category number from the result strip.");
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify results should be sorted by Category.");
+			Log.assertThat(resultNum.contains(categryNumb),
+					"<b>Actual Result:</b> The result is sorted by Category. ",
+					"<b>Actual Result:</b> The result is not sorted by Category.", driver);
 
 			Log.testCaseResult();
 
@@ -340,7 +390,7 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
+
 	@Test(groups = {"desktop" }, description = "Verify result should be sorted by OUTDOOR FUN.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_009(HashMap<String, String> testData) throws Exception {
 
@@ -367,7 +417,7 @@ public class ActivitiesTest {
 			Log.message("4. Clicked On Search Button!");
 
 			String categryNumb = searchResultActivites.selectCategory(categoryNme);
-        	Log.message("5. Selecting category as 'OUTDOOR FUN' and get searched category number.");
+			Log.message("5. Selecting category as 'OUTDOOR FUN' and get searched category number.");
 
 			String resultNum = searchResultActivites.gettingTxtFrmResultFoundStrip();
 			Log.message("6. Getting selected result category number from the result strip.");
@@ -435,7 +485,7 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
-	
+
 	@Test(groups = {"desktop" }, description = "Verify result should be sorted by Events and Shows.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_011(HashMap<String, String> testData) throws Exception {
 
@@ -602,7 +652,7 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-		
+
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify result should be sorted by Recommended.");
 			Log.assertThat(searchResultActivites.verifySortByGivenCategory(categoryNme),
@@ -644,7 +694,7 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-		
+
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify result should be sorted by Popular.");
 			Log.assertThat(searchResultActivites.verifySortByGivenCategory(categoryNme),
@@ -662,7 +712,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify Modify Search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify Modify Search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_016(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -700,7 +750,7 @@ public class ActivitiesTest {
 							searchResultActivites),
 					"<b>Actual Result:</b> User see new Activity dispalyed and Description is Displayed as : "
 							+ newCityDescription,
-					"<b>Actual Result:</b> User did not see new activities and SRP", driver);
+							"<b>Actual Result:</b> User did not see new activities and SRP", driver);
 
 			Log.testCaseResult();
 
@@ -713,7 +763,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify Searched activity should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify Searched activity should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_017(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -748,7 +798,7 @@ public class ActivitiesTest {
 					"<b>Actual Result:</b> User see the same activity dispalyed and First Activity Description is :"
 							+ ActvityDetailsOnSearchResult + " Description on Activity Deatil Page is "
 							+ ActvityDetailsOnDeatilsPage,
-					"<b>Actual Result:</b> User did not see new activities", driver);
+							"<b>Actual Result:</b> User did not see new activities", driver);
 
 			Log.testCaseResult();
 
@@ -761,7 +811,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify Photos should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify Photos should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_018(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -807,7 +857,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify Description should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify Description should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_019(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -857,7 +907,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify Additional Info should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify Additional Info should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_020(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -908,7 +958,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify Similar Activities should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify Similar Activities should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_021(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -958,7 +1008,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify after Clicking on Book Now date Pop Up should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify after Clicking on Book Now date Pop Up should be displayed", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_022(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1008,7 +1058,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Validate Traveller packs option is there", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Validate Traveller packs option is there", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_023(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1057,7 +1107,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify after Clicking on Book Now date Pop Up should be displayed in red colour", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify after Clicking on Book Now date Pop Up should be displayed in red colour", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_024(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1108,7 +1158,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verify Activity selection option is not there that date should be grey", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verify Activity selection option is not there that date should be grey", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_025(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1146,7 +1196,7 @@ public class ActivitiesTest {
 					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("noActivity"), activityDetailPage),
 					"<b>Actual Result:</b> After Clicking On Book Now dates are Grey and a error message is diplayed as: "
 							+ ErrorMessage,
-					"<b>Actual Result:</b> After Clicking On Book Now dates no dates are Grey", driver);
+							"<b>Actual Result:</b> After Clicking On Book Now dates no dates are Grey", driver);
 
 			Log.testCaseResult();
 
@@ -1159,7 +1209,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification after Clicking on Check Availability User Should redirect to product description page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verification after Clicking on Check Availability User Should redirect to product description page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_026(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1216,7 +1266,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification after Clicking on show Cancellation policy link Cancellation policy should open", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verification after Clicking on show Cancellation policy link Cancellation policy should open", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_027(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1262,8 +1312,8 @@ public class ActivitiesTest {
 							activityDetailPage),
 					"<b>Actual Result:</b> After Clicking On show Cancellation policy link Cancellation policy text is visible to the user with details :"
 							+ Text,
-					"<b>Actual Result:</b> After Clicking On show Cancellation policy link no text is visible to the user",
-					driver);
+							"<b>Actual Result:</b> After Clicking On show Cancellation policy link no text is visible to the user",
+							driver);
 
 			Log.testCaseResult();
 
@@ -1276,7 +1326,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification after Clicking on hide Cancellation policy link Cancellation policy text should not appear", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verification after Clicking on hide Cancellation policy link Cancellation policy text should not appear", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_028(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1337,7 +1387,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification after Clicking on Continue in Review Page User Should redirect to Traveller page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verification after Clicking on Continue in Review Page User Should redirect to Traveller page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_030(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1402,7 +1452,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification after Click on enter promocode", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verification after Click on enter promocode", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_031(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -1461,7 +1511,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification after Entering Invalid promocode", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	"desktop" }, description = "Verification after Entering Invalid promocode", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_033(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -2084,6 +2134,82 @@ public class ActivitiesTest {
 		}
 	}
 
+	
+	@Test(groups = {"desktop" }, description = "Verify all payment options.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_043(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String email = testData.get("EmailAddress");
+		String number = testData.get("MobileNumber");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			Thread.sleep(2000);
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(3);
+			Log.message("5. Clicked On Book Now Button!");
+
+			Thread.sleep(2000);
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnSelectActivitiesDate();
+			Log.message("7. Selected Activity Date!");
+
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
+			Thread.sleep(2000);
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("9. Clicked on 'Book Now' button in the Select product popup.");
+
+			activitiesReviewPage.clickOnContinue();
+			Log.message("10. Clicked on 'Continue' button in the ReviewPage.");
+
+			activitiesTravellerPage = activitiesReviewPage.loginAsGuestUser(email, number);
+			Log.message("11. Login as 'Guest' user.");
+
+			activitiesTravellerPage.fillTravellerDetails();
+			Log.message("12. Filled traveller details.");
+
+			paymentPage = activitiesTravellerPage.clickOnContinueInTravellerPage(); 
+			Log.message("13. Clicked on 'Continue' button in the TravellerPage.");
+
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify all payment options.");
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("lstPaymentMetod"), paymentPage),
+					"<b>Actual Result:</b> All the Payment options are displayed.",
+					"<b>Actual Result:</b> All the Payment options are not displayed.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
 
 	@Test(groups = {"desktop" }, description = "Verify should show proper message on payment page.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_046(HashMap<String, String> testData) throws Exception {
@@ -2094,7 +2220,7 @@ public class ActivitiesTest {
 		String email = testData.get("EmailAddress");
 		String number = testData.get("MobileNumber");
 		String paymentType = testData.get("PaymentType");
-        String cardNumber = "6799990100000000019";
+		String cardNumber = "6799990100000000019";
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
@@ -2152,7 +2278,7 @@ public class ActivitiesTest {
 			paymentPage.clickOnPayNow();
 			Log.message("15.Clicked 'Pay Now' button on PaymentPage.");
 
-		
+
 
 
 			String errorMsg = paymentPage.getTextFromTheFailedTransactionMsg();

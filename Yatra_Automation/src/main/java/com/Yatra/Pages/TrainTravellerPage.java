@@ -245,6 +245,7 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	 * @throws Exception
 	 */
 	public void fillTravellerDetails()  throws Exception{
+		Thread.sleep(2000);
         List<WebElement> lstPax = driver.findElements(By.cssSelector("ul[id='paxStripContainer']>li[class='horzSeprB pb5']"));
 		for(int i=0;i<lstPax.size();i++){
 			//BrowserActions.scrollToView(lstPax.get(i).findElement(By.cssSelector("div[class='flL ml10 select-input relative']>label")), driver);

@@ -44,6 +44,7 @@ public class Train {
 	TrainTravellerPage trainTravellerPage;
 	TrainReviewPage trainReviewPage;
 	PaymentPage paymentPage;
+	
 	String webSite;	
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
@@ -67,6 +68,7 @@ public class Train {
 		try {
 			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
+			System.out.println(homePage);
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
@@ -1915,7 +1917,7 @@ public class Train {
 			Thread.sleep(2000);
 			String winHandleBefore = driver.getWindowHandle();
 			// Perform the click operation that opens new window
-			trainSearchResult.clickingOnFindBusButton(1);
+			trainSearchResult.clickingOnFindBusButton();
 			Log.message("4.Clicked on 'FindBus' button.");
 			
 
@@ -2222,8 +2224,8 @@ public class Train {
 					"<b>Actual Result:</b> Successfully navigated to 'Train Search' page.",
 					"<b>Actual Result:</b> Unable to navigate to 'Train Search' page.", driver);
 
-			trainSearchResult.selectTrainByIndex(1);
 			
+	    	 trainSearchResult.verifyFindBusByselectingTrainByIndex();
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify that select bus option should display in case of no seat available..");
         	Log.message("<br>");

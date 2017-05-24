@@ -769,4 +769,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		String abc = txtFareRules.getText();
 		return abc;
 	}
+
+	
 } // ReviewPage
