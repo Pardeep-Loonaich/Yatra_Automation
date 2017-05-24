@@ -1,5 +1,7 @@
 package com.Yatra.TestScript.Activities;
 
+import java.util.ArrayList;
+
 //-----------------------------------------------------------------------------------------------------------
 //Description    :   All the Activities test Cases would be designed in this class 
 //Creator        :   Aspire Team
@@ -16,10 +18,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.Yatra.Pages.ActivitiesReviewPage;
+import com.Yatra.Pages.ActivitiesTravellerPage;
 import com.Yatra.Pages.ActivityDetailPage;
 import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.PaymentPageBus;
-import com.Yatra.Pages.ProductDescriptionActivities;
 import com.Yatra.Pages.ReviewPageBus;
 import com.Yatra.Pages.SearchResultActivites;
 import com.Yatra.Pages.SearchResultBus;
@@ -39,7 +42,8 @@ public class ActivitiesTest {
 	String webSite;
 	SearchResultActivites searchResultActivites;
 	ActivityDetailPage activityDetailPage;
-	ProductDescriptionActivities productDescriptionActivities;
+	ActivitiesReviewPage activitiesReviewPage;
+	ActivitiesTravellerPage activitiesTravellerPage;
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)
@@ -253,6 +257,47 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
+			"desktop" }, description = "Verify results should be sorted by price in asc order.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_006(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify results should be sorted by price in asc order.");
+			Log.assertThat(searchResultActivites.getSortedPrice(),
+					"<b>Actual Result:</b> Price is sorted in asc order. ",
+					"<b>Actual Result:</b> Price is not sorted in asc order.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
 			"desktop" }, description = "Verify Modify Search", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_016(HashMap<String, String> testData) throws Exception {
 
@@ -329,7 +374,7 @@ public class ActivitiesTest {
 			Log.message("4. Clicked On Search Button!");
 			String ActvityDetailsOnSearchResult = searchResultActivites.getTextActivityDetailsByTileIndex(5);
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
 			Log.message("5. Clicked On Book Now Button!");
 			String ActvityDetailsOnDeatilsPage = activityDetailPage.getTexActivityDetails();
 
@@ -376,7 +421,7 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
 			Log.message("5. Clicked On Book Now Button!");
 
 			Log.message("<br>");
@@ -423,7 +468,7 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
 			Log.message("5. Clicked On Book Now Button!");
 
 			activityDetailPage.ClickOnHeaderLinks(activitydetails);
@@ -473,7 +518,7 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
 			Log.message("5. Clicked On Book Now Button!");
 
 			activityDetailPage.ClickOnHeaderLinks(activitydetails);
@@ -524,7 +569,7 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
 			Log.message("5. Clicked On Book Now Button!");
 
 			activityDetailPage.ClickOnHeaderLinks(activitydetails);
@@ -573,10 +618,9 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
 			Log.message("5. Clicked On Book Now Button!");
 
-			Thread.sleep(3000);
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
@@ -625,10 +669,9 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
 			Log.message("5. Clicked On Book Now Button!");
 
-			Thread.sleep(3000);
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
@@ -675,10 +718,9 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
 			Log.message("5. Clicked On Book Now Button!");
 
-			Thread.sleep(3000);
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
@@ -728,10 +770,9 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
 			Log.message("5. Clicked On Book Now Button!");
 
-			Thread.sleep(3000);
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 			String ErrorMessage = activityDetailPage.getTextErrorMessageNoActivities();
@@ -780,25 +821,24 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
 			Log.message("5. Clicked On Book Now Button!");
 
-			Thread.sleep(3000);
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("7. Clicked On Check Availability Button!");
 
-			productDescriptionActivities = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
 			Log.message("8. Clicked On Book Now After Check Availability Button!");
 
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Verification after Clicking on Check Availability User Should redirect to product description page");
 			Log.assertThat(
-					productDescriptionActivities.elementLayer.verifyPageElements(Arrays.asList("btnContinue"),
-							productDescriptionActivities),
+					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("btnContinueInReviewPage"),
+							activitiesReviewPage),
 					"<b>Actual Result:</b> After Clicking On Check Availability Button user is redirected to Product Description Page",
 					"<b>Actual Result:</b> After Clicking On Check Availability Button user is not redirected to Product Description Page",
 					driver);
@@ -814,7 +854,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification after Clicking on Check Availability User Should redirect to product description page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+			"desktop" }, description = "Verification after Clicking on show Cancellation policy link Cancellation policy should open", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_027(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -838,7 +878,7 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(3);
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(3000);
@@ -848,17 +888,19 @@ public class ActivitiesTest {
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("7. Clicked On Check Availability Button!");
 
-			productDescriptionActivities = activityDetailPage.clickOnBookNowAfterCheckAvailability();
-			Log.message("8. Clicked On Book Now After Check Availability Button!");
+			activityDetailPage.clickOnCancellationPolicyButton();
+			Log.message("8. Clicked On Cancellation Policy Button!");
+			String Text = activityDetailPage.getTextCancellationPolicy();
 
 			Log.message("<br>");
 			Log.message(
-					"<b>Expected Result:</b> Verification after Clicking on Check Availability User Should redirect to product description page");
+					"<b>Expected Result:</b>Verification after Clicking on show Cancellation policy link Cancellation policy should open");
 			Log.assertThat(
-					productDescriptionActivities.elementLayer.verifyPageElements(Arrays.asList("btnContinue"),
-							productDescriptionActivities),
-					"<b>Actual Result:</b> After Clicking On Check Availability Button user is redirected to Product Description Page",
-					"<b>Actual Result:</b> After Clicking On Check Availability Button user is not redirected to Product Description Page",
+					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("btnCancellationPolicy"),
+							activityDetailPage),
+					"<b>Actual Result:</b> After Clicking On show Cancellation policy link Cancellation policy text is visible to the user with details :"
+							+ Text,
+					"<b>Actual Result:</b> After Clicking On show Cancellation policy link no text is visible to the user",
 					driver);
 
 			Log.testCaseResult();
@@ -872,7 +914,7 @@ public class ActivitiesTest {
 	}
 
 	@Test(groups = {
-			"desktop" }, description = "Verification after Clicking on Check Availability User Should redirect to product description page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+			"desktop" }, description = "Verification after Clicking on hide Cancellation policy link Cancellation policy text should not appear", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Activities_028(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
@@ -896,27 +938,30 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNow();
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
 			Log.message("5. Clicked On Book Now Button!");
 
-			Thread.sleep(3000);
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("7. Clicked On Check Availability Button!");
 
-			productDescriptionActivities = activityDetailPage.clickOnBookNowAfterCheckAvailability();
-			Log.message("8. Clicked On Book Now After Check Availability Button!");
+			activityDetailPage.clickOnCancellationPolicyButton();
+			Log.message("8. Clicked On Show Cancellation Policy Button!");
+
+			Thread.sleep(2000);
+			activityDetailPage.clickOnHideCancellationPolicyButton();
+			Log.message("9. Clicked On Hide Cancellation Policy Button!");
 
 			Log.message("<br>");
 			Log.message(
-					"<b>Expected Result:</b> Verification after Clicking on Check Availability User Should redirect to product description page");
+					"<b>Expected Result:</b> Verification after Clicking on hide Cancellation policy link Cancellation policy text should not appear");
 			Log.assertThat(
-					productDescriptionActivities.elementLayer.verifyPageElements(Arrays.asList("btnContinue"),
-							productDescriptionActivities),
-					"<b>Actual Result:</b> After Clicking On Check Availability Button user is redirected to Product Description Page",
-					"<b>Actual Result:</b> After Clicking On Check Availability Button user is not redirected to Product Description Page",
+					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("btnCancellationPolicy"),
+							activityDetailPage),
+					"<b>Actual Result:</b> After Clicking On hide Cancellation policy link Cancellation policy text is not visible to the user",
+					"<b>Actual Result:</b> After Clicking On hide Cancellation policy link Cancellation policy text is visible to the user",
 					driver);
 
 			Log.testCaseResult();
@@ -928,4 +973,392 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verification after Clicking on Continue in Review Page User Should redirect to Traveller page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_030(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String email = testData.get("EmailAddress");
+		String phoneNumber = testData.get("PhoneNumber");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
+			Log.message("5. Clicked On Book Now Button!");
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("7. Clicked On Check Availability Button!");
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("8. Clicked On Book Now After Check Availability Button!");
+
+			activitiesReviewPage.clickOnContinue();
+			Log.message("9. Clicked On Continue!");
+
+			activitiesTravellerPage = activitiesReviewPage.loginAsGuestUser(email, phoneNumber);
+			Log.message("10. Filled Travellers Deatils!");
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> Verification after Clicking on Continue in Review Page User Should redirect to Traveller page");
+			Log.assertThat(
+					activitiesTravellerPage.elementLayer.verifyPageElements(Arrays.asList("btnContinueInTravellr"),
+							activitiesTravellerPage),
+					"<b>Actual Result:</b> After Clicking On Continue Button in Review Page user is redirected to Traveller page",
+					"<b>Actual Result:</b> After Clicking On Continue Button in Review Page user is not redirected to Traveller page",
+					driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verification after Click on enter promocode", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_031(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String promoCode = testData.get("PromoCode");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(4);
+			Log.message("5. Clicked On Book Now Button!");
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("7. Clicked On Check Availability Button!");
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("8. Clicked On Book Now After Check Availability Button!");
+
+			activitiesReviewPage.enterPromoCode(promoCode);
+			Log.message("9. Entered Promo Code!");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verification after Click on enter promocode");
+			Log.assertThat(
+					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"),
+							activitiesReviewPage),
+					"<b>Actual Result:</b> User is able to enter Promo code",
+					"<b>Actual Result:</b> User is not able to enter Promo code", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verification after Entering Invalid promocode", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_033(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String promoCode = testData.get("PromoCode");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(6);
+			Log.message("5. Clicked On Book Now Button!");
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("7. Clicked On Check Availability Button!");
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("8. Clicked On Book Now After Check Availability Button!");
+
+			activitiesReviewPage.enterPromoCode(promoCode);
+			Log.message("9. Entered Promo Code!");
+			String Error = activitiesReviewPage.getTextInvalidPromoCode();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verification after Entering Invalid promocode");
+			Log.assertThat(
+					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("btnContinueInReviewPage"),
+							activitiesReviewPage),
+					"<b>Actual Result:</b> If user input Invalid Promo Code and Error Message is displayed as :" + Error,
+					"<b>Actual Result:</b> If user input Invalid Promo Code and No error Message is displayed", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verify User will be directed to sign-in page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_035(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			Thread.sleep(2000);
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
+			Log.message("5. Clicked On Book Now Button!");
+
+			Thread.sleep(2000);
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnSelectActivitiesDate();
+			Log.message("7. Selected Activity Date!");
+
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("9. Clicked on 'Book Now' button in the Select product popup.");
+
+			activitiesReviewPage.clickOnContinue();
+			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify User will be directed to sign-in page");
+			Log.assertThat(
+					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("divLoginContent"),
+							activitiesReviewPage),
+					"<b>Actual Result:</b> Successfully navigated to Sign-in Page.",
+					"<b>Actual Result:</b> Unable to navigated to Sign-in Page.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verify user should be able to enter email adress", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_036(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String email = testData.get("EmailAddress");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			Thread.sleep(2000);
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
+			Log.message("5. Clicked On Book Now Button!");
+
+			Thread.sleep(2000);
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnSelectActivitiesDate();
+			Log.message("7. Selected Activity Date!");
+
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("9. Clicked on 'Book Now' button in the Select product popup.");
+
+			activitiesReviewPage.clickOnContinue();
+			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
+
+			activitiesReviewPage.enterEmailAddress(email);
+			Log.message("11. Entered Email address on the SignIn Popup.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify user should be able to enter email adress");
+			Log.assertThat(
+					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtEmailId"),
+							activitiesReviewPage),
+					"<b>Actual Result:</b> Successfully entered Email address on Sign-in Page and the error message after entering inavlid email address is:."
+							+ activitiesReviewPage.enterInvlidEmailAddressErrorMsg(),
+					"<b>Actual Result:</b> Unable to enter Email address on Sign-in Page.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(groups = {
+			"desktop" }, description = "Verify if user have yatra account then password field is required.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_037(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String email = testData.get("EmailAddress");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			Thread.sleep(2000);
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
+			Log.message("5. Clicked On Book Now Button!");
+
+			Thread.sleep(2000);
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnSelectActivitiesDate();
+			Log.message("7. Selected Activity Date!");
+
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("8. Clicked on the check Availability for the selected Activity Date!");
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("9. Clicked on 'Book Now' button in the Select product popup.");
+
+			activitiesReviewPage.clickOnContinue();
+			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
+
+			activitiesReviewPage.enterEmailAddress(email);
+			Log.message("11. Entered Email address on the SignIn Popup.");
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify if user have yatra account then password field is required.");
+			Log.assertThat(
+					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtEmailId"),
+							activitiesReviewPage),
+					"<b>Actual Result:</b> Successfully entered Email address on Sign-in Page and the error message after entering inavlid email address is:."
+							+ activitiesReviewPage.enterInvlidEmailAddressErrorMsg(),
+					"<b>Actual Result:</b> Unable to enter Email address on Sign-in Page.", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 }// ActivitiesTestCasesEnd
+

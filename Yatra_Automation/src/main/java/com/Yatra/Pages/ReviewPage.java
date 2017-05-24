@@ -1,4 +1,3 @@
-
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
@@ -770,9 +769,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * to get pricing URL at run time
 	 * @return: it will return pricing url 
 	 */
-	public static String getPricingURL()
-	
-	{	
+	public static String getPricingURL(){
 		return sPricingURL;
-		}
+	}
 } // ReviewPage
+

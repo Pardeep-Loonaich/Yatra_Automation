@@ -1,19 +1,13 @@
 package com.Yatra.Pages;
 
-
-
 import java.awt.Robot;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,9 +26,6 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
-
-
 
 public class HomePage extends LoadableComponent<HomePage> {
 
@@ -237,6 +228,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "a[for='BE_flight_non_stop']>i")
 	private WebElement chkNonStopFlights;
+	
+	@FindBy(xpath = "//iframe[@id='webklipper-publisher-widget-container-notification-frame']")
+	private WebElement IframeNotification;
+	
+	@FindBy(css = "a[id='webklipper-publisher-widget-container-notification-close-div']")
+	private WebElement btnCloseIframeNotification_Double;
+
+	@FindBy(xpath = "/html/body//*[@class='close close-icon']//*[@class='wewidgeticon we_close']")
+	private WebElement btnCloseIframeNotification;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -275,7 +275,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@Override
 	protected void isLoaded() {
-		
+		timer.end();
 		if (!isPageLoaded) 
 		{
 			Assert.fail();
@@ -284,8 +284,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		{
 		Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
-		timer.end();
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 
 	}// isLoaded
 
@@ -994,9 +993,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		}
 	}
 
-
-
-
 	public void selectTripTypeBus(String tripType) throws Exception {
 		if (tripType.equals(Constants.C_ONEWAY)) {
 			BrowserActions.javascriptClick(lnkOneWayBus, driver, "One Way");
@@ -1124,12 +1120,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		enterDestinationBus(destination); // enter Destination value
 		BrowserActions.nap(2);
-
 		Utils.setMousePositionOffPage(driver);
-		Utils.scrollPage(driver, Constants.C_Page_Top);		
-
+		Utils.scrollPage(driver, Constants.C_Page_Top);	
 		selectDepartureDateBus(departureDate); // select Departure Date
-
 		Utils.setMousePositionOffPage(driver);
 		Utils.scrollPage(driver, Constants.C_Page_Top);
 		BrowserActions.nap(2);
@@ -1445,6 +1438,31 @@ public class HomePage extends LoadableComponent<HomePage> {
 		Log.event("Clicked Non Stop Flights in HomePage");
 	}
 	
+		
+	
+	/**
+	 * Description: to close notification which display randomly on SRP page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void closeINotificationAtTopSRP() throws Exception {	
+		BrowserActions.nap(4);		
+		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {
+		//if(IframeNotification.isDisplayed()){
+			BrowserActions.switchToIframe(driver, IframeNotification);			
+			if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true){ 
+				BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
+			}else if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification_Double) == true){
+				BrowserActions.clickOnElement(btnCloseIframeNotification_Double, driver, "Button to close Iframe Notification at Left side bottom on SRP");
+			}		
+			BrowserActions.switchToDefault(driver);
+			BrowserActions.nap(2);	
+		} else {
+			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
+		}
+	}
+
 	
 	
-}// HomePage
+}
