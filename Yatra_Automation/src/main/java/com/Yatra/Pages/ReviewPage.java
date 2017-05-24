@@ -1,4 +1,3 @@
-
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
@@ -14,11 +13,6 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
-//import com.Yatra.TestScript.Common.BaseTest;
-import com.Yatra.Utils.BrowserActions;
-import com.Yatra.Utils.EmailSender;
-import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
@@ -32,8 +26,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
-	public static String sPricingURL;
 	Utils utils;
+	public static String sPricingURL;
 	ExecutionTimer timer=new ExecutionTimer();
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
@@ -277,6 +271,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		//new EmailSender(driver.getCurrentUrl().trim());
 	}
 
+	
 	@Override
 	protected void load() {
 		timer.start();
@@ -475,20 +470,20 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @return
 	 * @throws Exception
 	 */
-	//TODO : Add Change another flight popup code - @Narayana
-	public void popUpAppear() throws Exception {
-		BrowserActions.nap(2);
+	//TODO : Need to look on - Narayana
+	public void popUpAppear() throws Exception {		
 		if (PricePopUp.isDisplayed()) {			
 			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
-				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Fare Cahange alert Popup");
-			}else
-			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Fare Cahange alert Popup");
-		}
-		else if (popupFareChange.isDisplayed())
+				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
+			}else			
+			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
+		}else if (popupFareChange.isDisplayed())
 			if (ContinueInFareChangeAlertPopUp.isDisplayed()) {
-				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver, "Fare Cahange Alert Popup");
+				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,
+						"Clicked on continue in Fare Change Alert Popup");
 			} else if (ContinueInpopUpFareSlashed.isDisplayed()) {
-				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver, "Fare Slashed Alert Popup");
+				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver,
+						"Clicked on continue in fare slashed popup");
 			} else
 				Log.event("No PopUp appear.");
 	}
@@ -730,13 +725,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		boolean status = false;		
 		if (altFareChange.isDisplayed()){
 			if (BrowserActions.isElementVisible(driver, txtFareSlashed)) {
-				BrowserActions.clickOnElement(btnFareSlashedContune, driver, "Fare Slashed Alert Popup");
+				BrowserActions.clickOnElement(btnFareSlashedContune, driver, "Clicked on continue in Fare Slashed Alert Popup");
 				status = true;
 			} else if (BrowserActions.isElementVisible(driver, txtFareOops)) {
-				BrowserActions.clickOnElement(btnFareOopsContune, driver,"in Fare Oops Alert Popup");
+				BrowserActions.clickOnElement(btnFareOopsContune, driver,"Clicked on continue in Fare Oops Alert Popup");
 				status = true;
 			} else if (BrowserActions.isElementVisible(driver, altFareChange))
-				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Flight fare change alert Popup");
+				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
 			status = true;
 			Log.event("Flight fare change alert poupup is displayed ");
 		}else{
@@ -770,4 +765,12 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		String abc = txtFareRules.getText();
 		return abc;
 	}
+	/**
+	 * to get pricing URL at run time
+	 * @return: it will return pricing url 
+	 */
+	public static String getPricingURL(){
+		return sPricingURL;
+	}
 } // ReviewPage
+

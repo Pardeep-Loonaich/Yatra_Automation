@@ -1,19 +1,13 @@
 package com.Yatra.Pages;
 
-
-
 import java.awt.Robot;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,9 +26,6 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
-
-
 
 public class HomePage extends LoadableComponent<HomePage> {
 
@@ -1474,4 +1465,4 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	
 	
-}// HomePage
+}

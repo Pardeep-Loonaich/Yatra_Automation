@@ -45,6 +45,8 @@ import org.testng.Reporter;
 import org.testng.SkipException;
 import org.testng.xml.XmlTest;
 
+//import com.Yatra.TestScript.Common.BaseTest;
+
 //import com.saucelabs.selenium.client.factory.SeleniumFactory;
 
 /*import net.lightbody.bmp.core.har.Har;
@@ -60,8 +62,8 @@ import net.lightbody.bmp.core.har.HarLog;*/
  */
 
 public class WebDriverFactory {
-	public static WebDriver  baseTestDriver;
 
+	public static WebDriver baseDriver;
 	private static Logger logger = LoggerFactory.getLogger(WebDriverFactory.class);
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 	//private static MobileEmulationUserAgentConfiguration mobEmuUA = new MobileEmulationUserAgentConfiguration();
@@ -464,8 +466,8 @@ public class WebDriverFactory {
 		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 		//Log.event("Driver::initialize::Get", StopWatch.elapsedTime(startTime));
 		Log.addTestRunMachineInfo(driver);
-		baseTestDriver=driver;
 		//BaseTest.setBaseDriver(driver);
+		baseDriver=driver;
 		return driver;
 
 	}
@@ -690,6 +692,15 @@ public class WebDriverFactory {
 		opt.setExperimentalOption("mobileEmulation", mobileEmulation);
 		chromeCapabilities.setCapability(ChromeOptions.CAPABILITY, opt);
 		return chromeCapabilities;
+	}
+	/**
+	 * Description: to get driver instance in Base Test calass
+	 * @return: we driver instance
+	 */
+	
+	public static WebDriver getCurrentDriverInstance()
+	{
+		return baseDriver;
 	}
 
 	/**

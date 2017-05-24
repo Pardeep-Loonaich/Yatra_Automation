@@ -1,5 +1,4 @@
 package com.Yatra.Utils;
-
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.io.IOException;
@@ -11,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.support.ui.*;
@@ -29,7 +27,7 @@ import org.openqa.selenium.JavascriptExecutor;
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 
-	public static final int maxElementWait = 90;
+	public static final int maxElementWait = 100;
 
 
 	/**
@@ -665,3 +663,4 @@ public class Utils {
 	}
 
 }
+

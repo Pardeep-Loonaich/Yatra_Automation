@@ -1,4 +1,3 @@
-
 package com.Yatra.TestScript.Activities;
 
 import java.util.ArrayList;
@@ -631,6 +630,7 @@ public class ActivitiesTest {
 			Log.assertThat(
 					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("dateCalendar"),
 							activityDetailPage),
+
 					"<b>Actual Result:</b> Date Pop Up is visible after clicking on Book Now Button",
 					"<b>Actual Result:</b> Date Pop Up is not visible after clicking on Book Now Button", driver);
 
@@ -731,6 +731,7 @@ public class ActivitiesTest {
 			Log.message(
 					"<b>Expected Result:</b> Verify after Clicking on Book Now date Pop Up should be displayed in red colour");
 			Log.assertThat(activityDetailPage.verifySelectedDateColour(),
+
 					"<b>Actual Result:</b> Date Pop Up is visible after clicking on Book Now Button",
 					"<b>Actual Result:</b> Date Pop Up is not visible after clicking on Book Now Button", driver);
 
@@ -1360,3 +1361,4 @@ public class ActivitiesTest {
 		}
 	}
 }// ActivitiesTestCasesEnd
+
