@@ -10,7 +10,6 @@
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
-
 	<test name="FlightNew" thread-count="1" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch">
