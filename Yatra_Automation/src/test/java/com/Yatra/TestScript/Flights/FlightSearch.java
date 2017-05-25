@@ -3673,7 +3673,8 @@ public class FlightSearch extends BaseTest{
 			int NoOfResults = searchResult.getSizeofResult();
 			
 			// step: click 'Book Now' button
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.selectAirlineBookNowInOW("DOM", "All", "");
+			//reviewPage = searchResult.clickOnBookNowInOneWay(1);
 			Log.message("6. Successfully clicked 'Book Now'!");
 			
 			// step: click 'Change Flight' Link
