@@ -1,4 +1,3 @@
-
 package com.Yatra.TestScript.Flights;
 
 import java.util.Arrays;
@@ -101,7 +100,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//////////driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -372,7 +371,7 @@ public class FlightPricing extends BaseTest{
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("10.Clicked on Continue button in Review Page Step-2");
-			BrowserActions.nap(5);
+
 			paymentPage.clickingOnRedeemNow();
 			Log.message("11.Clicked on Redeem Now Button to add ecash");
 
@@ -1856,15 +1855,7 @@ public class FlightPricing extends BaseTest{
 				Log.message("6.Handled Flight fare change alert popup");
 			} else {
 				Log.message("6.Flight fare change alert poupup is not displayed");
-			}
-			/*if (reviewPage.fareChangeAlertPopUpAppear_InProgress() == true) {
-				Log.message("6.Handled Flight fare change alert popup");
-			} else if(reviewPage.fareChangeAlertPopUpAppear_InProgress() == (Boolean) null) {
-				reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);	
-				Log.message("6.Handled Flight not confirmed alert popup");
-			}	else{
-				Log.message("6.Flight fare change alert poupup is not displayed");
-			}*/
+			}		
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed for DOM-RT");
@@ -1926,7 +1917,6 @@ public class FlightPricing extends BaseTest{
 			} else {
 				Log.message("6.Flight fare change alert poupup is not displayed");
 			}
-			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed for DOM-OW");
 			String flightPrice = reviewPage.getTextFlightPrice();
@@ -2049,7 +2039,6 @@ public class FlightPricing extends BaseTest{
 			} else {
 				Log.message("6.Flight fare change alert poupup is not displayed");
 			}
-			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify flight pricing and mark the test pass even if Flight fare change alert popup is dsiplayed fo INTL-OW");
 			String flightPrice = reviewPage.getTextFlightPrice();
@@ -2067,3 +2056,4 @@ public class FlightPricing extends BaseTest{
 	}
 	
 } //Flight Pricing
+

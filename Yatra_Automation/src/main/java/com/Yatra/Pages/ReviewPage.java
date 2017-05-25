@@ -216,7 +216,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "div[class='row mt10 btn-box'] button[class='button rounded primary']")
 	private WebElement txtSelectAnotherFlight;
 	
-	//div[@class='change-status bull-green']
+
 	/**********************************
 	 * WebElements of Yatra ReviewPage - Ends ****************************
 	 **********************************************************************************************/
@@ -479,9 +479,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		if (PricePopUp.isDisplayed()) {			
 			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
 				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
-			}else			
+			}else
 			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
-		}else if (popupFareChange.isDisplayed())
+		}
+		else if (popupFareChange.isDisplayed())
 			if (ContinueInFareChangeAlertPopUp.isDisplayed()) {
 				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,
 						"Clicked on continue in Fare Change Alert Popup");
@@ -776,7 +777,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	public static String getPricingURL(){
 		return sPricingURL;
 	}
-	
+
 	/**
 	 * Clicking Continue in Fare Slashed & Fare Opps Alert Popup 
 	 * 
@@ -806,5 +807,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		}
     return status;
 	}
+	
 } // ReviewPage
+
 

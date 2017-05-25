@@ -1,4 +1,5 @@
 package com.Yatra.Utils;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.support.ui.*;
@@ -27,7 +29,7 @@ import org.openqa.selenium.JavascriptExecutor;
 public class Utils {
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 
-	public static final int maxElementWait = 100;
+	public static final int maxElementWait = 90;
 
 
 	/**
@@ -38,6 +40,24 @@ public class Utils {
 	 */
 	public static void waitForPageLoad(final WebDriver driver) {
 		waitForPageLoad(driver, WebDriverFactory.maxPageLoadWait);
+	}
+	
+	/**
+	 * Desc: wait for Ajax call to complete
+	 */
+	public static boolean waitForAjaxToComplete(WebElement element,String atrribute, String containsValue)
+	
+	{
+		boolean dataToBereturn=false;
+		int icounter=10;
+		while(icounter>0 && !(element.getAttribute(atrribute).contains(containsValue)))
+		{
+			icounter--;
+			dataToBereturn=true;
+			
+		}
+		
+		return dataToBereturn;
 	}
 
 	/**
@@ -663,4 +683,3 @@ public class Utils {
 	}
 
 }
-

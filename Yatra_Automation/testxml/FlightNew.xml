@@ -3,23 +3,20 @@
 <suite name="Yatra Payment Automation Test" verbose="3" parallel="false"
 	thread-count="500">
 	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
-	<parameter name="sheetName" value="FlightSearch" />
+
+	<parameter name="sheetName" value="FlightNew" />
+
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
+<!-- we are controlling email on every failure from this flag -->
+	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 
 	<test name="FlightNew" thread-count="1" parallel="true">
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightSearch">
-				<methods>
-					<include name="TC_Yatra_Flight_018"></include>
-					<include name="TC_Yatra_Flight_027"></include>
-					<include name="TC_Yatra_Flight_091"></include>
-					<include name="TC_Yatra_Flight_099"></include>
-					<include name="TC_Yatra_Flight_104"></include>
-				</methods>
+			<class name="com.Yatra.TestScript.Flights.FlightNew">
 			</class>
 		</classes>
 	</test>

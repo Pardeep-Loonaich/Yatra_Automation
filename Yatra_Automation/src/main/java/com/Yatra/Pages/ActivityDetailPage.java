@@ -211,7 +211,6 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 */
 	public void clickOnBookNowButton() throws Exception {
 		Utils.waitForElement(driver, btnBookNow);
-		BrowserActions.nap(5);
 		BrowserActions.clickOnElement(btnBookNow, driver, "Click On Book Now Button");
 	}
 	/**
@@ -273,7 +272,6 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 */
 	public void clickOnCheckAvailability() throws Exception {
 		Utils.waitForPageLoad(driver);
-		BrowserActions.nap(5);
 		BrowserActions.clickOnElement(btnCheckAvailability, driver, "Click On Check Availability Button");
 	}
 	/**
@@ -284,7 +282,6 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 */
 	public ActivitiesReviewPage clickOnBookNowAfterCheckAvailability() throws Exception {
 		Utils.waitForPageLoad(driver);
-		BrowserActions.nap(5);
 		BrowserActions.clickOnElement(btnBookNowAfterCheckAvailability, driver, "Click On Book Now After Check Availability Button");
 		return new ActivitiesReviewPage(driver).get();
 	}

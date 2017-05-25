@@ -1080,7 +1080,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public SearchResultBus clickBtnSearchBus() throws Exception {
-		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
+		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");	
+		//closeINotificationAtTopSRP();
 		return new SearchResultBus(driver).get();
 	}
 	/**
@@ -1464,5 +1465,5 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 
 	
-	
-}
+}// HomePage
+

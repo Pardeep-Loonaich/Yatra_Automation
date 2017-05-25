@@ -22,6 +22,7 @@ import com.Yatra.Pages.PaymentPageBus;
 import com.Yatra.Pages.ReviewPageBus;
 import com.Yatra.Pages.SearchResultBus;
 import com.Yatra.Pages.TravellerPageBus;
+import com.Yatra.TestScript.Common.BaseTest;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
@@ -31,8 +32,7 @@ import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
-public class BusSearchTest {
-
+public class BusSearchTest extends BaseTest{
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	String webSite;
 	SearchResultBus searchResultBus;
@@ -95,7 +95,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -148,7 +148,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -200,7 +200,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -252,7 +252,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -304,7 +304,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -362,7 +362,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -416,7 +416,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -453,6 +453,9 @@ public class BusSearchTest {
 			homePage.enterDestinationBus(InvalidDestination);
 			String ErrorMessage = homePage.getTextErrorIncorrectCity();
 
+			// homePage.clickOnSearchBus();
+			// Log.message("5. Clicked On Search Button!");
+
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> User Should get a Error Message On Entering incorrectCity Name for onward or return");
@@ -467,7 +470,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -522,7 +525,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -572,7 +575,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -627,7 +630,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -682,7 +685,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -736,7 +739,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -791,7 +794,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -844,7 +847,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -896,7 +899,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -950,7 +953,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1009,7 +1012,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1077,7 +1080,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1135,7 +1138,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1196,7 +1199,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1258,7 +1261,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1316,7 +1319,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1382,7 +1385,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1440,7 +1443,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1501,7 +1504,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1569,7 +1572,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1632,7 +1635,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1709,7 +1712,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1782,7 +1785,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1853,7 +1856,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1915,7 +1918,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1995,7 +1998,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2075,7 +2078,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2152,7 +2155,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2225,7 +2228,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2306,7 +2309,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2385,7 +2388,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2469,7 +2472,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2542,7 +2545,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2624,7 +2627,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2716,7 +2719,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2800,7 +2803,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2882,7 +2885,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2954,7 +2957,7 @@ public class BusSearchTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}

@@ -1,5 +1,4 @@
 /target/
-
 /.settings/
 *.class
 *.css
@@ -8,4 +7,6 @@
 *.project
 *.png
 /test-output/
-/
+.project
+/bin/
+
