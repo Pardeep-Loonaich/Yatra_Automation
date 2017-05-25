@@ -9,6 +9,8 @@
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="chrome_windows" />
+	<!-- we are controlling email on every failure from this flag -->
+	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
 
@@ -18,10 +20,10 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Payment.PaymentTest">
 			</class>
-			<!-- <methods>
+			<methods>
 				<include name="TC_Yatra_Payment_003"></include>
 			</methods>
- -->
+
 
 		</classes>
 	</test>
