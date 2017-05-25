@@ -3673,8 +3673,8 @@ public class FlightSearch extends BaseTest{
 			int NoOfResults = searchResult.getSizeofResult();
 			
 			// step: click 'Book Now' button
-			reviewPage = searchResult.selectAirlineBookNowInOW("DOM", "All", "");
-			//reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			//reviewPage = searchResult.selectAirlineBookNowInOW("DOM", "All", "");
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Successfully clicked 'Book Now'!");
 			
 			// step: click 'Change Flight' Link
@@ -3759,65 +3759,67 @@ public class FlightSearch extends BaseTest{
 	}
 
 	@Test(description = "Validate that if user has selected any preferred airline from Airline matrix then on clicking on Change Flight SRP should render with 'All Airlines' selected", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Flight_067(HashMap<String, String> testData) throws Exception {
-		Utils.testCaseConditionalSkip(testData.get("RunMode"));
-		String browser = testData.get("browser");
-		String tripType = testData.get("TripType");
-		String origin = testData.get("Origin");
-		String destination = testData.get("Destination");
-		String departureDate = testData.get("DepartureDate");
-		String passengerInfo = testData.get("PassengerInfo");
-		String passengerClass = testData.get("Class");
-		String AirlinesName = testData.get("Airlines");
+    public void TC_Yatra_Flight_067(HashMap<String, String> testData) throws Exception {
+           Utils.testCaseConditionalSkip(testData.get("RunMode"));
+           String browser = testData.get("browser");
+           String tripType = testData.get("TripType");
+           String origin = testData.get("Origin");
+           String destination = testData.get("Destination");
+           String departureDate = testData.get("DepartureDate");
+           String passengerInfo = testData.get("PassengerInfo");
+           String passengerClass = testData.get("Class");
+           String AirlinesName = testData.get("Airlines");
 
-		// Get the web driver instance
-		final WebDriver driver = WebDriverFactory.get(browser);
-		Log.testCaseInfo(testData);
-		try {
-			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
+           // Get the web driver instance
+           final WebDriver driver = WebDriverFactory.get(browser);
+           Log.testCaseInfo(testData);
+           try {
+                  homePage = new HomePage(driver, webSite).get();
+                  Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			// step: Select Trip Type
-			homePage.selectTripType(tripType);
-			Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
+                  // step: Select Trip Type
+                  homePage.selectTripType(tripType);
+                  Log.message("2. Successfully clicked 'One Way' option in search Home Page!");
 
-			// step: select OneWay Search fields in HomePage
-			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
-			Log.message("3. Successfully filled the search details for OneWay!");
+                  // step: select OneWay Search fields in HomePage
+                  homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+                  Log.message("3. Successfully filled the search details for OneWay!");
 
-			// step: click 'Search' button
-			searchResult = homePage.clickBtnSearch();
-			Log.message("4. Successfully clicked 'Search'!");
+                  // step: click 'Search' button
+                  searchResult = homePage.clickBtnSearch();
+                  Log.message("4. Successfully clicked 'Search'!");
 
-			// step: click one Option From 'Airline Filter'
-			searchResult.selectAirlineInAirlineFilters(AirlinesName);
-			Log.message("5. Successfully Selected one Option From Airline Filter!");
-			ArrayList<String> resultBeforeChangeFlight = searchResult.verifyChkBoxAirlineFilter();
+                  // step: click one Option From 'Airline Filter'
+                  searchResult.selectAirlineInAirlineFilters(AirlinesName);
+                  Log.message("5. Successfully Selected one Option From Airline Filter!");
+                  ArrayList<String> resultBeforeChangeFlight = searchResult.verifyChkBoxAirlineFilter();
 
-			// step: click on 'Book Now'
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
-			Log.message("6. Successfully Clicked Book Now!");
+                  // step: click on 'Book Now'
+                  reviewPage = searchResult.clickOnBookNowInOneWay(2);
+                  Log.message("6. Successfully Clicked Book Now!");
 
-			// step: click on 'Change Flight'
-			Thread.sleep(2000);
-			reviewPage.clickOnChangeFlight();
-			Log.message("7. Successfully Clicked On Change Flight Button!");
-			ArrayList<String> resultAfterChangeFlight = searchResult.verifyChkBoxAirlineFilter();
+                  // step: click on 'Change Flight'
+                  BrowserActions.nap(2);
+                  reviewPage.clickOnChangeFlight();
+                  Log.message("7. Successfully Clicked On Change Flight Button!");
+                  ArrayList<String> resultAfterChangeFlight = searchResult.verifyChkBoxAirlineFilter();
 
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Validate that if user has selected any preferred airline from Airline matrix then on clicking on Change Flight SRP should render with 'All Airlines' Selected");
-			Thread.sleep(2000);
-			Log.assertThat(resultBeforeChangeFlight != (resultAfterChangeFlight),
-					"<b>Actual Result :</b> Error Message is displayed when No Flight is visible for user and \n message is displayed as : ",
-					"<b>Actual Result :</b> No  Error Message is displayed when No Flight is visible for user", driver);
-			Log.testCaseResult();
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			//driver.quit();
-			Log.endTestCase();
-		}
-	}
+                  Log.message("<br>");
+                  Log.message("<b>Expected Result:</b> Validate that if user has selected any preferred airline from Airline matrix then on clicking on Change Flight SRP should render with 'All Airlines' Selected");
+                  Log.assertThat(resultBeforeChangeFlight != (resultAfterChangeFlight),
+                               "<b>Actual Result :</b> After clicking on change flight on Review page,all airline option are visible",
+                               "<b>Actual Result :</b> After clicking on change flight on Review page, only last selected flight is visible", driver);
+                  
+                  Log.testCaseResult();
+                  
+           } catch (Exception e) {
+                  Log.exception(e);
+           } finally {
+                  //driver.quit();
+                  Log.endTestCase();
+           }
+    }
+
 
 	@Test(description = "Validate that if there is no flight available for respective search-Error Message Should display", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_068(HashMap<String, String> testData) throws Exception {
