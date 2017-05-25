@@ -13,10 +13,7 @@
 	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 		<parameter name="webSite" value="https://www.yatra.com/" />
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightSearch">
-		 <<!-- methods>
-			<include name="TC_Yatra_Flight_104"></include>
-			</methods> -->
+			<class name="com.Yatra.TestScript.Flights.FlightSearch">		
 			</class>
 		</classes>
 	</test>
