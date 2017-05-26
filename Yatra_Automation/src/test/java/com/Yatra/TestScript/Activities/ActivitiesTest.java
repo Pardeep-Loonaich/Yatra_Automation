@@ -1385,6 +1385,67 @@ public class ActivitiesTest {
 			Log.endTestCase();
 		}
 	}
+	
+	
+	@Test(groups = {
+	"desktop" }, description = "Verification pax Modifying option is there.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_029(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
+			Log.message("5. Clicked On Book Now Button!");
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("7. Clicked On Check Availability Button!");
+
+			
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> Verification Pax Modifying option is there.");
+			Log.assertThat(
+					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("lnkChngeDateOrPax"),
+							activityDetailPage),
+					"<b>Actual Result:</b> Pax Modifying option is displayed on the Product Description page.",
+					"<b>Actual Result:</b> Pax Modifying option is displayed on the Product Description page.",
+					driver);
+			
+			
+			
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
 
 	@Test(groups = {
 	"desktop" }, description = "Verification after Clicking on Continue in Review Page User Should redirect to Traveller page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")

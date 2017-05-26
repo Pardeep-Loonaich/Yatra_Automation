@@ -106,6 +106,9 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	@FindBy(css = "p[class='view-details']>a[class='fs-12 under-link']>span[class='']")
 	private WebElement btnCancellationPolicyHide;
 	
+	@FindBy(css = "[class*='edit-pax']")
+	private WebElement lnkChngeDateOrPax;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
