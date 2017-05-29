@@ -2408,7 +2408,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				clickOnPrefferedFlightsBookNowInOW(1); // select Book Now
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
 			}
-			Log.event("Successfully clicked Book Now for Round Trip");
+			Log.event("Successfully clicked Book Now in SRP");
 		} else if (domain.equalsIgnoreCase("INTL")) {
 			// Select Connecting flight or Direct flight in Stops filter
 			if (stops.equalsIgnoreCase("All")) {
@@ -2427,7 +2427,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				clickOnBookNowInDOM_INTL(1); // select Book Now
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
 			}
-			Log.event("Successfully clicked Book Now for Round Trip");
+			Log.event("Successfully clicked Book Now in SRP");
 		}
 		popUpAppear();
 		return new ReviewPage(driver).get();

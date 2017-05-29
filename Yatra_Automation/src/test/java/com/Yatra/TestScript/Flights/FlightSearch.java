@@ -3445,17 +3445,18 @@ public class FlightSearch extends BaseTest{
 			Log.message("4. Successfully clicked 'Search'!");
 
 			// step: click 'Stop Filter' Link
-			searchResult.selectStopsFilter(1);
+			//searchResult.selectStopsFilter(1);
 			Log.message("5. Successfully clicked 'Stop Filter'!");
 
 			// step: click 'Flight Details' button
 			Thread.sleep(3000);
-			searchResult.clickOnlnkFlightDetails_INTL();
+			//searchResult.clickOnlnkFlightDetails_INTL();
+			reviewPage = searchResult.selectAirlineBookNowInOW("INTL", "1", "Any");
 			Log.message("6. Successfully clicked 'Flight Details'!");
 
 			// step: click on Book Now in Flight Details
 			Thread.sleep(3000);
-			reviewPage = searchResult.clickOnBookNowInFlightDetails_INTL();
+			//reviewPage = searchResult.clickOnBookNowInFlightDetails_INTL();
 			Log.message("7. Successfully clicked Book Now in Flight Details Pop Up!");
 			ArrayList<String> FlightDetails = reviewPage.getTextAirlinename();
 
@@ -3673,8 +3674,8 @@ public class FlightSearch extends BaseTest{
 			int NoOfResults = searchResult.getSizeofResult();
 			
 			// step: click 'Book Now' button
-			//reviewPage = searchResult.selectAirlineBookNowInOW("DOM", "All", "");
-			reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			reviewPage = searchResult.selectAirlineBookNowInOW("DOM", "All", "");
+			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Successfully clicked 'Book Now'!");
 			
 			// step: click 'Change Flight' Link
@@ -3795,7 +3796,8 @@ public class FlightSearch extends BaseTest{
                   ArrayList<String> resultBeforeChangeFlight = searchResult.verifyChkBoxAirlineFilter();
 
                   // step: click on 'Book Now'
-                  reviewPage = searchResult.clickOnBookNowInOneWay(2);
+                  //reviewPage = searchResult.clickOnBookNowInOneWay(2);
+                  reviewPage = searchResult.selectAirlineBookNowInOW("DOM", "All", "");
                   Log.message("6. Successfully Clicked Book Now!");
 
                   // step: click on 'Change Flight'
@@ -6126,6 +6128,9 @@ public class FlightSearch extends BaseTest{
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
 		String promo[] =testData.get("Promo").split(",");
+		String domain = testData.get("Domain");		
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -6141,8 +6146,10 @@ public class FlightSearch extends BaseTest{
 
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
-
-			reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			
+			// step: select Airlines Book Now for One Way search
+			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
+			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page!");
 
 			reviewPage.clickOnHavePromoCode();
