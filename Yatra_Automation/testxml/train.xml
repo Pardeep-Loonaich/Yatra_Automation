@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Web Automation Test" verbose="3" parallel="tests" thread-count="500">
@@ -27,3 +28,42 @@
 		</classes>
 	</test>
 </suite>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name=" Yatra Web Automation Test" verbose="3" parallel="tests" thread-count="500">
+	<parameter name="workBookName" value="testdata\\data\\Train.xls"/>
+    <parameter name="sheetName" value="TrainSearch"/>
+    
+    
+	<!-- parameter for device host and port -->
+	<parameter name="deviceHost" value="localhost" />
+	<parameter name="devicePort" value="4444" />
+
+	<parameter name="webSite" value="https://www.yatra.com/" />
+	<parameter name="browserName" value="chrome_windows" />
+
+	<test name="Train" thread-count="1" parallel="true">
+		<!-- <groups>
+			<run>
+				<include name="desktop" />
+			</run>
+		</groups> 
+ -->
+		<classes>
+			<class name="com.Yatra.TestScript.Trains.Train">
+			<!-- <methods>
+			<include name= "TC_Yatra_Train_010"/>
+			<include name= "TC_Yatra_Train_022"/>
+			<include name= "TC_Yatra_Train_023"/>
+	     	<include name= "TC_Yatra_Train_031"/>
+	     	<include name= "TC_Yatra_Train_033"/>
+
+			<include name= "TC_Yatra_Train_048"/>
+			<include name= "TC_Yatra_Train_049"/>
+			</methods>     -->
+			</class>
+		</classes>
+	</test>
+</suite>
+>>>>>>> refs/heads/VandnaAutomation

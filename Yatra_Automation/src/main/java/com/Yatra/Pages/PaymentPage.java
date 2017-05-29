@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
@@ -542,11 +543,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 	public /*ArrayList<String>*/ String getCrediCrdNum() throws Exception{
 		/*ArrayList<String> cardNumList = new ArrayList<String>();
-
 		for(WebElement e:lstCreditCardNumbers){
 		String cc_No = BrowserActions.getText(driver,CreditCardNumber,"Getting the CreditCardNumber");
 		cardNumList.add("cc_No");
-
 		}
 		return cardNumList;*/
 
