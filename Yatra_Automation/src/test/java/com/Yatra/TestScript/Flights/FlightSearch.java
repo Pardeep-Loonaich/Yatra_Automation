@@ -6148,8 +6148,8 @@ public class FlightSearch extends BaseTest{
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 			
 			// step: select Airlines Book Now for One Way search
-			//reviewPage = searchResult.clickOnBookNowInOneWay(2);
-			reviewPage = searchResult.selectAirlineBookNowInOW(domain, stops, airlines);	
+			//reviewPage = searchResult.clickOnBookNowInOneWay(2);			
+			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page!");
 
 			reviewPage.clickOnHavePromoCode();
@@ -6821,6 +6821,7 @@ public class FlightSearch extends BaseTest{
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
 		String origin = testData.get("Origin");
+		
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
