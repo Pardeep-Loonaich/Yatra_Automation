@@ -3771,7 +3771,7 @@ public class FlightSearch extends BaseTest{
 			ArrayList<String> resultBeforeChangeFlight = searchResult.verifyChkBoxAirlineFilter();
 
 			// step: click on 'Book Now'
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Successfully Clicked Book Now!");
 
 			// step: click on 'Change Flight'

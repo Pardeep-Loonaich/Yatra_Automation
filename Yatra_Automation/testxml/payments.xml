@@ -10,19 +10,15 @@
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="chrome_windows" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
-
-
 	<test name="Payment" thread-count="1" parallel="true">
 
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Payment.PaymentTest">
-			</class>
-			<!-- <methods>
+			 <!-- <methods>
 				<include name="TC_Yatra_Payment_004"></include>
-			</methods>
- -->
-
+			</methods>  -->
+			</class>
 		</classes>
 	</test>
 </suite>

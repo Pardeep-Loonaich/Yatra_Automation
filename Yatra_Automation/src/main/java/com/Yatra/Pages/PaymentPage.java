@@ -999,10 +999,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			}
 		}
 		else if(browser.equalsIgnoreCase("iexplorer_windows")){
-		}
 		driver.navigate().back();
 		driver.navigate().refresh();
-
+		}
+		else if(browser.equalsIgnoreCase("Chrome_windows")){
+			for(int i=0;i<ran;i++){
+				driver.navigate().back();
+			}
+		}
 	}
 
 

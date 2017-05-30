@@ -69,7 +69,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	private WebElement dateReturn;
 
 	String departureDateLocator="(//table[@class='day-container-table']//a[@id='a_";
-	private WebElement departureDate;
+	
 
 	@FindBy(id = "BE_flight_return_date")
 	private WebElement returnDate;
@@ -1072,7 +1072,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateDepartureBus, driver, "clicking on Bus Depart date icon");
-		selectMonth_Bus.get(month - 3).click();
+		selectMonth_Bus.get(month).click();
 		BrowserActions.nap(2);
 
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));

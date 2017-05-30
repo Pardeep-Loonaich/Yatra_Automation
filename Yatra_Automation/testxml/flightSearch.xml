@@ -8,11 +8,13 @@
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
 	<test name="Flight Search on chrome" thread-count="1" parallel="true">
-		<parameter name="browserName" value="chrome_windows" />
+		<parameter name="browserName" value="firefox_windows" />
 		<parameter name="webSite" value="https://www.yatra.com/" />
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch">
-
+			<methods>
+			<include name="TC_Yatra_Flight_067"></include>
+			</methods>
 			</class>
 		</classes>
 	</test>
