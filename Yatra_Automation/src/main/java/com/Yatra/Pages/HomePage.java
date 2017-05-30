@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 
@@ -1470,8 +1471,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		} else {
 			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
 		}
-	}
-
-	
-	
+	}		
 }// HomePage
+

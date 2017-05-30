@@ -41,6 +41,24 @@ public class Utils {
 	public static void waitForPageLoad(final WebDriver driver) {
 		waitForPageLoad(driver, WebDriverFactory.maxPageLoadWait);
 	}
+	
+	/**
+	 * Desc: wait for Ajax call to complete
+	 */
+	public static boolean waitForAjaxToComplete(WebElement element,String atrribute, String containsValue)
+	
+	{
+		boolean dataToBereturn=false;
+		int icounter=10;
+		while(icounter>0 && !(element.getAttribute(atrribute).contains(containsValue)))
+		{
+			icounter--;
+			dataToBereturn=true;
+			
+		}
+		
+		return dataToBereturn;
+	}
 
 	/**
 	 * waitForPageLoad waits for the page load with custom page load wait time

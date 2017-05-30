@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.awt.Robot;
@@ -800,7 +801,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		 closeINotificationAtTopSRP();
+		 //closeINotificationAtTopSRP();
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
 				+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
@@ -1373,15 +1374,23 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickModifySearch() throws Exception {
-		BrowserActions.nap(2);
-		closeINotificationAtTopSRP();	
+	public boolean clickModifySearch() throws Exception {
+		boolean status = false;
+		BrowserActions.nap(20);
+		closeINotificationAtTopSRP();
 		BrowserActions.nap(20);
 		Utils.waitForElement(driver, btnModifySearchIcon);
-		BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Modify Search button");
-		BrowserActions.nap(3);
-		Utils.waitForPageLoad(driver);
-		Log.event("Clicked Modify Search link in SRP");
+		if (BrowserActions.isElementPresent(driver, btnModifySearchIcon) == true) {
+			BrowserActions.clickOnElement(btnModifySearchIcon, driver, "Modify Search button");
+			Log.event("Clicked Modify Search link in SRP");
+			status = true;
+		} else {
+			Log.event("Not clicked Modify Search link in SRP");
+			status = true;
+		}
+		BrowserActions.nap(5);
+		Utils.waitForPageLoad(driver);		
+		return status;
 	}
 
 	/**
@@ -2181,8 +2190,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	public void clickShareItinerary() throws Exception {
-		BrowserActions.nap(30);
+	public void clickShareItinerary() throws Exception {		
 		Utils.waitForElement(driver, lnkShareItinerary);
 		BrowserActions.clickOnElement(lnkShareItinerary, driver, "Share Itinerary");
 		BrowserActions.nap(2);
@@ -2209,6 +2217,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextShareItinerary() throws Exception {
+		BrowserActions.nap(30);
 		Utils.waitForElement(driver, txtShareItineraryTooltipText);
 		BrowserActions.mouseHover(driver, txtShareItineraryTooltipText); // FF issue
 		String shareItineraryPouUpMessageGetTxt = BrowserActions.getText(driver, txtShareItineraryTooltipText,
@@ -2399,7 +2408,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				clickOnPrefferedFlightsBookNowInOW(1); // select Book Now
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
 			}
-			Log.event("Successfully clicked Book Now for Round Trip");
+			Log.event("Successfully clicked Book Now in SRP");
 		} else if (domain.equalsIgnoreCase("INTL")) {
 			// Select Connecting flight or Direct flight in Stops filter
 			if (stops.equalsIgnoreCase("All")) {
@@ -2418,7 +2427,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				clickOnBookNowInDOM_INTL(1); // select Book Now
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
 			}
-			Log.event("Successfully clicked Book Now for Round Trip");
+			Log.event("Successfully clicked Book Now in SRP");
 		}
 		popUpAppear();
 		return new ReviewPage(driver).get();
@@ -2653,7 +2662,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			if (srt.isDisplayed()) {
 				String seat = BrowserActions.getText(driver, srt, "Getting text");
 				BrowserActions.javascriptClick(lstFlight.get(i).findElement(By.cssSelector("article>footer>ul[class='res-footer-list fl uprcse']>li:not([ng-class*='viewedData'])>a")),
-						driver, "Clicked on flight details link.s");
+						driver, "Clicked on flight details links");
 				break;
 			}
 		}
@@ -2919,6 +2928,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String getTextFareTypeInFligthDetail_DOM() throws Exception {
+		BrowserActions.nap(5);
 		String FlightType = txtRefundableAndNonRefundableInFlightDetails.getText();
 		return FlightType;
 	}
@@ -3198,6 +3208,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void selectFlightLessThen3Hrs() throws Exception {
+		BrowserActions.nap(20);
 		int Arrival_Time = 0;
 		List<WebElement> arrival_Time1 = driver.findElements(By.cssSelector("#resultBoxSlider>div[id='resultList_0']>div[class='results']>div[class='js-flightRow js-flightItem']>article>div[class='my-res-info full']>ul>li[class='timing']>div[class='end']>span"));
 		WebElement deptT = driver.findElement(By.cssSelector("#resultBoxSlider>div[id='resultList_1']>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(1)>article>div[class='my-res-info full']>ul>li[class='timing']>div[class='start']>span"));
@@ -3352,7 +3363,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String getTextFareSummarySelectionBox_DOM() throws Exception {
 		Utils.waitForPageLoad(driver);
-		Thread.sleep(1000);
+		Thread.sleep(20000);
 		BrowserActions.scrollToView(priceSelectionBox, driver);
 		BrowserActions.mouseHover(driver, priceSelectionBox);
 		String errorMessage = BrowserActions.getText(driver, fareSummaryPopUp, "Fare Summary");

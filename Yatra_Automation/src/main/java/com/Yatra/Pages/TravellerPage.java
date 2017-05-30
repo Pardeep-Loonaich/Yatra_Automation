@@ -1,4 +1,3 @@
-
 package com.Yatra.Pages;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -235,7 +234,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	 */
 	public void fillTravellerDetails_DOM(String[] Infant) throws Exception {	
 		// Infant DOB dates 
-		BrowserActions.nap(5);
+
 		int infant = 1;	int passengerNum = 1;		
 		for (int i = 0; i < modTravellerDetails.size(); i++) {
 			String formPaxDetail = "//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']";
@@ -335,7 +334,6 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	}
 
 	public void clickOnAddMeal() throws Exception {
-		BrowserActions.nap(2);
 		Utils.waitForElement(driver, btnAddMeal);
 		BrowserActions.scrollToView(btnAddMeal, driver);
 		BrowserActions.javascriptClick(btnAddMeal, driver, "Add Meal Button");

@@ -72,6 +72,20 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	
 	@FindBy(css="a[title='Price']")
 	private WebElement arrwPrice;
+
+	@FindBy(css="li[ng-repeat*='categoryFilter']>label")
+	private List<WebElement> lstCategory;
+	
+	@FindBy(css="div[class='left fl']>p[class*='fs-12']")
+	private WebElement txtResultStrip;
+	
+	@FindBy(css="a[title='Recommended']")
+	private WebElement txtRecommended;
+	
+	@FindBy(css="a[title='Popular']")
+	private WebElement txtPopular;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -224,12 +238,56 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	return new ActivityDetailPage(driver).get();
 	}
 	
+	/**
+	 * Select the category from the left navigation and return the number of that category
+	 * @param categoryName
+	 * @return
+	 * @throws Exception
+	 */
+	public String selectCategory(String categoryName) throws Exception{
+		for(WebElement category:lstCategory){
+			if(category.findElement(By.cssSelector("span[class*='clip-overflow']")).getAttribute("title").contains(categoryName)){
+			BrowserActions.clickOnElement(category.findElement(By.cssSelector("span[class*='clip-overflow']")), driver, "Selected the Category.");	
+			String catgryNum = BrowserActions.getText(driver, category.findElement(By.cssSelector("span[class*='ltr-gray pl5 ng-binding']")), "Getting the Category Number available.");
+			return catgryNum;
+			}
+		}
+		return null;
+	}
 	
 	
 	
+	/**
+	 * getting the result number from the result Strip
+	 * @return
+	 * @throws Exception
+	 */
+	public String gettingTxtFrmResultFoundStrip() throws Exception{
+		String resultValue[] = BrowserActions.getText(driver, txtResultStrip, "Getting the number of result found for the category.").split(" ");
+		return resultValue[1];
+	}
 	
 	
+	/**
+	 * Verify Color Of Sort By Activity
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
 	
-	
+	public boolean verifySortByGivenCategory(String categoryNme) throws Exception {
+	boolean status3 = false;
+	String rgbvalue = "243, 71, 71";
+	switch (categoryNme){
+	case "Recommended":
+		status3= Utils.verifyCssPropertyForElement(txtRecommended,"color",rgbvalue);
+		break;
+	case "Popular":
+		BrowserActions.clickOnElement(txtPopular, driver, "Selected Popular as SortBy option.");
+		status3= Utils.verifyCssPropertyForElement(txtPopular,"color",rgbvalue);
+		break;
+	}
+	return status3;
+	}
 	
 }//SearchResultActivitesPageEnd

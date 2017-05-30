@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
@@ -1448,7 +1449,4 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTimeFromStrip() throws Exception{
 		return BrowserActions.getText(driver, timeOnStrip, "Getting time from the Time Strip.");
 	}
-	
-
-	
-}
+}//PaymentPage

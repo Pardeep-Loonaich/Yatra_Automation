@@ -96,16 +96,18 @@ public class BaseTest implements ITest
 	 * @throws IOException 
 	 */
 	@AfterMethod
-	public void  afterTestExecutor(ITestResult result) 
+	public void  afterTestExecutor(ITestResult result, ITestContext context) 
 
 	{
-		System.out.println("Executing After Mehtod ..");
-
+		driver=WebDriverFactory.getCurrentDriverInstance();
+		
 		try
 		{
-			if(true)			//if test case fail perform below task
+			String emailOnFailure=context.getCurrentXmlTest().getParameter("SEND_EMAIL_ON_FAILIURE");
+			if(result.getStatus()==ITestResult.FAILURE&&emailOnFailure.equalsIgnoreCase("TRUE"))			//if test case fail perform below task
 			{
-				driver=WebDriverFactory.baseTestDriver;
+				
+				Log.message("triggering email in for failed test case");
 				inputFile=Log.takeScreenShot(driver);
 
 				testCaseId=result.getName();
@@ -131,6 +133,6 @@ public class BaseTest implements ITest
 	 */
 	public static void setBaseDriver(WebDriver drivers)
 	{
-		driver=WebDriverFactory.baseTestDriver;
+		//driver=drivers;
 	}
 }

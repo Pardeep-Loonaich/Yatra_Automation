@@ -58,7 +58,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	@FindBy(css = "ul[class='row my-nav col hidden-md fs-12 uprcse tabs-active-bottom-in tabs']>li")
 	private List<WebElement> headerDisplay;
 	
-	@FindBy(xpath = "div[class='hotel-info ng-binding']")
+	@FindBy(css = "div[class='hotel-info ng-binding']")
 	private WebElement txtDescrption;
 	
 	@FindBy(css = "div[id='viewAdditionalInfo']>div[class='hotel-info']")
@@ -105,6 +105,9 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	
 	@FindBy(css = "p[class='view-details']>a[class='fs-12 under-link']>span[class='']")
 	private WebElement btnCancellationPolicyHide;
+	
+	@FindBy(css = "[class*='edit-pax']")
+	private WebElement lnkChngeDateOrPax;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -211,7 +214,6 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 */
 	public void clickOnBookNowButton() throws Exception {
 		Utils.waitForElement(driver, btnBookNow);
-		BrowserActions.nap(5);
 		BrowserActions.clickOnElement(btnBookNow, driver, "Click On Book Now Button");
 	}
 	/**
@@ -273,7 +275,6 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 */
 	public void clickOnCheckAvailability() throws Exception {
 		Utils.waitForPageLoad(driver);
-		BrowserActions.nap(5);
 		BrowserActions.clickOnElement(btnCheckAvailability, driver, "Click On Check Availability Button");
 	}
 	/**
@@ -284,7 +285,6 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 */
 	public ActivitiesReviewPage clickOnBookNowAfterCheckAvailability() throws Exception {
 		Utils.waitForPageLoad(driver);
-		BrowserActions.nap(5);
 		BrowserActions.clickOnElement(btnBookNowAfterCheckAvailability, driver, "Click On Book Now After Check Availability Button");
 		return new ActivitiesReviewPage(driver).get();
 	}

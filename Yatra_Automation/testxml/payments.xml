@@ -9,16 +9,17 @@
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="chrome_windows" />
+	<!-- we are controlling email on every failure from this flag -->
+	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 	<parameter name="webSite" value="https://www.yatra.com/" />
 	<test name="Payment" thread-count="1" parallel="true">
-
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
-		<classes>
-			<class name="com.Yatra.TestScript.Payment.PaymentTest">
-			 <!-- <methods>
-				<include name="TC_Yatra_Payment_004"></include>
-			</methods>  -->
-			</class>
+			<classes>
+			<class name="com.Yatra.TestScript.Payment.PaymentTest"> </class>		
+			<!-- <methods>
+			<include name="TC_Yatra_Flight_088"></include>
+			</methods>	 -->
 		</classes>
+	
 	</test>
 </suite>
