@@ -142,6 +142,7 @@ public class FlightPricing extends BaseTest{
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page", driver);
 
 			// clicked on book now
+			Thread.sleep(2000);
 			reviewPage = searchResult.clickOnBookNowInRound(1, 2, 2, 7);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page");
 			reviewPage.popUpAppear();
