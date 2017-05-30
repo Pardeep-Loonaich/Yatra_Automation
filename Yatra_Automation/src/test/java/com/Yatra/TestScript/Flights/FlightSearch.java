@@ -3290,7 +3290,7 @@ public class FlightSearch extends BaseTest{
 			// step: click 'Search' button
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4. Successfully clicked 'Search'!");
-
+			BrowserActions.nap(10);
 			// step: click 'Flight Details' Link
 			searchResult.clickOnFlightLinks();
 			Log.message("5. Successfully clicked 'Flight Deatils' Link!");
@@ -3393,10 +3393,10 @@ public class FlightSearch extends BaseTest{
 			Log.message("4. Successfully clicked 'Search'!");
 
 			// step: click 'Flight Details' button
-			Thread.sleep(3000);
+			BrowserActions.nap(5);
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5. Successfully clicked Book Now'!");
-			Thread.sleep(2000);
+			BrowserActions.nap(5);
 			String FlightDetails = reviewPage.getTextFromFareDetails();
 			String Totalfare = reviewPage.getTextTotalAmount();
 
