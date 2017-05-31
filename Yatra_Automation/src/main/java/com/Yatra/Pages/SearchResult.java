@@ -801,7 +801,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		 //closeINotificationAtTopSRP();
+		 closeINotificationAtTopSRP();
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
 				+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
@@ -1725,7 +1725,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	public void closeINotificationAtTopSRP() throws Exception {	
 		BrowserActions.nap(4);		
-		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {
+		if (BrowserActions.isElementPresent(driver, IframeNotification)) {
 		//if(IframeNotification.isDisplayed()){
 			BrowserActions.switchToIframe(driver, IframeNotification);			
 			if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true){ 

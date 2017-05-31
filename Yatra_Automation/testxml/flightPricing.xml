@@ -15,9 +15,6 @@
 
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing"> </class>		
-			<!-- <methods>
-			<include name="TC_Yatra_Flight_088"></include>
-			</methods>	 -->
 		</classes>
 	</test>
 
