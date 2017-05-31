@@ -498,6 +498,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void enterCreditCardDetails(String cardNumber) throws Exception {
+		BrowserActions.nap(2);
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		String randomCvv = RandomStringUtils.randomNumeric(3);
 		BrowserActions.nap(5);
@@ -550,7 +551,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		}
 		return cardNumList;*/
-
+		BrowserActions.nap(3);
 		String cc_no = BrowserActions.getText(driver, CreditCardNumber, "Getting the CreditCardNumber").substring(15, 19);
 		return cc_no;
 	}
@@ -581,7 +582,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.scrollToView(btnPayNow, driver);
 		BrowserActions.javascriptClick(btnPayNow, driver, "Pay Now");
 		Utils.waitForPageLoad(driver);
-		BrowserActions.nap(2);
+		BrowserActions.nap(30);
 	}
 
 
@@ -649,6 +650,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String getMsgFromEcashBalanceDeduction() throws Exception {
+		BrowserActions.nap(2);
 		String txtRedeemMsg = BrowserActions.getText(driver, msgEcashRedeemBalance,
 				"Getting text for ecash Redeem Balance deduction message.");
 		return txtRedeemMsg;
@@ -663,6 +665,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 
 	public String getMsgFromEcashRedeemSuccess() throws Exception {
+		BrowserActions.nap(2);
 		String txtRedeemMsg = BrowserActions.getText(driver, msgEcashRedeem, "Getting text for ecash Redeem message.")
 				.replace("Cancel Redemption", "");
 		return txtRedeemMsg;
@@ -686,6 +689,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickingToCancelEcashRedem() throws Exception{
+		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on cancel ecash redeem.");
 
 	}
@@ -698,6 +702,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void verifyCancelEcash() throws Exception{
+		BrowserActions.nap(2);
 		if(lnkCancelRedem.isDisplayed()){
 			BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on Cancel ecash redeem.");
 		}
@@ -709,6 +714,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickingOnRedeemNow() throws Exception{
+		BrowserActions.nap(3);
 		BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
 		BrowserActions.nap(5);
 	}
@@ -1019,6 +1025,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void returnFromCitiPortal(String browser) throws Exception{
+		BrowserActions.nap(2);
 		if(browser.equalsIgnoreCase("chrome_windows")){
 			JavascriptExecutor js = (JavascriptExecutor) driver; 
 			js.executeScript("window.history.go(-1)");
@@ -1052,6 +1059,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 	public void cancelHdfcPayment(String browser) throws Exception{
+		BrowserActions.nap(2);
 		if(browser.equalsIgnoreCase("chrome_windows")){
 			BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
@@ -1067,6 +1075,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		else if(browser.equalsIgnoreCase("FireFox_windows")){
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 		}
+		BrowserActions.nap(2);
 	}
 
 
@@ -1075,6 +1084,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void cancelSBIATMPayment() throws Exception{
+		BrowserActions.nap(2);
 		BrowserActions.javascriptClick(btnCancelInSBIATM, driver, "Clicked on cancel button");
 		//BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
 	}
@@ -1084,7 +1094,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickOnBackToYatraLinkFreechrge() throws Exception{
+		BrowserActions.nap(5);
 		BrowserActions.clickOnElement(lnkBckToYatraFrmFreechrge, driver, "Clicked on back to yatra link");
+		BrowserActions.nap(2);
 	}
 
 
@@ -1199,7 +1211,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void cancelCreditCardDetails() throws Exception{
-
+		BrowserActions.nap(1);
 		while(tabSavedCC.isDisplayed()){
 			Utils.waitForElement(driver, iconRemove);
 			BrowserActions.scrollToView(iconRemove, driver);
