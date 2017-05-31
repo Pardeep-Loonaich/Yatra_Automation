@@ -368,8 +368,16 @@ public class WebDriverFactory {
 										+ deviceName);
 					}
 				} else {
+
+					opt.addArguments("--start-maximized");
+					opt.addArguments("--disable-web-security");
+				    Map<String, Object> prefs = new HashMap<String, Object>();
+				    prefs.put("credentials_enable_service", false);
+				    prefs.put("profile.password_manager_enabled", false);
+				    opt.setExperimentalOption("prefs", prefs);
+				    
 					chromeCapabilities.setCapability(ChromeOptions.CAPABILITY, opt);
-					chromeCapabilities.setPlatform(Platform.fromString(platform));
+					chromeCapabilities.setPlatform(Platform.fromString(platform)); 					
 					if (proxy != null)
 						chromeCapabilities.setCapability(CapabilityType.PROXY, proxy);
 
