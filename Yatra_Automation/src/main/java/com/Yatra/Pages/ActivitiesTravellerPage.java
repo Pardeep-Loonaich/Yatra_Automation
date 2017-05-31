@@ -1,5 +1,7 @@
 package com.Yatra.Pages;
 
+
+
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -134,7 +136,9 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 	 */
 
 	public void clickOnHotelNotRequiredChkbox() throws Exception {
+		if(lblHotelPickup.isDisplayed()){
 		BrowserActions.clickOnElement(lblHotelPickup, driver, "Clicked on 'checkbox' on Traveller's Page.");
+		}
 	}
 
 	/**
