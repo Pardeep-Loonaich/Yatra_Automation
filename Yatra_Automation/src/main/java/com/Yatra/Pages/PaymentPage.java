@@ -802,6 +802,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 
 	public void selectPaymentType(String PaymentType) throws Exception {
+		BrowserActions.nap(5);
 		List<WebElement> lstElement = paymentType;
 		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
 			BrowserActions.scrollToViewElement(lnkOtherPayment, driver);
