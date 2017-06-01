@@ -803,6 +803,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void specifyPassengerInfo(String passengers) throws Exception {
 		BrowserActions.nap(2);
 		BrowserActions.scrollToViewElement(passengerInfo, driver);
+		BrowserActions.nap(3);
 		BrowserActions.clickOnElement(passengerInfo, driver, "Passenger Info");
 		List<WebElement> updatePassengers = driver.findElements(By.cssSelector(passengersLocator));
 		int adult = Integer.parseInt(passengers.split("_")[0]);
