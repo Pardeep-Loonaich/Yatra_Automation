@@ -1,4 +1,3 @@
-
 package com.Yatra.TestScript.Flights;
 
 import java.util.Arrays;
@@ -17,8 +16,6 @@ import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
-import test.abstractconfmethod.B;
 
 import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.LoginPage;
@@ -145,6 +142,7 @@ public class FlightPricing extends BaseTest{
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page", driver);
 
 			// clicked on book now
+			Thread.sleep(2000);
 			reviewPage = searchResult.clickOnBookNowInRound(1, 2, 2, 7);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page");
 			reviewPage.popUpAppear();
@@ -2059,3 +2057,4 @@ public class FlightPricing extends BaseTest{
 	}
 	
 } //Flight Pricing
+

@@ -2703,12 +2703,12 @@ public class BusSearchTest extends BaseTest{
 			Log.message("16. Clicked on Cancel Button On Payment GateWay!");
 
 			Thread.sleep(1000);
-			paymentPageBus.returnFromCreditCardPage(browser, 2);
+			paymentPageBus.returnFromCreditCardPage(browser, 3);
 			Log.message("17. Naviagted Back to Yatra Payment Page!");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verification continue PG and cancel transaction");
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
 					"<b>Actual Result:</b> After Cancelling the transaction user naviagted back to Yatra Payment Page!",
 					"<b>Actual Result:</b> After Cancelling the transaction user is not naviagted back to Yatra Payment Page",

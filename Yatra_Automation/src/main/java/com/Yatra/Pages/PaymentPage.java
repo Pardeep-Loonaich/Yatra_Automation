@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
@@ -497,9 +498,10 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void enterCreditCardDetails(String cardNumber) throws Exception {
+		BrowserActions.nap(2);
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		String randomCvv = RandomStringUtils.randomNumeric(3);
-
+		BrowserActions.nap(5);
 		/*if (BrowserActions.isElementPresent(driver, txtSavedcreditCardCvv) == true) {
 			BrowserActions.typeOnTextField(txtSavedcreditCardCvv, randomCvv, driver, "Enter CVV for Saved Credit card");
 		} else if (BrowserActions.isElementPresent(driver, creditCardNumber) == true) {
@@ -511,14 +513,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			 BrowserActions.clickOnElement(lstMonthsCC.get(rand), driver, "Month Selected");
 			 Utils.waitForPageLoad(driver);
 		 }
-		 Thread.sleep(2000);
+		 BrowserActions.nap(2);;
 		 BrowserActions.clickOnElement(yearCC, driver, "Year");
 		 if (lstYearsCC.size() != 0) {
 			 int rand = Utils.getRandom(1, lstYearsCC.size());
 			 BrowserActions.clickOnElement(lstYearsCC.get(rand), driver, "Year Selected");
 			 Utils.waitForPageLoad(driver);
 		 }
-		 Thread.sleep(2000);
+		 BrowserActions.nap(2);;
 		 BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
 		 BrowserActions.clickOnElement(lblSaveCCInQB, driver, "Unchecking Save QB");
 	}
@@ -549,7 +551,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		}
 		return cardNumList;*/
-
+		BrowserActions.nap(3);
 		String cc_no = BrowserActions.getText(driver, CreditCardNumber, "Getting the CreditCardNumber").substring(15, 19);
 		return cc_no;
 	}
@@ -580,6 +582,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.scrollToView(btnPayNow, driver);
 		BrowserActions.javascriptClick(btnPayNow, driver, "Pay Now");
 		Utils.waitForPageLoad(driver);
+		BrowserActions.nap(30);
 	}
 
 
@@ -611,14 +614,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.clickOnElement(lstMonthsDC.get(rand), driver, "Month Selected");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 		BrowserActions.clickOnElement(yearDC, driver, "Year");
 		if (lstYearsDC.size() != 0) {
 			int rand = Utils.getRandom(1, lstYearsDC.size());
 			BrowserActions.clickOnElement(lstYearsDC.get(rand), driver, "Year Selected");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 		BrowserActions.typeOnTextField(debitCardCvv, cardCVV, driver, "Debit card Cvv");
 
 
@@ -647,6 +650,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String getMsgFromEcashBalanceDeduction() throws Exception {
+		BrowserActions.nap(2);
 		String txtRedeemMsg = BrowserActions.getText(driver, msgEcashRedeemBalance,
 				"Getting text for ecash Redeem Balance deduction message.");
 		return txtRedeemMsg;
@@ -661,6 +665,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 
 	public String getMsgFromEcashRedeemSuccess() throws Exception {
+		BrowserActions.nap(2);
 		String txtRedeemMsg = BrowserActions.getText(driver, msgEcashRedeem, "Getting text for ecash Redeem message.")
 				.replace("Cancel Redemption", "");
 		return txtRedeemMsg;
@@ -684,6 +689,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickingToCancelEcashRedem() throws Exception{
+		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on cancel ecash redeem.");
 
 	}
@@ -696,6 +702,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void verifyCancelEcash() throws Exception{
+		BrowserActions.nap(2);
 		if(lnkCancelRedem.isDisplayed()){
 			BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on Cancel ecash redeem.");
 		}
@@ -707,8 +714,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickingOnRedeemNow() throws Exception{
+		BrowserActions.nap(3);
 		BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
-
+		BrowserActions.nap(5);
 	}
 
 
@@ -800,6 +808,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 
 	public void selectPaymentType(String PaymentType) throws Exception {
+		BrowserActions.nap(5);
 		List<WebElement> lstElement = paymentType;
 		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
 			BrowserActions.scrollToViewElement(lnkOtherPayment, driver);
@@ -971,7 +980,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.clickOnElement(lstMonthEMI.get(rand), driver, "Month Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 
 		BrowserActions.clickOnElement(creditCardYearInEMI, driver, "Clicked on Year dropdown.");
 		if (lstYearEMI.size() != 0) {
@@ -979,7 +988,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.clickOnElement(lstYearEMI.get(rand), driver, "Year Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 
 		BrowserActions.typeOnTextField(creditCardCvvInEMI, randomCvv, driver, "Credit card Cvv");
 
@@ -998,10 +1007,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			}
 		}
 		else if(browser.equalsIgnoreCase("iexplorer_windows")){
-		}
 		driver.navigate().back();
 		driver.navigate().refresh();
-
+		}
+		else if(browser.equalsIgnoreCase("Chrome_windows")){
+			for(int i=0;i<ran;i++){
+				driver.navigate().back();
+			}
+		}
 	}
 
 
@@ -1012,6 +1025,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void returnFromCitiPortal(String browser) throws Exception{
+		BrowserActions.nap(2);
 		if(browser.equalsIgnoreCase("chrome_windows")){
 			JavascriptExecutor js = (JavascriptExecutor) driver; 
 			js.executeScript("window.history.go(-1)");
@@ -1035,7 +1049,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			driver.navigate().refresh();
 
 		}	
-
+		BrowserActions.nap(3);
 	}
 
 	/**
@@ -1045,6 +1059,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 	public void cancelHdfcPayment(String browser) throws Exception{
+		BrowserActions.nap(2);
 		if(browser.equalsIgnoreCase("chrome_windows")){
 			BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
@@ -1060,6 +1075,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		else if(browser.equalsIgnoreCase("FireFox_windows")){
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 		}
+		BrowserActions.nap(2);
 	}
 
 
@@ -1068,6 +1084,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void cancelSBIATMPayment() throws Exception{
+		BrowserActions.nap(2);
 		BrowserActions.javascriptClick(btnCancelInSBIATM, driver, "Clicked on cancel button");
 		//BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
 	}
@@ -1077,7 +1094,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickOnBackToYatraLinkFreechrge() throws Exception{
+		BrowserActions.nap(5);
 		BrowserActions.clickOnElement(lnkBckToYatraFrmFreechrge, driver, "Clicked on back to yatra link");
+		BrowserActions.nap(2);
 	}
 
 
@@ -1192,7 +1211,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void cancelCreditCardDetails() throws Exception{
-
+		BrowserActions.nap(1);
 		while(tabSavedCC.isDisplayed()){
 			Utils.waitForElement(driver, iconRemove);
 			BrowserActions.scrollToView(iconRemove, driver);
@@ -1232,7 +1251,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.clickOnElement(drplstMonthRewards.get(rand), driver, "Month Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 
 		BrowserActions.clickOnElement(creditCardYearInRewards, driver, "Clicked on Year dropdown.");
 		if (drplstYearRewards.size() != 0) {
@@ -1240,7 +1259,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.clickOnElement(drplstYearRewards.get(rand), driver, "Year Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
-		Thread.sleep(2000);
+		BrowserActions.nap(2);;
 
 		BrowserActions.typeOnTextField(txtcreditCardCvvInRewards, randomCvv, driver, "Credit card Cvv");
 		BrowserActions.typeOnTextField(txtRewardPointInRewards, randomRewardPoint, driver, "Enter random Reward point");
@@ -1348,7 +1367,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.javascriptClick(btnCancelIdea, driver, "Clicked on 'Back to Yatra' button");
 			break;
 
-		}
+		}BrowserActions.nap(3);
 	}
 
 
@@ -1443,7 +1462,4 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTimeFromStrip() throws Exception{
 		return BrowserActions.getText(driver, timeOnStrip, "Getting time from the Time Strip.");
 	}
-	
-
-	
-}
+}//PaymentPage

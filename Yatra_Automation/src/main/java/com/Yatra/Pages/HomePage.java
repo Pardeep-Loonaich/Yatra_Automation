@@ -1,4 +1,7 @@
+
 package com.Yatra.Pages;
+
+
 
 import java.awt.Robot;
 import java.text.DateFormat;
@@ -6,8 +9,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,6 +33,9 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
+import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
+
+
 
 public class HomePage extends LoadableComponent<HomePage> {
 
@@ -60,7 +70,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	private WebElement dateReturn;
 
 	String departureDateLocator="(//table[@class='day-container-table']//a[@id='a_";
-	private WebElement departureDate;
+	
 
 	@FindBy(id = "BE_flight_return_date")
 	private WebElement returnDate;
@@ -793,6 +803,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void specifyPassengerInfo(String passengers) throws Exception {
 		BrowserActions.nap(2);
 		BrowserActions.scrollToViewElement(passengerInfo, driver);
+		BrowserActions.nap(3);
 		BrowserActions.clickOnElement(passengerInfo, driver, "Passenger Info");
 		List<WebElement> updatePassengers = driver.findElements(By.cssSelector(passengersLocator));
 		int adult = Integer.parseInt(passengers.split("_")[0]);
@@ -1063,7 +1074,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateDepartureBus, driver, "clicking on Bus Depart date icon");
-		selectMonth_Bus.get(month - 3).click();
+		selectMonth_Bus.get(month).click();
 		BrowserActions.nap(2);
 
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
@@ -1080,8 +1091,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 	public SearchResultBus clickBtnSearchBus() throws Exception {
-		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");	
-		//closeINotificationAtTopSRP();
+		BrowserActions.clickOnElement(btnSearchBus, driver, "Search Button");
 		return new SearchResultBus(driver).get();
 	}
 	/**
@@ -1462,8 +1472,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		} else {
 			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
 		}
-	}
-
-	
+	}		
 }// HomePage
 

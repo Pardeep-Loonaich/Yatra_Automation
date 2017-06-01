@@ -289,6 +289,7 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	 */
 	public void cancelHdfcPayment(String browser) throws Exception{
 		Utils.waitForPageLoad(driver);
+		Thread.sleep(2000);
 		Utils.waitForElement(driver, btnCancelInHdfc);
 		BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 		Thread.sleep(1000);
@@ -317,7 +318,9 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 		else if(browser.equalsIgnoreCase("iexplorer_windows")){
 		}
 		else if(browser.equalsIgnoreCase("Chrome_windows")){
-		driver.navigate().back();
+			for(int i=0;i<ran;i++){
+				driver.navigate().back();
+			}
 		}
 	}
 	

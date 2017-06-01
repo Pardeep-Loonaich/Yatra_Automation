@@ -58,7 +58,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	@FindBy(css = "ul[class='row my-nav col hidden-md fs-12 uprcse tabs-active-bottom-in tabs']>li")
 	private List<WebElement> headerDisplay;
 	
-	@FindBy(xpath = "div[class='hotel-info ng-binding']")
+	@FindBy(css = "div[class='hotel-info ng-binding']")
 	private WebElement txtDescrption;
 	
 	@FindBy(css = "div[id='viewAdditionalInfo']>div[class='hotel-info']")
@@ -105,6 +105,9 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	
 	@FindBy(css = "p[class='view-details']>a[class='fs-12 under-link']>span[class='']")
 	private WebElement btnCancellationPolicyHide;
+	
+	@FindBy(css = "[class*='edit-pax']")
+	private WebElement lnkChngeDateOrPax;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
