@@ -7,7 +7,7 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="webSite" value="https://www.yatra.com/" />
+	<parameter name="webSite" value="https://www.yatra.com/"/>
 	<test name="Flight Pricing" thread-count="1" parallel="true">
 
 		<classes>
