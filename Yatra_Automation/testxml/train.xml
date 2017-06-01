@@ -22,20 +22,14 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Trains.Train">
 			 <methods>
-			<include name= "TC_Yatra_Train_008"/>
-			<include name= "TC_Yatra_Train_014"/>
-			<include name= "TC_Yatra_Train_016"/>
-	     	<include name= "TC_Yatra_Train_017"/>
-	     	<include name= "TC_Yatra_Train_018"/>
-			<include name= "TC_Yatra_Train_019"/>
-			<include name= "TC_Yatra_Train_025"/>
-			<include name= "TC_Yatra_Train_035"/>
-			<include name= "TC_Yatra_Train_041"/>
-			<include name= "TC_Yatra_Train_045"/>
-
+			<include name= "TC_Yatra_Train_022"/>
+			<include name= "TC_Yatra_Train_031"/>
+			<include name= "TC_Yatra_Train_048"/>
+	     	<include name= "TC_Yatra_Train_038"/>
+	     	<include name= "TC_Yatra_Train_044"/>
 			<include name= "TC_Yatra_Train_051"/>
-			<include name= "TC_Yatra_Train_053"/>
-			</methods>     
+		
+			</methods>      
 			</class>
 		</classes>
 	</test>

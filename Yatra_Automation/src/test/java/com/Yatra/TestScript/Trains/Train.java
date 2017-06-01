@@ -1589,6 +1589,7 @@ public class Train {
 			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
 			Log.message("11.Clicking on 'Continue' on PaxPage.");
 			
+			Thread.sleep(2000);
 			paymentPage = trainReviewPage.continueInReviewIternary();
 			Log.message("12.Clicking on 'Continue' on ReviewPage.");
 			

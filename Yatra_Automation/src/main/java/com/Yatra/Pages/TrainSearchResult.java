@@ -639,6 +639,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 			Thread.sleep(1000);
 
 			if (btnFindBus.isDisplayed()){
+				
 				BrowserActions.clickOnElement(btnFindBus, driver, "Clicked on 'Find Bus' button.");
 						break;
 			}							
