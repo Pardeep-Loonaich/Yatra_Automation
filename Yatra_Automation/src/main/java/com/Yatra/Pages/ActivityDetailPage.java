@@ -236,14 +236,12 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	
 		}
 }
-	
 	/**
 	 * Verify Color Of the Selected Activity
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	
 	public boolean verifySelectedDateColour() throws Exception {
 	boolean status3 = false;
 	String rgbvalue = "243, 71, 71";
@@ -251,14 +249,12 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	status3= Utils.verifyCssPropertyForElement(selectedDate,"background-color",rgbvalue);
 	return status3;
 	}
-	
 	/**
 	 * To Get Error Message From NO Activity Date
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	
 	public String getTextErrorMessageNoActivities() throws Exception {
 	String Message = null;
 	if(noActivity.isDisplayed()){
@@ -310,7 +306,6 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 				"Getting text from the Cancellation Policy");
 		return txtDetails;
 	}
-	
 	/**
 	 * Click On Hide Cancellation Policy Button
 	 * 
@@ -321,4 +316,4 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(btnCancellationPolicyHide, driver, "Click On Hide Cancellation Policy Button");
 	}
-}//ActivityDetailPage
+}//ActivityDetailPageEnd

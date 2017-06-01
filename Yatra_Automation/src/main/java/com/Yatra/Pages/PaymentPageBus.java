@@ -323,7 +323,6 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 			}
 		}
 	}
-	
 	 /**
      * To Get Text Promotional Reward on Payment Details
 	 * @return 
@@ -337,6 +336,4 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	public static double round1(double value, int scale) {
 	    return Math.round(value * Math.pow(10, scale)) / Math.pow(10, scale);
 	}
-	
-	
 }//PaymentPageBus

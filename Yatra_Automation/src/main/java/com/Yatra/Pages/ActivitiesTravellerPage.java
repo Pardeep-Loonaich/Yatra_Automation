@@ -124,19 +124,15 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 		// enter Last Name with random string
 		BrowserActions.typeOnTextField(txtLastNme, randomLastName, driver, "Last Name");
 		Log.event("Successfully entered Passenger Last Name: " + randomLastName);
-
 	}
-
 	/***
 	 * to select the 'Hotels Not Required' checkbox
 	 * 
 	 * @throws Exception
 	 */
-
 	public void clickOnHotelNotRequiredChkbox() throws Exception {
 		BrowserActions.clickOnElement(lblHotelPickup, driver, "Clicked on 'checkbox' on Traveller's Page.");
 	}
-
 	/**
 	 * to click on Continue button and navigate to Payment Page.
 	 * 
@@ -148,5 +144,4 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 				"Clicked on 'Continue' button on Traveller's Page.");
 		return new PaymentPage(driver).get();
 	}
-
 }// ActivitiesTravellerPageEnd

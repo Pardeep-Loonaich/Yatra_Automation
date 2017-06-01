@@ -127,6 +127,13 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 		Utils.waitForPageLoad(driver);
 	}// load
 
+	/**
+	 * To Fill traveller details
+	 * 
+	 * @throws Exception
+	 * @param: String 
+	 */
+
 
 	public void TravellerDetails(String name) throws Exception {
 		Utils.waitForPageLoad(driver);
@@ -167,9 +174,10 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 
 	/**
 	 * Getting the Error Text
-	 * 
+	 *  
+	 *  @throws Exception
 	 * @return
-	 * @throws Exception
+	 *
 	 */
 	public String getTextErrorMsg() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsg);
@@ -178,7 +186,7 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	}
 
 	/**
-	 * Getting the Error Text
+	 * Getting the Error Text From promo section
 	 * 
 	 * @return
 	 * @throws Exception
@@ -221,6 +229,11 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 		return number;
 	}
 
+	/**
+	 * To verify checkBox in Traveller page
+	 * 
+	 * @throws Exception
+	 */
 	public boolean checkBoxFirst() throws Exception {
 		boolean flag = false;
 		String result = chkBoxAddonsFirst.getAttribute("type");
@@ -232,6 +245,11 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 		return flag;
 
 	}
+	/**
+	 * To verify checkBox in Traveller page
+	 * 
+	 * @throws Exception
+	 */
 
 	public boolean checkBoxSecond() throws Exception {
 		boolean flag = false;
@@ -270,14 +288,12 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	 * 
 	 * @throws Exception
 	 */
-
 	public void enterPromoCode(String Promo) throws Exception {
 		Utils.waitForElement(driver, txtFldPromoCode);
 		BrowserActions.typeOnTextField(txtFldPromoCode, Promo, driver, "Yatra Promo Code");
 		BrowserActions.clickOnElement(btnApply, driver, "Apply Button");
 		Utils.waitForPageLoad(driver);
 	}
-
 	/**
 	 * To click On Continue
 	 * 

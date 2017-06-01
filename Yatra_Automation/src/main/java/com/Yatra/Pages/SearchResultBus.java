@@ -219,7 +219,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	}// load
 
 	/**
-	 * Getting the text from the Bus Deatils
+	 * Getting the text from the Bus Details
 	 * 
 	 * @return
 	 * @throws Exception
@@ -256,7 +256,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	}
 
 	/**
-	 * To click Select Seat
+	 * To click Select Seat Button
 	 * 
 	 * @throws Exception
 	 */
@@ -281,7 +281,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		Utils.waitForPageLoad(driver);
 	}
 	/**
-	 * To click Select Seat RT
+	 * To click Select Seat RoundTrip
 	 * 
 	 * @throws Exception
 	 */
@@ -653,7 +653,4 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector("a[class*='flL ytBtn ytBtnBlue txtL LatoBold seat_map_continue tooltip']")).click(); 
 	}
-	
-	
-	
 }// SRPBUS
