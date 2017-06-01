@@ -92,7 +92,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -128,7 +128,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -166,7 +166,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -212,7 +212,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -258,7 +258,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -309,7 +309,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -351,7 +351,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -408,7 +408,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -469,7 +469,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -523,7 +523,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -576,7 +576,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -622,7 +622,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -668,7 +668,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -712,7 +712,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -762,7 +762,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -828,7 +828,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -883,7 +883,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -942,7 +942,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1000,7 +1000,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1067,7 +1067,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1138,12 +1138,10 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
-	
-	
 	@Test(groups = { "desktop" }, description = "Check for infant validations.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Train_033(HashMap<String, String> testData) throws Exception {
 
@@ -1210,7 +1208,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1278,7 +1276,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1357,7 +1355,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1430,7 +1428,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1504,7 +1502,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1580,7 +1578,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1656,7 +1654,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1742,7 +1740,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1848,7 +1846,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1926,7 +1924,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2012,7 +2010,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2091,7 +2089,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2138,7 +2136,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2184,7 +2182,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2226,7 +2224,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2259,7 +2257,6 @@ public class Train extends BaseTest{
 			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("btnFindTrain"), trainSearchResult),
 					"<b>Actual Result:</b> Successfully navigated to 'Train Search' page.",
 					"<b>Actual Result:</b> Unable to navigate to 'Train Search' page.", driver);
-
 			trainSearchResult.selectTrainByIndex(1);
 			
 			Log.message("<br>");
@@ -2274,7 +2271,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2324,7 +2321,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2367,7 +2364,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2412,7 +2409,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2491,7 +2488,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2572,7 +2569,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2646,7 +2643,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2711,7 +2708,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2796,7 +2793,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2873,7 +2870,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2950,7 +2947,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3027,7 +3024,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3120,7 +3117,7 @@ public class Train extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}

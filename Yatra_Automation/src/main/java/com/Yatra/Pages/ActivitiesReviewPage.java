@@ -222,12 +222,4 @@ public class ActivitiesReviewPage extends LoadableComponent<ActivitiesReviewPage
 	public String getTextInvalidPromoCode() throws Exception {
 		return BrowserActions.getText(driver, txtInvalidPromoCode, "Getting Error Message From Invalid Promo Code");
 	}
-	
-	
-	
-	
-	
-	
-	
-
-}
+}//ActivitiesReviewPageEnd

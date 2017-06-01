@@ -17,9 +17,9 @@
 	<test name="Bus Search" thread-count="1" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.Bus.BusSearchTest">
-			<methods>
-			<include name="TC_Yatra_Bus_043"></include>
-			</methods>	 
+			<!--  <methods>
+			<include name="TC_Yatra_Bus_021"></include>
+			</methods>	  -->
 			</class>          
 		</classes>
 	</test>
