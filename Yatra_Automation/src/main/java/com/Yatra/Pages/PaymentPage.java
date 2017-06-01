@@ -1311,6 +1311,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 	public void navigateBackFromMobileWallet(String walletName,String browser) throws Exception{
+		BrowserActions.nap(5);
 		switch (walletName){
 		case "mobikwik":
 			driver.navigate().back();
@@ -1367,18 +1368,21 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.javascriptClick(btnCancelIdea, driver, "Clicked on 'Back to Yatra' button");
 			break;
 
-		}BrowserActions.nap(3);
+		}BrowserActions.nap(10);
 	}
 
 
 
 	public boolean verifyPage() throws Exception{
 		boolean flag = false;
-		if(btnContinueReviewPage.isDisplayed()!=flag){
+		/*if(btnContinueReviewPage.isDisplayed()!=flag){
 			return !flag;
 
-		}
-		else
+		}*/
+		if(BrowserActions.isElementVisible(driver, btnContinueReviewPage)!=flag){
+			return !flag;
+
+		}else
 			return flag;	 
 	}
 

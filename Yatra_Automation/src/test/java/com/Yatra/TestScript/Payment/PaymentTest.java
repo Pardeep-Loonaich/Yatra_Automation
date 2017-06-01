@@ -193,7 +193,7 @@ public class PaymentTest extends BaseTest {
 
 			paymentPage.clickingToCancelEcashRedem();
 			Log.message("12. Clicked on Cancel Ecash Redeem link to remove ecash.");
-
+			BrowserActions.nap(15);
 			Log.message("<br>");
 			Log.assertThat(
 					paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnRedeemNow"), paymentPage)
@@ -330,7 +330,7 @@ public class PaymentTest extends BaseTest {
 			Log.message("14. Navigating back to 'Yatra' page.");
 
 			Utils.waitForPageLoad(driver);
-			BrowserActions.nap(2);
+			BrowserActions.nap(15);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back to Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -457,7 +457,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage.clickOnPayNow();
 			Log.message("12. Clicked on 'PayNow' button on Payment Page.");
 			Utils.waitForPageLoad(driver);
-			BrowserActions.nap(5);
+			BrowserActions.nap(10);
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> User is successfully coming back to yatra page after failed transcaction.");
@@ -586,7 +586,7 @@ public class PaymentTest extends BaseTest {
 			Log.message("12. Clicked on 'PayNow' button on Payment Page.");
 
 			Utils.waitForPageLoad(driver);
-
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> User is successfully coming back to yatra page after failed transcaction.");
@@ -1493,7 +1493,7 @@ public class PaymentTest extends BaseTest {
 				driver.switchTo().alert().accept();
 			}
 			Utils.waitForPageLoad(driver);
-			BrowserActions.nap(8);
+			BrowserActions.nap(12);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -1842,15 +1842,17 @@ public class PaymentTest extends BaseTest {
 			Log.message("14. Clicked on Cancel button.");
 
 			driver.navigate().back();
+			driver.navigate().back();
 			driver.navigate().refresh();
 			Log.message("15. Navigating back to 'Yatra' page.");
 
 			if (paymentPage.verifyPage() == true) {
+				reviewPage.popUpAppear();
 				travellerPage = reviewPage.clickOnContinue();
 				paymentPage = travellerPage.clickOnContinue();
 			}
 			Utils.waitForPageLoad(driver);
-			BrowserActions.nap(8);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
@@ -1858,7 +1860,7 @@ public class PaymentTest extends BaseTest {
 
 			String cc_number = paymentPage.getCrediCrdNum();
 			Log.message("Credi Card details:" + cc_number);
-			BrowserActions.nap(8);
+			BrowserActions.nap(3);
 			Utils.waitForPageLoad(driver);
 			Log.message("<b>Expected Result:</b> Verify earlier stored cards are showing in credit card option.");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("tabSavedCC"), paymentPage),
@@ -2027,7 +2029,7 @@ public class PaymentTest extends BaseTest {
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
 			paymentPage.verifyCancelEcash();
-			BrowserActions.nap(3);
+			BrowserActions.nap(6);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify all payment methods are showing in Payment Page.");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("lstPaymentMetod"), paymentPage),
@@ -2148,7 +2150,7 @@ public class PaymentTest extends BaseTest {
 			String finalTotalAmount1 = paymentPage.getTextFromTotalAmount();
 			int finalTotalAmount = Integer.parseInt(finalTotalAmount1);
 			Log.message("  Final Total Amount in payment module after applying eCash:" + finalTotalAmount);
-			BrowserActions.nap(8);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify redeemed amount should display in payment details section.");
 			Log.assertThat(paymentPage.getTextFromPaymentDetailsModule().contains("eCash"),
@@ -2260,7 +2262,7 @@ public class PaymentTest extends BaseTest {
 			int initialTotalAmount = Integer.parseInt(initialTotalAmount1);
 			Log.message("  Initial Total Amount:" + initialTotalAmount);
 
-			BrowserActions.nap(3);
+			BrowserActions.nap(12);
 			paymentPage.verifyCancelEcash();
 
 			String initialEcash1 = paymentPage.eCashAmount();
@@ -2284,7 +2286,7 @@ public class PaymentTest extends BaseTest {
 			String finalTotalAmount1 = paymentPage.getTextFromTotalAmount();
 			int finalTotalAmount = Integer.parseInt(finalTotalAmount1);
 			Log.message("  Total Amount in payment module after applying eCash:" + finalTotalAmount);
-			BrowserActions.nap(3);
+			BrowserActions.nap(12);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify redemption is happened.");
 			Log.softAssertThat(finalTotalAmount == (initialTotalAmount - finalEcash),
@@ -2298,7 +2300,7 @@ public class PaymentTest extends BaseTest {
 			String TotalAmount1 = paymentPage.getTextFromTotalAmount();
 			int TotalAmount = Integer.parseInt(TotalAmount1);
 			Log.message("  Total Amount in payment module after cancelling the eCash:" + TotalAmount);
-			BrowserActions.nap(8);
+			BrowserActions.nap(12);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify redemption is removed and fare is correct now.");
 			Log.assertThat(initialTotalAmount == TotalAmount,
@@ -2587,7 +2589,7 @@ public class PaymentTest extends BaseTest {
 					break;
 				}
 			}
-			BrowserActions.nap(8);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify TnC page is opening properly in separate window.");
 
@@ -2677,7 +2679,7 @@ public class PaymentTest extends BaseTest {
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
 			paymentPage.verifyCancelEcash();
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify flight details is showing on top.");
 
@@ -2769,7 +2771,7 @@ public class PaymentTest extends BaseTest {
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
 			paymentPage.verifyCancelEcash();
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify flight details is showing on top.");
 
@@ -2861,7 +2863,7 @@ public class PaymentTest extends BaseTest {
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
 			paymentPage.verifyCancelEcash();
-			BrowserActions.nap(5);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify booking progress bar should display on Paymentpage.");
 
@@ -2952,7 +2954,7 @@ public class PaymentTest extends BaseTest {
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
 			paymentPage.verifyCancelEcash();
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Verify that for a Logged in user eCash details are displayed in header on Payment page.");
@@ -3044,7 +3046,7 @@ public class PaymentTest extends BaseTest {
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
 			paymentPage.verifyCancelEcash();
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Verify that user name is displayed for logged in user on Payment page.");
@@ -3139,7 +3141,7 @@ public class PaymentTest extends BaseTest {
 			Utils.waitForPageLoad(driver);
 			reviewPage = paymentPage.clickOnEditLink();
 			Log.message("10. Clicked on Edit Link under Review bookbar.");
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify we are routing to review/pricing page seemlessly.");
 
@@ -3253,10 +3255,20 @@ public class PaymentTest extends BaseTest {
 
 			paymentPage.cancelHdfcPayment(browser);
 			Log.message("14. Clicked on Cancel button.");
-
+			driver.navigate().back();
+			driver.navigate().back();
+			driver.navigate().refresh();
 			Log.message("15. Navigating back to 'Yatra' page.");
 
-			BrowserActions.nap(3);
+			if (paymentPage.verifyPage() == true) {
+				reviewPage.popUpAppear();
+				travellerPage = reviewPage.clickOnContinue();
+				paymentPage = travellerPage.clickOnContinue();
+			}
+
+			
+
+			BrowserActions.nap(20);
 			Utils.waitForPageLoad(driver);
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
 					"<b>Actual Result:</b> Successfully navigated back on Yatra Page.",
@@ -3275,7 +3287,7 @@ public class PaymentTest extends BaseTest {
 
 			paymentPage.cancelCreditCardDetails();
 			Log.message("16. Deleted stored card details.");
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify stored card is getting deleted from list.");
 			Log.assertThat(
@@ -3386,8 +3398,16 @@ public class PaymentTest extends BaseTest {
 
 			paymentPage.cancelHdfcPayment(browser);
 			Log.message("14. Clicked on Cancel button.");
-
+			//driver.navigate().back();
+			driver.navigate().back();
+			driver.navigate().refresh();
 			Log.message("15. Navigating back to 'Yatra' page.");
+
+			if (paymentPage.verifyPage() == true) {
+				reviewPage.popUpAppear();
+				travellerPage = reviewPage.clickOnContinue();
+				paymentPage = travellerPage.clickOnContinue();
+			}
 
 			BrowserActions.nap(3);
 
@@ -3421,7 +3441,7 @@ public class PaymentTest extends BaseTest {
 
 			String card = paymentPage.getCrediCrdNum();
 			Log.message("the card number is." + card);
-			BrowserActions.nap(6);;
+			BrowserActions.nap(20);
 			Log.assertThat(
 					paymentPage.elementLayer.verifyPageElements(Arrays.asList("tabSavedCC"), paymentPage)
 							&& (cardNumber[1].contains(card)),
@@ -3532,7 +3552,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage.navigateBackFromMobileWallet(walletName, browser);
 			Log.message("13. Navigating back to 'Yatra' page.");
 			Utils.waitForPageLoad(driver);
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -3644,8 +3664,9 @@ public class PaymentTest extends BaseTest {
 			paymentPage.navigateBackFromMobileWallet(walletName, browser);
 			Log.message("13. Navigating back to 'Yatra' page.");
 
-			Thread.sleep(7000);
+			
 			Utils.waitForPageLoad(driver);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -3757,8 +3778,7 @@ public class PaymentTest extends BaseTest {
 			Log.message("13. Navigating back to 'Yatra' page.");
 			Utils.waitForPageLoad(driver);
 
-			BrowserActions.nap(6);
-
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
@@ -3870,7 +3890,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage.navigateBackFromMobileWallet(walletName, browser);
 			Log.message("13. Navigating back to 'Yatra' page.");
 			Utils.waitForPageLoad(driver);
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -3984,7 +4004,7 @@ public class PaymentTest extends BaseTest {
 			if (browser.equalsIgnoreCase("iexplorer_windows")) {
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -4099,7 +4119,7 @@ public class PaymentTest extends BaseTest {
 			if (browser.equalsIgnoreCase("iexplorer_windows")) {
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -4215,7 +4235,7 @@ public class PaymentTest extends BaseTest {
 			if (browser.equalsIgnoreCase("iexplorer_windows")) {
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(6);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -4327,7 +4347,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage.navigateBackFromMobileWallet(walletName, browser);
 			Log.message("13. Navigating back to 'Yatra' page.");
 			Utils.waitForPageLoad(driver);
-			BrowserActions.nap(8);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -4441,7 +4461,7 @@ public class PaymentTest extends BaseTest {
 			if (browser.equalsIgnoreCase("iexplorer_windows")) {
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(8);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -4554,7 +4574,7 @@ public class PaymentTest extends BaseTest {
 			if (browser.equalsIgnoreCase("iexplorer_windows")) {
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(10);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -4673,7 +4693,7 @@ public class PaymentTest extends BaseTest {
 				driver.navigate().refresh();
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(10);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -4792,7 +4812,7 @@ public class PaymentTest extends BaseTest {
 				driver.navigate().refresh();
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(10);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -4910,7 +4930,7 @@ public class PaymentTest extends BaseTest {
 				driver.navigate().refresh();
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(10);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -5029,7 +5049,7 @@ public class PaymentTest extends BaseTest {
 				driver.navigate().refresh();
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(8);
+			BrowserActions.nap(15);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -5148,7 +5168,7 @@ public class PaymentTest extends BaseTest {
 				driver.navigate().refresh();
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(8);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -5268,7 +5288,7 @@ public class PaymentTest extends BaseTest {
 				driver.navigate().refresh();
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(8);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
@@ -5387,7 +5407,7 @@ public class PaymentTest extends BaseTest {
 				driver.navigate().refresh();
 				driver.switchTo().alert().accept();
 			}
-			BrowserActions.nap(8);
+			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated back on Yatra Page.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
