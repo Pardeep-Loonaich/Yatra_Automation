@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Workbook;
 
 public class ExcelUtils 
 
@@ -16,6 +18,8 @@ public class ExcelUtils
 	String sheetName;
 	HSSFSheet sheet;
 	String testCaseId;
+	private static final String PAGE_LOAD_TIME_FILE="";
+	private static final String PAGE_PERFORMANCE_SHEET_NAME="";
 	
 	public HSSFSheet initiateExcelConnection(String workSheet, String workBookName, boolean doFilePathMapping) 
 	{
@@ -106,5 +110,25 @@ public class ExcelUtils
 		}
 		return listOfHeaderName;
 	}//getHeaders
+	
+	public void setCellValue(Map<String,Integer> pageLoadTimeData)
+	
+	{
+		try
+		{
+		File file=new File(PAGE_LOAD_TIME_FILE);
+		HSSFWorkbook workbook=new HSSFWorkbook(new FileInputStream(file));
+		workbook.getSheet(PAGE_PERFORMANCE_SHEET_NAME);
+		
+		
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+			
+			
+		}
+		
+	}
 
 }
