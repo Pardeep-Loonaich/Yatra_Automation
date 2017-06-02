@@ -31,9 +31,10 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-
+@SuppressWarnings("unused")
 public class SearchResult extends LoadableComponent<SearchResult> {
 
+	
 	private String appURL;
 	private WebDriver driver;
 	private boolean isPageLoaded;
@@ -2359,7 +2360,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unused")
+	
 	public void selectFlightStopsInFilters(String stops) throws Exception {
 		for (int i = 1; i < lnkSops_Filters.size(); i++) {
 			WebElement stop = driver.findElement(
@@ -2654,6 +2655,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
+	
 	public void clickOnFlightLinks() throws Exception {
 		List<WebElement> lstFlight = driver.findElements(By.cssSelector("div[class='js-flightRow js-flightItem']"));
 		for (int i = 0; i < lstFlight.size(); i++) {
@@ -3062,14 +3064,15 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		boolean boolModifySearch = BrowserActions.isElementPresent(driver, btnModifySearchIcon);
 		boolean boolFilters = BrowserActions.isElementPresent(driver, lnkFilters);
 		boolean boolResultGrid = BrowserActions.isElementPresent(driver, lnkResultGrid);
-		boolean boolSetFareAlerts = BrowserActions.isElementPresent(driver, lnkSetFareAlerts);
+		//boolean boolSetFareAlerts = BrowserActions.isElementPresent(driver, lnkSetFareAlerts);
+		//02/06/2017 :-Set Fare Alerts(Bell symbol) is Removed in SRP page, so not verified Set Fare alert in SRP
 		boolean boolSahreIntinerary = BrowserActions.isElementPresent(driver, lnkShareItinerary);
 		boolean boolFooter = BrowserActions.isElementPresent(driver, lnkFooter);
 		
 		if (tripType.equals(Constants.C_ONEWAY)) {
 			boolean boolAirlineMatrix_OW = BrowserActions.isElementPresent(driver, lnkAirlinematrix_OW);
 			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix_OW == true
-					&& boolResultGrid == true && boolSetFareAlerts == true && boolSahreIntinerary == true
+					&& boolResultGrid == true  && boolSahreIntinerary == true
 					&& boolFooter == true) {
 				Log.event("Successfully verified SRP Menu for One Way");
 				status = true;
@@ -3085,7 +3088,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			boolean boolRLL = BrowserActions.isElementPresent(driver, lnkReturnLFF);
 			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix == true
 					&& boolPrevDay == true && boolNextDay == true && boolOLL == true && boolRLL == true
-					&& boolResultGrid == true && boolSetFareAlerts == true && boolSahreIntinerary == true
+					&& boolResultGrid == true && boolSahreIntinerary == true
 					&& boolFooter == true) {
 				Log.event("Successfully verified SRP Menu for Round Trip");
 				status = true;
@@ -3098,9 +3101,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			boolean boolPrevDay = BrowserActions.isElementPresent(driver, lnkPrevDay_OnwardLeg);
 			boolean boolNextDay = BrowserActions.isElementPresent(driver, lnkNextDay_OnwardLeg);
 			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix == true
-					&& boolPrevDay == true && boolNextDay == true && boolResultGrid == true && boolSetFareAlerts == true
-					&& boolSahreIntinerary == true && boolFooter == true) {
-				Log.event("Successfully verified SRP Menu for Round Trip");
+					&& boolPrevDay == true && boolNextDay == true && boolResultGrid == true  && boolSahreIntinerary == true && boolFooter == true) {
+				Log.event("Successfully verified SRP Menu for Multicity");
 				status = true;
 			} else {
 				status = false;

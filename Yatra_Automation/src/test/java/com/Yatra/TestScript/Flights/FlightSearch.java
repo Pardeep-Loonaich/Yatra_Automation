@@ -6127,10 +6127,7 @@ public class FlightSearch extends BaseTest{
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
-		String promo[] =testData.get("Promo").split(",");
-		String domain = testData.get("Domain");		
-		String stops = testData.get("Stops");
-		String airlines = testData.get("Airlines");
+		String promo[] =testData.get("Promo").split(",");		
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -6147,8 +6144,7 @@ public class FlightSearch extends BaseTest{
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 			
-			// step: select Airlines Book Now for One Way search
-			//reviewPage = searchResult.clickOnBookNowInOneWay(2);			
+			// step: select Airlines Book Now for One Way search						
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page!");
 

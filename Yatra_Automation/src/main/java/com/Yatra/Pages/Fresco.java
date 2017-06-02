@@ -26,9 +26,9 @@ import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
-@SuppressWarnings("unused")
-public class HomePage extends LoadableComponent<HomePage> {
 
+@SuppressWarnings("unused")
+public class Fresco extends LoadableComponent<Fresco> {
 	private String appURL;
 	private WebDriver driver;
 	private boolean isPageLoaded;
@@ -68,10 +68,9 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@FindBy(css = "div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']")
 	private List<WebElement> selectMonth;
 
-	@FindBy(css = "div[id='BE_flight_paxInfoBox']")
-	private WebElement passengerInfo;
+	@FindBy(css = "div[id='BE_flight_paxInfoBox']")	private WebElement passengerInfo;
 
-	//String dateLocator = "div[class='month-box'] table tbody td[class*='activeTD clsDateCell'] a[id='a_";
+	
 	String returnDateLocator="";
 	String passengersLocator = "span[class='ddSpinnerPlus']";
 	String passengerClassLocator = "div[id='flight_class_select_child'] ul li";
@@ -252,7 +251,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 *            : UAT URL
 	 */
 
-	public HomePage(WebDriver driver, String url) {
+	public Fresco(WebDriver driver, String url) {
 		appURL = url;
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
@@ -265,7 +264,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @param driver
 	 *            : webdriver
 	 */
-	public HomePage(WebDriver driver) {
+	public Fresco(WebDriver driver) {
 		appURL = "https://www.yatra.com/";
 		this.driver = driver;
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
@@ -349,9 +348,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[1]")).click();
-		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		datePicker.get(0).click();
-		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");*/
 	}
 
 	public void specifyPassengerInfo_old(String passengers) throws Exception {
@@ -619,8 +615,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[1]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[1]")).click();
-		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		datePicker.get(0).click();*/
 		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
 	}
 
@@ -631,24 +625,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public LoginPage navigateToSignIn() throws Exception {
 		// click Login button on signin page
-
-		/*Utils.waitForElement(driver, lnkMyaccount);		
-		BrowserActions.mouseHover(driver, lnkMyaccount);
-		BrowserActions.moveToElementJS(driver, lnkMyaccount);
-		BrowserActions.actionClick(btnSignIn, driver, "Sign In");
-
-	    Utils.waitForPageLoad(driver);		
-
-		BrowserActions.moveToElementJS(driver, driver.findElement(By.cssSelector("li[id='userSignInStrip']>a")));
-		Actions actions = new Actions(driver);
-		actions.moveToElement(driver.findElement(By.cssSelector("li[id='userSignInStrip']"))).perform();
-		actions.click(driver.findElement(By.cssSelector("li[id='userSignInStrip']"))).click().perform();
-
-		actions.moveToElement(driver.findElement(By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'My Account')]"))).perform();
-		actions.click(driver.findElement(By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'My Account')]"))).perform();
-
-		 */
-
 		WebElement lnkMyAccount = driver.findElement(By.cssSelector("li[id='userSignInStrip']>a"));
 		Point point = lnkMyAccount.getLocation();
 		int xCord = point.getX();
@@ -693,17 +669,14 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,
-			String passengerInfo, String passengerClass) throws Exception {
+		String passengerInfo, String passengerClass) throws Exception {
 		BrowserActions.nap(2);
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
 		BrowserActions.nap(2);
 		selectDepartureDate(departureDate); // select Departure Date
-
-		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult,
-		// Child, Infant)
+		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
-		//clickDoneButtonInPassengerBox(); // click Done button
 		Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
@@ -882,8 +855,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectMonth_MultiDepart1.get(month - 3).click();
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
-		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		datePicker.get(7).click();*/
 		Log.event("Selected MultiCity Departure1 Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
@@ -896,18 +867,14 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @throws Exception
 	 */
 
-	@SuppressWarnings("static-access")
+	@SuppressWarnings({ "static-access" })
 	public String selectMultiCityDateDeparture2(String departureDate) throws Exception {
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateMulticity_Departure2, driver, "clicking on MultiCity Departure2 date icon");
-		//selectMonth_MultiDepart2.get(0).click();
-		//Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[9]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[9]")).click();
-		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		datePicker.get(8).click();*/
 		Log.event("Selected MultiCity Departure2 Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
@@ -1043,10 +1010,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		BrowserActions.nap(2);
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
-
-		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		BrowserActions.nap(2);
-		datePicker.get(7).click();*/
 		Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
@@ -1068,9 +1031,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
-		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-		BrowserActions.nap(2);
-		datePicker.get(7).click();*/
 		Log.event("Selected Bus Departure Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
@@ -1090,7 +1050,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public void selectRoundTripBusSearchFields(String origin, String destination, String departureDate,
-			String returnDate, String passengerInfo) throws Exception {
+		String returnDate, String passengerInfo) throws Exception {
 
 		enterOriginBus(origin); // enter Origin value
 		BrowserActions.nap(2);
@@ -1114,7 +1074,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 
 	public void selectOneWayBusSearchFields(String origin, String destination, String departureDate,
-			String passengerInfo) throws Exception {
+		String passengerInfo) throws Exception {
 		BrowserActions.nap(2);
 		enterOriginBus(origin); // enter Origin value
 		BrowserActions.nap(2);
@@ -1139,8 +1099,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public String getTextErrorMsgEmptyCity() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
-				"Getting text from the Bus Dropping Point");
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity, "Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
 
@@ -1166,8 +1125,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public String getTextErrorSameCity() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
-				"Getting text from the Bus Dropping Point");
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
 
@@ -1222,10 +1180,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 		selectMonth_Bus.get(month - 3).click();
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
-		/*BrowserActions.nap(2);
-           List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
-           BrowserActions.nap(2);
-           datePicker.get(7).click();*/
 		Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
@@ -1248,9 +1202,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	}
 
 	public void clickTrainTab() throws Exception {
-		
-		
-		// final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
 		Utils.waitForPageLoad(driver);
 	}
@@ -1272,8 +1223,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public String getTextErrorMsg() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
-				"Getting text from the Bus Dropping Point");
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity, "Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
 	/**
@@ -1284,21 +1234,15 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public String getTextErrorIncorrectCity() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsgIncorrectCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgIncorrectCity,
-				"Getting text from the Bus Dropping Point");
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgIncorrectCity, "Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
-
-
 
 	public Bookings navigateToBooking() throws Exception{
 		BrowserActions.moveToElementJS(driver, drpdwnUserLogin);
 		BrowserActions.clickOnElement(lnkMyBooking, driver, "Clicked on Login user dropdown");	
 		return new Bookings(driver).get();
 	}
-
-
-
 
 	/**
 	 * Description:to Click on Main Menu and sub menu
@@ -1307,69 +1251,36 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * @param sSubMenu
 	 * @throws Exception 
 	 */
-	public LoginPage clickOnMainMenu(WebDriver driver, String sMainMenu, String sSubMenu) throws Exception
-
-	{/*
-
-		WebElement wMainMenu=driver.findElement(By.xpath("//div[@class='menu']//a[contains(.,'"+sMainMenu+"')]"));
-
-		Actions action=new Actions(driver);
-		Utils.waitForElement(driver, wMainMenu, 5);
-		Log.message("clicking on "+sMainMenu+" in main Navigation");
-		Point location=wMainMenu.getLocation();
-		int xCoordinate=location.getX();
-		int yCoordinate=location.getY();
-		System.out.println();
-		action.moveToElement(wMainMenu, xCoordinate, yCoordinate).clickAndHold().build().perform();
-		BrowserActions.clickOnElement(wMainMenu, driver, "clicking on "+sMainMenu+" in main Navigation");
-
-		if("My Account".equalsIgnoreCase(sMainMenu.trim()))
-		{
-			Log.message("clicking on "+sSubMenu+" under "+sMainMenu+"");
-			WebElement wSubMenu=driver.findElement(By.xpath("//div[@class='user-drop-ddn-out header-dropdown']//a[text()='"+sSubMenu+"']"));
-			BrowserActions.clickOnElement(wSubMenu, driver, sSubMenu+" under "+sMainMenu+"");
-
-		}
-
-	 */
+	public LoginPage clickOnMainMenu(WebDriver driver, String sMainMenu, String sSubMenu) throws Exception {
 		//this is just patch as of now will work on it
-		if(sSubMenu.contains("Agent"))
-		{
+		if (sSubMenu.contains("Agent")) {
 			driver.navigate().to("https://www.yatra.com/agents");
-		}
-		else if(sSubMenu.contains("Corporate"))
+		} else if (sSubMenu.contains("Corporate"))
 
 		{
 			driver.navigate().to("https://www.yatra.com/corporatetravel");
-		}
-		else if(sSubMenu.equalsIgnoreCase("Login"))
+		} else if (sSubMenu.equalsIgnoreCase("Login"))
 
 		{
 			driver.navigate().to("https://secure.yatra.com/social/common/yatra/signin.htm");
 		}
 		return new LoginPage(driver).get();
 	}
+	
 	/**
-	 * Description: to select date from  calendar (it will work for depart date and return date)
-	 * @author harveer.singh
+	 * Description: to select date from  calendar (it will work for depart date and return date)	
 	 * @param: String date in (yyyy_mm_dd) 
 	 */
-	@SuppressWarnings("static-access")
-	public void datePicker(WebDriver driver,String departureDate)
-
-	{
+	@SuppressWarnings({ "static-access" })
+	public void datePicker(WebDriver driver,String departureDate){
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int year=Integer.parseInt(date.split("_")[0]);
 		int month = Integer.parseInt(date.split("_")[1]);
 		int day=Integer.parseInt(date.split("_")[2]);
-
-
 		WebElement element=driver.findElement(By.xpath("/*[@class='month-list'])[1]//*[@href='#PegasusCal-0-month-"+month+"-"+year+"']"));
 		element.click();
 		WebElement calndr=driver.findElement(By.xpath("//*[@id='PegasusCal-0-month-"+month+"-"+year+"']//a[@id='a_"+year+"_"+month+"_"+day+"']"));
-
-
 	}
 
 	/***
@@ -1393,7 +1304,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		return BrowserActions.getText(driver, lstOriginSuggestion, "Getting text from the list of suggestion");
 	}
 	/**
-	 * Entert Activites Origin
+	 * Enter Activities Origin
 	 * 
 	 * @param origin
 	 *            as string
@@ -1448,8 +1359,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	public void closeINotificationAtTopSRP() throws Exception {	
 		BrowserActions.nap(4);		
-		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {
-		//if(IframeNotification.isDisplayed()){
+		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {	
 			BrowserActions.switchToIframe(driver, IframeNotification);			
 			if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true){ 
 				BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
@@ -1461,6 +1371,101 @@ public class HomePage extends LoadableComponent<HomePage> {
 		} else {
 			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
 		}
-	}		
-}// HomePage
+	}	
+	
+//*************************************************************************************************************************
 
+    //*******************Fresco**********************//
+
+//*************************************************************************************************************************
+
+	
+
+@FindBy(css = "ul[class='mac-scroll scrollable'] li")
+private List<WebElement>  lnkCitiesList;
+
+@FindBy(css = "ul[class='mac-scroll scrollable']")
+private WebElement  lnkCitiesListGrid;
+
+@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_even ac_over']")  
+private WebElement lnkFlightSourceAutoSuggestionName;
+
+@FindBy(css = "input#BE_hotel_destination_city")
+private WebElement txtHotelCity;
+
+@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_odd ac_over']")  
+private WebElement lnkHotelCityAutoSuggestionName;
+
+/**
+ * Getting the text from the Auto Suggestion Source city name
+ * 
+ * @return
+ * @throws Exception
+ */
+public String getTextFlightAutoSuggestionSourceCityName() throws Exception {
+	String txtCityName = BrowserActions.getText(driver, lnkFlightSourceAutoSuggestionName,	"Flights Auto Suggestion City Name");
+	return txtCityName;
+}
+
+
+/**
+ * Getting the text from the Auto Suggestion DropDown
+ * 
+ * @return
+ * @throws Exception
+ */
+public boolean getCitiesListCount() throws Exception {	
+	boolean status = false;
+	int citiesCount = lnkCitiesList.size();
+	if(citiesCount == 10){
+		Log.event("Ten cities list displayed when clicked on booking engine");
+		status = true;
+	} else{
+		Log.event("Ten cities list not displayed when clicked on booking engine");
+		status = false;
+	}
+	return status;
+}
+
+/**
+ * verify the Cities grid 
+ * 
+ * @return
+ * @throws Exception
+ */
+public boolean getCitiesListGrid() throws Exception {	
+	boolean status = false;	
+	if (BrowserActions.isElementPresent(driver, lnkCitiesListGrid) == true) {
+		status = true;
+	}	
+	return status;
+}
+
+
+/**
+ * Enter Hotel city name
+ * 
+ * @param origin
+ *            as string
+ * @throws Exception
+ */
+public void enterHotelCity(String origin) throws Exception {
+	Utils.waitForElement(driver, txtHotelCity);		
+	BrowserActions.typeOnTextField(txtHotelCity, origin, driver, "Hotel city text field");
+	BrowserActions.nap(3);
+	Utils.waitForElement(driver, txtHotelCity);			
+	Log.event("Entered the Hotel City: "+origin);		
+}
+
+/**
+ * Getting the text from the Auto Suggestion DropDown
+ * 
+ * @return
+ * @throws Exception
+ */
+public String getTextHotelAutoSuggestionCityName() throws Exception {
+	String txtCityName = BrowserActions.getText(driver, lnkHotelCityAutoSuggestionName,	" Hotel Auto Suggestion City Name ");
+	return txtCityName;
+}
+
+}// HomePage
