@@ -537,7 +537,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for OneWay(OW) search");
 			BrowserActions.nap(2);
-			Log.assertThat(searchResult.verifySRPMenu(tripType), "<b>Actual Result:</b> SRP Page should appeared with <b>Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers",
+			Log.assertThat(searchResult.verifySRPMenu(tripType), "<b>Actual Result:</b> SRP Page should appeared with <b>Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Share Itinerary and Footer </b>headers",
 					"<b>Actual Result:</b> SRP Page should not appeared with <b> Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers", driver);
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -604,7 +604,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for Round Trip(RT) search");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.verifySRPMenu(tripType),
-					"<b>Actual Result:</b> SRP Page should appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers",
+					"<b>Actual Result:</b> SRP Page should appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Share Itinerary and Footer </b>headers",
 					"<b>Actual Result:</b> SRP Page should not appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer headers </b>", driver);
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -681,8 +681,8 @@ public class FlightSearch extends BaseTest{
 			Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for MultiCity(MC) search ");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.verifySRPMenu(tripType),
-					"<b>Actual Result:</b> SRP Page should appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer</b> headers",
-					"<b>Actual Result:</b> SRP Page should not appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer</b> headers", driver);
+					"<b>Actual Result:</b> SRP Page should appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Share Itinerary and Footer</b> headers",
+					"<b>Actual Result:</b> SRP Page should not appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Share Itinerary and Footer</b> headers", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {

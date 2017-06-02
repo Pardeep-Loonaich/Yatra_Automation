@@ -167,7 +167,7 @@ public class FrescoTest extends BaseTest{
 			BrowserActions.nap(15);
 			//Re-trying if not displayed cities list Grid
 			if (fresco.getCitiesListGrid() == false) {
-				fresco.enterOrigin(origin);
+				fresco.enterHotelCity(origin);
 			} 
 			String cityNameText = fresco.getTextHotelAutoSuggestionCityName();
 			Log.message("<br>");
