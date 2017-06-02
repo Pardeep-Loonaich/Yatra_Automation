@@ -495,7 +495,7 @@ public class WebDriverFactory {
 	 *            name of the test to pass to the grid
 	 * @return remote WebDriver instance
 	 */
-	@SuppressWarnings("unused")
+	@SuppressWarnings({ "unused", "null" })
 	public static WebDriver newWebDriverInstanceFromEnvironment(String testName) {
 		// right now we only support sauce labs
 
