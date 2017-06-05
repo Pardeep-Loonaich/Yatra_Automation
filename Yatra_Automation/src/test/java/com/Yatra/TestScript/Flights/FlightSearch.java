@@ -5082,7 +5082,7 @@ public class FlightSearch extends BaseTest{
 			paymentPage.enterCreditCardDetails(cardNumber);
 			Log.message("10. Fill Credit Card Details!");
 
-			paymentPage.clickOnPayNow();
+			paymentPage.clickOnPayNow_PaymentPage();
 			Log.message("11.Click On Pay Now!");
 			String ErrorMsg = paymentPage.getTextErrorMessage();
 
@@ -5161,7 +5161,7 @@ public class FlightSearch extends BaseTest{
 			paymentPage.enterDebitCardDetails(cardNumber,cvv);
 			Log.message("10. Fill invalid Debit Card Details!");
 
-			paymentPage.clickOnPayNow();
+			paymentPage.clickOnPayNow_PaymentPage();
 			Log.message("11.Click On Pay Now!");
 			String ErrorMsg = paymentPage.getTextErrorMessage();
 

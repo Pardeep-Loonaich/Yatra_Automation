@@ -2,21 +2,13 @@
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import java.util.List;
-
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -32,19 +24,15 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-
+@SuppressWarnings("unused")
 public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	private String appURL;
-
-
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
 	ExecutionTimer timer=new ExecutionTimer();
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
-
-
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage ***********************************
@@ -428,8 +416,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	private WebElement btnChangeFlight;
 
-
-
 	@FindBy(css = "#qb_ccCVV0")
 	private WebElement txtSavedcreditCardCvv;
 
@@ -585,6 +571,18 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.nap(30);
 	}
 
+	/**
+	 * Clicking on Pay Now In Payment Page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickOnPayNow_PaymentPage() throws Exception {
+		BrowserActions.scrollToView(btnPayNow, driver);
+		BrowserActions.javascriptClick(btnPayNow, driver, "Pay Now");
+		Utils.waitForPageLoad(driver);
+		//BrowserActions.nap(30);
+	}
 
 
 	/**

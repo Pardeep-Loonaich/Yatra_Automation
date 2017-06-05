@@ -15,10 +15,19 @@
 		<parameter name="webSite" value="https://www.yatra.com/" />
 		<classes>
 			<class name="com.Yatra.TestScript.Fresco.FrescoTest">
-			<methods>					
-					<include name="TC_Yatra_Fresco_001"></include>	
-					<include name="TC_Yatra_Fresco_002"></include>	
-					<include name="TC_Yatra_Fresco_003"></include>	
+			<methods>	
+			<include name="TC_Yatra_Fresco_001"></include>
+			<include name="TC_Yatra_Fresco_002"></include>
+			<include name="TC_Yatra_Fresco_003"></include>
+			<include name="TC_Yatra_Fresco_004"></include>
+			<include name="TC_Yatra_Fresco_005"></include>	
+			<include name="TC_Yatra_Fresco_006"></include>
+			<include name="TC_Yatra_Fresco_007"></include>
+			<include name="TC_Yatra_Fresco_008"></include>
+			<include name="TC_Yatra_Fresco_009"></include>
+			<include name="TC_Yatra_Fresco_010"></include>
+			<include name="TC_Yatra_Fresco_011"></include>
+			<include name="TC_Yatra_Fresco_012"></include>
 			</methods>	
 			</class>
 		</classes>

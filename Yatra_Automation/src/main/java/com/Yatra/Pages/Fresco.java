@@ -68,9 +68,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 	@FindBy(css = "div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']")
 	private List<WebElement> selectMonth;
 
-	@FindBy(css = "div[id='BE_flight_paxInfoBox']")	private WebElement passengerInfo;
-
-	
+	@FindBy(css = "div[id='BE_flight_paxInfoBox']")	private WebElement passengerInfo;	
 	String returnDateLocator="";
 	String passengersLocator = "span[class='ddSpinnerPlus']";
 	String passengerClassLocator = "div[id='flight_class_select_child'] ul li";
@@ -1379,16 +1377,15 @@ public class Fresco extends LoadableComponent<Fresco> {
 
 //*************************************************************************************************************************
 
-	
 
 @FindBy(css = "ul[class='mac-scroll scrollable'] li")
 private List<WebElement>  lnkCitiesList;
 
 @FindBy(css = "ul[class='mac-scroll scrollable']")
-private WebElement  lnkCitiesListGrid;
+private WebElement  lnkAutoSuggestionsGrid;
 
 @FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_even ac_over']")  
-private WebElement lnkFlightSourceAutoSuggestionName;
+private WebElement lnkFlightSourceAutoSuggestionName; 
 
 @FindBy(css = "input#BE_hotel_destination_city")
 private WebElement txtHotelCity;
@@ -1396,6 +1393,29 @@ private WebElement txtHotelCity;
 @FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_odd ac_over']")  
 private WebElement lnkHotelCityAutoSuggestionName;
 
+@FindBy(css = "a[id='booking_engine_flight_hotels']")
+private WebElement lnkFlightsAndHotels;
+
+
+@FindBy(css = "form[id='BE_byop_form'] a[title='One Way']")
+private WebElement lnkOneWay_FlightsAndHotels;
+
+@FindBy(css = "form[id='BE_byop_form'] a[title='Round Trip']")
+private WebElement lnkRoundTrip_FlightsAndHotels;
+
+@FindBy(css = "#BE_byop_origin_city")
+private WebElement txtOrigin_FlightsAndHotels;
+
+@FindBy(css = "#BE_homestay_destination_city")
+private WebElement txtCity_Homestays;
+
+@FindBy(css = "#BE_holiday_leaving_city")
+private WebElement txtCity_Holidays;
+
+@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_odd']")  
+private WebElement lnkActivitiesAutoSuggestionName; 
+
+//************************Fresco Functions*******************************************
 /**
  * Getting the text from the Auto Suggestion Source city name
  * 
@@ -1433,9 +1453,9 @@ public boolean getCitiesListCount() throws Exception {
  * @return
  * @throws Exception
  */
-public boolean getCitiesListGrid() throws Exception {	
+public boolean getAutoSuggestionGrid() throws Exception {	
 	boolean status = false;	
-	if (BrowserActions.isElementPresent(driver, lnkCitiesListGrid) == true) {
+	if (BrowserActions.isElementPresent(driver, lnkAutoSuggestionsGrid) == true) {
 		status = true;
 	}	
 	return status;
@@ -1453,7 +1473,7 @@ public void enterHotelCity(String origin) throws Exception {
 	Utils.waitForElement(driver, txtHotelCity);		
 	BrowserActions.typeOnTextField(txtHotelCity, origin, driver, "Hotel city text field");
 	BrowserActions.nap(3);
-	Utils.waitForElement(driver, txtHotelCity);			
+	//Utils.waitForElement(driver, txtCityOver);			
 	Log.event("Entered the Hotel City: "+origin);		
 }
 
@@ -1467,5 +1487,92 @@ public String getTextHotelAutoSuggestionCityName() throws Exception {
 	String txtCityName = BrowserActions.getText(driver, lnkHotelCityAutoSuggestionName,	" Hotel Auto Suggestion City Name ");
 	return txtCityName;
 }
+
+/**
+ * To click Flights + Hotels link in HomePage
+ * 
+ * @throws Exception
+ */
+public void clickFlightsAndHotels() throws Exception {
+	BrowserActions.clickOnElement(lnkFlightsAndHotels, driver, "Flights+Hotels link");
+	Utils.waitForPageLoad(driver);
+}
+
+/**
+ * To select Trip Type in Flights+Hotels
+ * 
+ * @param tripType
+ *            as string
+ * @throws Exception
+ */
+public void selectTripType_FlightsAndHotels(String tripType) throws Exception {
+	if (tripType.equals(Constants.C_ONEWAY)) {
+		BrowserActions.clickOnElement(lnkOneWay_FlightsAndHotels, driver, "One Way");
+		Utils.waitForPageLoad(driver);
+		Log.event("Successfully selected OneWay option in Search Fields");
+	} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
+		BrowserActions.clickOnElement(lnkRoundTrip_FlightsAndHotels, driver, "Round Trip");
+		Utils.waitForPageLoad(driver);
+		Log.event("Successfully selected RoundTrip option in Search Fields");
+	} 
+}
+
+/**
+ * Enter Origin for Flights+Hotels
+ * 
+ * @param origin
+ *            as string
+ * @throws Exception
+ */
+public void enterOriginInFlightsAndHotels(String origin) throws Exception {
+	Utils.waitForElement(driver, txtOrigin_FlightsAndHotels);		
+	BrowserActions.typeOnTextField(txtOrigin_FlightsAndHotels, origin, driver, "Select Origin");
+	BrowserActions.nap(3);	
+	//Utils.waitForElement(driver, txtCityOver);		
+	Log.event("Entered the Origin: "+origin);		
+}
+
+/**
+ * Enter City for Homestays
+ * 
+ * @param city
+ *            as string
+ * @throws Exception
+ */
+public void enterHomestaysCity(String city) throws Exception {
+	Utils.waitForElement(driver, txtCity_Homestays);		
+	BrowserActions.typeOnTextField(txtCity_Homestays, city, driver, "Select Homestays City");
+	BrowserActions.nap(2);	
+	//Utils.waitForElement(driver, txtCityOver);		
+	Log.event("Entered the Homestays City: "+city);		
+}
+
+/**
+ * Enter City for Holidays
+ * 
+ * @param city
+ *            as string
+ * @throws Exception
+ */
+public void enterHolidaysCity(String city) throws Exception {
+	Utils.waitForElement(driver, txtCity_Holidays);		
+	BrowserActions.typeOnTextField(txtCity_Holidays, city, driver, "Select Holidays City");
+	BrowserActions.nap(3);	
+	//Utils.waitForElement(driver, txtCityOver);		
+	Log.event("Entered the Holidays City: "+city);		
+}
+
+
+/**
+ * Getting the text from the Auto Suggestion DropDown
+ * 
+ * @return
+ * @throws Exception
+ */
+public String getTextActivitiesAutoSuggestionCityName() throws Exception {
+	String txtCityName = BrowserActions.getText(driver, lnkActivitiesAutoSuggestionName, "Activities Auto Suggestion City Name ");
+	return txtCityName;
+}
+
 
 }// HomePage
