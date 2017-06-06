@@ -6,7 +6,10 @@ package com.Yatra.TestScript.Fresco;
 //Modified on/By :   -
 //-----------------------------------------------------------------------------------------------------------
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
@@ -16,10 +19,7 @@ import org.testng.annotations.Test;
 import com.Yatra.Pages.Fresco;
 import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.LoginPage;
-import com.Yatra.Pages.PaymentPage;
-import com.Yatra.Pages.ReviewPage;
 import com.Yatra.Pages.SearchResult;
-import com.Yatra.Pages.TravellerPage;
 import com.Yatra.TestScript.Common.BaseTest;
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.DataProviderUtils;
@@ -31,19 +31,14 @@ import com.Yatra.Utils.WebDriverFactory;
 
 
 @Listeners(EmailReport.class)
-public class FrescoTest extends BaseTest{
-
+public class FrescoTest extends BaseTest{	
 	EnvironmentPropertiesReader environmentPropertiesReader;
-	HomePage homePage;
 	LoginPage loginPage;
 	SearchResult searchResult;
-	ReviewPage reviewPage;
-	TravellerPage travellerPage;
-	PaymentPage paymentPage;
 	String webSite;
 	String BlueColor = "rgba(16, 114, 181, 1)";
 	Fresco fresco;
-
+	
 	@BeforeTest(alwaysRun = true)
 	public void init(ITestContext context) {		
 		webSite = (System.getProperty("webSite") != null ? System.getProperty("webSite")
@@ -602,6 +597,58 @@ public class FrescoTest extends BaseTest{
 			Log.endTestCase();
 		}
 	}
+
+	
+	@Test( description = "List of top cities should exist in db", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_015(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {			
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+			
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");
+			
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(" ");
+			Log.message("4.Successfully made a click on Flight booking engine");
+			BrowserActions.nap(2);
+			
+			//Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterOrigin(origin);
+			} 
+			
+			List<String> cityNames = fresco.getSourceCitiesNamesInFlight();			
+			Log.message("<br>");			
+			Log.message("<b>Expected Result:</b> Verify Top cities list is displyaed ");
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
+					"<b>Actual Result:</b> Successfully displyaed Top cities list, Cities list are:  " + cityNames,
+					"<b>Actual Result:</b> Not displyaed Top cities list", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
 // ********************************End of Test cases ***************************************************************************************
 
 } //FrescoTest

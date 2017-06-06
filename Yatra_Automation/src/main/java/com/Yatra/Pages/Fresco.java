@@ -3,6 +3,7 @@ package com.Yatra.Pages;
 import java.awt.Robot;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -26,9 +27,9 @@ import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
-
 @SuppressWarnings("unused")
 public class Fresco extends LoadableComponent<Fresco> {
+
 	private String appURL;
 	private WebDriver driver;
 	private boolean isPageLoaded;
@@ -68,7 +69,10 @@ public class Fresco extends LoadableComponent<Fresco> {
 	@FindBy(css = "div[id='PegasusCal-0'] li a[href*='#PegasusCal-0-month-']")
 	private List<WebElement> selectMonth;
 
-	@FindBy(css = "div[id='BE_flight_paxInfoBox']")	private WebElement passengerInfo;	
+	@FindBy(css = "div[id='BE_flight_paxInfoBox']")
+	private WebElement passengerInfo;
+
+	//String dateLocator = "div[class='month-box'] table tbody td[class*='activeTD clsDateCell'] a[id='a_";
 	String returnDateLocator="";
 	String passengersLocator = "span[class='ddSpinnerPlus']";
 	String passengerClassLocator = "div[id='flight_class_select_child'] ul li";
@@ -346,6 +350,9 @@ public class Fresco extends LoadableComponent<Fresco> {
 
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"']//span[@class='day-num'])[1]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[1]")).click();
+		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(0).click();
+		Log.event("Selected Departure Date: " + date + "(YY/MM/DD)");*/
 	}
 
 	public void specifyPassengerInfo_old(String passengers) throws Exception {
@@ -613,6 +620,8 @@ public class Fresco extends LoadableComponent<Fresco> {
 
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[1]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[1]")).click();
+		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(0).click();*/
 		Log.event("Selected Return Date: " + date + "(YY/MM/DD)");
 	}
 
@@ -623,6 +632,24 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 */
 	public LoginPage navigateToSignIn() throws Exception {
 		// click Login button on signin page
+
+		/*Utils.waitForElement(driver, lnkMyaccount);		
+		BrowserActions.mouseHover(driver, lnkMyaccount);
+		BrowserActions.moveToElementJS(driver, lnkMyaccount);
+		BrowserActions.actionClick(btnSignIn, driver, "Sign In");
+
+	    Utils.waitForPageLoad(driver);		
+
+		BrowserActions.moveToElementJS(driver, driver.findElement(By.cssSelector("li[id='userSignInStrip']>a")));
+		Actions actions = new Actions(driver);
+		actions.moveToElement(driver.findElement(By.cssSelector("li[id='userSignInStrip']"))).perform();
+		actions.click(driver.findElement(By.cssSelector("li[id='userSignInStrip']"))).click().perform();
+
+		actions.moveToElement(driver.findElement(By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'My Account')]"))).perform();
+		actions.click(driver.findElement(By.xpath("//a[@class='dropdown-toggle' and contains(text(), 'My Account')]"))).perform();
+
+		 */
+
 		WebElement lnkMyAccount = driver.findElement(By.cssSelector("li[id='userSignInStrip']>a"));
 		Point point = lnkMyAccount.getLocation();
 		int xCord = point.getX();
@@ -667,14 +694,17 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 */
 
 	public void selectOneWayFlightSearchFields(String origin, String destination, String departureDate,
-		String passengerInfo, String passengerClass) throws Exception {
+			String passengerInfo, String passengerClass) throws Exception {
 		BrowserActions.nap(2);
 		enterOrigin(origin); // enter Origin value
 		enterDestination(destination); // enter Destination value
 		BrowserActions.nap(2);
 		selectDepartureDate(departureDate); // select Departure Date
-		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult, Child, Infant)
+
+		specifyPassengerInfo(passengerInfo); // select Passengers details(Adult,
+		// Child, Infant)
 		selectPassengerClass(passengerClass); // select Passengers class type
+		//clickDoneButtonInPassengerBox(); // click Done button
 		Log.event("Successfully selected OneWay Flight Search fields");
 
 	}
@@ -853,6 +883,8 @@ public class Fresco extends LoadableComponent<Fresco> {
 		selectMonth_MultiDepart1.get(month - 3).click();
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
+		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(7).click();*/
 		Log.event("Selected MultiCity Departure1 Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
@@ -865,14 +897,18 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 * @throws Exception
 	 */
 
-	@SuppressWarnings({ "static-access" })
+	@SuppressWarnings("static-access")
 	public String selectMultiCityDateDeparture2(String departureDate) throws Exception {
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateMulticity_Departure2, driver, "clicking on MultiCity Departure2 date icon");
+		//selectMonth_MultiDepart2.get(0).click();
+		//Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[9]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[9]")).click();
+		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		datePicker.get(8).click();*/
 		Log.event("Selected MultiCity Departure2 Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
@@ -1008,6 +1044,10 @@ public class Fresco extends LoadableComponent<Fresco> {
 		BrowserActions.nap(2);
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
+
+		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		BrowserActions.nap(2);
+		datePicker.get(7).click();*/
 		Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
@@ -1029,6 +1069,9 @@ public class Fresco extends LoadableComponent<Fresco> {
 
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
+		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+		BrowserActions.nap(2);
+		datePicker.get(7).click();*/
 		Log.event("Selected Bus Departure Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
@@ -1048,7 +1091,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 */
 
 	public void selectRoundTripBusSearchFields(String origin, String destination, String departureDate,
-		String returnDate, String passengerInfo) throws Exception {
+			String returnDate, String passengerInfo) throws Exception {
 
 		enterOriginBus(origin); // enter Origin value
 		BrowserActions.nap(2);
@@ -1072,7 +1115,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 */
 
 	public void selectOneWayBusSearchFields(String origin, String destination, String departureDate,
-		String passengerInfo) throws Exception {
+			String passengerInfo) throws Exception {
 		BrowserActions.nap(2);
 		enterOriginBus(origin); // enter Origin value
 		BrowserActions.nap(2);
@@ -1097,7 +1140,8 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 */
 	public String getTextErrorMsgEmptyCity() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity, "Getting text from the Bus Dropping Point");
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
 
@@ -1123,7 +1167,8 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 */
 	public String getTextErrorSameCity() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,"Getting text from the Bus Dropping Point");
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
 
@@ -1178,6 +1223,10 @@ public class Fresco extends LoadableComponent<Fresco> {
 		selectMonth_Bus.get(month - 3).click();
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
+		/*BrowserActions.nap(2);
+           List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
+           BrowserActions.nap(2);
+           datePicker.get(7).click();*/
 		Log.event("Selected Bus Return Date: " + date + "(YY/MM/DD)");
 		return date;
 	}
@@ -1200,6 +1249,9 @@ public class Fresco extends LoadableComponent<Fresco> {
 	}
 
 	public void clickTrainTab() throws Exception {
+		
+		
+		// final long startTime = StopWatch.startTime();
 		BrowserActions.clickOnElement(lnkTrains, driver, "Train Search");
 		Utils.waitForPageLoad(driver);
 	}
@@ -1221,7 +1273,8 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 */
 	public String getTextErrorMsg() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsgEmptyCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity, "Getting text from the Bus Dropping Point");
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgEmptyCity,
+				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
 	/**
@@ -1232,15 +1285,21 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 */
 	public String getTextErrorIncorrectCity() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsgIncorrectCity);
-		String txtDetails = BrowserActions.getText(driver, txtErrorMsgIncorrectCity, "Getting text from the Bus Dropping Point");
+		String txtDetails = BrowserActions.getText(driver, txtErrorMsgIncorrectCity,
+				"Getting text from the Bus Dropping Point");
 		return txtDetails;
 	}
+
+
 
 	public Bookings navigateToBooking() throws Exception{
 		BrowserActions.moveToElementJS(driver, drpdwnUserLogin);
 		BrowserActions.clickOnElement(lnkMyBooking, driver, "Clicked on Login user dropdown");	
 		return new Bookings(driver).get();
 	}
+
+
+
 
 	/**
 	 * Description:to Click on Main Menu and sub menu
@@ -1249,36 +1308,69 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 * @param sSubMenu
 	 * @throws Exception 
 	 */
-	public LoginPage clickOnMainMenu(WebDriver driver, String sMainMenu, String sSubMenu) throws Exception {
+	public LoginPage clickOnMainMenu(WebDriver driver, String sMainMenu, String sSubMenu) throws Exception
+
+	{/*
+
+		WebElement wMainMenu=driver.findElement(By.xpath("//div[@class='menu']//a[contains(.,'"+sMainMenu+"')]"));
+
+		Actions action=new Actions(driver);
+		Utils.waitForElement(driver, wMainMenu, 5);
+		Log.message("clicking on "+sMainMenu+" in main Navigation");
+		Point location=wMainMenu.getLocation();
+		int xCoordinate=location.getX();
+		int yCoordinate=location.getY();
+		System.out.println();
+		action.moveToElement(wMainMenu, xCoordinate, yCoordinate).clickAndHold().build().perform();
+		BrowserActions.clickOnElement(wMainMenu, driver, "clicking on "+sMainMenu+" in main Navigation");
+
+		if("My Account".equalsIgnoreCase(sMainMenu.trim()))
+		{
+			Log.message("clicking on "+sSubMenu+" under "+sMainMenu+"");
+			WebElement wSubMenu=driver.findElement(By.xpath("//div[@class='user-drop-ddn-out header-dropdown']//a[text()='"+sSubMenu+"']"));
+			BrowserActions.clickOnElement(wSubMenu, driver, sSubMenu+" under "+sMainMenu+"");
+
+		}
+
+	 */
 		//this is just patch as of now will work on it
-		if (sSubMenu.contains("Agent")) {
+		if(sSubMenu.contains("Agent"))
+		{
 			driver.navigate().to("https://www.yatra.com/agents");
-		} else if (sSubMenu.contains("Corporate"))
+		}
+		else if(sSubMenu.contains("Corporate"))
 
 		{
 			driver.navigate().to("https://www.yatra.com/corporatetravel");
-		} else if (sSubMenu.equalsIgnoreCase("Login"))
+		}
+		else if(sSubMenu.equalsIgnoreCase("Login"))
 
 		{
 			driver.navigate().to("https://secure.yatra.com/social/common/yatra/signin.htm");
 		}
 		return new LoginPage(driver).get();
 	}
-	
 	/**
-	 * Description: to select date from  calendar (it will work for depart date and return date)	
+	 * Description: to select date from  calendar (it will work for depart date and return date)
+	 * @author harveer.singh
 	 * @param: String date in (yyyy_mm_dd) 
 	 */
-	@SuppressWarnings({ "static-access" })
-	public void datePicker(WebDriver driver,String departureDate){
+	@SuppressWarnings("static-access")
+	public void datePicker(WebDriver driver,String departureDate)
+
+	{
 		int iDay = Integer.parseInt(departureDate);
 		String date = utils.dateGenerator("yyyy_M_d", iDay);
 		int year=Integer.parseInt(date.split("_")[0]);
 		int month = Integer.parseInt(date.split("_")[1]);
 		int day=Integer.parseInt(date.split("_")[2]);
+
+
 		WebElement element=driver.findElement(By.xpath("/*[@class='month-list'])[1]//*[@href='#PegasusCal-0-month-"+month+"-"+year+"']"));
 		element.click();
 		WebElement calndr=driver.findElement(By.xpath("//*[@id='PegasusCal-0-month-"+month+"-"+year+"']//a[@id='a_"+year+"_"+month+"_"+day+"']"));
+
+
 	}
 
 	/***
@@ -1302,7 +1394,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 		return BrowserActions.getText(driver, lstOriginSuggestion, "Getting text from the list of suggestion");
 	}
 	/**
-	 * Enter Activities Origin
+	 * Entert Activites Origin
 	 * 
 	 * @param origin
 	 *            as string
@@ -1357,7 +1449,8 @@ public class Fresco extends LoadableComponent<Fresco> {
 
 	public void closeINotificationAtTopSRP() throws Exception {	
 		BrowserActions.nap(4);		
-		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {	
+		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {
+		//if(IframeNotification.isDisplayed()){
 			BrowserActions.switchToIframe(driver, IframeNotification);			
 			if(BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true){ 
 				BrowserActions.clickOnElement(btnCloseIframeNotification, driver, "Button to close Iframe Notification at top on SRP");
@@ -1369,7 +1462,10 @@ public class Fresco extends LoadableComponent<Fresco> {
 		} else {
 			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
 		}
-	}	
+	}		
+
+
+
 	
 //*************************************************************************************************************************
 
@@ -1382,7 +1478,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 private List<WebElement>  lnkCitiesList;
 
 @FindBy(css = "ul[class='mac-scroll scrollable']")
-private WebElement  lnkAutoSuggestionsGrid;
+WebElement  lnkAutoSuggestionsGrid;
 
 @FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_even ac_over']")  
 private WebElement lnkFlightSourceAutoSuggestionName; 
@@ -1414,6 +1510,10 @@ private WebElement txtCity_Holidays;
 
 @FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_odd']")  
 private WebElement lnkActivitiesAutoSuggestionName; 
+
+@FindBy(css = "ul[class='mac-scroll scrollable'] p[class='ac_cityname']")  
+private List<WebElement> txtSourceCityNames; 
+//private WebElement txtSourceCityNames; 
 
 //************************Fresco Functions*******************************************
 /**
@@ -1573,6 +1673,28 @@ public String getTextActivitiesAutoSuggestionCityName() throws Exception {
 	String txtCityName = BrowserActions.getText(driver, lnkActivitiesAutoSuggestionName, "Activities Auto Suggestion City Name ");
 	return txtCityName;
 }
+
+
+/**
+ * Getting the text form Airline Names
+ * 
+ * @return
+ * @throws Exception
+ */
+public List<String> getSourceCitiesNamesInFlight() throws Exception {
+	List<String> cityNames = new ArrayList<String>();
+	for (int i = 1; i <= txtSourceCityNames.size(); i++) {
+		WebElement cityNameEle = driver.findElement(By.cssSelector("ul[class='mac-scroll scrollable'] li:nth-child("+i+") p[class='ac_cityname']"));
+		BrowserActions.scrollToView(cityNameEle, driver);
+		String cityName = cityNameEle.getText().toString().trim();
+	    cityNames.add(cityName);
+	}
+	Log.event("City Names : " + cityNames);
+	//BrowserActions.scrollToView(txtOrigin, driver);
+	return cityNames;
+}
+
+
 
 
 }// HomePage
