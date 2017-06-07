@@ -2,21 +2,13 @@
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import java.util.List;
-
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -32,19 +24,15 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-
+@SuppressWarnings("unused")
 public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	private String appURL;
-
-
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
 	ExecutionTimer timer=new ExecutionTimer();
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
-
-
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage ***********************************
@@ -428,8 +416,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	private WebElement btnChangeFlight;
 
-
-
 	@FindBy(css = "#qb_ccCVV0")
 	private WebElement txtSavedcreditCardCvv;
 
@@ -498,6 +484,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void enterCreditCardDetails(String cardNumber) throws Exception {
+		BrowserActions.nap(2);
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		String randomCvv = RandomStringUtils.randomNumeric(3);
 		BrowserActions.nap(5);
@@ -550,7 +537,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 		}
 		return cardNumList;*/
-
+		BrowserActions.nap(3);
 		String cc_no = BrowserActions.getText(driver, CreditCardNumber, "Getting the CreditCardNumber").substring(15, 19);
 		return cc_no;
 	}
@@ -581,9 +568,21 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.scrollToView(btnPayNow, driver);
 		BrowserActions.javascriptClick(btnPayNow, driver, "Pay Now");
 		Utils.waitForPageLoad(driver);
-		BrowserActions.nap(2);
+		BrowserActions.nap(30);
 	}
 
+	/**
+	 * Clicking on Pay Now In Payment Page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickOnPayNow_PaymentPage() throws Exception {
+		BrowserActions.scrollToView(btnPayNow, driver);
+		BrowserActions.javascriptClick(btnPayNow, driver, "Pay Now");
+		Utils.waitForPageLoad(driver);
+		//BrowserActions.nap(30);
+	}
 
 
 	/**
@@ -649,6 +648,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String getMsgFromEcashBalanceDeduction() throws Exception {
+		BrowserActions.nap(2);
 		String txtRedeemMsg = BrowserActions.getText(driver, msgEcashRedeemBalance,
 				"Getting text for ecash Redeem Balance deduction message.");
 		return txtRedeemMsg;
@@ -663,6 +663,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 
 	public String getMsgFromEcashRedeemSuccess() throws Exception {
+		BrowserActions.nap(2);
 		String txtRedeemMsg = BrowserActions.getText(driver, msgEcashRedeem, "Getting text for ecash Redeem message.")
 				.replace("Cancel Redemption", "");
 		return txtRedeemMsg;
@@ -686,6 +687,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickingToCancelEcashRedem() throws Exception{
+		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on cancel ecash redeem.");
 
 	}
@@ -698,6 +700,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void verifyCancelEcash() throws Exception{
+		BrowserActions.nap(2);
 		if(lnkCancelRedem.isDisplayed()){
 			BrowserActions.clickOnElement(lnkCancelRedem, driver, "Clicked on Cancel ecash redeem.");
 		}
@@ -709,6 +712,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickingOnRedeemNow() throws Exception{
+		BrowserActions.nap(3);
 		BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
 		BrowserActions.nap(5);
 	}
@@ -802,6 +806,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 
 	public void selectPaymentType(String PaymentType) throws Exception {
+		BrowserActions.nap(5);
 		List<WebElement> lstElement = paymentType;
 		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
 			BrowserActions.scrollToViewElement(lnkOtherPayment, driver);
@@ -1018,6 +1023,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void returnFromCitiPortal(String browser) throws Exception{
+		BrowserActions.nap(2);
 		if(browser.equalsIgnoreCase("chrome_windows")){
 			JavascriptExecutor js = (JavascriptExecutor) driver; 
 			js.executeScript("window.history.go(-1)");
@@ -1051,6 +1057,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 	public void cancelHdfcPayment(String browser) throws Exception{
+		BrowserActions.nap(2);
 		if(browser.equalsIgnoreCase("chrome_windows")){
 			BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
@@ -1066,6 +1073,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		else if(browser.equalsIgnoreCase("FireFox_windows")){
 			BrowserActions.javaScriptAlertPopUpHandler(driver, "ok");
 		}
+		BrowserActions.nap(2);
 	}
 
 
@@ -1074,6 +1082,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void cancelSBIATMPayment() throws Exception{
+		BrowserActions.nap(2);
 		BrowserActions.javascriptClick(btnCancelInSBIATM, driver, "Clicked on cancel button");
 		//BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
 	}
@@ -1083,7 +1092,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickOnBackToYatraLinkFreechrge() throws Exception{
+		BrowserActions.nap(5);
 		BrowserActions.clickOnElement(lnkBckToYatraFrmFreechrge, driver, "Clicked on back to yatra link");
+		BrowserActions.nap(2);
 	}
 
 
@@ -1198,7 +1209,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void cancelCreditCardDetails() throws Exception{
-
+		BrowserActions.nap(1);
 		while(tabSavedCC.isDisplayed()){
 			Utils.waitForElement(driver, iconRemove);
 			BrowserActions.scrollToView(iconRemove, driver);
@@ -1298,6 +1309,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 	public void navigateBackFromMobileWallet(String walletName,String browser) throws Exception{
+		BrowserActions.nap(5);
 		switch (walletName){
 		case "mobikwik":
 			driver.navigate().back();
@@ -1354,18 +1366,21 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.javascriptClick(btnCancelIdea, driver, "Clicked on 'Back to Yatra' button");
 			break;
 
-		}BrowserActions.nap(3);
+		}BrowserActions.nap(10);
 	}
 
 
 
 	public boolean verifyPage() throws Exception{
 		boolean flag = false;
-		if(btnContinueReviewPage.isDisplayed()!=flag){
+		/*if(btnContinueReviewPage.isDisplayed()!=flag){
 			return !flag;
 
-		}
-		else
+		}*/
+		if(BrowserActions.isElementVisible(driver, btnContinueReviewPage)!=flag){
+			return !flag;
+
+		}else
 			return flag;	 
 	}
 

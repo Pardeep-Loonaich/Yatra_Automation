@@ -197,6 +197,7 @@ public class TestDataExtractor {
 	 * @param sheetName the sheet name
 	 * @para: testCaseId
 	 */
+	@SuppressWarnings("unused")
 	public static HashMap<String, String> initTestData(String workbook, String sheetName, String testCaseId){
 		/** Loading the test data from excel using the test case id */
 		TestDataExtractor testData = new TestDataExtractor();
