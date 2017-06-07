@@ -7,6 +7,7 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
+	<parameter name="webSite" value="https://www.yatra.com/"/>
 	<test name="Flight Search on chrome" thread-count="1" parallel="true">
 		<parameter name="browserName" value="chrome_windows" />
 			<classes>
