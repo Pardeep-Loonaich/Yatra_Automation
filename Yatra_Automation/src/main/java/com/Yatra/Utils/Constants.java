@@ -22,7 +22,7 @@ public class Constants {
 	public static final String C_FareAlert_Title = "Set A Fare Alert";
 	public static final String C_FareAlert_Message = "Your fare alert has been set! You'll get an e-mail soon!";
 	public static final String C_ShareItinerary_Message = "Your itinerary has been mailed successfully.";
-		
+	public static final String C_FlightDestination_ErrorMessage = "Please enter different from and to city.";	
 	
 	// >>> Filter Titles in SRP
 	public static final String C_Price = "PRICE";

@@ -1473,228 +1473,266 @@ public class Fresco extends LoadableComponent<Fresco> {
 
 //*************************************************************************************************************************
 
+	@FindBy(css = "ul[class='mac-scroll scrollable'] li")
+	private List<WebElement> lnkCitiesList;
 
-@FindBy(css = "ul[class='mac-scroll scrollable'] li")
-private List<WebElement>  lnkCitiesList;
+	@FindBy(css = "ul[class='mac-scroll scrollable']")
+	WebElement lnkAutoSuggestionsGrid;
 
-@FindBy(css = "ul[class='mac-scroll scrollable']")
-WebElement  lnkAutoSuggestionsGrid;
+	@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_even ac_over']")
+	private WebElement lnkFlightSourceAutoSuggestionName;
 
-@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_even ac_over']")  
-private WebElement lnkFlightSourceAutoSuggestionName; 
+	@FindBy(css = "input#BE_hotel_destination_city")
+	private WebElement txtHotelCity;
 
-@FindBy(css = "input#BE_hotel_destination_city")
-private WebElement txtHotelCity;
+	@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_odd ac_over']")
+	private WebElement lnkHotelCityAutoSuggestionName;
 
-@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_odd ac_over']")  
-private WebElement lnkHotelCityAutoSuggestionName;
+	@FindBy(css = "a[id='booking_engine_flight_hotels']")
+	private WebElement lnkFlightsAndHotels;
 
-@FindBy(css = "a[id='booking_engine_flight_hotels']")
-private WebElement lnkFlightsAndHotels;
+	@FindBy(css = "form[id='BE_byop_form'] a[title='One Way']")
+	private WebElement lnkOneWay_FlightsAndHotels;
 
+	@FindBy(css = "form[id='BE_byop_form'] a[title='Round Trip']")
+	private WebElement lnkRoundTrip_FlightsAndHotels;
 
-@FindBy(css = "form[id='BE_byop_form'] a[title='One Way']")
-private WebElement lnkOneWay_FlightsAndHotels;
+	@FindBy(css = "#BE_byop_origin_city")
+	private WebElement txtOrigin_FlightsAndHotels;
 
-@FindBy(css = "form[id='BE_byop_form'] a[title='Round Trip']")
-private WebElement lnkRoundTrip_FlightsAndHotels;
+	@FindBy(css = "#BE_homestay_destination_city")
+	private WebElement txtCity_Homestays;
 
-@FindBy(css = "#BE_byop_origin_city")
-private WebElement txtOrigin_FlightsAndHotels;
+	@FindBy(css = "#BE_holiday_leaving_city")
+	private WebElement txtCity_Holidays;
 
-@FindBy(css = "#BE_homestay_destination_city")
-private WebElement txtCity_Homestays;
+	@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_odd']")
+	private WebElement lnkActivitiesAutoSuggestionName;
 
-@FindBy(css = "#BE_holiday_leaving_city")
-private WebElement txtCity_Holidays;
+	@FindBy(css = "ul[class='mac-scroll scrollable'] p[class='ac_cityname']")
+	private List<WebElement> txtSourceCityNames;
 
-@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_odd']")  
-private WebElement lnkActivitiesAutoSuggestionName; 
+	@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_even ac_over'] p[class='ac_cityname']")
+	private WebElement lnkFlightAirportCityName;
 
-@FindBy(css = "ul[class='mac-scroll scrollable'] p[class='ac_cityname']")  
-private List<WebElement> txtSourceCityNames; 
-//private WebElement txtSourceCityNames; 
+	@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_even ac_over'] div[class='ac_country']")
+	private WebElement lnkFlightAirportCountryName;
 
-//************************Fresco Functions*******************************************
-/**
- * Getting the text from the Auto Suggestion Source city name
- * 
- * @return
- * @throws Exception
- */
-public String getTextFlightAutoSuggestionSourceCityName() throws Exception {
-	String txtCityName = BrowserActions.getText(driver, lnkFlightSourceAutoSuggestionName,	"Flights Auto Suggestion City Name");
-	return txtCityName;
-}
+	@FindBy(css = "div[class='toasterHolder']")
+	private WebElement txtErrorMessageInFlightDestination;
 
-
-/**
- * Getting the text from the Auto Suggestion DropDown
- * 
- * @return
- * @throws Exception
- */
-public boolean getCitiesListCount() throws Exception {	
-	boolean status = false;
-	int citiesCount = lnkCitiesList.size();
-	if(citiesCount == 10){
-		Log.event("Ten cities list displayed when clicked on booking engine");
-		status = true;
-	} else{
-		Log.event("Ten cities list not displayed when clicked on booking engine");
-		status = false;
+	// ************************Fresco
+	// Functions*******************************************
+	/**
+	 * Getting the text from the Auto Suggestion Source city name
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFlightAutoSuggestionSourceCityName() throws Exception {
+		String txtCityName = BrowserActions.getText(driver, lnkFlightSourceAutoSuggestionName, "Flights Auto Suggestion City Name");
+		return txtCityName;
 	}
-	return status;
-}
 
-/**
- * verify the Cities grid 
- * 
- * @return
- * @throws Exception
- */
-public boolean getAutoSuggestionGrid() throws Exception {	
-	boolean status = false;	
-	if (BrowserActions.isElementPresent(driver, lnkAutoSuggestionsGrid) == true) {
-		status = true;
-	}	
-	return status;
-}
-
-
-/**
- * Enter Hotel city name
- * 
- * @param origin
- *            as string
- * @throws Exception
- */
-public void enterHotelCity(String origin) throws Exception {
-	Utils.waitForElement(driver, txtHotelCity);		
-	BrowserActions.typeOnTextField(txtHotelCity, origin, driver, "Hotel city text field");
-	BrowserActions.nap(3);
-	//Utils.waitForElement(driver, txtCityOver);			
-	Log.event("Entered the Hotel City: "+origin);		
-}
-
-/**
- * Getting the text from the Auto Suggestion DropDown
- * 
- * @return
- * @throws Exception
- */
-public String getTextHotelAutoSuggestionCityName() throws Exception {
-	String txtCityName = BrowserActions.getText(driver, lnkHotelCityAutoSuggestionName,	" Hotel Auto Suggestion City Name ");
-	return txtCityName;
-}
-
-/**
- * To click Flights + Hotels link in HomePage
- * 
- * @throws Exception
- */
-public void clickFlightsAndHotels() throws Exception {
-	BrowserActions.clickOnElement(lnkFlightsAndHotels, driver, "Flights+Hotels link");
-	Utils.waitForPageLoad(driver);
-}
-
-/**
- * To select Trip Type in Flights+Hotels
- * 
- * @param tripType
- *            as string
- * @throws Exception
- */
-public void selectTripType_FlightsAndHotels(String tripType) throws Exception {
-	if (tripType.equals(Constants.C_ONEWAY)) {
-		BrowserActions.clickOnElement(lnkOneWay_FlightsAndHotels, driver, "One Way");
-		Utils.waitForPageLoad(driver);
-		Log.event("Successfully selected OneWay option in Search Fields");
-	} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
-		BrowserActions.clickOnElement(lnkRoundTrip_FlightsAndHotels, driver, "Round Trip");
-		Utils.waitForPageLoad(driver);
-		Log.event("Successfully selected RoundTrip option in Search Fields");
-	} 
-}
-
-/**
- * Enter Origin for Flights+Hotels
- * 
- * @param origin
- *            as string
- * @throws Exception
- */
-public void enterOriginInFlightsAndHotels(String origin) throws Exception {
-	Utils.waitForElement(driver, txtOrigin_FlightsAndHotels);		
-	BrowserActions.typeOnTextField(txtOrigin_FlightsAndHotels, origin, driver, "Select Origin");
-	BrowserActions.nap(3);	
-	//Utils.waitForElement(driver, txtCityOver);		
-	Log.event("Entered the Origin: "+origin);		
-}
-
-/**
- * Enter City for Homestays
- * 
- * @param city
- *            as string
- * @throws Exception
- */
-public void enterHomestaysCity(String city) throws Exception {
-	Utils.waitForElement(driver, txtCity_Homestays);		
-	BrowserActions.typeOnTextField(txtCity_Homestays, city, driver, "Select Homestays City");
-	BrowserActions.nap(2);	
-	//Utils.waitForElement(driver, txtCityOver);		
-	Log.event("Entered the Homestays City: "+city);		
-}
-
-/**
- * Enter City for Holidays
- * 
- * @param city
- *            as string
- * @throws Exception
- */
-public void enterHolidaysCity(String city) throws Exception {
-	Utils.waitForElement(driver, txtCity_Holidays);		
-	BrowserActions.typeOnTextField(txtCity_Holidays, city, driver, "Select Holidays City");
-	BrowserActions.nap(3);	
-	//Utils.waitForElement(driver, txtCityOver);		
-	Log.event("Entered the Holidays City: "+city);		
-}
-
-
-/**
- * Getting the text from the Auto Suggestion DropDown
- * 
- * @return
- * @throws Exception
- */
-public String getTextActivitiesAutoSuggestionCityName() throws Exception {
-	String txtCityName = BrowserActions.getText(driver, lnkActivitiesAutoSuggestionName, "Activities Auto Suggestion City Name ");
-	return txtCityName;
-}
-
-
-/**
- * Getting the text form Airline Names
- * 
- * @return
- * @throws Exception
- */
-public List<String> getSourceCitiesNamesInFlight() throws Exception {
-	List<String> cityNames = new ArrayList<String>();
-	for (int i = 1; i <= txtSourceCityNames.size(); i++) {
-		WebElement cityNameEle = driver.findElement(By.cssSelector("ul[class='mac-scroll scrollable'] li:nth-child("+i+") p[class='ac_cityname']"));
-		BrowserActions.scrollToView(cityNameEle, driver);
-		String cityName = cityNameEle.getText().toString().trim();
-	    cityNames.add(cityName);
+	/**
+	 * Getting the text from the Auto Suggestion DropDown
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean getCitiesListCount() throws Exception {
+		boolean status = false;
+		int citiesCount = lnkCitiesList.size();
+		if (citiesCount == 10) {
+			Log.event("Ten cities list displayed when clicked on booking engine");
+			status = true;
+		} else {
+			Log.event("Ten cities list not displayed when clicked on booking engine");
+			status = false;
+		}
+		return status;
 	}
-	Log.event("City Names : " + cityNames);
-	//BrowserActions.scrollToView(txtOrigin, driver);
-	return cityNames;
-}
 
+	/**
+	 * verify the Cities grid
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean getAutoSuggestionGrid() throws Exception {
+		boolean status = false;
+		if (BrowserActions.isElementPresent(driver, lnkAutoSuggestionsGrid) == true) {
+			status = true;
+		}
+		return status;
+	}
 
+	/**
+	 * Enter Hotel city name
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterHotelCity(String origin) throws Exception {
+		Utils.waitForElement(driver, txtHotelCity);
+		BrowserActions.typeOnTextField(txtHotelCity, origin, driver, "Hotel city text field");
+		BrowserActions.nap(3);		
+		Log.event("Entered the Hotel City: " + origin);
+	}
 
+	/**
+	 * Getting the text from the Auto Suggestion DropDown
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextHotelAutoSuggestionCityName() throws Exception {
+		String txtCityName = BrowserActions.getText(driver, lnkHotelCityAutoSuggestionName,	" Hotel Auto Suggestion City Name ");
+		return txtCityName;
+	}
+
+	/**
+	 * To click Flights + Hotels link in HomePage
+	 * 
+	 * @throws Exception
+	 */
+	public void clickFlightsAndHotels() throws Exception {
+		BrowserActions.clickOnElement(lnkFlightsAndHotels, driver, "Flights+Hotels link");
+		Utils.waitForPageLoad(driver);
+	}
+
+	/**
+	 * To select Trip Type in Flights+Hotels
+	 * 
+	 * @param tripType
+	 *            as string
+	 * @throws Exception
+	 */
+	public void selectTripType_FlightsAndHotels(String tripType) throws Exception {
+		if (tripType.equals(Constants.C_ONEWAY)) {
+			BrowserActions.clickOnElement(lnkOneWay_FlightsAndHotels, driver, "One Way");
+			Utils.waitForPageLoad(driver);
+			Log.event("Successfully selected OneWay option in Search Fields");
+		} else if (tripType.equals(Constants.C_ROUNDTRIP)) {
+			BrowserActions.clickOnElement(lnkRoundTrip_FlightsAndHotels, driver, "Round Trip");
+			Utils.waitForPageLoad(driver);
+			Log.event("Successfully selected RoundTrip option in Search Fields");
+		}
+	}
+
+	/**
+	 * Enter Origin for Flights+Hotels
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterOriginInFlightsAndHotels(String origin) throws Exception {
+		Utils.waitForElement(driver, txtOrigin_FlightsAndHotels);
+		BrowserActions.typeOnTextField(txtOrigin_FlightsAndHotels, origin, driver, "Select Origin");
+		BrowserActions.nap(3);		
+		Log.event("Entered the Origin: " + origin);
+	}
+
+	/**
+	 * Enter City for Homestays
+	 * 
+	 * @param city
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterHomestaysCity(String city) throws Exception {
+		Utils.waitForElement(driver, txtCity_Homestays);
+		BrowserActions.typeOnTextField(txtCity_Homestays, city, driver, "Select Homestays City");
+		BrowserActions.nap(2);		
+		Log.event("Entered the Homestays City: " + city);
+	}
+
+	/**
+	 * Enter City for Holidays
+	 * 
+	 * @param city
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterHolidaysCity(String city) throws Exception {
+		Utils.waitForElement(driver, txtCity_Holidays);
+		BrowserActions.typeOnTextField(txtCity_Holidays, city, driver, "Select Holidays City");
+		BrowserActions.nap(3);		
+		Log.event("Entered the Holidays City: " + city);
+	}
+
+	/**
+	 * Getting the text from the Auto Suggestion DropDown
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextActivitiesAutoSuggestionCityName() throws Exception {
+		String txtCityName = BrowserActions.getText(driver, lnkActivitiesAutoSuggestionName, "Activities Auto Suggestion City Name ");
+		return txtCityName;
+	}
+
+	/**
+	 * Getting the text form Airline Names
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> getSourceCitiesNamesInFlight() throws Exception {
+		List<String> cityNames = new ArrayList<String>();
+		for (int i = 1; i <= txtSourceCityNames.size(); i++) {
+			WebElement cityNameEle = driver.findElement(By.cssSelector("ul[class='mac-scroll scrollable'] li:nth-child(" + i + ") p[class='ac_cityname']"));
+			BrowserActions.scrollToView(cityNameEle, driver);
+			String cityName = cityNameEle.getText().toString().trim();
+			cityNames.add(cityName);
+		}
+		Log.event("City Names : " + cityNames);		
+		return cityNames;
+	}
+
+	/**
+	 * Getting the text from the Flights Airport City Name
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFlightAirportCityName() throws Exception {
+		String txtCityName = BrowserActions.getText(driver, lnkFlightAirportCityName, "Flights Airport City Name");
+		return txtCityName;
+	}
+
+	/**
+	 * Getting the text from the Flights Airport Country Name
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFlightAirportCountryName() throws Exception {
+		String txtCityName = BrowserActions.getText(driver, lnkFlightAirportCountryName, "Flights Airport Country Name");
+		return txtCityName;
+	}
+
+	/**
+	 * Getting the text from the get error message in Flight destination
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getErroeMessageInFlightDestination() throws Exception {
+		String txtCityName = BrowserActions.getText(driver, txtErrorMessageInFlightDestination, "Flight destination Error Message");
+		return txtCityName;
+	}
+
+	/**
+	 * To click search button on Home page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickSearchButton() throws Exception {
+		BrowserActions.clickOnElement(btnSearch, driver, "Search");
+	}
 
 }// HomePage
