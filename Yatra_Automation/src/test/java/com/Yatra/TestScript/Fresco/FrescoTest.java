@@ -17,7 +17,6 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.Yatra.Pages.Fresco;
-import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.LoginPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.TestScript.Common.BaseTest;
