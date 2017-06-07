@@ -4,17 +4,19 @@
 	<parameter name="workBookName" value="testdata\\data\\Train.xls"/>
     <parameter name="sheetName" value="TrainSearch"/>
     
-    
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
 
-	<parameter name="webSite" value="https://www.yatra.com/" />
+	<parameter name="webSite" value="https://www.google.co.in" />
 	<parameter name="browserName" value="chrome_windows" />
 
 	<test name="Train" thread-count="1" parallel="true">
 		<classes>
-			<class name="com.Yatra.TestScript.Trains.Train">    
+			<class name="com.Yatra.TestScript.Trains.Train">
+			    <methods>
+			        <include name="TC_Yatra_Train_001"></include>
+			    </methods>    
 			</class>
 		</classes>
 	</test>
