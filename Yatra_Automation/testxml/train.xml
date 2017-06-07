@@ -13,23 +13,8 @@
 	<parameter name="browserName" value="chrome_windows" />
 
 	<test name="Train" thread-count="1" parallel="true">
-		<!-- <groups>
-			<run>
-				<include name="desktop" />
-			</run>
-		</groups> 
- -->
 		<classes>
-			<class name="com.Yatra.TestScript.Trains.Train">
-			 <methods>
-			<include name= "TC_Yatra_Train_022"/>
-			<include name= "TC_Yatra_Train_031"/>
-			<include name= "TC_Yatra_Train_048"/>
-	     	<include name= "TC_Yatra_Train_038"/>
-	     	<include name= "TC_Yatra_Train_044"/>
-			<include name= "TC_Yatra_Train_051"/>
-		
-			</methods>      
+			<class name="com.Yatra.TestScript.Trains.Train">    
 			</class>
 		</classes>
 	</test>
