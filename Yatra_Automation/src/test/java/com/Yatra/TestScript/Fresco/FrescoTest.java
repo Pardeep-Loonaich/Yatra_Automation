@@ -1201,6 +1201,62 @@ public class FrescoTest extends BaseTest{
 			Log.endTestCase();
 		}
 	}
+
+	@Test( description = "Validate airport city - ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_029(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			fresco.enterDestination(destination);
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+
+			// step: select Departure date
+			String departDate = fresco.selectDepartureDate(departureDate);
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			fresco.clickSearchButton();
+			Log.message("5.Successfully clicked Search button");	
+			
+			//get the Error message from Destination
+			String errorMessage = fresco.getErroeMessageInFlightDestination();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated error destination message for Airport name");			
+			Log.assertThat(errorMessage.contains(Constants.C_FlightDestination_ErrorMessage),
+					"<b>Actual Result:</b> Successfully verified error destination message for Airport name, Error Message is: <b>"+ errorMessage +"</b>",
+					"<b>Actual Result:</b> Not verified error destination message for Airport name", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	
 // ********************************End of Test cases ***************************************************************************************
 
 } //FrescoTest

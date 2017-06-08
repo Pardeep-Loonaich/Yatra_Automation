@@ -802,7 +802,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		 //closeINotificationAtTopSRP();
+		 closeINotificationAtTopSRP();
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
 				+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
@@ -3538,7 +3538,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 
 	//TODO : Need to look on - @Narayana
-	public void popUpAppear() throws Exception {		
+	/*public void popUpAppear() throws Exception {		
 		if (PricePopUp.isDisplayed()) {			
 			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
 				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
@@ -3551,9 +3551,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver, "Clicked on continue in fare slashed popup");
 			} else
 				Log.event("No PopUp appear.");
+	}*/
+	
+	// TODO : Need to look on - @Narayana
+	public void popUpAppear() throws Exception {
+		if (PricePopUp.isDisplayed()) {
+			if (BrowserActions.isElementVisible(driver, btnFareChangeContinue)) {
+				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
+			} else
+				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
+		} else if (popupFareChange.isDisplayed()) {
+			if (BrowserActions.isElementVisible(driver, ContinueInFareChangeAlertPopUp)) {
+				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,"Clicked on continue in Fare Change Alert Popup");
+			} else if (BrowserActions.isElementVisible(driver, ContinueInpopUpFareSlashed)) {
+				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver,"Clicked on continue in fare slashed popup");
+			} else
+				Log.event("No PopUp appear.");
+		}
 	}
-	
-	
 	// *******************************End of SRP Functions******************************/
 	
 } // SearchResult

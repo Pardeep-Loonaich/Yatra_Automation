@@ -192,7 +192,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "div[ng-show='priceChangeDiv']")
 	private WebElement altFareChange;
 	
-	@FindBy(css = "div[class='change-status bull-green']]")
+	@FindBy(css = "div[class='change-status bull-green']")
 	private WebElement txtFareSlashed;
 	
 	@FindBy(css = "div[class='change-status bull-red']")
@@ -475,7 +475,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @throws Exception
 	 */
 	//TODO : Need to look on - Narayana
-	public void popUpAppear() throws Exception {		
+	/*public void popUpAppear() throws Exception {		
 		if (PricePopUp.isDisplayed()) {			
 			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
 				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
@@ -491,7 +491,24 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 						"Clicked on continue in fare slashed popup");
 			} else
 				Log.event("No PopUp appear.");
-	}
+	}*/
+	
+	// TODO : Need to look on - @Narayana
+		public void popUpAppear() throws Exception {
+			if (PricePopUp.isDisplayed()) {
+				if (BrowserActions.isElementVisible(driver, btnFareChangeContinue)) {
+					BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
+				} else
+					BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
+			} else if (popupFareChange.isDisplayed()) {
+				if (BrowserActions.isElementVisible(driver, ContinueInFareChangeAlertPopUp)) {
+					BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,"Clicked on continue in Fare Change Alert Popup");
+				} else if (BrowserActions.isElementVisible(driver, ContinueInpopUpFareSlashed)) {
+					BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver,"Clicked on continue in fare slashed popup");
+				} else
+					Log.event("No PopUp appear.");
+			}
+		}
 
 	/**
 	 * Getting the text from the fare details panel
