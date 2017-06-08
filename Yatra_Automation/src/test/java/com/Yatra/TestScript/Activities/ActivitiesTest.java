@@ -1208,62 +1208,7 @@ public class ActivitiesTest {
 		}
 	}
 
-	@Test(groups = {
-	"desktop" }, description = "Verification after Clicking on Check Availability User Should redirect to product description page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Activities_026(HashMap<String, String> testData) throws Exception {
-
-		Utils.testCaseConditionalSkip(testData.get("RunMode"));
-		String browser = testData.get("browser");
-		String origin = testData.get("Origin");
-
-		// Get the web driver instance
-		final WebDriver driver = WebDriverFactory.get(browser);
-		Log.testCaseInfo(testData);
-		try {
-			// step1: Navigate to Yatra Home Page
-			HomePage homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-
-			homePage.clickActivities();
-			Log.message("2. Clicked On Activities Link!");
-
-			homePage.enterActivitiesOrigin(origin);
-			Log.message("3. Entered Origin!");
-
-			searchResultActivites = homePage.clickOnSearchActivites();
-			Log.message("4. Clicked On Search Button!");
-
-			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
-			Log.message("5. Clicked On Book Now Button!");
-
-			activityDetailPage.clickOnBookNowButton();
-			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
-
-			activityDetailPage.clickOnCheckAvailability();
-			Log.message("7. Clicked On Check Availability Button!");
-
-			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
-			Log.message("8. Clicked On Book Now After Check Availability Button!");
-
-			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> Verification after Clicking on Check Availability User Should redirect to product description page");
-			Log.assertThat(
-					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("btnContinueInReviewPage"),
-							activitiesReviewPage),
-					"<b>Actual Result:</b> After Clicking On Check Availability Button user is redirected to Product Description Page",
-					"<b>Actual Result:</b> After Clicking On Check Availability Button user is not redirected to Product Description Page",
-					driver);
-
-			Log.testCaseResult();
-
-		} catch (Exception e) {
-			Log.exception(e);
-		} finally {
-			driver.quit();
-			Log.endTestCase();
-		}
-	}
+	
 
 	@Test(groups = {
 	"desktop" }, description = "Verification after Clicking on show Cancellation policy link Cancellation policy should open", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
@@ -1290,7 +1235,7 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNowByIndex(3);
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(3000);
@@ -1556,7 +1501,7 @@ public class ActivitiesTest {
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verification after Click on enter promocode");
 			Log.assertThat(
-					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"),
+					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtInvalidPromoCode"),
 							activitiesReviewPage),
 					"<b>Actual Result:</b> User is able to enter Promo code",
 					"<b>Actual Result:</b> User is not able to enter Promo code", driver);
@@ -2027,6 +1972,8 @@ public class ActivitiesTest {
 
 			activitiesTravellerPage.fillTravellerDetails();
 			Log.message("12. Filled traveller details.");
+			
+			activitiesTravellerPage.clickOnHotelNotRequiredChkbox();
 
 			paymentPage = activitiesTravellerPage.clickOnContinueInTravellerPage(); 
 			Log.message("13. Clicked on 'Continue' button in the TravellerPage.");
@@ -2174,6 +2121,8 @@ public class ActivitiesTest {
 
 			activitiesTravellerPage.fillTravellerDetails();
 			Log.message("12. Filled traveller details.");
+			
+			activitiesTravellerPage.clickOnHotelNotRequiredChkbox();
 
 			paymentPage = activitiesTravellerPage.clickOnContinueInTravellerPage(); 
 			Log.message("13. Clicked on 'Continue' button in the TravellerPage.");
@@ -2196,7 +2145,62 @@ public class ActivitiesTest {
 	}
 
 	
-	
+	@Test(groups = {
+	"desktop" }, description = "Verify Domestic Activities", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Activities_026(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickActivities();
+			Log.message("2. Clicked On Activities Link!");
+
+			homePage.enterActivitiesOrigin(origin);
+			Log.message("3. Entered Origin!");
+
+			searchResultActivites = homePage.clickOnSearchActivites();
+			Log.message("4. Clicked On Search Button!");
+
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
+			Log.message("5. Clicked On Book Now Button!");
+
+			activityDetailPage.clickOnBookNowButton();
+			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
+
+			activityDetailPage.clickOnCheckAvailability();
+			Log.message("7. Clicked On Check Availability Button!");
+
+			activitiesReviewPage = activityDetailPage.clickOnBookNowAfterCheckAvailability();
+			Log.message("8. Clicked On Book Now After Check Availability Button!");
+
+			Log.message("<br>");
+			Log.message(
+					"<b>Expected Result:</b> Verification after Clicking on Check Availability User Should redirect to product description page");
+			Log.assertThat(
+					activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("btnContinueInReviewPage"),
+							activitiesReviewPage),
+					"<b>Actual Result:</b> After Clicking On Check Availability Button user is redirected to Product Description Page",
+					"<b>Actual Result:</b> After Clicking On Check Availability Button user is not redirected to Product Description Page",
+					driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
 
 	
 }// ActivitiesTestCasesEnd
