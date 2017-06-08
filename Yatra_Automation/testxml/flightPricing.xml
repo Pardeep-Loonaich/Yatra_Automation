@@ -8,7 +8,13 @@
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
 	<parameter name="webSite" value="https://www.yatra.com/"/>
-	<test name="Flight Pricing" thread-count="1" parallel="true">
+	<test name="Flight Pricing chrome" thread-count="1" parallel="true">
+	    <parameter name="browserName" value="chrome_windows"/>
+		<classes>
+			<class name="com.Yatra.TestScript.Flights.FlightPricing"> </class>		
+		</classes>
+	</test>
+	<test name="Flight Pricing Firefox" thread-count="1" parallel="true">
 	    <parameter name="browserName" value="firefox_windows"/>
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing"> </class>		
