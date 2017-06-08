@@ -585,14 +585,14 @@ public class PaymentTest extends BaseTest {
 			paymentPage.clickOnPayNow();
 			Log.message("12. Clicked on 'PayNow' button on Payment Page.");
 
-			Utils.waitForPageLoad(driver);
-			BrowserActions.nap(20);
+			reviewPage.popUpAppear();
+			BrowserActions.nap(10);
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> User is successfully coming back to yatra page after failed transcaction.");
 			Log.assertThat(driver.getCurrentUrl().contains("yatra"),
-					"<b>Actual Result:</b> User successfully navigated back to yatra page after failed transaction with failed message:"
-							+ paymentPage.getTextFromFailedDebitCardTrans(),
+					"<b>Actual Result:</b> User successfully navigated back to yatra page after failed transaction with failed message:",
+							//+ paymentPage.getTextFromFailedDebitCardTrans(), //Note: Few times navigated to back Review page not in Payment
 					"<b>Actual Result:</b> User not coming back to yatra page after failed transaction.", driver);
 
 			Log.testCaseResult();
@@ -1841,7 +1841,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage.cancelHdfcPayment(browser);
 			Log.message("14. Clicked on Cancel button.");
 
-			driver.navigate().back();
+			//driver.navigate().back();
 			driver.navigate().back();
 			driver.navigate().refresh();
 			Log.message("15. Navigating back to 'Yatra' page.");
@@ -3208,7 +3208,7 @@ public class PaymentTest extends BaseTest {
 					"<b>Actual Result:</b> Unable to navigated on SearchResult Page.", driver);
 
 			// clicked on book now button in one way
-			reviewPage = searchResult.clickOnBookNowInOneWay(4);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Clicked on 'Book Now' button in Search Result Page.");
 			reviewPage.popUpAppear();
 
@@ -3255,7 +3255,7 @@ public class PaymentTest extends BaseTest {
 
 			paymentPage.cancelHdfcPayment(browser);
 			Log.message("14. Clicked on Cancel button.");
-			driver.navigate().back();
+			//driver.navigate().back();
 			driver.navigate().back();
 			driver.navigate().refresh();
 			Log.message("15. Navigating back to 'Yatra' page.");

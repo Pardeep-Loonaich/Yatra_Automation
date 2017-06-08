@@ -1735,10 +1735,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				BrowserActions.clickOnElement(btnCloseIframeNotification_Double, driver, "Iframe Left side bottom close button Notification");
 			}		
 			BrowserActions.switchToDefault(driver);
-			BrowserActions.nap(6);	
+			//BrowserActions.nap(6);	
 		} else {
 			Log.event("Not displayed Iframe Notification at Top and Bottom on SRP ");
-		}
+		}BrowserActions.nap(6);	
 	}
 
 
