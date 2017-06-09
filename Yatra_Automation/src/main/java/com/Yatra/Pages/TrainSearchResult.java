@@ -407,6 +407,24 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
 
 	/**
+	 * this method verify FindBus By index
+	 * @param index
+	 * @throws Exception
+	 */
+	public boolean verifyFindBusByselectingTrainByIndex() throws Exception{
+		List<WebElement> lstClss = driver.findElements(By.cssSelector("ul[class*='train-info-block true']"));
+		boolean flag= false;
+		for(int i=0;i<lstClss.size();i++){
+			Thread.sleep(1000);
+			BrowserActions.clickOnElement(lstClss.get(i).findElement(By.cssSelector("li[class*='trainClass']>p")),driver, "Clicked on available class of the train one by one.");
+			if (btnFindBus.isDisplayed()){
+						flag=true;
+						break;
+			}							
+		}
+		return flag;       
+	}
+	/**
 	 * to verify that the selected train contains seat of the selected Quota only.
 	 * @param index
 	 * @return
@@ -538,6 +556,8 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		}
 	}
 
+	
+	
 
 	/**
 	 * to select the Quota from the Quota dropdown
@@ -603,5 +623,28 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	public void clickOnReset() throws Exception{
 		BrowserActions.clickOnElement(btnResetFltr, driver, "Clicked on 'Reset Filter' button.");
 	}
+	
+
+	/**
+	 * clicked on FindBus Button by selecting train by index and then checking in every class for FindBus option
+	 * @param index
+	 * @throws Exception
+	 */
+	public void clickingOnFindBusButton() throws Exception{	
+		List<WebElement> lstClss = driver.findElements(By.cssSelector("ul[class*='train-info-block true']"));
+		//boolean flag= false;
+		for(int i=0;i<lstClss.size();i++){
+			Thread.sleep(1000);
+			BrowserActions.clickOnElement(lstClss.get(i).findElement(By.cssSelector("li[class*='trainClass']>p")),driver, "Clicked on available class of the train one by one.");
+			Thread.sleep(1000);
+
+			if (btnFindBus.isDisplayed()){
+				
+				BrowserActions.clickOnElement(btnFindBus, driver, "Clicked on 'Find Bus' button.");
+						break;
+			}							
+		}
+	}
+	
 	
 }

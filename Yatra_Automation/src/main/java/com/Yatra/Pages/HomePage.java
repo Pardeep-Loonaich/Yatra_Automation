@@ -43,7 +43,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 **********************************************************************************************/
 
 	//@Harveer- change access specifier for all element private
-
+@FindBy(css="div#booking_engine_modues")
+private WebElement dvSearchEngine;
 	@FindBy(css = "input#BE_flight_origin_city")
 	private WebElement txtOrigin;
 
@@ -280,7 +281,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		{
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnSearch))) 
+		if (isPageLoaded && !(Utils.waitForElement(driver, dvSearchEngine))) 
 		{
 		Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
