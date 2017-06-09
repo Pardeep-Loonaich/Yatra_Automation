@@ -17,11 +17,11 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.Yatra.Pages.Fresco;
-import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.LoginPage;
 import com.Yatra.Pages.SearchResult;
 import com.Yatra.TestScript.Common.BaseTest;
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -55,8 +55,7 @@ public class FrescoTest extends BaseTest{
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
-		try {
-			
+		try {			
 			// step: Navigate to Yatra Home Page
 			fresco = new Fresco(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
@@ -120,11 +119,10 @@ public class FrescoTest extends BaseTest{
 			//Re-trying if not displayed cities list Grid
 			if (fresco.getAutoSuggestionGrid() == false) {
 				fresco.enterOrigin(origin);
-			} 
-			String cityNameText = fresco.getTextFlightAutoSuggestionSourceCityName();
+			} 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Auto suggestions against searched flights should be displayed");
-			Log.assertThat(cityNameText.contains(origin),
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
 					"<b>Actual Result:</b> Auto suggestions against searched flights should be displayed",
 					"<b>Actual Result:</b> Auto suggestions against searched flights not displayed", driver);
 
@@ -165,10 +163,9 @@ public class FrescoTest extends BaseTest{
 				fresco.enterHotelCity(origin);
 			} 
 			
-			String cityNameText = fresco.getTextHotelAutoSuggestionCityName();
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Auto suggestions against searched hotels should be displayed");
-			Log.assertThat(cityNameText.contains(origin),
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
 					"<b>Actual Result:</b> Auto suggestions against searched hotels should be displayed",
 					"<b>Actual Result:</b> Auto suggestions against searched hotels not displayed", driver);
 
@@ -215,10 +212,9 @@ public class FrescoTest extends BaseTest{
 			if (fresco.getAutoSuggestionGrid() == false) {
 				fresco.enterOriginInFlightsAndHotels(origin);
 			} 
-			String cityNameText = fresco.getTextFlightAutoSuggestionSourceCityName();
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Auto suggestions against searched flights+Hotels should be displayed");
-			Log.assertThat(cityNameText.contains(origin),
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
 					"<b>Actual Result:</b> Auto suggestions against searched flights+Hotels should be displayed",
 					"<b>Actual Result:</b> Auto suggestions against searched flights+Hotels not displayed", driver);
 
@@ -259,10 +255,9 @@ public class FrescoTest extends BaseTest{
 				fresco.enterHomestaysCity(origin);
 			} 
 			
-			String cityNameText = fresco.getTextHotelAutoSuggestionCityName();
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Auto suggestions against searched Homestays should be displayed");
-			Log.assertThat(cityNameText.contains(origin),
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
 					"<b>Actual Result:</b> Auto suggestions against searched Homestays should be displayed",
 					"<b>Actual Result:</b> Auto suggestions against searched Homestays not displayed", driver);
 
@@ -303,10 +298,9 @@ public class FrescoTest extends BaseTest{
 				fresco.enterHolidaysCity(origin);
 			} 
 			
-			String cityNameText = fresco.getTextFlightAutoSuggestionSourceCityName();
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Auto suggestions against searched Holidays should be displayed");
-			Log.assertThat(cityNameText.contains(origin),
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
 					"<b>Actual Result:</b> Auto suggestions against searched Holidays should be displayed",
 					"<b>Actual Result:</b> Auto suggestions against searched Holidays not displayed", driver);
 
@@ -347,10 +341,9 @@ public class FrescoTest extends BaseTest{
 				fresco.enterActivitiesOrigin(origin);
 			} 
 			
-			String cityNameText = fresco.getTextActivitiesAutoSuggestionCityName();
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Auto suggestions against searched Activities should be displayed");
-			Log.assertThat(cityNameText.contains(origin),
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
 					"<b>Actual Result:</b> Auto suggestions against searched Activities should be displayed",
 					"<b>Actual Result:</b> Auto suggestions against searched Activities not displayed", driver);
 
@@ -395,10 +388,9 @@ public class FrescoTest extends BaseTest{
 				fresco.enterOriginBus(origin);
 			} 
 			
-			String cityNameText = fresco.getTextFlightAutoSuggestionSourceCityName();
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Auto suggestions against searched Buses should be displayed");
-			Log.assertThat(cityNameText.contains(origin),
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
 					"<b>Actual Result:</b> Auto suggestions against searched Buses should be displayed",
 					"<b>Actual Result:</b> Auto suggestions against searched Buses not displayed", driver);
 
@@ -438,10 +430,9 @@ public class FrescoTest extends BaseTest{
 				fresco.enterTrainOrigin(origin);
 			} 
 			
-			String cityNameText = fresco.getTextFlightAutoSuggestionSourceCityName();
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Auto suggestions against searched Trains should be displayed");
-			Log.assertThat(cityNameText.contains(origin.toUpperCase()),
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
 					"<b>Actual Result:</b> Auto suggestions against searched Trains should be displayed",
 					"<b>Actual Result:</b> Auto suggestions against searched Trains not displayed", driver);
 
@@ -604,7 +595,7 @@ public class FrescoTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
-		String origin = testData.get("Origin");		
+		//String origin = testData.get("Origin");		
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -629,15 +620,633 @@ public class FrescoTest extends BaseTest{
 			
 			//Re-trying if not displayed cities list Grid
 			if (fresco.getAutoSuggestionGrid() == false) {
-				fresco.enterOrigin(origin);
+				fresco.enterOrigin(" ");
 			} 
 			
 			List<String> cityNames = fresco.getSourceCitiesNamesInFlight();			
 			Log.message("<br>");			
-			Log.message("<b>Expected Result:</b> Verify Top cities list is displyaed ");
+			Log.message("<b>Expected Result:</b> Verified List of Top Cities");
 			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
-					"<b>Actual Result:</b> Successfully displyaed Top cities list, Cities list are:  " + cityNames,
-					"<b>Actual Result:</b> Not displyaed Top cities list", driver);
+					"<b>Actual Result:</b> Successfully displyaed top cities list, Cities list are:  <b>" + cityNames+"</b>",
+					"<b>Actual Result:</b> Not displyaed top cities list", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "Valid domestic Airport city for Source", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_016(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {			
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+			
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");
+			
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			BrowserActions.nap(2);
+			
+			//Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterOrigin(origin);
+			} 
+			String cityName = fresco.getTextFlightAirportCityName();
+			String countryName = fresco.getTextFlightAirportCountryName();
+			Log.message("<br>");			
+			Log.message("<b>Expected Result:</b> Verified Domestic airport cities displays for Source with the country flag of India");
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
+					"<b>Actual Result:</b> Successfully displyaed Domestic airport cities for source with the country flag of India, airport city with country names: <b>" + cityName+", "+ countryName +"</b>",
+					"<b>Actual Result:</b> Not displyaed  Domestic airport cities for Source", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "Valid domestic Airport city for Destination", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_017(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {			
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+			
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");
+			
+			// step: enter Origin place in Yatra Home page
+			fresco.enterDestination(destination);
+			Log.message("3.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			BrowserActions.nap(2);
+			
+			//Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterDestination(destination);
+			} 
+			String cityName = fresco.getTextFlightAirportCityName();
+			String countryName = fresco.getTextFlightAirportCountryName();
+			Log.message("<br>");			
+			Log.message("<b>Expected Result:</b> Verified Domestic airport cities displays for Destination with the country flag of India");
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
+					"<b>Actual Result:</b> Successfully displyaed Domestic airport cities for Destination with the country flag of India, airport city with country names: <b>" + cityName+", "+ countryName +"</b>",
+					"<b>Actual Result:</b> Not displyaed  Domestic airport cities for Destination", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "Valid International Airport city for Source", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_018(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {			
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+			
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");
+			
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			BrowserActions.nap(2);
+			
+			//Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterOrigin(origin);
+			} 
+			String cityName = fresco.getTextFlightAirportCityName();
+			String countryName = fresco.getTextFlightAirportCountryName();
+			Log.message("<br>");			
+			Log.message("<b>Expected Result:</b> Verified International airport cities displays for Source with the country flag of India");
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
+					"<b>Actual Result:</b> Successfully displyaed International airport cities for source with the country flag of India, airport city with country names: <b>" + cityName+", "+ countryName +"</b>",
+					"<b>Actual Result:</b> Not displyaed  International airport cities for Source", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "Valid International Airport city for Destination", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_019(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {			
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+			
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");
+			
+			// step: enter Destination place in Yatra Home page
+			fresco.enterDestination(destination);
+			Log.message("3.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			BrowserActions.nap(2);
+			
+			//Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterDestination(destination);
+			} 
+			String cityName = fresco.getTextFlightAirportCityName();
+			String countryName = fresco.getTextFlightAirportCountryName();
+			Log.message("<br>");			
+			Log.message("<b>Expected Result:</b> Verified International airport cities displays for Destination with the country flag of India");
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
+					"<b>Actual Result:</b> Successfully displyaed International airport cities for Destination with the country flag of India, airport city with country names: <b>" + cityName+", "+ countryName +"</b>",
+					"<b>Actual Result:</b> Not displyaed International airport cities for Destination", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "Valid Airport city for Source", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_020(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {			
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+			
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");
+			
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			BrowserActions.nap(2);
+			
+			//Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterOrigin(origin);
+			} 
+			
+			List<String> cityNames = fresco.getSourceCitiesNamesInFlight();			
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
+					"<b>Actual Result:</b> Successfully displyaed top cities have the most priority, Cities list are:  <b>" + cityNames+"</b>",
+					"<b>Actual Result:</b> Not displyaed top cities have the most priority", driver);
+			
+			String cityName = fresco.getTextFlightAirportCityName();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validate top cities have the most priority for Source, then Domestic airports are priortise and then international airports.");
+			Log.assertThat(cityName.contains(origin),
+					"<b>Actual Result:</b> Successfully displayed top cities have the most priority for Source, then Domestic airports are priortise and then international airports.",
+					"<b>Actual Result:</b> Not displayed top cities have the most priority for Source and Domestic airports are top priortise", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "Valid Airport city for Destination", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_021(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {			
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+			
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");			
+
+			// step: enter Destination place in Yatra Home page
+			fresco.enterDestination(destination);
+			Log.message("3.Successfully entered Destination '<b>" + destination + "</b>' in Homepage");
+			BrowserActions.nap(2);
+			
+			//Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterDestination(destination);
+			} 
+			
+			List<String> cityNames = fresco.getSourceCitiesNamesInFlight();			
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
+					"<b>Actual Result:</b> Successfully displyaed top cities have the most priority, Cities list are:  <b>" + cityNames+"</b>",
+					"<b>Actual Result:</b> Not displyaed top cities have the most priority", driver);
+			
+			String cityName = fresco.getTextFlightAirportCityName();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validate top cities have the most priority for Destination, then Domestic airports are priortise and then international airports.");
+			Log.assertThat(cityName.contains(destination),
+					"<b>Actual Result:</b> Successfully displayed top cities have the most priorityfor Destination, then Domestic airports are priortise and then international airports.",
+					"<b>Actual Result:</b> Not displayed top cities have the most priority for Destination and Domestic airports are top priortise", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+
+	@Test( description = "Valid Airport code for Source", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_022(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {			
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+			
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");
+			
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			BrowserActions.nap(2);
+			
+			//Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterOrigin(origin);
+			} 			
+			String cityCode = fresco.getTextFlightAirportCityName();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validate airport code and it should displayed on the first position");
+			Log.assertThat(cityCode.contains(origin),
+					"<b>Actual Result:</b> Successfully matched airport code and it should displayed on the first position",
+					"<b>Actual Result:</b> Not matched airport code and it should not displayed on the first position", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "Valid Airport code for Destination", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_023(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");		
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {			
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+			
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");			
+
+			// step: enter Destination place in Yatra Home page
+			fresco.enterDestination(destination);
+			Log.message("3.Successfully entered Destination '<b>" + destination + "</b>' in Homepage");
+			BrowserActions.nap(2);
+			
+			//Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterDestination(destination);
+			} 
+			String cityCode = fresco.getTextFlightAirportCityName();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validate airport code and it should displayed on the first position");
+			Log.assertThat(cityCode.contains(destination),
+					"<b>Actual Result:</b> Successfully matched airport code and it should displayed on the first position",
+					"<b>Actual Result:</b> Not matched airport code and it should not displayed on the first position", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test( description = "Validate error destination message for Airport city ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_024(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			fresco.enterDestination(destination);
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+
+			// step: select Departure date
+			String departDate = fresco.selectDepartureDate(departureDate);
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			fresco.clickSearchButton();
+			Log.message("5.Successfully clicked Search button");	
+			
+			//get the Error message from Destination
+			String errorMessage = fresco.getErroeMessageInFlightDestination();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated error destination message for Airport city");			
+			Log.assertThat(errorMessage.contains(Constants.C_FlightDestination_ErrorMessage),
+					"<b>Actual Result:</b> Successfully verified error destination message for Airport city, Error Message is: <b>"+ errorMessage +"</b>",
+					"<b>Actual Result:</b> Not verified error destination message for Airport city", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test( description = "Validate error destination message for Airport code ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_025(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			fresco.enterDestination(destination);
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+
+			// step: select Departure date
+			String departDate = fresco.selectDepartureDate(departureDate);
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			fresco.clickSearchButton();
+			Log.message("5.Successfully clicked Search button");	
+			
+			//get the Error message from Destination
+			String errorMessage = fresco.getErroeMessageInFlightDestination();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated error destination message for Airport code");			
+			Log.assertThat(errorMessage.contains(Constants.C_FlightDestination_ErrorMessage),
+					"<b>Actual Result:</b> Successfully verified error destination message for Airport code, Error Message is: <b>"+ errorMessage +"</b>",
+					"<b>Actual Result:</b> Not verified error destination message for Airport code", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test( description = "Validate error destination message for Airport name ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_026(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			fresco.enterDestination(destination);
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+
+			// step: select Departure date
+			String departDate = fresco.selectDepartureDate(departureDate);
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			fresco.clickSearchButton();
+			Log.message("5.Successfully clicked Search button");	
+			
+			//get the Error message from Destination
+			String errorMessage = fresco.getErroeMessageInFlightDestination();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated error destination message for Airport name");			
+			Log.assertThat(errorMessage.contains(Constants.C_FlightDestination_ErrorMessage),
+					"<b>Actual Result:</b> Successfully verified error destination message for Airport name, Error Message is: <b>"+ errorMessage +"</b>",
+					"<b>Actual Result:</b> Not verified error destination message for Airport name", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			//driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	//TODO: -InProgress
+	@Test( description = "Validate airport city - ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_029(HashMap<String, String> testData) throws Exception {		
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+
+			// step: enter Destination place in Yatra Home page
+			fresco.enterDestination(destination);
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+
+			// step: select Departure date
+			String departDate = fresco.selectDepartureDate(departureDate);
+			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+			fresco.clickSearchButton();
+			Log.message("5.Successfully clicked Search button");	
+			
+			//get the Error message from Destination
+			String errorMessage = fresco.getErroeMessageInFlightDestination();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Validated error destination message for Airport name");			
+			Log.assertThat(errorMessage.contains(Constants.C_FlightDestination_ErrorMessage),
+					"<b>Actual Result:</b> Successfully verified error destination message for Airport name, Error Message is: <b>"+ errorMessage +"</b>",
+					"<b>Actual Result:</b> Not verified error destination message for Airport name", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {

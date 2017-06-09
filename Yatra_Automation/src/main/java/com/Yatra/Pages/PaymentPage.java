@@ -712,9 +712,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickingOnRedeemNow() throws Exception{
-		BrowserActions.nap(3);
+		BrowserActions.nap(10);
 		BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
-		BrowserActions.nap(5);
+		BrowserActions.nap(10);
 	}
 
 
@@ -1273,7 +1273,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTextFromFailedDebitCardTrans() throws Exception{
 		String msgFailed = BrowserActions.getText(driver, txtFailedDBTrans, "Getting txt of the failed debit card transaction.");
 		return msgFailed;
-
 	}
 
 
@@ -1284,16 +1283,13 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public int calculatingAmountToPay() throws Exception {
-
 		int chrgedAmount=0;
-
 		for (int i = 0; i < lstPayAmount.size(); i++) {
 			String amount = BrowserActions.getText(driver,lstPayAmount.get(i), "lstPayAmount").trim().replace(",","").replace("Rs.", "");
 			int amount1 = Integer.parseInt(amount);
 			chrgedAmount = amount1+chrgedAmount;
 		}
 		return chrgedAmount;
-
 	}
 
 
