@@ -61,7 +61,7 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 	@FindBy(css = "input[value='Proceed to Book']")
 	private WebElement btnProccedAsSignedUser;
 	
-	@FindBy(css="#paxSubmit")
+	@FindBy(css="div[id='paxContainer']>div[class='ytContainerFixed mt20']>form>div[class='ytColm9']>div>div[class='loginBtnArea flL']>div>input")
 	private WebElement btnContinue;
 	
 	@FindBy(css="div[id='insurance']>div[class*='yt-rbtn']>span")
@@ -533,6 +533,23 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 		clickOnContinueBtnInPaxPage();
 
 	}
+	@FindBy(css = "div[class='recent-iternary-detail']")
+	private WebElement cityNameInRecentSearchPopUp;
+	
+	/**
+	 * getting cities name from recent search Pop up
+	 * @return
+	 * @throws Exception
+	 */
+	public String getCityNameInRecentSearch() throws Exception{
+		String name = null;
+		if(cityNameInRecentSearchPopUp.isDisplayed()){
+		BrowserActions.mouseHover(driver, cityNameInRecentSearchPopUp);
+		name = BrowserActions.getText(driver, cityNameInRecentSearchPopUp, "Getting cities name from recent search Pop up");
+		}
+		return name;
+	}
+	
 }//TrainTravellerPage
 
 

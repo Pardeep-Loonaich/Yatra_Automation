@@ -1443,13 +1443,12 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	public boolean verifyExpireSessionInTrain() throws Exception{
 		boolean result = false;
-		//Utils.waitForElement(driver, popupSessionEnd, 60000);
 		while(popupSessionEnd.isDisplayed()){
 			if (driver.getCurrentUrl().contains("passenger-details")){
-				return !result;
+				return result;
 			}
 		}
-		return result;
+		return !result;
 	}
 	@FindBy(css="div[id='time-label']>span")
 	private WebElement timeOnStrip;

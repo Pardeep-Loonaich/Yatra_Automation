@@ -40,7 +40,8 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 	@FindBy(css = "#srchModifyBtn")
 	private WebElement btnModifyItinerary;
 
-	@FindBy(css="#itineraryCont")
+	@FindBy(xpath ="(//input[@id='itineraryCont'])[1]")
+
 	private WebElement btnContinueIternary;
 	
 	@FindBy(css="#modifyPaxBtn")
@@ -58,6 +59,8 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 	@FindBy(css="div[id='time-label']")
 	private WebElement timeStrip;
 	
+	@FindBy(css="i[class='ico-newHeaderLogo']")
+	private WebElement yatraLogo;
 	
 	/**********************************************************************************************
 	 ********************************* WebElements of TrainReviewPage - Ends ****************************
@@ -83,7 +86,7 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 			Assert.fail();
 		}
 
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnModifyItinerary))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, yatraLogo))) {
 			Log.fail("TrainReviewPage page didn't open up", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
@@ -105,12 +108,13 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 	 * @throws Exception
 	 */
 	public PaymentPage continueInReviewIternary() throws Exception{
-		Utils.waitForPageLoad(driver);
-		BrowserActions.scrollToView(btnContinueIternary, driver);
+		//BrowserActions.scrollToView(timeOnStrip, driver);
+		/*Thread.sleep(2000);
+		driver.navigate().refresh();*/
 		BrowserActions.clickOnElement(btnContinueIternary, driver, "Clicked on continue in Review Iternary.");
 		return new PaymentPage(driver).get();
 	}
-	
+		
 	/**
 	 * to click on Modify Traveller Button in the Review Page
 	 * @return
