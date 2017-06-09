@@ -684,6 +684,10 @@ public class Fresco extends LoadableComponent<Fresco> {
 			BrowserActions.clickOnElement(lnkMultiCity, driver, "Multicity");
 			Utils.waitForPageLoad(driver);
 			Log.event("Successfully selected Multicity option in Search Fields");
+		} else if (tripType.equals(Constants.C_EXPLORE)) {
+			BrowserActions.clickOnElement(lnkExplore, driver, "Explore");
+			Utils.waitForPageLoad(driver);
+			Log.event("Successfully selected Explore option in Search Fields");
 		}
 	}
 
@@ -1480,7 +1484,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 	WebElement lnkAutoSuggestionsGrid;
 
 	@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_even ac_over']")
-	private WebElement lnkFlightSourceAutoSuggestionName;
+	private WebElement lnkFlightAutoSuggestionName;
 
 	@FindBy(css = "input#BE_hotel_destination_city")
 	private WebElement txtHotelCity;
@@ -1520,6 +1524,25 @@ public class Fresco extends LoadableComponent<Fresco> {
 
 	@FindBy(css = "div[class='toasterHolder']")
 	private WebElement txtErrorMessageInFlightDestination;
+		
+	@FindBy(css = "a[title='Explore']")
+	private WebElement lnkExplore;
+	
+	@FindBy(css = "#graphicalViewBtn")
+	private WebElement lnkFindNowInLowestFareFinder;
+	
+	@FindBy(css = "a[class='orange-btn eventTrackable js-prodSpecEvtCat']")
+	private WebElement lnkFindNowInDestinationFinder;
+	
+	@FindBy(css = "#BE_flight_origin_city_gp")
+	private WebElement txtOrigin_LowestFareFinder;
+
+	@FindBy(css = "#BE_flight_arrival_city_gp")
+	private WebElement txtDestination_LowestFareFinder;
+	
+	
+	//*[@id='graphicalViewBtn']
+	//a[@class='orange-btn eventTrackable js-prodSpecEvtCat']
 
 	// ************************Fresco
 	// Functions*******************************************
@@ -1530,7 +1553,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 * @throws Exception
 	 */
 	public String getTextFlightAutoSuggestionSourceCityName() throws Exception {
-		String txtCityName = BrowserActions.getText(driver, lnkFlightSourceAutoSuggestionName, "Flights Auto Suggestion City Name");
+		String txtCityName = BrowserActions.getText(driver, lnkFlightAutoSuggestionName, "Flights Auto Suggestion City Name");
 		return txtCityName;
 	}
 
@@ -1735,4 +1758,80 @@ public class Fresco extends LoadableComponent<Fresco> {
 		BrowserActions.clickOnElement(btnSearch, driver, "Search");
 	}
 
+	/**
+	 * Getting the Source city name in Booking engine
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getSourceCityName() throws Exception {
+		String txtCityName = BrowserActions.getText(driver, txtOrigin, "Flight Soure City name");
+		return txtCityName;
+	}
+	
+	/**
+	 * Getting the Destination city name in Booking engine
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getDestinationCityName() throws Exception {
+		String txtCityName = BrowserActions.getText(driver, txtDestination, "Flight Destination City name");
+		return txtCityName;
+	}
+	
+	/**
+	 * To click Find Now button in Lowest Fare Finder Popup
+	 * 
+	 * @throws Exception
+	 */
+	public void clickFindNowInLowestFareFinder() throws Exception {
+		BrowserActions.clickOnElement(lnkFindNowInLowestFareFinder, driver, "LowestFareFinder Find Now button");
+		//Utils.waitForPageLoad(driver);
+		BrowserActions.nap(5);
+	}
+	
+	/**
+	 * To click Find Now button in Destination Finder Popup
+	 * 
+	 * @throws Exception
+	 */
+	public void clickFindNowInDestinationFinder() throws Exception {
+		BrowserActions.clickOnElement(lnkFindNowInDestinationFinder, driver, "DestinationFinder Find Now button");
+		//Utils.waitForPageLoad(driver);
+		BrowserActions.nap(5);
+	}
+	
+	
+	/**
+	 * Enter Origin
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterOrigin_LowestFareFinder(String origin) throws Exception {
+		Utils.waitForElement(driver, txtOrigin_LowestFareFinder);		
+		BrowserActions.typeOnTextField(txtOrigin_LowestFareFinder, origin, driver, "Select Origin");
+		BrowserActions.nap(3);
+		Utils.waitForElement(driver, txtCityOver);			
+		Log.event("Entered the Origin: "+origin);		
+	}
+
+	/**
+	 * Enter Destination
+	 * 
+	 * @param destination
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterDestination_LowestFareFinder(String destination) throws Exception {		
+		Utils.waitForElement(driver, txtDestination_LowestFareFinder);
+		BrowserActions.typeOnTextField(txtDestination_LowestFareFinder, destination, driver, "Select Destination");		
+		BrowserActions.nap(3);
+		Utils.waitForElement(driver, txtCityOver);		
+		Log.event("Entered the Destination: " + destination);
+	}
+
+	
 }// HomePage
