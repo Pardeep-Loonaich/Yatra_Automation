@@ -1203,7 +1203,7 @@ public class FrescoTest extends BaseTest{
 	}
 
 	//TODO: -InProgress
-	@Test( description = "Validate airport city - ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Validate airport city - Saved resent search details in Source city ", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Fresco_029(HashMap<String, String> testData) throws Exception {		
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -1211,6 +1211,8 @@ public class FrescoTest extends BaseTest{
 		String tripType = testData.get("TripType");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
 		
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -1224,21 +1226,28 @@ public class FrescoTest extends BaseTest{
 			// step: Select Trip Type
 			fresco.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+			
+			// step: select OneWay Search fields in HomePage
+			fresco.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
 
-			// step: enter Origin place in Yatra Home page
-			fresco.enterOrigin(origin);
-			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			// step: click 'Search' button		
+			searchResult = fresco.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
 
-			// step: enter Destination place in Yatra Home page
-			fresco.enterDestination(destination);
-			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
-
-			// step: select Departure date
-			String departDate = fresco.selectDepartureDate(departureDate);
-			Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
-
-			fresco.clickSearchButton();
-			Log.message("5.Successfully clicked Search button");	
+			// step: click 'Recent Search' button
+			searchResult.clickOnRecentSearch();
+			Log.message("5. Successfully clicked 'Recent Search'!");
+			
+			String name = searchResult.getRecentSearchPopupDetails();
+			System.out.println(name);
+			String SourceCity = searchResult.getRecentSearchPopupDetails();
+			System.out.println(SourceCity);
+			
+			// step: click 'Search' button in Yatra Home page
+			fresco = searchResult.clickYatraLogo_Fresco();
+			Log.message("9.Successfully clicked 'Yatra' Logo in SRP ");
+			
 			
 			//get the Error message from Destination
 			String errorMessage = fresco.getErroeMessageInFlightDestination();

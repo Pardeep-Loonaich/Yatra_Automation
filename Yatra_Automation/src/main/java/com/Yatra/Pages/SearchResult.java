@@ -692,6 +692,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	
 	@FindBy(css = "div[class='lob-logo']>i[class='ico ico-rc-plane']")
 	private WebElement priceRecentSearch;
+	
+	@FindBy(css = "div[class='recent-iternary-detail'] div[class='place jsHideonSmallTab withFlightPlace']")
+	private WebElement txtResentSearchDetails;
 
 
 	/**********************************************************************************************
@@ -3569,6 +3572,53 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				Log.event("No PopUp appear.");
 		}
 	}
+	
+	//*************************Fresco Related functions*********************************
+	
+	/**
+	 * Getting the text from Resent Search popup details
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getRecentSearchPopupDetails() throws Exception {
+		BrowserActions.mouseHover(driver, btnRecentSearch);
+		String departureDate = BrowserActions.getText(driver, txtResentSearchDetails, "Resent Search Popup details");
+		return departureDate;
+	}
+	
+	/**
+	 * To click Yatra Logo on Search Result page
+	 * 
+	 * @throws Exception
+	 */
+	//TODO: Remove function after changing object fresco to homePage
+	public Fresco clickYatraLogo_Fresco() throws Exception {
+		BrowserActions.actionClick(lnkYatraLogo, driver, "Yatra Logo");
+		Utils.waitForPageLoad(driver);
+		Log.event("Successfully clicked Yatra Logo link in SRP");
+		// BrowserActions.nap(10);
+		return new Fresco (driver).get();
+
+	}
+	
+	@FindBy(css = "div[class='recent-iternary-detail']")
+	private WebElement cityNameInRecentSearchPopUp;
+	
+	/**
+	 * getting cities name from recent search Pop up
+	 * @return
+	 * @throws Exception
+	 */
+	public String getCityNameInRecentSearch() throws Exception{
+		String name = null;
+		if(cityNameInRecentSearchPopUp.isDisplayed()){
+		BrowserActions.mouseHover(driver, cityNameInRecentSearchPopUp);
+		name = BrowserActions.getText(driver, cityNameInRecentSearchPopUp, "Getting cities name from recent search Pop up");
+		}
+		return name;
+	} 
+	
 	// *******************************End of SRP Functions******************************/
 	
 } // SearchResult
