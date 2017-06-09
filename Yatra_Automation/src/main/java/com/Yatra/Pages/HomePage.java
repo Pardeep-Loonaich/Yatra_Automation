@@ -1,20 +1,13 @@
 
 package com.Yatra.Pages;
-
-
-
 import java.awt.Robot;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,7 +18,6 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.BrowserType;
 import com.Yatra.Utils.Constants;
@@ -33,10 +25,8 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 
-
-
+@SuppressWarnings("unused")
 public class HomePage extends LoadableComponent<HomePage> {
 
 	private String appURL;
@@ -53,7 +43,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 **********************************************************************************************/
 
 	//@Harveer- change access specifier for all element private
-
+@FindBy(css="div#booking_engine_modues")
+private WebElement dvSearchEngine;
 	@FindBy(css = "input#BE_flight_origin_city")
 	private WebElement txtOrigin;
 
@@ -290,7 +281,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 		{
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnSearch))) 
+		if (isPageLoaded && !(Utils.waitForElement(driver, dvSearchEngine))) 
 		{
 		Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
@@ -778,7 +769,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	@SuppressWarnings("static-access")
 	public String selectReturnDate(String returnDate) throws Exception {
 		int iDay = Integer.parseInt(returnDate);
 		String date = Utils.dateGenerator("yyyy_M_d", iDay);

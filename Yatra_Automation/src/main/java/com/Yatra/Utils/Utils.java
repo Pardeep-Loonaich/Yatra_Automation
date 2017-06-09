@@ -579,6 +579,7 @@ public class Utils {
 		return dataToBeReturn;
 	}
 	
+	@SuppressWarnings("unused")
 	public static String dateGenerator_DOB(String sDateFormat, int iDay) {
 		String dataToBeReturn = "";
 		if (sDateFormat.equalsIgnoreCase("") || sDateFormat.equalsIgnoreCase(null)) {

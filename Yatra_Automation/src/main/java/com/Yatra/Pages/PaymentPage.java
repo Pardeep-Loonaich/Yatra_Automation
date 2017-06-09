@@ -2,21 +2,13 @@
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import java.util.List;
-
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -32,19 +24,15 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-
+@SuppressWarnings("unused")
 public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	private String appURL;
-
-
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
 	ExecutionTimer timer=new ExecutionTimer();
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
-
-
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage ***********************************
@@ -428,8 +416,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	private WebElement btnChangeFlight;
 
-
-
 	@FindBy(css = "#qb_ccCVV0")
 	private WebElement txtSavedcreditCardCvv;
 
@@ -585,6 +571,18 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.nap(30);
 	}
 
+	/**
+	 * Clicking on Pay Now In Payment Page
+	 * 
+	 * @throws Exception
+	 */
+
+	public void clickOnPayNow_PaymentPage() throws Exception {
+		BrowserActions.scrollToView(btnPayNow, driver);
+		BrowserActions.javascriptClick(btnPayNow, driver, "Pay Now");
+		Utils.waitForPageLoad(driver);
+		//BrowserActions.nap(30);
+	}
 
 
 	/**
@@ -714,9 +712,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void clickingOnRedeemNow() throws Exception{
-		BrowserActions.nap(3);
+		BrowserActions.nap(10);
 		BrowserActions.clickOnElement(btnRedeemNow, driver, "Clicked on Redeem Now.");
-		BrowserActions.nap(5);
+		BrowserActions.nap(10);
 	}
 
 
@@ -1275,7 +1273,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTextFromFailedDebitCardTrans() throws Exception{
 		String msgFailed = BrowserActions.getText(driver, txtFailedDBTrans, "Getting txt of the failed debit card transaction.");
 		return msgFailed;
-
 	}
 
 
@@ -1286,16 +1283,13 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public int calculatingAmountToPay() throws Exception {
-
 		int chrgedAmount=0;
-
 		for (int i = 0; i < lstPayAmount.size(); i++) {
 			String amount = BrowserActions.getText(driver,lstPayAmount.get(i), "lstPayAmount").trim().replace(",","").replace("Rs.", "");
 			int amount1 = Integer.parseInt(amount);
 			chrgedAmount = amount1+chrgedAmount;
 		}
 		return chrgedAmount;
-
 	}
 
 
@@ -1311,6 +1305,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 
 	public void navigateBackFromMobileWallet(String walletName,String browser) throws Exception{
+		BrowserActions.nap(5);
 		switch (walletName){
 		case "mobikwik":
 			driver.navigate().back();
@@ -1367,18 +1362,21 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			BrowserActions.javascriptClick(btnCancelIdea, driver, "Clicked on 'Back to Yatra' button");
 			break;
 
-		}BrowserActions.nap(3);
+		}BrowserActions.nap(10);
 	}
 
 
 
 	public boolean verifyPage() throws Exception{
 		boolean flag = false;
-		if(btnContinueReviewPage.isDisplayed()!=flag){
+		/*if(btnContinueReviewPage.isDisplayed()!=flag){
 			return !flag;
 
-		}
-		else
+		}*/
+		if(BrowserActions.isElementVisible(driver, btnContinueReviewPage)!=flag){
+			return !flag;
+
+		}else
 			return flag;	 
 	}
 

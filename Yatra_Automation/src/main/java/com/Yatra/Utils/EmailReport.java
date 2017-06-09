@@ -38,6 +38,7 @@ public class EmailReport extends EmailableReporter2 {
 	static Boolean ignoreMethodeName = false;
 	public static List<ITestResult> allTests = new ArrayList<ITestResult>();
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void generateReport(List<XmlSuite> xml, List<ISuite> suites, String outdir) {
 

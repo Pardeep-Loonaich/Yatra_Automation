@@ -1,9 +1,7 @@
 package com.Yatra.Pages;
-
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +12,6 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
@@ -144,4 +141,5 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 				"Clicked on 'Continue' button on Traveller's Page.");
 		return new PaymentPage(driver).get();
 	}
+
 }// ActivitiesTravellerPageEnd

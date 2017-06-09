@@ -8,6 +8,7 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -44,6 +45,8 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.SkipException;
 import org.testng.xml.XmlTest;
+
+import com.gargoylesoftware.htmlunit.javascript.host.Set;
 
 //import com.Yatra.TestScript.Common.BaseTest;
 
@@ -413,7 +416,7 @@ public class WebDriverFactory {
 				driver = new RemoteWebDriver(hubURL, chromeCapabilities);
 			} else {
 				synchronized (WebDriverFactory.class) {
-					firefoxCapabilities.setCapability("unexpectedAlertBehaviour", "ignore");
+					//firefoxCapabilities.setCapability("unexpectedAlertBehaviour", "ignore");
 					firefoxCapabilities.setPlatform(Platform.fromString(platform));
 					driver = new RemoteWebDriver(hubURL, firefoxCapabilities);
 				}
@@ -495,7 +498,7 @@ public class WebDriverFactory {
 	 *            name of the test to pass to the grid
 	 * @return remote WebDriver instance
 	 */
-	@SuppressWarnings("unused")
+	@SuppressWarnings({ "unused", "null" })
 	public static WebDriver newWebDriverInstanceFromEnvironment(String testName) {
 		// right now we only support sauce labs
 
@@ -737,5 +740,8 @@ public class WebDriverFactory {
 		Log.message("Call count : " + summary.getCallCount());
 		Log.message("Size : " + summary.getTotalPayloadSize() / 1024 + " MB");
 		Log.message("Total load time : " + summary.getTotalLoadTime() / 1000 + " seconds");
+		
 	}*/
+	
+	
 }

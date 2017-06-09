@@ -13,7 +13,6 @@
 	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 	<parameter name="webSite" value="https://www.yatra.com/" />
 	<test name="Yatra Web Sanity Test" thread-count="1" parallel="true">
-		<!-- <groups> <run> <include name="Sanity"></include> </run> </groups> -->
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightSearch">
 				<methods>					

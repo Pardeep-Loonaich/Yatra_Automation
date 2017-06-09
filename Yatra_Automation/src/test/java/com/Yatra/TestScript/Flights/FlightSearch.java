@@ -537,7 +537,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for OneWay(OW) search");
 			BrowserActions.nap(2);
-			Log.assertThat(searchResult.verifySRPMenu(tripType), "<b>Actual Result:</b> SRP Page should appeared with <b>Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers",
+			Log.assertThat(searchResult.verifySRPMenu(tripType), "<b>Actual Result:</b> SRP Page should appeared with <b>Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Share Itinerary and Footer </b>headers",
 					"<b>Actual Result:</b> SRP Page should not appeared with <b> Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers", driver);
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -604,7 +604,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for Round Trip(RT) search");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.verifySRPMenu(tripType),
-					"<b>Actual Result:</b> SRP Page should appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers",
+					"<b>Actual Result:</b> SRP Page should appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Share Itinerary and Footer </b>headers",
 					"<b>Actual Result:</b> SRP Page should not appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer headers </b>", driver);
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -681,8 +681,8 @@ public class FlightSearch extends BaseTest{
 			Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for MultiCity(MC) search ");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.verifySRPMenu(tripType),
-					"<b>Actual Result:</b> SRP Page should appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer</b> headers",
-					"<b>Actual Result:</b> SRP Page should not appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer</b> headers", driver);
+					"<b>Actual Result:</b> SRP Page should appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Share Itinerary and Footer</b> headers",
+					"<b>Actual Result:</b> SRP Page should not appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Share Itinerary and Footer</b> headers", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
@@ -5082,7 +5082,7 @@ public class FlightSearch extends BaseTest{
 			paymentPage.enterCreditCardDetails(cardNumber);
 			Log.message("10. Fill Credit Card Details!");
 
-			paymentPage.clickOnPayNow();
+			paymentPage.clickOnPayNow_PaymentPage();
 			Log.message("11.Click On Pay Now!");
 			String ErrorMsg = paymentPage.getTextErrorMessage();
 
@@ -5161,7 +5161,7 @@ public class FlightSearch extends BaseTest{
 			paymentPage.enterDebitCardDetails(cardNumber,cvv);
 			Log.message("10. Fill invalid Debit Card Details!");
 
-			paymentPage.clickOnPayNow();
+			paymentPage.clickOnPayNow_PaymentPage();
 			Log.message("11.Click On Pay Now!");
 			String ErrorMsg = paymentPage.getTextErrorMessage();
 
@@ -5913,8 +5913,7 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> The price is calculated properly in the Fare Detail module on Review Page.",
 					"<b>Actual Result:</b> The price is not calculated properly in the Fare Detail module on Review Page.", driver);
 			
-
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
@@ -5983,7 +5982,9 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> The price is calculated properly in the Fare Detail module on Review Page.",
 					"<b>Actual Result:</b> The price is not calculated properly in the Fare Detail module on Review Page.", driver);
 	
+			Log.testCaseResult();
 		} catch (Exception e) {
+			Log.exception(e);
 		} finally {
 			//driver.quit();
 			Log.endTestCase();
@@ -6127,10 +6128,7 @@ public class FlightSearch extends BaseTest{
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
-		String promo[] =testData.get("Promo").split(",");
-		String domain = testData.get("Domain");		
-		String stops = testData.get("Stops");
-		String airlines = testData.get("Airlines");
+		String promo[] =testData.get("Promo").split(",");		
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -6147,8 +6145,7 @@ public class FlightSearch extends BaseTest{
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 			
-			// step: select Airlines Book Now for One Way search
-			//reviewPage = searchResult.clickOnBookNowInOneWay(2);			
+			// step: select Airlines Book Now for One Way search						
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page!");
 
@@ -6233,7 +6230,7 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> Travel Assistance and Insurance amount included in the Fare details",
 					"<b>Actual Result:</b> Travel Assistance and Insurance amount not included in the Fare details",
 					driver);
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {

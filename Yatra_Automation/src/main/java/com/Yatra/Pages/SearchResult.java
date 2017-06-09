@@ -1,4 +1,3 @@
-
 package com.Yatra.Pages;
 
 import java.awt.Robot;
@@ -31,9 +30,10 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-
+@SuppressWarnings("unused")
 public class SearchResult extends LoadableComponent<SearchResult> {
 
+	
 	private String appURL;
 	private WebDriver driver;
 	private boolean isPageLoaded;
@@ -801,7 +801,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public ReviewPage clickOnBookNowInOneWay(int index) throws Exception {
-		 //closeINotificationAtTopSRP();
+		 closeINotificationAtTopSRP();
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@data-gaeclist='Search Results Page'])[" + index
 				+ "]//li[@class='book-now']//p[@yatratrackable='Flights|Search|Book Type|Book Now']"));
 		BrowserActions.scrollToView(wBookNow, driver);
@@ -1734,10 +1734,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				BrowserActions.clickOnElement(btnCloseIframeNotification_Double, driver, "Iframe Left side bottom close button Notification");
 			}		
 			BrowserActions.switchToDefault(driver);
-			BrowserActions.nap(6);	
+			//BrowserActions.nap(6);	
 		} else {
 			Log.event("Not displayed Iframe Notification at Top and Bottom on SRP ");
-		}
+		}BrowserActions.nap(6);	
 	}
 
 
@@ -2359,7 +2359,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unused")
+	
 	public void selectFlightStopsInFilters(String stops) throws Exception {
 		for (int i = 1; i < lnkSops_Filters.size(); i++) {
 			WebElement stop = driver.findElement(
@@ -2654,6 +2654,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @throws Exception
 	 */
+	
 	public void clickOnFlightLinks() throws Exception {
 		List<WebElement> lstFlight = driver.findElements(By.cssSelector("div[class='js-flightRow js-flightItem']"));
 		for (int i = 0; i < lstFlight.size(); i++) {
@@ -3062,14 +3063,15 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		boolean boolModifySearch = BrowserActions.isElementPresent(driver, btnModifySearchIcon);
 		boolean boolFilters = BrowserActions.isElementPresent(driver, lnkFilters);
 		boolean boolResultGrid = BrowserActions.isElementPresent(driver, lnkResultGrid);
-		boolean boolSetFareAlerts = BrowserActions.isElementPresent(driver, lnkSetFareAlerts);
+		//boolean boolSetFareAlerts = BrowserActions.isElementPresent(driver, lnkSetFareAlerts);
+		//02/06/2017 :-Set Fare Alerts(Bell symbol) is Removed in SRP page, so not verified Set Fare alert in SRP
 		boolean boolSahreIntinerary = BrowserActions.isElementPresent(driver, lnkShareItinerary);
 		boolean boolFooter = BrowserActions.isElementPresent(driver, lnkFooter);
 		
 		if (tripType.equals(Constants.C_ONEWAY)) {
 			boolean boolAirlineMatrix_OW = BrowserActions.isElementPresent(driver, lnkAirlinematrix_OW);
 			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix_OW == true
-					&& boolResultGrid == true && boolSetFareAlerts == true && boolSahreIntinerary == true
+					&& boolResultGrid == true  && boolSahreIntinerary == true
 					&& boolFooter == true) {
 				Log.event("Successfully verified SRP Menu for One Way");
 				status = true;
@@ -3085,7 +3087,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			boolean boolRLL = BrowserActions.isElementPresent(driver, lnkReturnLFF);
 			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix == true
 					&& boolPrevDay == true && boolNextDay == true && boolOLL == true && boolRLL == true
-					&& boolResultGrid == true && boolSetFareAlerts == true && boolSahreIntinerary == true
+					&& boolResultGrid == true && boolSahreIntinerary == true
 					&& boolFooter == true) {
 				Log.event("Successfully verified SRP Menu for Round Trip");
 				status = true;
@@ -3098,9 +3100,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			boolean boolPrevDay = BrowserActions.isElementPresent(driver, lnkPrevDay_OnwardLeg);
 			boolean boolNextDay = BrowserActions.isElementPresent(driver, lnkNextDay_OnwardLeg);
 			if (boolHeaders == true && boolModifySearch == true && boolFilters == true && boolAirlineMatrix == true
-					&& boolPrevDay == true && boolNextDay == true && boolResultGrid == true && boolSetFareAlerts == true
-					&& boolSahreIntinerary == true && boolFooter == true) {
-				Log.event("Successfully verified SRP Menu for Round Trip");
+					&& boolPrevDay == true && boolNextDay == true && boolResultGrid == true  && boolSahreIntinerary == true && boolFooter == true) {
+				Log.event("Successfully verified SRP Menu for Multicity");
 				status = true;
 			} else {
 				status = false;
@@ -3536,7 +3537,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 
 	//TODO : Need to look on - @Narayana
-	public void popUpAppear() throws Exception {		
+	/*public void popUpAppear() throws Exception {		
 		if (PricePopUp.isDisplayed()) {			
 			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
 				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
@@ -3549,9 +3550,24 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver, "Clicked on continue in fare slashed popup");
 			} else
 				Log.event("No PopUp appear.");
+	}*/
+	
+	// TODO : Need to look on - @Narayana
+	public void popUpAppear() throws Exception {
+		if (PricePopUp.isDisplayed()) {
+			if (BrowserActions.isElementVisible(driver, btnFareChangeContinue)) {
+				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
+			} else
+				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
+		} else if (popupFareChange.isDisplayed()) {
+			if (BrowserActions.isElementVisible(driver, ContinueInFareChangeAlertPopUp)) {
+				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,"Clicked on continue in Fare Change Alert Popup");
+			} else if (BrowserActions.isElementVisible(driver, ContinueInpopUpFareSlashed)) {
+				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver,"Clicked on continue in fare slashed popup");
+			} else
+				Log.event("No PopUp appear.");
+		}
 	}
-	
-	
 	// *******************************End of SRP Functions******************************/
 	
 } // SearchResult

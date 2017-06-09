@@ -3,8 +3,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITest;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
-import org.testng.Reporter;
-
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
