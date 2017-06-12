@@ -822,7 +822,7 @@ public class FrescoTest extends BaseTest {
 
 			// step: enter Destination place in Yatra Home page
 			fresco.enterDestination(destination);
-			Log.message("3.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+			Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
 			BrowserActions.nap(2);
 
 			// Re-trying if not displayed cities list Grid
@@ -1394,7 +1394,7 @@ public class FrescoTest extends BaseTest {
 
 	// TODO: -InProgress
 	@Test(description = "Validate airport city - validated resent saved Destination details on Booking engine in HomePage", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_30(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_030(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
@@ -1568,8 +1568,210 @@ public class FrescoTest extends BaseTest {
 			Log.endTestCase();
 		}
 	}
+	
+	@Test(description = "Valid Airport city/name/code - verify Destination fare finder flight details in Explore tab", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_033(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
 
-	// ********************************End of Test cases
-	// ***************************************************************************************
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked '<b>" + tripType + "</b>' option in Home Page ");
+			BrowserActions.nap(6);
+
+			fresco.clickFindNowInDestinationFinder();
+			Log.message("4.Successfully clicked Find Now button in DestinationFinder");
+			BrowserActions.nap(6);
+			
+			fresco.HandleWindowTabs();
+			
+			//fresco.clickOneWayInDestinationFinder();
+			//Log.message("5.Successfully clicked OneWay option in DestinationFinder");
+			
+			// step: enter Source place in Home page
+			fresco.enterOrigin_DestinationFinder(origin);
+			Log.message("5.Successfully entered Source '<b>" + origin + "</b>' in Homepage");
+			BrowserActions.nap(2);
+
+			String originName = fresco.getTextFlightAutoSuggestionCityName_Destinationfinder();
+			
+			// step: enter Destination place in Home page
+			fresco.enterDestination_DestinationFinder(destination);
+			Log.message("6.Successfully entered Destination '<b>" + destination + "</b>' in Homepage");
+			BrowserActions.nap(2);
+
+			String destinationName = fresco.getTextFlightAutoSuggestionCityName_Destinationfinder();
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verified Destination flight in Explore tab");
+			Log.assertThat((originName.contains(origin) && (destinationName.contains(destination))),
+					"<b>Actual Result:</b> Successfully verified Destination fare finder flight details in Explore tab",
+					"<b>Actual Result:</b> Not verified Destination fare finder flight details in Explore tab", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			// driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "Valid Airport city - Autosuggestion of travel with in budget", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_034(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		//String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			// step: enter Origin place on Travel Within Budget in Home page
+			fresco.enterOriginInTravelBudget(origin);
+			Log.message("2.Successfully entered Origin '<b>" + origin + "</b>' in Travel Within Budget");
+			BrowserActions.nap(2);
+
+			// Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterOriginInTravelBudget(origin);
+			}
+			
+			String cityName = fresco.getTextTravelBudgetCityName();			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verified autosuggestion of 'travel with in budget' with indian cities according to the priority ");
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
+					"<b>Actual Result:</b> Successfully displayed autosuggestion of 'travel with in budget' with indian cities according to the priority, list of first city name is <b>"
+							+ cityName + "</b>",
+					"<b>Actual Result:</b> Not displayed autosuggestion of 'travel with in budget' with indian cities according to the priority", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			// driver.quit();
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Valid Airport Source city -- Verify nearest airport with distance in range of 200km", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_037(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String origin = testData.get("Origin");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");
+
+			// step: enter Origin place in Yatra Home page
+			fresco.enterOrigin(origin);
+			Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+			BrowserActions.nap(2);
+
+			// Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterOrigin(origin);
+			}
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> verified all nearest airport cities with distance in range of 200km");
+			List<String> citiesDetails = fresco.getSourceCitiesFullDetailsInFlight();
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
+					"<b>Actual Result:</b> Successfully displayed nearest airport cities with distance in range of 200km, Cities list are:  <b>"
+							+ citiesDetails + "</b>",
+					"<b>Actual Result:</b> Not displayed nearest airport cities with distance in range of 200km", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			// driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "Valid Airport Destination city-- Verify nearest airport with distance in range of 200km", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_038(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			Fresco fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// Step: click Hotels link in HomePage
+			fresco.clickFlights();
+			Log.message("2.Successfully clicked 'Flights' tab  Home Page ");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("3.Successfully clicked 'One Way' option in Home Page ");
+
+			// step: enter Destination place in Yatra Home page
+			fresco.enterDestination(destination);
+			Log.message("3.Successfully entered Destination '<b>" + destination + "</b>' in Homepage");
+			BrowserActions.nap(2);
+
+			// Re-trying if not displayed cities list Grid
+			if (fresco.getAutoSuggestionGrid() == false) {
+				fresco.enterDestination(destination);
+			}
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> verified all nearest airport cities with distance in range of 200km");
+			List<String> citiesDetails = fresco.getSourceCitiesFullDetailsInFlight();
+			Log.assertThat(fresco.elementLayer.verifyPageElements(Arrays.asList("lnkAutoSuggestionsGrid"), fresco),
+					"<b>Actual Result:</b> Successfully displayed nearest airport cities with distance in range of 200km, Cities list are:  <b>"
+							+ citiesDetails + "</b>",
+					"<b>Actual Result:</b> Not displayed nearest airport cities with distance in range of 200km", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			// driver.quit();
+			Log.endTestCase();
+		}
+	}
+
+	
+	// ********************************End of Test cases************************************
 
 } // FrescoTest

@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -1492,6 +1494,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 	@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_odd ac_over']")
 	private WebElement lnkHotelCityAutoSuggestionName;
 
+	
 	@FindBy(css = "a[id='booking_engine_flight_hotels']")
 	private WebElement lnkFlightsAndHotels;
 
@@ -1539,6 +1542,27 @@ public class Fresco extends LoadableComponent<Fresco> {
 
 	@FindBy(css = "#BE_flight_arrival_city_gp")
 	private WebElement txtDestination_LowestFareFinder;
+	
+	@FindBy(css = "input[id='oneway']")
+	private WebElement btnOneWay_DestinationFinder;
+	
+	@FindBy(css = "input[id='round']")
+	private WebElement btnRoundTrip_DestinationFinder;
+	
+	@FindBy(css = "input[placeholder='Origin']")
+	private WebElement txtOrigin_DestinationFinder;
+
+	@FindBy(css = "input[placeholder='Destination']")
+	private WebElement txtDestination_DestinationFinder;
+	
+	@FindBy(css = "body[id='extreme-search'] li[class='ac_even ac_over']")
+	private WebElement lnkFlightAutoSuggestion_DestinationFinder;
+	
+	@FindBy(css = "#extreme_origin")
+	private WebElement txtOrgin_TravelBudget;
+	
+	@FindBy(css = "div[id='extremePadCont'] h2[class='main-title']")
+	private WebElement txtTravelBudgetTitle;
 	
 	
 	//*[@id='graphicalViewBtn']
@@ -1833,5 +1857,120 @@ public class Fresco extends LoadableComponent<Fresco> {
 		Log.event("Entered the Destination: " + destination);
 	}
 
+	/**
+	 * Enter Origin
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterOrigin_DestinationFinder(String origin) throws Exception {
+		Utils.waitForElement(driver, txtOrigin_DestinationFinder);		
+		txtOrigin_DestinationFinder.clear();
+		BrowserActions.typeOnTextField(txtOrigin_DestinationFinder, origin, driver, "Select Origin");
+		BrowserActions.nap(3);
+		Utils.waitForElement(driver, txtCityOver);			
+		Log.event("Entered the Origin: "+origin);		
+	}
+
+	/**
+	 * Enter Destination
+	 * 
+	 * @param destination
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterDestination_DestinationFinder(String destination) throws Exception {		
+		Utils.waitForElement(driver, txtDestination_DestinationFinder);
+		txtOrigin_DestinationFinder.clear();
+		BrowserActions.typeOnTextField(txtDestination_DestinationFinder, destination, driver, "Select Destination");		
+		BrowserActions.nap(3);
+		Utils.waitForElement(driver, txtCityOver);		
+		Log.event("Entered the Destination: " + destination);
+	}
+
+	/**
+	 * To click Find Now button in Destination Finder Popup
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOneWayInDestinationFinder() throws Exception {
+		BrowserActions.clickOnElement(btnOneWay_DestinationFinder, driver, "DestinationFinder OneWay radio button");
+		BrowserActions.nap(5);
+	}
 	
-}// HomePage
+	
+	public void HandleWindowTabs() throws Exception {
+		BrowserActions.nap(2);
+		String winHandleBefore = driver.getWindowHandle();
+		//JavascriptExecutor js = (JavascriptExecutor) driver; js.executeScript("window.history.go(-1)");
+		Set<String> handles = driver.getWindowHandles();
+		for (String winHandle : handles) {
+			if (!winHandle.equals(winHandleBefore)) {
+				driver.switchTo().window(winHandle);
+				break;
+			}
+		}
+		BrowserActions.nap(3);
+	}
+	
+	/**
+	 * Getting the text from the Auto Suggestion Source city name
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFlightAutoSuggestionCityName_Destinationfinder() throws Exception {
+		String txtCityName = BrowserActions.getText(driver, lnkFlightAutoSuggestion_DestinationFinder, "Flights Destination Finder Auto Suggestion City Name");
+		return txtCityName;
+	}
+	
+	/**
+	 * Getting the text form Airline Names
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> getSourceCitiesFullDetailsInFlight() throws Exception {
+		List<String> cityNames = new ArrayList<String>();
+		for (int i = 1; i <= txtSourceCityNames.size(); i++) {
+			WebElement cityNameEle = driver.findElement(By.cssSelector("ul[class='mac-scroll scrollable'] li:nth-child(" + i + ")"));
+			BrowserActions.scrollToView(cityNameEle, driver);
+			String cityName = cityNameEle.getText().toString().trim();
+			cityNames.add(cityName);
+		}
+		Log.event("Cities Full Details : " + cityNames);		
+		return cityNames;
+	}
+	
+	
+	/**
+	 * Enter Origin for Travel Budget
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterOriginInTravelBudget(String origin) throws Exception {
+		Utils.waitForElement(driver, txtOrgin_TravelBudget);
+		BrowserActions.scrollToView(txtTravelBudgetTitle, driver);
+		//BrowserActions.scrollToView(txtOrgin_TravelBudget, driver);
+		txtOrgin_TravelBudget.clear();
+		BrowserActions.typeOnTextField(txtOrgin_TravelBudget, origin, driver, "Select Travel Budget Origin");
+		BrowserActions.nap(3);		
+		Log.event("Entered the Travel Budget Origin: " + origin);
+	}
+	
+	 /* Getting the City Name from the TravelBudget 
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextTravelBudgetCityName() throws Exception {
+		String txtCityName = BrowserActions.getText(driver, lnkFlightAutoSuggestionName, "TravelBudget City Name");
+		return txtCityName;
+	}
+
+	
+	
+}// Fresco
