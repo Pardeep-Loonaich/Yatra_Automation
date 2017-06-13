@@ -2,14 +2,24 @@ package com.Yatra.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellUtil;
 
 public class ExcelUtils 
 
@@ -20,7 +30,7 @@ public class ExcelUtils
 	String testCaseId;
 	private static final String PAGE_LOAD_TIME_FILE="";
 	private static final String PAGE_PERFORMANCE_SHEET_NAME="";
-	
+
 	public HSSFSheet initiateExcelConnection(String workSheet, String workBookName, boolean doFilePathMapping) 
 	{
 		try {
@@ -89,11 +99,11 @@ public class ExcelUtils
 		return listOfRowNumber;
 
 	}
-/**
- * @author harveer.singh
- * @param sheet
- * @return: it will return all Name is a list
- */
+	/**
+	 * @author harveer.singh
+	 * @param sheet
+	 * @return: it will return all Name is a list
+	 */
 	public ArrayList<String> getHeaders(HSSFSheet sheet)
 
 	{
@@ -110,25 +120,105 @@ public class ExcelUtils
 		}
 		return listOfHeaderName;
 	}//getHeaders
-	
+
 	public void setCellValue(Map<String,Integer> pageLoadTimeData)
-	
+
 	{
 		try
 		{
-		File file=new File(PAGE_LOAD_TIME_FILE);
-		HSSFWorkbook workbook=new HSSFWorkbook(new FileInputStream(file));
-		workbook.getSheet(PAGE_PERFORMANCE_SHEET_NAME);
-		
-		
+			File file=new File(PAGE_LOAD_TIME_FILE);
+			HSSFWorkbook workbook=new HSSFWorkbook(new FileInputStream(file));
+			workbook.getSheet(PAGE_PERFORMANCE_SHEET_NAME);
+
+
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
-			
-			
+
+
 		}
-		
+
+	}
+
+	private static void writePageLoadTimeToExcel(String filePath, double[] data) throws Exception
+	{
+		String sSheetName="Page Load Time";
+		HSSFWorkbook workbook=null;
+		HSSFSheet sheet=null;
+		try {
+
+			//check if file exist
+			try {
+				
+				FileInputStream fileInputStreamObj = new FileInputStream(new File(filePath));
+				workbook = new HSSFWorkbook(fileInputStreamObj);
+				sheet = workbook.getSheet(sSheetName);
+			} catch (FileNotFoundException e) 
+			{
+				System.out.println("File Not found...Create new file");
+				Log.message("Excel File/Sheet not found, please check file name again");
+			}catch(Exception e){
+				System.out.println("Workbook/sheet not fetched");
+			}
+
+
+			//creating new file
+			if(workbook==null){
+				workbook = new HSSFWorkbook();
+				sheet = workbook.createSheet("Load Time");
+
+				HSSFCellStyle style = workbook.createCellStyle();
+				style.setFillForegroundColor(HSSFColor.SKY_BLUE.index);
+				style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
+
+				Row row = sheet.createRow(0);
+				row.createCell(0).setCellValue("Time Stamp");
+				row.getCell(0).setCellStyle(style);
+				row.createCell(1).setCellValue("Result Page (in sec)");
+				row.createCell(2).setCellValue("Pricing Page (in sec)");
+				row.createCell(3).setCellValue("Passenger Page (in sec)");
+				row.createCell(4).setCellValue("Payment Page (in sec)");
+
+				row.getCell(1).setCellStyle(style);
+				row.getCell(2).setCellStyle(style);
+				row.getCell(3).setCellStyle(style);
+				row.getCell(4).setCellStyle(style);
+			}
+
+			//write into file
+			int rowNum = sheet.getPhysicalNumberOfRows();
+			Row row = sheet.createRow(rowNum);
+			row.createCell(0).setCellValue(getCurrentDate());
+			sheet.autoSizeColumn(0);
+
+
+			for(int i=0; i<data.length; i++){
+				row.createCell(i+1).setCellValue(data[i]);
+				sheet.autoSizeColumn(i+1);
+				CellUtil.setAlignment(row.getCell(i+1), workbook, CellStyle.ALIGN_CENTER);
+			}
+
+			FileOutputStream fileOutputStremObj = new FileOutputStream(new File(filePath));
+			workbook.write(fileOutputStremObj);
+			System.out.println("File write completed");
+
+
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	private static String getCurrentDate(){
+
+		Date currentDate = new Date();
+		DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy HH:mm:ss");
+		//    	System.out.println(dateFormat.format(currentDate));
+
+		return dateFormat.format(currentDate);
 	}
 
 }

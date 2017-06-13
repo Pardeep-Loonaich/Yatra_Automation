@@ -1,8 +1,12 @@
 package com.Yatra.TestScript.Common;
+import net.lightbody.bmp.core.har.Har;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.ITest;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
+
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -15,6 +19,7 @@ import javax.mail.internet.AddressException;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
+import com.Yatra.Utils.BrowserMob;
 import com.Yatra.Utils.EmailSender;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExtentReporter;
@@ -65,6 +70,7 @@ public class BaseTest implements ITest
 			setTestName(testCaseId);
 			iCount=1;
 		}
+
 	}
 
 	public static boolean verifyReportContainsTestcaseId(String testCaseId)
@@ -98,13 +104,13 @@ public class BaseTest implements ITest
 
 	{
 		driver=WebDriverFactory.getCurrentDriverInstance();
-		
+
 		try
 		{
 			String emailOnFailure=context.getCurrentXmlTest().getParameter("SEND_EMAIL_ON_FAILIURE");
 			if(result.getStatus()==ITestResult.FAILURE&&emailOnFailure.equalsIgnoreCase("TRUE"))			//if test case fail perform below task
 			{
-				
+
 				Log.message("triggering email in for failed test case");
 				inputFile=Log.takeScreenShot(driver);
 
@@ -112,7 +118,11 @@ public class BaseTest implements ITest
 				String sCurrentURL=driver.getCurrentUrl();
 				EmailSender email=new EmailSender(inputFile, testCaseId, sCurrentURL);
 				email.sendHtmlEmail();
+
+
 			}
+			BrowserMob.getHarData(WebDriverFactory.mobProxy);
+			
 		}
 		catch(Exception e)
 		{
@@ -120,6 +130,7 @@ public class BaseTest implements ITest
 		}
 		finally
 		{
+		
 			driver.quit();
 		}
 

@@ -2,6 +2,7 @@ package com.Yatra.Utils;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
@@ -11,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+
+import net.lightbody.bmp.BrowserMobProxy;
+import net.lightbody.bmp.core.har.Har;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
@@ -41,12 +45,12 @@ public class Utils {
 	public static void waitForPageLoad(final WebDriver driver) {
 		waitForPageLoad(driver, WebDriverFactory.maxPageLoadWait);
 	}
-	
+
 	/**
 	 * Desc: wait for Ajax call to complete
 	 */
 	public static boolean waitForAjaxToComplete(WebElement element,String atrribute, String containsValue)
-	
+
 	{
 		boolean dataToBereturn=false;
 		int icounter=10;
@@ -54,9 +58,9 @@ public class Utils {
 		{
 			icounter--;
 			dataToBereturn=true;
-			
+
 		}
-		
+
 		return dataToBereturn;
 	}
 
@@ -77,11 +81,6 @@ public class Utils {
 			if ("true".equalsIgnoreCase(configProperty.getProperty("documentLoad")))
 				wait.until(WebDriverFactory.documentLoad);
 
-			if ("true".equalsIgnoreCase(configProperty.getProperty("imageLoad")))
-				wait.until(WebDriverFactory.imagesLoad);
-
-			if (configProperty.getProperty("framesLoad").equalsIgnoreCase("true"))
-				wait.until(WebDriverFactory.framesLoad);
 
 			String title = driver.getTitle().toLowerCase();
 			String url = driver.getCurrentUrl().toLowerCase();
@@ -95,10 +94,9 @@ public class Utils {
 		} catch (TimeoutException e) {
 			driver.navigate().refresh();
 			wait.until(WebDriverFactory.documentLoad);
-			wait.until(WebDriverFactory.imagesLoad);
-			wait.until(WebDriverFactory.framesLoad);
 		}
 		//Log.event("Page Load Wait: (Sync)", StopWatch.elapsedTime(startTime));
+
 
 	} // waitForPageLoad
 
@@ -171,7 +169,7 @@ public class Utils {
 		//long startTime = StopWatch.startTime();
 		WebDriverWait wait = new WebDriverWait(driver, maxWait);
 		try {
-			
+
 			WebElement waitElement = wait.until(ExpectedConditions.visibilityOf(element));
 			if (waitElement.isDisplayed() && waitElement.isEnabled()) {
 				statusOfElementToBeReturned = true;
@@ -536,11 +534,11 @@ public class Utils {
 		String dataToBeReturn="";
 		if("".equalsIgnoreCase(sDateFormat) ||sDateFormat.equalsIgnoreCase(null))
 		{
-			 simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		}
 		else{
-		
-		 simpleDateFormat = new SimpleDateFormat(sDateFormat);
+
+			simpleDateFormat = new SimpleDateFormat(sDateFormat);
 		}
 
 		if(iDay!=0)
@@ -578,7 +576,7 @@ public class Utils {
 		}
 		return dataToBeReturn;
 	}
-	
+
 	@SuppressWarnings("unused")
 	public static String dateGenerator_DOB(String sDateFormat, int iDay) {
 		String dataToBeReturn = "";
@@ -603,35 +601,35 @@ public class Utils {
 
 	}
 
-	
-	 
-		/**
-		 * Used to validate if a locator is on the page
-		 * @param driver
-		 * @param by locator
-		 * @return true or false
-		 */
-		public boolean exists(WebDriver driver, By by){
-			driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
-			boolean found = false;
-			try {
-				List<WebElement> list = driver.findElements(by);
-				for (WebElement l : list) {
-					if(l.isDisplayed()){
-						found = true;
-						break;
 
-	} else {
-						found = false;
-					}
+
+	/**
+	 * Used to validate if a locator is on the page
+	 * @param driver
+	 * @param by locator
+	 * @return true or false
+	 */
+	public boolean exists(WebDriver driver, By by){
+		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+		boolean found = false;
+		try {
+			List<WebElement> list = driver.findElements(by);
+			for (WebElement l : list) {
+				if(l.isDisplayed()){
+					found = true;
+					break;
+
+				} else {
+					found = false;
 				}
-				return found;
-			} catch (Exception e) {
-				return false;
-			} finally {
-				driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
 			}
+			return found;
+		} catch (Exception e) {
+			return false;
+		} finally {
+			driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
 		}
+	}
 
 
 
@@ -645,28 +643,18 @@ public class Utils {
 		((JavascriptExecutor) driver).executeScript("scroll(0, "+scrollPixel+");");
 		BrowserActions.nap(1);
 	}
-		
-	public static void setMousePositionOffPage(WebDriver driver) {
-			((JavascriptExecutor) driver).executeScript("window.focus();");
-			Robot r;
-			try {
-				r = new Robot();
-				r.mouseMove(1000,0);
-			} catch (AWTException e) {
-				// no message
-			}
 
-//			Screen screen = new Screen();
-	//
-//			try {
-//				Location l = screen.getTopRight();
-//				screen.mouseMove(l);
-//				screen.mouseMove(-250, 0);
-//			} catch (Exception e) {
-//				// no message please
-//			}
+	public static void setMousePositionOffPage(WebDriver driver) {
+		((JavascriptExecutor) driver).executeScript("window.focus();");
+		Robot r;
+		try {
+			r = new Robot();
+			r.mouseMove(1000,0);
+		} catch (AWTException e) {
+			// no message
 		}
-	
+	}
+
 	/**
 	 * Purpose: to capture response code for an url<br>
 	 * @param urlString: URL (String)<br>
@@ -676,11 +664,10 @@ public class Utils {
 	 */
 	public static int getResponseCode(String urlString) throws MalformedURLException, IOException
 	{
-	    URL url = new URL(urlString);
-	    HttpURLConnection huc = (HttpURLConnection)url.openConnection();
-	    huc.setRequestMethod("GET");
-	    huc.connect();
-	    return huc.getResponseCode();
+		URL url = new URL(urlString);
+		HttpURLConnection huc = (HttpURLConnection)url.openConnection();
+		huc.setRequestMethod("GET");
+		huc.connect();
+		return huc.getResponseCode();
 	}
-
 }

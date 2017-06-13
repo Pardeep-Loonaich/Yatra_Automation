@@ -738,7 +738,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			Log.fail("Search Result page didn't open up", driver);
 		}
 		Log.message("Total time taken by #" + this.getClass().getTypeName() + " to load is:- " + timer.duration() + " "
-				+ TimeUnit.SECONDS);
+				+ TimeUnit.MILLISECONDS);
 		elementLayer = new ElementLayer(driver);
 	}
 

@@ -13,6 +13,12 @@
 	</properties>
 
 	<dependencies>
+<!-- 	have added guava dependency to sove until method issue  -->
+	<dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>21.0</version>
+</dependency>
 		<dependency>
 			<groupId>com.relevantcodes</groupId>
 			<artifactId>extentreports</artifactId>
@@ -23,6 +29,13 @@
 			<artifactId>testng</artifactId>
 			<version>6.9.8</version>
 		</dependency>
+		<dependency>
+        <groupId>net.lightbody.bmp</groupId>
+        <artifactId>browsermob-core</artifactId>
+        <version>2.1.4</version>
+        <scope>test</scope>
+    </dependency>
+		
 
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
