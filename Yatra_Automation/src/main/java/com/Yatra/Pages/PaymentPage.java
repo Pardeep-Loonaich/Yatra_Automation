@@ -17,6 +17,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
@@ -491,9 +492,12 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		/*if (BrowserActions.isElementPresent(driver, txtSavedcreditCardCvv) == true) {
 			BrowserActions.typeOnTextField(txtSavedcreditCardCvv, randomCvv, driver, "Enter CVV for Saved Credit card");
 		} else if (BrowserActions.isElementPresent(driver, creditCardNumber) == true) {
-		 */	BrowserActions.typeOnTextField(creditCardNumber, cardNumber, driver, "Credit card Number");
+		 */	
+		 
+		BrowserActions.typeOnTextField(creditCardNumber, cardNumber, driver, "Credit card Number");
 		 BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
-		 BrowserActions.clickOnElement(monthCC, driver, "Date");
+		 //Isuues on FF, @Narayana
+		 /* BrowserActions.clickOnElement(monthCC, driver, "Date");
 		 if (lstMonthsCC.size() != 0) {
 			 int rand = Utils.getRandom(1, lstMonthsCC.size());
 			 BrowserActions.clickOnElement(lstMonthsCC.get(rand), driver, "Month Selected");
@@ -504,6 +508,18 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		 if (lstYearsCC.size() != 0) {
 			 int rand = Utils.getRandom(1, lstYearsCC.size());
 			 BrowserActions.clickOnElement(lstYearsCC.get(rand), driver, "Year Selected");
+			 Utils.waitForPageLoad(driver);
+		 }*/		 
+		
+		 if (lstMonthsCC.size() != 0) {			 
+			 int rand = Utils.getRandom(1, lstMonthsCC.size());	
+			 BrowserActions.selectDropdownByIndex(driver, monthCC, rand, "Month Selected");			
+			 Utils.waitForPageLoad(driver);
+		 }
+		 BrowserActions.nap(2);	
+		 if (lstYearsCC.size() != 0) {
+			 int rand = Utils.getRandom(1, lstYearsCC.size());
+			 BrowserActions.selectDropdownByIndex(driver, yearCC, rand, "Year Selected");			
 			 Utils.waitForPageLoad(driver);
 		 }
 		 BrowserActions.nap(2);;
@@ -601,12 +617,12 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @param cardCVV
 	 * @throws Exception
 	 */
-	public void enterDebitCardDetails(String cardNumber,String cardCVV) throws Exception {
-
+	public void enterDebitCardDetails(String cardNumber, String cardCVV) throws Exception {
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		BrowserActions.typeOnTextField(debitCardNumber, cardNumber, driver, "Debit card Number");
 		BrowserActions.typeOnTextField(debitCardName, randomName, driver, "Debit card Name");
-		BrowserActions.clickOnElement(monthDC, driver, "Month");
+		//Isuues on FF, @Narayana
+		/*BrowserActions.clickOnElement(monthDC, driver, "Month");
 		if (lstMonthsDC.size() != 0) {
 			int rand = Utils.getRandom(1, lstMonthsDC.size());
 			BrowserActions.clickOnElement(lstMonthsDC.get(rand), driver, "Month Selected");
@@ -618,7 +634,20 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			int rand = Utils.getRandom(1, lstYearsDC.size());
 			BrowserActions.clickOnElement(lstYearsDC.get(rand), driver, "Year Selected");
 			Utils.waitForPageLoad(driver);
+		}*/
+		if (lstMonthsDC.size() != 0) {
+			int rand = Utils.getRandom(1, lstMonthsDC.size());			
+			BrowserActions.selectDropdownByIndex(driver, monthDC, rand, "Month Selected");		
+			Utils.waitForPageLoad(driver);
 		}
+		BrowserActions.nap(2);;
+		BrowserActions.clickOnElement(yearDC, driver, "Year");
+		if (lstYearsDC.size() != 0) {
+			int rand = Utils.getRandom(1, lstYearsDC.size());			
+			BrowserActions.selectDropdownByIndex(driver, yearDC, rand, "Year Selected");		
+			Utils.waitForPageLoad(driver);
+		}
+		
 		BrowserActions.nap(2);;
 		BrowserActions.typeOnTextField(debitCardCvv, cardCVV, driver, "Debit card Cvv");
 
@@ -971,8 +1000,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.typeOnTextField(creditCardNumberInEMI,cardNumber, driver, "Credit card Number in EMI");
 		BrowserActions.typeOnTextField(creditCardHolderNameInEMI, randomName, driver, "Credit card holder Name in EMI");
 
-
-		BrowserActions.clickOnElement(creditCardMonthInEMI, driver, "Clicked on Month dropdown.");
+		//Isuues on FF, @Narayana
+		/*BrowserActions.clickOnElement(creditCardMonthInEMI, driver, "Clicked on Month dropdown.");
 		if (lstMonthEMI.size() != 0) {
 			int rand = Utils.getRandom(1, lstMonthEMI.size());
 			BrowserActions.clickOnElement(lstMonthEMI.get(rand), driver, "Month Selected from dropdown");
@@ -985,7 +1014,20 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			int rand = Utils.getRandom(1, lstYearEMI.size());
 			BrowserActions.clickOnElement(lstYearEMI.get(rand), driver, "Year Selected from dropdown");
 			Utils.waitForPageLoad(driver);
+		}*/
+		
+		if (lstMonthEMI.size() != 0) {
+			int rand = Utils.getRandom(1, lstMonthEMI.size());
+			BrowserActions.selectDropdownByIndex(driver, creditCardMonthInEMI, rand, "Month Selected from dropdown");		
+			Utils.waitForPageLoad(driver);
 		}
+		BrowserActions.nap(2);		
+		if (lstYearEMI.size() != 0) {
+			int rand = Utils.getRandom(1, lstYearEMI.size());
+			BrowserActions.selectDropdownByIndex(driver, creditCardYearInEMI, rand, "Year Selected from dropdown");		
+			Utils.waitForPageLoad(driver);
+		}
+		
 		BrowserActions.nap(2);;
 
 		BrowserActions.typeOnTextField(creditCardCvvInEMI, randomCvv, driver, "Credit card Cvv");
@@ -1242,22 +1284,35 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.typeOnTextField(txtcreditCardNumberInRewards,cardNumber, driver, "Credit card Number in EMI");
 		BrowserActions.typeOnTextField(txtcreditCardHolderNameInRewards, randomName, driver, "Credit card holder Name in EMI");
 
-
-		BrowserActions.clickOnElement(creditCardMonthInRewards, driver, "Clicked on Month dropdown.");
+		//Isuues on FF, @Narayana
+		/*BrowserActions.clickOnElement(creditCardMonthInRewards, driver, "Clicked on Month dropdown.");
 		if (drplstMonthRewards.size() != 0) {
 			int rand = Utils.getRandom(1, drplstMonthRewards.size());
 			BrowserActions.clickOnElement(drplstMonthRewards.get(rand), driver, "Month Selected from dropdown");
 			Utils.waitForPageLoad(driver);
 		}
-		BrowserActions.nap(2);;
+		BrowserActions.nap(2);
 
 		BrowserActions.clickOnElement(creditCardYearInRewards, driver, "Clicked on Year dropdown.");
 		if (drplstYearRewards.size() != 0) {
 			int rand = Utils.getRandom(1, drplstYearRewards.size());
 			BrowserActions.clickOnElement(drplstYearRewards.get(rand), driver, "Year Selected from dropdown");
 			Utils.waitForPageLoad(driver);
+		}*/		
+		
+		if (drplstMonthRewards.size() != 0) {
+			int rand = Utils.getRandom(1, drplstMonthRewards.size());
+			BrowserActions.selectDropdownByIndex(driver, creditCardMonthInRewards, rand, "Month Selected from dropdown");		
+			Utils.waitForPageLoad(driver);
 		}
-		BrowserActions.nap(2);;
+		BrowserActions.nap(1);		
+		if (drplstYearRewards.size() != 0) {
+			int rand = Utils.getRandom(1, drplstYearRewards.size());
+			BrowserActions.selectDropdownByIndex(driver, creditCardYearInRewards, rand, "Year Selected from dropdown");		
+			Utils.waitForPageLoad(driver);
+		}
+		
+		BrowserActions.nap(1);
 
 		BrowserActions.typeOnTextField(txtcreditCardCvvInRewards, randomCvv, driver, "Credit card Cvv");
 		BrowserActions.typeOnTextField(txtRewardPointInRewards, randomRewardPoint, driver, "Enter random Reward point");

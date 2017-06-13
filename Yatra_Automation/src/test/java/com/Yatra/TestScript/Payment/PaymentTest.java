@@ -287,7 +287,7 @@ public class PaymentTest extends BaseTest {
 					"<b>Actual Result:</b> Successfully navigated on Review Page.",
 					"<b>Actual Result:</b> Unable to navigated on Review Page.", driver);
 
-			// clicke on continue button
+			// click on continue button
 			travellerPage = reviewPage.clickOnContinue();
 			Log.message("7. Clicked on Continue button on Review Page.");
 
