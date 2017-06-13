@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Flight Pricing Automation Test" verbose="3" parallel="tests" thread-count="500">
-	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
+	<parameter name="workBookName" value="testdata\\Flights.xls" />
 	<parameter name="sheetName" value="FlightPricing" />
 
 	<!-- parameter for device host and port -->
@@ -14,12 +14,5 @@
 			<class name="com.Yatra.TestScript.Flights.FlightPricing"> </class>		
 		</classes>
 	</test>
-	<test name="Flight Pricing Firefox" thread-count="1" parallel="true">
-	    <parameter name="browserName" value="firefox_windows"/>
-		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightPricing"> </class>		
-		</classes>
-	</test>
-
 </suite>
 

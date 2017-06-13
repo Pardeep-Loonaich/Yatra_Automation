@@ -254,7 +254,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 				int rand = Utils.getRandom(1, titleOptions.size());
 				Utils.waitForElement(driver, titleOptions.get(rand));
 				 //BrowserActions.clickOnElement(titleOptions.get(rand), driver, "title selected");	 // Issues on FF, @Narayana			
-				BrowserActions.selectDropdownByIndex(drpTravelTitle, rand);
+				BrowserActions.selectDropdownByIndex(driver, drpTravelTitle, rand, "Title selected");
 				Thread.sleep(1000);
 			}
 			String randomFirstName = RandomStringUtils.randomAlphabetic(5).toLowerCase();

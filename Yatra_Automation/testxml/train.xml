@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Web Automation Test" verbose="3" parallel="tests" thread-count="500">
-	<parameter name="workBookName" value="testdata\\data\\Train.xls"/>
+	<parameter name="workBookName" value="testdata\\Train.xls"/>
     <parameter name="sheetName" value="TrainSearch"/>
     
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
 
-	<parameter name="webSite" value="https://www.google.co.in" />
+	<parameter name="webSite" value="https://www.yatra.com/" />
 	<parameter name="browserName" value="chrome_windows" />
 
 	<test name="Train" thread-count="1" parallel="true">
