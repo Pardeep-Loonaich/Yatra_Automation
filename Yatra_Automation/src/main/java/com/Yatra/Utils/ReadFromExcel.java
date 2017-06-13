@@ -212,20 +212,8 @@ public class ReadFromExcel {
 							// celln = (HSSFCell) castCellType(celln);
 							data.add(celln);
 
-						} else {
-
-							HSSFCell celln = (HSSFCell) r.getCell(cn); // This
-																		// getcell
-																		// function
-																		// is
-																		// returning
-																		// 1564.23%
-																		// to
-																		// celln
-																		// =
-																		// 15.6423
-							// celln = (HSSFCell) castCellType(celln);
-							data.add(celln);
+						} else {	
+							data.add((HSSFCell) r.getCell(cn));
 						}
 					}
 					if (data.isEmpty()) {
@@ -253,69 +241,69 @@ public class ReadFromExcel {
 		}
 		return sheetData;
 	}
-	
+
 	/**
 	 * @author harveer.singh
 	 * @param sheet
 	 * @return: it will return all Name is a list
 	 */
-		public ArrayList<String> getHeaders(HSSFSheet sheet)
+	public ArrayList<String> getHeaders(HSSFSheet sheet)
 
+	{
+		ArrayList<String> listOfHeaderName=new ArrayList<String>();
+		int columnCount=0;
+
+		columnCount=sheet.getRow(0).getPhysicalNumberOfCells();
+		for(int i=0;i<columnCount;i++)
 		{
-			ArrayList<String> listOfHeaderName=new ArrayList<String>();
-			int columnCount=0;
-
-			columnCount=sheet.getRow(0).getPhysicalNumberOfCells();
-			for(int i=0;i<columnCount;i++)
+			if(!(sheet.getRow(0).getCell(i).getStringCellValue()==null))
 			{
-				if(!(sheet.getRow(0).getCell(i).getStringCellValue()==null))
-				{
-					listOfHeaderName.add(sheet.getRow(0).getCell(i).getStringCellValue());
-				}    
-			}
+				listOfHeaderName.add(sheet.getRow(0).getCell(i).getStringCellValue());
+			}    
+		}
 
-			return listOfHeaderName;
+		return listOfHeaderName;
 
-		}//getHeaders
-		
-		/**
-		 * @author harveer.singh
-		 * @Description:
-		 * @param: HSSFSheet Obj
-		 * @param: test case id in String format
-		 * Return: it will return a list of row No. of all available with same test case id
-		 */
+	}//getHeaders
 
-		public ArrayList<Integer> getRowNumbers(HSSFSheet sheet,String testCaseId)
+	/**
+	 * @author harveer.singh
+	 * @Description:
+	 * @param: HSSFSheet Obj
+	 * @param: test case id in String format
+	 * Return: it will return a list of row No. of all available with same test case id
+	 */
 
-		{ 
-			ArrayList<Integer> listOfRowNumber = new ArrayList<Integer>();
+	public ArrayList<Integer> getRowNumbers(HSSFSheet sheet,String testCaseId)
 
-			int rowCount=0;
-			rowCount=sheet.getPhysicalNumberOfRows();
-			for(int i=1;i<rowCount;i++)
+	{ 
+		ArrayList<Integer> listOfRowNumber = new ArrayList<Integer>();
+
+		int rowCount=0;
+		rowCount=sheet.getPhysicalNumberOfRows();
+		for(int i=1;i<rowCount;i++)
+		{
+			String cValue= sheet.getRow(i).getCell(0).getStringCellValue();
+			//System.out.println("Test Case: "+cValue);//for debugging
+
+			if(cValue.trim().equalsIgnoreCase(testCaseId.trim()))
 			{
-				String cValue= sheet.getRow(i).getCell(0).getStringCellValue();
-				//System.out.println("Test Case: "+cValue);//for debugging
-
-				if(cValue.trim().equalsIgnoreCase(testCaseId.trim()))
-				{
-					listOfRowNumber.add(i);
-				}
+				listOfRowNumber.add(i);
 			}
-			return listOfRowNumber;
 		}
-		
-		public static String getData(HSSFSheet sheet, int row, int column)
-		
-		{	
-			
-			String dataToBeReturned="";
-			
-			dataToBeReturned=sheet.getRow(row).getCell(column).getStringCellValue();
-			
-			return dataToBeReturned;
-			
-		}
+		return listOfRowNumber;
+	}
+
+	public static String getData(HSSFSheet sheet, int row, int column)
+
+	{	
+
+		String dataToBeReturned="";
+
+		dataToBeReturned=sheet.getRow(row).getCell(column).getStringCellValue();
+
+		return dataToBeReturned;
+
+	}
 
 }

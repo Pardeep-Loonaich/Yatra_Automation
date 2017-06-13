@@ -20,11 +20,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import com.Yatra.Utils.BrowserMob;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EmailSender;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExtentReporter;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.WebDriverFactory;
+import com.Yatra.Utils.WriteToExcel;
 
 /**
  * Description: To rename test case name at runtime<br>
@@ -37,17 +39,17 @@ public class BaseTest implements ITest
 	private String testCaseId = "";
 	private static WebDriver driver;
 	public  String inputFile;
-
-
 	static List<String> listOfCompletedTestcase;
 	int iCount=1;
-
 	@Override
 	public String getTestName() 
 	{
 		return testCaseId;
 	}
-
+/**
+ * @Description: set test Name at run time in case, if we have a test case with multiple data
+ * @param anInstanceName
+ */
 	private void setTestName(String anInstanceName)
 	{
 		testCaseId = anInstanceName;
@@ -95,12 +97,13 @@ public class BaseTest implements ITest
 	 * @Description: it will execute after mail after every test case <br>
 	 * 
 	 * @param result
+	 * @throws Exception 
 	 * @throws MessagingException 
 	 * @throws AddressException 
 	 * @throws IOException 
 	 */
 	@AfterMethod
-	public void  afterTestExecutor(ITestResult result, ITestContext context) 
+	public void  afterTestExecutor(ITestResult result, ITestContext context) throws Exception 
 
 	{
 		driver=WebDriverFactory.getCurrentDriverInstance();
@@ -110,19 +113,13 @@ public class BaseTest implements ITest
 			String emailOnFailure=context.getCurrentXmlTest().getParameter("SEND_EMAIL_ON_FAILIURE");
 			if(result.getStatus()==ITestResult.FAILURE&&emailOnFailure.equalsIgnoreCase("TRUE"))			//if test case fail perform below task
 			{
-
 				Log.message("triggering email in for failed test case");
 				inputFile=Log.takeScreenShot(driver);
-
 				testCaseId=result.getName();
 				String sCurrentURL=driver.getCurrentUrl();
 				EmailSender email=new EmailSender(inputFile, testCaseId, sCurrentURL);
 				email.sendHtmlEmail();
-
-
-			}
-			BrowserMob.getHarData(WebDriverFactory.mobProxy);
-			
+			}		
 		}
 		catch(Exception e)
 		{
@@ -130,18 +127,11 @@ public class BaseTest implements ITest
 		}
 		finally
 		{
-		
+			WriteToExcel.writePageLoadTimeToExcel(Constants.performanceData);
+			Constants.performanceData.clear();
 			driver.quit();
 		}
 
+	}
 
-	}
-	/**
-	 * to set webdriver for every test case (as of now setting in WebDriverFactory Class)
-	 * @param drivers
-	 */
-	public static void setBaseDriver(WebDriver drivers)
-	{
-		//driver=drivers;
-	}
 }

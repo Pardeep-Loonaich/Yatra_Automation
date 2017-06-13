@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Yatra Payment Automation Test" verbose="3" parallel="false"
 	thread-count="500">
-	<parameter name="workBookName" value="testdata\\data\\Payments.xls" />
+	<parameter name="workBookName" value="testdata\\Payments.xls" />
 	<parameter name="sheetName" value="Payment" />
 
 	<!-- parameter for device host and port -->

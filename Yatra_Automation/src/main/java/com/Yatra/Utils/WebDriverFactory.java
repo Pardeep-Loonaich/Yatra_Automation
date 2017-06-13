@@ -78,7 +78,7 @@ public class WebDriverFactory {
 	private static Logger logger = LoggerFactory.getLogger(WebDriverFactory.class);
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 	//private static MobileEmulationUserAgentConfiguration mobEmuUA = new MobileEmulationUserAgentConfiguration();
-	public  static BrowserMobProxyServer mobProxy=new BrowserMobProxyServer();
+
 
 	static String driverHost;
 	static String driverPort;
@@ -272,14 +272,7 @@ public class WebDriverFactory {
 		// Handling System property variable overridden on parallel execution
 		// till web driver initialization part
 		synchronized (System.class) {
-			//MobProxyImplemetation
-			if("true".equalsIgnoreCase(configProperty.getProperty("isBrowserMobProxy").trim()));
-			{
-				mobProxy.start();
-				Proxy seleniumProxy=ClientUtil.createSeleniumProxy(mobProxy);//
-				chromeCapabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
 
-			}
 			// From local to sauce lab for browser test
 			if (configProperty.hasProperty("runSauceLabFromLocal")
 					&& configProperty.getProperty("runSauceLabFromLocal").equalsIgnoreCase("true")) {
@@ -402,14 +395,9 @@ public class WebDriverFactory {
 					{
 						chromeCapabilities.setCapability(CapabilityType.PROXY, proxy);
 					}
+					driver = new RemoteWebDriver(hubURL, chromeCapabilities);
+					// enable more detailed HAR capture, if desired (see CaptureType for the complete list)
 
-					
-						driver = new RemoteWebDriver(hubURL, chromeCapabilities);
-						// enable more detailed HAR capture, if desired (see CaptureType for the complete list)
-						mobProxy.enableHarCaptureTypes(CaptureType.RESPONSE_CONTENT, CaptureType.RESPONSE_CONTENT);
-
-						// create a new HAR with the label "seleniumeasy.com"
-						mobProxy.newHar("This is a Label");//
 				}
 			} else if ("iexplorer".equalsIgnoreCase(browser)) {
 				ieCapabilities.setCapability("enablePersistentHover", false);
@@ -440,7 +428,7 @@ public class WebDriverFactory {
 				chromeCapabilities.setCapability(CapabilityType.PROXY, zapChromeProxy); 
 				chromeCapabilities.setPlatform(Platform.fromString(platform));
 				driver = new RemoteWebDriver(hubURL, chromeCapabilities);
-				
+
 			} else {
 				synchronized (WebDriverFactory.class) {
 					//firefoxCapabilities.setCapability("unexpectedAlertBehaviour", "ignore");

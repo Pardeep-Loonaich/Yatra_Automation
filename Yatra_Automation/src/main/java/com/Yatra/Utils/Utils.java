@@ -670,4 +670,22 @@ public class Utils {
 		huc.connect();
 		return huc.getResponseCode();
 	}
+	
+
+	/**
+	 * @author harveer.singh
+	 * @Description: to verify param in URL
+	 * @param sParam: the prameter you want to verify 
+	 * @param sUrl: pass current page()  url after searching flight
+	 */
+	public static String getParamValueFromURL(String sParam,String sUrl)
+	{		
+		String sPram_Value="";
+		if(sUrl.contains(sParam))
+		{
+			int start=sUrl.indexOf(sParam);
+			 sPram_Value=sUrl.substring(start).split("&")[0].split("=")[1].trim();
+		}
+		return sPram_Value;
+	}
 }

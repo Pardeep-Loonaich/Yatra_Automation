@@ -18,23 +18,32 @@ public class ExecutionTimer
 
 	}
 
-	public void end() 
+	/**
+	 * Description: end timer
+	 */
+	public long end() 
 	{
-		end = (long)(System.currentTimeMillis());
-
+		end = System.currentTimeMillis();
+		return end;
 	}
 	public long start()
 	{
 
-		start=(long)(System.currentTimeMillis());
+		start=System.currentTimeMillis();
 		return start;
 	}
 
-	public long duration()
+	/**
+	 * calculate total time 
+	 * @return
+	 */
+	public double duration()
 	{
 		return (end-start);
 	}
-
+	/**
+	 * Desc:reset start and end to zero
+	 */
 	public void reset() 
 	{
 		start = 0;  

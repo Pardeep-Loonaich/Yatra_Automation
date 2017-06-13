@@ -1,5 +1,8 @@
 package com.Yatra.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Constants {
 
 	// >>> Flights Trip type
@@ -30,6 +33,8 @@ public class Constants {
 	public static final String C_Stops = "STOPS";
 	public static final String C_FareType = "FARE TYPE";
 	public static final String C_Airlines = "AIRLINES";
+	
+	public static List<Double> performanceData=new ArrayList<Double>();
 	
 			
 		

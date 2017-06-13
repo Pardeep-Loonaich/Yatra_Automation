@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Fresco Automation Test" verbose="3"	parallel="tests" thread-count="500">
-	<parameter name="workBookName" value="testdata\\data\\Fresco.xls" />
+	<parameter name="workBookName" value="testdata\\Fresco.xls" />
 	<parameter name="sheetName" value="Fresco" />
 	
 	<!-- parameter for device host and port -->

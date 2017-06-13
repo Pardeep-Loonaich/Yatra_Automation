@@ -45,7 +45,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 
-	//@Harveer- change access specifier for all element private
 @FindBy(css="div#booking_engine_modues")
 private WebElement dvSearchEngine;
 	@FindBy(css = "input#BE_flight_origin_city")
@@ -290,6 +289,7 @@ private WebElement dvSearchEngine;
 		}
 		timer.end();
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.add(timer.duration());
 
 	}// isLoaded
 
