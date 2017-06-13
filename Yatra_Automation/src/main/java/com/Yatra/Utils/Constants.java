@@ -9,6 +9,7 @@ public class Constants {
 	public static final String C_ONEWAY = "ONEWAY";
 	public static final String C_ROUNDTRIP = "ROUNDTRIP";
 	public static final String C_MULTICITY = "MULTICITY";
+	public static final String C_EXPLORE = "EXPLORE";
 	
 	// '>>> Flights Passengers class types
 	public static final String C_ECONOMY = "Economy";

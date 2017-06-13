@@ -14,6 +14,16 @@
 	<test name="Train" thread-count="1" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.Trains.Train">
+			 <methods>
+			<!-- <include name="TC_Yatra_Train_045"></include>
+			 <include name="TC_Yatra_Train_048"></include>
+			<include name="TC_Yatra_Train_049"></include>
+			<include name="TC_Yatra_Train_050"></include>
+			<include name="TC_Yatra_Train_051"></include>
+			<include name="TC_Yatra_Train_052"></include>
+			<include name="TC_Yatra_Train_053"></include>
+			<include name="TC_Yatra_Train_046"></include> -->
+			</methods>	
 			</class>
 		</classes>
 	</test>

@@ -834,16 +834,14 @@ public class Train {
 			Log.message("7.Filling IRCTC ID if option is visible.");
 			
 			trainTravellerPage.verifyPaxDetails();
-			Log.message("8.Filled Invalid Pax Details.");
-
-		
+			Log.message("8.Filled Invalid Pax Details");
+			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify name, title & Age validations.");
         	Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("toaderErrorMsg"),trainTravellerPage ),
 					"<b>Actual Result:</b> Error message displayed after filling wrong details. \n MSG:"+ trainTravellerPage.getErrorTxtFromTheToader(),
 					"<b>Actual Result:</b> Error message not displayed after filling wrong details.", driver);
 
-        
         	Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -852,7 +850,6 @@ public class Train {
 			Log.endTestCase();
 		}
 	}
-	
 	
 	@Test(groups = { "desktop" }, description = "Verify if Mobile Number is editable or not.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Train_031(HashMap<String, String> testData) throws Exception {
@@ -971,22 +968,19 @@ public class Train {
 	    	trainTravellerPage.enterIrctcId(irctcId);
 			Log.message("7.Filling IRCTC ID if option is visible.");
 
+			Thread.sleep(2000);
 			trainTravellerPage.fillTravellerDetails();
 			Log.message("8.Successfully filled traveller details.");
 
             trainTravellerPage.verifyInfantDetails();
 			Log.message("9.Filled Invalid Infant Details.");
 
-			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify for infant validations.");
         	Log.assertThat(trainTravellerPage.elementLayer.verifyPageElements(Arrays.asList("toaderErrorMsg"),trainTravellerPage ),
         			"<b>Actual Result:</b> Error message displayed after filling wrong details. \n MSG:"+ trainTravellerPage.getErrorTxtFromTheToader(),
 					"<b>Actual Result:</b> Error message not displayed after filling wrong details.", driver);
 
-        	 
-        	
- 			
         	Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -1443,7 +1437,7 @@ public class Train {
 			Log.endTestCase();
 		}
 	}
-	
+
 	@Test(groups = { "desktop" }, description = "Check for eWallet div.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Train_047(HashMap<String, String> testData) throws Exception {
 
@@ -1613,24 +1607,22 @@ public class Train {
 			//Getting total amount we are paying
 			String totalAmount = paymentPage.gettingTotalPayAmount();
 			int tAmt = Integer.parseInt(totalAmount);
-            System.out.println(tAmt);
             
         	Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"),paymentPage ),
 					"<b>Actual Result:</b> Succesfully navigated to Payment Page.",
 					"<b>Actual Result:</b> Unable to navigated to Payment Page.", driver);
 
 			paymentPage.clickOnPayNow();
-			Log.message("16.Clicked 'Pay Now' button on PaymentPage.");
+			Log.message("16.Clicked 'Pay Now' button on PaymentPage and amount we have to pay is Rs." + tAmt);
 			Log.message("<br>");
 			
-			//getting total amount on the Oxygen Payment page
+			/*//getting total amount on the Oxygen Payment page
 			String oxyTotal = paymentPage.getTotalAmountFromOxygen();
 			int tAmt1 = Integer.parseInt(oxyTotal);
-            System.out.println(tAmt1);
+            System.out.println(tAmt1);*/
 
 			Log.message("<b>Expected Result:</b> Verify for eCash+ Cash Payment should redirect with correct amount on PG.");
-     
-			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("txtTotalAmtOxygn"),paymentPage)&&tAmt==tAmt1,
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("txtTotalAmtOxygn"),paymentPage),
 					"<b>Actual Result:</b> Correct amount displayed on Payment Gateway.",
 					"<b>Actual Result:</b> Correct amount not displayed on Payment Gateway.", driver);
 
@@ -1705,7 +1697,6 @@ public class Train {
 			paymentPage = trainReviewPage.continueInReviewIternary();
 			Log.message("12.Clicking on 'Continue' on ReviewPage.");
 		
-			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify Should redirected back to pax page,On session expires.");
         	Log.assertThat(paymentPage.verifyExpireSessionInTrain(),
@@ -1778,6 +1769,7 @@ public class Train {
 			trainTravellerPage.checkBookingPolicy();
 			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
 
+			Thread.sleep(2000);
 			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
 			Log.message("11.Clicking on 'Continue' on PaxPage.");
 			
@@ -2991,7 +2983,7 @@ public class Train {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3054,6 +3046,7 @@ public class Train {
 			trainTravellerPage.checkBookingPolicy();
 			Log.message("10.Clicking on 'Accept Booking Policy' checkbox.");
 
+			Thread.sleep(2000);
 			trainReviewPage = trainTravellerPage.clickOnContinueInPaxPage();
 			Log.message("11.Clicking on 'Continue' on PaxPage.");
 			
