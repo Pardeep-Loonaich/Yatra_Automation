@@ -35,7 +35,7 @@ public class Constants {
 	public static final String C_FareType = "FARE TYPE";
 	public static final String C_Airlines = "AIRLINES";
 	
-	public static List<Double> performanceData=new ArrayList<Double>();
+	public static List<String> performanceData=new ArrayList<String>();
 	
 			
 		

@@ -742,7 +742,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		Log.message("Total time taken by #" + this.getClass().getTypeName() + " to load is:- " + timer.duration() + " "
 				+ TimeUnit.MILLISECONDS);
-		Constants.performanceData.add(timer.duration());
+		Constants.performanceData.add(driver.getCurrentUrl().trim());
+		Constants.performanceData.add(timer.duration());	
 		elementLayer = new ElementLayer(driver);
 	}
 
