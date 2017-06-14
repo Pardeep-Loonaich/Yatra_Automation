@@ -3619,6 +3619,67 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return name;
 	} 
 	
+	/**
+	 * getting cities name from recent search Pop up
+	 * @return
+	 * @throws Exception
+	 */
+	public String getSearchResultPageURL() throws Exception{
+		String sURL = driver.getCurrentUrl();
+		return sURL;
+	} 
+	
+	
+	/**
+	 * @author Narayana
+	 * @Description: to verify param in URL
+	 * @param sParam: the prameter you want to verify 
+	 * @param sUrl: pass current page()  url after searching flight
+	 */
+	public List<String> getParamValueFromCurrnetPageURL() {
+		List<String> sPram_Values = new ArrayList<String>();
+		String sUrl = driver.getCurrentUrl();
+		String sPram_Value = "";
+		
+		if (sUrl.contains(Constants.c_Params)) { 
+			int start = sUrl.indexOf(Constants.c_Params);			
+			sPram_Value = sUrl.substring(start).split("/")[1];
+			sPram_Values.add(sPram_Value);
+		} 		
+		if (sUrl.contains(Constants.c_TriggerType)) {
+			int start = sUrl.indexOf(Constants.c_TriggerType);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		} 
+		if (sUrl.contains(Constants.c_Origin)) { 
+			int start = sUrl.indexOf(Constants.c_Origin);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		} 			
+		if (sUrl.contains(Constants.c_OriginCountry)) {
+			int start = sUrl.indexOf(Constants.c_OriginCountry);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		} 
+		if (sUrl.contains(Constants.c_Destination)) {
+			int start = sUrl.indexOf(Constants.c_Destination);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		} 
+		if (sUrl.contains(Constants.c_DestinationCountry)) {
+			int start = sUrl.indexOf(Constants.c_DestinationCountry);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		} 
+		if (sUrl.contains(Constants.c_NonStop)) {
+			int start = sUrl.indexOf(Constants.c_NonStop);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		}
+		return sPram_Values;
+	}
+
+	
 	// *******************************End of SRP Functions******************************/
 	
 } // SearchResult

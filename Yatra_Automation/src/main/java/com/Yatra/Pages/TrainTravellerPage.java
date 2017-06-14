@@ -198,8 +198,8 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, divPaxContainer))) {
 			Log.fail("Train Search Result page didn't open up", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
-
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.add(timer.duration());
 	}
 
 	@Override

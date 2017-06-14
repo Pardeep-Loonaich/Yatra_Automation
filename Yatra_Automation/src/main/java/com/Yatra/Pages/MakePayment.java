@@ -19,7 +19,7 @@ public class MakePayment extends LoadableComponent<CompleteBooking> {
 	private boolean isPageLoaded;
 
 	/**********************************************************************************************
-	 ********************************* WebElements of Yatra Home Page ***********************************
+	 ********************************* WebElements of Make Payment ***********************************
 	 **********************************************************************************************/
 	
 	@FindBy(xpath= "//input[@id ='cust_email']")
@@ -35,7 +35,7 @@ public class MakePayment extends LoadableComponent<CompleteBooking> {
 	private WebElement btnLogin;
 	
 	/**********************************************************************************************
-	 ********************************* WebElements of Home Page - Ends ****************************
+	 ********************************* WebElements of Make Payment - Ends ****************************
 	 **********************************************************************************************/
 	
 	/**

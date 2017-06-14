@@ -109,7 +109,8 @@ public class ReviewPageBus extends LoadableComponent<ReviewPageBus> {
 			{
 			Log.fail("Review Page did not open up. Site might be down.", driver);
 			}
-			Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+			Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+			Constants.performanceData.add(timer.duration());
 		}// isLoaded
 
 		@Override

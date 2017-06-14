@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
@@ -148,8 +149,8 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, formTraveller))) {
 			Log.fail("TravellerPage didn't open up", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
-
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.add(timer.duration());
 		// elementLayer = new ElementLayer(driver);
 	}
 

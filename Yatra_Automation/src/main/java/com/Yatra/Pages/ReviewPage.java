@@ -14,6 +14,7 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
@@ -255,10 +256,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@Override
 	protected void isLoaded() {
 		timer.end();
-	if (!isPageLoaded) {
+		if (!isPageLoaded) {
 			Assert.fail();
 		}
-
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
@@ -269,12 +269,12 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			Log.fail("ReviewPage didn't open up", driver);
 		}
 		timer.end();
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
-		//set value for pricing URL (if it require in case of test case fail, to send a mail with this URL)
-		sPricingURL=driver.getCurrentUrl().trim();
-		//new EmailSender(driver.getCurrentUrl().trim());
+		Log.message("Total time taken by #" + this.getClass().getTypeName() + " to load is:- " + timer.duration() + " "	+ TimeUnit.MILLISECONDS);
+		// set value for pricing URL (if it require in case of test case fail, to send a mail with this URL)
+		sPricingURL = driver.getCurrentUrl().trim();
+		Constants.performanceData.add(timer.duration());
+		// new EmailSender(driver.getCurrentUrl().trim());
 	}
-
 	
 	@Override
 	protected void load() {

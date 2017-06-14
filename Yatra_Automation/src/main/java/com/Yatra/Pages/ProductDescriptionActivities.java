@@ -43,7 +43,7 @@ public class ProductDescriptionActivities  extends LoadableComponent<ProductDesc
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
-	 ********************************* WebElements of Yatra Home Page ***********************************
+	 ********************************* WebElements of Yatra Product Description Activities ***********************************
 	 **********************************************************************************************/
 
 	@FindBy(css = "button[data-trackaction='Continue']")
@@ -94,7 +94,7 @@ public class ProductDescriptionActivities  extends LoadableComponent<ProductDesc
 	@FindBy(css = "")
 	private WebElement btnCheckAvailability;
 	/**********************************************************************************************
-	 ********************************* WebElements of Home Page - Ends ****************************
+	 ********************************* WebElements of Product Description Activities - Ends ****************************
 	 **********************************************************************************************/
 
 	/**
@@ -125,8 +125,8 @@ public class ProductDescriptionActivities  extends LoadableComponent<ProductDesc
 		{
 		Log.fail("Product Description Page did not open up. Site might be down.", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
-
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.add(timer.duration());
 	}// isLoaded
 
 	@Override

@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
@@ -126,7 +127,8 @@ public class ActivitiesReviewPage extends LoadableComponent<ActivitiesReviewPage
 			Log.fail("ActivitiesReviewPage did not open up. Site might be down.", driver);
 		}
 		Log.message("Total time taken by #" + this.getClass().getTypeName() + "to load is:- " + timer.duration() + " "
-				+ TimeUnit.SECONDS);
+				+ TimeUnit.MILLISECONDS);
+		Constants.performanceData.add(timer.duration());
 
 	}// isLoaded
 

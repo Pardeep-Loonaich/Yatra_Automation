@@ -37,7 +37,15 @@ public class Constants {
 	
 	public static List<Double> performanceData=new ArrayList<Double>();
 	
-			
+	// >>> URL Parameters
+	public static final String c_Params = "air-search-ui";
+	public static final String c_TriggerType = "type"; //trigger?type
+	public static final String c_Origin = "origin";
+	public static final String c_OriginCountry= "originCountry";
+	public static final String c_Destination = "destination";
+	public static final String c_DestinationCountry = "destinationCountry";
+	public static final String c_NonStop = "non_stop";
+
 		
 	// >>>> Page Constants End>>>>
 }
