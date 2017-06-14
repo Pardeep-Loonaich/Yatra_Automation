@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Fresco Automation Test" verbose="3"	parallel="tests" thread-count="500">
-	<parameter name="workBookName" value="testdata\\data\\Fresco.xls" />
+	<parameter name="workBookName" value="testdata\\Fresco.xls" />
 	<parameter name="sheetName" value="Fresco" />
 	
 	<!-- parameter for device host and port -->
@@ -15,20 +15,9 @@
 		<parameter name="webSite" value="https://www.yatra.com/" />
 		<classes>
 			<class name="com.Yatra.TestScript.Fresco.FrescoTest">
-			<methods>	
-			<include name="TC_Yatra_Fresco_001"></include>
-			<include name="TC_Yatra_Fresco_002"></include>
-			<include name="TC_Yatra_Fresco_003"></include>
-			<include name="TC_Yatra_Fresco_004"></include>
-			<include name="TC_Yatra_Fresco_005"></include>	
-			<include name="TC_Yatra_Fresco_006"></include>
-			<include name="TC_Yatra_Fresco_007"></include>
-			<include name="TC_Yatra_Fresco_008"></include>
-			<include name="TC_Yatra_Fresco_009"></include>
-			<include name="TC_Yatra_Fresco_010"></include>
-			<include name="TC_Yatra_Fresco_011"></include>
-			<include name="TC_Yatra_Fresco_012"></include>
-			</methods>	
+			<!-- <methods>	
+			<include name="TC_Yatra_Fresco_031"></include>			
+			</methods>	 -->
 			</class>
 		</classes>
 	</test>

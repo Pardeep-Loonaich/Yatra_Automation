@@ -3,7 +3,7 @@
 
 <suite name=" Yatra Bus Search Automation Test" verbose="3" parallel="true" thread-count="5">
 	
-	<parameter name="workBookName" value="testdata\\data\\Bus.xls" />
+	<parameter name="workBookName" value="testdata\\Bus.xls" />
 	<parameter name="sheetName" value="BusSearch"/>
 
 	<!-- parameter for device host and port -->

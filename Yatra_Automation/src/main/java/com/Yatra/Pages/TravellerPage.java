@@ -16,6 +16,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
@@ -92,6 +93,9 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	@FindBy(css = "[id='checkoutBase']>div:not([class])>main>div>aside>div[class='box ng-scope']>div[class='box-content hide-under-overlay']>div>ul[class='list list-border']")
 	private WebElement contentFareDetails;
+	
+	@FindBy(css = "#title0")
+	WebElement drpTravelTitle;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of TravellerPage Page - Ends ****************************
@@ -224,14 +228,13 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 		}
 	}
 
+		
 	/**
 	 * To fill Traveller details -- Domestic 
 	 * 
 	 * @throws Exception
 	 */
-	public void fillTravellerDetails_DOM(String[] Infant) throws Exception {	
-		// Infant DOB dates 
-
+	public void fillTravellerDetails_DOM(String[] Infant) throws Exception {		
 		int infant = 1;	int passengerNum = 1;		
 		for (int i = 0; i < modTravellerDetails.size(); i++) {
 			String formPaxDetail = "//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']";
@@ -239,16 +242,17 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 			WebElement Firstname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input"));
 			WebElement Lastname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input"));
 
-			WebElement drptitle = driver.findElement(By.xpath(formPaxDetail));
-			BrowserActions.clickOnElement(drptitle, driver, "Title Dropdown Clicked");
+			WebElement drptitle = driver.findElement(By.xpath(formPaxDetail)); 
+			//BrowserActions.clickOnElement(drptitle, driver, "Title Dropdown Clicked");  // Issues on FF, @Narayana
 			String label = BrowserActions.getText(driver, lblTraveller, "Traveller label");
 
 			List<WebElement> titleOptions = driver.findElements(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-1 col-xs-3 min-width70']/span[@class='ui-select']/select/option"));
 			if (titleOptions.size() != 0) {
 				int rand = Utils.getRandom(1, titleOptions.size());
 				Utils.waitForElement(driver, titleOptions.get(rand));
-				BrowserActions.clickOnElement(titleOptions.get(rand), driver, "title selected");
-				Utils.waitForPageLoad(driver);
+				 //BrowserActions.clickOnElement(titleOptions.get(rand), driver, "title selected");	 // Issues on FF, @Narayana			
+				BrowserActions.selectDropdownByIndex(driver, drpTravelTitle, rand, "Title selected");
+				Thread.sleep(1000);
 			}
 			String randomFirstName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
 			String randomLastName = RandomStringUtils.randomAlphabetic(5).toLowerCase();

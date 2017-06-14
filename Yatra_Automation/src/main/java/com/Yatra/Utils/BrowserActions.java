@@ -785,7 +785,26 @@ public class BrowserActions {
 		js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", 
                 element, attName, attValue);
     }
+	/**
+	 * @author Narayana
+	 * @Description: to set element Attribute value
+	 * @param driver
+	 * @param element
+	 * @param index
+	 * @param elementDescription
+	 * @throws Exception 
+	 */
+	public static void selectDropdownByIndex(WebDriver driver, WebElement element, int index, String elementDescription) throws Exception {
+		if (!Utils.waitForElement(driver, element, 5))
+			throw new Exception(elementDescription + " not found in page!!");
+		try {
+			Select selectByIndex = new Select(element);
+			selectByIndex.selectByIndex(index);			
+		} catch (NoSuchElementException e) {
+			throw new Exception(elementDescription + " not found in page!!");
+		}
+	}
 	
-	
+
 
 }// BrowserActions page

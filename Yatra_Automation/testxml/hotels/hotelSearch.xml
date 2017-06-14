@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Web Automation Test" verbose="3" parallel="tests" thread-count="500">
-<parameter name="workBookName" value="testdata\\data\\Flights.xls"/>
+<parameter name="workBookName" value="testdata\\Flights.xls"/>
     <parameter name="sheetName" value="FlightPricing"/>
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
