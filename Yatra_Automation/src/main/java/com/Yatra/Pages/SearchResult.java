@@ -213,13 +213,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	private WebElement txtResultStripView;
 
 	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[1]//span/input") 
-	private WebElement chkOneWay;
+	private WebElement chkOneWay; //TODO 
 
 	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[2]//span/input") 
-	private WebElement chkRoundTrip;
+	private WebElement chkRoundTrip; //TODO 
 
 	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[3]//span/input") 
-	private WebElement chkMultiCity;
+	private WebElement chkMultiCity; //TODO 
 
 	@FindBy(css = "#origin_0")
 	private WebElement txtOrigin_ModifySearch;

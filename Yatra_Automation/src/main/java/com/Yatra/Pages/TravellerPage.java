@@ -52,10 +52,9 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	@FindBy(css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='button-group']>button:nth-child(2)")
 	WebElement btnAddBaggage;
-
-	//@Harveer- remove absolute xpath and try to use relative
+	
 	@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
-	WebElement btnContinueTravellerPage;
+	WebElement btnContinueTravellerPage; //TODO 
 
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	WebElement btnChngeFlight;
@@ -66,11 +65,11 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select>option:nth-child(2)")
 	WebElement fldContentselectMeal;
 	
-	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
-	WebElement drpAddBaggage;
+	/*@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
+	WebElement drpAddBaggage;*/
 	
-	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select/option[2]")
-	WebElement fldContentselectBaggage;
+	/*@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select/option[2]")
+	WebElement fldContentselectBaggage;*/
 
 	@FindBy(css = "ul[class='list list-border']>li:nth-child(6)>span[class='pull-right tr alignment']>a[class='remove-btn']")
 	WebElement btnRemoveBaggage;
@@ -85,7 +84,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	WebElement btnRemoveMeal;
 	
 	@FindBy(xpath = ".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label/span[1]/input")
-	WebElement chkInsurance;
+	WebElement chkInsurance; //TODO 
 
 	@FindBy(css = "[id='checkoutBase']>div:not([class])>main>div>aside>div[class='box ng-scope']>div[class='box-content hide-under-overlay']>div>ul[class='list list-border']")
 	private WebElement contentFareDetails;

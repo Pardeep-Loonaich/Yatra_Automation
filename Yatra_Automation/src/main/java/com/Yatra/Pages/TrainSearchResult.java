@@ -7,7 +7,6 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -24,7 +23,7 @@ import com.Yatra.Utils.Utils;
 
 public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
-	private String appURL;
+	//private String appURL;
 
 	private WebDriver driver;
 	private boolean isPageLoaded;

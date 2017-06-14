@@ -1,12 +1,7 @@
 package com.Yatra.Pages;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +20,7 @@ import com.Yatra.Utils.Utils;
 
 public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 
-	private String appURL;
+	//private String appURL;
 
 	private WebDriver driver;
 	private boolean isPageLoaded;

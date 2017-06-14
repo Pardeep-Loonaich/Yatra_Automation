@@ -22,7 +22,7 @@ import com.Yatra.Utils.Utils;
 
 public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 
-	private String appURL;
+	//private String appURL;
 
 	private WebDriver driver;
 	private boolean isPageLoaded;

@@ -21,7 +21,6 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.AlertHandler;
 
 public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 
