@@ -9,14 +9,18 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="chrome_windows" />
+	<parameter name="browserName" value="firefox_windows" />
 	<!-- we are controlling email on every failure from this flag -->
 	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
 	<test name="Activites Search" thread-count="1" parallel="true">
 		<classes>
-			<class name="com.Yatra.TestScript.Activities.ActivitiesTest"></class>          
+			<class name="com.Yatra.TestScript.Activities.ActivitiesTest">
+			<methods>
+		  <!-- <include name="TC_Yatra_Activities_041"></include> -->  
+		  </methods>
+			</class>          
 		</classes>
 	</test>
 </suite>

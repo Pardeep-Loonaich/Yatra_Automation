@@ -143,11 +143,11 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
 	}// isLoaded
-	@Override
-	protected void load() {
+	
+		@Override
+		protected void load() {
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
-
 	}
 	/**
 	 * Getting the text from the the Activity Details
@@ -258,7 +258,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	public String getTextErrorMessageNoActivities() throws Exception {
 	String Message = null;
 	if(noActivity.isDisplayed()){
-	BrowserActions.mouseHover(driver, noActivity);	
+	BrowserActions.clickOnElement(noActivity, driver, "ghfgh");
 	Message = BrowserActions.getText(driver, ErrorMessageNoActivity, "Error Messaeg No Activities");
 	}
 	return Message;

@@ -281,7 +281,7 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	 * @throws Exception
 	 */
 	public boolean verifyTnCPage() throws Exception {
-		return BrowserActions.getText(driver, driver.findElement(By.cssSelector(".ytAboutHanding.txtDrkGreyI")),
+		return BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='ytAboutHanding txtDrkGreyI']")),
 				"Getting Text from span").contains("Terms and Conditions");
 	}/**
 	 * To click Edit Mobile Link
