@@ -1,5 +1,7 @@
 package com.Yatra.Pages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,6 +12,8 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
@@ -17,6 +21,7 @@ public class MakePayment extends LoadableComponent<CompleteBooking> {
 
 	private WebDriver driver;
 	private boolean isPageLoaded;
+	ExecutionTimer timer = new ExecutionTimer();
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Make Payment ***********************************
@@ -56,7 +61,7 @@ public class MakePayment extends LoadableComponent<CompleteBooking> {
 	
 	@Override
 	protected void isLoaded() {
-
+		timer.end();
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
@@ -64,10 +69,14 @@ public class MakePayment extends LoadableComponent<CompleteBooking> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, txtCustomerEmail))) {
 			Log.fail("Complete Booking page didn't open up", driver);
 		}
+		Log.message("Total time taken by #" + this.getClass().getTypeName() + "to load is:- " + timer.duration() + " "
+				+ TimeUnit.MILLISECONDS);
+		Constants.performanceData.add(timer.duration());
 	}
 
 	@Override
 	protected void load() {
+		timer.start();
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}

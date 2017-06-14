@@ -1,9 +1,7 @@
 package com.Yatra.Pages;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -107,7 +105,7 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 	public void fillTravellerDetails() throws Exception {
 		BrowserActions.clickOnElement(drpTitle, driver, "Clicked on 'Title' dropdown.");
 		if (lstTitle.size() != 0) {
-			int rand = Utils.getRandom(1, lstTitle.size());
+			int rand = Utils.getRandom(2, lstTitle.size());
 			Utils.waitForElement(driver, lstTitle.get(rand));
 			BrowserActions.clickOnElement(lstTitle.get(rand), driver, "title selected");
 			Utils.waitForPageLoad(driver);

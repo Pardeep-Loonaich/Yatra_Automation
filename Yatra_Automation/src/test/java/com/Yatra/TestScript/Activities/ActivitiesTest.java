@@ -1188,6 +1188,7 @@ public class ActivitiesTest {
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 			String ErrorMessage = activityDetailPage.getTextErrorMessageNoActivities();
+			Log.message(ErrorMessage);
 
 			Log.message("<br>");
 			Log.message(

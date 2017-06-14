@@ -1,11 +1,8 @@
 package com.Yatra.Pages;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.IntStream;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,6 +14,7 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
@@ -196,7 +194,7 @@ public class TrainTravellerPage extends LoadableComponent<TrainTravellerPage> {
 		}
 
 		if (isPageLoaded && !(Utils.waitForElement(driver, divPaxContainer))) {
-			Log.fail("Train Search Result page didn't open up", driver);
+			Log.fail("Train Traveller page didn't open up", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
 		Constants.performanceData.add(timer.duration());
