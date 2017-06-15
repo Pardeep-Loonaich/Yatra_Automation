@@ -14,6 +14,7 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
@@ -56,20 +57,20 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath = "//Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]")
 	private WebElement btnContinueReviewPage;
 
-	@FindBy(xpath = ".//*[@id='travellerf0']")
+	/*@FindBy(xpath = ".//*[@id='travellerf0']")
 	private WebElement userFirstName;
 
 	@FindBy(xpath = ".//*[@id='travellerl0']")
-	private WebElement userSecondName;
+	private WebElement userSecondName;*/
 
-	@FindBy(css = ".col-md-1.col-xs-3.min-width70>span[class='ui-select']>select>option:nth-child(2)")
-	private WebElement userTitle;
+	/*@FindBy(css = ".col-md-1.col-xs-3.min-width70>span[class='ui-select']>select>option:nth-child(2)")
+	private WebElement userTitle;*/
 
-	@FindBy(xpath = ".//*[@id='paxNum0']/div[2]/span[1]")
-	private WebElement drpuserTitle;
+	/*@FindBy(xpath = ".//*[@id='paxNum0']/div[2]/span[1]")
+	private WebElement drpuserTitle;*/
 
-	@FindBy(xpath = ".//*[@id='traveller-dom']/div[1]/div[1]/div/article[2]/div[2]/input")
-	private WebElement userEmail;
+	/*@FindBy(xpath = ".//*[@id='traveller-dom']/div[1]/div[1]/div/article[2]/div[2]/input")
+	private WebElement userEmail;*/
 
 	@FindBy(css = "span[class='pull-left cursor-pointer ng-binding under-link']>a")
 	private WebElement lnkFeeSurchrge;
@@ -128,17 +129,17 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "[id='checkoutBase']>div:not([class])>main>div>aside>div[class='box ng-scope']>div[class='box-content hide-under-overlay']>div>ul[class='list list-border']")
 	private WebElement contentFareDetails;
 
-	@FindBy(xpath = "//*[@ng-repeat='traveller in travellerDetails']")
-	private List<WebElement> modTravellerDetails;
+	/*@FindBy(xpath = "//*[@ng-repeat='traveller in travellerDetails']")
+	private List<WebElement> modTravellerDetails;*/
 
-	@FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
-	private WebElement moduleFareRules;
+	/*@FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
+	private WebElement moduleFareRules;*/
 
-	@FindBy(css = "div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")
-	private WebElement formReviewHeading;
+	/*@FindBy(css = "div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")
+	private WebElement formReviewHeading;*/
 
-	@FindBy(css = "div[class='overlay-content ']")
-	private WebElement popUpFareAlert;
+	/*@FindBy(css = "div[class='overlay-content ']")
+	private WebElement popUpFareAlert;*/
 
 	@FindBy(css = "div[ng-controller='productFareDetailsController']>div[class='box-content hide-under-overlay']>div[ng-show='showFareDetails']>ul[class='list list-border']>li[class='ng-scope']>span[class='pull-right tr alignment']>span")
 	private List<WebElement> lstPayAmount;
@@ -155,9 +156,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "button[class='button sleek-btn promo-btn ng-binding']")
 	private WebElement btnApplyPromoCode;
 
-	// @Harveer
-	@FindBy(xpath = "(//div[@class='overlay modal-new'])[1]")
-	private WebElement priceChangeDiv;
+	// 
+	/*@FindBy(xpath = "(//div[@class='overlay modal-new'])[1]")
+	private WebElement priceChangeDiv;*/
 
 	@FindBy(css = "div[class='box hide-under-overlay ng-scope']>h3[class='box-title fs-md normal ng-binding']")
 	private WebElement txtReviewYourBooking;
@@ -257,10 +258,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@Override
 	protected void isLoaded() {
 		timer.end();
-	if (!isPageLoaded) {
+		if (!isPageLoaded) {
 			Assert.fail();
 		}
-
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
@@ -271,12 +271,12 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 			Log.fail("ReviewPage didn't open up", driver);
 		}
 		timer.end();
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
-		//set value for pricing URL (if it require in case of test case fail, to send a mail with this URL)
-		sPricingURL=driver.getCurrentUrl().trim();
-		//new EmailSender(driver.getCurrentUrl().trim());
+		Log.message("Total time taken by #" + this.getClass().getTypeName() + " to load is:- " + timer.duration() + " "	+ TimeUnit.MILLISECONDS);
+		// set value for pricing URL (if it require in case of test case fail, to send a mail with this URL)
+		sPricingURL = driver.getCurrentUrl().trim();
+		Constants.performanceData.add(timer.duration());
+		// new EmailSender(driver.getCurrentUrl().trim());
 	}
-
 	
 	@Override
 	protected void load() {

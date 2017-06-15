@@ -45,8 +45,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 
-@FindBy(css="div#booking_engine_modues")
-private WebElement dvSearchEngine;
+	@FindBy(css="div#booking_engine_modues")
+	private WebElement dvSearchEngine;
 	@FindBy(css = "input#BE_flight_origin_city")
 	private WebElement txtOrigin;
 

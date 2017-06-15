@@ -16,7 +16,6 @@ import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
 import com.Yatra.Pages.Fresco;
 import com.Yatra.Pages.LoginPage;
 import com.Yatra.Pages.SearchResult;
@@ -82,8 +81,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -129,8 +127,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -172,8 +169,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -219,8 +215,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -262,8 +257,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -305,8 +299,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -348,8 +341,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -395,8 +387,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -438,8 +429,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -488,8 +478,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -538,8 +527,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -588,8 +576,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -638,8 +625,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -689,8 +675,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -740,8 +725,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -791,8 +775,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -842,8 +825,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -899,8 +881,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -957,7 +938,6 @@ public class FrescoTest extends BaseTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			// driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1005,8 +985,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1054,8 +1033,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1109,8 +1087,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1164,8 +1141,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1219,8 +1195,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1267,8 +1242,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1316,8 +1290,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1386,8 +1359,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1457,8 +1429,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1510,8 +1481,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1563,8 +1533,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1625,8 +1594,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1667,8 +1635,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1716,8 +1683,7 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -1765,12 +1731,215 @@ public class FrescoTest extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			// driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
+	
+	@Test(description = "Verify Fresco paramaters in search URL for the respective source and destination both domestic", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_039(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");		
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String params = testData.get("Params");
+		String originCountry = testData.get("OriginCountry");
+		String destinationCountry = testData.get("DestinationCountry");
 
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: select OneWay Search fields in HomePage
+			fresco.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = fresco.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: get the Parameter values from Search Result page URL
+			List<String> paramValues = searchResult.getParamValueFromCurrnetPageURL();			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verified Fresco paramaters in search URL for the respective source and destination both domestic");
+			Log.assertThat((paramValues.contains(params) && paramValues.contains(tripType.substring(0,1)) && paramValues.contains(origin) && paramValues.contains(originCountry)
+					&& paramValues.contains(destination) && paramValues.contains(destinationCountry)),
+			"<b>Actual Result:</b> Successfully verified Fresco paramaters in search URL for the respective source and destination both domestic, Parameter values are: <b>" +paramValues+ "</b>",
+			"<b>Actual Result:</b> Not verified Fresco paramaters in search URL for the respective source and destination both domestic", driver);
+						
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {			
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Verify Fresco paramaters in search URL for the respective source domestic and destination international", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_040(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");		
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String params = testData.get("Params");
+		String originCountry = testData.get("OriginCountry");
+		String destinationCountry = testData.get("DestinationCountry");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: select OneWay Search fields in HomePage
+			fresco.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = fresco.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: get the Parameter values from Search Result page URL
+			List<String> paramValues = searchResult.getParamValueFromCurrnetPageURL();			
+			Log.message("<br>");
+			BrowserActions.nap(8);
+			Log.message("<b>Expected Result:</b> Verified Fresco paramaters in search URL for the respective source domestic and destination international");
+			Log.assertThat((paramValues.contains(params) && paramValues.contains(tripType.substring(0,1)) && paramValues.contains(origin) && paramValues.contains(originCountry)
+					&& paramValues.contains(destination) && paramValues.contains(destinationCountry)),
+			"<b>Actual Result:</b> Successfully verified Fresco paramaters in search URL for the respective source domestic and destination international, Parameter values are: <b>" +paramValues+ "</b>",
+			"<b>Actual Result:</b> Not verified Fresco paramaters in search URL for the respective source domestic and destination international", driver);
+						
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {			
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Verify Fresco paramaters in search URL for the respective source international and destination domestic", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_041(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");		
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String params = testData.get("Params");
+		String originCountry = testData.get("OriginCountry");
+		String destinationCountry = testData.get("DestinationCountry");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: select OneWay Search fields in HomePage
+			fresco.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = fresco.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: get the Parameter values from Search Result page URL
+			List<String> paramValues = searchResult.getParamValueFromCurrnetPageURL();			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verified Fresco paramaters in search URL for the respective source international and destination domestic");
+			Log.assertThat((paramValues.contains(params) && paramValues.contains(tripType.substring(0,1)) && paramValues.contains(origin) && paramValues.contains(originCountry)
+					&& paramValues.contains(destination) && paramValues.contains(destinationCountry)),
+			"<b>Actual Result:</b> Successfully verified Fresco paramaters in search URL for the respective source international and destination domestic, Parameter values are: <b>" +paramValues+ "</b>",
+			"<b>Actual Result:</b> Not verified Fresco paramaters in search URL for the respective source international and destination domestic", driver);
+						
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {				
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Verify Fresco paramaters in search URL for the respective source and destination both domestic", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_042(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");		
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String params = testData.get("Params");
+		String originCountry = testData.get("OriginCountry");
+		String destinationCountry = testData.get("DestinationCountry");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: select OneWay Search fields in HomePage
+			fresco.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			// step: click 'Search' button
+			searchResult = fresco.clickBtnSearch();
+			Log.message("4. Successfully clicked 'Search'!");
+
+			// step: get the Parameter values from Search Result page URL
+			List<String> paramValues = searchResult.getParamValueFromCurrnetPageURL();			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verified Fresco paramaters in search URL for the respective source and destination both domestic");
+			Log.assertThat((paramValues.contains(params) && paramValues.contains(tripType.substring(0,1)) && paramValues.contains(origin) && paramValues.contains(originCountry)
+					&& paramValues.contains(destination) && paramValues.contains(destinationCountry)),
+			"<b>Actual Result:</b> Successfully verified Fresco paramaters in search URL for the respective source and destination both international, Parameter values are: <b>" +paramValues+ "</b>",
+			"<b>Actual Result:</b> Not verified Fresco paramaters in search URL for the respective source and destination both international", driver);
+						
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {			
+			Log.endTestCase();
+		}
+	}
 	
 	// ********************************End of Test cases************************************
 

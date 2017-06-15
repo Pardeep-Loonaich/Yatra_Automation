@@ -213,13 +213,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	private WebElement txtResultStripView;
 
 	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[1]//span/input") 
-	private WebElement chkOneWay;
+	private WebElement chkOneWay; //TODO 
 
 	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[2]//span/input") 
-	private WebElement chkRoundTrip;
+	private WebElement chkRoundTrip; //TODO 
 
 	@FindBy(xpath = "//form[@id='modifySearch']/div[1]//label[3]//span/input") 
-	private WebElement chkMultiCity;
+	private WebElement chkMultiCity; //TODO 
 
 	@FindBy(css = "#origin_0")
 	private WebElement txtOrigin_ModifySearch;
@@ -3639,6 +3639,67 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			Log.event("Successfully clicked Book Now in SRP");
 			return Price;
 	}
+	
+	/**
+	 * getting cities name from recent search Pop up
+	 * @return
+	 * @throws Exception
+	 */
+	public String getSearchResultPageURL() throws Exception{
+		String sURL = driver.getCurrentUrl();
+		return sURL;
+	} 
+	
+	
+	/**
+	 * @author Narayana
+	 * @Description: to verify param in URL
+	 * @param sParam: the prameter you want to verify 
+	 * @param sUrl: pass current page()  url after searching flight
+	 */
+	public List<String> getParamValueFromCurrnetPageURL() {
+		List<String> sPram_Values = new ArrayList<String>();
+		String sUrl = driver.getCurrentUrl();
+		String sPram_Value = "";
+		
+		if (sUrl.contains(Constants.c_Params)) { 
+			int start = sUrl.indexOf(Constants.c_Params);			
+			sPram_Value = sUrl.substring(start).split("/")[1];
+			sPram_Values.add(sPram_Value);
+		} 		
+		if (sUrl.contains(Constants.c_TriggerType)) {
+			int start = sUrl.indexOf(Constants.c_TriggerType);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		} 
+		if (sUrl.contains(Constants.c_Origin)) { 
+			int start = sUrl.indexOf(Constants.c_Origin);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		} 			
+		if (sUrl.contains(Constants.c_OriginCountry)) {
+			int start = sUrl.indexOf(Constants.c_OriginCountry);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		} 
+		if (sUrl.contains(Constants.c_Destination)) {
+			int start = sUrl.indexOf(Constants.c_Destination);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		} 
+		if (sUrl.contains(Constants.c_DestinationCountry)) {
+			int start = sUrl.indexOf(Constants.c_DestinationCountry);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		} 
+		if (sUrl.contains(Constants.c_NonStop)) {
+			int start = sUrl.indexOf(Constants.c_NonStop);
+			sPram_Value = sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Values.add(sPram_Value);
+		}
+		return sPram_Values;
+	}
+
 	
 	// *******************************End of SRP Functions******************************/
 	
