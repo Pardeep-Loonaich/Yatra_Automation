@@ -260,7 +260,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "#flight_depart_date_1")
 	private WebElement txtDepartDate1_ModifySearch;
 
-	@FindBy(css = "div[class='matrix-slide-wrapper has-next-prev matrix-small-screen']")
+	@FindBy(css = "div[class*='matrix-slide-wrapper has-next-prev matrix-small-screen day-matrix-wrapper']")
 	private WebElement weeklyFlightsStrip;
 
 	@FindBy(css = "ul[class='matrix-slide-list tabs day-ul']>li>a[class='matrix-link tabs-link active']")
@@ -3618,6 +3618,27 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		return name;
 	} 
+	public String selectAirlineBookNowInOWE2E(String airlines, int index) throws Exception {
+			closeINotificationAtTopSRP();
+			Thread.sleep(3000);
+			String Price = null;
+			// click book now based on Any or Preferred airlines
+			if (airlines.equalsIgnoreCase("Any")) {
+				clickOnBookNowInOW(2); // select Book now
+				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
+			} else {
+				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
+				WebElement price1 =driver.findElement(By.cssSelector("div[data-gaecposition='"+index+"'] label"));
+				if(price1.isDisplayed())
+				{
+				Price = price1.getText();
+				}
+				driver.findElement(By.cssSelector("div[data-gaecposition='"+ index +"'] p[class='new-blue-button fr book-button js-bookNow relative tc']")).click();
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
+			}
+			Log.event("Successfully clicked Book Now in SRP");
+			return Price;
+	}
 	
 	// *******************************End of SRP Functions******************************/
 	

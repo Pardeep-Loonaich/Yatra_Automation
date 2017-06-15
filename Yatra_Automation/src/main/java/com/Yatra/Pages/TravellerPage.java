@@ -97,6 +97,8 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	@FindBy(css = "#title0")
 	WebElement drpTravelTitle;
 
+	@FindBy(css = "span[class='block fs-xlg gray-dark u-pay ng-binding'][ng-class*='u-pay-temp']")
+	WebElement txtTotalCost;
 	/**********************************************************************************************
 	 ********************************* WebElements of TravellerPage Page - Ends ****************************
 	 **********************************************************************************************/
@@ -444,6 +446,21 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	public String getTextFromFareDetails() throws Exception {
 		String txtDetails = BrowserActions.getText(driver, contentFareDetails, "Getting text from the fare details.");
 		return txtDetails;
-
 	}
+		/**
+		 * Getting the text Amount
+		 * 
+		 * @return
+		 * @throws Exception
+		 */
+		public String getTextTotalAmount() throws Exception {
+			Thread.sleep(3000);
+			String price = BrowserActions.getText(driver, txtTotalCost, "Getting text Amount");
+			return price;			
+			
+			
+			/*public static String getTextTotalAmount(WebDriver driver, WebElement element){
+			    return (String) ((JavascriptExecutor) driver).executeScript(
+			        "return jQuery(arguments[0]).text();", txtTotalCost);*/
+			}
 }

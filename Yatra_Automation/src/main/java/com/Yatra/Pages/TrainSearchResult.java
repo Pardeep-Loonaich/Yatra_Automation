@@ -362,11 +362,20 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	 * @param index
 	 * @throws Exception
 	 */
-	public void selectTrainByIndexAndBook(int index) throws Exception{
+	public void selectTrainByIndexAndBook(int index,String Browser) throws Exception{
+		Utils.waitForPageLoad(driver);
+		if(Browser.equalsIgnoreCase("Chrome_windows")){
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		}
+		else if(Browser.equalsIgnoreCase("firefox_windows")){
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		driver.navigate().refresh();
 		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
 		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
-
+		}
 	}
 	
 	/**

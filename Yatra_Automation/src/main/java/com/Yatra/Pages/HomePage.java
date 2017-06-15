@@ -278,7 +278,6 @@ private WebElement dvSearchEngine;
 
 	@Override
 	protected void isLoaded() {
-		
 		if (!isPageLoaded) 
 		{
 			Assert.fail();
@@ -290,19 +289,16 @@ private WebElement dvSearchEngine;
 		timer.end();
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
 		Constants.performanceData.add(timer.duration());
-
 	}// isLoaded
-
+	
 	@Override
 	protected void load(){
 		timer.start();
 		isPageLoaded = true;
 		driver.get(appURL);
 		Utils.waitForPageLoad(driver);
-
 	}// load
-
-
+	
 	/**
 	 * Enter Origin
 	 * 

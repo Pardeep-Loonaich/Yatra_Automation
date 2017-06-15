@@ -216,6 +216,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "div[class='row mt10 btn-box'] button[class='button rounded primary']")
 	private WebElement txtSelectAnotherFlight;
 	
+	@FindBy(css = "section[class='login-content']")
+	private WebElement signInPopUp;
 
 	/**********************************
 	 * WebElements of Yatra ReviewPage - Ends ****************************

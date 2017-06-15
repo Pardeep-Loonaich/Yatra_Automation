@@ -270,13 +270,13 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 		BrowserActions.clickOnElement(monthCC, driver, "Date");
 		if (lstMonthsCC.size() != 0) {
 			int rand = Utils.getRandom(1, lstMonthsCC.size());
-			BrowserActions.clickOnElement(lstMonthsCC.get(rand), driver, "Month Selected");
+			BrowserActions.selectDropdownByIndex(driver, monthCC, rand , "Month Selected");
 		}
 		Thread.sleep(2000);
 		BrowserActions.clickOnElement(yearCC, driver, "Year");
 		if (lstYearsCC.size() != 0) {
 			int rand = Utils.getRandom(1, lstYearsCC.size());
-			BrowserActions.clickOnElement(lstYearsCC.get(rand), driver, "Year Selected");
+			BrowserActions.selectDropdownByIndex(driver,yearCC, rand ,"Year Selected");
 		}
 		Thread.sleep(2000);
 		BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");

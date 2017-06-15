@@ -36,8 +36,5 @@ public class Constants {
 	public static final String C_Airlines = "AIRLINES";
 	
 	public static List<Double> performanceData=new ArrayList<Double>();
-	
-			
-		
 	// >>>> Page Constants End>>>>
 }
