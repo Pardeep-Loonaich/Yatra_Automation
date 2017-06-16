@@ -3699,8 +3699,116 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		return sPram_Values;
 	}
-
 	
+	
+	
+	public String selectAirlineBookNowInRT_E2E(String domain, String airlines) throws Exception {
+		//closeINotificationAtTopSRP();
+		Thread.sleep(3000);
+		String price = "";		
+		if (domain.equalsIgnoreCase("DOM")) {
+			// click book now based on Any or Preferred airlines
+			if (airlines.equalsIgnoreCase("Any")) {
+				BrowserActions.nap(5);
+				clickOnBookNowInRT_DOM(1, 2, 2, 7); // select Book Now Airlines
+				Log.event("All flights details are visible by default and clicked Book Now Random flight-DOM");
+			} else {
+				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
+				BrowserActions.nap(5);
+				price = clickOnBookNowInDOMRT_E2E(1, 1); // select Book Now Airlines
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now - DOM");
+			}
+			Log.event("Successfully clicked Book Now for Round Trip");
+
+		} else if (domain.equalsIgnoreCase("INTL")) {
+			// click book now based on Any or Preferred airlines
+			if (airlines.equalsIgnoreCase("Any")) {
+				BrowserActions.nap(5);
+				clickOnBookNowInDOM_INTL(1); // select Book now
+				Log.event("All flights details are visible by default and clicked Book Now Random flight -RT");
+			} else {
+				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
+				price = clickOnBookNowINTLRT_E2E(1); // select Book Now Airlines
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now RT ");
+			}
+			Log.event("Successfully clicked Book Now for Round Trip");
+		}
+
+		Log.event("Successfully clicked Book Now in SRP");
+		return price;
+	}
+	
+	@FindBy(css = "#fare-selSum")
+	private WebElement txtFlightFareRT_SRP;
+	
+	
+	/**
+	 * to click on Book now button in Round Trip for Domestic Preferred flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public String clickOnBookNowInDOMRT_E2E(int onwardFlight, int returnFlight) throws Exception {
+		WebElement onwardflight = driver.findElement(By.xpath("//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem']["
+						+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
+		WebElement returnflight = driver.findElement(By.xpath("//div[@id='resultList_1']//div[@class='js-flightRow js-flightItem']["
+						+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
+		BrowserActions.scrollToView(onwardflight, driver);
+		BrowserActions.clickOnElement(onwardflight, driver, "To select Flight from one list.");
+		BrowserActions.scrollToView(returnflight, driver);
+		BrowserActions.clickOnElement(returnflight, driver, "To select Flight from second list.");
+		BrowserActions.nap(2);
+		String flightPrice = BrowserActions.getText(driver, txtFlightFareRT_SRP, "SRP Page Flight fare");
+		System.out.println(flightPrice);
+		BrowserActions.clickOnElement(btnBookNowRoundTrip, driver,	"Click on Book Now for RoundTrip for Domestic Preferred flights");
+		return flightPrice;
+	}
+	
+	/**
+	 * to click on Book now button in One Way for INTL flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public String clickOnBookNowINTLRT_E2E(int index) throws Exception {
+		BrowserActions.nap(5);
+		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
+						+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
+		BrowserActions.scrollToView(wBookNow, driver);
+		BrowserActions.nap(2);
+		WebElement wflightPrice = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
+				+ index + "]//div[@class='fl bxs price-value-holder has-emi']/p"));
+		String flightPrice = BrowserActions.getText(driver, wflightPrice, "SRP Page Flight fare");
+		String price_final =flightPrice.trim().replace(" ","").trim();		
+		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button - INTL");
+		return price_final;
+	}
+	
+	
+	
+	/**
+	 * to click on Book now button in One Way for INTL flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public String clickOnBookNowInOWINTL_E2E(int index) throws Exception {
+		BrowserActions.nap(5);
+		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
+						+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
+		BrowserActions.scrollToView(wBookNow, driver);
+		WebElement wflightPrice = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
+						+ index + "]//p[@title='Fare Summary']"));
+		String flightPrice = BrowserActions.getText(driver, wflightPrice, "SRP Page Flight fare");
+		String Price_final =flightPrice.trim().replace(" ","").trim();
+		System.out.println(flightPrice);
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button - INTL");
+		return flightPrice;
+	}
 	// *******************************End of SRP Functions******************************/
 	
 } // SearchResult
