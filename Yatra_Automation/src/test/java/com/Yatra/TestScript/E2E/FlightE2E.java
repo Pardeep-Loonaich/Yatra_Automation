@@ -215,5 +215,164 @@ public class FlightE2E extends BaseTest{
 			driver.quit();
 			Log.endTestCase();
 		}
-	}//E2ETestCasesEnd
-}
+	}
+		@Test( description = "INTL_OW_Flow_E2E", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+		public void TC_Yatra_E2E_003(HashMap<String, String> testData) throws Exception {		
+		
+			Utils.testCaseConditionalSkip(testData.get("RunMode"));
+			String browser = testData.get("browser");
+			String origin = testData.get("Origin");
+			String tripType = testData.get("TripType");
+			String destination = testData.get("Destination");
+			String departureDate = testData.get("DepartureDate");
+			String passengerInfo = testData.get("PassengerInfo");
+			String passengerClass = testData.get("Class");
+			String airlines = testData.get("Airlines");
+			String infant = testData.get("Infant");
+			String[] infantDOB = infant.split(",");
+			String[] adult = infant.split(",");
+			String[] child = infant.split(",");
+			String emailId = testData.get("EmailAddress");
+			String mobile = testData.get("Mobile");
+			String cardNumber = testData.get("CardNumber");
+
+			// Get the web driver instance
+			final WebDriver driver = WebDriverFactory.get(browser);
+			Log.testCaseInfo(testData);
+			try {
+				// step: Navigate to Yatra Home Page
+				homePage = new HomePage(driver, webSite).get();
+				Log.message("1. Navigated to 'Yatra' Home Page!");
+				
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
+				Thread.sleep(4000);
+				Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("dvSearchEngine"), homePage),
+						"<b>Actual Result:</b> Homepage is loaded in 10 second and Booking Engine is display",
+						"<b>Actual Result:</b> Homepage is not loaded in 10 second and Booking Engine is display", driver);
+
+				// step: Select Trip Type
+				homePage.selectTripType(tripType);
+				Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+				// step: enter Origin place in Yatra Home page
+				homePage.enterOrigin(origin);
+				Log.message("3.Successfully entered Origin '<b>" + origin + "</b>' in Yatra Homepage");
+
+				// step: enter Destination place in Yatra Home page
+				homePage.enterDestination(destination);
+				Log.message("4.Successfully entered Destination '<b>" + destination + "</b>' in Yatra Homepage");
+
+				// step: select Departure date
+				String departDate = homePage.selectDepartureDate(departureDate);
+				Log.message("5.Successfully selected the Departure date: <b>" + departDate + "</b>(YY/MM/DD)");
+
+				// step: select Passengers info
+				homePage.specifyPassengerInfo(passengerInfo);
+				Log.message("6.Successfully specified Passenger Info");
+
+				// step: select Passengers class
+				homePage.selectPassengerClass(passengerClass);
+				homePage.clickDoneButtonInPassengerBox();
+				Log.message("7.Successfully selected Passenger class and clicked Done button");
+
+				// step: click 'Search' button in Yatra Home page
+				searchResult = homePage.clickBtnSearch();
+				Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
+
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Date strip should display above result");
+				Thread.sleep(4000);
+				Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
+						"<b>Actual Result:</b> Date strip is displayed above result",
+						"<b>Actual Result:</b> Date strip is not displayed above result", driver);
+				
+				// step: Click On Book Now Button with specific airlines
+				String priceInSrp = searchResult.clickOnBookNowInOWINTL_E2E(airlines, 1 );
+				Log.message("9.Clicked On Book Now Button with specific airlines!");
+				ReviewPage reviewPage = new ReviewPage(driver);
+				
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
+				if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+				Log.message("<b>Actual Result:</b> Flight pricing Pop Up appear and ignored price change and moved forward",driver);
+				} else {
+				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear",driver);
+				}
+				
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Promo box should display");
+				Thread.sleep(2000);
+				Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
+						"<b>Actual Result:</b> Promo box is display.",
+						"<b>Actual Result:</b> Promo box is not display.", driver);	
+				
+				String priceInReviewPage = reviewPage.getTextTotalAmount();
+			
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Total fare should be same as was on search result page");
+				Log.assertThat(priceInSrp.equalsIgnoreCase(priceInReviewPage),
+						"<b>Actual Result:</b> Total fare is same as was on search result page",
+						"<b>Actual Result:</b> Total fare is not same as was on search result page", driver);	
+				
+				// step: Click On Continue Button
+				reviewPage.clickOnContinue();
+				Log.message("10.Clicked On Continue Button!");
+				
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Signin popup should display");
+				Thread.sleep(2000);
+				Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("signInPopUp"), reviewPage),
+						"<b>Actual Result:</b> Signin popup is display.",
+						"<b>Actual Result:</b> Signin popup is not display.", driver);	
+				
+				// step: Sign In Yatra account as Guest
+				travellerPage = reviewPage.loginYatraGuestAccount(emailId, mobile);
+				Log.message("11.Signed In Yatra account as Guest!");
+				
+				Thread.sleep(2000);
+				String priceInTraveller = travellerPage.getTextTotalAmount();
+			
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Total amount should be same as was on review page");
+				Thread.sleep(2000);
+				Log.assertThat(priceInReviewPage.equalsIgnoreCase(priceInTraveller),
+						"<b>Actual Result:</b> Total amount is same as was on review page",
+						"<b>Actual Result:</b> Total amount is not same as was on review page", driver);	
+				
+				// step: Fill Traveller Details
+				travellerPage.fillTravellerDetails_INT(adult, child, infantDOB);
+				Log.message("12.Filled Traveller Details!");
+				
+				// step: Clicked on 'Continue' button in Traveller Page
+				paymentPage = travellerPage.clickOnContinue();
+				Log.message("13.Clicked on 'Continue' button in Traveller Page!");
+				
+				// step: Entered Credit card Details
+				paymentPage.enterCreditCardDetailsE2E(cardNumber);
+				Log.message("14.Entered Credit card Details!");
+				String priceInPaymentPage = paymentPage.getTextFromTotalAmountE2E();
+				
+				// step: Click On Pay Now
+				paymentPage.clickOnPayNow();
+				Log.message("15.Clicked On Pay Now!");
+			
+				String priceCitiPortal = paymentPage.getFlightPriceInBankPage();
+				Log.message(priceCitiPortal);
+							
+				Log.message("<br>");
+				Log.message("<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
+				Thread.sleep(2000);
+				Log.assertThat(priceCitiPortal.equalsIgnoreCase(priceInPaymentPage),
+						"<b>Actual Result:</b> Total amount is same as was on payment page",
+						"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);	
+				
+				Log.testCaseResult();
+			} catch (Exception e) {
+				Log.exception(e);
+			} finally {
+				driver.quit();
+				Log.endTestCase();
+			}
+		}
+}//E2ETestCasesEnd

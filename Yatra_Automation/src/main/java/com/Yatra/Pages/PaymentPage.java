@@ -1559,7 +1559,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String getFlightPriceInBankPage() throws Exception {
-		Utils.waitForElement(driver, txtTotalAmountCitiBank);
+		Utils.waitForPageLoad(driver);
+		Thread.sleep(5000);
 		String txtFlightPrice = BrowserActions.getText(driver, txtTotalAmountCitiBank, "Citi Bank Page Flight Price");
 		String temp1=txtFlightPrice.trim().replace("INR","").trim();
 		String Price_final =temp1.trim().replace(".00","").trim();
