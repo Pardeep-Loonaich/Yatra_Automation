@@ -423,6 +423,13 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 
 	@FindBy(css = "div[class='wrapper'] div[class='left']>div:nth-child(4)>label[class='value']")
 	private WebElement txtTotalAmountCitiBank;
+	
+	@FindBy(css = ".col-xs-5.amt")
+	private WebElement txtInterNetCitiBank;
+	
+	@FindBy(css = "ul[id='breakDownContainer']>li:nth-child(1)>span[class='fare-brk-rs fr']")
+	private WebElement txtFlightPricePaymentPage;
+	
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
@@ -1552,6 +1559,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		 BrowserActions.nap(2);;
 		 BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
 	}
+	
 	/**
 	 * Getting the text from Flight Price in Bank Page
 	 * 
@@ -1566,4 +1574,32 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		String Price_final =temp1.trim().replace(".00","").trim();
 		return Price_final;
 	} 
+	
+	/**
+	 * Getting the text from Flight Price in Net Banking Page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getFlightPriceInNetBankingPage() throws Exception {
+		Utils.waitForElement(driver, txtInterNetCitiBank);
+		String txtFlightPrice = BrowserActions.getText(driver, txtInterNetCitiBank, "Bank Page Flight Price");
+		String temp1=txtFlightPrice.trim().replace("PAYMENT AMOUNT : Rs.","").trim();	
+		String price_final =temp1.trim().replace(".00","").trim();
+		return price_final;
+	} 
+	
+	/**
+	 * Getting the Total amount from payment module
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getFlightPriceInPaymentPage() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String txtflightPrice = BrowserActions.getText(driver, totalAmount,	"Payment page without convience fee Flight Fare");
+		return txtflightPrice;
+
+	}
+	
 }//PaymentPage

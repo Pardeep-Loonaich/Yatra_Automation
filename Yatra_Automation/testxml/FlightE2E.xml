@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name=" Yatra Bus Search Automation Test" verbose="3" parallel="true" thread-count="5">
-	
+<suite name=" Yatra Bus Search Automation Test" verbose="3"
+	parallel="true" thread-count="5">
+
 	<parameter name="workBookName" value="testdata\\Flights.xls" />
-	<parameter name="sheetName" value="FlightSearch"/>
+	<parameter name="sheetName" value="FlightE2E" />
 
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
@@ -17,7 +18,11 @@
 	<test name="E2E" thread-count="1" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.E2E.FlightE2E">
-			</class>          
+				<!-- <methods>
+				    <include name="TC_Yatra_E2E_002"></include>
+					<include name="TC_Yatra_E2E_004"></include>
+				</methods> -->
+			</class>
 		</classes>
 	</test>
 </suite>

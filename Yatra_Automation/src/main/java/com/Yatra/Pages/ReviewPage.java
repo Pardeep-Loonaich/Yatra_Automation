@@ -827,6 +827,21 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
     return status;
 	}
 	
+	/**
+	 * Getting Text of Total Amount
+	 * 
+	 * @return String
+	 * @throws Exception
+	 */
+	public String getReviewPageFlightFare() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String price = BrowserActions.getText(driver, totalAmountInreviewPage, "Getting Text of Total Amount");
+		String flightPrice =price.trim().replace(" ","").trim();
+		System.out.println(flightPrice);
+		return flightPrice;
+	}
+
+	
 } // ReviewPage
 
 
