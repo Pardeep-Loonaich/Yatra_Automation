@@ -1,30 +1,22 @@
 package com.Yatra.TestScript.Trains;
-
-
-
 import java.util.ArrayList;
-
 //-----------------------------------------------------------------------------------------------------------
 //Description    :   All the Train module test Cases would be designed in this class 
 //Creator        :   Aspire Team
 //Create         :   
 //Modified on/By :   -
 //-----------------------------------------------------------------------------------------------------------
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
-
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
 import com.Yatra.Pages.HomePage;
 import com.Yatra.Pages.PaymentPage;
-
 import com.Yatra.Pages.TrainReviewPage;
 import com.Yatra.Pages.TrainSearchResult;
 import com.Yatra.Pages.TrainTravellerPage;
@@ -33,7 +25,6 @@ import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.Log;
-
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
@@ -3081,5 +3072,4 @@ public class Train {
 			Log.endTestCase();
 		}
 	}
-	
 }

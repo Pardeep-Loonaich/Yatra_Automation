@@ -805,6 +805,17 @@ public class BrowserActions {
 		}
 	}
 	
-
+	/**
+	 * @Description: to select by value
+	 * @param:
+	 */
+public static void selectByValue(WebDriver driver,WebElement element, String sValue)
+{
+	
+	Utils.waitForElement(driver, element);
+	Select selct=new Select(element);
+	selct.selectByVisibleText(sValue);
+	
+	}
 
 }// BrowserActions page

@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
@@ -56,7 +57,8 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnSignIn))) {
 			Log.fail("Agent Login Page did not open up. Site might be down.", driver);
 		}	
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.add(timer.duration());
 	}
 
 	@Override

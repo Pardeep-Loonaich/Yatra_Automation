@@ -1,8 +1,4 @@
 package com.Yatra.Pages;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -16,10 +12,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
@@ -56,10 +52,9 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	@FindBy(css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='button-group']>button:nth-child(2)")
 	WebElement btnAddBaggage;
-
-	//@Harveer- remove absolute xpath and try to use relative
+	
 	@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
-	WebElement btnContinueTravellerPage;
+	WebElement btnContinueTravellerPage; //TODO 
 
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	WebElement btnChngeFlight;
@@ -69,12 +64,12 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select>option:nth-child(2)")
 	WebElement fldContentselectMeal;
-	//@Harveer- remove absolute xpath and try to use relative
-	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
-	WebElement drpAddBaggage;
-	//@Harveer- remove absolute xpath and try to use relative
-	@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select/option[2]")
-	WebElement fldContentselectBaggage;
+	
+	/*@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
+	WebElement drpAddBaggage;*/
+	
+	/*@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select/option[2]")
+	WebElement fldContentselectBaggage;*/
 
 	@FindBy(css = "ul[class='list list-border']>li:nth-child(6)>span[class='pull-right tr alignment']>a[class='remove-btn']")
 	WebElement btnRemoveBaggage;
@@ -87,16 +82,18 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	@FindBy(css = "ul[class='list list-border']>li:nth-child(5)>span[class='pull-right tr alignment']>a[class='remove-btn']")
 	WebElement btnRemoveMeal;
-	//@Harveer- remove absolute xpath and try to use relative
+	
 	@FindBy(xpath = ".//*[@id='traveller-dom']/div[3]/div/div/div[2]/p/label/span[1]/input")
-	WebElement chkInsurance;
+	WebElement chkInsurance; //TODO 
 
 	@FindBy(css = "[id='checkoutBase']>div:not([class])>main>div>aside>div[class='box ng-scope']>div[class='box-content hide-under-overlay']>div>ul[class='list list-border']")
 	private WebElement contentFareDetails;
 	
 	@FindBy(css = "#title0")
 	WebElement drpTravelTitle;
-
+	
+	@FindBy(css = "span[class='block fs-xlg gray-dark u-pay ng-binding'][ng-class*='u-pay-temp']")
+	WebElement txtTotalAmount;
 	/**********************************************************************************************
 	 ********************************* WebElements of TravellerPage Page - Ends ****************************
 	 **********************************************************************************************/
@@ -134,11 +131,9 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	@Override
 	protected void isLoaded() {
 		timer.end();
-
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
-
 		try {
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
@@ -148,9 +143,10 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, formTraveller))) {
 			Log.fail("TravellerPage didn't open up", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
-
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.add(timer.duration());
 		// elementLayer = new ElementLayer(driver);
+
 	}
 
 	@Override
@@ -166,8 +162,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	 * 
 	 * @throws Exception
 	 */
-	// public void fillTravellerDetails_INT(String[] adultDOB, String[], childDOB, String[] InfantDOB ) throws Exception {
-	public void fillTravellerDetails_INT(String[] Adult, String[] Child, String[] Infant) throws Exception {
+		public void fillTravellerDetails_INT(String[] Adult, String[] Child, String[] Infant) throws Exception {
 		int adult = 1; int child = 1; int infant = 1; int passengerNum = 1;
 
 		String[] adultDOB = selectDOBDate(Adult) ;  // Remove later
@@ -443,10 +438,19 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	 * @return
 	 * @throws Exception
 	 */
-
 	public String getTextFromFareDetails() throws Exception {
 		String txtDetails = BrowserActions.getText(driver, contentFareDetails, "Getting text from the fare details.");
 		return txtDetails;
 
+	}
+	/**
+	 * Getting the text Total Amount
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextTotalAmount() throws Exception {
+		String txtDetails = BrowserActions.getText(driver, txtTotalAmount, "Getting text Total Amount");
+		return txtDetails;
 	}
 }

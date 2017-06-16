@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
@@ -39,7 +40,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 ********************************* WebElements of Yatra PaymentPage ***********************************
 	 **********************************************************************************************/
 
-	@FindBy(xpath = "//input[@id= 'payNow']")
+	@FindBy(css = "input[id='payNow']")
 	private WebElement btnPayNow;
 
 	@FindBy(css = "#cc_cno_id")
@@ -420,6 +421,16 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css = "#qb_ccCVV0")
 	private WebElement txtSavedcreditCardCvv;
 
+	@FindBy(css = "div[class='wrapper'] div[class='left']>div:nth-child(4)>label[class='value']")
+	private WebElement txtTotalAmountCitiBank;
+	
+	@FindBy(css = ".col-xs-5.amt")
+	private WebElement txtInterNetCitiBank;
+	
+	@FindBy(css = "ul[id='breakDownContainer']>li:nth-child(1)>span[class='fare-brk-rs fr']")
+	private WebElement txtFlightPricePaymentPage;
+	
+
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
 	 **********************************************************************************************/
@@ -464,9 +475,8 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnPayNow))) {
 			Log.fail("PaymentPage didn't open up", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
-
-		// elementLayer = new ElementLayer(driver);
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.add(timer.duration());		
 	}
 
 	@Override
@@ -584,7 +594,6 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		BrowserActions.scrollToView(btnPayNow, driver);
 		BrowserActions.javascriptClick(btnPayNow, driver, "Pay Now");
 		Utils.waitForPageLoad(driver);
-		BrowserActions.nap(30);
 	}
 
 	/**
@@ -823,11 +832,19 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		return txtTotalAmount;
 
 	}
+	/**
+	 * Getting the Total amount from payment module
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getTextFromTotalAmountE2E() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String txtTotalAmount = BrowserActions.getText(driver, totalAmount,
+				"Getting text for Total Amount.");
+		return txtTotalAmount;
 
-
-
-
-
+	}
 	/**
 	 * to select the payment type from left navigations panel
 	 * @param PaymentType
@@ -1514,4 +1531,75 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public String getTimeFromStrip() throws Exception{
 		return BrowserActions.getText(driver, timeOnStrip, "Getting time from the Time Strip.");
 	}
+	/**
+	 * Filling Credit Card Details
+	 * 
+	 * @return
+	 * @throws Exception
+	 * @author:Parth
+	 */
+	public void enterCreditCardDetailsE2E(String cardNumber) throws Exception {
+		BrowserActions.nap(2);
+		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
+		String randomCvv = RandomStringUtils.randomNumeric(3);
+		BrowserActions.nap(5);
+		BrowserActions.typeOnTextField(creditCardNumber, cardNumber, driver, "Credit card Number");
+		 BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
+		 if (lstMonthsCC.size() != 0) {			 
+			 int rand = Utils.getRandom(1, lstMonthsCC.size());	
+			 BrowserActions.selectDropdownByIndex(driver, monthCC, rand, "Month Selected");			
+			 Utils.waitForPageLoad(driver);
+		 }
+		 BrowserActions.nap(2);	
+		 if (lstYearsCC.size() != 0) {
+			 int rand = Utils.getRandom(1, lstYearsCC.size());
+			 BrowserActions.selectDropdownByIndex(driver, yearCC, rand, "Year Selected");			
+			 Utils.waitForPageLoad(driver);
+		 }
+		 BrowserActions.nap(2);;
+		 BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
+	}
+	
+	/**
+	 * Getting the text from Flight Price in Bank Page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getFlightPriceInBankPage() throws Exception {
+		Utils.waitForPageLoad(driver);
+		Thread.sleep(5000);
+		String txtFlightPrice = BrowserActions.getText(driver, txtTotalAmountCitiBank, "Citi Bank Page Flight Price");
+		String temp1=txtFlightPrice.trim().replace("INR","").trim();
+		String Price_final =temp1.trim().replace(".00","").trim();
+		return Price_final;
+	} 
+	
+	/**
+	 * Getting the text from Flight Price in Net Banking Page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getFlightPriceInNetBankingPage() throws Exception {
+		Utils.waitForElement(driver, txtInterNetCitiBank);
+		String txtFlightPrice = BrowserActions.getText(driver, txtInterNetCitiBank, "Bank Page Flight Price");
+		String temp1=txtFlightPrice.trim().replace("PAYMENT AMOUNT : Rs.","").trim();	
+		String price_final =temp1.trim().replace(".00","").trim();
+		return price_final;
+	} 
+	
+	/**
+	 * Getting the Total amount from payment module
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getFlightPriceInPaymentPage() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String txtflightPrice = BrowserActions.getText(driver, totalAmount,	"Payment page without convience fee Flight Fare");
+		return txtflightPrice;
+
+	}
+	
 }//PaymentPage

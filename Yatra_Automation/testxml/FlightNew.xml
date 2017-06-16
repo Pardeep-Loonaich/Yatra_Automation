@@ -14,9 +14,9 @@
 	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 		<parameter name="webSite" value="https://www.yatra.com/" />
 		<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightSearch">
+			<class name="com.Yatra.TestScript.SanityE2E.FlightE2E">
 			<methods>					
-					<include name="TC_Yatra_Flight_001"></include>	
+					<include name="TC_Yatra_E2E_001"></include>	
 			</methods>	
 			</class>
 		</classes>

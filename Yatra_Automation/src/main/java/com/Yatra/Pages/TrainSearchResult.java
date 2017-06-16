@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
@@ -23,8 +24,7 @@ import com.Yatra.Utils.Utils;
 
 public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
-	private String appURL;
-
+	//private String appURL;
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
@@ -154,8 +154,8 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindTrain))) {
 			Log.fail("Train Search Result page didn't open up", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
-
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.add(timer.duration());
 	}
 
 	@Override
@@ -645,6 +645,4 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 			}							
 		}
 	}
-	
-	
-}
+}//TrainSearchEnds

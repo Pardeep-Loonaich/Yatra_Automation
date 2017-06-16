@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.List;
@@ -14,13 +15,13 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.AlertHandler;
+
 
 public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 
@@ -137,7 +138,8 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 			{
 			Log.fail("Payment Page did not open up. Site might be down.", driver);
 			}
-			Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+			Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+			Constants.performanceData.add(timer.duration());
 		}// isLoaded
 
 		@Override
@@ -336,4 +338,5 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	public static double round1(double value, int scale) {
 	    return Math.round(value * Math.pow(10, scale)) / Math.pow(10, scale);
 	}
+
 }//PaymentPageBus
