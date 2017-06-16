@@ -127,6 +127,7 @@ public class FlightE2E extends BaseTest {
 			// step: Click On Book Now Button with specific airlines
 			String priceInSrp = searchResult.selectAirlineBookNowInOWE2E(airlines, 2);
 			Log.message("9.Clicked On Book Now Button with specific airlines!");
+			Log.message("Price in Search Result page : "+ priceInSrp);
 			ReviewPage reviewPage = new ReviewPage(driver);
 
 			Log.message("<br>");
@@ -144,10 +145,12 @@ public class FlightE2E extends BaseTest {
 			Log.message("<b>Expected Result:</b> Promo box should display");
 			Thread.sleep(2000);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
-					"<b>Actual Result:</b> Promo box is display.", "<b>Actual Result:</b> Promo box is not display.",
+					"<b>Actual Result:</b> Promo box is display.", 
+					"<b>Actual Result:</b> Promo box is not display.",
 					driver);
 
 			String priceInReviewPage = reviewPage.getTextTotalAmount();
+			Log.message("Price in Review page : "+ priceInReviewPage);
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Total fare should be same as was on search result page");
@@ -173,6 +176,7 @@ public class FlightE2E extends BaseTest {
 			travellerPage.uncheckingInsuranceCheckbox();
 			Thread.sleep(2000);
 			String priceInTraveller = travellerPage.getTextTotalAmount();
+			Log.message("Price in Traveller page : "+ priceInReviewPage);
 
 			// Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on review page");
@@ -193,6 +197,7 @@ public class FlightE2E extends BaseTest {
 			paymentPage.enterCreditCardDetailsE2E(cardNumber);
 			Log.message("14.Entered Credit card Details!");
 			String priceInPaymentPage = paymentPage.getTextFromTotalAmountE2E();
+			Log.message("Price in Payment page with Convience Fee : "+ priceInPaymentPage);
 
 			// step: Click On Pay Now
 			paymentPage.clickOnPayNow();
@@ -455,6 +460,7 @@ public class FlightE2E extends BaseTest {
 			// step: Click On Book Now Button with specific airlines
 			String priceInSrp = searchResult.clickOnBookNowInOWINTL_E2E(airlines, 1);
 			Log.message("9.Clicked On Book Now Button with specific airlines!");
+			Log.message("Price in Search Result page : "+ priceInSrp);
 			ReviewPage reviewPage = new ReviewPage(driver);
 
 			Log.message("<br>");
@@ -476,6 +482,7 @@ public class FlightE2E extends BaseTest {
 					driver);
 
 			String priceInReviewPage = reviewPage.getTextTotalAmount();
+			Log.message("Price in Payment page : "+ priceInReviewPage);
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Total fare should be same as was on search result page");
@@ -500,6 +507,7 @@ public class FlightE2E extends BaseTest {
 
 			Thread.sleep(2000);
 			String priceInTraveller = travellerPage.getTextTotalAmount();
+			Log.message("Price in Traveller page : "+priceInTraveller);
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on review page");
@@ -520,12 +528,15 @@ public class FlightE2E extends BaseTest {
 			paymentPage.enterCreditCardDetailsE2E(cardNumber);
 			Log.message("14.Entered Credit card Details!");
 			String priceInPaymentPage = paymentPage.getTextFromTotalAmountE2E();
+			Log.message("Price in Payment page with Convience Fee : "+ priceInPaymentPage);
 
 			// step: Click On Pay Now
 			paymentPage.clickOnPayNow();
 			Log.message("15.Clicked On Pay Now!");
 
-			String priceCitiPortal = paymentPage.getFlightPriceInBankPage();
+			String priceCitiPortal = paymentPage.getFlightPriceInBankPageE2E();
+			Log.message("Flight Price in  bank Portal : "+priceCitiPortal);
+			
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
