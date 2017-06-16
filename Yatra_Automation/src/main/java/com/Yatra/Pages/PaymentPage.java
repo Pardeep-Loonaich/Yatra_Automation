@@ -424,6 +424,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css = "div[class='wrapper'] div[class='left']>div:nth-child(4)>label[class='value']")
 	private WebElement txtTotalAmountCitiBank;
 	
+	@FindBy(css = "div[class='wrapper'] div[class='left']>div:nth-child(3)>label[class='value']")
+	private WebElement txtTotalAmountCitiBank1;
+	
 	@FindBy(css = ".col-xs-5.amt")
 	private WebElement txtInterNetCitiBank;
 	
@@ -1567,13 +1570,33 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public String getFlightPriceInBankPage() throws Exception {
+		String Price_final = null;
 		Utils.waitForPageLoad(driver);
 		Thread.sleep(5000);
+		if(txtTotalAmountCitiBank.isDisplayed())
+		{
 		String txtFlightPrice = BrowserActions.getText(driver, txtTotalAmountCitiBank, "Citi Bank Page Flight Price");
 		String temp1=txtFlightPrice.trim().replace("INR","").trim();
-		String Price_final =temp1.trim().replace(".00","").trim();
+		 Price_final =temp1.trim().replace(".00","").trim();
 		return Price_final;
-	} 
+	}
+		return Price_final; 
+}	
+	/**
+	 * Getting the text from Flight Price in Bank Page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getFlightPriceInBankPageE2E() throws Exception {
+		String Price_final = null;
+		Utils.waitForPageLoad(driver);
+		Thread.sleep(5000);
+		String txtFlightPrice = BrowserActions.getText(driver, txtTotalAmountCitiBank1, "Citi Bank Page Flight Price");
+		String temp1=txtFlightPrice.trim().replace("INR","").trim();
+		 Price_final =temp1.trim().replace(".00","").trim();
+		return Price_final;
+	}
 	
 	/**
 	 * Getting the text from Flight Price in Net Banking Page
@@ -1597,9 +1620,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 	public String getFlightPriceInPaymentPage() throws Exception {
 		Utils.waitForPageLoad(driver);
-		String txtflightPrice = BrowserActions.getText(driver, txtFlightPricePaymentPage,	"Payment page without convience fee Flight Fare");
+		String txtflightPrice = BrowserActions.getText(driver, txtFlightPricePaymentPage, "Payment page without convience fee Flight Fare");
 		return txtflightPrice;
-
 	}
-	
 }//PaymentPage
