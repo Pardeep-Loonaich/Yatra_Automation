@@ -1623,7 +1623,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 	public String getFlightPriceInPaymentPage() throws Exception {
 		Utils.waitForPageLoad(driver);
-		String txtflightPrice = BrowserActions.getText(driver, totalAmount,	"Payment page without convience fee Flight Fare");
+		String txtflightPrice = BrowserActions.getText(driver, txtFlightPricePaymentPage, "Payment page without convience fee Flight Fare");
 		return txtflightPrice;
 	}
 }//PaymentPage
