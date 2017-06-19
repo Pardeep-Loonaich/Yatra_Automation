@@ -362,13 +362,22 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	 * @param index
 	 * @throws Exception
 	 */
-	public void selectTrainByIndexAndBook(int index) throws Exception{
+	public void selectTrainByIndexAndBook(int index,String broswer) throws Exception{
 		Utils.waitForPageLoad(driver);
+		if(broswer.equalsIgnoreCase("firefox_windows")){
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		driver.navigate().refresh();
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		}
+		else if(broswer.equalsIgnoreCase("Chorme_windows")){
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
 		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
 
 	}
-	
+	}
 	/**
 	 * this method selects the train by index the default seat of the first available class 
 	 * @param index
