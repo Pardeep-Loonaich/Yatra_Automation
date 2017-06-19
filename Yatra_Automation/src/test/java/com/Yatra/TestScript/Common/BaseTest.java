@@ -102,10 +102,10 @@ public class BaseTest implements ITest
 
 		try
 		{
-			String emailOnFailure=context.getCurrentXmlTest().getParameter("SEND_EMAIL_ON_FAILIURE");
-			if(result.getStatus()==ITestResult.FAILURE&&emailOnFailure.equalsIgnoreCase("TRUE"))			//if test case fail perform below task
+			String emailOnFailure=context.getCurrentXmlTest().getParameter("SEND_EMAIL_ON_FAILIURE").trim();
+			if(result.getStatus()==ITestResult.FAILURE && emailOnFailure.equalsIgnoreCase("TRUE"))			//if test case fail perform below task
 			{
-				Log.message("triggering email in for failed test case");
+				Log.message("triggering email for failed test case");
 				inputFile=Log.takeScreenShot(driver);
 				testCaseId=result.getName();
 				String sCurrentURL=driver.getCurrentUrl();

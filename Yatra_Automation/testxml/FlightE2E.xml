@@ -12,16 +12,16 @@
 	<parameter name="devicePort" value="4444" />
 	<parameter name="browserName" value="chrome_windows" />
 	<!-- we are controlling email on every failure from this flag -->
-	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
+	<parameter name="SEND_EMAIL_ON_FAILIURE" value="TRUE"></parameter>
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
 	<test name="E2E" thread-count="1" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.E2E.FlightE2E">
-				<!-- <methods>
-				    <include name="TC_Yatra_E2E_002"></include>
-					<include name="TC_Yatra_E2E_004"></include>
-				</methods> -->
+				 <methods>
+				   <!-- <include name="TC_Yatra_E2E_002"></include>
+					 <include name="TC_Yatra_E2E_004"></include> -->
+				</methods> 
 			</class>
 		</classes>
 	</test>

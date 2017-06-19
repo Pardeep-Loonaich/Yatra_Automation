@@ -21,14 +21,14 @@ import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
 public class ReviewPage extends LoadableComponent<ReviewPage> {
-
+	
 	private String appURL;
 
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
 	Utils utils;
-	public static String sPricingURL;
+	public static String sPricingURL="\"it has been failed before pricing !!\"";
 	ExecutionTimer timer=new ExecutionTimer();
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
@@ -252,22 +252,25 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
 		elementLayer = new ElementLayer(driver);
+		sPricingURL = driver.getCurrentUrl().trim();
 		
 	}
 
 	@Override
 	protected void isLoaded() {
-		timer.end();
-		if (!isPageLoaded) {
-			Assert.fail();
-		}
+		
 		try {
+			timer.end();
+			if (!isPageLoaded) {
+				Assert.fail();
+			}
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnChangeFlight))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnChangeFlight)))
+		{
 			Log.fail("ReviewPage didn't open up", driver);
 		}
 		timer.end();
@@ -275,7 +278,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		// set value for pricing URL (if it require in case of test case fail, to send a mail with this URL)
 		sPricingURL = driver.getCurrentUrl().trim();
 		Constants.performanceData.add(timer.duration());
-		// new EmailSender(driver.getCurrentUrl().trim());
 	}
 	
 	@Override

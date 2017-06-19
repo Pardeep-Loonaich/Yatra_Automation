@@ -37,7 +37,7 @@ import com.Yatra.Utils.WebDriverFactory;
  *
  */
 @Listeners(EmailReport.class)
-public class FlightE2E extends BaseTest {
+public class FlightE2E  extends BaseTest {
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	HomePage homePage;
@@ -220,7 +220,7 @@ public class FlightE2E extends BaseTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			////driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -373,7 +373,7 @@ public class FlightE2E extends BaseTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			////driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -542,7 +542,7 @@ public class FlightE2E extends BaseTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -695,7 +695,7 @@ public class FlightE2E extends BaseTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -775,7 +775,7 @@ public class FlightE2E extends BaseTest {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
