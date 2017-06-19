@@ -694,6 +694,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "div[class='recent-iternary-detail'] div[class='place jsHideonSmallTab withFlightPlace']")
 	private WebElement txtResentSearchDetails;
+	
+	@FindBy(css = "#fare-selSum")
+	private WebElement txtFlightFareRT_SRP;
+	
+	@FindBy(css = "div[class='recent-iternary-detail']")
+	private WebElement cityNameInRecentSearchPopUp;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -3569,25 +3575,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * 
 	 * @return
 	 * @throws Exception
-	 */
-
-	// TODO : Need to look on - @Narayana
-	/*
-	 * public void popUpAppear() throws Exception { if
-	 * (PricePopUp.isDisplayed()) { if(BrowserActions.isElementVisible(driver,
-	 * btnFareChangeContinue)){
-	 * BrowserActions.clickOnElement(btnFareChangeContinue, driver,
-	 * "Clicked on continue in Popup"); }else
-	 * BrowserActions.clickOnElement(ContinueInFarePopUp, driver,
-	 * "Clicked on continue in Popup"); }else if (popupFareChange.isDisplayed())
-	 * if (ContinueInFareChangeAlertPopUp.isDisplayed()) {
-	 * BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,
-	 * "Clicked on continue in Fare Change Alert Popup"); } else if
-	 * (ContinueInpopUpFareSlashed.isDisplayed()) {
-	 * BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver,
-	 * "Clicked on continue in fare slashed popup"); } else Log.event(
-	 * "No PopUp appear."); }
-	 */
+	 */	
 
 	// TODO : Need to look on - @Narayana
 	public void popUpAppear() throws Exception {
@@ -3608,8 +3596,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 	}
 
-	// *************************Fresco Related
-	// functions*********************************
+	// *************************Fresco Related functions*****************************
 
 	/**
 	 * Getting the text from Resent Search popup details
@@ -3638,8 +3625,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	}
 
-	@FindBy(css = "div[class='recent-iternary-detail']")
-	private WebElement cityNameInRecentSearchPopUp;
 
 	/**
 	 * getting cities name from recent search Pop up
@@ -3666,8 +3651,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			clickOnBookNowInOW(2); // select Book now
 			Log.event("All flights details are visible by default and Clicked BookNow Random flight");
 		} else {
-			selectAirlineInAirlineFilters(airlines); // Select Preferred Airline
-														// in Airline Filters
+			selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
 			WebElement price1 = driver.findElement(By.cssSelector("div[data-gaecposition='" + index + "'] label"));
 			if (price1.isDisplayed()) {
 				Price = price1.getText();
@@ -3721,9 +3705,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	/**
 	 * @author Narayana
-	 * @Description: to verify param in URL
+	 * @Description: to verify parameters in URL
 	 * @param sParam:
-	 *            the prameter you want to verify
+	 *            the parameters you want to verify
 	 * @param sUrl:
 	 *            pass current page() url after searching flight
 	 */
@@ -3769,8 +3753,20 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		return sPram_Values;
 	}
+	
+	/**
+	 * To click on 'Book Now' button in Round Trip for both DOM+INTL Any and Preferred
+	 * flights based on filter values
+	 * 
+	 * @param domain
+	 *            : DOM or INTL	
+	 * @param airlines
+	 *            : Airline Name
+	 * @return price
+	 * @throws Exception
+	 */
 	public String selectAirlineBookNowInRT_E2E(String domain, String airlines) throws Exception {
-		//closeINotificationAtTopSRP();
+		closeINotificationAtTopSRP();
 		Thread.sleep(3000);
 		String price = "";		
 		if (domain.equalsIgnoreCase("DOM")) {
@@ -3791,7 +3787,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			// click book now based on Any or Preferred airlines
 			if (airlines.equalsIgnoreCase("Any")) {
 				BrowserActions.nap(5);
-				clickOnBookNowInDOM_INTL(1); // select Book now
+				price = clickOnBookNowINTLRT_E2E(1); // select Book Now Airlines
 				Log.event("All flights details are visible by default and clicked Book Now Random flight -RT");
 			} else {
 				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
@@ -3804,13 +3800,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Log.event("Successfully clicked Book Now in SRP");
 		return price;
 	}
-	
-	@FindBy(css = "#fare-selSum")
-	private WebElement txtFlightFareRT_SRP;
-	
-	
+		
 	/**
-	 * to click on Book now button in Round Trip for Domestic Preferred flights
+	 * to click on 'Book Now' button in Round Trip for Domestic Preferred flights
 	 * 
 	 * @param index
 	 * @return
@@ -3833,7 +3825,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	}
 	
 	/**
-	 * to click on Book now button in One Way for INTL flights
+	 * to click on 'Book Now' button in RT for INTL flights
 	 * 
 	 * @param index
 	 * @return
