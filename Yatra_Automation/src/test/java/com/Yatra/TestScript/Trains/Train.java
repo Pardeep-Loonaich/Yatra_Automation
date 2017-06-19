@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
@@ -516,7 +515,7 @@ public class Train {
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -573,7 +572,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -635,7 +634,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -693,7 +692,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -751,7 +750,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -811,7 +810,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -875,7 +874,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -946,7 +945,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1014,7 +1013,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1083,7 +1082,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1163,7 +1162,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1235,7 +1234,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1307,7 +1306,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1386,7 +1385,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1463,7 +1462,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			Thread.sleep(2000);
@@ -1549,7 +1548,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1583,7 +1582,7 @@ public class Train {
 					"<b>Actual Result:</b> Unable to navigated to Payment Page.", driver);
 
 			
-			paymentPage.scrollSliderOfEcashRedeem(-80);
+			paymentPage.scrollSliderOfEcashRedeem(-80,browser);
             String amt = paymentPage.eCashAmount();
 			
 			paymentPage.clickingOnRedeemNow();
@@ -1606,11 +1605,6 @@ public class Train {
 			paymentPage.clickOnPayNow();
 			Log.message("16.Clicked 'Pay Now' button on PaymentPage and amount we have to pay is Rs." + tAmt);
 			Log.message("<br>");
-			
-			/*//getting total amount on the Oxygen Payment page
-			String oxyTotal = paymentPage.getTotalAmountFromOxygen();
-			int tAmt1 = Integer.parseInt(oxyTotal);
-            System.out.println(tAmt1);*/
 
 			Log.message("<b>Expected Result:</b> Verify for eCash+ Cash Payment should redirect with correct amount on PG.");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("txtTotalAmtOxygn"),paymentPage),
@@ -1622,7 +1616,7 @@ public class Train {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1660,7 +1654,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1738,7 +1732,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1823,7 +1817,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -1956,7 +1950,7 @@ public class Train {
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			
-			trainSearchResult.selectTrainByIndexAndBook(1);
+			trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 			
 			Log.message("<br>");
@@ -2017,7 +2011,7 @@ public class Train {
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			
 			
-			trainSearchResult.selectTrainByIndexAndBook(1);
+			trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 			
 			Log.message("<br>");
@@ -2251,9 +2245,8 @@ public class Train {
 			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
-			
 
-			trainSearchResult.selectTrainByIndexAndBook(1);
+			trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			Thread.sleep(2000);
@@ -2396,7 +2389,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -2477,7 +2470,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -2558,7 +2551,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -2631,7 +2624,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -2696,7 +2689,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -2781,7 +2774,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -2859,7 +2852,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -2935,7 +2928,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();
@@ -3015,7 +3008,7 @@ public class Train {
 					"<b>Actual Result:</b> Succesfully navigated to Train Search Result Page.",
 					"<b>Actual Result:</b> Unable to navigated to Train Search Result Page.", driver);
 
-		    trainSearchResult.selectTrainByIndexAndBook(1);
+		    trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 
 			trainTravellerPage = trainSearchResult.clickOnContinue();

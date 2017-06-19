@@ -167,7 +167,7 @@ public class PaymentTest extends BaseTest {
 			Log.assertThat(initialEcash > 0, "<b>Actual Result1:</b> Ecash amount is greater than 0.",
 					"<b>Actual Result1:</b> Ecash amount is not greater than 0.", driver);
 
-			paymentPage.scrollSliderOfEcashRedeem(-80);
+			paymentPage.scrollSliderOfEcashRedeem(-80,browser);
 			Log.message("10. Scroll the ecash Redeem Slider to adjust ecash amount.");
 
 			String finalEcash1 = paymentPage.eCashAmount();
@@ -2137,7 +2137,7 @@ public class PaymentTest extends BaseTest {
 			Log.assertThat(initialEcash > 0, "<b>Actual Result:</b> Ecash amount is greater than 0.",
 					"<b>Actual Result:</b> Ecash amount is not greater than 0.", driver);
 
-			paymentPage.scrollSliderOfEcashRedeem(-80);
+			paymentPage.scrollSliderOfEcashRedeem(-80,browser);
 			Log.message("10. Scroll the ecash Redeem Slider to adjust ecash amount.");
 
 			String finalEcash1 = paymentPage.eCashAmount();
@@ -2273,7 +2273,7 @@ public class PaymentTest extends BaseTest {
 			Log.assertThat(initialEcash > 0, "<b>Actual Result:</b> Ecash amount is greater than 0.",
 					"<b>Actual Result:</b> Ecash amount is not greater than 0.", driver);
 
-			paymentPage.scrollSliderOfEcashRedeem(-80);
+			paymentPage.scrollSliderOfEcashRedeem(-80,browser);
 			Log.message("10. Scroll the ecash Redeem Slider to adjust ecash amount.");
 
 			String finalEcash1 = paymentPage.eCashAmount();

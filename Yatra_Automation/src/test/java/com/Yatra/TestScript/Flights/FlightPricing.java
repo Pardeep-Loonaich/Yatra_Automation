@@ -100,7 +100,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -164,7 +164,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -232,7 +232,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -308,7 +308,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -394,7 +394,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -452,7 +452,7 @@ public class FlightPricing extends BaseTest{
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9.Clicked on Continue button in Review Page");
 			
-			paymentPage.scrollSliderOfEcashRedeem(10);
+			paymentPage.scrollSliderOfEcashRedeem(10,browser);
 
 			paymentPage.clickingOnRedeemNow();
 			Log.message("10.Clicked on Redeem Now Button to add ecash");
@@ -470,7 +470,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -558,7 +558,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			 //driver.quit();
+			 driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -608,7 +608,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -658,7 +658,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -713,7 +713,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -762,7 +762,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -815,7 +815,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -868,7 +868,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -925,7 +925,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -981,7 +981,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1039,7 +1039,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1104,7 +1104,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1167,7 +1167,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1235,7 +1235,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1293,7 +1293,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1351,7 +1351,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1408,7 +1408,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1466,7 +1466,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1524,7 +1524,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1582,7 +1582,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1638,7 +1638,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1694,7 +1694,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1751,7 +1751,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1807,7 +1807,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1869,7 +1869,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1929,7 +1929,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1991,7 +1991,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2051,7 +2051,7 @@ public class FlightPricing extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
