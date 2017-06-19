@@ -271,7 +271,7 @@ public class FlightE2E extends BaseTest {
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Clicked on 'Search' in Yatra Homepage");
-			BrowserActions.nap(20);
+			BrowserActions.nap(30);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search", driver);
@@ -593,7 +593,7 @@ public class FlightE2E extends BaseTest {
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Clicked on 'Search' in Yatra Homepage");
-			BrowserActions.nap(20);
+			BrowserActions.nap(30);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search", driver);
