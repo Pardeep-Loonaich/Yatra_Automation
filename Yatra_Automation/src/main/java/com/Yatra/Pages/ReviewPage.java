@@ -743,28 +743,32 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("null")
-	public boolean fareChangeAlertPopUpAppear_InProgress() throws Exception {
-		boolean status = false, selectflightagain = (Boolean) null;		
+	
+	public String fareChangeAlertPopUpAppear_E2E() throws Exception {
+		String price_final = null;
+		//boolean status = false;		
 		if (altFareChange.isDisplayed()){
 			if (BrowserActions.isElementVisible(driver, txtFareSlashed)) {
 				BrowserActions.clickOnElement(btnFareSlashedContune, driver, "Clicked on continue in Fare Slashed Alert Popup");
-				status = true;
+				String flightPrice = BrowserActions.getText(driver, popupFareOopsUpdatedFare, " Flight fare");
+				price_final = flightPrice.trim().replace(" ", "").trim();
+				BrowserActions.nap(2);
 			} else if (BrowserActions.isElementVisible(driver, txtFareOops)) {
 				BrowserActions.clickOnElement(btnFareOopsContune, driver,"Clicked on continue in Fare Oops Alert Popup");
-				status = true;
+				String flightPrice = BrowserActions.getText(driver, popupFareOopsUpdatedFare, "Flight fare");
+				price_final = flightPrice.trim().replace(" ", "").trim();
+				BrowserActions.nap(2);
 			} else if (BrowserActions.isElementVisible(driver, altFareChange)){
 				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
-			status = true;
+			
 			}else if (BrowserActions.isElementVisible(driver, txtWeAreSorryPopup)) {
 				BrowserActions.clickOnElement(txtSelectAnotherFlight, driver,"Clicked on Select Another Flight in Flight not confirmed alert popup");
-				status = selectflightagain;
 			}Log.event("Flight fare change alert poupup is displayed ");
 		}else{
 			Log.event("Flight fare change alert poupup is not displayed ");
-			status = false;
+			
 		}
-    return status;
+		return price_final;
 	}
 	
 	/**
@@ -780,6 +784,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		System.out.println(flightPrice);
 		return flightPrice;
 	}
+	
+	@FindBy(css = "div[class='update-fare pt10 ico-right']>ul:nth-child(1)>li:nth-child(2)[class='text-right ng-binding']")
+	private WebElement popupFareOopsUpdatedFare;
+	//
 
 	
 } // ReviewPage

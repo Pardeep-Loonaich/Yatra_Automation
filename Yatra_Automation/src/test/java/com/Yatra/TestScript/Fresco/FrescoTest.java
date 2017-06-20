@@ -2283,6 +2283,242 @@ public class FrescoTest extends BaseTest {
 		}
 	}
 	
+	@Test(description = "Verify paramaters in search URL for the respective source domestic and Destination international with NonStop flight selection", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_047(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");		
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String params = testData.get("Params");
+		String originCountry = testData.get("OriginCountry");
+		String destinationCountry = testData.get("DestinationCountry");
+		String nonstop = testData.get("NonStop");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: select OneWay Search fields in HomePage
+			fresco.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			//step: click Non Stop Flights check box
+			fresco.clickNonStopFlightsCheckbox();
+		    Log.message("4.Successfully cliecked Non Stop Flights checkbox");
+		    
+			//Step: click Search button
+			searchResult = fresco.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage!");	
+			BrowserActions.nap(5);
+
+			// step: get the Parameter values from Search Result page URL
+			List<String> listParamValues = searchResult.getParamValueFromCurrnetPageURL();	
+			//In Java 8 we can use streams API	
+			String[] paramValues = listParamValues.stream().toArray(String[]::new); 
+			Log.message("<br>");
+			BrowserActions.nap(8);
+			Log.message("<b>Expected Result:</b> Verify paramaters in search URL for the respective source domestic and Destination international with NonStop flight selection");
+			Log.assertThat((paramValues[0].equals(params) && paramValues[1].equals(tripType.substring(0,1)) && paramValues[2].equals(origin) && paramValues[3].equals(originCountry) 
+					      && paramValues[4].equals(destination) && paramValues[5].equals(destinationCountry) && paramValues[6].equals(nonstop)),
+			"<b>Actual Result:</b> Successfully verify paramaters in search URL for the respective source domestic and Destination international with NonStop flight selection, Parameter values are: <b>" + listParamValues+ "</b>",
+			"<b>Actual Result:</b> Not verify paramaters in search URL for the respective source domestic and Destination international with NonStop flight selection", driver);
+						
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {			
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Verify paramaters in search URL for the respective source international and Destination domestic with NonStop flight selection", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_048(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");		
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String params = testData.get("Params");
+		String originCountry = testData.get("OriginCountry");
+		String destinationCountry = testData.get("DestinationCountry");
+		String nonstop = testData.get("NonStop");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: select OneWay Search fields in HomePage
+			fresco.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			//step: click Non Stop Flights check box
+			fresco.clickNonStopFlightsCheckbox();
+		    Log.message("4.Successfully cliecked Non Stop Flights checkbox");
+		    
+			//Step: click Search button
+			searchResult = fresco.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage!");	
+			BrowserActions.nap(5);
+
+			// step: get the Parameter values from Search Result page URL
+			List<String> listParamValues = searchResult.getParamValueFromCurrnetPageURL();	
+			String[] paramValues = listParamValues.stream().toArray(String[]::new); 	
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify paramaters in search URL for the respective source international and Destination domestic with NonStop flight selection");
+			Log.assertThat((paramValues[0].equals(params) && paramValues[1].equals(tripType.substring(0,1)) && paramValues[2].equals(origin) && paramValues[3].equals(originCountry) 
+						&& paramValues[4].equals(destination) && paramValues[5].equals(destinationCountry) && paramValues[6].equals(nonstop)),
+			"<b>Actual Result:</b> Successfully verify paramaters in search URL for the respective source international and Destination domestic with NonStop flight selection, Parameter values are: <b>" + listParamValues+ "</b>",
+			"<b>Actual Result:</b> Not verify paramaters in search URL for the respective source international and Destination domestic with NonStop flight selection", driver);
+						
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {				
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Verify paramaters in URL for the respective source and destination both domestic with NonStop flight selection", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_049(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");		
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String params = testData.get("Params");
+		String originCountry = testData.get("OriginCountry");
+		String destinationCountry = testData.get("DestinationCountry");
+		String nonstop = testData.get("NonStop");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: select OneWay Search fields in HomePage
+			fresco.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			//step: click Non Stop Flights check box
+			fresco.clickNonStopFlightsCheckbox();
+		    Log.message("4.Successfully cliecked Non Stop Flights checkbox");
+		    
+			//Step: click Search button
+			searchResult = fresco.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage!");	
+			BrowserActions.nap(5);
+
+			// step: get the Parameter values from Search Result page URL
+			List<String> listParamValues = searchResult.getParamValueFromCurrnetPageURL();	
+			//In Java 8 we can use streams API	
+			String[] paramValues = listParamValues.stream().toArray(String[]::new); 	
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify paramaters in URL for the respective source and destination both domestic with NonStop flight selection");
+			Log.assertThat((paramValues[0].equals(params) && paramValues[1].equals(tripType.substring(0,1)) && paramValues[2].equals(origin) && paramValues[3].equals(originCountry) 
+							&& paramValues[4].equals(destination) && paramValues[5].equals(destinationCountry) && paramValues[6].equals(nonstop)),
+			"<b>Actual Result:</b> Successfully verify paramaters in URL for the respective source and destination both domestic with NonStop flight selection, Parameter values are: <b>" + listParamValues+ "</b>",
+			"<b>Actual Result:</b> Not verify paramaters in URL for the respective source and destination both domestic with NonStop flight selection", driver);
+						
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {			
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Verify paramaters in URL for the respective source and destination both international with NonStop flight selection", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_050(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");		
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String params = testData.get("Params");
+		String originCountry = testData.get("OriginCountry");
+		String destinationCountry = testData.get("DestinationCountry");
+		String nonstop = testData.get("NonStop");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			fresco.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
+
+			// step: select OneWay Search fields in HomePage
+			fresco.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
+			Log.message("3. Successfully filled the search details for OneWay!");
+
+			//step: click Non Stop Flights check box
+			fresco.clickNonStopFlightsCheckbox();
+		    Log.message("4.Successfully cliecked Non Stop Flights checkbox");
+		    
+			//Step: click Search button
+			searchResult = fresco.clickBtnSearch();
+			Log.message("5.Successfully clicked 'Search' in Yatra Homepage!");	
+			BrowserActions.nap(5);
+			
+			// step: get the Parameter values from Search Result page URL
+			List<String> listParamValues = searchResult.getParamValueFromCurrnetPageURL();	
+			//In Java 8 we can use streams API		
+			String[] paramValues = listParamValues.stream().toArray(String[]::new); 
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Verify paramaters in URL for the respective source and destination both international with NonStop flight selection");
+			Log.assertThat((paramValues[0].equals(params) && paramValues[1].equals(tripType.substring(0,1)) && paramValues[2].equals(origin) && paramValues[3].equals(originCountry)
+						&& paramValues[4].equals(destination) && paramValues[5].equals(destinationCountry) && paramValues[6].equals(nonstop)),
+			"<b>Actual Result:</b> Successfully verify paramaters in URL for the respective source and destination both international with NonStop flight selection, Parameter values are: <b>" + listParamValues+ "</b>",
+			"<b>Actual Result:</b> Not verify paramaters in URL for the respective source and destination both international with NonStop flight selection", driver);
+						
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {			
+			Log.endTestCase();
+		}
+	}
+	
 	// ********************************End of Test cases************************************
 
 } // FrescoTest

@@ -1,6 +1,6 @@
 package com.Yatra.TestScript.E2E;
 
-//Description    :   All the Flight Searching test Cases would be designed in this class 
+//Description    :   All the Flight module End To End Flow test Cases would be designed in this class 
 //Creator        :   Aspire Team
 //Create         :   
 //Modified on/By :   -
@@ -31,8 +31,7 @@ import com.Yatra.Utils.WebDriverFactory;
 
 /**
  * @Description:<br>
- * 	this class have all test case related to search flight
- *   module End To End Flow
+ * 	this class have all test case related to search flight module End To End Flow
  * 
  *
  */
@@ -69,6 +68,7 @@ public class FlightE2E extends BaseTest {
 		String airlines = testData.get("Airlines");
 		String infant = testData.get("Infant");
 		String[] infantDOB = infant.split(",");
+		String domain = testData.get("Domain");
 		String emailId = testData.get("EmailAddress");
 		String mobile = testData.get("Mobile");
 		String cardNumber = testData.get("CardNumber");
@@ -80,8 +80,7 @@ public class FlightE2E extends BaseTest {
 			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
-
-			Log.message("<br>");
+			
 			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
 			Thread.sleep(4000);
 			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("dvSearchEngine"), homePage),
@@ -116,44 +115,40 @@ public class FlightE2E extends BaseTest {
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
-
-			Log.message("<br>");
+			
 			Log.message("<b>Expected Result:</b> Date strip should display above result");
 			Thread.sleep(4000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> Date strip is displayed above result",
 					"<b>Actual Result:</b> Date strip is not displayed above result", driver);
 
-			// step: Click On Book Now Button with specific airlines
-			String priceInSrp = searchResult.selectAirlineBookNowInOWE2E(airlines, 2);
+			// step: Click On Book Now Button with specific airlines			
+			String priceInSrp = searchResult.selectAirlineBookNowInOW_E2E(domain, airlines);
 			Log.message("9.Clicked On Book Now Button with specific airlines!");
-			Log.message("Price in Search Result page : "+ priceInSrp);
+			
+			Log.message("Price in Search Result page: <b> "+ priceInSrp + "</b>");
 			ReviewPage reviewPage = new ReviewPage(driver);
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
-			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
-				Log.message(
-						"<b>Actual Result:</b> Flight pricing Pop Up appear and ignored price change and moved forward",
-						driver);
+			Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpNotAppear() == false) {
+				priceInSrp = reviewPage.fareChangeAlertPopUpAppear_E2E();
+				Log.message("Review Page Flight updated fare: <b>" + priceInSrp + "<b>");
+				Log.message("<b>Actual Result:</b> Flight pricing Pop Up appear and ignored price change and moved forward", driver);
 			} else {
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear", driver);
 			}
-
-			Log.message("<br>");
+						
 			Log.message("<b>Expected Result:</b> Promo box should display");
 			Thread.sleep(2000);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
 					"<b>Actual Result:</b> Promo box is display.", 
-					"<b>Actual Result:</b> Promo box is not display.",
-					driver);
+					"<b>Actual Result:</b> Promo box is not display.",driver);
 
 			String priceInReviewPage = reviewPage.getTextTotalAmount();
-			Log.message("Price in Review page : "+ priceInReviewPage);
-
-			Log.message("<br>");
+			Log.message("Price in Review page: <b> "+ priceInReviewPage + "</b>");
+			
 			Log.message("<b>Expected Result:</b> Total fare should be same as was on search result page");
 			Log.assertThat(priceInSrp.equalsIgnoreCase(priceInReviewPage),
 					"<b>Actual Result:</b> Total fare is same as was on search result page",
@@ -162,8 +157,7 @@ public class FlightE2E extends BaseTest {
 			// step: Click On Continue Button
 			reviewPage.clickOnContinue();
 			Log.message("10.Clicked On Continue Button!");
-
-			Log.message("<br>");
+			
 			Log.message("<b>Expected Result:</b> Signin popup should display");
 			Thread.sleep(2000);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("signInPopUp"), reviewPage),
@@ -177,9 +171,8 @@ public class FlightE2E extends BaseTest {
 			travellerPage.uncheckingInsuranceCheckbox();
 			Thread.sleep(2000);
 			String priceInTraveller = travellerPage.getTextTotalAmount();
-			Log.message("Price in Traveller page : "+ priceInReviewPage);
-
-			// Log.message("<br>");
+			Log.message("Price in Traveller page: <b> "+ priceInReviewPage + "</b>");
+			
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on review page");
 			Thread.sleep(2000);
 			Log.assertThat(priceInReviewPage.equalsIgnoreCase(priceInTraveller),
@@ -194,11 +187,21 @@ public class FlightE2E extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("13.Clicked on 'Continue' button in Traveller Page!");
 
+			
+			String priceInPaymentPage = paymentPage.getFlightPriceInPaymentPage();
+			Log.message("Payment page without Convenience Fee Flight fare: <b>" + priceInPaymentPage + "<b>");
+			Log.message("<b>Expected Result:</b> Total amount should be same as was on Traveller page");
+			BrowserActions.nap(2);
+			Log.assertThat(priceInPaymentPage.equalsIgnoreCase(priceInTraveller),
+					"<b>Actual Result:</b> Total amount is same as was on Traveller page",
+					"<b>Actual Result:</b> Total amount is not same as was on Traveller page", driver);
+			
 			// step: Entered Credit card Details
 			paymentPage.enterCreditCardDetailsE2E(cardNumber);
 			Log.message("14.Entered Credit card Details!");
-			String priceInPaymentPage = paymentPage.getTextFromTotalAmountE2E();
-			Log.message("Price in Payment page with Convience Fee : "+ priceInPaymentPage);
+			
+			String priceWithConvienceFee = paymentPage.getTextFromTotalAmountE2E();
+			Log.message("Price in Payment page with Convience Fee: <b> "+ priceWithConvienceFee+ "</b>");
 
 			// step: Click On Pay Now
 			paymentPage.clickOnPayNow();
@@ -206,13 +209,12 @@ public class FlightE2E extends BaseTest {
 
 			Thread.sleep(3000);
 			String priceCitiPortal = paymentPage.getFlightPriceInBankPage();
-			Log.message("Bank Portal page Flight fare :" + priceCitiPortal);
+			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "</b>");
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
+			Log.message("<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
 			Thread.sleep(2000);
-			Log.assertThat(priceCitiPortal.equalsIgnoreCase(priceInPaymentPage),
+			Log.assertThat(priceCitiPortal.equalsIgnoreCase(priceWithConvienceFee),
 					"<b>Actual Result:</b> Total amount is same as was on payment page",
 					"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);
 
@@ -283,11 +285,16 @@ public class FlightE2E extends BaseTest {
 
 			ReviewPage reviewPage = new ReviewPage(driver);
 			Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
-			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+			
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpNotAppear() == false) {
+				priceInSrp = reviewPage.fareChangeAlertPopUpAppear_E2E();
+				Log.message("Review Page Flight updated fare : <b>" + priceInSrp + "<b>");
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up appear and ignored price change and moved forward", driver);
 			} else {
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear", driver);
 			}
+			
 			Log.message("<b>Expected Result:</b> Promo box should display");
 			BrowserActions.nap(2);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
@@ -304,8 +311,7 @@ public class FlightE2E extends BaseTest {
 			// step: Click On Continue Button
 			reviewPage.clickOnContinue();
 			Log.message("6.Clicked On Continue Button!");
-
-			// Log.message("<br>");
+			
 			Log.message("<b>Expected Result:</b> Signin popup should display");
 			BrowserActions.nap(2);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("signInPopUp"), reviewPage),
@@ -339,7 +345,7 @@ public class FlightE2E extends BaseTest {
 			Log.message("Payment page without Convenience Fee Flight fare: <b>" + priceInPaymentPage + "<b>");
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on Traveller page");
 			BrowserActions.nap(2);
-			Log.assertThat(priceInReviewPage.equalsIgnoreCase(priceInTraveller),
+			Log.assertThat(priceInPaymentPage.equalsIgnoreCase(priceInTraveller),
 					"<b>Actual Result:</b> Total amount is same as was on Traveller page",
 					"<b>Actual Result:</b> Total amount is not same as was on Traveller page", driver);
 
@@ -362,7 +368,7 @@ public class FlightE2E extends BaseTest {
 			String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "<b>");
 			String pricePaymentPage = priceWithConvienceFee.replace(",", "");
-
+			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
 			BrowserActions.nap(2);
 			Log.assertThat(priceCitiPortal.equalsIgnoreCase(pricePaymentPage),
@@ -397,6 +403,8 @@ public class FlightE2E extends BaseTest {
 		String emailId = testData.get("EmailAddress");
 		String mobile = testData.get("Mobile");
 		String cardNumber = testData.get("CardNumber");
+		String domain = testData.get("Domain");
+
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -406,7 +414,6 @@ public class FlightE2E extends BaseTest {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
-			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
 			Thread.sleep(4000);
 			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("dvSearchEngine"), homePage),
@@ -441,41 +448,37 @@ public class FlightE2E extends BaseTest {
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
-
-			Log.message("<br>");
+			
 			Log.message("<b>Expected Result:</b> Date strip should display above result");
 			Thread.sleep(4000);
-			Log.assertThat(
-					searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
 					"<b>Actual Result:</b> Date strip is displayed above result",
 					"<b>Actual Result:</b> Date strip is not displayed above result", driver);
 
 			// step: Click On Book Now Button with specific airlines
-			String priceInSrp = searchResult.clickOnBookNowInOWINTL_E2E(airlines, 1);
+			String priceInSrp = searchResult.selectAirlineBookNowInOW_E2E(domain, airlines);
 			Log.message("9.Clicked On Book Now Button with specific airlines!");
-			Log.message("Price in Search Result page : "+ priceInSrp);
-			ReviewPage reviewPage = new ReviewPage(driver);
-
-			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
-			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
-				Log.message(
-						"<b>Actual Result:</b> Flight pricing Pop Up appear and ignored price change and moved forward",
-						driver);
+			Log.message("Price in Search Result page: <b> "+ priceInSrp + "<b>");
+			
+			ReviewPage reviewPage = new ReviewPage(driver);			
+			Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
+			
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpNotAppear() == false) {
+				priceInSrp = reviewPage.fareChangeAlertPopUpAppear_E2E();
+				Log.message("Review Page Flight updated fare : <b>" + priceInSrp + "<b>");
+				Log.message("<b>Actual Result:</b> Flight pricing Pop Up appear and ignored price change and moved forward", driver);
 			} else {
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear", driver);
-			}
-
-			Log.message("<br>");
+			}			
+			
 			Log.message("<b>Expected Result:</b> Promo box should display");
 			Thread.sleep(2000);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
-					"<b>Actual Result:</b> Promo box is display.", "<b>Actual Result:</b> Promo box is not display.",
-					driver);
+					"<b>Actual Result:</b> Promo box is display.", "<b>Actual Result:</b> Promo box is not display.", driver);
 
 			String priceInReviewPage = reviewPage.getTextTotalAmount();
-			Log.message("Price in Payment page : "+ priceInReviewPage);
+			Log.message("Price in Review page: <b> "+ priceInReviewPage + "<b>");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Total fare should be same as was on search result page");
@@ -500,7 +503,7 @@ public class FlightE2E extends BaseTest {
 
 			Thread.sleep(2000);
 			String priceInTraveller = travellerPage.getTextTotalAmount();
-			Log.message("Price in Traveller page : "+priceInTraveller);
+			Log.message("Price in Traveller page: <b> "+priceInTraveller + "<b>");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on review page");
@@ -517,24 +520,32 @@ public class FlightE2E extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("13.Clicked on 'Continue' button in Traveller Page!");
 
+			String priceInPaymentPage = paymentPage.getFlightPriceInPaymentPage();
+			Log.message("Payment page without Convenience Fee Flight fare: <b>" + priceInPaymentPage + "<b>");
+			Log.message("<b>Expected Result:</b> Total amount should be same as was on Traveller page");
+			BrowserActions.nap(2);
+			Log.assertThat(priceInPaymentPage.equalsIgnoreCase(priceInTraveller),
+					"<b>Actual Result:</b> Total amount is same as was on Traveller page",
+					"<b>Actual Result:</b> Total amount is not same as was on Traveller page", driver);
+			
 			// step: Entered Credit card Details
 			paymentPage.enterCreditCardDetailsE2E(cardNumber);
 			Log.message("14.Entered Credit card Details!");
-			String priceInPaymentPage = paymentPage.getTextFromTotalAmountE2E();
-			Log.message("Price in Payment page with Convience Fee : "+ priceInPaymentPage);
+			
+			String priceWithConvienceFee = paymentPage.getTextFromTotalAmountE2E();
+			Log.message("Price in Payment page with Convience Fee: <b> "+ priceWithConvienceFee + "<b>");
 
 			// step: Click On Pay Now
 			paymentPage.clickOnPayNow();
 			Log.message("15.Clicked On Pay Now!");
 
 			String priceCitiPortal = paymentPage.getFlightPriceInBankPageE2E();
-			Log.message("Flight Price in  bank Portal : "+priceCitiPortal);
+			Log.message("Flight Price in  bank Portal: <b> " + priceCitiPortal + "<b>");
 			
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
+			Log.message("<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
 			Thread.sleep(2000);
-			Log.assertThat(priceCitiPortal.equalsIgnoreCase(priceInPaymentPage),
+			Log.assertThat(priceCitiPortal.equalsIgnoreCase(priceWithConvienceFee),
 					"<b>Actual Result:</b> Total amount is same as was on payment page",
 					"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);
 
@@ -605,11 +616,16 @@ public class FlightE2E extends BaseTest {
 
 			ReviewPage reviewPage = new ReviewPage(driver);
 			Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
-			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+			
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpNotAppear() == false) {
+				priceInSrp = reviewPage.fareChangeAlertPopUpAppear_E2E();
+				Log.message("Review Page Flight updated fare : <b>" + priceInSrp + "<b>");
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up appear and ignored price change and moved forward", driver);
 			} else {
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear", driver);
 			}
+			
 			Log.message("<b>Expected Result:</b> Promo box should display");
 			BrowserActions.nap(2);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
@@ -661,7 +677,7 @@ public class FlightE2E extends BaseTest {
 			
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on Traveller page");
 			BrowserActions.nap(4);
-			Log.assertThat(priceInReviewPage.equalsIgnoreCase(priceInTraveller),
+			Log.assertThat(priceInPaymentPage.equalsIgnoreCase(priceInTraveller),
 					"<b>Actual Result:</b> Total amount is same as was on Traveller page",
 					"<b>Actual Result:</b> Total amount is not same as was on Traveller page", driver);
 
@@ -684,7 +700,7 @@ public class FlightE2E extends BaseTest {
 			String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "<b>");
 			String pricePaymentPage = priceWithConvienceFee.replace(",", "");
-
+			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
 			BrowserActions.nap(2);
 			Log.assertThat(priceCitiPortal.equalsIgnoreCase(pricePaymentPage),
@@ -712,6 +728,7 @@ public class FlightE2E extends BaseTest {
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
 		String airlines = testData.get("Airlines");
+		String domain = testData.get("Domain");
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -745,18 +762,21 @@ public class FlightE2E extends BaseTest {
 					"<b>Actual Result:</b> Date strip is displayed above result",
 					"<b>Actual Result:</b> Date strip is not displayed above result", driver);
 
-			// step: Click On Book Now Button with specific airlines
-			String priceInSrp = searchResult.selectAirlineBookNowInOWE2E(airlines, 2);
+			// step: Click On Book Now Button with specific airlines			
+			String priceInSrp = searchResult.selectAirlineBookNowInOW_E2E(domain, airlines);
 			Log.message("SRP page Flight fare: <b>" + priceInSrp + "<b>");
 			Log.message("5.Clicked On Book Now Button with specific airlines!");
 
 			ReviewPage reviewPage = new ReviewPage(driver);
 			Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
-			if (reviewPage.fareChangeAlertPopUpAppear() == true) {
+			//handle popup if displayed in Review page	
+			if (reviewPage.fareChangeAlertPopUpNotAppear() == false) {
+				priceInSrp = reviewPage.fareChangeAlertPopUpAppear_E2E();
+				Log.message("Review Page Flight updated fare : <b>" + priceInSrp + "<b>");
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up appear and ignored price change and moved forward", driver);
 			} else {
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear", driver);
-			}
+			}			
 
 			Log.message("<b>Expected Result:</b> Promo box should display");
 			BrowserActions.nap(2);
