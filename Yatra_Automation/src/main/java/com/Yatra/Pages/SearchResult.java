@@ -3725,7 +3725,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public String selectAirlineBookNowInRT_E2E(String domain, String airlines) throws Exception {
-		//closeINotificationAtTopSRP();
+		closeINotificationAtTopSRP();
 		Thread.sleep(3000);
 		String price = "";		
 		if (domain.equalsIgnoreCase("DOM")) {
