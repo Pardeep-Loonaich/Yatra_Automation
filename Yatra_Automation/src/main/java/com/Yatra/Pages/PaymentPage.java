@@ -782,11 +782,14 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * scrolling the ecash slider
 	 * @param value
 	 */
-	public void scrollSliderOfEcashRedeem(int value){
+	public void scrollSliderOfEcashRedeem(int value,String browser){
+		if(browser.equalsIgnoreCase("firefox_windows")){
+			
+		}else if(browser.equalsIgnoreCase("Chrome_windows")){
 		Actions action = new Actions(driver);
 		action.dragAndDropBy(scrollSlider, value, 0).build().perform();
 	}
-
+	}
 	/**
 	 * to return ecashHeading  from ecash module
 	 * @return
