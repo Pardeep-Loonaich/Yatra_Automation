@@ -82,7 +82,7 @@ public class FlightE2E  extends BaseTest {
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 			
 			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
-			Thread.sleep(4000);
+			BrowserActions.nap(4);
 			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("dvSearchEngine"), homePage),
 					"<b>Actual Result:</b> Homepage is loaded in 10 second and Booking Engine is display",
 					"<b>Actual Result:</b> Homepage is not loaded in 10 second and Booking Engine is display", driver);
@@ -117,7 +117,7 @@ public class FlightE2E  extends BaseTest {
 			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
 			
 			Log.message("<b>Expected Result:</b> Date strip should display above result");
-			Thread.sleep(4000);
+			BrowserActions.nap(4);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> Date strip is displayed above result",
 					"<b>Actual Result:</b> Date strip is not displayed above result", driver);
@@ -141,7 +141,7 @@ public class FlightE2E  extends BaseTest {
 			}
 						
 			Log.message("<b>Expected Result:</b> Promo box should display");
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
 					"<b>Actual Result:</b> Promo box is display.", 
 					"<b>Actual Result:</b> Promo box is not display.",driver);
@@ -159,7 +159,7 @@ public class FlightE2E  extends BaseTest {
 			Log.message("10.Clicked On Continue Button!");
 			
 			Log.message("<b>Expected Result:</b> Signin popup should display");
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("signInPopUp"), reviewPage),
 					"<b>Actual Result:</b> Signin popup is display.",
 					"<b>Actual Result:</b> Signin popup is not display.", driver);
@@ -169,12 +169,12 @@ public class FlightE2E  extends BaseTest {
 			Log.message("11.Signed In Yatra account as Guest!");
 
 			travellerPage.uncheckingInsuranceCheckbox();
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			String priceInTraveller = travellerPage.getTextTotalAmount();
 			Log.message("Price in Traveller page: <b> "+ priceInReviewPage + "</b>");
 			
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on review page");
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			Log.assertThat(priceInReviewPage.equalsIgnoreCase(priceInTraveller),
 					"<b>Actual Result:</b> Total amount is same as was on review page",
 					"<b>Actual Result:</b> Total amount is not same as was on review page", driver);
@@ -207,22 +207,24 @@ public class FlightE2E  extends BaseTest {
 			paymentPage.clickOnPayNow();
 			Log.message("15.Clicked On Pay Now!");
 
-			Thread.sleep(3000);
-			String priceCitiPortal = paymentPage.getFlightPriceInBankPage();
+			BrowserActions.nap(3);
+			
+			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages
+			
+			/*String priceCitiPortal = paymentPage.getFlightPriceInBankPage();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "</b>");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			Log.assertThat(priceCitiPortal.equalsIgnoreCase(priceWithConvienceFee),
 					"<b>Actual Result:</b> Total amount is same as was on payment page",
-					"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);
+					"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);*/
 
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			////driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -365,7 +367,10 @@ public class FlightE2E  extends BaseTest {
 			Log.message("12.Clicked On Pay Now!");
 
 			BrowserActions.nap(3);
-			//String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
+			
+			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages
+			
+			/*//String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
 			String priceCitiPortal = paymentPage.getFlightPriceInCitiNetBanke();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "<b>");
 			String pricePaymentPage = priceWithConvienceFee.replace(",", "");
@@ -374,13 +379,12 @@ public class FlightE2E  extends BaseTest {
 			BrowserActions.nap(2);
 			Log.assertThat(priceCitiPortal.equalsIgnoreCase(pricePaymentPage),
 					"<b>Actual Result:</b> Total amount is same as was on payment page",
-					"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);
+					"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);*/
 
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			////driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -416,7 +420,7 @@ public class FlightE2E  extends BaseTest {
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
-			Thread.sleep(4000);
+			BrowserActions.nap(4);
 			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("dvSearchEngine"), homePage),
 					"<b>Actual Result:</b> Homepage is loaded in 10 second and Booking Engine is display",
 					"<b>Actual Result:</b> Homepage is not loaded in 10 second and Booking Engine is display", driver);
@@ -451,7 +455,7 @@ public class FlightE2E  extends BaseTest {
 			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
 			
 			Log.message("<b>Expected Result:</b> Date strip should display above result");
-			Thread.sleep(4000);
+			BrowserActions.nap(4);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
 					"<b>Actual Result:</b> Date strip is displayed above result",
 					"<b>Actual Result:</b> Date strip is not displayed above result", driver);
@@ -476,7 +480,7 @@ public class FlightE2E  extends BaseTest {
 			}			
 			
 			Log.message("<b>Expected Result:</b> Promo box should display");
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
 					"<b>Actual Result:</b> Promo box is display.", "<b>Actual Result:</b> Promo box is not display.", driver);
 
@@ -495,7 +499,7 @@ public class FlightE2E  extends BaseTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Signin popup should display");
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("signInPopUp"), reviewPage),
 					"<b>Actual Result:</b> Signin popup is display.",
 					"<b>Actual Result:</b> Signin popup is not display.", driver);
@@ -504,13 +508,13 @@ public class FlightE2E  extends BaseTest {
 			travellerPage = reviewPage.loginYatraGuestAccount(emailId, mobile);
 			Log.message("11.Signed In Yatra account as Guest!");
 
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			String priceInTraveller = travellerPage.getTextTotalAmount();
 			Log.message("Price in Traveller page: <b> "+priceInTraveller + "<b>");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on review page");
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			Log.assertThat(priceInReviewPage.equalsIgnoreCase(priceInTraveller),
 					"<b>Actual Result:</b> Total amount is same as was on review page",
 					"<b>Actual Result:</b> Total amount is not same as was on review page", driver);
@@ -542,21 +546,22 @@ public class FlightE2E  extends BaseTest {
 			paymentPage.clickOnPayNow();
 			Log.message("15.Clicked On Pay Now!");
 
-			String priceCitiPortal = paymentPage.getFlightPriceInBankPageE2E();
+			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages
+			
+			/*String priceCitiPortal = paymentPage.getFlightPriceInBankPageE2E();
 			Log.message("Flight Price in  bank Portal: <b> " + priceCitiPortal + "<b>");
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			Log.assertThat(priceCitiPortal.equalsIgnoreCase(priceWithConvienceFee),
 					"<b>Actual Result:</b> Total amount is same as was on payment page",
-					"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);
+					"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);*/
 
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			//driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -657,7 +662,7 @@ public class FlightE2E  extends BaseTest {
 			Log.message("7.Signed In Yatra account as Guest!");
 
 			travellerPage.uncheckingInsuranceCheckbox();
-			Thread.sleep(2000);
+			BrowserActions.nap(3);
 			String priceInTraveller = travellerPage.getTextTotalAmount();
 			Log.message("Traveller page Flight fare: <b>" + priceInTraveller + "<b>");
 
@@ -698,9 +703,11 @@ public class FlightE2E  extends BaseTest {
 			// step: Click On Pay Now
 			paymentPage.clickOnPayNow();
 			Log.message("12.Clicked On Pay Now!");
-
 			BrowserActions.nap(3);
-			//String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
+			
+			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages			
+		
+			/*//String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
 			String priceCitiPortal = paymentPage.getFlightPriceInCitiNetBanke();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "<b>");
 			String pricePaymentPage = priceWithConvienceFee.replace(",", "");
@@ -709,13 +716,12 @@ public class FlightE2E  extends BaseTest {
 			BrowserActions.nap(2);
 			Log.assertThat(priceCitiPortal.equalsIgnoreCase(pricePaymentPage),
 					"<b>Actual Result:</b> Total amount is same as was on payment page",
-					"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);
+					"<b>Actual Result:</b> Total amount is not same as was on payment page", driver);*/
 
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			//driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
@@ -798,9 +804,9 @@ public class FlightE2E  extends BaseTest {
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
-		} finally {
-			//driver.quit();
+		} finally {			
 			Log.endTestCase();
 		}
 	}
+	
 }// E2ETestCasesEnd
