@@ -454,7 +454,7 @@ public class FlightE2E  extends BaseTest {
 			String priceInSrp = searchResult.clickOnBookNowInOWINTL_E2E(airlines, 1);
 			Log.message("9.Clicked On Book Now Button with specific airlines!");
 			Log.message("Price in Search Result page : "+ priceInSrp);
-			ReviewPage reviewPage = new ReviewPage(driver);
+			ReviewPage reviewPage = new ReviewPage(driver).get();
 
 			Log.message("<br>");
 			Log.message(

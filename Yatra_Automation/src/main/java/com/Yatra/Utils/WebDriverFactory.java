@@ -218,7 +218,7 @@ public class WebDriverFactory {
 	 * @return driver
 	 * @throws MalformedURLException
 	 */
-	public static WebDriver get(String browserSetup) throws MalformedURLException {
+	public static synchronized WebDriver get(String browserSetup) throws MalformedURLException {
 		return get(browserSetup, null);
 	}
 
@@ -232,7 +232,7 @@ public class WebDriverFactory {
 	 * @throws MalformedURLException
 	 */
 	@SuppressWarnings("unused")
-	public static WebDriver get(String browserWithPlatform, Proxy proxy) throws MalformedURLException {
+	public static synchronized WebDriver get(String browserWithPlatform, Proxy proxy) throws MalformedURLException {
 		String browser = null;
 		String platform = null;
 		String browserVersion = null;

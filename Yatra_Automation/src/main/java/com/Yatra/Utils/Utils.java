@@ -178,7 +178,6 @@ public class Utils {
 	 */
 	public static boolean waitForElement(WebDriver driver, WebElement element, int maxWait) {
 		boolean statusOfElementToBeReturned = false;
-		//long startTime = StopWatch.startTime();
 		WebDriverWait wait = new WebDriverWait(driver, maxWait);
 		try {
 
@@ -189,8 +188,6 @@ public class Utils {
 			}
 		} catch (Exception e) {
 			statusOfElementToBeReturned = false;
-			/*Log.event("Unable to find a element after " + StopWatch.elapsedTime(startTime) + " sec ==> "
-					+ element.toString());*/
 		}
 		return statusOfElementToBeReturned;
 	}

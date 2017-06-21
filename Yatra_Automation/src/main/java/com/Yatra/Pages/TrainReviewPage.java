@@ -86,7 +86,7 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 			Log.fail("TrainReviewPage page didn't open up", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
-		Constants.performanceData.add(timer.duration());
+		Constants.performanceData.put("TrainReviewPage",timer.duration());
 	}
 
 	@Override

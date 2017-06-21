@@ -44,12 +44,14 @@ public class BrowserActions {
 	 *            : Description about the WebElement
 	 * @throws Exception
 	 */
-	public static void typeOnTextField(WebElement txt, String txtToType,
+	public static synchronized void typeOnTextField(WebElement txt, String txtToType,
 			WebDriver driver, String elementDescription) throws Exception {
 
 		if (!Utils.waitForElement(driver, txt))
+		{
 			throw new Exception(elementDescription
 					+ " field not found in page!!");
+		}
 
 		try {
 			txt.clear();

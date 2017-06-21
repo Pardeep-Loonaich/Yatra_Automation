@@ -250,7 +250,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		Log.message("Total time taken by #" + this.getClass().getTypeName() + " to load is:- " + timer.duration() + " "	+ TimeUnit.MILLISECONDS);
 		// set value for pricing URL (if it require in case of test case fail, to send a mail with this URL)
 		sPricingURL = driver.getCurrentUrl().trim();
-		Constants.performanceData.add(timer.duration());
+		Constants.performanceData.put("ReviewPage",timer.duration());
 	}
 	
 	@Override

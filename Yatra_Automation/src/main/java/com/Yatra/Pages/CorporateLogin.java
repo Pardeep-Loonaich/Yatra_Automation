@@ -54,7 +54,7 @@ public class CorporateLogin extends LoadableComponent<CorporateLogin>{
 			Log.fail("Agent Login Page did not open up. Site might be down.", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
-		Constants.performanceData.add(timer.duration());
+		Constants.performanceData.put("CorporateLogin",timer.duration());
 	}
 
 	@Override

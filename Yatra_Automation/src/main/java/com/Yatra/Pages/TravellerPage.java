@@ -64,12 +64,6 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	@FindBy(css = "	div[id='traveller-dom']>div[id='ssrContainer']>div[ng-controller='productSSRController']>div:nth-child(3)>div[class='col-xs-8 col-md-4 ssr-trip ng-scope']>div>div>ul>li:nth-child(2)>span>select>option:nth-child(2)")
 	WebElement fldContentselectMeal;
-	
-	/*@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select")
-	WebElement drpAddBaggage;*/
-	
-	/*@FindBy(xpath = ".//*[@id='ssrContainer']/div[2]/div[2]/div[5]/div/div/ul/li[2]/span/select/option[2]")
-	WebElement fldContentselectBaggage;*/
 
 	@FindBy(css = "ul[class='list list-border']>li:nth-child(6)>span[class='pull-right tr alignment']>a[class='remove-btn']")
 	WebElement btnRemoveBaggage;
@@ -144,7 +138,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 			Log.fail("TravellerPage didn't open up", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
-		Constants.performanceData.add(timer.duration());
+		Constants.performanceData.put("TravellerPage",timer.duration());
 		// elementLayer = new ElementLayer(driver);
 
 	}

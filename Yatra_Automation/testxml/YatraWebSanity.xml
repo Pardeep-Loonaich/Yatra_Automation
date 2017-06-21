@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="Yatra Web Sanity  Automation Test" verbose="3">
+<suite name="Yatra Sanity Automation Test" verbose="3" thread-count="500" parallel="test">
 	<parameter name="workBookName" value="testdata\\Flights.xls" />
 	<parameter name="sheetName" value="Sanity" />
 
@@ -13,6 +13,7 @@
 	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 	<parameter name="webSite" value="https://www.yatra.com/" />
 	<test name="Yatra Web Sanity Test" thread-count="1" parallel="true">
+	    
 		<classes>
 		<class name="com.Yatra.TestScript.Flights.FlightSearch">
 				<methods>					
@@ -24,21 +25,18 @@
 					<include name="TC_Yatra_Flight_006"></include>					
 					<include name="TC_Yatra_Flight_017"></include>
 					<include name="TC_Yatra_Flight_018"></include>
-					<include name="TC_Yatra_Flight_026"></include>
-					<include name="TC_Yatra_Flight_027"></include>
+					<include name="TC_Yatra_Flight_026"></include>				
 					<include name="TC_Yatra_Flight_099"></include>				
 					<include name="TC_Yatra_Flight_104"></include>
 					<include name="TC_Yatra_Flight_105"></include>					
-					<include name="TC_Yatra_Flight_115"></include>
-					<include name="TC_Yatra_Flight_120"></include>
+					<include name="TC_Yatra_Flight_115"></include>			
 					<include name="TC_Yatra_Flight_121"></include>					
 					<include name="TC_Yatra_Flight_125"></include>
 					<include name="TC_Yatra_Flight_126"></include>
-					<include name="TC_Yatra_Flight_127"></include>
 					<include name="TC_Yatra_Flight_128"></include>
 					<include name="TC_Yatra_Flight_129"></include>
-					<include name="TC_Yatra_Flight_130"></include>
-					<include name="TC_Yatra_Flight_131"></include>							
+					<include name="TC_Yatra_Flight_130"></include>					
+					<include name="TC_Yatra_Flight_127"></include>	
 				</methods>
 			</class> 
 			  <class name="com.Yatra.TestScript.Flights.FlightPricing">
@@ -46,7 +44,6 @@
 					<include name="TC_Yatra_Flight_091"></include>	
 					<include name="TC_Yatra_Flight_106"></include>	
 					<include name="TC_Yatra_Flight_107"></include>					
-					<include name="TC_Yatra_Flight_122"></include>	
 					<include name="TC_Yatra_Flight_123"></include>
 				</methods>
 			</class>

@@ -1,7 +1,9 @@
 package com.Yatra.Utils;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Constants {
 
@@ -35,7 +37,7 @@ public class Constants {
 	public static final String C_FareType = "FARE TYPE";
 	public static final String C_Airlines = "AIRLINES";
 
-	public static List<String> performanceData=new ArrayList<String>();
+	public static Map<String,String> performanceData=new LinkedHashMap<String,String>();
 	
 	// >>> URL Parameters
 	public static final String c_Params = "air-search-ui";
