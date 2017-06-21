@@ -2783,7 +2783,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("12. Clicked on Continue!");
 			
 			int amount = Integer.parseInt(paymentPageBus.getTextTotalAmountPaymentMethod());
-			paymentPageBus.scrollSliderOfEcashRedeem(-80);
+			paymentPageBus.scrollSliderOfEcashRedeem(-80 , browser);
 			paymentPageBus.clickOnRedeemNowButton();
 			Log.message("13. Clicked on Redeem Now Button!");
 

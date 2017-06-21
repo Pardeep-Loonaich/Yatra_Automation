@@ -15,8 +15,8 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Trains.Train">
 			 <methods>
-    	 <include name="TC_Yatra_Train_048"></include>
-		 <!--    <include name="TC_Yatra_Train_024"></include>
+    	<!-- <include name="TC_Yatra_Train_048"></include>
+		     <include name="TC_Yatra_Train_024"></include>
 			 <include name="TC_Yatra_Train_026"></include>
 			 <include name="TC_Yatra_Train_050"></include>
 			 <include name="TC_Yatra_Train_051"></include>

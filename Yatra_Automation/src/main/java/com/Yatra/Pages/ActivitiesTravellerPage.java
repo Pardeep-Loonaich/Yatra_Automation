@@ -128,7 +128,9 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 	 * @throws Exception
 	 */
 	public void clickOnHotelNotRequiredChkbox() throws Exception {
+		if(lblHotelPickup.isDisplayed()){
 		BrowserActions.clickOnElement(lblHotelPickup, driver, "Clicked on 'checkbox' on Traveller's Page.");
+	}
 	}
 	/**
 	 * to click on Continue button and navigate to Payment Page.

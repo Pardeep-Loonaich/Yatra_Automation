@@ -219,9 +219,12 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	 * scrolling the ecash slider
 	 * @param value
 	 */
-	public void scrollSliderOfEcashRedeem(int value){
+	public void scrollSliderOfEcashRedeem(int value, String browser){
+		if(browser.equalsIgnoreCase("firefox_windows")){
+		}else if(browser.equalsIgnoreCase("Chrome_windows")){
 		Actions action = new Actions(driver);
 		action.dragAndDropBy(scrollSlider, value, 0).build().perform();
+	}
 	}
 	/**
 	 * to select the payment time from left panel

@@ -1188,11 +1188,10 @@ public class ActivitiesTest {
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 			String ErrorMessage = activityDetailPage.getTextErrorMessageNoActivities();
-			Log.message(ErrorMessage);
 
 			Log.message("<br>");
-			Log.message(
-					"<b>Expected Result:</b> Verify Activity selection option is not there that date should be grey");
+			Log.message("<b>Expected Result:</b> Verify Activity selection option is not there that date should be grey");
+			Thread.sleep(3000);
 			Log.assertThat(
 					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("noActivity"), activityDetailPage),
 					"<b>Actual Result:</b> After Clicking On Book Now dates are Grey and a error message is diplayed as: "
@@ -1378,10 +1377,7 @@ public class ActivitiesTest {
 					"<b>Actual Result:</b> Pax Modifying option is displayed on the Product Description page.",
 					"<b>Actual Result:</b> Pax Modifying option is displayed on the Product Description page.",
 					driver);
-			
-			
-			
-
+	
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -1733,12 +1729,10 @@ public class ActivitiesTest {
 			Log.message("4. Clicked On Search Button!");
 
 			Thread.sleep(2000);
-
 			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
-
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
@@ -1754,7 +1748,6 @@ public class ActivitiesTest {
 			activitiesReviewPage.clickOnContinue();
 			Log.message("10. Clicked on 'Continue' button in the ReviewPage .");
 
-
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify if user have yatra account then password field is required.");
 			Log.assertThat(activitiesReviewPage.elementLayer.verifyPageElementsDoNotExist(Arrays.asList("txtPasswrd"), activitiesReviewPage),
@@ -1764,10 +1757,8 @@ public class ActivitiesTest {
 			activitiesReviewPage.enterEmailAddress(email);
 			Log.message("11. Entered Email address on the SignIn Popup.");
 
-
 			activitiesReviewPage.clickOnYatraAccountChkbox();
 			Log.message("12. Clicking on having 'Yatra Account' checkbox on the SignIn Popup.");
-
 
 			Log.assertThat(activitiesReviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPasswrd"), activitiesReviewPage),
 					"<b>Actual Result:</b> Password field is displayed on Sign-In Page after clicking the checkbox.",
@@ -1946,12 +1937,10 @@ public class ActivitiesTest {
 			Log.message("4. Clicked On Search Button!");
 
 			Thread.sleep(2000);
-
 			activityDetailPage = searchResultActivites.ClickBookNowByIndex(2);
 			Log.message("5. Clicked On Book Now Button!");
 
 			Thread.sleep(2000);
-
 			activityDetailPage.clickOnBookNowButton();
 			Log.message("6. Clicked On Book Now Button On Activity Detail Page!");
 
@@ -1975,10 +1964,8 @@ public class ActivitiesTest {
 			Log.message("12. Filled traveller details.");
 			
 			activitiesTravellerPage.clickOnHotelNotRequiredChkbox();
-
 			paymentPage = activitiesTravellerPage.clickOnContinueInTravellerPage(); 
 			Log.message("13. Clicked on 'Continue' button in the TravellerPage.");
-
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is redirected to payment page.");
