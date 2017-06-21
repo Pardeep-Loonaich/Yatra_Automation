@@ -748,15 +748,15 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		String price_final = null;
 		//boolean status = false;		
 		if (altFareChange.isDisplayed()){
-			if (BrowserActions.isElementVisible(driver, txtFareSlashed)) {
-				BrowserActions.clickOnElement(btnFareSlashedContune, driver, "Clicked on continue in Fare Slashed Alert Popup");
+			if (BrowserActions.isElementVisible(driver, btnFareSlashedContune)) {
 				String flightPrice = BrowserActions.getText(driver, popupFareOopsUpdatedFare, " Flight fare");
 				price_final = flightPrice.trim().replace(" ", "").trim();
+				BrowserActions.clickOnElement(btnFareSlashedContune, driver, "Clicked on continue in Fare Slashed Alert Popup");
 				BrowserActions.nap(2);
-			} else if (BrowserActions.isElementVisible(driver, txtFareOops)) {
-				BrowserActions.clickOnElement(btnFareOopsContune, driver,"Clicked on continue in Fare Oops Alert Popup");
+			} else if (BrowserActions.isElementVisible(driver, btnFareOopsContune)) {
 				String flightPrice = BrowserActions.getText(driver, popupFareOopsUpdatedFare, "Flight fare");
 				price_final = flightPrice.trim().replace(" ", "").trim();
+				BrowserActions.clickOnElement(btnFareOopsContune, driver,"Clicked on continue in Fare Oops Alert Popup");
 				BrowserActions.nap(2);
 			} else if (BrowserActions.isElementVisible(driver, altFareChange)){
 				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");

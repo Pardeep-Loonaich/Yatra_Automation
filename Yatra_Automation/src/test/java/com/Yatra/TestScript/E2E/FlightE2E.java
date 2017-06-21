@@ -365,7 +365,8 @@ public class FlightE2E extends BaseTest {
 			Log.message("12.Clicked On Pay Now!");
 
 			BrowserActions.nap(3);
-			String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
+			//String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
+			String priceCitiPortal = paymentPage.getFlightPriceInCitiNetBanke();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "<b>");
 			String pricePaymentPage = priceWithConvienceFee.replace(",", "");
 			Log.message("<br>");
@@ -697,7 +698,8 @@ public class FlightE2E extends BaseTest {
 			Log.message("12.Clicked On Pay Now!");
 
 			BrowserActions.nap(3);
-			String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
+			//String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
+			String priceCitiPortal = paymentPage.getFlightPriceInCitiNetBanke();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "<b>");
 			String pricePaymentPage = priceWithConvienceFee.replace(",", "");
 			Log.message("<br>");

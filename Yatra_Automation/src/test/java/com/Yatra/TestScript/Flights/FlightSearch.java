@@ -4630,7 +4630,7 @@ public class FlightSearch extends BaseTest{
 		}
 	}
 	
-	@Test( description = "Add Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Add Meal on Pax/Review page - OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_099(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -5418,7 +5418,11 @@ public class FlightSearch extends BaseTest{
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9.Clicked on 'Continue' button in Traveller Page ");
-			BrowserActions.nap(2);
+			BrowserActions.nap(20);
+			
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated on paymentPage.",
+					"<b>Actual Result:</b> Unable to navigated on paymentPage.", driver);
 			Log.testCaseResult();
 
 		} catch (Exception e) {
@@ -7075,6 +7079,83 @@ public class FlightSearch extends BaseTest{
 		}
 	}
 		
+	@Test( description = "Add Meal on Pax/Review page - RT", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_170(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+		String domain = testData.get("Domain");	
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'Round Trip' option in search Home Page!");
+
+			// step: select Round Trip Search fields in HomePage
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for Round Trip");
+
+			// step: click 'Search' button in Yatra Home page
+			SearchResult searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);			
+			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");
+			reviewPage.popUpAppear();
+			
+			reviewPage.clickOnContinue();
+			Log.message("6. Clicked On Continue Button on Review Page!");
+
+			reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("7.Successfully Logged in Yatra account!");
+
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Enter User Details!");
+
+			travellerPage.clickOnAddMeal();
+			Log.message("9. Clicked On Add Meal!");
+
+			travellerPage.selectMeal();
+			Log.message("10. Selected Meal!");
+			String mealCharges = travellerPage.getTextMealDetails();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User should be able to see the Meal Charges inculded in the Fare Detail!");
+			BrowserActions.nap(2);
+			Log.assertThat(travellerPage.elementLayer.verifyPageElements(Arrays.asList("btnAddMeal"), travellerPage),
+					"<b>Actual Result:</b> Meal Charges are included In Total Fare and Meal Charges is :" + mealCharges,
+					"<b>Actual Result:</b> Meal Charges are not included In Total Fare", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
 // ********************************End of Test cases ***************************************************************************************
 } //FlightSearch
 
