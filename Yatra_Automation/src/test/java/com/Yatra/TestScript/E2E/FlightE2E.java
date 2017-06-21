@@ -470,6 +470,7 @@ public class FlightE2E  extends BaseTest {
 				priceInSrp = reviewPage.fareChangeAlertPopUpAppear_E2E();
 				Log.message("Review Page Flight updated fare : <b>" + priceInSrp + "<b>");
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up appear and ignored price change and moved forward", driver);
+
 			} else {
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear", driver);
 			}			
