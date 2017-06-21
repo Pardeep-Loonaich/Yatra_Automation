@@ -37,9 +37,9 @@ public class ExecutionTimer
 	 * calculate total time 
 	 * @return
 	 */
-	public double duration()
+	public String duration()
 	{
-		return (end-start);
+		return ""+(end-start);
 	}
 	/**
 	 * Desc:reset start and end to zero

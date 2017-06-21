@@ -60,7 +60,7 @@ public class WriteToExcel
 	}
 
 
-	public static void writePageLoadTimeToExcel(List<Double> data) throws Exception
+	public static void writePageLoadTimeToExcel(List<String> data) throws Exception
 	{
 		HSSFSheet sheet=null;
 		HSSFWorkbook workBook=null;

@@ -34,9 +34,9 @@ public class Constants {
 	public static final String C_Stops = "STOPS";
 	public static final String C_FareType = "FARE TYPE";
 	public static final String C_Airlines = "AIRLINES";
-	
-	public static List<Double> performanceData=new ArrayList<Double>();
 
+	public static List<String> performanceData=new ArrayList<String>();
+	
 	// >>> URL Parameters
 	public static final String c_Params = "air-search-ui";
 	public static final String c_TriggerType = "type"; //trigger?type

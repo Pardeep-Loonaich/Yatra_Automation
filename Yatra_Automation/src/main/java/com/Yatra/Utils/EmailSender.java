@@ -28,7 +28,6 @@ public class EmailSender {
 
 	private  String testCaseId="";
 	private   String sCurrentPageURL="";
-	public static  String sPricingURL="";
 	private  String fileName="";
 
 
