@@ -3580,8 +3580,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public Fresco clickYatraLogo_Fresco() throws Exception {
 		BrowserActions.actionClick(lnkYatraLogo, driver, "Yatra Logo");
 		Utils.waitForPageLoad(driver);
-		Log.event("Successfully clicked Yatra Logo link in SRP");
-		// BrowserActions.nap(10);
+		Log.event("Successfully clicked Yatra Logo link in SRP");		
 		return new Fresco(driver).get();
 
 	}
@@ -3597,13 +3596,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		String name = null;
 		if (cityNameInRecentSearchPopUp.isDisplayed()) {
 			BrowserActions.mouseHover(driver, cityNameInRecentSearchPopUp);
-			name = BrowserActions.getText(driver, cityNameInRecentSearchPopUp,
-					"Getting cities name from recent search Pop up");
+			name = BrowserActions.getText(driver, cityNameInRecentSearchPopUp,	"Getting cities name from recent search Pop up");
 		}
 		return name;
 	}
 
-	public String selectAirlineBookNowInOWE2E(String airlines, int index) throws Exception {
+	/*public String selectAirlineBookNowInOWE2E(String airlines, int index) throws Exception {
 		closeINotificationAtTopSRP();
 		Thread.sleep(3000);
 		String Price = null;
@@ -3623,7 +3621,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		Log.event("Successfully clicked Book Now in SRP");
 		return Price;
-	}
+	}*/
 
 	/**
 	 * to click on Book now button in One Way for INTL flights
@@ -3632,27 +3630,28 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public String clickOnBookNowInOWINTL_E2E(String airlines, int index) throws Exception {
+	/*public String clickOnBookNowInOWINTL_E2E(String airlines, int index) throws Exception {
 		String Price_final = null;
 		if (airlines.equalsIgnoreCase("Any")) {
 			BrowserActions.nap(5);
 			clickOnBookNowInDOM_INTL(1); // select Book now
 			Log.event("All flights details are visible by default and clicked Book Now Random flight -RT");
 		} else {
-			selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
+			selectAirlineInAirlineFilters(airlines); // Select Preferred Airline
+														// in Airline Filters
 			BrowserActions.nap(5);
-			WebElement wBookNow = driver
-					.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["+index+"]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
-			WebElement wflightPrice = driver
-					.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["+index+"]//p[@title='Fare Summary']"));
+			WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
+							+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
+			WebElement wflightPrice = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
+							+ index + "]//p[@title='Fare Summary']"));
 			String flightPrice = BrowserActions.getText(driver, wflightPrice, "SRP Page Flight fare");
 			Price_final = flightPrice.trim().replace(" ", "").trim();
 			BrowserActions.nap(2);
 			BrowserActions.scrollToView(wBookNow, driver);
 			BrowserActions.javascriptClick(wBookNow, driver, "Book Now");
 		}
-			return Price_final;
-		}
+		return Price_final;
+	}*/
 	/**
 	 * getting cities name from recent search Pop up
 	 * 
@@ -3739,7 +3738,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			} else {
 				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
 				BrowserActions.nap(5);
-				price = clickOnBookNowInDOMRT_E2E(1, 1); // select Book Now Airlines
+				//price = clickOnBookNowInDOMRT_E2E(1, 1); // select Book Now Airlines
+				price = clickOnBookNowInDOMRT_E2E(); // select Book Now Airlines
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now - DOM");
 			}
 			Log.event("Successfully clicked Book Now for Round Trip");
@@ -3752,7 +3752,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 				Log.event("All flights details are visible by default and clicked Book Now Random flight -RT");
 			} else {
 				selectAirlineInAirlineFilters(airlines); // Select Preferred Airline in Airline Filters
-				price = clickOnBookNowINTLRT_E2E(1); // select Book Now Airlines
+				//price = clickOnBookNowINTLRT_E2E(1); // select Book Now Airlines
+				price =  clickOnBookNowINTLRT_E2E();
 				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and clicked Book Now RT ");
 			}
 			Log.event("Successfully clicked Book Now for Round Trip");
@@ -3769,7 +3770,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public String clickOnBookNowInDOMRT_E2E(int onwardFlight, int returnFlight) throws Exception {
+/*	public String clickOnBookNowInDOMRT_E2E(int onwardFlight, int returnFlight) throws Exception {
 		WebElement onwardflight = driver.findElement(By.xpath("//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem']["
 						+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
 		WebElement returnflight = driver.findElement(By.xpath("//div[@id='resultList_1']//div[@class='js-flightRow js-flightItem']["
@@ -3783,7 +3784,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		System.out.println(flightPrice);
 		BrowserActions.clickOnElement(btnBookNowRoundTrip, driver,	"Click on Book Now for RoundTrip for Domestic Preferred flights");
 		return flightPrice;
-	}
+	}*/
 	
 	/**
 	 * to click on 'Book Now' button in RT for INTL flights
@@ -3815,7 +3816,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-	public String clickOnBookNowInOWINTL_E2E(int index) throws Exception {
+	/*public String clickOnBookNowInOWINTL_E2E(int index) throws Exception {
 		BrowserActions.nap(5);
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
 						+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
@@ -3828,7 +3829,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button - INTL");
 		return flightPrice;
-	}
+	}*/
 	
 	/**
 	 * @author Narayana
@@ -3895,6 +3896,171 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			sPram_Values.add(sPram_Value);
 		}
 		return sPram_Values;
+	}
+	
+	
+	
+	/* * to click on 'Book Now' button in RT for INTL flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public String clickOnBookNowINTLRT_E2E() throws Exception {		
+		int index = 0;
+		List<WebElement> wFlightResultGrid = driver.findElements(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])"));
+		if (wFlightResultGrid.size() != 0) {
+			index = Utils.getRandom(1, wFlightResultGrid.size());			
+		}
+		BrowserActions.nap(5);
+		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
+						+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
+		BrowserActions.scrollToView(wBookNow, driver);
+		BrowserActions.nap(2);
+		WebElement wflightPrice = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
+				+ index + "]//div[@class='fl bxs price-value-holder has-emi']/p"));
+		String flightPrice = BrowserActions.getText(driver, wflightPrice, "SRP Page Flight fare");
+		String price_final =flightPrice.trim().replace(" ","").trim();		
+		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button - INTL");
+		Log.message("Successfully selected Random flight in SRP Grid Result, Selected flight is: <b>"+ index + "</b>");
+		return price_final;
+	}
+	
+	/**
+	 * to click on 'Book Now' button in Round Trip for Domestic Preferred flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public String clickOnBookNowInDOMRT_E2E() throws Exception {
+		int onwardFlight=0; int returnFlight= 0;
+		List<WebElement> wOnwardFlight = driver.findElements(By.xpath("//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem']"));
+		if (wOnwardFlight.size() != 0) {
+			onwardFlight = Utils.getRandom(1, wOnwardFlight.size());
+			System.out.println(onwardFlight);			
+		}
+		
+		List<WebElement> wReturnFlight = driver.findElements(By.xpath("//div[@id='resultList_1']//div[@class='js-flightRow js-flightItem']"));
+		if (wReturnFlight.size() != 0) {
+			returnFlight = Utils.getRandom(1, wReturnFlight.size());
+			System.out.println(returnFlight);
+		}
+		
+		WebElement onwardflight = driver.findElement(By.xpath("//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem']["
+						+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
+		WebElement returnflight = driver.findElement(By.xpath("//div[@id='resultList_1']//div[@class='js-flightRow js-flightItem']["
+						+ returnFlight + "]//p[@class='new-blue-button fr book-button']"));
+		BrowserActions.scrollToView(onwardflight, driver);
+		BrowserActions.clickOnElement(onwardflight, driver, "To select Flight from one list.");
+		Thread.sleep(5000);
+		BrowserActions.scrollToView(returnflight, driver);
+		BrowserActions.clickOnElement(returnflight, driver, "To select Flight from second list.");
+		BrowserActions.nap(2);
+		String flightPrice = BrowserActions.getText(driver, txtFlightFareRT_SRP, "SRP Page Flight fare");
+		System.out.println(flightPrice);
+		BrowserActions.clickOnElement(btnBookNowRoundTrip, driver,	"Click on Book Now for RoundTrip for Domestic Preferred flights");
+		Log.message("Successfully selected Random flight in SRP Grid Result, Selected Onward and Return flight are: <b>["+ onwardFlight+ " ," + returnFlight + "]</b>");
+		return flightPrice;
+	}
+	
+	/**
+	 * To click on Book now button in One Way for Domestic Any and Preferred
+	 * flights based on filter values
+	 * 
+	 * @param domain
+	 *            : DOM or INTL
+	 * @param stops
+	 *            : Stops
+	 * @param airlines
+	 *            : Airline Name
+	 * @return
+	 * @throws Exception
+	 */
+	public String selectAirlineBookNowInOW_E2E(String domain, String airlines) throws Exception {
+		closeINotificationAtTopSRP();
+		String price = null;
+		if (domain.equalsIgnoreCase("DOM")) {
+			// click book now based on Any or Preferred airlines
+			if (airlines.equalsIgnoreCase("Any")) {
+				clickOnBookNowInOW(2); // select Book now
+				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
+			} else {
+				// Select Preferred Airline in Airline Filters
+				selectAirlineInAirlineFilters(airlines); 
+				price = clickOnBookNowOW_DOM(); // select Book Now
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
+			}
+			Log.event("Successfully clicked Book Now in SRP");
+		} else if (domain.equalsIgnoreCase("INTL")) {
+			// click book now based on Any or Preferred airlines
+			if (airlines.equalsIgnoreCase("Any")) {
+				clickOnBookNowInDOM_INTL(1); // select Book now
+				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
+			} else {
+				// Select Preferred Airline in Airline Filters
+				selectAirlineInAirlineFilters(airlines); 
+				price = clickOnBookNowInDOM_INTL(); // select Book Now
+				Log.event("Successfully selected " + airlines + " checkbx in Airlines Filter and Clicked BookNow");
+			}
+			Log.event("Successfully clicked Book Now in SRP");
+		}
+		popUpAppear();
+		return price;
+	}
+	/**
+	 * to click on Book now button in Round Trip for Domestic Preferred flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public String clickOnBookNowOW_DOM() throws Exception {
+		String price = null;
+		int index = 0;
+		List<WebElement> wFlightResultGrid = driver.findElements(By.xpath("//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem']"));
+		if (wFlightResultGrid.size() != 0) {
+			index = Utils.getRandom(1, wFlightResultGrid.size());			
+		}
+		BrowserActions.nap(5);			
+		WebElement prefferedFlightBookNow = driver.findElement(By.xpath("(//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem'][" + index
+						+ "])//p[@class='new-blue-button fr book-button js-bookNow relative tc']"));
+		BrowserActions.scrollToView(prefferedFlightBookNow, driver);
+		BrowserActions.nap(3);
+		WebElement price1 = driver.findElement(By.cssSelector("div[data-gaecposition='" + index + "'] label"));
+		if (price1.isDisplayed()) {
+			price = price1.getText();
+		}
+		BrowserActions.clickOnElement(prefferedFlightBookNow, driver, "To click on Book now button-DOM");
+		Log.message("Successfully selected Random flight in SRP Grid Result, Selected flight is: <b>"+ index + "</b>");
+		return price;
+	}
+	
+	/**
+	 * to click on Book now button in One Way for INTL flights
+	 * 
+	 * @param index
+	 * @return
+	 * @throws Exception
+	 */
+	public String clickOnBookNowInDOM_INTL() throws Exception {
+		String price = null;
+		int index = 0;
+		List<WebElement> wFlightResultGrid = driver.findElements(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])"));
+		if (wFlightResultGrid.size() != 0) {
+			index = Utils.getRandom(1, wFlightResultGrid.size());			
+		}
+		BrowserActions.nap(5);
+		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
+						+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
+		BrowserActions.scrollToView(wBookNow, driver);
+		WebElement wflightPrice = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["+index+"]//p[@title='Fare Summary']"));
+		String flightPrice = BrowserActions.getText(driver, wflightPrice, "SRP Page Flight fare");
+		price = flightPrice.trim().replace(" ", "").trim();
+		BrowserActions.nap(2);
+		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button - INTL");
+		Log.message("Successfully selected Random flight in SRP Grid Result, Selected flight is: <b>"+ index + "</b>");
+		return price;
 	}
 	
 	// *******************************End of SRP Functions******************************/
