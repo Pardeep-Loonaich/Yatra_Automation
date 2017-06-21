@@ -2,6 +2,11 @@ package com.Yatra.Utils;
 
 import java.awt.AWTException;
 import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
@@ -11,12 +16,25 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
+
+import edu.umass.cs.benchlab.har.HarEntry;
+import edu.umass.cs.benchlab.har.HarPage;
+import edu.umass.cs.benchlab.har.HarBrowser;
+import edu.umass.cs.benchlab.har.HarEntries;
+import edu.umass.cs.benchlab.har.HarLog;
+import edu.umass.cs.benchlab.har.ISO8601DateFormatter;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.openqa.selenium.JavascriptExecutor;
+
+import com.google.gson.JsonParseException;
+
+import edu.umass.cs.benchlab.har.tools.HarFileReader;
+import edu.umass.cs.benchlab.har.tools.HarFileWriter;
 
 
 
@@ -53,7 +71,6 @@ public class Utils {
 		{
 			icounter--;
 			dataToBereturn=true;
-
 		}
 
 		return dataToBereturn;
@@ -161,7 +178,6 @@ public class Utils {
 	 */
 	public static boolean waitForElement(WebDriver driver, WebElement element, int maxWait) {
 		boolean statusOfElementToBeReturned = false;
-		//long startTime = StopWatch.startTime();
 		WebDriverWait wait = new WebDriverWait(driver, maxWait);
 		try {
 
@@ -172,8 +188,6 @@ public class Utils {
 			}
 		} catch (Exception e) {
 			statusOfElementToBeReturned = false;
-			/*Log.event("Unable to find a element after " + StopWatch.elapsedTime(startTime) + " sec ==> "
-					+ element.toString());*/
 		}
 		return statusOfElementToBeReturned;
 	}
@@ -651,7 +665,7 @@ public class Utils {
 		huc.connect();
 		return huc.getResponseCode();
 	}
-	
+
 
 	/**
 	 * @author harveer.singh
@@ -665,8 +679,25 @@ public class Utils {
 		if(sUrl.contains(sParam))
 		{
 			int start=sUrl.indexOf(sParam);
-			 sPram_Value=sUrl.substring(start).split("&")[0].split("=")[1].trim();
+			sPram_Value=sUrl.substring(start).split("&")[0].split("=")[1].trim();
 		}
 		return sPram_Value;
+	}
+	/**
+	 *@author harveer.singh
+	 *
+	 * @Description: to get data from clip board (only work for laptop/desktop)
+	 *  @throws IOException,UnsupportedFlavorException
+	 *  @return it will return clip board content 
+	 * 
+	 */
+
+	public static String getClipBoardData() throws UnsupportedFlavorException, IOException
+	{
+		Toolkit toolKit=Toolkit.getDefaultToolkit();
+		Clipboard clipboardContent=toolKit.getSystemClipboard();
+		return (String)clipboardContent.getData(DataFlavor.stringFlavor);
+		
+		
 	}
 }

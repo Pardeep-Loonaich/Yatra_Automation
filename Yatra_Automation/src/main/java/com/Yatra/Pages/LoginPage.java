@@ -70,7 +70,7 @@ public class LoginPage extends LoadableComponent<LoginPage> {
 			Log.fail("SignIn page didn't open up", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
-		Constants.performanceData.add(timer.duration());
+		Constants.performanceData.put("LoginPage",timer.duration());
 	}
 
 	@Override

@@ -29,6 +29,11 @@ import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
+/**
+ * Fresco page is used to create all page related action functions
+ *  
+ */
+
 @SuppressWarnings("unused")
 public class Fresco extends LoadableComponent<Fresco> {
 
@@ -288,7 +293,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 		Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
-		Constants.performanceData.add(timer.duration());
+		Constants.performanceData.put("FrescoPage",timer.duration());
 	}// isLoaded
 
 	@Override
@@ -1517,7 +1522,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 	private WebElement lnkActivitiesAutoSuggestionName;
 
 	@FindBy(css = "ul[class='mac-scroll scrollable'] p[class='ac_cityname']")
-	private List<WebElement> txtSourceCityNames;
+	private List<WebElement> txtCityNames;
 
 	@FindBy(css = "ul[class='mac-scroll scrollable'] li[class='ac_even ac_over'] p[class='ac_cityname']")
 	private WebElement lnkFlightAirportCityName;
@@ -1563,6 +1568,9 @@ public class Fresco extends LoadableComponent<Fresco> {
 	
 	@FindBy(css = "div[id='extremePadCont'] h2[class='main-title']")
 	private WebElement txtTravelBudgetTitle;
+	
+	@FindBy(css = "#BE_byop_arrival_city")
+	private WebElement txtDestination_FlightsAndHotels;
 	
 	
 	//*[@id='graphicalViewBtn']
@@ -1729,7 +1737,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 */
 	public List<String> getSourceCitiesNamesInFlight() throws Exception {
 		List<String> cityNames = new ArrayList<String>();
-		for (int i = 1; i <= txtSourceCityNames.size(); i++) {
+		for (int i = 1; i <= txtCityNames.size(); i++) {
 			WebElement cityNameEle = driver.findElement(By.cssSelector("ul[class='mac-scroll scrollable'] li:nth-child(" + i + ") p[class='ac_cityname']"));
 			BrowserActions.scrollToView(cityNameEle, driver);
 			String cityName = cityNameEle.getText().toString().trim();
@@ -1930,10 +1938,10 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 * 
 	 * @return
 	 * @throws Exception
-	 */
+	 *//*
 	public List<String> getSourceCitiesFullDetailsInFlight() throws Exception {
 		List<String> cityNames = new ArrayList<String>();
-		for (int i = 1; i <= txtSourceCityNames.size(); i++) {
+		for (int i = 1; i <= txtCityNames.size(); i++) {
 			WebElement cityNameEle = driver.findElement(By.cssSelector("ul[class='mac-scroll scrollable'] li:nth-child(" + i + ")"));
 			BrowserActions.scrollToView(cityNameEle, driver);
 			String cityName = cityNameEle.getText().toString().trim();
@@ -1941,7 +1949,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 		}
 		Log.event("Cities Full Details : " + cityNames);		
 		return cityNames;
-	}
+	}*/
 	
 	
 	/**
@@ -1971,6 +1979,35 @@ public class Fresco extends LoadableComponent<Fresco> {
 		return txtCityName;
 	}
 
+	/**
+	 * Enter destination for Flights+Hotels
+	 * 
+	 * @param origin
+	 *            as string
+	 * @throws Exception
+	 */
+	public void enterDestinationInFlightsAndHotels(String destination) throws Exception {
+		Utils.waitForElement(driver, txtDestination_FlightsAndHotels);
+		BrowserActions.typeOnTextField(txtDestination_FlightsAndHotels, destination, driver, "Select Destination");
+		BrowserActions.nap(3);		
+		Log.event("Entered the Destination: " + destination);
+	}	
 	
-	
+	/**
+	 * Getting the Cities details from Flight booking engine
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public List<String> getCitiesFullDetailsInFlight() throws Exception {
+		List<String> cityNames = new ArrayList<String>();
+		for (int i = 1; i <= txtCityNames.size(); i++) {
+			WebElement cityNameEle = driver.findElement(By.cssSelector("ul[class='mac-scroll scrollable'] li:nth-child(" + i + ")"));
+			BrowserActions.scrollToView(cityNameEle, driver);
+			String cityName = cityNameEle.getText().toString().trim();
+			cityNames.add(cityName);
+		}
+		Log.event("Cities Full Details : " + cityNames);		
+		return cityNames;
+	}
 }// Fresco

@@ -109,7 +109,7 @@ public class ActivitiesReviewPage extends LoadableComponent<ActivitiesReviewPage
 		}
 		Log.message("Total time taken by #" + this.getClass().getTypeName() + "to load is:- " + timer.duration() + " "
 				+ TimeUnit.MILLISECONDS);
-		Constants.performanceData.add(timer.duration());
+		Constants.performanceData.put("ActivitiesReviewPage",timer.duration());
 
 	}// isLoaded
 

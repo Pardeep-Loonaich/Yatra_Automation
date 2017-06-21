@@ -123,7 +123,7 @@ public class Bookings extends LoadableComponent<Bookings>  {
 			Log.fail("Complete Booking page didn't open up", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
-		Constants.performanceData.add(timer.duration());
+		Constants.performanceData.put("Bookings",timer.duration());
 	}
 
 	@Override

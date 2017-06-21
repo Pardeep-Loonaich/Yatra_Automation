@@ -129,8 +129,8 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 		{
 		Log.fail("Activity Detail Page did not open up. Site might be down.", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
-		Constants.performanceData.add(timer.duration());
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.put("ActivitiesDetailPage",timer.duration());
 	}// isLoaded
 	
 		@Override

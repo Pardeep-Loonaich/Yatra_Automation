@@ -433,6 +433,9 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	@FindBy(css = "ul[id='breakDownContainer']>li:nth-child(1)>span[class='fare-brk-rs fr']")
 	private WebElement txtFlightPricePaymentPage;
 	
+	@FindBy(css = "div[id='CITI_CREDIT_DIV'] span[class='Arial-red-14']")
+	private WebElement txtCitiNetBank;
+	
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra PaymentPage - Ends ****************************
@@ -479,7 +482,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 			Log.fail("PaymentPage didn't open up", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
-		Constants.performanceData.add(timer.duration());		
+		Constants.performanceData.put("PaymentPage",timer.duration());	
 	}
 
 	@Override
@@ -1626,4 +1629,20 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 		String txtflightPrice = BrowserActions.getText(driver, txtFlightPricePaymentPage, "Payment page without convience fee Flight Fare");
 		return txtflightPrice;
 	}
+
+	/**
+	 * Getting the text from Flight Price in Bank Page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public String getFlightPriceInCitiNetBanke() throws Exception {
+		String price_final = null;	Thread.sleep(5000);
+		String txtFlightPrice = BrowserActions.getText(driver, txtCitiNetBank, "Citi NetBank Flight Price");
+		//String temp1=txtFlightPrice.trim().replace("INR","").trim();
+		price_final =txtFlightPrice.trim().replace(".00","").trim();
+		return price_final;
+	}
+	
+
 }//PaymentPage

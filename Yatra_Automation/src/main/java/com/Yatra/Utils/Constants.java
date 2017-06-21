@@ -1,7 +1,9 @@
 package com.Yatra.Utils;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Constants {
 
@@ -34,9 +36,9 @@ public class Constants {
 	public static final String C_Stops = "STOPS";
 	public static final String C_FareType = "FARE TYPE";
 	public static final String C_Airlines = "AIRLINES";
-	
-	public static List<Double> performanceData=new ArrayList<Double>();
 
+	public static Map<String,String> performanceData=new LinkedHashMap<String,String>();
+	
 	// >>> URL Parameters
 	public static final String c_Params = "air-search-ui";
 	public static final String c_TriggerType = "type"; //trigger?type
@@ -45,5 +47,15 @@ public class Constants {
 	public static final String c_Destination = "destination";
 	public static final String c_DestinationCountry = "destinationCountry";
 	public static final String c_NonStop = "non_stop";
+	
+	// >>> URL Parameters for Multicity	
+	public static final String c_Origin_0 = "origin_0";
+	public static final String c_OriginCountry_0 = "originCountry_0";
+	public static final String c_Destination_0 = "destination_0";
+	public static final String c_DestinationCountry_0 = "destinationCountry_0";	
+	public static final String c_Origin_1 = "origin_1";
+	public static final String c_OriginCountry_1 = "originCountry_1";
+	public static final String c_Destination_1 = "destination_1";
+	public static final String c_DestinationCountry_1 = "destinationCountry_1";
 	// >>>> Page Constants End>>>>
 }

@@ -28,7 +28,6 @@ public class EmailSender {
 
 	private  String testCaseId="";
 	private   String sCurrentPageURL="";
-	public static  String sPricingURL="";
 	private  String fileName="";
 
 
@@ -58,15 +57,13 @@ public class EmailSender {
 	{
 		String  Email_BODY_TEXT = "Hi Team,<br><br>"
 				+ "TestCase <b>'"+testCaseId+"'</b> has been failed, please find the details below:"
-				+ "<br>Current Page URL: <b><font color=blue>"+sCurrentPageURL+"</font></b>"
+				+ "<br><br>Current Page URL: <b><font color=blue>"+sCurrentPageURL+"</font></b>"
 				+ "<br>"
 				+ "<br>"
+				+ "<br>Pricing URL: <font color=blue>"+ReviewPage.getPricingURL()+"</font>"
 				+ "<br>"
-				+ "<br>Pricing URL: <b><font color=blue>"+ReviewPage.getPricingURL()+"</font></b>"
 				+ "<br>"
-				+ "<br>"
-				+ "Note:- Please find screenshot in Attachment. </b>"
-
+				+ "Note:- Please find screenshot in Attachment. "
 				+ "<br>"
 				+ "<br>"
 				+ "Thanks & Regards<br>"

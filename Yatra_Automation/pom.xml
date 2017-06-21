@@ -13,6 +13,13 @@
 	</properties>
 
 	<dependencies>
+	<!-- https://mvnrepository.com/artifact/edu.umass.cs.benchlab/harlib -->
+<dependency>
+    <groupId>edu.umass.cs.benchlab</groupId>
+    <artifactId>harlib</artifactId>
+    <version>1.1.2</version>
+</dependency>
+	
 <!-- 	have added guava dependency to sove until method issue  -->
 	<dependency>
       <groupId>com.google.guava</groupId>
