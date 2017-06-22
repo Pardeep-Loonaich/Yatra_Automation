@@ -234,7 +234,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 			WebElement Firstname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/div/input"));
 			WebElement Lastname = driver.findElement(By.xpath("//*[@id='paxNum" + i + "']/div[@class='col-md-3 col-xs-offset-3 col-md-offset-0']/input"));
 
-			WebElement drptitle = driver.findElement(By.xpath(formPaxDetail)); 
+			//WebElement drptitle = driver.findElement(By.xpath(formPaxDetail)); 
 			//BrowserActions.clickOnElement(drptitle, driver, "Title Dropdown Clicked");  // Issues on FF, @Narayana
 			String label = BrowserActions.getText(driver, lblTraveller, "Traveller label");
 
@@ -242,9 +242,10 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 			if (titleOptions.size() != 0) {
 				int rand = Utils.getRandom(1, titleOptions.size());
 				Utils.waitForElement(driver, titleOptions.get(rand));
-				 //BrowserActions.clickOnElement(titleOptions.get(rand), driver, "title selected");	 // Issues on FF, @Narayana			
-				BrowserActions.selectDropdownByIndex(driver, drpTravelTitle, rand, "Title selected");
-				Thread.sleep(1000);
+				WebElement drpTitle = driver.findElement(By.xpath(formPaxDetail+ "//select[@name='title" + i + "']")); 
+				//BrowserActions.clickOnElement(titleOptions.get(rand), driver, "title selected");	 // Issues on FF, @Narayana			
+				BrowserActions.selectDropdownByIndex(driver, drpTitle, rand, "Title selected"); //drpTravelTitle
+				Thread.sleep(1000); 
 			}
 			String randomFirstName = RandomStringUtils.randomAlphabetic(5).toLowerCase();
 			String randomLastName = RandomStringUtils.randomAlphabetic(5).toLowerCase();

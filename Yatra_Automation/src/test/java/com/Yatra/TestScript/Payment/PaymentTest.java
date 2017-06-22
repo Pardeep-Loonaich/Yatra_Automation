@@ -3744,12 +3744,7 @@ public class PaymentTest extends BaseTest {
 			// clicke on continue button
 			travellerPage = reviewPage.clickOnContinue();
 			Log.message("7. Clicked on Continue button on Review Page.");
-
-			/*
-			 * reviewPage.clickOnExistingUser(); travellerPage =
-			 * reviewPage.loginYatraGuestAccountExisting(emailId, password);
-			 * Log.message("8. Successfully Logged in Yatra account!");
-			 */
+			
 			travellerPage.fillTravellerDetails_DOM(infantDOB);
 			Log.message("8. Filled Traveller Details for domestic Flights.");
 
