@@ -1736,7 +1736,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 
 	public void closeINotificationAtTopSRP() throws Exception {
-		BrowserActions.nap(4);
+		BrowserActions.nap(10);
 		if (BrowserActions.isElementPresent(driver, IframeNotification) == true) {		
 			BrowserActions.switchToIframe(driver, IframeNotification);
 			if (BrowserActions.isElementPresent(driver, btnCloseIframeNotification) == true) {
@@ -3727,7 +3727,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String selectAirlineBookNowInRT_E2E(String domain, String airlines) throws Exception {
 		closeINotificationAtTopSRP();
-		Thread.sleep(3000);
+		BrowserActions.nap(15);
 		String price = "";		
 		if (domain.equalsIgnoreCase("DOM")) {
 			// click book now based on Any or Preferred airlines
@@ -3979,6 +3979,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public String selectAirlineBookNowInOW_E2E(String domain, String airlines) throws Exception {
 		closeINotificationAtTopSRP();
+		BrowserActions.nap(15);
 		String price = null;
 		if (domain.equalsIgnoreCase("DOM")) {
 			// click book now based on Any or Preferred airlines
@@ -4050,7 +4051,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		if (wFlightResultGrid.size() != 0) {
 			index = Utils.getRandom(1, wFlightResultGrid.size());			
 		}
-		BrowserActions.nap(5);
+		BrowserActions.nap(15);
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
 						+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
 		BrowserActions.scrollToView(wBookNow, driver);
