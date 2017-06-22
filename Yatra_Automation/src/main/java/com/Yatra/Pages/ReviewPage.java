@@ -691,10 +691,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	public boolean fareChangeAlertPopUpAppear() throws Exception {
 		boolean status = false;		
 		if (altFareChange.isDisplayed()){
-			if (BrowserActions.isElementVisible(driver, txtFareSlashed)) {
+			if (BrowserActions.isElementVisible(driver, btnFareSlashedContune)) { //txtFareSlashed				
 				BrowserActions.clickOnElement(btnFareSlashedContune, driver, "Clicked on continue in Fare Slashed Alert Popup");
 				status = true;
-			} else if (BrowserActions.isElementVisible(driver, txtFareOops)) {
+			} else if (BrowserActions.isElementVisible(driver, btnFareOopsContune)) { //txtFareOops
 				BrowserActions.clickOnElement(btnFareOopsContune, driver,"Clicked on continue in Fare Oops Alert Popup");
 				status = true;
 			} else if (BrowserActions.isElementVisible(driver, altFareChange))

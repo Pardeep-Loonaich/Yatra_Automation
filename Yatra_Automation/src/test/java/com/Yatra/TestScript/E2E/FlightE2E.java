@@ -129,7 +129,7 @@ public class FlightE2E  extends BaseTest {
 			Log.message("Price in Search Result page: <b> "+ priceInSrp + "</b>");
 			ReviewPage reviewPage = new ReviewPage(driver);
 
-			Log.message("<br>");
+			BrowserActions.nap(20);
 			Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
 			//handle popup if displayed in Review page	
 			if (reviewPage.fareChangeAlertPopUpNotAppear() == false) {
@@ -210,6 +210,7 @@ public class FlightE2E  extends BaseTest {
 			BrowserActions.nap(3);
 			
 			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages
+			Log.message("Successfully reached Bank Portal page");
 			
 			/*String priceCitiPortal = paymentPage.getFlightPriceInBankPage();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "</b>");
@@ -287,7 +288,7 @@ public class FlightE2E  extends BaseTest {
 
 			ReviewPage reviewPage = new ReviewPage(driver);
 			Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
-			
+			BrowserActions.nap(20);
 			//handle popup if displayed in Review page	
 			if (reviewPage.fareChangeAlertPopUpNotAppear() == false) {
 				priceInSrp = reviewPage.fareChangeAlertPopUpAppear_E2E();
@@ -369,6 +370,7 @@ public class FlightE2E  extends BaseTest {
 			BrowserActions.nap(3);
 			
 			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages
+			Log.message("Successfully reached Bank Portal page");
 			
 			/*//String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
 			String priceCitiPortal = paymentPage.getFlightPriceInCitiNetBanke();
@@ -547,6 +549,7 @@ public class FlightE2E  extends BaseTest {
 			Log.message("15.Clicked On Pay Now!");
 
 			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages
+			Log.message("Successfully reached Bank Portal page");
 			
 			/*String priceCitiPortal = paymentPage.getFlightPriceInBankPageE2E();
 			Log.message("Flight Price in  bank Portal: <b> " + priceCitiPortal + "<b>");
@@ -624,7 +627,7 @@ public class FlightE2E  extends BaseTest {
 
 			ReviewPage reviewPage = new ReviewPage(driver);
 			Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
-			
+			BrowserActions.nap(20);
 			//handle popup if displayed in Review page	
 			if (reviewPage.fareChangeAlertPopUpNotAppear() == false) {
 				priceInSrp = reviewPage.fareChangeAlertPopUpAppear_E2E();
@@ -706,7 +709,8 @@ public class FlightE2E  extends BaseTest {
 			BrowserActions.nap(3);
 			
 			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages			
-		
+			Log.message("Successfully reached Bank Portal page");
+			
 			/*//String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
 			String priceCitiPortal = paymentPage.getFlightPriceInCitiNetBanke();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "<b>");
@@ -779,6 +783,7 @@ public class FlightE2E  extends BaseTest {
 
 			ReviewPage reviewPage = new ReviewPage(driver);
 			Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
+			BrowserActions.nap(20);
 			//handle popup if displayed in Review page	
 			if (reviewPage.fareChangeAlertPopUpNotAppear() == false) {
 				priceInSrp = reviewPage.fareChangeAlertPopUpAppear_E2E();
