@@ -663,12 +663,6 @@ public class BrowserActions {
 
 		}
 		driver.switchTo().defaultContent();
-
-
-		
-		driver.switchTo().defaultContent();
-
-
 	}
 	
 	
