@@ -23,7 +23,7 @@ import com.Yatra.Utils.Utils;
  * Review page is used to create all page related action functions
  *  
  */
-
+@SuppressWarnings("unused")
 public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	private String appURL;
@@ -192,6 +192,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	@FindBy(css = "button[ng-click='continueSameFlight();']")
 	WebElement ContinueInFarePopUp;
+	
+	@FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
+	private WebElement moduleFareRules;
 
 	/**********************************
 	 * WebElements of Yatra ReviewPage - Ends ****************************

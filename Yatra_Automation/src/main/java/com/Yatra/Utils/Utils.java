@@ -6,7 +6,6 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
@@ -17,24 +16,12 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 
-import edu.umass.cs.benchlab.har.HarEntry;
-import edu.umass.cs.benchlab.har.HarPage;
-import edu.umass.cs.benchlab.har.HarBrowser;
-import edu.umass.cs.benchlab.har.HarEntries;
-import edu.umass.cs.benchlab.har.HarLog;
-import edu.umass.cs.benchlab.har.ISO8601DateFormatter;
-
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
 import org.testng.SkipException;
 import org.openqa.selenium.JavascriptExecutor;
-
-import com.google.gson.JsonParseException;
-
-import edu.umass.cs.benchlab.har.tools.HarFileReader;
-import edu.umass.cs.benchlab.har.tools.HarFileWriter;
 
 
 

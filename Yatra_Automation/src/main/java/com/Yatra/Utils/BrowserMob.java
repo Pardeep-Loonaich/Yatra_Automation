@@ -20,6 +20,7 @@ import net.lightbody.bmp.proxy.CaptureType;
  * @author harveer.singh
  *
  */
+@SuppressWarnings("unused")
 public class BrowserMob
 
 {
