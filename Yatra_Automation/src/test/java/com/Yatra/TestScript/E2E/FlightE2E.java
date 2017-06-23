@@ -57,7 +57,7 @@ public class FlightE2E  extends BaseTest {
 	}
 
 	@Test(description = "DOM_OW_Flow", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_E2E_001(HashMap<String, String> testData) throws Exception {
+	public void Dom_Oneway_Flow(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -233,7 +233,7 @@ public class FlightE2E  extends BaseTest {
 	}
 
 	@Test(description = "DOM_RT_Flow", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_E2E_002(HashMap<String, String> testData) throws Exception {
+	public void Dom_Return_Flow(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -398,7 +398,7 @@ public class FlightE2E  extends BaseTest {
 	}
 
 	@Test(description = "INTL_OW_Flow_E2E", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_E2E_003(HashMap<String, String> testData) throws Exception {
+	public void Int_Oneway_Flow(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -576,7 +576,7 @@ public class FlightE2E  extends BaseTest {
 	}
 
 	@Test(description = "INTL_RT_Flow", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_E2E_004(HashMap<String, String> testData) throws Exception {
+	public void Int_Return_Flow(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -740,7 +740,7 @@ public class FlightE2E  extends BaseTest {
 	}
 
 	@Test(description = "DOM_OW_Pricing", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_E2E_005(HashMap<String, String> testData) throws Exception {
+	public void Dom_Oneway_Pricing(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");

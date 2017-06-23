@@ -56,18 +56,19 @@ public class EmailSender {
 	public void sendHtmlEmail() throws AddressException,MessagingException, IOException 
 	{
 		String  Email_BODY_TEXT = "Hi Team,<br><br>"
-				+ "TestCase <b>'"+testCaseId+"'</b> has been failed, please find the details below:"
-				+ "<br><br>Current Page URL: <b><font color=blue>"+sCurrentPageURL+"</font></b>"
+				+ "Please find test failure details.<br><br>"
+				+ "TestCase: '"+testCaseId+""
+				+ "<br><br>Current Page URL: <font color=blue>"+sCurrentPageURL+"</font>"
 				+ "<br>"
 				+ "<br>"
 				+ "<br>Pricing URL: <font color=blue>"+ReviewPage.getPricingURL()+"</font>"
 				+ "<br>"
 				+ "<br>"
-				+ "Note:- Please find screenshot in Attachment. "
+				+ "Note:- Please refer attached screeshot."
 				+ "<br>"
 				+ "<br>"
-				+ "Thanks & Regards<br>"
-				+ "Automation Team"				
+				+ "Thanks!<br>"
+				+ "Team Automation"				
 				+ "<font color=red></font>";
 
 		String toAddress=propReader.getProperty("toAddress");

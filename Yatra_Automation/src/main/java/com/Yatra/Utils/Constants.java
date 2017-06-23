@@ -13,7 +13,7 @@ public class Constants {
 	public static final String C_MULTICITY = "MULTICITY";
 	public static final String C_EXPLORE = "EXPLORE";
 	public static final int Home_Page_Load_Time=10;
-	public static final int Search_Result_Page_Load_Time=20;
+	public static final int Search_Result_Page_Load_Time=30;
 	
 	// '>>> Flights Passengers class types
 	public static final String C_ECONOMY = "Economy";
