@@ -1616,7 +1616,7 @@ public class Train {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2967,7 +2967,7 @@ public class Train {
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}

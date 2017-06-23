@@ -9,20 +9,19 @@
 	<parameter name="devicePort" value="4444" />
 
 	<parameter name="webSite" value="https://www.yatra.com/" />
-	<parameter name="browserName" value="firefox_windows" />
+	<parameter name="browserName" value="Chrome_windows" />
 
 	<test name="Train" thread-count="1" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.Trains.Train">
 			 <methods>
-    	<!-- <include name="TC_Yatra_Train_048"></include>
-		     <include name="TC_Yatra_Train_024"></include>
-			 <include name="TC_Yatra_Train_026"></include>
-			 <include name="TC_Yatra_Train_050"></include>
-			 <include name="TC_Yatra_Train_051"></include>
-			 <include name="TC_Yatra_Train_052"></include>
-			 <include name="TC_Yatra_Train_053"></include>
-			 <include name="TC_Yatra_Train_046"></include>  -->
+    		<!-- <include name="TC_Yatra_Train_051"></include>
+		      <include name="TC_Yatra_Train_033"></include>
+			 <include name="TC_Yatra_Train_034"></include>
+			 <include name="TC_Yatra_Train_042"></include>
+			 <include name="TC_Yatra_Train_048"></include>
+			 <include name="TC_Yatra_Train_049"></include>
+			 <include name="TC_Yatra_Train_051"></include> -->
 			</methods>	
 			</class>
 		</classes>

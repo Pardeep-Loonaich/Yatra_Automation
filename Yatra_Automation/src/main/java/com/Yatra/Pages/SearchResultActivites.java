@@ -38,7 +38,7 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	@FindBy(css = "p[class='new-gray-button fl small link-button hidden-md modify-btn eventTrackable']")
 	private WebElement btnModifySearch;
 
-	@FindBy(css = "div[class='noResultsTxt']")
+	@FindBy(css = "div[class='noMatchRes']>p")
 	private WebElement txtNoResultFound;
 	
 	//no-activity-tip

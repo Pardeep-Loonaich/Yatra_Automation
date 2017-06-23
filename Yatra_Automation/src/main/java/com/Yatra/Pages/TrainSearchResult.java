@@ -375,7 +375,9 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		else if(broswer.equalsIgnoreCase("Chorme_windows")){
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
 		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
-
+	}else{
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
 	}
 	}
 	/**

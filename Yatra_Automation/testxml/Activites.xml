@@ -18,11 +18,10 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Activities.ActivitiesTest">
 			 <methods>
-			 <!-- <include name="TC_Yatra_Activities_024"></include>
+			<!--  <include name="TC_Yatra_Activities_005"></include> 
+			  <include name="TC_Yatra_Activities_026"></include>
 			 <include name="TC_Yatra_Activities_030"></include>
-			 <include name="TC_Yatra_Activities_021"></include>
-			 <include name="TC_Yatra_Activities_033"></include>
-			 <include name="TC_Yatra_Activities_037"></include>
+			 <include name="TC_Yatra_Activities_036"></include>
 			 <include name="TC_Yatra_Activities_040"></include>  -->
 			 </methods>
 			</class>          

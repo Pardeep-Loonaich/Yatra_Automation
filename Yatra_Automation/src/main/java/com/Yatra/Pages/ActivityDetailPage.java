@@ -260,6 +260,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 */
 	public void clickOnCheckAvailability() throws Exception {
 		Utils.waitForPageLoad(driver);
+		Thread.sleep(4000);
 		BrowserActions.clickOnElement(btnCheckAvailability, driver, "Click On Check Availability Button");
 	}
 	/**
