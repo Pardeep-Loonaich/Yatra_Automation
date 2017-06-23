@@ -695,12 +695,14 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 
 	@FindBy(css = "div[class='recent-iternary-detail'] div[class='place jsHideonSmallTab withFlightPlace']")
 	private WebElement txtResentSearchDetails;
-	
+
 	@FindBy(css = "#fare-selSum")
 	private WebElement txtFlightFareRT_SRP;
-	
+
 	@FindBy(css = "div[class='recent-iternary-detail']")
 	private WebElement cityNameInRecentSearchPopUp;
+	@FindBy(css="div#progressbar")
+	private WebElement progressBar;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Search Page - Ends ****************************
@@ -1761,7 +1763,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		List<String> airlineNamesInMatrix = new ArrayList<String>();
 		for (int i = 1; i < lnkAirlineMatrix.size(); i++) {
 			WebElement airlineNamesDetails = driver.findElement(By.cssSelector("ul[class='matrix-slide-list tabs matrix-ul'] li:nth-child(" + i
-							+ ") p[class='matrix-label uprcse']"));
+					+ ") p[class='matrix-label uprcse']"));
 			String airlineNames = airlineNamesDetails.getText().toString().trim();
 			airlineNamesInMatrix.add(airlineNames);
 		}
@@ -1779,7 +1781,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		boolean status = false;
 		for (int i = 1; i < lnkAirlineMatrix.size(); i++) {
 			WebElement airlineNamesDetails = driver.findElement(By.cssSelector("ul[class='matrix-slide-list tabs matrix-ul'] li:nth-child(" + i
-							+ ") p[class='matrix-airline-logo']"));
+					+ ") p[class='matrix-airline-logo']"));
 			if (airlineNamesDetails.isDisplayed()) {
 				status = true;
 			} else {
@@ -2455,7 +2457,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public void clickOnBookNowInDOM_INTL(int index) throws Exception {
 		BrowserActions.nap(5);
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
-						+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
+				+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button - INTL");
@@ -2815,9 +2817,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public void clickOnBookNowInRT(int onwardFlight, int returnFlight) throws Exception {
 		WebElement onwardflight = driver.findElement(By.xpath("//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem']["
-						+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
+				+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
 		WebElement returnflight = driver.findElement(By.xpath("//div[@id='resultList_1']//div[@class='js-flightRow js-flightItem']["
-						+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
+				+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
 		BrowserActions.scrollToView(onwardflight, driver);
 		BrowserActions.clickOnElement(onwardflight, driver, "To select Flight from one list.");
 		BrowserActions.scrollToView(returnflight, driver);
@@ -2836,7 +2838,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public void clickOnPrefferedFlightsBookNowInOW(int index) throws Exception {
 		BrowserActions.nap(3);
 		WebElement prefferedFlightBookNow = driver.findElement(By.xpath("(//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem'][" + index
-						+ "])//p[@class='new-blue-button fr book-button js-bookNow relative tc']"));
+				+ "])//p[@class='new-blue-button fr book-button js-bookNow relative tc']"));
 		BrowserActions.scrollToView(prefferedFlightBookNow, driver);
 		BrowserActions.nap(3);
 		BrowserActions.clickOnElement(prefferedFlightBookNow, driver, "To click on Book now button-DOM");
@@ -3713,7 +3715,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		return sPram_Values;
 	}
-	
+
 	/**
 	 * To click on 'Book Now' button in Round Trip for both DOM+INTL Any and Preferred
 	 * flights based on filter values
@@ -3762,7 +3764,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Log.event("Successfully clicked Book Now in SRP");
 		return price;
 	}
-		
+
 	/**
 	 * to click on 'Book Now' button in Round Trip for Domestic Preferred flights
 	 * 
@@ -3770,7 +3772,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @return
 	 * @throws Exception
 	 */
-/*	public String clickOnBookNowInDOMRT_E2E(int onwardFlight, int returnFlight) throws Exception {
+	/*	public String clickOnBookNowInDOMRT_E2E(int onwardFlight, int returnFlight) throws Exception {
 		WebElement onwardflight = driver.findElement(By.xpath("//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem']["
 						+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
 		WebElement returnflight = driver.findElement(By.xpath("//div[@id='resultList_1']//div[@class='js-flightRow js-flightItem']["
@@ -3785,7 +3787,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.clickOnElement(btnBookNowRoundTrip, driver,	"Click on Book Now for RoundTrip for Domestic Preferred flights");
 		return flightPrice;
 	}*/
-	
+
 	/**
 	 * to click on 'Book Now' button in RT for INTL flights
 	 * 
@@ -3796,7 +3798,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public String clickOnBookNowINTLRT_E2E(int index) throws Exception {
 		BrowserActions.nap(5);
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
-						+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
+				+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.nap(2);
 		WebElement wflightPrice = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
@@ -3806,9 +3808,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button - INTL");
 		return price_final;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * to click on Book now button in One Way for INTL flights
 	 * 
@@ -3830,7 +3832,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.clickOnElement(wBookNow, driver, "To click on Book now button - INTL");
 		return flightPrice;
 	}*/
-	
+
 	/**
 	 * @author Narayana
 	 * @Description: to verify parameters in URL for MultiCity	
@@ -3897,9 +3899,9 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		return sPram_Values;
 	}
-	
-	
-	
+
+
+
 	/* * to click on 'Book Now' button in RT for INTL flights
 	 * 
 	 * @param index
@@ -3914,7 +3916,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		BrowserActions.nap(5);
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
-						+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
+				+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		BrowserActions.nap(2);
 		WebElement wflightPrice = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
@@ -3925,7 +3927,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Log.message("Successfully selected Random flight in SRP Grid Result, Selected flight is: <b>"+ index + "</b>");
 		return price_final;
 	}
-	
+
 	/**
 	 * to click on 'Book Now' button in Round Trip for Domestic Preferred flights
 	 * 
@@ -3940,17 +3942,17 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			onwardFlight = Utils.getRandom(1, wOnwardFlight.size());
 			System.out.println(onwardFlight);			
 		}
-		
+
 		List<WebElement> wReturnFlight = driver.findElements(By.xpath("//div[@id='resultList_1']//div[@class='js-flightRow js-flightItem']"));
 		if (wReturnFlight.size() != 0) {
 			returnFlight = Utils.getRandom(1, wReturnFlight.size());
 			System.out.println(returnFlight);
 		}
-		
+
 		WebElement onwardflight = driver.findElement(By.xpath("//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem']["
-						+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
+				+ onwardFlight + "]//p[@class='new-blue-button fr book-button']"));
 		WebElement returnflight = driver.findElement(By.xpath("//div[@id='resultList_1']//div[@class='js-flightRow js-flightItem']["
-						+ returnFlight + "]//p[@class='new-blue-button fr book-button']"));
+				+ returnFlight + "]//p[@class='new-blue-button fr book-button']"));
 		BrowserActions.scrollToView(onwardflight, driver);
 		BrowserActions.clickOnElement(onwardflight, driver, "To select Flight from one list.");
 		Thread.sleep(5000);
@@ -3963,7 +3965,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Log.message("Successfully selected Random flight in SRP Grid Result, Selected Onward and Return flight are: <b>["+ onwardFlight+ " ," + returnFlight + "]</b>");
 		return flightPrice;
 	}
-	
+
 	/**
 	 * To click on Book now button in One Way for Domestic Any and Preferred
 	 * flights based on filter values
@@ -4025,7 +4027,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		BrowserActions.nap(5);			
 		WebElement prefferedFlightBookNow = driver.findElement(By.xpath("(//div[@id='resultList_0']//div[@class='js-flightRow js-flightItem'][" + index
-						+ "])//p[@class='new-blue-button fr book-button js-bookNow relative tc']"));
+				+ "])//p[@class='new-blue-button fr book-button js-bookNow relative tc']"));
 		BrowserActions.scrollToView(prefferedFlightBookNow, driver);
 		BrowserActions.nap(3);
 		WebElement price1 = driver.findElement(By.cssSelector("div[data-gaecposition='" + index + "'] label"));
@@ -4036,7 +4038,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Log.message("Successfully selected Random flight in SRP Grid Result, Selected flight is: <b>"+ index + "</b>");
 		return price;
 	}
-	
+
 	/**
 	 * to click on Book now button in One Way for INTL flights
 	 * 
@@ -4053,7 +4055,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		}
 		BrowserActions.nap(15);
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["
-						+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
+				+ index + "]//p[@class='new-blue-button .js-bookNow book-btn relative tc']"));
 		BrowserActions.scrollToView(wBookNow, driver);
 		WebElement wflightPrice = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["+index+"]//p[@title='Fare Summary']"));
 		String flightPrice = BrowserActions.getText(driver, wflightPrice, "SRP Page Flight fare");
@@ -4063,8 +4065,16 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		Log.message("Successfully selected Random flight in SRP Grid Result, Selected flight is: <b>"+ index + "</b>");
 		return price;
 	}
-	
+
+	public boolean waitFlightSearchResultPageToLoad()
+	{
+		Utils.waitForElement(driver, progressBar, Constants.Search_Result_Page_Load_Time);
+
+		return BrowserActions.elementAttributeContains(progressBar, "style", "none");
+
+	}
+
 	// *******************************End of SRP Functions******************************/
-	
+
 } // SearchResult
 

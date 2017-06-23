@@ -506,18 +506,18 @@ public class BrowserActions {
 					TimeUnit.MILLISECONDS).ignoring(
 							NoSuchElementException.class,
 							StaleElementReferenceException.class)
-					.withMessage("Couldn't find " + locator))
-					.until(ExpectedConditions
-							.visibilityOfAllElementsLocatedBy(By.xpath(locator)));
+							.withMessage("Couldn't find " + locator))
+							.until(ExpectedConditions
+									.visibilityOfAllElementsLocatedBy(By.xpath(locator)));
 		} else {
 			elements = (new WebDriverWait(driver, 10).pollingEvery(500,
 					TimeUnit.MILLISECONDS).ignoring(
 							NoSuchElementException.class,
 							StaleElementReferenceException.class)
-					.withMessage("Couldn't find " + locator))
-					.until(ExpectedConditions
-							.visibilityOfAllElementsLocatedBy(By
-									.cssSelector(locator)));
+							.withMessage("Couldn't find " + locator))
+							.until(ExpectedConditions
+									.visibilityOfAllElementsLocatedBy(By
+											.cssSelector(locator)));
 		}
 		return elements;
 	}
@@ -536,17 +536,17 @@ public class BrowserActions {
 					TimeUnit.MILLISECONDS).ignoring(
 							NoSuchElementException.class,
 							StaleElementReferenceException.class)
-					.withMessage("Couldn't find " + locator))
-					.until(ExpectedConditions.visibilityOfElementLocated(By
-							.xpath(locator)));
+							.withMessage("Couldn't find " + locator))
+							.until(ExpectedConditions.visibilityOfElementLocated(By
+									.xpath(locator)));
 		} else {
 			element = (new WebDriverWait(driver, 10).pollingEvery(500,
 					TimeUnit.MILLISECONDS).ignoring(
 							NoSuchElementException.class,
 							StaleElementReferenceException.class)
-					.withMessage("Couldn't find " + locator))
-					.until(ExpectedConditions.visibilityOfElementLocated(By
-							.cssSelector(locator)));
+							.withMessage("Couldn't find " + locator))
+							.until(ExpectedConditions.visibilityOfElementLocated(By
+									.cssSelector(locator)));
 		}
 		return element;
 	}
@@ -618,26 +618,12 @@ public class BrowserActions {
 		driver.navigate().back();
 		Utils.waitForPageLoad(driver);
 	}
-
-	/*
-	 * public static boolean isRadioOrCheckBoxSelected(WebElement element){
-	 * if(element.getAttribute("class").contains("active")){ return true; }
-	 * 
-	 * if(null != element.getAttribute("checked")){ return true; }
-	 * 
-	 * for(WebElement childElement : element.findElements(By.xpath(".//*"))){
-	 * if(childElement.getAttribute("class").contains("active")){ return true; }
-	 * }
-	 * 
-	 * return false; }
-	 */
-
 	public static void selectDropdownByIndex(WebElement element) {
 		Select selectByIndex = new Select(element);
 		selectByIndex.selectByIndex(0);
 
 	}
-	
+
 	/**
 	 * @author harveer.singh
 	 * 
@@ -664,8 +650,8 @@ public class BrowserActions {
 		}
 		driver.switchTo().defaultContent();
 	}
-	
-	
+
+
 	/**
 	 * Description: iframe handling 
 	 * @param: driver- provide current driver instance.
@@ -673,11 +659,11 @@ public class BrowserActions {
 	 */
 	public static void switchToIframe(WebDriver driver, String sIframeNameOrId)
 	{
-		
+
 		driver.switchTo().frame(sIframeNameOrId);
 	}
-	
-	
+
+
 
 	/**
 	 * Description: iframe handling 
@@ -686,18 +672,18 @@ public class BrowserActions {
 	 */
 	public static void switchToIframe(WebDriver driver, WebElement sIframeNameOrId)
 	{
-		
+
 		driver.switchTo().frame(sIframeNameOrId);
 	}
-	
-	
-	
+
+
+
 	public static void switchToDefault(WebDriver driver)
 	{
-		
+
 		driver.switchTo().defaultContent();
 	}
-	
+
 	/**
 	 * @author : Narayana
 	 * 
@@ -711,8 +697,8 @@ public class BrowserActions {
 		dataToBeReturn = JSDriver.executeScript(sJSCode).toString().trim();
 		return dataToBeReturn;
 	}
-	
-	
+
+
 	/**
 	 * @author : Narayana
 	 * @Description: verification on element present
@@ -776,11 +762,11 @@ public class BrowserActions {
 	 * @param attValue
 	 */
 	public void setAttribute(WebDriver driver,WebElement element, String attName, String attValue) {
-		
+
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", 
-                element, attName, attValue);
-    }
+				element, attName, attValue);
+	}
 	/**
 	 * @author Narayana
 	 * @Description: to set element Attribute value
@@ -800,18 +786,45 @@ public class BrowserActions {
 			throw new Exception(elementDescription + " not found in page!!");
 		}
 	}
-	
+
 	/**
 	 * @Description: to select by value
 	 * @param:
 	 */
-public static void selectByValue(WebDriver driver,WebElement element, String sValue)
-{
-	
-	Utils.waitForElement(driver, element);
-	Select selct=new Select(element);
-	selct.selectByVisibleText(sValue);
-	
+	public static void selectByValue(WebDriver driver,WebElement element, String sValue)
+	{
+
+		Utils.waitForElement(driver, element);
+		Select selct=new Select(element);
+		selct.selectByVisibleText(sValue);
+
 	}
 
+	/**
+	 * 
+	 * @param element
+	 * @param sAttributeName: attribute from element
+	 * @param sValue: value to verify
+	 * @return boolean
+	 */
+	public static boolean elementAttributeContains(WebElement element, String sAttributeName,String sValue)
+	{
+		int counter=10;
+		boolean bStatus=false;
+		while(counter>0)
+		{
+			String strValue=element.getAttribute(sAttributeName).trim();
+			if(strValue.contains(sValue))
+			{
+				bStatus=true;
+				break;
+			}
+			else
+			{
+				counter--;//
+			}
+
+		}
+		return bStatus;
+	}
 }// BrowserActions page
