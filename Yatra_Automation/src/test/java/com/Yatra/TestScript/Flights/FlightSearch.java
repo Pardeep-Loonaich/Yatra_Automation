@@ -5163,8 +5163,8 @@ public class FlightSearch extends BaseTest{
 
 			paymentPage.clickOnPayNow_PaymentPage();
 			Log.message("11.Click On Pay Now!");
-			String ErrorMsg = paymentPage.getTextErrorMessage();
-
+			String ErrorMsg = paymentPage.getTextErrorMessage();			
+			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Failed payment flow with Credit card (flight type, travel type, booking class of your choice)");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("popUpInvalidCardNumber"), paymentPage),
@@ -6140,9 +6140,11 @@ public class FlightSearch extends BaseTest{
 		try {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
-
+			BrowserActions.nap(2);
+			
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully selected OneWay Flight Search Fields!");
 

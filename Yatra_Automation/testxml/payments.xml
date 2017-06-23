@@ -14,12 +14,12 @@
 	<parameter name="webSite" value="https://www.yatra.com/" />
 	<test name="Payment" thread-count="1" parallel="true">
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
-			<classes>
-			<class name="com.Yatra.TestScript.Payment.PaymentTest"> </class>		
-			<!-- <methods>
-			<include name="TC_Yatra_Flight_088"></include>
-			</methods>	 -->
+		<classes>
+			<class name="com.Yatra.TestScript.Payment.PaymentTest">
+				<!-- <methods>
+					<include name="TC_Yatra_Payment_004"></include>
+				</methods> -->
+			</class>
 		</classes>
-	
 	</test>
 </suite>

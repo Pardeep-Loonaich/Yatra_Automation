@@ -23,7 +23,7 @@ import com.Yatra.Utils.Utils;
  * Review page is used to create all page related action functions
  *  
  */
-
+@SuppressWarnings("unused")
 public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	private String appURL;
@@ -192,6 +192,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	@FindBy(css = "button[ng-click='continueSameFlight();']")
 	WebElement ContinueInFarePopUp;
+	
+	@FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
+	private WebElement moduleFareRules;
 
 	/**********************************
 	 * WebElements of Yatra ReviewPage - Ends ****************************
@@ -691,10 +694,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	public boolean fareChangeAlertPopUpAppear() throws Exception {
 		boolean status = false;		
 		if (altFareChange.isDisplayed()){
-			if (BrowserActions.isElementVisible(driver, txtFareSlashed)) {
+			if (BrowserActions.isElementVisible(driver, btnFareSlashedContune)) { //txtFareSlashed				
 				BrowserActions.clickOnElement(btnFareSlashedContune, driver, "Clicked on continue in Fare Slashed Alert Popup");
 				status = true;
-			} else if (BrowserActions.isElementVisible(driver, txtFareOops)) {
+			} else if (BrowserActions.isElementVisible(driver, btnFareOopsContune)) { //txtFareOops
 				BrowserActions.clickOnElement(btnFareOopsContune, driver,"Clicked on continue in Fare Oops Alert Popup");
 				status = true;
 			} else if (BrowserActions.isElementVisible(driver, altFareChange))

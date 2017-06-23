@@ -7,11 +7,15 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="webSite" value="https://www.yatra.com/"/>
+	<parameter name="webSite" value="https://www.yatra.com/" />
 	<test name="Flight Search on chrome" thread-count="1" parallel="true">
 		<parameter name="browserName" value="chrome_windows" />
-			<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightSearch">		
+		<classes>
+			<class name="com.Yatra.TestScript.Flights.FlightSearch">
+				<!-- <methods>
+					<include name="TC_Yatra_Flight_105"></include>
+					<include name="TC_Yatra_Flight_129"></include>
+				</methods> -->
 			</class>
 		</classes>
 	</test>

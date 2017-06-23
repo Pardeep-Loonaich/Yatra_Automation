@@ -611,8 +611,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	public void clickOnPayNow_PaymentPage() throws Exception {
 		BrowserActions.scrollToView(btnPayNow, driver);
 		BrowserActions.javascriptClick(btnPayNow, driver, "Pay Now");
-		Utils.waitForPageLoad(driver);
-		//BrowserActions.nap(30);
+		Utils.waitForPageLoad(driver);	
 	}
 
 
@@ -633,6 +632,7 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 * @throws Exception
 	 */
 	public void enterDebitCardDetails(String cardNumber, String cardCVV) throws Exception {
+		BrowserActions.nap(10);
 		String randomName = RandomStringUtils.randomAlphabetic(7).toLowerCase();
 		BrowserActions.typeOnTextField(debitCardNumber, cardNumber, driver, "Debit card Number");
 		BrowserActions.typeOnTextField(debitCardName, randomName, driver, "Debit card Name");
@@ -861,27 +861,23 @@ public class PaymentPage extends LoadableComponent<PaymentPage> {
 	 */
 
 	public void selectPaymentType(String PaymentType) throws Exception {
-		BrowserActions.nap(5);
+		BrowserActions.nap(8);
 		List<WebElement> lstElement = paymentType;
-		if(PaymentType.equals("ezeClick")||PaymentType.equals("Reward Points")){
+		if (PaymentType.equals("ezeClick") || PaymentType.equals("Reward Points")) {
 			BrowserActions.scrollToViewElement(lnkOtherPayment, driver);
 			BrowserActions.clickOnElement(lnkOtherPayment, driver, "list elements");
 
 			for (WebElement ele : otherPaymentType) {
-				if (ele.findElement(By.cssSelector("a")).getText().equals(PaymentType)) 
-				{
+				if (ele.findElement(By.cssSelector("a")).getText().equals(PaymentType)) {
 					BrowserActions.scrollToViewElement(ele.findElement(By.cssSelector("a")), driver);
-					BrowserActions.clickOnElement(ele.findElement(By.cssSelector("a")), driver, "list elements in others");
+					BrowserActions.clickOnElement(ele.findElement(By.cssSelector("a")), driver,	"list elements in others");
 					break;
 				}
 			}
-		}
-
-		else{
+		} else {
 			for (WebElement e : lstElement) {
-
 				if (e.findElement(By.cssSelector("a")).getText().equals(PaymentType)) {
-					//findElement is required here
+					// findElement is required here
 					BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("a")), driver);
 					BrowserActions.clickOnElement(e.findElement(By.cssSelector("a")), driver, "list elements");
 					break;

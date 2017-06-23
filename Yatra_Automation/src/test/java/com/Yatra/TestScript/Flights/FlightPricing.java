@@ -1221,7 +1221,7 @@ public class FlightPricing extends BaseTest{
 			Log.message("8. Successfully clicked 'Promo' DropDown");
 
 			// step: selected Second 'Promotion' from the DropDown
-			reviewPage.selectPromoByIndex(2);
+			reviewPage.selectPromoByIndex(1);
 			Log.message("9. Successfully Selected second 'Promotion' from the DropDown");
 			Thread.sleep(2000);
 			String SecondPromoDiscount = reviewPage.getTextPromotinalMessage();
