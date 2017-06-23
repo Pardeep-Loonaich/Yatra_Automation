@@ -79,13 +79,13 @@ public class FlightE2E  extends BaseTest {
 		try {
 			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-			
 			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
+			Log.assertThat(homePage.isHomePageLoaded(),
+					"<b>Actual Result:</b> Homepage is loaded within 10 second and Booking Engine is display",
+					"<b>Actual Result:</b> Homepage is not loaded within 10 second and Booking Engine is not display", driver);
+
+			Log.message("1. Navigated to 'Yatra' Home Page!");
 			BrowserActions.nap(4);
-			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("dvSearchEngine"), homePage),
-					"<b>Actual Result:</b> Homepage is loaded in 10 second and Booking Engine is display",
-					"<b>Actual Result:</b> Homepage is not loaded in 10 second and Booking Engine is display", driver);
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
@@ -115,7 +115,7 @@ public class FlightE2E  extends BaseTest {
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
-			
+
 			Log.message("<b>Expected Result:</b> Date strip should display above result");
 			BrowserActions.nap(4);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
@@ -125,7 +125,7 @@ public class FlightE2E  extends BaseTest {
 			// step: Click On Book Now Button with specific airlines			
 			String priceInSrp = searchResult.selectAirlineBookNowInOW_E2E(domain, airlines);
 			Log.message("9.Clicked On Book Now Button with specific airlines!");
-			
+
 			Log.message("Price in Search Result page: <b> "+ priceInSrp + "</b>");
 			ReviewPage reviewPage = new ReviewPage(driver);
 
@@ -139,7 +139,7 @@ public class FlightE2E  extends BaseTest {
 			} else {
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear", driver);
 			}
-						
+
 			Log.message("<b>Expected Result:</b> Promo box should display");
 			BrowserActions.nap(3);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
@@ -148,7 +148,7 @@ public class FlightE2E  extends BaseTest {
 
 			String priceInReviewPage = reviewPage.getTextTotalAmount();
 			Log.message("Price in Review page: <b> "+ priceInReviewPage + "</b>");
-			
+
 			Log.message("<b>Expected Result:</b> Total fare should be same as was on search result page");
 			Log.assertThat(priceInSrp.equalsIgnoreCase(priceInReviewPage),
 					"<b>Actual Result:</b> Total fare is same as was on search result page",
@@ -157,7 +157,7 @@ public class FlightE2E  extends BaseTest {
 			// step: Click On Continue Button
 			reviewPage.clickOnContinue();
 			Log.message("10.Clicked On Continue Button!");
-			
+
 			Log.message("<b>Expected Result:</b> Signin popup should display");
 			BrowserActions.nap(3);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("signInPopUp"), reviewPage),
@@ -172,7 +172,7 @@ public class FlightE2E  extends BaseTest {
 			BrowserActions.nap(3);
 			String priceInTraveller = travellerPage.getTextTotalAmount();
 			Log.message("Price in Traveller page: <b> "+ priceInReviewPage + "</b>");
-			
+
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on review page");
 			BrowserActions.nap(3);
 			Log.assertThat(priceInReviewPage.equalsIgnoreCase(priceInTraveller),
@@ -187,7 +187,7 @@ public class FlightE2E  extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("13.Clicked on 'Continue' button in Traveller Page!");
 
-			
+
 			String priceInPaymentPage = paymentPage.getFlightPriceInPaymentPage();
 			Log.message("Payment page without Convenience Fee Flight fare: <b>" + priceInPaymentPage + "<b>");
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on Traveller page");
@@ -195,11 +195,11 @@ public class FlightE2E  extends BaseTest {
 			Log.assertThat(priceInPaymentPage.equalsIgnoreCase(priceInTraveller),
 					"<b>Actual Result:</b> Total amount is same as was on Traveller page",
 					"<b>Actual Result:</b> Total amount is not same as was on Traveller page", driver);
-			
+
 			// step: Entered Credit card Details
 			paymentPage.enterCreditCardDetailsE2E(cardNumber);
 			Log.message("14.Entered Credit card Details!");
-			
+
 			String priceWithConvienceFee = paymentPage.getTextFromTotalAmountE2E();
 			Log.message("Price in Payment page with Convience Fee: <b> "+ priceWithConvienceFee+ "</b>");
 
@@ -208,10 +208,10 @@ public class FlightE2E  extends BaseTest {
 			Log.message("15.Clicked On Pay Now!");
 
 			BrowserActions.nap(3);
-			
+
 			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages
 			Log.message("Successfully reached Bank Portal page");
-			
+
 			/*String priceCitiPortal = paymentPage.getFlightPriceInBankPage();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "</b>");
 
@@ -255,15 +255,16 @@ public class FlightE2E  extends BaseTest {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
+
 			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-
 			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
+			Log.assertThat(homePage.isHomePageLoaded(),
+					"<b>Actual Result:</b> Homepage is loaded within 10 second and Booking Engine is display",
+					"<b>Actual Result:</b> Homepage is not loaded within 10 second and Booking Engine is not display", driver);
+
+			Log.message("1. Navigated to 'Yatra' Home Page!");
 			BrowserActions.nap(4);
-			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("dvSearchEngine"), homePage),
-					"<b>Actual Result:</b> Homepage is loaded in 10 second and Booking Engine is display",
-					"<b>Actual Result:</b> Homepage is not loaded in 10 second and Booking Engine is display", driver);
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
@@ -297,7 +298,7 @@ public class FlightE2E  extends BaseTest {
 			} else {
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear", driver);
 			}
-			
+
 			Log.message("<b>Expected Result:</b> Promo box should display");
 			BrowserActions.nap(2);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
@@ -314,7 +315,7 @@ public class FlightE2E  extends BaseTest {
 			// step: Click On Continue Button
 			reviewPage.clickOnContinue();
 			Log.message("6.Clicked On Continue Button!");
-			
+
 			Log.message("<b>Expected Result:</b> Signin popup should display");
 			BrowserActions.nap(2);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("signInPopUp"), reviewPage),
@@ -368,10 +369,10 @@ public class FlightE2E  extends BaseTest {
 			Log.message("12.Clicked On Pay Now!");
 
 			BrowserActions.nap(3);
-			
+
 			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages
 			Log.message("Successfully reached Bank Portal page");
-			
+
 			/*//String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
 			String priceCitiPortal = paymentPage.getFlightPriceInCitiNetBanke();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "<b>");
@@ -455,7 +456,7 @@ public class FlightE2E  extends BaseTest {
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
 			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
-			
+
 			Log.message("<b>Expected Result:</b> Date strip should display above result");
 			BrowserActions.nap(4);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
@@ -467,19 +468,20 @@ public class FlightE2E  extends BaseTest {
 			Log.message("9.Clicked On Book Now Button with specific airlines!");
 
 			Log.message("Price in Search Result page: <b> "+ priceInSrp + "<b>");
-			
+
 			ReviewPage reviewPage = new ReviewPage(driver).get();			
 			Log.message("<b>Expected Result:</b> Verify flight pricing should happen.Ignore price change and move forward");
-			
+
 			//handle popup if displayed in Review page	
 			if (reviewPage.fareChangeAlertPopUpNotAppear() == false) {
 				priceInSrp = reviewPage.fareChangeAlertPopUpAppear_E2E();
 				Log.message("Review Page Flight updated fare : <b>" + priceInSrp + "<b>");
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up appear and ignored price change and moved forward", driver);
+
 			} else {
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear", driver);
 			}			
-			
+
 			Log.message("<b>Expected Result:</b> Promo box should display");
 			BrowserActions.nap(3);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
@@ -535,11 +537,11 @@ public class FlightE2E  extends BaseTest {
 			Log.assertThat(priceInPaymentPage.equalsIgnoreCase(priceInTraveller),
 					"<b>Actual Result:</b> Total amount is same as was on Traveller page",
 					"<b>Actual Result:</b> Total amount is not same as was on Traveller page", driver);
-			
+
 			// step: Entered Credit card Details
 			paymentPage.enterCreditCardDetailsE2E(cardNumber);
 			Log.message("14.Entered Credit card Details!");
-			
+
 			String priceWithConvienceFee = paymentPage.getTextFromTotalAmountE2E();
 			Log.message("Price in Payment page with Convience Fee: <b> "+ priceWithConvienceFee + "<b>");
 
@@ -549,10 +551,10 @@ public class FlightE2E  extends BaseTest {
 
 			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages
 			Log.message("Successfully reached Bank Portal page");
-			
+
 			/*String priceCitiPortal = paymentPage.getFlightPriceInBankPageE2E();
 			Log.message("Flight Price in  bank Portal: <b> " + priceCitiPortal + "<b>");
-			
+
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Move to bank page and verify total payable amount should be same as showing on payment page");
 			BrowserActions.nap(3);
@@ -595,13 +597,13 @@ public class FlightE2E  extends BaseTest {
 		try {
 			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-			
 			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
+			Log.assertThat(homePage.isHomePageLoaded(),
+					"<b>Actual Result:</b> Homepage is loaded within 10 second and Booking Engine is display",
+					"<b>Actual Result:</b> Homepage is not loaded within 10 second and Booking Engine is not display", driver);
+
+			Log.message("1. Navigated to 'Yatra' Home Page!");
 			BrowserActions.nap(4);
-			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("dvSearchEngine"), homePage),
-					"<b>Actual Result:</b> Homepage is loaded in 10 second and Booking Engine is display",
-					"<b>Actual Result:</b> Homepage is not loaded in 10 second and Booking Engine is display", driver);
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
@@ -635,7 +637,7 @@ public class FlightE2E  extends BaseTest {
 			} else {
 				Log.message("<b>Actual Result:</b> Flight pricing Pop Up does not appear", driver);
 			}
-			
+
 			Log.message("<b>Expected Result:</b> Promo box should display");
 			BrowserActions.nap(2);
 			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("txtPromoCode"), reviewPage),
@@ -684,7 +686,7 @@ public class FlightE2E  extends BaseTest {
 
 			String priceInPaymentPage = paymentPage.getFlightPriceInPaymentPage();
 			Log.message("Payment page without Convenience Fee Flight fare: <b>" + priceInPaymentPage + "<b>");
-			
+
 			Log.message("<b>Expected Result:</b> Total amount should be same as was on Traveller page");
 			BrowserActions.nap(4);
 			Log.assertThat(priceInPaymentPage.equalsIgnoreCase(priceInTraveller),
@@ -706,10 +708,10 @@ public class FlightE2E  extends BaseTest {
 			paymentPage.clickOnPayNow();
 			Log.message("12.Clicked On Pay Now!");
 			BrowserActions.nap(3);
-			
+
 			//TODO: Commented code to take confirmation from Yatra team for Bank portal pages			
 			Log.message("Successfully reached Bank Portal page");
-			
+
 			/*//String priceCitiPortal = paymentPage.getFlightPriceInNetBankingPage();
 			String priceCitiPortal = paymentPage.getFlightPriceInCitiNetBanke();
 			Log.message("Bank Portal page Flight fare: <b>" + priceCitiPortal + "<b>");
@@ -747,16 +749,17 @@ public class FlightE2E  extends BaseTest {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step: Navigate to Home Page
+
+
+			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-
 			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
+			Log.assertThat(homePage.isHomePageLoaded(),
+					"<b>Actual Result:</b> Homepage is loaded within 10 second and Booking Engine is display",
+					"<b>Actual Result:</b> Homepage is not loaded within 10 second and Booking Engine is not display", driver);
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			// step: Navigate to Home Page
 			BrowserActions.nap(4);
-			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("dvSearchEngine"), homePage),
-					"<b>Actual Result:</b> Homepage is loaded in 10 second and Booking Engine is display",
-					"<b>Actual Result:</b> Homepage is not loaded in 10 second and Booking Engine is display", driver);
-
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
@@ -812,5 +815,5 @@ public class FlightE2E  extends BaseTest {
 			Log.endTestCase();
 		}
 	}
-	
+
 }// E2ETestCasesEnd

@@ -1462,6 +1462,17 @@ public class HomePage extends LoadableComponent<HomePage> {
 		} else {
 			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
 		}
-	}		
+	}
+	
+	/**
+	 * @Description: to verify search engine is loaded in specified time
+	 * @return
+	 */
+	public boolean isHomePageLoaded()
+	{
+
+	return Utils.waitForElement(driver, dvSearchEngine, Constants.Home_Page_Load_Time);
+		
+	}
 }// HomePage
 

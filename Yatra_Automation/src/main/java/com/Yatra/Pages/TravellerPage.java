@@ -1,7 +1,6 @@
 package com.Yatra.Pages;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,7 +12,6 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -21,6 +19,7 @@ import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
+@SuppressWarnings("unused")
 public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	private String appURL;
@@ -281,6 +280,7 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	 * @throws Exception
 	 */
 
+	@SuppressWarnings("static-access")
 	public String[] selectDOBDate(String[] DOB) throws Exception {
 		String[] DOBDates = new String[DOB.length] ;
 		for (int i = 0; i < DOB.length; i++) {
