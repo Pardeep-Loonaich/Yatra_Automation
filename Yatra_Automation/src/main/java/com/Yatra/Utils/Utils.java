@@ -513,7 +513,7 @@ public class Utils {
 
 	/**
 	 * @author harveer.singh
-	 * @param iDay: provide No of which you want to decrease/increase
+	 * @param iDay: provide No of day which you want to decrease/increase
 	 * 
 	 *              for current date: iDay should be 0 (Zero ) 
 	 *              for future date: iDay should be +ve (1,2,3,4 ..etc.)

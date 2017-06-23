@@ -8,6 +8,7 @@ package com.Yatra.TestScript.E2E;
 
 import java.util.Arrays;
 import java.util.HashMap;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
@@ -22,6 +23,7 @@ import com.Yatra.Pages.SearchResult;
 import com.Yatra.Pages.TravellerPage;
 import com.Yatra.TestScript.Common.BaseTest;
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.DataProviderUtils;
 import com.Yatra.Utils.EmailReport;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
@@ -55,7 +57,7 @@ public class FlightE2E  extends BaseTest {
 	}
 
 	@Test(description = "DOM_OW_Flow", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_E2E_001(HashMap<String, String> testData) throws Exception {
+	public void Dom_Oneway_Flow(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -79,10 +81,10 @@ public class FlightE2E  extends BaseTest {
 		try {
 			// step: Navigate to Yatra Home Page
 			homePage = new HomePage(driver, webSite).get();
-			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
+			Log.message("<b>Expected Result:</b> Homepage should loaded in "+Constants.Home_Page_Load_Time+" sec and Booking Engine Should display");
 			Log.assertThat(homePage.isHomePageLoaded(),
-					"<b>Actual Result:</b> Homepage is loaded within 10 second and Booking Engine is display",
-					"<b>Actual Result:</b> Homepage is not loaded within 10 second and Booking Engine is not display", driver);
+					"<b>Actual Result:</b> Homepage is loaded within "+Constants.Home_Page_Load_Time+" second and Booking Engine is display",
+					"<b>Actual Result:</b> Homepage is not loaded within "+Constants.Home_Page_Load_Time+" second and Booking Engine is not display", driver);
 
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 			BrowserActions.nap(4);
@@ -116,11 +118,11 @@ public class FlightE2E  extends BaseTest {
 			searchResult = homePage.clickBtnSearch();
 			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
 
-			Log.message("<b>Expected Result:</b> Date strip should display above result");
+			Log.message("<b>Expected Result:</b> Search result page should load within "+Constants.Search_Result_Page_Load_Time+" Sec");
 			BrowserActions.nap(4);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
-					"<b>Actual Result:</b> Date strip is displayed above result",
-					"<b>Actual Result:</b> Date strip is not displayed above result", driver);
+			Log.assertThat(searchResult.waitFlightSearchResultPageToLoad(),
+					"<b>Actual Result:</b> Page is Loaded within "+Constants.Search_Result_Page_Load_Time+" Sec",
+					"<b>Actual Result:</b> Page is not Loaded within "+Constants.Search_Result_Page_Load_Time+" Sec", driver);
 
 			// step: Click On Book Now Button with specific airlines			
 			String priceInSrp = searchResult.selectAirlineBookNowInOW_E2E(domain, airlines);
@@ -231,7 +233,7 @@ public class FlightE2E  extends BaseTest {
 	}
 
 	@Test(description = "DOM_RT_Flow", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_E2E_002(HashMap<String, String> testData) throws Exception {
+	public void Dom_Return_Flow(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -257,14 +259,15 @@ public class FlightE2E  extends BaseTest {
 		try {
 
 			// step: Navigate to Yatra Home Page
-			homePage = new HomePage(driver, webSite).get();
-			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
-			Log.assertThat(homePage.isHomePageLoaded(),
-					"<b>Actual Result:</b> Homepage is loaded within 10 second and Booking Engine is display",
-					"<b>Actual Result:</b> Homepage is not loaded within 10 second and Booking Engine is not display", driver);
+						homePage = new HomePage(driver, webSite).get();
+						Log.message("<b>Expected Result:</b> Homepage should loaded in "+Constants.Home_Page_Load_Time+" sec and Booking Engine Should display");
+						Log.assertThat(homePage.isHomePageLoaded(),
+								"<b>Actual Result:</b> Homepage is loaded within "+Constants.Home_Page_Load_Time+" second and Booking Engine is display",
+								"<b>Actual Result:</b> Homepage is not loaded within "+Constants.Home_Page_Load_Time+" second and Booking Engine is not display", driver);
 
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-			BrowserActions.nap(4);
+						Log.message("1. Navigated to 'Yatra' Home Page!");
+						BrowserActions.nap(4);
+
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
@@ -276,11 +279,13 @@ public class FlightE2E  extends BaseTest {
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("4.Clicked on 'Search' in Yatra Homepage");
-			BrowserActions.nap(30);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
-					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
-					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search", driver);
+			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
+
+			Log.message("<b>Expected Result:</b> Search result page should load within "+Constants.Search_Result_Page_Load_Time+" Sec");
+			BrowserActions.nap(4);
+			Log.assertThat(searchResult.waitFlightSearchResultPageToLoad(),
+					"<b>Actual Result:</b> Page is Loaded within "+Constants.Search_Result_Page_Load_Time+" Sec",
+					"<b>Actual Result:</b> Page is not Loaded within "+Constants.Search_Result_Page_Load_Time+" Sec", driver);
 
 			// step: Click On Book Now Button with specific airlines
 			String priceInSrp = searchResult.selectAirlineBookNowInRT_E2E(domain, airlines);
@@ -393,7 +398,7 @@ public class FlightE2E  extends BaseTest {
 	}
 
 	@Test(description = "INTL_OW_Flow_E2E", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_E2E_003(HashMap<String, String> testData) throws Exception {
+	public void Int_Oneway_Flow(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -419,14 +424,14 @@ public class FlightE2E  extends BaseTest {
 		Log.testCaseInfo(testData);
 		try {
 			// step: Navigate to Yatra Home Page
-			homePage = new HomePage(driver, webSite).get();
-			Log.message("1. Navigated to 'Yatra' Home Page!");
+						homePage = new HomePage(driver, webSite).get();
+						Log.message("<b>Expected Result:</b> Homepage should loaded in "+Constants.Home_Page_Load_Time+" sec and Booking Engine Should display");
+						Log.assertThat(homePage.isHomePageLoaded(),
+								"<b>Actual Result:</b> Homepage is loaded within "+Constants.Home_Page_Load_Time+" second and Booking Engine is display",
+								"<b>Actual Result:</b> Homepage is not loaded within "+Constants.Home_Page_Load_Time+" second and Booking Engine is not display", driver);
 
-			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
-			BrowserActions.nap(4);
-			Log.assertThat(homePage.elementLayer.verifyPageElements(Arrays.asList("dvSearchEngine"), homePage),
-					"<b>Actual Result:</b> Homepage is loaded in 10 second and Booking Engine is display",
-					"<b>Actual Result:</b> Homepage is not loaded in 10 second and Booking Engine is display", driver);
+						Log.message("1. Navigated to 'Yatra' Home Page!");
+						BrowserActions.nap(4);
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
@@ -457,11 +462,11 @@ public class FlightE2E  extends BaseTest {
 			searchResult = homePage.clickBtnSearch();
 			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
 
-			Log.message("<b>Expected Result:</b> Date strip should display above result");
+			Log.message("<b>Expected Result:</b> Search result page should load within "+Constants.Search_Result_Page_Load_Time+" Sec");
 			BrowserActions.nap(4);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
-					"<b>Actual Result:</b> Date strip is displayed above result",
-					"<b>Actual Result:</b> Date strip is not displayed above result", driver);
+			Log.assertThat(searchResult.waitFlightSearchResultPageToLoad(),
+					"<b>Actual Result:</b> Page is Loaded within "+Constants.Search_Result_Page_Load_Time+" Sec",
+					"<b>Actual Result:</b> Page is not Loaded within "+Constants.Search_Result_Page_Load_Time+" Sec", driver);
 
 			// step: Click On Book Now Button with specific airlines
 			String priceInSrp = searchResult.selectAirlineBookNowInOW_E2E(domain, airlines);
@@ -571,7 +576,7 @@ public class FlightE2E  extends BaseTest {
 	}
 
 	@Test(description = "INTL_RT_Flow", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_E2E_004(HashMap<String, String> testData) throws Exception {
+	public void Int_Return_Flow(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -596,14 +601,15 @@ public class FlightE2E  extends BaseTest {
 		Log.testCaseInfo(testData);
 		try {
 			// step: Navigate to Yatra Home Page
-			homePage = new HomePage(driver, webSite).get();
-			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
-			Log.assertThat(homePage.isHomePageLoaded(),
-					"<b>Actual Result:</b> Homepage is loaded within 10 second and Booking Engine is display",
-					"<b>Actual Result:</b> Homepage is not loaded within 10 second and Booking Engine is not display", driver);
+						homePage = new HomePage(driver, webSite).get();
+						Log.message("<b>Expected Result:</b> Homepage should loaded in "+Constants.Home_Page_Load_Time+" sec and Booking Engine Should display");
+						Log.assertThat(homePage.isHomePageLoaded(),
+								"<b>Actual Result:</b> Homepage is loaded within "+Constants.Home_Page_Load_Time+" second and Booking Engine is display",
+								"<b>Actual Result:</b> Homepage is not loaded within "+Constants.Home_Page_Load_Time+" second and Booking Engine is not display", driver);
 
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-			BrowserActions.nap(4);
+						Log.message("1. Navigated to 'Yatra' Home Page!");
+						BrowserActions.nap(4);
+
 
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
@@ -615,11 +621,13 @@ public class FlightE2E  extends BaseTest {
 
 			// step: click 'Search' button in Yatra Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("4.Clicked on 'Search' in Yatra Homepage");
-			BrowserActions.nap(30);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("lnkAirlineMatrixStrip"), searchResult),
-					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
-					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search", driver);
+			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
+
+			Log.message("<b>Expected Result:</b> Search result page should load within "+Constants.Search_Result_Page_Load_Time+" Sec");
+			BrowserActions.nap(4);
+			Log.assertThat(searchResult.waitFlightSearchResultPageToLoad(),
+					"<b>Actual Result:</b> Page is Loaded within "+Constants.Search_Result_Page_Load_Time+" Sec",
+					"<b>Actual Result:</b> Page is not Loaded within "+Constants.Search_Result_Page_Load_Time+" Sec", driver);
 
 			// step: Click On Book Now Button with specific airlines
 			String priceInSrp = searchResult.selectAirlineBookNowInRT_E2E(domain, airlines);
@@ -732,7 +740,7 @@ public class FlightE2E  extends BaseTest {
 	}
 
 	@Test(description = "DOM_OW_Pricing", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_E2E_005(HashMap<String, String> testData) throws Exception {
+	public void Dom_Oneway_Pricing(HashMap<String, String> testData) throws Exception {
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -752,14 +760,15 @@ public class FlightE2E  extends BaseTest {
 
 
 			// step: Navigate to Yatra Home Page
-			homePage = new HomePage(driver, webSite).get();
-			Log.message("<b>Expected Result:</b> Homepage should loaded in 10 sec and Booking Engine Should display");
-			Log.assertThat(homePage.isHomePageLoaded(),
-					"<b>Actual Result:</b> Homepage is loaded within 10 second and Booking Engine is display",
-					"<b>Actual Result:</b> Homepage is not loaded within 10 second and Booking Engine is not display", driver);
-			Log.message("1. Navigated to 'Yatra' Home Page!");
-			// step: Navigate to Home Page
-			BrowserActions.nap(4);
+						homePage = new HomePage(driver, webSite).get();
+						Log.message("<b>Expected Result:</b> Homepage should loaded in "+Constants.Home_Page_Load_Time+" sec and Booking Engine Should display");
+						Log.assertThat(homePage.isHomePageLoaded(),
+								"<b>Actual Result:</b> Homepage is loaded within "+Constants.Home_Page_Load_Time+" second and Booking Engine is display",
+								"<b>Actual Result:</b> Homepage is not loaded within "+Constants.Home_Page_Load_Time+" second and Booking Engine is not display", driver);
+
+						Log.message("1. Navigated to 'Yatra' Home Page!");
+						BrowserActions.nap(4);
+
 			// step: Select Trip Type
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page ");
@@ -770,13 +779,13 @@ public class FlightE2E  extends BaseTest {
 
 			// step: click 'Search' button in Home page
 			searchResult = homePage.clickBtnSearch();
-			Log.message("4.Successfully clicked 'Search' button in Yatra Homepage ");
+			Log.message("8.Successfully clicked 'Search' button in Yatra Homepage ");
 
-			Log.message("<b>Expected Result:</b> Date strip should display above result");
+			Log.message("<b>Expected Result:</b> Search result page should load within "+Constants.Search_Result_Page_Load_Time+" Sec");
 			BrowserActions.nap(4);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
-					"<b>Actual Result:</b> Date strip is displayed above result",
-					"<b>Actual Result:</b> Date strip is not displayed above result", driver);
+			Log.assertThat(searchResult.waitFlightSearchResultPageToLoad(),
+					"<b>Actual Result:</b> Page is Loaded within "+Constants.Search_Result_Page_Load_Time+" Sec",
+					"<b>Actual Result:</b> Page is not Loaded within "+Constants.Search_Result_Page_Load_Time+" Sec", driver);
 
 			// step: Click On Book Now Button with specific airlines			
 			String priceInSrp = searchResult.selectAirlineBookNowInOW_E2E(domain, airlines);

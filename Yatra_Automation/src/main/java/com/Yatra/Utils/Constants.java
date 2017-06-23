@@ -4,13 +4,20 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Constants {
+	
+	/**
+	 Page load time:
+	 */
+	public static final int Home_Page_Load_Time=10;
+	public static final int Search_Result_Page_Load_Time=30;
+	public static final int Bus_Search_Result_Page_Load_Time=30;
 
 	// >>> Flights Trip type
 	public static final String C_ONEWAY = "ONEWAY";
 	public static final String C_ROUNDTRIP = "ROUNDTRIP";
 	public static final String C_MULTICITY = "MULTICITY";
 	public static final String C_EXPLORE = "EXPLORE";
-	public static final int Home_Page_Load_Time=10;
+	
 	
 	// '>>> Flights Passengers class types
 	public static final String C_ECONOMY = "Economy";

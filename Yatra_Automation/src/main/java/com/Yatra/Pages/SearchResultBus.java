@@ -194,7 +194,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindBus))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindBus,Constants.Bus_Search_Result_Page_Load_Time))) {
 			Log.fail("SearchResultBus Page did not open up. Site might be down.", driver);
 			//Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 		}
