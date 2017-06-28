@@ -21,6 +21,7 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
+
 import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.BrowserType;
 import com.Yatra.Utils.Constants;
@@ -1572,12 +1573,43 @@ public class Fresco extends LoadableComponent<Fresco> {
 	@FindBy(css = "#BE_byop_arrival_city")
 	private WebElement txtDestination_FlightsAndHotels;
 	
+	@FindBy(css="li[id='userSignInStrip'] a[title='My Bookings']")
+	private WebElement lnkMyBookings;
 	
-	//*[@id='graphicalViewBtn']
-	//a[@class='orange-btn eventTrackable js-prodSpecEvtCat']
+	@FindBy(css="li[id='userSignInStrip'] a[title='Yatra For Corporates']")
+	private WebElement lnkCorporateLogin;
+	
+	@FindBy(css="li[id='userSignInStrip'] a[title='Yatra for Travel Agents']")
+	private WebElement lnkTravelAgent;
+	
+	@FindBy(css="li[id='userSignInStrip'] a[title='My eCash']")
+	private WebElement lnkMyECash;
+		
+	@FindBy(css = "#cutomerSupportNav")
+	private WebElement lnkSupport;
+	
+	@FindBy(css="li[id='cutomerSupportNav'] a[title='Make a Payment']")
+	private WebElement lnkMakePayment;
+	
+	@FindBy(css="li[id='cutomerSupportNav'] a[title='Contact Us']")
+	private WebElement lnkContactUS;
 
-	// ************************Fresco
-	// Functions*******************************************
+	@FindBy(css="li[id='cutomerSupportNav'] a[title='Flights Cancellation Charges']")
+	private WebElement lnkFlightsCancellationCharges;
+	
+	@FindBy(css="li[id='cutomerSupportNav'] a[title='Complete Booking']")
+	private WebElement lnkCompleteBooking;
+	
+	@FindBy(css="div[class='row boxSlider boxSliderYtSpcl'] a:nth-child(2)")
+	private WebElement lnkYatraSpecials;
+
+	@FindBy(css="div[id='galleryGrid'] article:nth-child(1) a[class='catg-content']")
+	private WebElement lnkPerfectHolidays;
+	
+	@FindBy(css="table[class='resultsScroll sorterBody'] tr:nth-child(1) td[class='price-right']")
+	private WebElement lnkTravelBudget;
+	
+	// **********************Fresco Functions*******************************************
 	/**
 	 * Getting the text from the Auto Suggestion Source city name
 	 * 
@@ -2010,4 +2042,129 @@ public class Fresco extends LoadableComponent<Fresco> {
 		Log.event("Cities Full Details : " + cityNames);		
 		return cityNames;
 	}
+	
+	/**
+	 * Navigate to My Booking Page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToMyBooking() throws Exception{
+		BrowserActions.mouseHover(driver, lnkMyaccount); 
+		BrowserActions.clickOnElement(lnkMyBookings, driver, "My Bookings ");			
+	}
+	
+	/**
+	 * Navigate to Yatra For Corporates page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToCorporateLogin() throws Exception{
+		BrowserActions.mouseHover(driver, lnkMyaccount); 
+		BrowserActions.clickOnElement(lnkCorporateLogin, driver, "Yatra For Corporates");		
+	}
+	
+	/**
+	 * Navigate to Yatra For Travel Agents page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToTravelAgent() throws Exception{
+		BrowserActions.mouseHover(driver, lnkMyaccount); 
+		BrowserActions.clickOnElement(lnkTravelAgent, driver, "Yatra for Travel Agents");			
+	}
+
+	/**
+	 * Navigate to eCash page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToeCash() throws Exception{
+		BrowserActions.mouseHover(driver, lnkMyaccount); 
+		BrowserActions.clickOnElement(lnkMyECash, driver, "My eCash");			
+	}
+	
+
+	/**
+	 * Navigate to Contact US page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToContactUS() throws Exception{
+		BrowserActions.mouseHover(driver, lnkSupport); 
+		BrowserActions.clickOnElement(lnkContactUS, driver, "ContactUS");		
+	}
+	
+	/**
+	 * Navigate to Make a payment page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToMakePayment() throws Exception{
+		BrowserActions.mouseHover(driver, lnkSupport); 
+		BrowserActions.clickOnElement(lnkMakePayment, driver, "Make a payment");		
+	}	
+	
+	/**
+	 * Navigate to Flights Cancellation Charges page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToFlightsCancellationCharges() throws Exception{
+		BrowserActions.mouseHover(driver, lnkSupport); 
+		BrowserActions.clickOnElement(lnkFlightsCancellationCharges, driver, "Flights Cancellation Charges");
+	}	
+	
+	/**
+	 * Navigate to Complete Bookings page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToCompleteBookings() throws Exception{
+		BrowserActions.mouseHover(driver, lnkSupport); 
+		BrowserActions.clickOnElement(lnkFlightsCancellationCharges, driver, "Complete Bookings");		
+	}	
+
+	/**
+	 * Navigate to Yatra specials page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToYatraSpecials() throws Exception{
+		BrowserActions.scrollToView(lnkYatraSpecials, driver);
+		BrowserActions.clickOnElement(lnkYatraSpecials, driver, "Yatra specials");			
+	}	
+
+	/**
+	 * Navigate to Perfect holidays page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToPerfectHolidays() throws Exception{
+		BrowserActions.scrollToView(lnkPerfectHolidays, driver);
+		BrowserActions.clickOnElement(lnkPerfectHolidays, driver, "Perfect holidays");		
+	}	
+
+	
+	/**
+	 * Navigate to Travel with in budget page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToTravelBudget() throws Exception{
+		BrowserActions.scrollToView(lnkTravelBudget, driver);
+		BrowserActions.clickOnElement(lnkTravelBudget, driver, "Travel with in budget");		
+	}	
+
+
 }// Fresco

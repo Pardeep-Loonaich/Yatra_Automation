@@ -26,7 +26,7 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	/**********************************************************************************************
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
-	 //@Harveer- make all element private
+	
 	@FindBy(xpath = "//*[@id='signInBtn']")
 	private WebElement btnSignIn;
 
@@ -41,6 +41,9 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	
 	@FindBy(css = "button[id='b2bSignUp']")
 	private WebElement btnRegisterHere;
+	
+	@FindBy(css = ".login-form ")
+	private WebElement loginForm;
 
 	
 	/**********************************************************************************************
@@ -54,7 +57,7 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 		if (!isPageLoaded) {
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnSignIn))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, loginForm))) {
 			Log.fail("Agent Login Page did not open up. Site might be down.", driver);
 		}	
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
@@ -70,8 +73,7 @@ public class AgentLogin extends LoadableComponent<AgentLogin>{
 	
 	public AgentLogin(WebDriver driver) {
 		this.driver = driver;
-		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
-				Utils.maxElementWait);
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
 	}
 
