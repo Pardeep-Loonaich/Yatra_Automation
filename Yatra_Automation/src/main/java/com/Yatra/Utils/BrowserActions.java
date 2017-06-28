@@ -1,3 +1,4 @@
+
 package com.Yatra.Utils;
 
 
@@ -761,8 +762,7 @@ public class BrowserActions {
 	 * @param attName
 	 * @param attValue
 	 */
-	public void setAttribute(WebDriver driver,WebElement element, String attName, String attValue) {
-
+	public static void setAttribute(WebDriver driver,WebElement element, String attName, String attValue) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);", 
 				element, attName, attValue);

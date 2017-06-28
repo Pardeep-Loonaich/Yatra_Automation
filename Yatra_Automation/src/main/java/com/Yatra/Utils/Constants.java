@@ -52,6 +52,7 @@ public class Constants {
 	public static final String c_OriginCountry= "originCountry";
 	public static final String c_Destination = "destination";
 	public static final String c_DestinationCountry = "destinationCountry";
+
 	public static final String c_NonStop = "non_stop";
 	
 	// >>> URL Parameters for Multicity	
@@ -63,5 +64,13 @@ public class Constants {
 	public static final String c_OriginCountry_1 = "originCountry_1";
 	public static final String c_Destination_1 = "destination_1";
 	public static final String c_DestinationCountry_1 = "destinationCountry_1";
+	
+	// >>> Response code's	
+	public static final int C_OK = 200;
+	public static final int C_Unauthorized = 401;	
+	public static final int C_Forbidden = 403;
+	public static final int C_NotFound = 404;
+	public static final int C_InternalServerError = 500;
+	public static final int C_ServiceUnavailable = 503;
 	// >>>> Page Constants End>>>>
 }
