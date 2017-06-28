@@ -107,7 +107,7 @@
 
 						<suiteXmlFiles>
 
-							<suiteXmlFile>.\testxml\flightPricing.xml</suiteXmlFile>
+							<suiteXmlFile>.\testxml\${SUITE_NAME}</suiteXmlFile>
 
 						</suiteXmlFiles>
 					</configuration>
