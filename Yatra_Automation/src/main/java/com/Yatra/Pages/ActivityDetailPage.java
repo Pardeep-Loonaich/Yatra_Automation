@@ -1,21 +1,10 @@
 package com.Yatra.Pages;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -30,7 +19,6 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 
 public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 
@@ -141,13 +129,14 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 		{
 		Log.fail("Activity Detail Page did not open up. Site might be down.", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.put("ActivitiesDetailPage",timer.duration());
 	}// isLoaded
-	@Override
-	protected void load() {
+	
+		@Override
+		protected void load() {
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
-
 	}
 	/**
 	 * Getting the text from the the Activity Details
@@ -236,14 +225,12 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	
 		}
 }
-	
 	/**
 	 * Verify Color Of the Selected Activity
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	
 	public boolean verifySelectedDateColour() throws Exception {
 	boolean status3 = false;
 	String rgbvalue = "243, 71, 71";
@@ -251,18 +238,16 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	status3= Utils.verifyCssPropertyForElement(selectedDate,"background-color",rgbvalue);
 	return status3;
 	}
-	
 	/**
 	 * To Get Error Message From NO Activity Date
 	 * 
 	 * @return
 	 * @throws Exception
 	 */
-	
 	public String getTextErrorMessageNoActivities() throws Exception {
 	String Message = null;
 	if(noActivity.isDisplayed()){
-	BrowserActions.mouseHover(driver, noActivity);	
+	BrowserActions.clickOnElement(noActivity, driver, "ghfgh");
 	Message = BrowserActions.getText(driver, ErrorMessageNoActivity, "Error Messaeg No Activities");
 	}
 	return Message;
@@ -275,6 +260,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 */
 	public void clickOnCheckAvailability() throws Exception {
 		Utils.waitForPageLoad(driver);
+		Thread.sleep(4000);
 		BrowserActions.clickOnElement(btnCheckAvailability, driver, "Click On Check Availability Button");
 	}
 	/**
@@ -310,7 +296,6 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 				"Getting text from the Cancellation Policy");
 		return txtDetails;
 	}
-	
 	/**
 	 * Click On Hide Cancellation Policy Button
 	 * 
@@ -321,4 +306,4 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(btnCancellationPolicyHide, driver, "Click On Hide Cancellation Policy Button");
 	}
-}//ActivityDetailPage
+}//ActivityDetailPageEnd

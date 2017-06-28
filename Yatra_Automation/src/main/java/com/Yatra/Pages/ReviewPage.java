@@ -3,7 +3,6 @@ package com.Yatra.Pages;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,20 +13,25 @@ import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
+/**
+ * Review page is used to create all page related action functions
+ *  
+ */
+@SuppressWarnings("unused")
 public class ReviewPage extends LoadableComponent<ReviewPage> {
-
+	
 	private String appURL;
-
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
 	Utils utils;
-	public static String sPricingURL;
+	public static String sPricingURL="\"it has been failed before pricing !!\"";
 	ExecutionTimer timer=new ExecutionTimer();
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
@@ -50,26 +54,9 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	@FindBy(xpath = "//ul[@class = 'promo-options']/li[@class='ng-scope']")
 	private WebElement lnkPromoCoupon;
-
-	// @FindBy(xpath =
-	// ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
+	
 	@FindBy(xpath = "//Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]")
-	private WebElement btnContinueReviewPage;
-
-	@FindBy(xpath = ".//*[@id='travellerf0']")
-	private WebElement userFirstName;
-
-	@FindBy(xpath = ".//*[@id='travellerl0']")
-	private WebElement userSecondName;
-
-	@FindBy(css = ".col-md-1.col-xs-3.min-width70>span[class='ui-select']>select>option:nth-child(2)")
-	private WebElement userTitle;
-
-	@FindBy(xpath = ".//*[@id='paxNum0']/div[2]/span[1]")
-	private WebElement drpuserTitle;
-
-	@FindBy(xpath = ".//*[@id='traveller-dom']/div[1]/div[1]/div/article[2]/div[2]/input")
-	private WebElement userEmail;
+	private WebElement btnContinueReviewPage;	
 
 	@FindBy(css = "span[class='pull-left cursor-pointer ng-binding under-link']>a")
 	private WebElement lnkFeeSurchrge;
@@ -128,18 +115,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "[id='checkoutBase']>div:not([class])>main>div>aside>div[class='box ng-scope']>div[class='box-content hide-under-overlay']>div>ul[class='list list-border']")
 	private WebElement contentFareDetails;
 
-	@FindBy(xpath = "//*[@ng-repeat='traveller in travellerDetails']")
-	private List<WebElement> modTravellerDetails;
-
-	@FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
-	private WebElement moduleFareRules;
-
-	@FindBy(css = "div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")
-	private WebElement formReviewHeading;
-
-	@FindBy(css = "div[class='overlay-content ']")
-	private WebElement popUpFareAlert;
-
 	@FindBy(css = "div[ng-controller='productFareDetailsController']>div[class='box-content hide-under-overlay']>div[ng-show='showFareDetails']>ul[class='list list-border']>li[class='ng-scope']>span[class='pull-right tr alignment']>span")
 	private List<WebElement> lstPayAmount;
 
@@ -154,10 +129,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	@FindBy(css = "button[class='button sleek-btn promo-btn ng-binding']")
 	private WebElement btnApplyPromoCode;
-
-	// @Harveer
-	@FindBy(xpath = "(//div[@class='overlay modal-new'])[1]")
-	private WebElement priceChangeDiv;
 
 	@FindBy(css = "div[class='box hide-under-overlay ng-scope']>h3[class='box-title fs-md normal ng-binding']")
 	private WebElement txtReviewYourBooking;
@@ -187,12 +158,12 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	private WebElement txtshowFlightFareDetails;
 	
 	@FindBy(css = "button.primary.rounded.pull-right")
-	private WebElement btnFareChangeContinue; // remove later
+	private WebElement btnFareChangeContinue; 
 	
 	@FindBy(css = "div[ng-show='priceChangeDiv']")
 	private WebElement altFareChange;
 	
-	@FindBy(css = "div[class='change-status bull-green']]")
+	@FindBy(css = "div[class='change-status bull-green']")
 	private WebElement txtFareSlashed;
 	
 	@FindBy(css = "div[class='change-status bull-red']")
@@ -216,6 +187,14 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "div[class='row mt10 btn-box'] button[class='button rounded primary']")
 	private WebElement txtSelectAnotherFlight;
 	
+	@FindBy(css = "section[class='login-content']")
+	private WebElement signInPopUp;
+	
+	@FindBy(css = "button[ng-click='continueSameFlight();']")
+	WebElement ContinueInFarePopUp;
+	
+	@FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
+	private WebElement moduleFareRules;
 
 	/**********************************
 	 * WebElements of Yatra ReviewPage - Ends ****************************
@@ -249,32 +228,33 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
 		elementLayer = new ElementLayer(driver);
+		sPricingURL = driver.getCurrentUrl().trim();
 		
 	}
 
 	@Override
 	protected void isLoaded() {
-		timer.end();
-	if (!isPageLoaded) {
-			Assert.fail();
-		}
-
+		
 		try {
+			timer.end();
+			if (!isPageLoaded) {
+				Assert.fail();
+			}
 			Thread.sleep(10000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnChangeFlight))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnChangeFlight)))
+		{
 			Log.fail("ReviewPage didn't open up", driver);
 		}
 		timer.end();
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
-		//set value for pricing URL (if it require in case of test case fail, to send a mail with this URL)
-		sPricingURL=driver.getCurrentUrl().trim();
-		//new EmailSender(driver.getCurrentUrl().trim());
+		Log.message("Total time taken by #" + this.getClass().getTypeName() + " to load is:- " + timer.duration() + " "	+ TimeUnit.MILLISECONDS);
+		// set value for pricing URL (if it require in case of test case fail, to send a mail with this URL)
+		sPricingURL = driver.getCurrentUrl().trim();
+		Constants.performanceData.put("ReviewPage",timer.duration());
 	}
-
 	
 	@Override
 	protected void load() {
@@ -382,9 +362,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	public void selectPromoByIndex(int Index) throws Exception {
 		Thread.sleep(1000);;
-		driver.findElement(By.cssSelector(
-				"div[class='col-sm-6 promo-select-ui width-increased']>ul>li:nth-child("+Index+")>label")).click();
-		
+		driver.findElement(By.cssSelector("div[class='col-sm-6 promo-select-ui width-increased']>ul>li:nth-child("+Index+")>label")).click();
 	}
 
 	/**
@@ -437,6 +415,11 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 
 	}
 
+	/**
+	 * To click continue button 
+	 * 
+	 * @throws Exception
+	 */
 	public TravellerPage clickOnContinue() throws Exception {		
 		BrowserActions.nap(6);
 		Utils.waitForElement(driver, btnContinueReviewPage);
@@ -465,32 +448,26 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		BrowserActions.javascriptClick(lnkFeeSurchrge, driver, "Clicked on Fees & Surcharge link.");
 	}
 
-	@FindBy(css = "button[ng-click='continueSameFlight();']")
-	WebElement ContinueInFarePopUp;
-
 	/**
-	 * Clicking Continue In Price Increase Pop Up
+	 * Handle Flight Fare Salashed and Fare Oops popup alerts
 	 * 
-	 * @return
 	 * @throws Exception
-	 */
-	//TODO : Need to look on - Narayana
-	public void popUpAppear() throws Exception {		
-		if (PricePopUp.isDisplayed()) {			
-			if(BrowserActions.isElementVisible(driver, btnFareChangeContinue)){
+	 */	
+	// TODO : Need to look on - @Narayana
+	public void popUpAppear() throws Exception {
+		if (PricePopUp.isDisplayed()) {
+			if (BrowserActions.isElementVisible(driver, btnFareChangeContinue)) {
 				BrowserActions.clickOnElement(btnFareChangeContinue, driver, "Clicked on continue in Popup");
-			}else
-			BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
-		}
-		else if (popupFareChange.isDisplayed())
-			if (ContinueInFareChangeAlertPopUp.isDisplayed()) {
-				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver,
-						"Clicked on continue in Fare Change Alert Popup");
-			} else if (ContinueInpopUpFareSlashed.isDisplayed()) {
-				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver,
-						"Clicked on continue in fare slashed popup");
+			} else
+				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
+		} else if (popupFareChange.isDisplayed()) {
+			if (BrowserActions.isElementVisible(driver, ContinueInFareChangeAlertPopUp)) {
+				BrowserActions.clickOnElement(ContinueInFareChangeAlertPopUp, driver, "Clicked on continue in Fare Change Alert Popup");
+			} else if (BrowserActions.isElementVisible(driver, ContinueInpopUpFareSlashed)) {
+				BrowserActions.clickOnElement(ContinueInpopUpFareSlashed, driver, "Clicked on continue in fare slashed popup");
 			} else
 				Log.event("No PopUp appear.");
+		}
 	}
 
 	/**
@@ -513,9 +490,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @throws Exception
 	 */
 	public int calculatingAmountToPay() throws Exception {
-
 		int chrgedAmount = 0;
-
 		for (int i = 0; i < lstPayAmount.size(); i++) {
 			String amount = BrowserActions.getText(driver, lstPayAmount.get(i), "lstPayAmount").trim().replace(",", "");
 			int amount1 = Integer.parseInt(amount);
@@ -538,9 +513,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	}
 
 	public String getTextOfReviewHeading() throws Exception {
-		String formReview = BrowserActions.getText(driver,
-				driver.findElement(By.cssSelector(
-						"div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")),
+		String formReview = BrowserActions.getText(driver,	driver.findElement(By.cssSelector("div[id='review-dom']>div>h3[class='box-title fs-md normal blank-label ng-binding']")),
 				"Getting text of Review Form Heading.");
 		return formReview;
 	}
@@ -562,13 +535,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @return String
 	 * @throws Exception
 	 */
-
 	public String getTextFromPromoMessage() throws Exception {
 		Utils.waitForPageLoad(driver);
-		String ErrorMessage = BrowserActions.getText(driver, PromoCodeErrorMessage,
-				"Getting Error text from the Promo Code");
+		String ErrorMessage = BrowserActions.getText(driver, PromoCodeErrorMessage,	"Getting Error text from the Promo Code");
 		return ErrorMessage;
-
 	}
 
 	/**
@@ -577,10 +547,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 */
 
 	public void handlePriceChangeWindow() {
-		// @harveer- i have hard coded these value because this pop up will be
-		// available in some scenario
+		// @harveer- i have hard coded these value because this pop up will be available in some scenario
 		if (driver.findElements(By.xpath("(//div[@class='overlay modal-new'])[1]")).size() > 0) {
-
 			driver.findElement(By.cssSelector("button[class='button rounded primary']")).click();
 		}
 	}
@@ -629,14 +597,13 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 */
 	public void ClickOnRemoveButton() throws Exception {
 		Utils.waitForPageLoad(driver);
-		if(btnRemove.isDisplayed()){
+		if (btnRemove.isDisplayed()) {
 			btnRemove.click();
-		}
-		else if(btnRemoveEcash.isDisplayed())
-		{
-		btnRemoveEcash.click();
+		} else if (btnRemoveEcash.isDisplayed()) {
+			btnRemoveEcash.click();
 		}
 	}
+	
 	/**
 	 * To Click On Close Button on Promo Box
 	 * 
@@ -668,8 +635,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 */
 	public String getTextFeeAndSurcharge() throws Exception {
 		Utils.waitForPageLoad(driver);
-		String Ecash = BrowserActions.getText(driver, txtFeeAndSurcharge,
-				"Getting Text of Fee and Surcharge in Fare Details");
+		String Ecash = BrowserActions.getText(driver, txtFeeAndSurcharge, "Getting Text of Fee and Surcharge in Fare Details");
 		return Ecash;
 	}
 
@@ -681,8 +647,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 */
 	public String getTextFlightPrice() throws Exception {
 		Utils.waitForElement(driver, txtshowFlightFareDetails);
-		String flightPriceGetTxt = BrowserActions.getText(driver, txtshowFlightFareDetails,
-				"Flight Price should be displayed");
+		String flightPriceGetTxt = BrowserActions.getText(driver, txtshowFlightFareDetails,	"Flight Price should be displayed");
 		return flightPriceGetTxt;
 	}
 	
@@ -692,7 +657,6 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @return
 	 * @throws Exception
 	 */
-
 	public ArrayList<String> getTextAirlinename() throws Exception{
 		List<WebElement> name = driver.findElements(By.cssSelector("article[class='row review-article ng-scope']>div[class='text-sm-center col-sm-2 text-xs-left sm-gutter-bottom']>p>span[class='ib ng-binding']"));
 		ArrayList<String> airLineList = new ArrayList<String>();
@@ -702,6 +666,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		}
 		return airLineList;	
 	}
+	
 	/**
 	 * To verify Fare Slashed & Fare Opps Alert Pop up is displayed
 	 * 
@@ -729,10 +694,10 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	public boolean fareChangeAlertPopUpAppear() throws Exception {
 		boolean status = false;		
 		if (altFareChange.isDisplayed()){
-			if (BrowserActions.isElementVisible(driver, txtFareSlashed)) {
+			if (BrowserActions.isElementVisible(driver, btnFareSlashedContune)) { //txtFareSlashed				
 				BrowserActions.clickOnElement(btnFareSlashedContune, driver, "Clicked on continue in Fare Slashed Alert Popup");
 				status = true;
-			} else if (BrowserActions.isElementVisible(driver, txtFareOops)) {
+			} else if (BrowserActions.isElementVisible(driver, btnFareOopsContune)) { //txtFareOops
 				BrowserActions.clickOnElement(btnFareOopsContune, driver,"Clicked on continue in Fare Oops Alert Popup");
 				status = true;
 			} else if (BrowserActions.isElementVisible(driver, altFareChange))
@@ -745,6 +710,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 		}
     return status;
 	}
+	
 	/**
 	 * To click on Change Flight button on Review page
 	 * 
@@ -761,15 +727,14 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * To click on View Rules on Review page and also getting the text
 	 * @return String
 	 * @throws Exception
-	 */
-
-	
+	 */	
 	public String getTextFareRules() throws Exception {
 		Utils.waitForPageLoad(driver);
 		BrowserActions.clickOnElement(BtnViewRules, driver, "To click on View Rules on Review page");
 		String abc = txtFareRules.getText();
 		return abc;
 	}
+	
 	/**
 	 * to get pricing URL at run time
 	 * @return: it will return pricing url 
@@ -784,29 +749,52 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @return
 	 * @throws Exception
 	 */
-	@SuppressWarnings("null")
-	public boolean fareChangeAlertPopUpAppear_InProgress() throws Exception {
-		boolean status = false, selectflightagain = (Boolean) null;		
+	
+	public String fareChangeAlertPopUpAppear_E2E() throws Exception {
+		String price_final = null;
+		//boolean status = false;		
 		if (altFareChange.isDisplayed()){
-			if (BrowserActions.isElementVisible(driver, txtFareSlashed)) {
+			if (BrowserActions.isElementVisible(driver, btnFareSlashedContune)) {
+				String flightPrice = BrowserActions.getText(driver, popupFareOopsUpdatedFare, " Flight fare");
+				price_final = flightPrice.trim().replace(" ", "").trim();
 				BrowserActions.clickOnElement(btnFareSlashedContune, driver, "Clicked on continue in Fare Slashed Alert Popup");
-				status = true;
-			} else if (BrowserActions.isElementVisible(driver, txtFareOops)) {
+				BrowserActions.nap(2);
+			} else if (BrowserActions.isElementVisible(driver, btnFareOopsContune)) {
+				String flightPrice = BrowserActions.getText(driver, popupFareOopsUpdatedFare, "Flight fare");
+				price_final = flightPrice.trim().replace(" ", "").trim();
 				BrowserActions.clickOnElement(btnFareOopsContune, driver,"Clicked on continue in Fare Oops Alert Popup");
-				status = true;
+				BrowserActions.nap(2);
 			} else if (BrowserActions.isElementVisible(driver, altFareChange)){
 				BrowserActions.clickOnElement(ContinueInFarePopUp, driver, "Clicked on continue in Popup");
-			status = true;
+			
 			}else if (BrowserActions.isElementVisible(driver, txtWeAreSorryPopup)) {
 				BrowserActions.clickOnElement(txtSelectAnotherFlight, driver,"Clicked on Select Another Flight in Flight not confirmed alert popup");
-				status = selectflightagain;
 			}Log.event("Flight fare change alert poupup is displayed ");
 		}else{
 			Log.event("Flight fare change alert poupup is not displayed ");
-			status = false;
+			
 		}
-    return status;
+		return price_final;
 	}
+	
+	/**
+	 * Getting Text of Total Amount
+	 * 
+	 * @return String
+	 * @throws Exception
+	 */
+	public String getReviewPageFlightFare() throws Exception {
+		Utils.waitForPageLoad(driver);
+		String price = BrowserActions.getText(driver, totalAmountInreviewPage, "Getting Text of Total Amount");
+		String flightPrice =price.trim().replace(" ","").trim();
+		System.out.println(flightPrice);
+		return flightPrice;
+	}
+	
+	@FindBy(css = "div[class='update-fare pt10 ico-right']>ul:nth-child(1)>li:nth-child(2)[class='text-right ng-binding']")
+	private WebElement popupFareOopsUpdatedFare;
+	//
+
 	
 } // ReviewPage
 

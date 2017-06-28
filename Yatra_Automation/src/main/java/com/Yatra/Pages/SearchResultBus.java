@@ -4,18 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -29,7 +20,6 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 
 public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 
@@ -204,11 +194,12 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindBus))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindBus,Constants.Bus_Search_Result_Page_Load_Time))) {
 			Log.fail("SearchResultBus Page did not open up. Site might be down.", driver);
-			Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+			//Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.put("SearchresultBus",timer.duration());
 	}// isLoaded
 
 	@Override
@@ -219,7 +210,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	}// load
 
 	/**
-	 * Getting the text from the Bus Deatils
+	 * Getting the text from the Bus Details
 	 * 
 	 * @return
 	 * @throws Exception
@@ -256,7 +247,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	}
 
 	/**
-	 * To click Select Seat
+	 * To click Select Seat Button
 	 * 
 	 * @throws Exception
 	 */
@@ -281,7 +272,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		Utils.waitForPageLoad(driver);
 	}
 	/**
-	 * To click Select Seat RT
+	 * To click Select Seat RoundTrip
 	 * 
 	 * @throws Exception
 	 */
@@ -653,7 +644,4 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		Thread.sleep(4000);
 		driver.findElement(By.cssSelector("a[class*='flL ytBtn ytBtnBlue txtL LatoBold seat_map_continue tooltip']")).click(); 
 	}
-	
-	
-	
 }// SRPBUS

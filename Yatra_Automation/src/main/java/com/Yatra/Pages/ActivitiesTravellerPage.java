@@ -1,13 +1,7 @@
 package com.Yatra.Pages;
-
-
-
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,8 +10,8 @@ import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
@@ -91,7 +85,8 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 			Log.fail("ActivitiesTravellerPage did not open up. Site might be down.", driver);
 		}
 		Log.message("Total time taken by #" + this.getClass().getTypeName() + "to load is:- " + timer.duration() + " "
-				+ TimeUnit.SECONDS);
+				+ TimeUnit.MILLISECONDS);
+		Constants.performanceData.put("ActivitiesTravellerPage",timer.duration());
 
 	}// isLoaded
 
@@ -110,7 +105,7 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 	public void fillTravellerDetails() throws Exception {
 		BrowserActions.clickOnElement(drpTitle, driver, "Clicked on 'Title' dropdown.");
 		if (lstTitle.size() != 0) {
-			int rand = Utils.getRandom(1, lstTitle.size());
+			int rand = Utils.getRandom(2, lstTitle.size());
 			Utils.waitForElement(driver, lstTitle.get(rand));
 			BrowserActions.clickOnElement(lstTitle.get(rand), driver, "title selected");
 			Utils.waitForPageLoad(driver);
@@ -126,21 +121,17 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 		// enter Last Name with random string
 		BrowserActions.typeOnTextField(txtLastNme, randomLastName, driver, "Last Name");
 		Log.event("Successfully entered Passenger Last Name: " + randomLastName);
-
 	}
-
 	/***
 	 * to select the 'Hotels Not Required' checkbox
 	 * 
 	 * @throws Exception
 	 */
-
 	public void clickOnHotelNotRequiredChkbox() throws Exception {
 		if(lblHotelPickup.isDisplayed()){
 		BrowserActions.clickOnElement(lblHotelPickup, driver, "Clicked on 'checkbox' on Traveller's Page.");
-		}
 	}
-
+	}
 	/**
 	 * to click on Continue button and navigate to Payment Page.
 	 * 

@@ -1,21 +1,9 @@
 package com.Yatra.Pages;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -24,13 +12,11 @@ import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
 import com.Yatra.Pages.ElementLayer;
 import com.Yatra.Pages.SearchResultActivites;
-import com.Yatra.Utils.BrowserActions;
 import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
 
 public class ProductDescriptionActivities  extends LoadableComponent<ProductDescriptionActivities> {
 
@@ -43,7 +29,7 @@ public class ProductDescriptionActivities  extends LoadableComponent<ProductDesc
 	EnvironmentPropertiesReader envPropertiesReader=EnvironmentPropertiesReader.getInstance();
 
 	/**********************************************************************************************
-	 ********************************* WebElements of Yatra Home Page ***********************************
+	 ********************************* WebElements of Yatra Product Description Activities ***********************************
 	 **********************************************************************************************/
 
 	@FindBy(css = "button[data-trackaction='Continue']")
@@ -94,7 +80,7 @@ public class ProductDescriptionActivities  extends LoadableComponent<ProductDesc
 	@FindBy(css = "")
 	private WebElement btnCheckAvailability;
 	/**********************************************************************************************
-	 ********************************* WebElements of Home Page - Ends ****************************
+	 ********************************* WebElements of Product Description Activities - Ends ****************************
 	 **********************************************************************************************/
 
 	/**
@@ -125,8 +111,8 @@ public class ProductDescriptionActivities  extends LoadableComponent<ProductDesc
 		{
 		Log.fail("Product Description Page did not open up. Site might be down.", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS, driver, true);
-
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.put("ProductDescriptionActivies",timer.duration());
 	}// isLoaded
 
 	@Override

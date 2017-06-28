@@ -1,6 +1,6 @@
 package com.Yatra.TestScript.Bus;
 
-import java.awt.geom.CubicCurve2D.Float;
+
 
 //-----------------------------------------------------------------------------------------------------------
 //Description    :   All the Bus Search test Cases would be designed in this class 
@@ -2228,7 +2228,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2287,8 +2287,8 @@ public class BusSearchTest extends BaseTest{
 			Log.message("11. Clicked On Book Now!");
 			
 			Thread.sleep(3000);
-			String winHandleBefore = driver.getWindowHandle();
 			travellerPageBus.clickOnTermAndCondition();
+			String winHandleBefore = driver.getWindowHandle();
 			Log.message("12. Clicked On Term And Condition Link!");
 
 			Set<String> handles = driver.getWindowHandles();
@@ -2300,6 +2300,7 @@ public class BusSearchTest extends BaseTest{
 			}
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify terms and conditions link");
+			Thread.sleep(3000);
 			Log.assertThat(travellerPageBus.verifyTnCPage(),
 					"<b>Actual Result:</b> Successfully navigated to Terms and condition Page.",
 					"<b>Actual Result:</b> Unable to navigated to Term and condtion Page", driver);
@@ -2309,7 +2310,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2780,9 +2781,9 @@ public class BusSearchTest extends BaseTest{
 
 			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
 			Log.message("12. Clicked on Continue!");
-
+			
 			int amount = Integer.parseInt(paymentPageBus.getTextTotalAmountPaymentMethod());
-			paymentPageBus.scrollSliderOfEcashRedeem(-80);
+			paymentPageBus.scrollSliderOfEcashRedeem(-80 , browser);
 			paymentPageBus.clickOnRedeemNowButton();
 			Log.message("13. Clicked on Redeem Now Button!");
 
@@ -2803,7 +2804,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2885,7 +2886,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2957,7 +2958,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}

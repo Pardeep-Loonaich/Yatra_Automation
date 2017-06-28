@@ -27,8 +27,6 @@ public class HotelSearchTest {
 
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	String webSite;
-	private String workbookName = "testdata\\data\\Hotels.xls";
-	private String sheetName = "HotelSearch";
 	String BlueColor = "rgba(16, 114, 181, 1)";
 
 	@BeforeTest(alwaysRun = true)

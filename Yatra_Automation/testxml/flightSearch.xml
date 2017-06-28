@@ -2,15 +2,20 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Flight Search Automation Test" verbose="3"
 	parallel="tests" thread-count="500">
-	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
+	<parameter name="workBookName" value="testdata\\Flights.xls" />
 	<parameter name="sheetName" value="FlightSearch" />
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
+	<parameter name="webSite" value="https://www.yatra.com/" />
 	<test name="Flight Search on chrome" thread-count="1" parallel="true">
-		<parameter name="browserName" value="firefox_windows" />
-			<classes>
-			<class name="com.Yatra.TestScript.Flights.FlightSearch">		
+		<parameter name="browserName" value="chrome_windows" />
+		<classes>
+			<class name="com.Yatra.TestScript.Flights.FlightSearch">
+				<!-- <methods>
+					<include name="TC_Yatra_Flight_105"></include>
+					<include name="TC_Yatra_Flight_129"></include>
+				</methods> -->
 			</class>
 		</classes>
 	</test>

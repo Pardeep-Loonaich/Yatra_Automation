@@ -9,35 +9,44 @@ package com.Yatra.Utils;
  */
 public class ExecutionTimer 
 {
-	private int start;
-	  private int end;
+	private long start;
+	private long end;
 
-	  public ExecutionTimer() 
-	  {
-	    reset();
-	   
-	  }
+	public ExecutionTimer() 
+	{
+		reset();
 
-	  public void end() 
-	  {
-	    end = (int)((System.currentTimeMillis()/1000)%3600);
-	    
-	  }
-	  public int start()
-	  {
-		  
-		  start=(int)((System.currentTimeMillis()/1000)%3600);
-		  return start;
-	  }
+	}
 
-	  public int duration()
-	  {
-	    return (end-start);
-	  }
+	/**
+	 * Description: end timer
+	 */
+	public long end() 
+	{
+		end = System.currentTimeMillis();
+		return end;
+	}
+	public long start()
+	{
 
-	  public void reset() 
-	  {
-	    start = 0;  
-	    end   = 0;
-	  }
+		start=System.currentTimeMillis();
+		return start;
+	}
+
+	/**
+	 * calculate total time 
+	 * @return
+	 */
+	public String duration()
+	{
+		return ""+(end-start);
+	}
+	/**
+	 * Desc:reset start and end to zero
+	 */
+	public void reset() 
+	{
+		start = 0;  
+		end   = 0;
+	}
 }

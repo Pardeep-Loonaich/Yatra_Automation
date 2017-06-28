@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
@@ -7,24 +8,23 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
 import org.openqa.selenium.support.pagefactory.ElementLocatorFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.testng.Assert;
-
 import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
 import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
+@SuppressWarnings("unused")
 public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
-	private String appURL;
-
+	//private String appURL;
 	private WebDriver driver;
 	private boolean isPageLoaded;
 	public ElementLayer elementLayer;
@@ -154,8 +154,8 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindTrain))) {
 			Log.fail("Train Search Result page didn't open up", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
-
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.put("TrainSearchResultPage",timer.duration());
 	}
 
 	@Override
@@ -362,13 +362,24 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	 * @param index
 	 * @throws Exception
 	 */
-	public void selectTrainByIndexAndBook(int index) throws Exception{
+	public void selectTrainByIndexAndBook(int index,String broswer) throws Exception{
 		Utils.waitForPageLoad(driver);
+		if(broswer.equalsIgnoreCase("firefox_windows")){
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
 		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
-
+		driver.navigate().refresh();
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		}
+		else if(broswer.equalsIgnoreCase("Chorme_windows")){
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+	}else{
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
 	}
-	
+	}
 	/**
 	 * this method selects the train by index the default seat of the first available class 
 	 * @param index
@@ -406,6 +417,24 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	}
 
 
+	/**
+	 * this method verify FindBus By index
+	 * @param index
+	 * @throws Exception
+	 */
+	public boolean verifyFindBusByselectingTrainByIndex() throws Exception{
+		List<WebElement> lstClss = driver.findElements(By.cssSelector("ul[class*='train-info-block true']"));
+		boolean flag= false;
+		for(int i=0;i<lstClss.size();i++){
+			Thread.sleep(1000);
+			BrowserActions.clickOnElement(lstClss.get(i).findElement(By.cssSelector("li[class*='trainClass']>p")),driver, "Clicked on available class of the train one by one.");
+			if (btnFindBus.isDisplayed()){
+						flag=true;
+						break;
+			}							
+		}
+		return flag;       
+	}
 	/**
 	 * to verify that the selected train contains seat of the selected Quota only.
 	 * @param index
@@ -538,6 +567,8 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		}
 	}
 
+	
+	
 
 	/**
 	 * to select the Quota from the Quota dropdown
@@ -604,4 +635,25 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		BrowserActions.clickOnElement(btnResetFltr, driver, "Clicked on 'Reset Filter' button.");
 	}
 	
-}
+
+	/**
+	 * clicked on FindBus Button by selecting train by index and then checking in every class for FindBus option
+	 * @param index
+	 * @throws Exception
+	 */
+	public void clickingOnFindBusButton() throws Exception{	
+		List<WebElement> lstClss = driver.findElements(By.cssSelector("ul[class*='train-info-block true']"));
+		//boolean flag= false;
+		for(int i=0;i<lstClss.size();i++){
+			Thread.sleep(1000);
+			BrowserActions.clickOnElement(lstClss.get(i).findElement(By.cssSelector("li[class*='trainClass']>p")),driver, "Clicked on available class of the train one by one.");
+			Thread.sleep(1000);
+
+			if (btnFindBus.isDisplayed()){
+				
+				BrowserActions.clickOnElement(btnFindBus, driver, "Clicked on 'Find Bus' button.");
+						break;
+			}							
+		}
+	}
+}//TrainSearchEnds

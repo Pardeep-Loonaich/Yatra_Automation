@@ -1,20 +1,14 @@
 
 package com.Yatra.Pages;
-
-
-
 import java.awt.Robot;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,10 +27,9 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
-import com.gargoylesoftware.htmlunit.javascript.background.JavaScriptExecutor;
+import com.Yatra.Utils.WebDriverFactory;
 
-
-
+@SuppressWarnings("unused")
 public class HomePage extends LoadableComponent<HomePage> {
 
 	private String appURL;
@@ -52,8 +45,8 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 ********************************* WebElements of Yatra Home Page ***********************************
 	 **********************************************************************************************/
 
-	//@Harveer- change access specifier for all element private
-
+	@FindBy(css="div#booking_engine_modues")
+	private WebElement dvSearchEngine;
 	@FindBy(css = "input#BE_flight_origin_city")
 	private WebElement txtOrigin;
 
@@ -285,29 +278,27 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@Override
 	protected void isLoaded() {
-		timer.end();
 		if (!isPageLoaded) 
 		{
 			Assert.fail();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, btnSearch))) 
+		if (isPageLoaded && !(Utils.waitForElement(driver, dvSearchEngine))) 
 		{
 		Log.fail("Home Page did not open up. Site might be down.", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
-
+		timer.end();
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.put("HomePage",timer.duration());
 	}// isLoaded
-
+	
 	@Override
 	protected void load(){
 		timer.start();
 		isPageLoaded = true;
 		driver.get(appURL);
 		Utils.waitForPageLoad(driver);
-
 	}// load
-
-
+	
 	/**
 	 * Enter Origin
 	 * 
@@ -778,7 +769,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 * 
 	 * @throws Exception
 	 */
-	@SuppressWarnings("static-access")
 	public String selectReturnDate(String returnDate) throws Exception {
 		int iDay = Integer.parseInt(returnDate);
 		String date = Utils.dateGenerator("yyyy_M_d", iDay);
@@ -1472,6 +1462,17 @@ public class HomePage extends LoadableComponent<HomePage> {
 		} else {
 			Log.event("Not displayed Iframe Notification at Top or Bottom on SRP ");
 		}
-	}		
+	}
+	
+	/**
+	 * @Description: to verify search engine is loaded in specified time
+	 * @return
+	 */
+	public boolean isHomePageLoaded()
+	{
+
+	return Utils.waitForElement(driver, dvSearchEngine, Constants.Home_Page_Load_Time);
+		
+	}
 }// HomePage
 

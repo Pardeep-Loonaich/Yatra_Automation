@@ -3,7 +3,7 @@
 
 <suite name=" Yatra Activites Search Automation Test" verbose="3" parallel="true" thread-count="5">
 	
-	<parameter name="workBookName" value="testdata\\data\\Activities.xls" />
+	<parameter name="workBookName" value="testdata\\Activities.xls" />
 	<parameter name="sheetName" value="ActivitiesSearch"/>
 
 	<!-- parameter for device host and port -->
@@ -16,7 +16,15 @@
 
 	<test name="Activites Search" thread-count="1" parallel="true">
 		<classes>
-			<class name="com.Yatra.TestScript.Activities.ActivitiesTest"></class>          
+			<class name="com.Yatra.TestScript.Activities.ActivitiesTest">
+			 <methods>
+			<!--  <include name="TC_Yatra_Activities_005"></include> 
+			  <include name="TC_Yatra_Activities_026"></include>
+			 <include name="TC_Yatra_Activities_030"></include>
+			 <include name="TC_Yatra_Activities_036"></include>
+			 <include name="TC_Yatra_Activities_040"></include>  -->
+			 </methods>
+			</class>          
 		</classes>
 	</test>
 </suite>

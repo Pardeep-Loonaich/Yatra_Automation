@@ -1,22 +1,27 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Flight Pricing Automation Test" verbose="3"
 	parallel="tests" thread-count="500">
-	<parameter name="workBookName" value="testdata\\data\\Flights.xls" />
+	<parameter name="workBookName" value="testdata\\Flights.xls" />
 	<parameter name="sheetName" value="FlightPricing" />
 
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
-	<test name="Flight Pricing" thread-count="1" parallel="true">
+	<test name="Flight Pricing chrome" thread-count="1" parallel="true">
 		<parameter name="browserName" value="chrome_windows" />
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing">
+				<!-- <methods>
+					<include name="TC_Yatra_Flight_089"></include>
+					<include name="TC_Yatra_Flight_096"></include>
+					<include name="TC_Yatra_Flight_144"></include>
+					<include name="TC_Yatra_Flight_149"></include>
+					<include name="TC_Yatra_Flight_150"></include>
+				</methods> -->
 			</class>
-
 		</classes>
 	</test>
-
 </suite>
-

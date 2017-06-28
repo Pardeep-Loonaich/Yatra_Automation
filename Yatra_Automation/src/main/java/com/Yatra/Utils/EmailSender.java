@@ -11,7 +11,6 @@ import javax.activation.FileDataSource;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -29,7 +28,6 @@ public class EmailSender {
 
 	private  String testCaseId="";
 	private   String sCurrentPageURL="";
-	public static  String sPricingURL="";
 	private  String fileName="";
 
 
@@ -58,20 +56,19 @@ public class EmailSender {
 	public void sendHtmlEmail() throws AddressException,MessagingException, IOException 
 	{
 		String  Email_BODY_TEXT = "Hi Team,<br><br>"
-				+ "TestCase <b>'"+testCaseId+"'</b> has been failed, please find the details below:"
-				+ "<br>Current Page URL: <b><font color=blue>"+sCurrentPageURL+"</font></b>"
+				+ "Please find test failure details.<br><br>"
+				+ "TestCase: '"+testCaseId+""
+				+ "<br><br>Current Page URL: <font color=blue>"+sCurrentPageURL+"</font>"
 				+ "<br>"
 				+ "<br>"
-				+ "<br>"
-				+ "<br>Pricing URL: <b><font color=blue>"+ReviewPage.getPricingURL()+"</font></b>"
-				+ "<br>"
-				+ "<br>"
-				+ "Note:- Please find screenshot in Attachment. </b>"
-
+				+ "<br>Pricing URL: <font color=blue>"+ReviewPage.getPricingURL()+"</font>"
 				+ "<br>"
 				+ "<br>"
-				+ "Thanks & Regards<br>"
-				+ "Automation Team"				
+				+ "Note:- Please refer attached screeshot."
+				+ "<br>"
+				+ "<br>"
+				+ "Thanks!<br>"
+				+ "Team Automation"				
 				+ "<font color=red></font>";
 
 		String toAddress=propReader.getProperty("toAddress");

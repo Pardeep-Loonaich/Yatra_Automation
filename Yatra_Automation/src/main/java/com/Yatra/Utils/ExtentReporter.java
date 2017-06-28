@@ -10,8 +10,6 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.SkipException;
-import org.testng.annotations.Listeners;
-
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -180,14 +178,23 @@ public class ExtentReporter {
 	public static void fail(String failMessage) {
 		getTest().log(LogStatus.FAIL, "<font color=\"red\">" + failMessage + "</font>");
 	}
-
 	/**
-	 * To log the given message to the reporter at SKIP level
+	 * To log the given message to the reporter at skip level
 	 * 
 	 * @param message
 	 */
+	
 	public static void skip(String message) {
 		getTest().log(LogStatus.SKIP, "<font color=\"orange\">" + message + "</font>");
+	}
+	
+	/**
+	 * To log the given message to the reporter at fatal level
+	 * 
+	 * @param message
+	 */
+	public static void fatal(String message) {
+		getTest().log(LogStatus.FATAL, "<font color=\"blue\">" + message + "</font>");
 	}
 
 	/**

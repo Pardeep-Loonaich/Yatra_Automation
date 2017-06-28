@@ -120,7 +120,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -187,7 +187,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -251,7 +251,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -320,7 +320,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -399,7 +399,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -481,7 +481,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -537,13 +537,13 @@ public class FlightSearch extends BaseTest{
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for OneWay(OW) search");
 			BrowserActions.nap(2);
-			Log.assertThat(searchResult.verifySRPMenu(tripType), "<b>Actual Result:</b> SRP Page should appeared with <b>Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers",
+			Log.assertThat(searchResult.verifySRPMenu(tripType), "<b>Actual Result:</b> SRP Page should appeared with <b>Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Share Itinerary and Footer </b>headers",
 					"<b>Actual Result:</b> SRP Page should not appeared with <b> Modify Search button, Airline Matrix, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers", driver);
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -604,13 +604,13 @@ public class FlightSearch extends BaseTest{
 			Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for Round Trip(RT) search");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.verifySRPMenu(tripType),
-					"<b>Actual Result:</b> SRP Page should appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer </b>headers",
+					"<b>Actual Result:</b> SRP Page should appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Share Itinerary and Footer </b>headers",
 					"<b>Actual Result:</b> SRP Page should not appeared with <b> Modify Search button, Airline Matrix, Prev Day/Next Day search, LFF calendar, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer headers </b>", driver);
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -681,14 +681,14 @@ public class FlightSearch extends BaseTest{
 			Log.message("<b>Expected Result:</b> Validating the different modules of Search Result Page for MultiCity(MC) search ");
 			BrowserActions.nap(2);
 			Log.assertThat(searchResult.verifySRPMenu(tripType),
-					"<b>Actual Result:</b> SRP Page should appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer</b> headers",
-					"<b>Actual Result:</b> SRP Page should not appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Set Fare Alerts, Share Itinerary and Footer</b> headers", driver);
+					"<b>Actual Result:</b> SRP Page should appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Share Itinerary and Footer</b> headers",
+					"<b>Actual Result:</b> SRP Page should not appeared with<b> Modify Search button, Airline Matrix, Prev Day/Next Day search, Filter options, SRP Results (Tabular form), Share Itinerary and Footer</b> headers", driver);
 
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -757,7 +757,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -829,7 +829,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -905,7 +905,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -977,7 +977,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1051,7 +1051,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1119,7 +1119,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1195,7 +1195,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1296,7 +1296,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1408,7 +1408,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1522,7 +1522,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1575,7 +1575,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1631,7 +1631,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1687,7 +1687,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1741,7 +1741,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1789,7 +1789,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1837,7 +1837,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1885,7 +1885,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1935,7 +1935,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1985,7 +1985,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2026,7 +2026,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2070,7 +2070,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2123,7 +2123,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2176,7 +2176,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2226,7 +2226,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2271,7 +2271,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2312,7 +2312,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2367,7 +2367,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2418,7 +2418,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2492,7 +2492,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2560,7 +2560,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2619,7 +2619,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2665,7 +2665,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2713,7 +2713,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2767,7 +2767,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2827,7 +2827,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2876,7 +2876,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2925,7 +2925,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2974,7 +2974,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3021,7 +3021,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3066,7 +3066,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3110,7 +3110,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3159,7 +3159,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3203,7 +3203,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3256,7 +3256,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3305,7 +3305,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3357,7 +3357,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3409,7 +3409,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3470,7 +3470,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3527,7 +3527,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3580,7 +3580,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3632,7 +3632,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3694,7 +3694,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3754,7 +3754,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3817,7 +3817,7 @@ public class FlightSearch extends BaseTest{
            } catch (Exception e) {
                   Log.exception(e);
            } finally {
-                  //driver.quit();
+                  driver.quit();
                   Log.endTestCase();
            }
     }
@@ -3865,7 +3865,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3911,7 +3911,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -3959,7 +3959,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4012,7 +4012,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4064,7 +4064,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4111,7 +4111,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4157,7 +4157,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4218,7 +4218,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4267,7 +4267,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4318,7 +4318,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4365,7 +4365,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4411,7 +4411,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4463,7 +4463,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4519,7 +4519,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4574,7 +4574,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4625,12 +4625,12 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
 	
-	@Test( description = "Add Meal on Pax/Review page", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	@Test( description = "Add Meal on Pax/Review page - OW", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Flight_099(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
@@ -4701,7 +4701,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4784,7 +4784,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4856,7 +4856,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -4935,7 +4935,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5018,7 +5018,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5082,7 +5082,7 @@ public class FlightSearch extends BaseTest{
 			paymentPage.enterCreditCardDetails(cardNumber);
 			Log.message("10. Fill Credit Card Details!");
 
-			paymentPage.clickOnPayNow();
+			paymentPage.clickOnPayNow_PaymentPage();
 			Log.message("11.Click On Pay Now!");
 			String ErrorMsg = paymentPage.getTextErrorMessage();
 
@@ -5096,7 +5096,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5161,10 +5161,10 @@ public class FlightSearch extends BaseTest{
 			paymentPage.enterDebitCardDetails(cardNumber,cvv);
 			Log.message("10. Fill invalid Debit Card Details!");
 
-			paymentPage.clickOnPayNow();
+			paymentPage.clickOnPayNow_PaymentPage();
 			Log.message("11.Click On Pay Now!");
-			String ErrorMsg = paymentPage.getTextErrorMessage();
-
+			String ErrorMsg = paymentPage.getTextErrorMessage();			
+			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Failed payment flow with Credit card (flight type, travel type, booking class of your choice)");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("popUpInvalidCardNumber"), paymentPage),
@@ -5175,7 +5175,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			 //driver.quit();
+			 driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5227,7 +5227,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5287,7 +5287,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5350,7 +5350,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5418,13 +5418,17 @@ public class FlightSearch extends BaseTest{
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9.Clicked on 'Continue' button in Traveller Page ");
-			BrowserActions.nap(2);
+			BrowserActions.nap(20);
+			
+			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("btnPayNow"), paymentPage),
+					"<b>Actual Result:</b> Successfully navigated on paymentPage.",
+					"<b>Actual Result:</b> Unable to navigated on paymentPage.", driver);
 			Log.testCaseResult();
 
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5498,7 +5502,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5585,7 +5589,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5632,7 +5636,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5679,7 +5683,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5751,7 +5755,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5848,7 +5852,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5913,12 +5917,11 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> The price is calculated properly in the Fare Detail module on Review Page.",
 					"<b>Actual Result:</b> The price is not calculated properly in the Fare Detail module on Review Page.", driver);
 			
-
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -5983,9 +5986,11 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> The price is calculated properly in the Fare Detail module on Review Page.",
 					"<b>Actual Result:</b> The price is not calculated properly in the Fare Detail module on Review Page.", driver);
 	
+			Log.testCaseResult();
 		} catch (Exception e) {
+			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6049,7 +6054,7 @@ public class FlightSearch extends BaseTest{
 			Log.exception(e);
 
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6111,7 +6116,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6127,10 +6132,7 @@ public class FlightSearch extends BaseTest{
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
 		String passengerClass = testData.get("Class");
-		String promo[] =testData.get("Promo").split(",");
-		String domain = testData.get("Domain");		
-		String stops = testData.get("Stops");
-		String airlines = testData.get("Airlines");
+		String promo[] =testData.get("Promo").split(",");		
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -6138,17 +6140,18 @@ public class FlightSearch extends BaseTest{
 		try {
 			homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
 			homePage.selectTripType(tripType);
 			Log.message("2.Successfully clicked 'One Way' option in search Home Page!");
-
+			BrowserActions.nap(2);
+			
 			homePage.selectOneWayFlightSearchFields(origin, destination, departureDate, passengerInfo, passengerClass);
 			Log.message("3.Successfully selected OneWay Flight Search Fields!");
 
 			searchResult = homePage.clickBtnSearch();
 			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
 			
-			// step: select Airlines Book Now for One Way search
-			//reviewPage = searchResult.clickOnBookNowInOneWay(2);			
+			// step: select Airlines Book Now for One Way search						
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page!");
 
@@ -6179,7 +6182,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6233,11 +6236,11 @@ public class FlightSearch extends BaseTest{
 					"<b>Actual Result:</b> Travel Assistance and Insurance amount included in the Fare details",
 					"<b>Actual Result:</b> Travel Assistance and Insurance amount not included in the Fare details",
 					driver);
-
+			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6325,7 +6328,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6382,7 +6385,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6438,7 +6441,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6490,7 +6493,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6537,7 +6540,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6590,7 +6593,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6639,7 +6642,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6693,7 +6696,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6750,7 +6753,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6810,7 +6813,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6865,7 +6868,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6916,7 +6919,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -6978,7 +6981,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -7027,7 +7030,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -7073,11 +7076,88 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
 		
+	@Test( description = "Add Meal on Pax/Review page - RT", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Flight_170(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String emailId = testData.get("EmailAddress");
+		String password = testData.get("Password");
+		String origin = testData.get("Origin");
+		String tripType = testData.get("TripType");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String returnDate = testData.get("ReturnDate");
+		String passengerInfo = testData.get("PassengerInfo");
+		String passengerClass = testData.get("Class");
+		String infant = testData.get("Infant");
+		String[] infantDOB = infant.split(",");
+		String domain = testData.get("Domain");	
+		String stops = testData.get("Stops");
+		String airlines = testData.get("Airlines");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			// step: Select Trip Type
+			homePage.selectTripType(tripType);
+			Log.message("2.Successfully clicked 'Round Trip' option in search Home Page!");
+
+			// step: select Round Trip Search fields in HomePage
+			homePage.selectRoundTripFlightSearchFields(origin, destination, departureDate, returnDate, passengerInfo, passengerClass);
+			Log.message("3.Successfully filled the search details for Round Trip");
+
+			// step: click 'Search' button in Yatra Home page
+			SearchResult searchResult = homePage.clickBtnSearch();
+			Log.message("4.Successfully clicked 'Search' in Yatra Homepage!");
+			
+			// step: select Airlines Book Now for One Way search
+			reviewPage = searchResult.selectAirlineBookNowInRT(domain, stops, airlines);			
+			Log.message("5. Successfully clicked On Book Now Button with Preferred(<b>"+airlines+"</b>) Flight");
+			reviewPage.popUpAppear();
+			
+			reviewPage.clickOnContinue();
+			Log.message("6. Clicked On Continue Button on Review Page!");
+
+			reviewPage.clickOnExistingUser();
+			travellerPage = reviewPage.loginYatraGuestAccountExisting(emailId, password);
+			Log.message("7.Successfully Logged in Yatra account!");
+
+			travellerPage.fillTravellerDetails_DOM(infantDOB);
+			Log.message("8. Enter User Details!");
+
+			travellerPage.clickOnAddMeal();
+			Log.message("9. Clicked On Add Meal!");
+
+			travellerPage.selectMeal();
+			Log.message("10. Selected Meal!");
+			String mealCharges = travellerPage.getTextMealDetails();
+
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User should be able to see the Meal Charges inculded in the Fare Detail!");
+			BrowserActions.nap(2);
+			Log.assertThat(travellerPage.elementLayer.verifyPageElements(Arrays.asList("btnAddMeal"), travellerPage),
+					"<b>Actual Result:</b> Meal Charges are included In Total Fare and Meal Charges is :" + mealCharges,
+					"<b>Actual Result:</b> Meal Charges are not included In Total Fare", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}
+
 // ********************************End of Test cases ***************************************************************************************
 } //FlightSearch
 

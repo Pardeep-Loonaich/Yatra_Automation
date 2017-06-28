@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Yatra Payment Automation Test" verbose="3" parallel="false"
 	thread-count="500">
-	<parameter name="workBookName" value="testdata\\data\\Payments.xls" />
+	<parameter name="workBookName" value="testdata\\Payments.xls" />
 	<parameter name="sheetName" value="Payment" />
 
 	<!-- parameter for device host and port -->
@@ -14,12 +14,12 @@
 	<parameter name="webSite" value="https://www.yatra.com/" />
 	<test name="Payment" thread-count="1" parallel="true">
 		<!--<groups> <run> < include name="desktop" /> </run> </groups> -->
-			<classes>
-			<class name="com.Yatra.TestScript.Payment.PaymentTest"> </class>		
-			<!-- <methods>
-			<include name="TC_Yatra_Flight_088"></include>
-			</methods>	 -->
+		<classes>
+			<class name="com.Yatra.TestScript.Payment.PaymentTest">
+				<!-- <methods>
+					<include name="TC_Yatra_Payment_004"></include>
+				</methods> -->
+			</class>
 		</classes>
-	
 	</test>
 </suite>

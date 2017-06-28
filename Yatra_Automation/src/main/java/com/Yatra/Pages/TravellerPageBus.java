@@ -1,22 +1,11 @@
 package com.Yatra.Pages;
 
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -115,8 +104,8 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 		{
 		Log.fail("Travellers Page did not open up. Site might be down.", driver);
 		}
-		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
-
+		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
+		Constants.performanceData.put("BusTravellerPage",timer.duration());
 	}// isLoaded
 
 	@Override
@@ -126,6 +115,13 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 		isPageLoaded = true;
 		Utils.waitForPageLoad(driver);
 	}// load
+
+	/**
+	 * To Fill traveller details
+	 * 
+	 * @throws Exception
+	 * @param: String 
+	 */
 
 
 	public void TravellerDetails(String name) throws Exception {
@@ -167,9 +163,10 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 
 	/**
 	 * Getting the Error Text
-	 * 
+	 *  
+	 *  @throws Exception
 	 * @return
-	 * @throws Exception
+	 *
 	 */
 	public String getTextErrorMsg() throws Exception {
 		Utils.waitForElement(driver, txtErrorMsg);
@@ -178,7 +175,7 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	}
 
 	/**
-	 * Getting the Error Text
+	 * Getting the Error Text From promo section
 	 * 
 	 * @return
 	 * @throws Exception
@@ -221,6 +218,11 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 		return number;
 	}
 
+	/**
+	 * To verify checkBox in Traveller page
+	 * 
+	 * @throws Exception
+	 */
 	public boolean checkBoxFirst() throws Exception {
 		boolean flag = false;
 		String result = chkBoxAddonsFirst.getAttribute("type");
@@ -232,6 +234,11 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 		return flag;
 
 	}
+	/**
+	 * To verify checkBox in Traveller page
+	 * 
+	 * @throws Exception
+	 */
 
 	public boolean checkBoxSecond() throws Exception {
 		boolean flag = false;
@@ -263,21 +270,19 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	 * @throws Exception
 	 */
 	public boolean verifyTnCPage() throws Exception {
-		return BrowserActions.getText(driver, driver.findElement(By.cssSelector(".ytAboutHanding.txtDrkGreyI")),
+		return BrowserActions.getText(driver, driver.findElement(By.cssSelector("div[class='ytAboutHanding txtDrkGreyI']")),
 				"Getting Text from span").contains("Terms and Conditions");
 	}/**
 	 * To click Edit Mobile Link
 	 * 
 	 * @throws Exception
 	 */
-
 	public void enterPromoCode(String Promo) throws Exception {
 		Utils.waitForElement(driver, txtFldPromoCode);
 		BrowserActions.typeOnTextField(txtFldPromoCode, Promo, driver, "Yatra Promo Code");
 		BrowserActions.clickOnElement(btnApply, driver, "Apply Button");
 		Utils.waitForPageLoad(driver);
 	}
-
 	/**
 	 * To click On Continue
 	 * 
@@ -288,4 +293,5 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 		Utils.waitForElement(driver, lnkTermAndCond);
 		BrowserActions.clickOnElement(btnContinue, driver, "Continue Button");
 	}
+
 }// TravellerPage
