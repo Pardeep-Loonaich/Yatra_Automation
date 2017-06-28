@@ -37,7 +37,6 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 	private WebElement btnModifyItinerary;
 
 	@FindBy(xpath ="(//input[@id='itineraryCont'])[1]")
-
 	private WebElement btnContinueIternary;
 	
 	@FindBy(css="#modifyPaxBtn")
@@ -104,9 +103,9 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 	 * @throws Exception
 	 */
 	public PaymentPage continueInReviewIternary() throws Exception{
-		//BrowserActions.scrollToView(timeOnStrip, driver);
-		/*Thread.sleep(2000);
-		driver.navigate().refresh();*/
+		Thread.sleep(2000);
+		BrowserActions.setAttribute(driver, timeStrip, "style", "display:none;");
+		Thread.sleep(2000);
 		BrowserActions.clickOnElement(btnContinueIternary, driver, "Clicked on continue in Review Iternary.");
 		return new PaymentPage(driver).get();
 	}
@@ -161,4 +160,6 @@ public class TrainReviewPage extends LoadableComponent<TrainReviewPage> {
 	public String getTimeFromStrip() throws Exception{
 		return BrowserActions.getText(driver, timeOnStrip, "Getting time from the Time Strip.");
 	}
+	
+	
 }
