@@ -126,6 +126,8 @@ public class ActivitiesReviewPage extends LoadableComponent<ActivitiesReviewPage
 	 * @throws Exception
 	 */
 	public void clickOnContinue() throws Exception {
+		Utils.waitForPageLoad(driver);
+		Thread.sleep(3000);
 		BrowserActions.clickOnElement(btnContinueInReviewPage, driver, "Clicked on Continue Button in Review Page.");
 	}
 
