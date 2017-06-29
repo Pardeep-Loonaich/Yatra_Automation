@@ -82,7 +82,7 @@ public class ReportUtil  {
 		for (int i = 0; i < class_list.getLength(); i++) {
 			Node class_node = class_list.item(i);
 		//	String class_name = ((Element) class_node).getAttribute("name").substring(16);
-			String class_name = ((Element) class_node).getAttribute("name").split(Pattern.quote("."))[5];
+			String class_name = ((Element) class_node).getAttribute("name").split(Pattern.quote("."))[4];
 			
 			className=class_name;
 		//	String[] arr = new String[3];
