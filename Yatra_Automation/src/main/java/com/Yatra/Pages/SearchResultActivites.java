@@ -3,6 +3,7 @@ package com.Yatra.Pages;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -211,7 +212,7 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 */
 	public String getTextActivityDetailsByTileIndex(int index) throws Exception {
 		Utils.waitForPageLoad(driver);
-		String txtDetails = BrowserActions.getText(driver, driver.findElement(By.cssSelector("article[class='my-res fr eventTrackable ng-scope']:nth-child("+index+")>div[class='my-res-info']>div[class='my-desc']>h3")), "Getting text of the Activity.");
+		String txtDetails = BrowserActions.getText(driver, driver.findElement(By.cssSelector("article[data-prodid='"+index+"']>div[class='my-res-info']>div>h3")), "Getting text of the Activity.");
 		return txtDetails;
 	}
 	
@@ -224,7 +225,15 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	public ActivityDetailPage ClickBookNowByIndex(int index) throws Exception {
 	Utils.waitForPageLoad(driver);
 	Thread.sleep(3000);
-	driver.findElement(By.cssSelector("article[class='my-res fr eventTrackable ng-scope']:nth-child("+index+")>div[class='my-res-info']>div[class='my-price tr']>a")).click();
+	String winHandleBefore = driver.getWindowHandle();
+	driver.findElement(By.cssSelector("article[data-prodid='"+index+"']>div[class='my-res-info']>div[class='my-price tr']>a")).click();
+	Set<String> handles = driver.getWindowHandles();
+	for (String winHandle : handles) {
+	if (!winHandle.equals(winHandleBefore)) {
+	driver.switchTo().window(winHandle);
+	break;
+		}
+	}
 	return new ActivityDetailPage(driver).get();
 	}
 	
@@ -235,6 +244,8 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @throws Exception
 	 */
 	public String selectCategory(String categoryName) throws Exception{
+		Utils.waitForPageLoad(driver);
+		Thread.sleep(4000);
 		for(WebElement category:lstCategory){
 			if(category.findElement(By.cssSelector("span[class*='clip-overflow']")).getAttribute("title").contains(categoryName)){
 			BrowserActions.clickOnElement(category.findElement(By.cssSelector("span[class*='clip-overflow']")), driver, "Selected the Category.");	
@@ -253,6 +264,7 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @throws Exception
 	 */
 	public String gettingTxtFrmResultFoundStrip() throws Exception{
+		Utils.waitForPageLoad(driver);
 		String resultValue[] = BrowserActions.getText(driver, txtResultStrip, "Getting the number of result found for the category.").split(" ");
 		return resultValue[1];
 	}
@@ -266,17 +278,23 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 */
 	
 	public boolean verifySortByGivenCategory(String categoryNme) throws Exception {
+	Utils.waitForPageLoad(driver);
+	Thread.sleep(3000);
 	boolean status3 = false;
 	String rgbvalue = "243, 71, 71";
 	switch (categoryNme){
 	case "Recommended":
+		BrowserActions.nap(3);
 		status3= Utils.verifyCssPropertyForElement(txtRecommended,"color",rgbvalue);
 		break;
 	case "Popular":
+		BrowserActions.nap(3);
 		BrowserActions.clickOnElement(txtPopular, driver, "Selected Popular as SortBy option.");
+		BrowserActions.nap(3);
 		status3= Utils.verifyCssPropertyForElement(txtPopular,"color",rgbvalue);
 		break;
 	}
+	Thread.sleep(3000);
 	return status3;
 	}
 	

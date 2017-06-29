@@ -2188,7 +2188,5 @@ public class ActivitiesTest {
 			driver.quit();
 			Log.endTestCase();
 		}
-	}
-
-	
+	}	
 }// ActivitiesTestCasesEnd

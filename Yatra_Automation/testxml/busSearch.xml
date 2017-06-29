@@ -18,10 +18,11 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Bus.BusSearchTest">
 			 <methods>
-			 <include name="TC_Yatra_Bus_044"></include> 
-			<include name="TC_Yatra_Bus_043"></include>  
+			 <!-- <include name="TC_Yatra_Bus_044"></include> 
+			<include name="TC_Yatra_Bus_043"></include>   -->
 			 </methods>
 			</class>          
 		</classes>
 	</test>
 </suite>
+

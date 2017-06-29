@@ -146,6 +146,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 */
 	public String getTexActivityDetails() throws Exception {
 		Utils.waitForPageLoad(driver);
+		Thread.sleep(3000);
 		String txtDetails = BrowserActions.getText(driver, txtDetailActivity,
 				"Getting text from the Activity Details");
 		return txtDetails;
@@ -202,7 +203,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 * @throws Exception
 	 */
 	public void clickOnBookNowButton() throws Exception {
-		Utils.waitForElement(driver, btnBookNow);
+		Thread.sleep(2000);
 		BrowserActions.clickOnElement(btnBookNow, driver, "Click On Book Now Button");
 	}
 	/**
@@ -271,6 +272,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	 */
 	public ActivitiesReviewPage clickOnBookNowAfterCheckAvailability() throws Exception {
 		Utils.waitForPageLoad(driver);
+		Thread.sleep(2000);
 		BrowserActions.clickOnElement(btnBookNowAfterCheckAvailability, driver, "Click On Book Now After Check Availability Button");
 		return new ActivitiesReviewPage(driver).get();
 	}
