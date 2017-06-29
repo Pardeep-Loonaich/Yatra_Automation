@@ -52,6 +52,7 @@ public class Constants {
 	public static final String c_OriginCountry= "originCountry";
 	public static final String c_Destination = "destination";
 	public static final String c_DestinationCountry = "destinationCountry";
+
 	public static final String c_NonStop = "non_stop";
 	
 	// >>> URL Parameters for Multicity	
