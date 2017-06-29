@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.concurrent.TimeUnit;
@@ -17,7 +18,7 @@ import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
 
-public class MakePayment extends LoadableComponent<CompleteBooking> {
+public class MakePayment extends LoadableComponent<MakePayment> {
 
 	private WebDriver driver;
 	private boolean isPageLoaded;
@@ -67,11 +68,11 @@ public class MakePayment extends LoadableComponent<CompleteBooking> {
 		}
 
 		if (isPageLoaded && !(Utils.waitForElement(driver, txtCustomerEmail))) {
-			Log.fail("Complete Booking page didn't open up", driver);
+			Log.fail("MakePayment page didn't open up", driver);
 		}
 		Log.message("Total time taken by #" + this.getClass().getTypeName() + "to load is:- " + timer.duration() + " "
 				+ TimeUnit.MILLISECONDS);
-		Constants.performanceData.put("MakePayment",timer.duration());
+		Constants.performanceData.put("MakePaymentPage",timer.duration());
 	}
 
 	@Override

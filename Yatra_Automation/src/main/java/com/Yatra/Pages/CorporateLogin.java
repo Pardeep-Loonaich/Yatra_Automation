@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.concurrent.TimeUnit;
@@ -39,6 +40,10 @@ public class CorporateLogin extends LoadableComponent<CorporateLogin>{
 	@FindBy(css = "p a[href*='forgotpassword']")
 	private WebElement forgotPasswordLink;
 	
+	@FindBy(css = ".login-form ")
+	private WebElement loginForm;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -50,8 +55,8 @@ public class CorporateLogin extends LoadableComponent<CorporateLogin>{
 			Assert.fail();
 		}
 
-		if (isPageLoaded && !(Utils.waitForElement(driver, signInBtn))) {
-			Log.fail("Agent Login Page did not open up. Site might be down.", driver);
+		if (isPageLoaded && !(Utils.waitForElement(driver, loginForm))) {
+			Log.fail("Corporate Login Page did not open up. Site might be down.", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
 		Constants.performanceData.put("CorporateLogin",timer.duration());
@@ -66,8 +71,7 @@ public class CorporateLogin extends LoadableComponent<CorporateLogin>{
 	
 	public CorporateLogin(WebDriver driver) {
 		this.driver = driver;
-		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver,
-				Utils.maxElementWait);
+		ElementLocatorFactory finder = new AjaxElementLocatorFactory(driver, Utils.maxElementWait);
 		PageFactory.initElements(finder, this);
 	}
 

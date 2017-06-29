@@ -1,3 +1,4 @@
+
 package com.Yatra.TestScript.Fresco;
 //-----------------------------------------------------------------------------------------------------------
 
@@ -16,6 +17,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
 import com.Yatra.Pages.Fresco;
 import com.Yatra.Pages.LoginPage;
 import com.Yatra.Pages.SearchResult;
@@ -37,6 +39,7 @@ public class FrescoTest extends BaseTest {
 	String webSite;
 	String BlueColor = "rgba(16, 114, 181, 1)";
 	Fresco fresco;
+	
 
 	@BeforeTest(alwaysRun = true)
 	public void init(ITestContext context) {
@@ -2518,7 +2521,677 @@ public class FrescoTest extends BaseTest {
 			Log.endTestCase();
 		}
 	}
+		
+	@Test(description = "To validate SSO login", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_051(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToMyBooking();
+			Log.message("2. Successfully navigated to 'My Booking' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b> validated SSO login");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified SSO login, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified SSO login, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "To validate Corporate login", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_052(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToCorporateLogin();
+			Log.message("2. Successfully navigated to 'Corporate login' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Corporate login page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Corporate login page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Corporate login page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "To validate Agent login", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_053(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToTravelAgent();
+			Log.message("2. Successfully navigated to 'Agent' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Agent login page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Agent login page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Agent login page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "To validate eCash login", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_054(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToeCash();
+			Log.message("2. Successfully navigated to 'eCash' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated eCash login page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified eCash login page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified eCash login page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "To validate Contact Us", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_055(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToContactUS();
+			Log.message("2. Successfully navigated to 'Contact Us' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Contact Us page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Contact Us page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Contact Us page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "To validate Make a payment", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_056(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToMakePayment();
+			Log.message("2. Successfully navigated to 'Make a payment' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Make a payment page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Make a payments page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Make a payment page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "To validate Complete Bookings", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_057(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToCompleteBookings();
+			Log.message("2. Successfully navigated to 'Flight cancellation charges' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Complete Bookings page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified FComplete Bookings page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Complete Bookings page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "To validate Flight cancellation charges", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_058(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToFlightsCancellationCharges();
+			Log.message("2. Successfully navigated to 'Flight cancellation charges' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Flight cancellation charges page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Flight cancellation charges page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Flight cancellation charges page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "To Validate Yatra specials", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_059(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToYatraSpecials();
+			Log.message("2. Successfully navigated to 'Yatra specials' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Yatra specials page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Yatra specials page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Yatra specials page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Perfect holidays", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_060(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToPerfectHolidays();
+			Log.message("2. Successfully navigated to 'Perfect holidays' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Perfect holidays page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Perfect holidays page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Perfect holidays page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Travel with in budget", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_061(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToTravelBudget();
+			Log.message("2. Successfully navigated to 'Travel with in budget' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Travel with in budget page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Travel with in budget page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Travel with in budget page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Special Deals/Offers -- Domestic flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_062(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToOffers();
+			Log.message("2. Successfully navigated to 'Special Deals-- Offer' Page");
+			
+			fresco.navigateToDomFligts();
+			Log.message("3. Successfully navigated to 'Domestic Flights' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Special Deals/Offers -- Domestic flight page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Special Deals/Offers -- Domestic flight page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Special Deals/Offers -- Domestic flight page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "Special Deals/Offers -- International flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_063(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToOffers();
+			Log.message("2. Successfully navigated to 'Special Deals-- Offer' Page");
+			
+			fresco.navigateToIntlFlights();
+			Log.message("3. Successfully navigated to 'International Flights' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Special Deals/Offers -- International flight page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Special Deals/Offers -- International flight page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Special Deals/Offers -- International flight page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Special Deals/Offers -- Hotels", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_064(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToOffers();
+			Log.message("2. Successfully navigated to 'Special Deals-- Offer' Page");
+			
+			fresco.navigateToHotels();
+			Log.message("3. Successfully navigated to 'Hotels' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Special Deals/Offers -- Hotels page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Special Deals/Offers -- Hotels page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Special Deals/Offers -- Hotels page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Special Deals/Offers -- Others", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_065(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToOffers();
+			Log.message("2. Successfully navigated to 'Special Deals-- Offer' Page");
+			
+			fresco.navigateToOthers();
+			Log.message("3. Successfully navigated to 'Others' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Special Deals/Offers -- Others page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Special Deals/Offers -- Others page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Special Deals/Offers -- Others page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Special Deals/Offers -- Mobile", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_066(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToOffers();
+			Log.message("2. Successfully navigated to 'Special Deals-- Offer' Page");
+			
+			fresco.navigateToMobile();
+			Log.message("3. Successfully navigated to 'Mobile' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Special Deals/Offers -- Mobile page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Special Deals/Offers -- Mobile page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Special Deals/Offers -- Mobile page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Special Deals/Offers -- Holidays", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_067(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToOffers();
+			Log.message("2. Successfully navigated to 'Special Deals-- Offer' Page");
+			
+			fresco.navigateToHolidays();
+			Log.message("3. Successfully navigated to 'Holidays' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Special Deals/Offers -- Holidays page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Special Deals/Offers -- Holidays page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Special Deals/Offers -- Holidays page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Special Deals/Offers -- Adventure Holidays", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_068(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToOffers();
+			Log.message("2. Successfully navigated to 'Special Deals-- Offer' Page");
+			
+			fresco.navigateToAdventureHolidays();
+			Log.message("3. Successfully navigated to 'Adventure Holidays' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Special Deals/Offers -- Adventure Holidays page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Special Deals/Offers -- DAdventure Holidays page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Special Deals/Offers -- Adventure Holidays page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+
+	@Test(description = "Special Deals/Offers -- Bus", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_069(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToOffers();
+			Log.message("2. Successfully navigated to 'Special Deals-- Offer' Page");
+			
+			fresco.navigateToBus();
+			Log.message("3. Successfully navigated to 'Bus' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Special Deals/Offers -- Bust page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Special Deals/Offers -- Bus page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Special Deals/Offers -- Bus page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
+	@Test(description = "Special Deals/Offers --Activity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_070(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			fresco.navigateToOffers();
+			Log.message("2. Successfully navigated to 'Special Deals-- Offer' Page");
+			
+			fresco.navigateToActivity();
+			Log.message("3. Successfully navigated to 'Activity' Page");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b>Validated Special Deals/Offers -- Activity page");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified Special Deals/Offers -- Activity page, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified Special Deals/Offers -- Activity page, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+		}
+	}
+	
 	
 	// ********************************End of Test cases************************************
 
 } // FrescoTest
+
+

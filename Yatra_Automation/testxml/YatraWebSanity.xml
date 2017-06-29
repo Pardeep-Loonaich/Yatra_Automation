@@ -8,7 +8,7 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="chrome_windows" />
+	<parameter name="browserName" value="chrome_MAC" />
 	<!-- we are controlling email on every failure from this flag -->
 	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 	<parameter name="webSite" value="https://www.yatra.com/" />
