@@ -16,8 +16,8 @@
 		<parameter name="webSite" value="https://www.yatra.com/" />
 		<classes>
 			<class name="com.Yatra.TestScript.Fresco.FrescoTest">
-				<methods>					
-					<!-- <include name="TC_Yatra_Fresco_061"></include>	 -->				
+				<methods>				   
+					<!-- <include name="TC_Yatra_Fresco_070"></include> -->
 				</methods>
 			</class>
 		</classes>

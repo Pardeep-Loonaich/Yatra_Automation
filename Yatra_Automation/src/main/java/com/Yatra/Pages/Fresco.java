@@ -1608,6 +1608,43 @@ public class Fresco extends LoadableComponent<Fresco> {
 	
 	@FindBy(css="table[class='resultsScroll sorterBody'] tr:nth-child(1) td[class='price-right']")
 	private WebElement lnkTravelBudget;
+		
+	@FindBy(css="#discountHdrLink")
+	private WebElement lnkSpecialDeals;
+	
+	@FindBy(css="ul[id='saveBigDD'] a[title='Offers']")
+	private WebElement lnkOffer;	
+	
+	@FindBy(css="#offer_sub_cat_21")
+	private WebElement lnkDomesticFlights_Offer;
+	
+	@FindBy(css="#offer_sub_cat_22")
+	private WebElement lnkIntlFlights_Offer;
+	
+	@FindBy(css="#offer_sub_cat_23")
+	private WebElement lnkHotels_Offer;
+	
+	@FindBy(css="#offer_sub_cat_128")
+	private WebElement lnkHomeStayss_Offer;
+	
+	@FindBy(css="#offer_sub_cat_30")
+	private WebElement lnkOthers_Offer;
+	
+	@FindBy(css="#offer_sub_cat_33")
+	private WebElement lnkMobile_Offer;
+	
+	@FindBy(css="#offer_sub_cat_31")
+	private WebElement lnkHolidays_Offer;
+	
+	@FindBy(css="#offer_sub_cat_34")
+	private WebElement lnkAdventureHolidays_Offer;
+	
+	@FindBy(css="#offer_sub_cat_56")
+	private WebElement lnkBus_Offer;
+	
+	@FindBy(css="#offer_sub_cat_123")
+	private WebElement lnkActivity_Offer;
+	
 	
 	// **********************Fresco Functions*******************************************
 	/**
@@ -2166,5 +2203,135 @@ public class Fresco extends LoadableComponent<Fresco> {
 		BrowserActions.clickOnElement(lnkTravelBudget, driver, "Travel with in budget");		
 	}	
 
+
+	/**
+	 * Navigate to Special Deals -->Offers  page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToOffers() throws Exception{
+		Utils.waitForElement(driver, lnkSpecialDeals);
+		BrowserActions.mouseHover(driver, lnkSpecialDeals);	
+		BrowserActions.clickOnElement(lnkOffer, driver, "SpecialDeals-- Offers");
+		Utils.waitForElement(driver, lnkDomesticFlights_Offer);
+	}	
+	
+	
+	/**
+	 * Navigate to Special Deals/Offers Domestic Flights page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToDomFligts() throws Exception{
+		Utils.waitForElement(driver, lnkDomesticFlights_Offer);
+		BrowserActions.clickOnElement(lnkDomesticFlights_Offer, driver, "Domestic Flights");		
+	}	
+	
+
+	/**
+	 * Navigate to Special Deals/Offers International Flights page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToIntlFlights() throws Exception{
+		Utils.waitForElement(driver, lnkIntlFlights_Offer);
+		BrowserActions.clickOnElement(lnkIntlFlights_Offer, driver, "International flights");		
+	}	
+	
+
+	/**
+	 * Navigate to Special Deals/Offers Hotels page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToHotels() throws Exception{
+		Utils.waitForElement(driver, lnkHotels_Offer);
+		BrowserActions.clickOnElement(lnkHotels_Offer, driver, "Hotels");		
+	}	
+	
+
+	/**
+	 * Navigate to Special Deals/Offers HomeStays page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToHomeStays() throws Exception{
+		Utils.waitForElement(driver, lnkHomeStayss_Offer);
+		BrowserActions.clickOnElement(lnkHomeStayss_Offer, driver, "HomeStays");		
+	}	
+	
+
+	/**
+	 * Navigate to Special Deals/Offers Others page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToOthers() throws Exception{
+		Utils.waitForElement(driver, lnkOthers_Offer);
+		BrowserActions.clickOnElement(lnkOthers_Offer, driver, "Others");		
+	}	
+	
+	/**
+	 * Navigate to Special Deals/Offers Mobile page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToMobile() throws Exception{
+		Utils.waitForElement(driver, lnkMobile_Offer);
+		BrowserActions.clickOnElement(lnkMobile_Offer, driver, "Mobile");		
+	}	
+	/**
+	 * Navigate to Special Deals/Offers Holidays page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToHolidays() throws Exception{
+		Utils.waitForElement(driver, lnkHolidays_Offer);
+		BrowserActions.clickOnElement(lnkHolidays_Offer, driver, "Holidays");		
+	}	
+	
+
+	/**
+	 * Navigate to Special Deals/Offers Adventure Holidays page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToAdventureHolidays() throws Exception{
+		Utils.waitForElement(driver, lnkAdventureHolidays_Offer);
+		BrowserActions.clickOnElement(lnkAdventureHolidays_Offer, driver, "Adventure Holidays");		
+	}	
+	
+
+	/**
+	 * Navigate to Special Deals/Offers Bus page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToBus() throws Exception{
+		Utils.waitForElement(driver, lnkBus_Offer);
+		BrowserActions.clickOnElement(lnkBus_Offer, driver, "Bus");		
+	}	
+	
+
+	/**
+	 * Navigate to Special Deals/Offers Activity page
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void navigateToActivity() throws Exception{
+		Utils.waitForElement(driver, lnkActivity_Offer);
+		BrowserActions.clickOnElement(lnkActivity_Offer, driver, "Activity");		
+	}	
 
 }// Fresco
