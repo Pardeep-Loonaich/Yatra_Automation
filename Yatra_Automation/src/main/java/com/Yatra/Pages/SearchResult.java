@@ -4051,7 +4051,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		int index = 0;
 		List<WebElement> wFlightResultGrid = driver.findElements(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])"));
 		if (wFlightResultGrid.size() != 0) {
-			index = Utils.getRandom(1, wFlightResultGrid.size());			
+			if(wFlightResultGrid.size()>1)
+			index = Utils.getRandom(1, wFlightResultGrid.size());
+		}
+		else
+		{
+			index =1;
+		
 		}
 		BrowserActions.nap(15);
 		WebElement wBookNow = driver.findElement(By.xpath("(//div[@ng-controller='scheduleController']//div[@class='js-flightItem'])["

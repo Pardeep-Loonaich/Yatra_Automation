@@ -188,14 +188,7 @@ public class ExtentReporter {
 		getTest().log(LogStatus.SKIP, "<font color=\"orange\">" + message + "</font>");
 	}
 	
-	/**
-	 * To log the given message to the reporter at fatal level
-	 * 
-	 * @param message
-	 */
-	public static void fatal(String message) {
-		getTest().log(LogStatus.FATAL, "<font color=\"blue\">" + message + "</font>");
-	}
+	
 
 	/**
 	 * To print the stack trace of the given error/exception
