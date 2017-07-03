@@ -95,7 +95,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -148,7 +148,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -200,7 +200,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -252,7 +252,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -304,7 +304,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -362,7 +362,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -416,7 +416,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -470,7 +470,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -525,7 +525,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -575,7 +575,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -630,7 +630,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -685,7 +685,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -739,7 +739,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -794,7 +794,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -847,7 +847,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -899,7 +899,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -953,7 +953,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1012,7 +1012,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1053,7 +1053,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			String details = searchResultBus.getTextBusInfo();
 
 			searchResultBus.clickOnBoardingPoint();
@@ -1080,7 +1080,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1120,7 +1120,7 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 			String SeatNumber = searchResultBus.getTextSeatNumber();
@@ -1138,7 +1138,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1179,7 +1179,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(3000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 
@@ -1199,7 +1199,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1241,7 +1241,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(6);
 			Log.message("7. Seat Selected!");
 			String Msg = searchResultBus.getTextMaxNumber();
@@ -1261,7 +1261,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1303,7 +1303,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			String bustype = searchResultBus.getTextSeatType();
 			String bustyp = searchResultBus.getTextSeatTyp();
 
@@ -1319,7 +1319,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1361,7 +1361,7 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat_RT();
 			Log.message("6. Clicked On Select Seat!");
 
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 
@@ -1385,7 +1385,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1426,7 +1426,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 
@@ -1443,7 +1443,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1484,7 +1484,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 			String details = searchResultBus.getTextBusInfo();
@@ -1504,7 +1504,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1545,7 +1545,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(2);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1572,7 +1572,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1613,7 +1613,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1635,7 +1635,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1678,7 +1678,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1712,7 +1712,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1754,7 +1754,7 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1785,7 +1785,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1826,7 +1826,7 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1856,7 +1856,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1896,7 +1896,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1918,7 +1918,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1961,7 +1961,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1998,7 +1998,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2040,7 +2040,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2078,7 +2078,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2121,7 +2121,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2155,7 +2155,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2197,7 +2197,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2270,7 +2270,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2353,7 +2353,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2389,7 +2389,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2433,7 +2433,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2473,7 +2473,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2515,7 +2515,7 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2546,7 +2546,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2589,7 +2589,7 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			searchResultBus.switchToIframe();
+			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2628,7 +2628,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2671,7 +2671,6 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			searchResultBus.switchToIframe();
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2720,7 +2719,7 @@ public class BusSearchTest extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			//driver.quit();
+			driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -2762,7 +2761,6 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			searchResultBus.switchToIframe();
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2847,7 +2845,6 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			searchResultBus.switchToIframe();
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2928,7 +2925,6 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			searchResultBus.switchToIframe();
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 

@@ -1,7 +1,5 @@
 package com.Yatra.TestScript.Activities;
 
-
-
 //-----------------------------------------------------------------------------------------------------------
 //Description    :   All the Activities test Cases would be designed in this class 
 //Creator        :   Aspire Team

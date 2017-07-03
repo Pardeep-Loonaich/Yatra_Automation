@@ -246,6 +246,24 @@ public class Fresco extends LoadableComponent<Fresco> {
 
 	@FindBy(xpath = "/html/body//*[@class='close close-icon']//*[@class='wewidgeticon we_close']")
 	private WebElement btnCloseIframeNotification;
+	
+	@FindBy(css ="div[class='footsec js-footer-new js-footer-slide']>div>div[id='js_yt_footer']>div>ul[class='footer-container']>li[class='parentLI']")
+	private List<WebElement> footerOptions;
+	
+	@FindBy(css ="li[id='MoreAboutUs']>a")
+	private WebElement aboutUs;
+	
+	@FindBy(css ="li[data-href='#team']")
+	private WebElement aboutUsTeam;
+	
+	@FindBy(css ="li[id='Sitemap']>a")
+	private WebElement siteMap;
+	
+	@FindBy(css ="li[id='Terms&Conditions']>a")
+	private WebElement termsAndConditions;
+	
+	@FindBy(css ="li[id='PrivacyPolicy']>a")
+	private WebElement privacyPolicy;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -2212,7 +2230,7 @@ public class Fresco extends LoadableComponent<Fresco> {
 	 */
 	public void navigateToOffers() throws Exception{
 		Utils.waitForElement(driver, lnkSpecialDeals);
-		BrowserActions.mouseHover(driver, lnkSpecialDeals);	
+		BrowserActions.scrollToView(lnkSpecialDeals,driver);	
 		BrowserActions.clickOnElement(lnkOffer, driver, "SpecialDeals-- Offers");
 		Utils.waitForElement(driver, lnkDomesticFlights_Offer);
 	}	
@@ -2333,5 +2351,81 @@ public class Fresco extends LoadableComponent<Fresco> {
 		Utils.waitForElement(driver, lnkActivity_Offer);
 		BrowserActions.clickOnElement(lnkActivity_Offer, driver, "Activity");		
 	}	
-
+	
+	
+	/**
+	 * Navigate to Footer option
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void selectFooterOption(String footerOption) throws Exception {
+		BrowserActions.nap(5);
+		List<WebElement> lstElement = footerOptions;
+			for (WebElement e : lstElement) {
+				if (e.findElement(By.cssSelector("a")).getText().equals(footerOption)) {
+					BrowserActions.scrollToViewElement(e.findElement(By.cssSelector("a")), driver);
+					BrowserActions.clickOnElement(e.findElement(By.cssSelector("a")), driver, "list elements");
+					break;
+			}
+		}
+	}
+	/**
+	 * Navigate to About Us
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnAboutUs() throws Exception{
+		Utils.waitForElement(driver, aboutUs);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(aboutUs, driver, "About Us");		
+	}	
+	/**
+	 * Navigate to About Us Team
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnAboutUsTeam() throws Exception{
+		Utils.waitForElement(driver, aboutUsTeam);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(aboutUsTeam, driver, "About Us Team");		
+	}	
+	/**
+	 * 
+	 * Navigate to SiteMap
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnSiteMap() throws Exception{
+		Utils.waitForElement(driver, siteMap);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(siteMap, driver, "Site Map");		
+	}
+	/**
+	 * 
+	 * Navigate to Terms And Conditions
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnTermsAndConditions() throws Exception{
+		Utils.waitForElement(driver, termsAndConditions);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(termsAndConditions, driver, "Terms And Conditions");	
+	}	
+	/**
+	 * 
+	 * Navigate to Terms And Conditions
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnPrivacyPolicy() throws Exception{
+		Utils.waitForElement(driver, privacyPolicy);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(privacyPolicy, driver, "Terms And Conditions");	
+	}
 }// Fresco

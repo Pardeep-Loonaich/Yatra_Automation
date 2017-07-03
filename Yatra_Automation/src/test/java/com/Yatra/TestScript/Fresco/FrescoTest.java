@@ -1,5 +1,36 @@
-
 package com.Yatra.TestScript.Fresco;
+//-----------------------------------------------------------------------------------------------------------
+
+//Description    :   All the Fresco test Cases would be designed in this class 
+//Creator        :   Aspire Team
+//Create         :   
+//Modified on/By :   -
+//-----------------------------------------------------------------------------------------------------------
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
+
+import com.Yatra.Pages.Fresco;
+import com.Yatra.Pages.LoginPage;
+import com.Yatra.Pages.SearchResult;
+import com.Yatra.TestScript.Common.BaseTest;
+import com.Yatra.Utils.BrowserActions;
+import com.Yatra.Utils.Constants;
+import com.Yatra.Utils.DataProviderUtils;
+import com.Yatra.Utils.EmailReport;
+import com.Yatra.Utils.EnvironmentPropertiesReader;
+import com.Yatra.Utils.Log;
+import com.Yatra.Utils.Utils;
+import com.Yatra.Utils.WebDriverFactory;
+
+
 //-----------------------------------------------------------------------------------------------------------
 
 //Description    :   All the Fresco test Cases would be designed in this class 
@@ -53,6 +84,7 @@ public class FrescoTest extends BaseTest {
 		String browser = testData.get("browser");
 		String tripType = testData.get("TripType");
 		String origin = testData.get("Origin");
+		
 
 		// Get the web driver instance
 		final WebDriver driver = WebDriverFactory.get(browser);
@@ -2711,6 +2743,7 @@ public class FrescoTest extends BaseTest {
 			Log.exception(e);
 		} finally {
 			Log.endTestCase();
+			driver.quit();
 		}
 	}
 
@@ -2875,7 +2908,7 @@ public class FrescoTest extends BaseTest {
 	}
 	
 	@Test(description = "Special Deals/Offers -- Domestic flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_062(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_063(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -2910,7 +2943,7 @@ public class FrescoTest extends BaseTest {
 	}
 
 	@Test(description = "Special Deals/Offers -- International flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_063(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_064(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -2945,7 +2978,7 @@ public class FrescoTest extends BaseTest {
 	}
 	
 	@Test(description = "Special Deals/Offers -- Hotels", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_064(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_065(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -2980,7 +3013,7 @@ public class FrescoTest extends BaseTest {
 	}
 	
 	@Test(description = "Special Deals/Offers -- Others", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_065(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_066(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3011,11 +3044,12 @@ public class FrescoTest extends BaseTest {
 			Log.exception(e);
 		} finally {
 			Log.endTestCase();
+			driver.quit();
 		}
 	}
 	
 	@Test(description = "Special Deals/Offers -- Mobile", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_066(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_067(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3046,11 +3080,12 @@ public class FrescoTest extends BaseTest {
 			Log.exception(e);
 		} finally {
 			Log.endTestCase();
+			driver.quit();
 		}
 	}
 	
 	@Test(description = "Special Deals/Offers -- Holidays", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_067(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_068(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3081,11 +3116,12 @@ public class FrescoTest extends BaseTest {
 			Log.exception(e);
 		} finally {
 			Log.endTestCase();
+			driver.quit();
 		}
 	}
 	
 	@Test(description = "Special Deals/Offers -- Adventure Holidays", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_068(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_069(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3116,11 +3152,12 @@ public class FrescoTest extends BaseTest {
 			Log.exception(e);
 		} finally {
 			Log.endTestCase();
+			driver.quit();
 		}
 	}
 
 	@Test(description = "Special Deals/Offers -- Bus", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_069(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_070(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3151,11 +3188,12 @@ public class FrescoTest extends BaseTest {
 			Log.exception(e);
 		} finally {
 			Log.endTestCase();
+			driver.quit();
 		}
 	}
 	
 	@Test(description = "Special Deals/Offers --Activity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_070(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_071(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3186,9 +3224,196 @@ public class FrescoTest extends BaseTest {
 			Log.exception(e);
 		} finally {
 			Log.endTestCase();
+			driver.quit();
 		}
 	}
 	
+	@Test(description = "About us", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_072(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+		String footerOption = testData.get("FooterOption");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			fresco.selectFooterOption(footerOption);
+			Log.message("2. Successfully navigated to Footer Section");
+			
+			fresco.ClickOnAboutUs();
+			Log.message("3. Clicked On About us");
+
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b> Validated About us Response");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified About us, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified About us, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+			driver.quit();
+		}
+	}
+	
+	@Test(description = "Yatra Team", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_073(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+		String footerOption = testData.get("FooterOption");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			fresco.selectFooterOption(footerOption);
+			Log.message("2. Successfully navigated to Footer Section");
+			
+			fresco.ClickOnAboutUs();
+			Log.message("3. Clicked On About us");
+			
+			fresco.ClickOnAboutUsTeam();
+			Log.message("4. Clicked On About us team");
+			
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b> Validated About us Response");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified About us, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified About us, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+			driver.quit();
+		}
+	}
+	
+	@Test(description = "SiteMap", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_075(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+		String footerOption = testData.get("FooterOption");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			fresco.selectFooterOption(footerOption);
+			Log.message("2. Successfully navigated to Footer Section");
+			
+			fresco.ClickOnSiteMap();
+			Log.message("3. Clicked On Site Map");
+			
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b> Validated About us Response");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified About us, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified About us, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+			driver.quit();
+		}
+	}
+	@Test(description = "Terms & Conditions", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_076(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+		String footerOption = testData.get("FooterOption");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			fresco.selectFooterOption(footerOption);
+			Log.message("2. Successfully navigated to Footer Section");
+			
+			fresco.ClickOnTermsAndConditions();
+			Log.message("3. Clicked On Site Map");
+			
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b> Validated About us Response");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified About us, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified About us, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+			driver.quit();
+		}
+	}
+	
+	@Test(description = "Privacy Policy", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Fresco_077(HashMap<String, String> testData) throws Exception {
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String urlString = testData.get("URL");
+		String footerOption = testData.get("FooterOption");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step: Navigate to Yatra Home Page
+			fresco = new Fresco(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+			
+			fresco.selectFooterOption(footerOption);
+			Log.message("2. Successfully navigated to Footer Section");
+			
+			fresco.ClickOnPrivacyPolicy();
+			Log.message("3. Clicked On Privacy Policy");
+			
+			int responsecode = Utils.getResponseCode(urlString);
+			
+			Log.message("<b>Expected Result:</b> Validated About us Response");
+			Log.assertThat((Constants.C_OK == responsecode),
+					"<b>Actual Result:</b> Successfully verified About us, Response Code: <b>"+responsecode+"</b>",
+					"<b>Actual Result:</b> Not verified About us, Response Code: <b>"+responsecode+"</b>", driver);
+
+			Log.testCaseResult();
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			Log.endTestCase();
+			driver.quit();
+		}
+	}
 	
 	// ********************************End of Test cases************************************
 
