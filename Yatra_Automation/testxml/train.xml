@@ -13,7 +13,6 @@
 	<test name="Train" thread-count="1" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.Trains.Train">
-			 <methods>
  
 			</class>
 		</classes>
