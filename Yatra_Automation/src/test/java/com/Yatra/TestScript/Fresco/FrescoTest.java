@@ -2877,7 +2877,7 @@ public class FrescoTest extends BaseTest {
 	}
 	
 	@Test(description = "Special Deals/Offers -- Domestic flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_062(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_063(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -2912,7 +2912,7 @@ public class FrescoTest extends BaseTest {
 	}
 
 	@Test(description = "Special Deals/Offers -- International flight", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_063(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_064(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -2947,7 +2947,7 @@ public class FrescoTest extends BaseTest {
 	}
 	
 	@Test(description = "Special Deals/Offers -- Hotels", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_064(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_065(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -2982,7 +2982,7 @@ public class FrescoTest extends BaseTest {
 	}
 	
 	@Test(description = "Special Deals/Offers -- Others", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_065(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_066(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3018,7 +3018,7 @@ public class FrescoTest extends BaseTest {
 	}
 	
 	@Test(description = "Special Deals/Offers -- Mobile", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_066(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_067(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3054,7 +3054,7 @@ public class FrescoTest extends BaseTest {
 	}
 	
 	@Test(description = "Special Deals/Offers -- Holidays", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_067(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_068(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3090,7 +3090,7 @@ public class FrescoTest extends BaseTest {
 	}
 	
 	@Test(description = "Special Deals/Offers -- Adventure Holidays", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_068(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_069(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3126,7 +3126,7 @@ public class FrescoTest extends BaseTest {
 	}
 
 	@Test(description = "Special Deals/Offers -- Bus", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_069(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_070(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");
@@ -3162,7 +3162,7 @@ public class FrescoTest extends BaseTest {
 	}
 	
 	@Test(description = "Special Deals/Offers --Activity", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
-	public void TC_Yatra_Fresco_070(HashMap<String, String> testData) throws Exception {
+	public void TC_Yatra_Fresco_071(HashMap<String, String> testData) throws Exception {
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String urlString = testData.get("URL");

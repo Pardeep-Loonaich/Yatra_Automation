@@ -9,7 +9,7 @@
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
 	<test name="Fresco on chrome" thread-count="1" parallel="true">
-		<parameter name="browserName" value="chrome_windows" />
+		<parameter name="browserName" value="firefox_windows" />
 
 		<!-- we are controlling email on every failure from this flag -->
 		<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
@@ -17,7 +17,7 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Fresco.FrescoTest">
 				<methods>				   
-					 <!-- <include name="TC_Yatra_Fresco_076"></include>  -->
+ <!-- <include name="TC_Yatra_Fresco_076"></include>  -->
 				</methods>
 			</class>
 		</classes>

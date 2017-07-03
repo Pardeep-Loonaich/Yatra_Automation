@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
@@ -152,8 +153,6 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @throws Exception
 	 */
 	public boolean getSortedPrice() throws Exception {
-		Utils.waitForPageLoad(driver);
-		Thread.sleep(3000);
 		boolean Flag = false;
 		ArrayList<String> price = new ArrayList<String>();
 		for(int i=0;i<2;i++){
@@ -177,8 +176,7 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 * @throws Exception
 	 */
 	public boolean getSortedPopluarActivity() throws Exception {
-		Utils.waitForPageLoad(driver);
-		Thread.sleep(3000);
+		
 		boolean Flag = true;
 		ArrayList<String> popular = new ArrayList<String>();
 		for (int j = 1; j < 5; j++) {
@@ -268,7 +266,6 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 */
 	public String gettingTxtFrmResultFoundStrip() throws Exception{
 		Utils.waitForPageLoad(driver);
-		Thread.sleep(4000);
 		String resultValue[] = BrowserActions.getText(driver, txtResultStrip, "Getting the number of result found for the category.").split(" ");
 		return resultValue[1];
 	}
@@ -301,5 +298,4 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	Thread.sleep(3000);
 	return status3;
 	}
-	
 }//SearchResultActivitesPageEnd

@@ -262,7 +262,10 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	private WebElement txtDepartDate1_ModifySearch;
 
 	@FindBy(css = "div[class*='matrix-slide-wrapper has-next-prev matrix-small-screen day-matrix-wrapper']")
-	private WebElement weeklyFlightsStrip;
+	private WebElement weeklyFlightsStrip;	
+
+	@FindBy(css = "div[class='matrix-wrapper new-theme airline-matrix']']")
+	private WebElement NonWeeklyFlightsStrip;
 
 	@FindBy(css = "ul[class='matrix-slide-list tabs day-ul']>li>a[class='matrix-link tabs-link active']")
 	private WebElement lnkCurrentDate_WeeklyMatrix;
@@ -573,7 +576,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "div[class='matrix-slide-wrapper has-next-prev matrix-small-screen']")
 	private WebElement lnkAirlinematrix;
 
-	@FindBy(css = "div[id='resultBoxSlider']")
+	@FindBy(css = "#resultBox")// div[id='resultBoxSlider']
 	private WebElement lnkResultGrid;
 
 	@FindBy(css = "div[class='fare-cal-fixed']")
@@ -778,7 +781,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		WebElement e2 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list2
 				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index2
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
-
+		 
 		BrowserActions.scrollToView(e1, driver);
 		BrowserActions.clickOnElement(e1, driver, "To select Flight from one list.");
 		BrowserActions.scrollToView(e2, driver);

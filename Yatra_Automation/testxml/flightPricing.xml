@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name=" Yatra Flight Pricing Automation Test" verbose="3"
@@ -11,7 +10,7 @@
 	<parameter name="devicePort" value="4444" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 	<test name="Flight Pricing chrome" thread-count="1" parallel="true">
-		<parameter name="browserName" value="chrome_windows" />
+		<parameter name="browserName" value="firefox_windows" />
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing">
 				<!-- <methods>
