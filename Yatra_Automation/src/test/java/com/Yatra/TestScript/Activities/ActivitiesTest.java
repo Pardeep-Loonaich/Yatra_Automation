@@ -415,15 +415,16 @@ public class ActivitiesTest {
 
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
-
+			
 			String categryNumb = searchResultActivites.selectCategory(categoryNme);
 			Log.message("5. Selecting category as 'OUTDOOR FUN' and get searched category number.");
-
+			
 			String resultNum = searchResultActivites.gettingTxtFrmResultFoundStrip();
 			Log.message("6. Getting selected result category number from the result strip.");
-
+		
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify result should be sorted by OUTDOOR FUN.");
+			Thread.sleep(3000);
 			Log.assertThat(resultNum.contains(categryNumb),
 					"<b>Actual Result:</b> The result is sorted by OUTDOOR FUN category. ",
 					"<b>Actual Result:</b> The result is not sorted by OUTDOOR FUN category.", driver);
@@ -1131,7 +1132,7 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 
-			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
+			activityDetailPage = searchResultActivites.ClickBookNowByIndex(9);
 			Log.message("5. Clicked On Book Now Button!");
 
 			activityDetailPage.clickOnBookNowButton();
@@ -1366,11 +1367,10 @@ public class ActivitiesTest {
 			activityDetailPage.clickOnCheckAvailability();
 			Log.message("7. Clicked On Check Availability Button!");
 
-			
-
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Verification Pax Modifying option is there.");
+			Thread.sleep(4000);
 			Log.assertThat(
 					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("lnkChngeDateOrPax"),
 							activityDetailPage),

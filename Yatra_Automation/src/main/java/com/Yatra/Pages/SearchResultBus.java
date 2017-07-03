@@ -47,7 +47,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(css = "p[class='wfull text-error']>span[class='no-res-txt ng-binding']")
 	private WebElement txtNoResultFoundBus;
 
-	@FindBy(css = "section[class='col-3 result ng-scope']>div>div[class='wfull result-holder onwards ng-scope']>ul>li[class='totlal-fare box-sizing tar']>a")
+	@FindBy(css = "ul[class='wfull res-list detail-box anim txtBlack noListStyle txtMedium relative oneway avl ng-scope']>li[class='totlal-fare box-sizing tar']>a")
 	private List <WebElement> btnSelectSeat;
 
 	@FindBy(xpath = "//*[@id='onwards-content']/div[@class='flL bus-details-box']/div[@class='bus-info']/div/p[1]")
@@ -196,7 +196,6 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		}
 		if (isPageLoaded && !(Utils.waitForElement(driver, btnFindBus,Constants.Bus_Search_Result_Page_Load_Time))) {
 			Log.fail("SearchResultBus Page did not open up. Site might be down.", driver);
-			//Log.message("Total time taken by #"+this.getClass().getTypeName()+" to load is:- "+timer.duration()+" "+TimeUnit.SECONDS);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
 		Constants.performanceData.put("SearchresultBus",timer.duration());
@@ -370,6 +369,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * Need To be Tested once or Reviewed
 	 */
 	public boolean comapreAndSortList(ArrayList<String> prices) throws Exception {
+		Utils.waitForPageLoad(driver);
 		boolean Flag = true;
 		Collections.sort(prices);
 		for (int i = 1; i < prices.size(); i++) {
@@ -385,6 +385,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * @throws Exception
 	 */
 	public boolean getSortedPrice() throws Exception {
+		Utils.waitForPageLoad(driver);
 		boolean Flag = true;
 		ArrayList<String> list = new ArrayList<String>();
 		for (int j = 3; j < price.size(); j++) {
@@ -407,6 +408,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * @throws Exception
 	 */
 	public boolean getSortedDepartTime() throws Exception {
+		Utils.waitForPageLoad(driver);
 		boolean Flag = true;
 		ArrayList<String> time = new ArrayList<String>();
 		for (int j = 3; j < departTime.size(); j++) {
@@ -429,6 +431,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * @throws Exception
 	 */
 	public boolean getSortedArriveTime() throws Exception {
+		Utils.waitForPageLoad(driver);
 		boolean Flag = true;
 		ArrayList<String> arrTime = new ArrayList<String>();
 		for (int j = 3; j < arriveTime.size(); j++) {
@@ -451,6 +454,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	 * @throws Exception
 	 */
 	public boolean getSortedDuration() throws Exception {
+		Utils.waitForPageLoad(driver);
 		boolean Flag = true;
 		ArrayList<String> arrTime = new ArrayList<String>();
 		for (int j = 3; j < duration.size(); j++) {
@@ -492,7 +496,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 			BrowserActions.nap(2);
 			}
 		}else
-			{
+		{
 				for (int i = 0; i < number; i++) {
 					driver.findElement(By.cssSelector(
 							"div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']"))

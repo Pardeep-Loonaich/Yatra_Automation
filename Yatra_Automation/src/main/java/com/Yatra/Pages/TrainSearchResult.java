@@ -20,6 +20,7 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
+import com.gargoylesoftware.htmlunit.javascript.host.dom.Document;
 
 @SuppressWarnings("unused")
 public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
@@ -366,18 +367,19 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		Utils.waitForPageLoad(driver);
 		if(broswer.equalsIgnoreCase("firefox_windows")){
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		//BrowserActions.javascriptClick(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		driver.findElement(By.id("div[class='fareSection']>button[id='bookBtn1']")).click();
 		driver.navigate().refresh();
 		Thread.sleep(3000);
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		BrowserActions.javascriptClick(btnBookNow, driver, "Clicked on 'Book Now' button.");
 		}
 		else if(broswer.equalsIgnoreCase("Chorme_windows")){
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		BrowserActions.javascriptClick(btnBookNow, driver, "Clicked on 'Book Now' button.");
 	}else{
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		BrowserActions.javascriptClick(btnBookNow, driver, "Clicked on 'Book Now' button.");
 	}
 	}
 	/**
