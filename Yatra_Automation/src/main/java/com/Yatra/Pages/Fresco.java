@@ -264,6 +264,21 @@ public class Fresco extends LoadableComponent<Fresco> {
 	
 	@FindBy(css ="li[id='PrivacyPolicy']>a")
 	private WebElement privacyPolicy;
+	
+	@FindBy(css ="li[id='UserAgreement']>a")
+	private WebElement userAgreement;
+	
+	@FindBy(css ="li[id='AwardsWon']>a")
+	private WebElement awardsWon;
+	
+	@FindBy(css ="li[id='PressReleases']>a")
+	private WebElement pressReleases;
+	
+	@FindBy(css ="li[id='YatraHolidayAdvisors']>a")
+	private WebElement yatraHolidayAdvisors;
+	
+	@FindBy(xpath =".//*[@id='ProductOfferings']/ul[1]/li[41]/a")
+	private WebElement visaInformation;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -2428,4 +2443,78 @@ public class Fresco extends LoadableComponent<Fresco> {
 		Thread.sleep(3000);
 		BrowserActions.clickOnElement(privacyPolicy, driver, "Terms And Conditions");	
 	}
+	/**
+	 * 
+	 * Navigate to User Agreement
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnUserAgreement() throws Exception{
+		Utils.waitForElement(driver, userAgreement);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(userAgreement, driver, "User Agreement");
+	}
+	/**
+	 * 
+	 * Navigate to Awards Won
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnAwardsWon() throws Exception{
+		Utils.waitForElement(driver, awardsWon);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(awardsWon, driver, "Awards Won");
+	}
+	/**
+	 * 
+	 * Navigate to Yatra in the news
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnYatrainthenews() throws Exception{
+		Utils.waitForElement(driver, awardsWon);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(awardsWon, driver, "Yatra in the news");
+	}
+	/**
+	 * 
+	 * Navigate to Press Release
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnPressRelease() throws Exception{
+		Utils.waitForElement(driver, pressReleases);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(pressReleases, driver, "Press Release");
+	}
+	/**
+	 * 
+	 * Navigate to Yatra Holiday Advisors
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnYatraHolidayAdvisors() throws Exception{
+		Utils.waitForElement(driver, yatraHolidayAdvisors);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(yatraHolidayAdvisors, driver, "Yatra Holiday Advisors");
+	}
+	/**
+	 * 
+	 * Navigate to Yatra Holiday Advisors
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnVisaInformation() throws Exception{
+		Utils.waitForElement(driver, yatraHolidayAdvisors);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(visaInformation, driver, "VISA Information");
+	}
+	
+	
 }// Fresco
