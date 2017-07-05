@@ -59,6 +59,7 @@ public class WebDriverFactory {
 	private static Logger logger = LoggerFactory.getLogger(WebDriverFactory.class);
 	private static EnvironmentPropertiesReader configProperty = EnvironmentPropertiesReader.getInstance();
 	//private static MobileEmulationUserAgentConfiguration mobEmuUA = new MobileEmulationUserAgentConfiguration();
+	public static Proxy mobProxy=new BrowserMob().startBrowseyMobProxy();
 
 
 	static String driverHost;
@@ -374,10 +375,11 @@ public class WebDriverFactory {
 					chromeCapabilities.setPlatform(Platform.fromString(platform)); 					
 					if (proxy != null)
 					{
-						chromeCapabilities.setCapability(CapabilityType.PROXY, proxy);
+						chromeCapabilities.setCapability(CapabilityType.PROXY,proxy );
 					}
 					driver = new RemoteWebDriver(hubURL, chromeCapabilities);
 					// enable more detailed HAR capture, if desired (see CaptureType for the complete list)
+				
 
 				}
 			} else if ("iexplorer".equalsIgnoreCase(browser)) {

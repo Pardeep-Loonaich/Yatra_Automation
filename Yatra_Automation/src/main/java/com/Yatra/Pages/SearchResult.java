@@ -1,5 +1,4 @@
 package com.Yatra.Pages;
-
 import java.awt.Robot;
 import java.util.ArrayList;
 import java.util.List;
@@ -4080,4 +4079,5 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	// *******************************End of SRP Functions******************************/
 
 } // SearchResult
+
 
