@@ -49,7 +49,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	@FindBy(css = "div[class='hotel-info ng-binding']")
 	private WebElement txtDescrption;
 	
-	@FindBy(css = "div[id='viewAdditionalInfo']>div[class='hotel-info']")
+	@FindBy(css = "p[class='mb-10 ng-binding']")
 	private WebElement txtAdditionalInfo;
 	
 	@FindBy(css = "div[class='wrapper_inner']")

@@ -9,7 +9,7 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="chrome_windows" />
+	<parameter name="browserName" value="firefox_windows" />
 	<!-- we are controlling email on every failure from this flag -->
 	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 	<parameter name="webSite" value="https://www.yatra.com/" />
@@ -18,8 +18,13 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Bus.BusSearchTest">
 			 <methods>
-			 <!-- <include name="TC_Yatra_Bus_044"></include> 
-			<include name="TC_Yatra_Bus_043"></include>   -->
+			  <exclude name="TC_Yatra_Bus_003"></exclude> 
+			  <exclude name="TC_Yatra_Bus_004"></exclude> 
+			  <exclude name="TC_Yatra_Bus_017"></exclude>
+			  <exclude name="TC_Yatra_Bus_025"></exclude>
+			  <exclude name="TC_Yatra_Bus_029"></exclude>
+			  <exclude name="TC_Yatra_Bus_037"></exclude>
+			  <exclude name="TC_Yatra_Bus_040"></exclude>
 			 </methods>
 			</class>          
 		</classes>

@@ -89,7 +89,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(css = ".wfull.pad-tb10.onwards.bdr-top-grey.hide.total-ammount")
 	private WebElement txtTotalAmount;
 
-	@FindBy(css = "div[class='wfull result-holder onwards ng-scope']>ul[class='wfull res-list mt20 sorting-list noListStyle']>li[class='depart box-sizing']>a")
+	@FindBy(css = "div[class='wfull result-holder onwards  ng-scope']>ul[class='wfull res-list mt20 sorting-list noListStyle']>li[class='depart box-sizing']>a")
 	private WebElement lnkDepartTime;
 
 	@FindBy(css = "div[class='wfull result-holder onwards ng-scope']>ul:nth-child(3)>li[class='box-sizing ar-de-seats']>p[class='flL txtMedium w33P']:nth-child(1)>span")
@@ -104,16 +104,16 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(css = "#toater_21")
 	private WebElement txtErrorMsgEmptyCity;
 
-	@FindBy(css = "div[class='wfull result-holder onwards ng-scope']>ul>li[class='totlal-fare box-sizing tar']>p>span[class='flL txtXXL ng-binding']")
+	@FindBy(css = "div[class*='wfull result-holder onwards ng-scope']>ul>li[class='totlal-fare box-sizing tar']>p>span[class='flL txtXXL ng-binding']")
 	private List<WebElement> price;
 
-	@FindBy(css = "div[class='wfull']")
+	@FindBy(css = "div[class*='wfull responsive-ht']")
 	private WebElement selectSeatPopUp;
 
-	@FindBy(css = "	div[class='wfull result-holder onwards ng-scope']>ul:not([class='wfull res-list mt20 sorting-list noListStyle'])>li[class='wfull box-sizing footer']>div[class='flL separator']>a")
+	@FindBy(css = "div[class='wfull result-holder onwards  ng-scope']>ul:not([class='wfull res-list mt20 sorting-list noListStyle'])>li[class='wfull box-sizing footer']>div[class='flL separator']>a")
 	private WebElement lnkbusDetail;
 
-	@FindBy(css = "div[class='wfull bus-details-popup']")
+	@FindBy(css = "div[class*='wfull bus-details-popup']")
 	private WebElement busDetailPopUp;
 
 	@FindBy(css = "ul>li[data-avl='avl-Y']")
@@ -140,10 +140,10 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(xpath = "(//a[@data-trackvalue='Select Seats PopUp'][contains(.,'Continue')])[1]")
 	WebElement ContinueInIframe;
 	
-	@FindBy(css = "div[id='bordDropping-content']>div[class='wfull gray-scroll']>div>div>div[class='jspPane']")
+	@FindBy(css = "div[class='wfull responsive-ht']>div>div[class='wfull gray-scroll']>div>div>div")
 	WebElement detailsBoardingPoint;
 	
-	@FindBy(css = "div[id='DroppingOnly-content']>div[class='wfull gray-scroll']>div>div>div")
+	@FindBy(css = "p[class='flL boardrop-add  ng-binding']")
 	WebElement detailsDroppingPoint;
 	
 	@FindBy(css = "div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>p")

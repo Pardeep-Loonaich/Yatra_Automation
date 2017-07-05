@@ -21,6 +21,7 @@ import com.Yatra.Utils.EnvironmentPropertiesReader;
 import com.Yatra.Utils.ExecutionTimer;
 import com.Yatra.Utils.Log;
 import com.Yatra.Utils.Utils;
+import com.gargoylesoftware.htmlunit.AlertHandler;
 
 
 public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
@@ -310,7 +311,7 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 		Thread.sleep(2000);
 		Utils.waitForElement(driver, btnCancelInHdfc);
 		BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
-		BrowserActions.javaScriptAlertPopUpHandler(driver, "Ok");
+		//BrowserActions.javaScriptAlertPopUpHandler(driver, "Ok");
 		Thread.sleep(1000);
 		if(browser.equalsIgnoreCase("chrome_windows")){
 		BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
