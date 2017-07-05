@@ -73,6 +73,10 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 	@FindBy(css = "input[id='promoValidate']")
 	private WebElement btnApply;
 	
+	@FindBy(css = "select[id='paxtitle0']")
+	private WebElement dd_Pax1Title;
+	
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -126,19 +130,20 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 
 	public void TravellerDetails(String name) throws Exception {
 		Utils.waitForPageLoad(driver);
-		WebElement Title = driver.findElement(By.cssSelector("select[id='paxtitle1']"));
-		BrowserActions.clickOnElement(Title, driver, "Title");
-		List<WebElement> Titles = driver.findElements(By.cssSelector("#paxtitle1>option"));
+		/*WebElement Title = driver.findElement(By.cssSelector("select[id='paxtitle0']"));
+		BrowserActions.clickOnElement(Title, driver, "Title");*/
+		selectTitle();
+		List<WebElement> Titles = driver.findElements(By.cssSelector("#paxgender0>option"));
 		if (Titles.size() != 0) {
-			int rand = Utils.getRandom(2, Titles.size());
-			BrowserActions.clickOnElement(Titles.get(rand), driver, "Title Selected");
+			/*int rand = Utils.getRandom(2, Titles.size());
+			BrowserActions.clickOnElement(Titles.get(rand), driver, "Title Selected");*/
 		} // Random Title Selection
 		Thread.sleep(5000);
 		BrowserActions.typeOnTextField(txtBoxName, name, driver, "Guest Name");// Name
 																				// From
 																				// Regression
 		Thread.sleep(5000);
-		WebElement Age = driver.findElement(By.cssSelector("#paxage1"));
+		WebElement Age = driver.findElement(By.cssSelector("#paxage0"));
 		Select age = new Select(Age);
 		List<WebElement> Ages = age.getOptions();
 		if (Ages.size() != 0) {
@@ -147,6 +152,15 @@ public class TravellerPageBus extends LoadableComponent<TravellerPageBus> {
 			age.selectByIndex(rand1);
 		}
 	}
+	/**
+	 * @ @throws
+	 *       Exception
+	 */
+	public void selectTitle() throws Exception {
+		BrowserActions.selectByValue(driver, dd_Pax1Title, "Mr");
+	}
+
+	
 
 	/**
 	 * To click On Continue

@@ -1,5 +1,5 @@
-package com.Yatra.Pages;
 
+package com.Yatra.Pages;
 import java.awt.Robot;
 import java.util.ArrayList;
 import java.util.List;
@@ -144,13 +144,13 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "#signInBtn")
 	private WebElement txtLogin;
 
-	@FindBy(css = "#SignUpBtn")
+	@FindBy(css = ".simple-dropdown.login-li.clearfix>span>a")
 	private WebElement txtSignUp;
 
 	@FindBy(css = "a.simple-tab.eventTrackable.uniqueDate")
 	private WebElement txtCorporateLogin;
 
-	@FindBy(xpath = "//a[contains(text(),'Yatra for Travel Agents')]")
+	@FindBy(xpath = "//a[contains(text(),'Agent Login')]")
 	private WebElement txtAgentLogin;
 
 	@FindBy(css = "div[class='left fl']>p[class='fs-12']")
@@ -261,7 +261,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "#flight_depart_date_1")
 	private WebElement txtDepartDate1_ModifySearch;
 
-	@FindBy(css = "div[class='matrix-slide-wrapper has-next-prev matrix-small-screen day-matrix-wrapper']")
+	@FindBy(css = "div[class*='matrix-slide-wrapper has-next-prev matrix-small-screen day-matrix-wrapper']")
 	private WebElement weeklyFlightsStrip;	
 
 	@FindBy(css = "div[class='matrix-wrapper new-theme airline-matrix']']")
@@ -273,7 +273,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(css = "ul[class='matrix-slide-list tabs day-ul']>li>a[class='matrix-link tabs-link active']>p[class='matrix-label matrix-price  uprcse']")
 	private WebElement txtCurrentDateFare_WeeklyMatrix;
 
-	@FindBy(css = "div[id='resultList_0']>div>div>article>div:nth-child(1) li[class='price'] p[class='fr']>label")
+	@FindBy(css = "div[id='resultList_0']>div:nth-child(3)>div:nth-child(1) li[class='price'] p[class='fr']>label")
 	private WebElement txtLowestFlightFare_AirlineMatix;
 
 	@FindBy(css = ".ng-pristine.ng-valid.ng-touched>option")
@@ -775,11 +775,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public ReviewPage clickOnBookNowInRound(int list1, int index1, int list2, int index2) throws Exception {
 		closeINotificationAtTopSRP();
-		WebElement e1 = driver.findElement(By.cssSelector("div[class='resultBoxSlider show-result multi-2 return']>div:nth-child(" + list1
-				+ ")>div[class='results spr-push']>div[class='js-flightRow js-flightItem']:nth-child(" + index1
+		WebElement e1 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list1
+				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index1
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
-		WebElement e2 = driver.findElement(By.cssSelector("div[class='resultBoxSlider show-result multi-2 return']>div:nth-child(" + list2
-				+ ")>div[class='results spr-push']>div[class='js-flightRow js-flightItem']:nth-child(" + index2
+		WebElement e2 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list2
+				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index2
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
 		 
 		BrowserActions.scrollToView(e1, driver);
@@ -866,11 +866,11 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public ReviewPage clickOnBookNowInMulticity(int list1, int index1, int list2, int index2) throws Exception {
 		closeINotificationAtTopSRP();
-		WebElement e1 = driver.findElement(By.cssSelector("div[class*='resultBoxSlider']>div:nth-child(" + list1
-				+ ")>div[class*='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index1
+		WebElement e1 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list1
+				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index1
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>p"));
-		WebElement e2 = driver.findElement(By.cssSelector(" div[class*='resultBoxSlider']>div:nth-child(" + list2
-				+ ")>div[class*='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index2
+		WebElement e2 = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child(" + list2
+				+ ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child(" + index2
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>p"));
 
 		BrowserActions.scrollToView(e1, driver);
@@ -1788,7 +1788,6 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 			if (airlineNamesDetails.isDisplayed()) {
 				status = true;
 			} else {
-				System.out.println("come-----------------------"+i);
 				status = false;
 				break;
 			}
@@ -2796,12 +2795,12 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public void clickOnBookNowInRT_DOM(int onwardList, int onwardFlight, int returnList, int returnFlight)
 			throws Exception {
 		BrowserActions.nap(5);
-		WebElement onwardflight = driver.findElement(By.cssSelector(" div[class*='resultBoxSlider']>div:nth-child("
-				+ onwardList + ")>div[class*='results']>div[class='js-flightRow js-flightItem']:nth-child("
+		WebElement onwardflight = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child("
+				+ onwardList + ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
 				+ onwardFlight
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
-		WebElement returnflight = driver.findElement(By.cssSelector(" div[class*='resultBoxSlider']>div:nth-child("
-				+ returnList + ")>div[class*='results']>div[class='js-flightRow js-flightItem']:nth-child("
+		WebElement returnflight = driver.findElement(By.cssSelector(" div[id='resultBoxSlider']>div:nth-child("
+				+ returnList + ")>div[class='results']>div[class='js-flightRow js-flightItem']:nth-child("
 				+ returnFlight
 				+ ")>article[class*='my-res new-theme my-result-list animation']>div[class='my-res-info full']>ul>li[class='price']>div[class='full']>div>p[class='new-blue-button fr book-button']:not([class='ng-hide']"));
 		BrowserActions.scrollToView(onwardflight, driver);
@@ -4077,8 +4076,5 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return BrowserActions.elementAttributeContains(progressBar, "style", "none");
 
 	}
-
 	// *******************************End of SRP Functions******************************/
-
 } // SearchResult
-

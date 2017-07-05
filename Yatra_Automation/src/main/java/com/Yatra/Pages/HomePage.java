@@ -64,7 +64,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	String departureDateLocator="(//table[@class='day-container-table']//a[@id='a_";
 	
-
 	@FindBy(id = "BE_flight_return_date")
 	private WebElement returnDate;
 
@@ -987,7 +986,6 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public void PassengerInfoBus(String passengers) throws Exception {
 		BrowserActions.nap(2);
-		Utils.waitForElement(driver, btnIncreseSeat);
 		int z = Integer.parseInt(passengers);
 		for(int i=1 ; i<z ; i++){
 			BrowserActions.clickOnElement(btnIncreseSeat, driver, "Passenger Info");
@@ -1241,8 +1239,12 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void selectTrainSearchFields(String trainOrigin, String trainDestination, String trainDepartureDate) throws Exception {
 		BrowserActions.nap(2);
 		enterTrainOrigin(trainOrigin); // enter Origin value
+		Utils.setMousePositionOffPage(driver);
+		Utils.scrollPage(driver, Constants.C_Page_Top);	
 		enterTrainDestination(trainDestination); // enter Destination value
 		BrowserActions.nap(3);
+		Utils.setMousePositionOffPage(driver);
+		Utils.scrollPage(driver, Constants.C_Page_Top);	
 		selectTrainDepartureDate(trainDepartureDate); // select Departure Date
 		Log.event("Successfully selected OneWay Flight Search fields");
 

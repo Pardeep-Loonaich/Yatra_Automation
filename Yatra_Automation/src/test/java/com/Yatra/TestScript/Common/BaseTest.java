@@ -119,6 +119,7 @@ public class BaseTest implements ITest
 		}
 		finally
 		{
+			
 			WriteToExcel.writePageLoadTimeToExcel(Constants.performanceData);
 			Constants.performanceData.clear();
 			driver.quit();

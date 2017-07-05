@@ -52,6 +52,9 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 
 	@FindBy(css = "button[data-trackcategory='Activities Traveler Details']")
 	private WebElement btnContinueInTravellr;
+	
+	@FindBy(xpath = ".//*[@id='traveller-dom']/div[1]/div/article[1]/div[2]/span[1]/select")
+	private WebElement dd_Title;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of ActivitiesReviewPage - Ends ****************************
@@ -103,11 +106,8 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 	 * @throws Exception
 	 */
 	public void fillTravellerDetails() throws Exception {
-		BrowserActions.clickOnElement(drpTitle, driver, "Clicked on 'Title' dropdown.");
 		if (lstTitle.size() != 0) {
-			int rand = Utils.getRandom(2, lstTitle.size());
-			Utils.waitForElement(driver, lstTitle.get(rand));
-			BrowserActions.clickOnElement(lstTitle.get(rand), driver, "title selected");
+				selectTitle();
 			Utils.waitForPageLoad(driver);
 		}
 
@@ -143,5 +143,8 @@ public class ActivitiesTravellerPage extends LoadableComponent<ActivitiesTravell
 				"Clicked on 'Continue' button on Traveller's Page.");
 		return new PaymentPage(driver).get();
 	}
-
+	public void selectTitle() throws Exception {
+		BrowserActions.selectByValue(driver, dd_Title, "Mr");
+	}
+	
 }// ActivitiesTravellerPageEnd

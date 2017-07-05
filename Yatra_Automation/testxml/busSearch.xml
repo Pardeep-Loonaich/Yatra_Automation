@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
 <suite name=" Yatra Bus Search Automation Test" verbose="3" parallel="true" thread-count="5">
 	
 	<parameter name="workBookName" value="testdata\\Bus.xls" />
@@ -9,7 +8,7 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-	<parameter name="browserName" value="firefox_windows" />
+	<parameter name="browserName" value="chrome_windows" />
 	<!-- we are controlling email on every failure from this flag -->
 	<parameter name="SEND_EMAIL_ON_FAILIURE" value="false"></parameter>
 	<parameter name="webSite" value="https://www.yatra.com/" />

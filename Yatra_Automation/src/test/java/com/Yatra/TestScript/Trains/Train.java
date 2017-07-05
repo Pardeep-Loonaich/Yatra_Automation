@@ -5,7 +5,7 @@ import java.util.ArrayList;
 //Creator        :   Aspire Team
 //Create         :   
 //Modified on/By :   -
-//-----------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------s-------------------
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
@@ -2202,7 +2202,6 @@ public class Train {
 					"<b>Actual Result:</b> Successfully navigated to 'Train Search' page.",
 					"<b>Actual Result:</b> Unable to navigate to 'Train Search' page.", driver);
 
-			
 	    	 trainSearchResult.verifyFindBusByselectingTrainByIndex();
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify that select bus option should display in case of no seat available..");
@@ -3066,4 +3065,5 @@ public class Train {
 			Log.endTestCase();
 		}
 	}
+
 }

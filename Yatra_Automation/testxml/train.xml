@@ -7,43 +7,15 @@
 	<!-- parameter for device host and port -->
 	<parameter name="deviceHost" value="localhost" />
 	<parameter name="devicePort" value="4444" />
-
 	<parameter name="webSite" value="https://www.yatra.com/" />
-<<<<<<< HEAD
-	<parameter name="browserName" value="Chrome_windows" />
 
+	<parameter name="browserName" value="Chrome_windows" />
 	<test name="Train" thread-count="1" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.Trains.Train">
-			 <methods>
-    		<!-- <include name="TC_Yatra_Train_051"></include>
-		      <include name="TC_Yatra_Train_033"></include>
-			 <include name="TC_Yatra_Train_034"></include>
-			 <include name="TC_Yatra_Train_042"></include>
-			 <include name="TC_Yatra_Train_048"></include>
-			 <include name="TC_Yatra_Train_049"></include>
-			 <include name="TC_Yatra_Train_051"></include> -->
-			</methods>	
+ 
 			</class>
 		</classes>
 	</test>
-=======
-	<parameter name="browserName" value="Chrome_windows" />
 
-	<test name="Train" thread-count="1" parallel="true">
-		<classes>
-			<class name="com.Yatra.TestScript.Trains.Train">
-			 <methods>
-    	 <!--	<include name="TC_Yatra_Train_019"></include>
-	         <include name="TC_Yatra_Train_033"></include>
-			 <include name="TC_Yatra_Train_034"></include>
-			 <include name="TC_Yatra_Train_042"></include>
-			 <include name="TC_Yatra_Train_048"></include>
-			 <include name="TC_Yatra_Train_049"></include>
-			 <include name="TC_Yatra_Train_051"></include> -->
-			</methods>	
-			</class>
-		</classes>
-	</test>
->>>>>>> 2d84bacd170fa5113191c03bc88fe45d121d7141
 </suite>

@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 
 import java.util.ArrayList;
@@ -297,5 +298,4 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	Thread.sleep(3000);
 	return status3;
 	}
-	
 }//SearchResultActivitesPageEnd

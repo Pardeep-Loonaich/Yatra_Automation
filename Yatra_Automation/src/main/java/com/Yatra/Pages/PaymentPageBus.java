@@ -106,6 +106,12 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	
 	@FindBy(css = "span[id='total-redeemable-ecash']")
 	private WebElement maxEcash;
+	
+	@FindBy(css = "select[id='cc_expm_id']")
+	private WebElement dd_Month;
+	
+	@FindBy(css = "select[id='cc_expy_id']")
+	private WebElement dd_Year;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -175,6 +181,8 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
       * @throws Exception
       */
 	public String getTextTotalAmountPaymentMethod() throws Exception{
+		Utils.waitForPageLoad(driver);
+		Thread.sleep(2000);
 		String Amount = totalCashPaymentMethod.getText().trim().replace(",", "");
 		return Amount; 
 	}
@@ -185,6 +193,8 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
      * @throws Exception
      */
 	public String getTextEcashUsed() throws Exception{
+		Utils.waitForPageLoad(driver);
+		Thread.sleep(2000);
 		String Ecash = redemeedEcash.getText();
 		return Ecash; 
 	}
@@ -195,6 +205,8 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
      * @throws Exception
      */
 	public String getTextTotalAmountPaymentDeatils() throws Exception{
+		Utils.waitForPageLoad(driver);
+		Thread.sleep(2000);
 		String Amount = totalCashPaymentDeatils.getText().trim().replace(",", "");
 		return Amount; 
 	}
@@ -204,6 +216,8 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
      * @throws Exception
      */
 	public String getTextMaxiumEcash() throws Exception{
+		Utils.waitForPageLoad(driver);
+		Thread.sleep(2000);
 		String Amount = maxEcash.getText();
 		return Amount;
 	}
@@ -221,7 +235,8 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	 */
 	public void scrollSliderOfEcashRedeem(int value, String browser){
 		if(browser.equalsIgnoreCase("firefox_windows")){
-		}else if(browser.equalsIgnoreCase("Chrome_windows")){
+		}
+		else if(browser.equalsIgnoreCase("Chrome_windows")){
 		Actions action = new Actions(driver);
 		action.dragAndDropBy(scrollSlider, value, 0).build().perform();
 	}
@@ -272,16 +287,14 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 
 		BrowserActions.typeOnTextField(creditCardNumber,cardNumber, driver, "Credit card Number");
 		BrowserActions.typeOnTextField(creditCardName, randomName, driver, "Credit card Name");
-		BrowserActions.clickOnElement(monthCC, driver, "Date");
+		//BrowserActions.clickOnElement(monthCC, driver, "Date");
 		if (lstMonthsCC.size() != 0) {
-			int rand = Utils.getRandom(1, lstMonthsCC.size());
-			BrowserActions.clickOnElement(lstMonthsCC.get(rand), driver, "Month Selected");
-		}
+			selectMonth();
+			}
 		Thread.sleep(2000);
-		BrowserActions.clickOnElement(yearCC, driver, "Year");
+		/*BrowserActions.clickOnElement(yearCC, driver, "Year");*/
 		if (lstYearsCC.size() != 0) {
-			int rand = Utils.getRandom(1, lstYearsCC.size());
-			BrowserActions.clickOnElement(lstYearsCC.get(rand), driver, "Year Selected");
+			selectYear();
 		}
 		Thread.sleep(2000);
 		BrowserActions.typeOnTextField(creditCardCvv, randomCvv, driver, "Credit card Cvv");
@@ -297,6 +310,7 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 		Thread.sleep(2000);
 		Utils.waitForElement(driver, btnCancelInHdfc);
 		BrowserActions.javascriptClick(btnCancelInHdfc, driver, "Clicked on cancel button");
+		BrowserActions.javaScriptAlertPopUpHandler(driver, "Ok");
 		Thread.sleep(1000);
 		if(browser.equalsIgnoreCase("chrome_windows")){
 		BrowserActions.javaScriptAlertPopUpHandler(driver, "cancel");
@@ -340,6 +354,17 @@ public class PaymentPageBus extends LoadableComponent<PaymentPageBus> {
 	}
 	public static double round1(double value, int scale) {
 	    return Math.round(value * Math.pow(10, scale)) / Math.pow(10, scale);
+	}
+	
+	/** @ @throws
+	 *       Exception
+	 */
+	public void selectMonth() throws Exception {
+		BrowserActions.selectByValue(driver, dd_Month, "05");
+	}
+	
+	public void selectYear() throws Exception {
+		BrowserActions.selectByValue(driver, dd_Year, "2025");
 	}
 
 }//PaymentPageBus
