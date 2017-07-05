@@ -10,16 +10,19 @@
 	<parameter name="devicePort" value="4444" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 	<test name="Flight Pricing chrome" thread-count="1" parallel="true">
-		<parameter name="browserName" value="firefox_windows" />
+		<parameter name="browserName" value="chrome_windows" />
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing">
-				<!-- <methods>
-					<include name="TC_Yatra_Flight_089"></include>
-					<include name="TC_Yatra_Flight_096"></include>
-					<include name="TC_Yatra_Flight_144"></include>
-					<include name="TC_Yatra_Flight_149"></include>
-					<include name="TC_Yatra_Flight_150"></include>
-				</methods> -->
+				 <methods>
+					<include name="TC_Yatra_Flight_088"></include>
+					<include name="TC_Yatra_Flight_092"></include>
+					<include name="TC_Yatra_Flight_154"></include> 
+					<include name="TC_Yatra_Flight_166"></include> 
+					<include name="TC_Yatra_Flight_109"></include> 
+					<include name="TC_Yatra_Flight_162"></include>
+					 <include name="TC_Yatra_Flight_096"></include>
+					
+				</methods> 
 			</class>
 		</classes>
 	</test>
