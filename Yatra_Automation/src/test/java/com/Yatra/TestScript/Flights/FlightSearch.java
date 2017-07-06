@@ -1195,7 +1195,7 @@ public class FlightSearch extends BaseTest{
 		} catch (Exception e) {
 			Log.exception(e);
 		} finally {
-			driver.quit();
+			//driver.quit();
 			Log.endTestCase();
 		}
 	}
@@ -1780,7 +1780,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated that Weekly fare Matrix will not be available for RT search");
 			BrowserActions.nap(50);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElementsDoNotExist(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for RT Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for RT Search",
 					driver);
@@ -1829,7 +1829,7 @@ public class FlightSearch extends BaseTest{
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validating that Weekly fare Matrix will not be available for MC search");
 			BrowserActions.nap(10);
-			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyFlightsStrip"), searchResult),
+			Log.assertThat(searchResult.elementLayer.verifyPageElementsDoNotExist(Arrays.asList("weeklyFlightsStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for MC Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for MC Search",
 					driver);

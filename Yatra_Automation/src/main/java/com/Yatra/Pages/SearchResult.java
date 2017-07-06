@@ -1,3 +1,4 @@
+
 package com.Yatra.Pages;
 import java.awt.Robot;
 import java.util.ArrayList;
@@ -4075,9 +4076,5 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		return BrowserActions.elementAttributeContains(progressBar, "style", "none");
 
 	}
-
 	// *******************************End of SRP Functions******************************/
-
 } // SearchResult
-
-
