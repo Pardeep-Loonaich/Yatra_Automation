@@ -156,14 +156,16 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 		boolean Flag = false;
 		ArrayList<String> price = new ArrayList<String>();
 		for(int i=0;i<2;i++){
+		Thread.sleep(2000);
 		BrowserActions.clickOnElement(arrwPrice, driver, "Arranging Price in ascending order.");
 		}
 		Utils.waitForPageLoad(driver);
+		Thread.sleep(2000);
 		for (int j = 1; j < txtPriceValue.size(); j++) {
 			String price_Txt = BrowserActions.getText(driver, txtPriceValue.get(j), "Getting text of the price.").trim().replace("Rs.", "").replace(",", "");
 			price.add(price_Txt);
 		}
-		System.out.println(price);
+		Thread.sleep(2000);
 		for (int i = 1; i < price.size(); i++) {
 			if (price.get(i - 1).compareTo(price.get(i)) <= 0)
 			Flag=true;			
@@ -214,7 +216,8 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	public String getTextActivityDetailsByTileIndex(int index) throws Exception {
 		Utils.waitForPageLoad(driver);
 		String txtDetails = BrowserActions.getText(driver, driver.findElement(By.cssSelector("article[data-prodid='"+index+"']>div[class='my-res-info']>div>h3")), "Getting text of the Activity.");
-		return txtDetails;
+		String txtDetail= txtDetails.trim().replace(" ...", "");
+		return txtDetail;
 	}
 	
 	/**
@@ -266,6 +269,7 @@ public class SearchResultActivites  extends LoadableComponent<SearchResultActivi
 	 */
 	public String gettingTxtFrmResultFoundStrip() throws Exception{
 		Utils.waitForPageLoad(driver);
+		Thread.sleep(2000);
 		String resultValue[] = BrowserActions.getText(driver, txtResultStrip, "Getting the number of result found for the category.").split(" ");
 		return resultValue[1];
 	}

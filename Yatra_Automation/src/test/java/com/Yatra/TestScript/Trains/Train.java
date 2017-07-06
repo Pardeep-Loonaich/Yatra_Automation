@@ -1800,17 +1800,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		
@@ -1879,22 +1875,18 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			
 			Thread.sleep(2000);
 			String winHandleBefore = driver.getWindowHandle();
-			// Perform the click operation that opens new window
 			trainSearchResult.clickingOnFindBusButton();
 			Log.message("4.Clicked on 'FindBus' button.");
 			
@@ -1938,16 +1930,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
-
-			// step: click 'Search' button in Yatra Home page
+			
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			
@@ -1998,26 +1987,21 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
-			
 			
 			trainSearchResult.selectTrainByIndexAndBook(1,browser);
 			Log.message("4.Successfully selected train and clicked on 'Book Now' button.");
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify pop-up should show correct boarding point options.");
-        
 			Log.assertThat(trainSearchResult.elementLayer.verifyPageElements(Arrays.asList("modalArriveInfo"), trainSearchResult),
 					"<b>Actual Result:</b> The Popup is displayed after booking a seat.",
 					"<b>Actual Result:</b> The Popup is not displayed", driver);
@@ -2052,16 +2036,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			BrowserActions.nap(3);
@@ -2099,16 +2080,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			
@@ -2142,20 +2120,16 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			 
-			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify that quota dropdown of train seats,it should show available quota..");
         	Log.message("<br>");
@@ -2185,16 +2159,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			 
@@ -2233,16 +2204,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
-
-			// step: click 'Search' button in Yatra Home page
+			
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 
@@ -2281,20 +2249,16 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
 			 
-			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify that Prev/Next tabs are displayed..");
         	Log.message("<br>");
@@ -2313,8 +2277,6 @@ public class Train {
 	}
 	
 	
-	
-	
 	@Test(groups = { "desktop" }, description = "Verify Dropping point,Boarding point,depart time,arrival time in fliters.", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Train_018(HashMap<String, String> testData) throws Exception {
 
@@ -2327,20 +2289,15 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
-
-			// step: click 'Search' button in Yatra Home page
+			
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");
-			
-			
 			
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify Dropping point,Boarding point,depart time,arrival time in fliters.");
@@ -2371,17 +2328,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		
@@ -2452,17 +2405,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		
@@ -2533,17 +2482,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		
@@ -2606,17 +2551,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		
@@ -2676,12 +2617,9 @@ public class Train {
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		
@@ -2756,17 +2694,13 @@ public class Train {
 		final WebDriver driver = WebDriverFactory.get(browser);
 		Log.testCaseInfo(testData);
 		try {
-			// step1: Navigate to Yatra Home Page
 			HomePage homePage = new HomePage(driver, webSite).get();
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		
@@ -2839,12 +2773,9 @@ public class Train {
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		
@@ -2915,12 +2846,10 @@ public class Train {
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
+			
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		
@@ -2995,12 +2924,9 @@ public class Train {
 			Log.message("1. Navigated to 'Yatra' Home Page!");
 
 			homePage.clickTrainTab();
-		
-			// step: select Train Search fields
 			homePage.selectTrainSearchFields(origin, destination, trainDepartureDate);
 			Log.message("2.Successfully filled the search details for 'Train' trip.");
 
-			// step: click 'Search' button in Yatra Home page
 			trainSearchResult = homePage.clickTrainBtnSearch();
 			Log.message("3.Successfully clicked 'Search' in Yatra Homepage ");	
 		

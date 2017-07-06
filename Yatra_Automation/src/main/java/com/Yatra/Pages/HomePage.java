@@ -1414,6 +1414,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	 */
 	public SearchResultActivites clickOnSearchActivites() throws Exception {
 		BrowserActions.clickOnElement(btnSearchActivties, driver, "Search Button");
+		Thread.sleep(2000);
 		Utils.waitForPageLoad(driver);
 		return new SearchResultActivites(driver).get();
 	}

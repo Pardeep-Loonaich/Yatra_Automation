@@ -9,7 +9,7 @@
 	<parameter name="devicePort" value="4444" />
 	<parameter name="webSite" value="https://www.yatra.com/" />
 
-	<parameter name="browserName" value="Chrome_windows" />
+	<parameter name="browserName" value="firefox_windows" />
 	<test name="Train" thread-count="1" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.Trains.Train">

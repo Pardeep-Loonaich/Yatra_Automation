@@ -1,13 +1,19 @@
 
 package com.Yatra.Pages;
 
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -57,7 +63,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	@FindBy(css="button[class*='train-nextDay']")
 	private WebElement tabNextDay;
 
-	@FindBy(css="div[class='bus-block with-price']>div[class='bus-deatail']>div[class='find-bus-btn']")
+	@FindBy(css="i[class='disp-table-cell ico-alt-opts ico-opt-bus txt-10']")
 	private WebElement btnFindBus;
 
 	@FindBy(css="select[id='quotaSelectdd']")
@@ -65,7 +71,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 
 	@FindBy(css="div[class='fareSection']>button[id='bookBtn1']")
 	private WebElement btnBookNow;
-
+	
 	@FindBy(css="[id='travelAlterOptionClose']")
 	private WebElement popupOtherRouteInSideNav;
 
@@ -111,7 +117,7 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 	@FindBy(css="div[id='sidebarFilter']")
 	private WebElement lftNavSection;
 	
-	@FindBy(css = "#bookNowBtn")
+	@FindBy(css = "div[class='contBttn']>input")
 	private WebElement btnContinueToPaxPage;
 
 	@FindBy(css = "ul[class='train-info']>li[class='train_head trainDuration']")
@@ -367,19 +373,31 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		Utils.waitForPageLoad(driver);
 		if(broswer.equalsIgnoreCase("firefox_windows")){
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-		//BrowserActions.javascriptClick(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		Thread.sleep(2000);		
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		/*driver.navigate().refresh();
+		Thread.sleep(2000);
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child(2)>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
+		Thread.sleep(2000);		
+		BrowserActions.clickOnElement(btnBookNow2, driver, "Clicked on 'Book Now' button.");
+		//btnBookNow.sendKeys(Keys.ENTER);
 		driver.findElement(By.id("div[class='fareSection']>button[id='bookBtn1']")).click();
 		driver.navigate().refresh();
 		Thread.sleep(3000);
-		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-		BrowserActions.javascriptClick(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");		
+		BrowserActions.javascriptClick(btnBookNow, driver, "Clicked on 'Book Now' button.");*/
 		}
-		else if(broswer.equalsIgnoreCase("Chorme_windows")){
+		else if(broswer.equalsIgnoreCase("Chrome_windows")){
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-		BrowserActions.javascriptClick(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		Thread.sleep(1000);
+		//BrowserActions.clickOnElement(driver.findElement(By.cssSelector("input[id='trainquota10']")), driver, "");
+		BrowserActions.clickOnElement(btnBookNow, driver, "Book Now");
+		//BrowserActions.javascriptClick(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		Thread.sleep(3000);
 	}else{
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-		BrowserActions.javascriptClick(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
 	}
 	}
 	/**

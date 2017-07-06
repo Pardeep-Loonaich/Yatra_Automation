@@ -785,10 +785,12 @@ public class ActivitiesTest {
 			searchResultActivites = homePage.clickOnSearchActivites();
 			Log.message("4. Clicked On Search Button!");
 			String ActvityDetailsOnSearchResult = searchResultActivites.getTextActivityDetailsByTileIndex(5);
+			Log.message(ActvityDetailsOnSearchResult);
 
 			activityDetailPage = searchResultActivites.ClickBookNowByIndex(5);
 			Log.message("5. Clicked On Book Now Button!");
 			String ActvityDetailsOnDeatilsPage = activityDetailPage.getTexActivityDetails();
+			Log.message(ActvityDetailsOnDeatilsPage);
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User should see same searched activity");
@@ -1189,7 +1191,6 @@ public class ActivitiesTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify Activity selection option is not there that date should be grey");
-			Thread.sleep(3000);
 			Log.assertThat(
 					activityDetailPage.elementLayer.verifyPageElements(Arrays.asList("noActivity"), activityDetailPage),
 					"<b>Actual Result:</b> After Clicking On Book Now dates are Grey and a error message is diplayed as: "

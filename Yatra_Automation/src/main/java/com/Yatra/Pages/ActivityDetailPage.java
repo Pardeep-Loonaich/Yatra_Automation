@@ -73,10 +73,10 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	@FindBy(css = "span[class='date-act ng-binding lowest-activity current-date']")
 	private WebElement selectedDate;
 
-	@FindBy(css = "span[class ='date-act ng-binding no-activity']")
+	@FindBy(css = "div[ng-switch='calendarMode']>div[ng-switch-when='month']>table>tbody>tr>td[class='monthview-dateCell ng-scope no-activity']>div:not([class='ng-hide text-muted'])>span[class='date-act ng-binding no-activity']")
 	private WebElement noActivity;
 	
-	@FindBy(css = "span[class='no-activity-tip']")
+	@FindBy(css = "div[ng-switch='calendarMode']>div[ng-switch-when='month']>table>tbody>tr>td[class='monthview-dateCell ng-scope no-activity']>div:not([class='ng-hide text-muted'])>span[class='no-activity-tip']")
 	private WebElement ErrorMessageNoActivity;
 
 	@FindBy(css = "button[data-trackaction='Check Availability']")
@@ -249,7 +249,7 @@ public class ActivityDetailPage  extends LoadableComponent<ActivityDetailPage> {
 	String Message = null;
 	if(noActivity.isDisplayed()){
 	BrowserActions.clickOnElement(noActivity, driver, "ghfgh");
-	Message = BrowserActions.getText(driver, ErrorMessageNoActivity, "Error Messaeg No Activities");
+	Message = BrowserActions.getTextFromAttribute(driver, ErrorMessageNoActivity, "innerText", "Error Messaeg No Activities");
 	}
 	return Message;
 }	
