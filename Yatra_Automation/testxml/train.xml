@@ -13,7 +13,9 @@
 	<test name="Train" thread-count="1" parallel="true">
 		<classes>
 			<class name="com.Yatra.TestScript.Trains.Train">
- 
+			<methods>
+			 <!--  <include name="TC_Yatra_Bus_003"></include>  -->
+			 </methods>
 			</class>
 		</classes>
 	</test>

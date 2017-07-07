@@ -279,6 +279,12 @@ public class Fresco extends LoadableComponent<Fresco> {
 	
 	@FindBy(xpath =".//*[@id='ProductOfferings']/ul[1]/li[41]/a")
 	private WebElement visaInformation;
+	
+	@FindBy(css ="li[id='RegisterYourHotel']>a")
+	private WebElement registerYourHotel;
+	
+	@FindBy(css ="li[id='AdvertiseWithUs']>a")
+	private WebElement advertiseWithUs;
 
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
@@ -2514,6 +2520,30 @@ public class Fresco extends LoadableComponent<Fresco> {
 		Utils.waitForElement(driver, yatraHolidayAdvisors);
 		Thread.sleep(3000);
 		BrowserActions.clickOnElement(visaInformation, driver, "VISA Information");
+	}
+	/**
+	 * 
+	 * Navigate to Register Your Hotel
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnRegisterYourHotel() throws Exception{
+		Utils.waitForElement(driver, registerYourHotel);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(registerYourHotel, driver, "Register Your Hotel");
+	}
+	/**
+	 * 
+	 * Navigate to Advertise With Us
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public void ClickOnAdvertiseWithUs() throws Exception{
+		Utils.waitForElement(driver, advertiseWithUs);
+		Thread.sleep(3000);
+		BrowserActions.clickOnElement(advertiseWithUs, driver, "Advertise With Us");
 	}
 	
 	

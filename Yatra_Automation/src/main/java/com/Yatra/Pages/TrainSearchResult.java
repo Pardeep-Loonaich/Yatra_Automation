@@ -373,8 +373,9 @@ public class TrainSearchResult extends LoadableComponent<TrainSearchResult> {
 		Utils.waitForPageLoad(driver);
 		if(broswer.equalsIgnoreCase("firefox_windows")){
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child("+index+")>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
-		Thread.sleep(2000);		
-		BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		Thread.sleep(3000);		
+		//BrowserActions.clickOnElement(btnBookNow, driver, "Clicked on 'Book Now' button.");
+		driver.findElement(By.cssSelector("#bookBtn1")).click();
 		/*driver.navigate().refresh();
 		Thread.sleep(2000);
 		BrowserActions.clickOnElement(driver.findElement(By.cssSelector("ul[class*='train-info-block true']:nth-child(2)>li[class*='trainClass']>p")),driver, "Clicked on first class of the train.");
