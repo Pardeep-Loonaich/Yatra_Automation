@@ -6333,14 +6333,6 @@ public class FlightSearch extends BaseTest {
 			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
 
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Check to price calculation for DOM flight");
-			Thread.sleep(5000);
-
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareDetails"), reviewPage),
-					"<b>Actual Result:</b> The Fare details module is displayed on Review Page.",
-					"<b>Actual Result:</b> The Fare details module is not displayed on Review Page.", driver);
-
 			int totalAmt = reviewPage.calculatingAmountToPay();
 			Log.message(" The total amount we get from the Fare module after adding:" + totalAmt);
 
@@ -6348,6 +6340,8 @@ public class FlightSearch extends BaseTest {
 			int Total1 = Integer.parseInt(Total);
 			Log.message(" The total amount:" + Total1);
 
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> Check to price calculation for DOM flight");
 			Log.assertThat(totalAmt == Total1,
 					"<b>Actual Result:</b> The price is calculated properly in the Fare Detail module on Review Page.",
 					"<b>Actual Result:</b> The price is not calculated properly in the Fare Detail module on Review Page.",
@@ -6401,20 +6395,11 @@ public class FlightSearch extends BaseTest {
 
 			// step: Successfully applied filter for specfic airline
 			searchResult.selectAirlineInAirlineFilters(airlines);
-			Log.message("Successfully applied filter for <b>" + airlines + "</b> airline");
 
 			// clicked on book now buuton
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page ");
-
-			Log.message("<br>");
-			Log.message("<b>Expected Result:</b> Check to price calculation for INTL flight");
-			Thread.sleep(5000);
-
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareDetails"), reviewPage),
-					"<b>Actual Result:</b> The Fare details module is displayed on Review Page.",
-					"<b>Actual Result:</b> The Fare details module is not displayed on Review Page.", driver);
-
+			
 			int totalAmt = reviewPage.calculatingAmountToPay();
 			Log.message(" The total amount we get from the Fare module after adding:" + totalAmt);
 

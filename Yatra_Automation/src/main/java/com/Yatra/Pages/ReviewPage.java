@@ -193,7 +193,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(css = "button[ng-click='continueSameFlight();']")
 	WebElement ContinueInFarePopUp;
 	
-	@FindBy(css = "div[class='fareruleContainer overlay-holder']>div>div[class='overlay-content']")
+	@FindBy(css = "div[class='overlay']>div[class*='overlay-content']")
 	private WebElement moduleFareRules;
 
 	/**********************************
