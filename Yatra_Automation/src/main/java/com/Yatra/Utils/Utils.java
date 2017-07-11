@@ -593,7 +593,7 @@ public class Utils {
 	 * @param by locator
 	 * @return true or false
 	 */
-	public boolean exists(WebDriver driver, By by){
+	public static boolean exists(WebDriver driver, By by){
 		driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
 		boolean found = false;
 		try {

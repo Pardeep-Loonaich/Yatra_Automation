@@ -1,7 +1,5 @@
 package com.Yatra.TestScript.Bus;
 
-
-
 //-----------------------------------------------------------------------------------------------------------
 //Description    :   All the Bus Search test Cases would be designed in this class 
 //Creator        :   Aspire Team
@@ -32,7 +30,7 @@ import com.Yatra.Utils.Utils;
 import com.Yatra.Utils.WebDriverFactory;
 
 @Listeners(EmailReport.class)
-public class BusSearchTest extends BaseTest{
+public class BusSearchTest extends BaseTest {
 	EnvironmentPropertiesReader environmentPropertiesReader;
 	String webSite;
 	SearchResultBus searchResultBus;
@@ -54,7 +52,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -70,7 +68,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -107,7 +105,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -123,7 +121,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			////homePage.selectTripTypeBus(tripType);
+			//// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -160,7 +158,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String returnDate = testData.get("ReturnDate");
@@ -177,7 +175,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectRoundTripBusSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
@@ -212,7 +210,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String returnDate = testData.get("ReturnDate");
@@ -229,7 +227,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectRoundTripBusSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
@@ -264,7 +262,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -280,7 +278,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -316,7 +314,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String passengerInfo = testData.get("PassengerInfo");
 
@@ -331,7 +329,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.enterOriginBus(origin);
@@ -374,7 +372,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -390,7 +388,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -428,7 +426,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String InvalidDestination = testData.get("InvalidDestination");
 		String departureDate = testData.get("DepartureDate");
@@ -445,7 +443,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -482,7 +480,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -498,7 +496,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -537,7 +535,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -553,7 +551,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -587,7 +585,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -603,7 +601,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -642,7 +640,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -658,7 +656,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -697,7 +695,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -713,7 +711,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -751,7 +749,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -767,7 +765,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -805,7 +803,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -821,7 +819,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -873,7 +871,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -908,7 +906,7 @@ public class BusSearchTest extends BaseTest{
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
-		String origin = testData.get("Origin"); 
+		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String returnDate = testData.get("ReturnDate");
@@ -925,7 +923,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectRoundTripBusSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
@@ -978,7 +976,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1035,7 +1033,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1085,7 +1083,7 @@ public class BusSearchTest extends BaseTest{
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
-		String origin = testData.get("Origin"); 
+		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -1101,7 +1099,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1113,7 +1111,6 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 			String SeatNumber = searchResultBus.getTextSeatNumber();
@@ -1142,7 +1139,7 @@ public class BusSearchTest extends BaseTest{
 
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
-		String origin = testData.get("Origin"); 
+		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -1158,7 +1155,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1171,7 +1168,6 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(3000);
-			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 
@@ -1196,6 +1192,59 @@ public class BusSearchTest extends BaseTest{
 		}
 	}
 
+	/*@Test(groups = {
+			"desktop" }, description = "Check for amenities, cancellation policy, borading & Dropping point tabs", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
+	public void TC_Yatra_Bus_022(HashMap<String, String> testData) throws Exception {
+
+		Utils.testCaseConditionalSkip(testData.get("RunMode"));
+		String browser = testData.get("browser");
+		String origin = testData.get("Origin");
+		String destination = testData.get("Destination");
+		String departureDate = testData.get("DepartureDate");
+		String passengerInfo = testData.get("PassengerInfo");
+
+		// Get the web driver instance
+		final WebDriver driver = WebDriverFactory.get(browser);
+		Log.testCaseInfo(testData);
+		try {
+			// step1: Navigate to Yatra Home Page
+			HomePage homePage = new HomePage(driver, webSite).get();
+			Log.message("1. Navigated to 'Yatra' Home Page!");
+
+			homePage.clickBuses();
+			Log.message("2. Clicked on Bus Link!");
+
+			// homePage.selectTripTypeBus(tripType);
+			Log.message("3. Trip Type Selected!");
+
+			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
+			Log.message("4. Successfully filled the search details for 'ONE WAY' trip!");
+
+			searchResultBus = homePage.clickBtnSearchBus();
+			Log.message("5. Clicked On Search Button!");
+
+			searchResultBus.clickOnLinkBusDetails();
+			Log.message("6. Clicked On Bus Details Link!");
+			
+			
+			Log.message("<br>");
+			Log.message("<b>Expected Result:</b> User Should See the boarding point drop down");
+			Log.assertThat(
+					searchResultBus.elementLayer.verifyPageElements(Arrays.asList("selectSeatPopUp"), searchResultBus),
+					"<b>Actual Result:</b> Boarding point Drop Down is Properly Displayed and Boarding Point as : "
+							,
+					"<b>Actual Result:</b> Seat Number is not properly Displayed", driver);
+
+			Log.testCaseResult();
+
+		} catch (Exception e) {
+			Log.exception(e);
+		} finally {
+			driver.quit();
+			Log.endTestCase();
+		}
+	}*/
+
 	@Test(groups = {
 			"desktop" }, description = "Verify Max 6 seats can be selected and min 1", dataProviderClass = DataProviderUtils.class, dataProvider = "multipleExecutionData")
 	public void TC_Yatra_Bus_023(HashMap<String, String> testData) throws Exception {
@@ -1218,7 +1267,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1232,7 +1281,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(6);
 			Log.message("7. Seat Selected!");
 			String Msg = searchResultBus.getTextMaxNumber();
@@ -1279,7 +1328,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1293,7 +1342,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			String bustype = searchResultBus.getTextSeatType();
 			String bustyp = searchResultBus.getTextSeatTyp();
 
@@ -1337,7 +1386,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectRoundTripBusSearchFields(origin, destination, departureDate, returnDate, passengerInfo);
@@ -1350,7 +1399,6 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat_RT();
 			Log.message("6. Clicked On Select Seat!");
 
-			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 
@@ -1362,7 +1410,7 @@ public class BusSearchTest extends BaseTest{
 
 			searchResultBus.selectReturnSeat(2);
 			Log.message("10. Seat Selected Return Jounrey!");
-			
+
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> User Should See Select RT Seats");
 			Log.assertThat(searchResultBus.elementLayer.verifyPageElements(Arrays.asList("PopUp_RT"), searchResultBus),
@@ -1401,7 +1449,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1414,7 +1462,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 
@@ -1443,7 +1491,7 @@ public class BusSearchTest extends BaseTest{
 		Utils.testCaseConditionalSkip(testData.get("RunMode"));
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -1459,7 +1507,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1472,7 +1520,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected!");
 			String details = searchResultBus.getTextBusInfo();
@@ -1519,7 +1567,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1532,7 +1580,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(2);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1586,7 +1634,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1599,7 +1647,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1612,7 +1660,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user click on continue Button and navigate to Review Page");
 			Thread.sleep(6000);
-			Log.assertThat(driver.getCurrentUrl().contains("review"),
+			Log.assertThat(driver.getCurrentUrl().contains("getReview"),
 					"<b>Actual Result:</b> Successfully navigated to Review Page",
 					"<b>Actual Result:</b> Unable to navigate to Review Page", driver);
 
@@ -1650,7 +1698,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1663,7 +1711,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1673,12 +1721,12 @@ public class BusSearchTest extends BaseTest{
 			reviewPageBus = searchResultBus.clickOnContinueInPopUp();
 			Log.message("9. Clicked on continue to navigate to review page!");
 
-			 reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
+			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
-			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			travellerPageBus = reviewPageBus.clickOnBookNow();
 			Log.message("11. Clicked On Book Now!");
-			
+
 			travellerPageBus.TravellerDetails(name);
 			Log.message("12. Filled Guest Details!");
 
@@ -1726,7 +1774,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1738,7 +1786,6 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1779,7 +1826,7 @@ public class BusSearchTest extends BaseTest{
 	public void TC_Yatra_Bus_032(HashMap<String, String> testData) throws Exception {
 
 		String browser = testData.get("browser");
-		String origin = testData.get("Origin"); 
+		String origin = testData.get("Origin");
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -1797,7 +1844,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1809,7 +1856,6 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1821,7 +1867,7 @@ public class BusSearchTest extends BaseTest{
 
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
-			
+
 			reviewPageBus.clickOnbtnBookNow();
 			Log.message("11. Clicked On Book Now!");
 			String Error = reviewPageBus.getTextErrorMsg();
@@ -1865,7 +1911,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1878,7 +1924,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1929,7 +1975,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -1942,7 +1988,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -1955,9 +2001,9 @@ public class BusSearchTest extends BaseTest{
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
-			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			travellerPageBus = reviewPageBus.clickOnBookNow();
 			Log.message("11. Clicked On Book Now!");
-			
+
 			travellerPageBus.TravellerDetails(name);
 			Log.message("12. Filled Guest Details!");
 
@@ -2007,7 +2053,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2020,7 +2066,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2032,11 +2078,11 @@ public class BusSearchTest extends BaseTest{
 
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber[0]);
 			Log.message("10. Entered Email Address and Phone Number!");
-			
-			travellerPageBus =	reviewPageBus.clickOnBookNow();
+
+			travellerPageBus = reviewPageBus.clickOnBookNow();
 			Log.message("11. Clicked On Book Now!");
 			String numberBeforeEdit = travellerPageBus.getTextMobileNo();
-			
+
 			travellerPageBus.clickEditMobileLink();
 			Log.message("12. Clicked On Edit Mobile Number Link!");
 
@@ -2087,7 +2133,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2100,7 +2146,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2113,9 +2159,9 @@ public class BusSearchTest extends BaseTest{
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
-			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			travellerPageBus = reviewPageBus.clickOnBookNow();
 			Log.message("11. Clicked On Book Now!");
-			
+
 			travellerPageBus.enterPromoCode(promo);
 			Log.message("12. Entered Promo Code!");
 			String Promo = travellerPageBus.getTextErrorMsgPromo();
@@ -2145,7 +2191,7 @@ public class BusSearchTest extends BaseTest{
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -2163,7 +2209,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2176,7 +2222,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2188,8 +2234,8 @@ public class BusSearchTest extends BaseTest{
 
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
-			
-			travellerPageBus =	reviewPageBus.clickOnBookNow();
+
+			travellerPageBus = reviewPageBus.clickOnBookNow();
 			Log.message("11. Clicked On Book Now!");
 			boolean resultFirst = travellerPageBus.checkBoxFirst();
 			boolean resultSecond = travellerPageBus.checkBoxSecond();
@@ -2218,7 +2264,7 @@ public class BusSearchTest extends BaseTest{
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -2236,7 +2282,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2249,7 +2295,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2261,10 +2307,10 @@ public class BusSearchTest extends BaseTest{
 
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
-			
-			travellerPageBus =	reviewPageBus.clickOnBookNow();
+
+			travellerPageBus = reviewPageBus.clickOnBookNow();
 			Log.message("11. Clicked On Book Now!");
-			
+
 			Thread.sleep(3000);
 			travellerPageBus.clickOnTermAndCondition();
 			String winHandleBefore = driver.getWindowHandle();
@@ -2300,7 +2346,7 @@ public class BusSearchTest extends BaseTest{
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -2319,7 +2365,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2332,7 +2378,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2345,9 +2391,9 @@ public class BusSearchTest extends BaseTest{
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
-			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			travellerPageBus = reviewPageBus.clickOnBookNow();
 			Log.message("11. Clicked On Book Now!");
-			
+
 			travellerPageBus.TravellerDetails(name);
 			Log.message("12. Filled Guest Details!");
 
@@ -2379,7 +2425,7 @@ public class BusSearchTest extends BaseTest{
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -2399,7 +2445,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2412,7 +2458,7 @@ public class BusSearchTest extends BaseTest{
 			Log.message("6. Clicked On Select Seat!");
 
 			Thread.sleep(4000);
-			 
+
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2425,9 +2471,9 @@ public class BusSearchTest extends BaseTest{
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
-			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			travellerPageBus = reviewPageBus.clickOnBookNow();
 			Log.message("11. Clicked On Book Now!");
-			
+
 			travellerPageBus.enterPromoCode(promo);
 			Log.message("12. Entered Promo Code!");
 
@@ -2463,7 +2509,7 @@ public class BusSearchTest extends BaseTest{
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -2482,7 +2528,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2494,7 +2540,6 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2536,7 +2581,7 @@ public class BusSearchTest extends BaseTest{
 
 		String browser = testData.get("browser");
 		String origin = testData.get("Origin");
-		 
+
 		String destination = testData.get("Destination");
 		String departureDate = testData.get("DepartureDate");
 		String passengerInfo = testData.get("PassengerInfo");
@@ -2556,7 +2601,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2568,7 +2613,6 @@ public class BusSearchTest extends BaseTest{
 			searchResultBus.clickBtnSelectSeat();
 			Log.message("6. Clicked On Select Seat!");
 
-			 
 			searchResultBus.selectSeat(1);
 			Log.message("7. Seat Selected from the popup!");
 
@@ -2586,15 +2630,15 @@ public class BusSearchTest extends BaseTest{
 
 			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
 			Log.message("12. Clicked on Continue!");
-			
+
 			Thread.sleep(2000);
 			double TotalAmount = Double.parseDouble(paymentPageBus.getTextTotalAmountPaymentMethod());
 			int Percentage = Integer.parseInt(Per);
-			double TotalPercentage = TotalAmount*Percentage/100;
+			double TotalPercentage = TotalAmount * Percentage / 100;
 			double value = Math.round(TotalPercentage);
 			String PercentageAfterCalcutaion = String.valueOf(value).replaceAll("[.]0", "");
 			String EcashVisible = paymentPageBus.getTextMaxiumEcash();
-			
+
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify for ewallet amount which should be according to given % basis");
 			Thread.sleep(6000);
@@ -2637,7 +2681,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2662,9 +2706,9 @@ public class BusSearchTest extends BaseTest{
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
 
-			travellerPageBus =	reviewPageBus.clickOnBookNow();
+			travellerPageBus = reviewPageBus.clickOnBookNow();
 			Log.message("11. Clicked On Book Now!");
-			
+
 			travellerPageBus.TravellerDetails(name);
 			Log.message("12. Filled Guest Details and Clicked on Continue!");
 
@@ -2726,7 +2770,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2756,9 +2800,9 @@ public class BusSearchTest extends BaseTest{
 
 			paymentPageBus = travellerPageBus.clickOnContinueInTravellerPage();
 			Log.message("12. Clicked on Continue!");
-			
+
 			int amount = Integer.parseInt(paymentPageBus.getTextTotalAmountPaymentMethod());
-			paymentPageBus.scrollSliderOfEcashRedeem(-80 , browser);
+			paymentPageBus.scrollSliderOfEcashRedeem(-80, browser);
 			paymentPageBus.clickOnRedeemNowButton();
 			Log.message("13. Clicked on Redeem Now Button!");
 
@@ -2808,7 +2852,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);
@@ -2832,10 +2876,10 @@ public class BusSearchTest extends BaseTest{
 
 			reviewPageBus.fillUserDetailsAsGuest(email, phoneNumber);
 			Log.message("10. Entered Email Address and Phone Number!");
-			
-			travellerPageBus =	reviewPageBus.clickOnBookNow();
+
+			travellerPageBus = reviewPageBus.clickOnBookNow();
 			Log.message("11. Clicked On Book Now!");
-			
+
 			travellerPageBus.TravellerDetails(name);
 			Log.message("12. Filled Guest Details !");
 
@@ -2888,7 +2932,7 @@ public class BusSearchTest extends BaseTest{
 			homePage.clickBuses();
 			Log.message("2. Clicked on Bus Link!");
 
-			//homePage.selectTripTypeBus(tripType);
+			// homePage.selectTripTypeBus(tripType);
 			Log.message("3. Trip Type Selected!");
 
 			homePage.selectOneWayBusSearchFields(origin, destination, departureDate, passengerInfo);

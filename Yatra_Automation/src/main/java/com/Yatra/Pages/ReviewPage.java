@@ -55,7 +55,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	@FindBy(xpath = "//ul[@class = 'promo-options']/li[@class='ng-scope']")
 	private WebElement lnkPromoCoupon;
 	
-	@FindBy(xpath = "//Button[@ng-disabled='isContinueBtnDisabled' and contains(text(),'Continue')]")
+	@FindBy(css = "button[class*='button primary rounded wid-162 new-btn ng-binding']")
 	private WebElement btnContinueReviewPage;	
 
 	@FindBy(css = "span[class='pull-left cursor-pointer ng-binding under-link']>a")
@@ -421,11 +421,8 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @throws Exception
 	 */
 	public TravellerPage clickOnContinue() throws Exception {		
-		BrowserActions.nap(6);
-		Utils.waitForElement(driver, btnContinueReviewPage);
-		BrowserActions.scrollToView(btnContinueReviewPage, driver);
-		BrowserActions.javascriptClick(btnContinueReviewPage, driver, "Continue Button");
-		Utils.waitForPageLoad(driver);
+		BrowserActions.nap(3);
+		BrowserActions.clickOnElement(btnContinueReviewPage, driver, "Continue Button");
 		return new TravellerPage(driver).get();
 	}
 
@@ -793,7 +790,18 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	
 	@FindBy(css = "div[class='update-fare pt10 ico-right']>ul:nth-child(1)>li:nth-child(2)[class='text-right ng-binding']")
 	private WebElement popupFareOopsUpdatedFare;
-	//
+	
+	/**
+	 * To click continue button 
+	 * 
+	 * @throws Exception
+	 */
+	public void clickOnContinueE2E() throws Exception {		
+		BrowserActions.nap(3);
+		BrowserActions.scrollToView(btnContinueReviewPage, driver);
+		BrowserActions.clickOnElement(btnContinueReviewPage, driver, "Continue Button");
+	}
+
 
 	
 } // ReviewPage

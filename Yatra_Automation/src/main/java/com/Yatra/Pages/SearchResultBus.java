@@ -161,11 +161,17 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	@FindBy(css = ".boarding.tooltip")
 	WebElement errorMessage;
 	
-	@FindBy(css = "/div[class='wfull tab-content onwards seat-layout']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")
+	@FindBy(css = "div[class='wfull tab-content onwards seat-layout']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")
 	WebElement btnSelectseat;
 	
 	@FindBy(css = "div[class='wfull error-message'")
 	WebElement errorMessageSorryNoSeat;
+	
+	@FindBy(css = "div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SL avl-Y reserved-M']")
+	WebElement SeatLower;
+	
+	@FindBy(css = "div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")
+	WebElement SeatUpper;
 	/**********************************************************************************************
 	 ********************************* WebElements of Home Page - Ends ****************************
 	 **********************************************************************************************/
@@ -265,7 +271,7 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 	public void clickBtnSelectSeat() throws Exception {	
 		BrowserActions.nap(2);
 		Utils.waitForPageLoad(driver);
-		int rand = Utils.getRandom(0, 5);
+		int rand = Utils.getRandom(1, 6);
 		BrowserActions.scrollToViewElement(btnSelectSeat.get(rand), driver);
 		BrowserActions.clickOnElement(btnSelectSeat.get(rand), driver, "Select Seat");
 		Utils.waitForPageLoad(driver);
@@ -490,20 +496,20 @@ public class SearchResultBus extends LoadableComponent<SearchResultBus> {
 		Utils.waitForPageLoad(driver);
 		if(txtSeatType.isDisplayed()){
 		for (int i = 0; i < number; i++) {
-			driver.findElement(By.cssSelector(
-					"div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SL avl-Y reserved-M']"))
-					.click(); // Random Seat Selected
+		 driver.findElement(By.cssSelector(
+					"div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SL avl-Y reserved-M']")).click();		
+			// Random Seat Selected
 			BrowserActions.nap(2);
 			}
 		}else
 		{
 				for (int i = 0; i < number; i++) {
-					driver.findElement(By.cssSelector(
-							"div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']"))
-							.click(); // Random Seat Selected
+						driver.findElement(By.cssSelector(
+							"div[id='onwards-content']>div[class='flL seat-map']>div[class='flL floor-layout lower']>div[class='onwards floor-wrapper']>div[class='seat-floor flL mt10 lower-deck']>ul>li[class='flL type-SS avl-Y reserved-M']")).click(); // Random Seat Selected
 					BrowserActions.nap(2);
 			}
 		}
+		
 	}
 	/**
 	 * To Select Boarding Point

@@ -2336,20 +2336,28 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 * @throws Exception
 	 */
 	public void selectAirlineInAirlineFilters(String airlineName) throws Exception {
+		Thread.sleep(3000);
+		boolean flag = false;
+		if(airlineName.length()!=0)
+		{
 		for (int i = 1; i < txtAirlineName_AirlineFilters.size(); i++) {
 			WebElement airlineFareDetails = driver.findElement(	By.cssSelector("div[ng-show='open_airline'] li:nth-child(" + i + ") span[class='clip-overflow']"));
 			BrowserActions.scrollToView(airlineFareDetails, driver);
 			String airline = airlineFareDetails.getText().toString().trim();
+			Thread.sleep(3000);
 			if (airlineName.equalsIgnoreCase(airline)) {
 				WebElement chkAirline = driver.findElement(	By.cssSelector("div[ng-show='open_airline'] li:nth-child(" + i + ") span[class='checkbox']"));
 				BrowserActions.javascriptClick(chkAirline, driver,	"Click Airline in Airlines Filters, Selected Airline is:" + airline);
+				Log.event("<b> Successfully Clicked on Preferred Airline(" +airline+ ") </b>");
+				flag = true;
 				break;
-			} else if (airline == null) {
-				Log.event("Preferred Airline(" + airlineName + ") is not available, so its going to click Book Now Button with Random Flights");
 			}
 		}
+		}
+		if (!flag){
+			Log.event("<b> Preferred Airline(" + airlineName + ") is not available, so its going to click Book Now Button with Random Flights </b>");
+		}
 	}
-
 	/*
 	 * To select Connecting flight or Direct flight in Stops filter
 	 * 
@@ -4001,7 +4009,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		} else if (domain.equalsIgnoreCase("INTL")) {
 			// click book now based on Any or Preferred airlines
 			if (airlines.equalsIgnoreCase("Any")) {
-				clickOnBookNowInDOM_INTL(1); // select Book now
+				clickOnBookNowInDOM_INTL(2); // select Book now
 				Log.event("All flights details are visible by default and Clicked BookNow Random flight");
 			} else {
 				// Select Preferred Airline in Airline Filters

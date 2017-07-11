@@ -191,9 +191,18 @@ public class HomePage extends LoadableComponent<HomePage> {
 
 	@FindBy(css = "#BE_bus_search_btn")
 	private WebElement btnSearchBus;
+	
+	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month']")
+	private WebElement selectMonth1;
 
-	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month-']")
+	@FindBy(css = "div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month']")
 	private List<WebElement> selectMonth_Bus;
+	
+	@FindBy(css = "div[id='PegasusCal-3']>ul>li>a[href*='#PegasusCal-3-month']")
+	private WebElement selectMonth2;
+	
+	@FindBy(css = "div[id='PegasusCal-3'] li a[href*='#PegasusCal-3-month-']")
+	private List<WebElement> selectMonth_Bus1;
 
 	@FindBy(css = "div[class='toasterHolder']")
 	private WebElement txtErrorMsgEmptyCity;
@@ -1062,11 +1071,19 @@ public class HomePage extends LoadableComponent<HomePage> {
 		int month = Integer.parseInt(date.split("_")[1]);
 		BrowserActions.nap(2);
 		BrowserActions.clickOnElement(dateDepartureBus, driver, "clicking on Bus Depart date icon");
+		BrowserActions.nap(2);
+		if(Utils.exists(driver, By.cssSelector("div[id='PegasusCal-7'] li a[href*='#PegasusCal-7-month']"))){
 		selectMonth_Bus.get(month).click();
 		BrowserActions.nap(2);
-
 		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")));
 		driver.findElement(By.xpath(departureDateLocator+date+"'])[8]")).click();
+		}
+		else{
+		selectMonth_Bus1.get(month).click();
+		BrowserActions.nap(2);
+		Utils.waitForElement(driver, driver.findElement(By.xpath(departureDateLocator+date+"'])[4]")));
+		driver.findElement(By.xpath(departureDateLocator+date+"'])[4]")).click();
+		}
 		/*List<WebElement> datePicker = driver.findElements(By.cssSelector(dateLocator + date + "']"));
 		BrowserActions.nap(2);
 		datePicker.get(7).click();*/

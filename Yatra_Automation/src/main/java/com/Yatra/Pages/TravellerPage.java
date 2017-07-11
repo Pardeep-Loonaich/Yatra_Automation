@@ -52,8 +52,8 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	@FindBy(css = ".box-content.ssr-container.hide-under-overlay.ng-scope>div[class='button-group']>button:nth-child(2)")
 	WebElement btnAddBaggage;
 	
-	@FindBy(xpath = ".//*[@id='checkoutBase']/div[3]/main/div/div/form/div[3]/button")
-	WebElement btnContinueTravellerPage; //TODO 
+	@FindBy(css = "button[class='button primary rounded wid-162 new-btn ng-binding']")
+	WebElement btnContinueTravellerPage; 
 
 	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
 	WebElement btnChngeFlight;
@@ -87,6 +87,10 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 	
 	@FindBy(css = "span[class='block fs-xlg gray-dark u-pay ng-binding'][ng-class*='u-pay-temp']")
 	WebElement txtTotalAmount;
+	
+	@FindBy(css = "button[class='button grey-btn rounded sleek-btn ng-binding']")
+	WebElement btnChangeFlight;
+	
 	/**********************************************************************************************
 	 ********************************* WebElements of TravellerPage Page - Ends ****************************
 	 **********************************************************************************************/
@@ -128,12 +132,12 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 			Assert.fail();
 		}
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (isPageLoaded && !(Utils.waitForElement(driver, formTraveller))) {
+		if (isPageLoaded && !(Utils.waitForElement(driver, btnChangeFlight))) {
 			Log.fail("TravellerPage didn't open up", driver);
 		}
 		Log.message("Total time taken by #"+this.getClass().getTypeName()+"to load is:- "+timer.duration()+" "+TimeUnit.MILLISECONDS);
@@ -320,8 +324,6 @@ public class TravellerPage extends LoadableComponent<TravellerPage> {
 
 	public PaymentPage clickOnContinue() throws Exception {
 		BrowserActions.nap(6);
-		Utils.waitForElement(driver, btnContinueTravellerPage);
-		BrowserActions.scrollToView(btnContinueTravellerPage, driver);
 		BrowserActions.javascriptClick(btnContinueTravellerPage, driver, "Continue Button");
 		Utils.waitForPageLoad(driver);
 		return new PaymentPage(driver);
