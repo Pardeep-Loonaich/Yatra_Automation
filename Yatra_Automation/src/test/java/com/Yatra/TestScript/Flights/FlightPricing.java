@@ -88,15 +88,16 @@ public class FlightPricing extends BaseTest {
 
 			// clicked on book now button
 			Thread.sleep(2000);
-			reviewPage = searchResult.clickOnBookNowInOneWay(10);
+			reviewPage = searchResult.clickOnBookNowInOneWay(1);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page");
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Check to price calculation for DOM flight-one way");
 			reviewPage.popUpAppear();
-			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareDetails"), reviewPage),
+			Log.assertThat(reviewPage.elementLayer.verifyPageElements(Arrays.asList("moduleFareRules"), reviewPage),
 					"<b>Actual Result:</b> The Fare details module is displayed on Review Page",
 					"<b>Actual Result:</b> The Fare details module is not displayed on Review Page", driver);
+			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -220,7 +221,7 @@ public class FlightPricing extends BaseTest {
 					"<b>Actual Result:</b> Successfully navigated on Review Page",
 					"<b>Actual Result:</b> Unable to navigated on Review Page", driver);
 
-			reviewPage.clickOnContinue();
+			reviewPage.clickOnContinueE2E();
 			Log.message("6. Clicked On Continue Button on Review Page");
 
 			reviewPage.clickOnExistingUser();
@@ -290,7 +291,7 @@ public class FlightPricing extends BaseTest {
 					"<b>Actual Result:</b> Successfully navigated on Review Page",
 					"<b>Actual Result:</b> Unable to navigated on Review Page", driver);
 
-			reviewPage.clickOnContinue();
+			reviewPage.clickOnContinueE2E();
 			Log.message("6.Clicked On Continue Button on Review Page");
 
 			reviewPage.clickOnExistingUser();
@@ -300,7 +301,6 @@ public class FlightPricing extends BaseTest {
 			Log.message("<br>");
 			Log.message(
 					"<b>Expected Result:</b> Travel Assistance and Insurance amount should be inculded in the Fare Detail");
-
 			Log.assertThat(
 					travellerPage.verifyInsuranceCheckbox()
 							&& travellerPage.getTextFromFareDetails().contains("Travel Assistance and Insurance"),
@@ -318,6 +318,7 @@ public class FlightPricing extends BaseTest {
 					"<b>Actual Result:</b> Insurance checkbox is unchecked and Travel Assistance and Insurance amount not included in the Fare Details",
 					"<b>Actual Result:</b> Insurance checkbox is not unchecked and the Travel Assistance and Insurance amount is displayed in Fare Details",
 					driver);
+			
 			Log.testCaseResult();
 		} catch (Exception e) {
 			Log.exception(e);
@@ -382,7 +383,7 @@ public class FlightPricing extends BaseTest {
 					"<b>Actual Result:</b> Unable to navigated on Review Page", driver);
 
 			// clicke on continue button
-			reviewPage.clickOnContinue();
+			reviewPage.clickOnContinueE2E();
 			Log.message("7.Clicked on Continue button in Review Page Step-1");
 
 			reviewPage.clickOnExistingUser();
@@ -470,7 +471,7 @@ public class FlightPricing extends BaseTest {
 					"<b>Actual Result:</b> Successfully navigated on Review Page",
 					"<b>Actual Result:</b> Unable to navigated on Review Page", driver);
 
-			reviewPage.clickOnContinue();
+			reviewPage.clickOnContinueE2E();
 			Log.message("6.Clicked on Continue button in Review Page");
 
 			reviewPage.clickOnExistingUser();
@@ -1079,7 +1080,7 @@ public class FlightPricing extends BaseTest {
 			Log.message("6. Successfully clicked 'Promo' DropDown");
 
 			// step: selected 'Promotion' from the DropDown
-			reviewPage.selectPromoByIndex(1);
+			reviewPage.selectPromoByIndex(2);
 			Log.message("7. Successfully Selected 'Promotion' from the DropDown");
 			Thread.sleep(3000);
 			String Ecash = reviewPage.getTextEcashFareDetails();

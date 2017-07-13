@@ -14,14 +14,15 @@
 		<classes>
 			<class name="com.Yatra.TestScript.Flights.FlightPricing">
 				  <methods>
-					<!--<include name="TC_Yatra_Flight_123"></include>
-					 <include name="TC_Yatra_Flight_092"></include>
-					<include name="TC_Yatra_Flight_154"></include> 
-					<include name="TC_Yatra_Flight_166"></include> 
-					<include name="TC_Yatra_Flight_109"></include> 
-					<include name="TC_Yatra_Flight_162"></include>
-					 <include name="TC_Yatra_Flight_096"></include> -->
-					
+					 <exclude name="TC_Yatra_Flight_087"></exclude>
+					 <exclude name="TC_Yatra_Flight_092"></exclude>
+					 <exclude name="TC_Yatra_Flight_096"></exclude>
+					 <!--<include name="TC_Yatra_Flight_154"></include>
+					 <include name="TC_Yatra_Flight_154"></include> 
+					 <include name="TC_Yatra_Flight_166"></include> 
+					 <include name="TC_Yatra_Flight_109"></include> 
+					 <include name="TC_Yatra_Flight_162"></include>
+					 <include name="TC_Yatra_Flight_096"></include>-->
 				</methods>  
 			</class>
 		</classes>

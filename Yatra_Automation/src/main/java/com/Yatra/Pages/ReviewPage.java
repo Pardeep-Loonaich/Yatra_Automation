@@ -797,6 +797,7 @@ public class ReviewPage extends LoadableComponent<ReviewPage> {
 	 * @throws Exception
 	 */
 	public void clickOnContinueE2E() throws Exception {		
+		Utils.waitForElement(driver, btnContinueReviewPage);
 		BrowserActions.nap(3);
 		BrowserActions.scrollToView(btnContinueReviewPage, driver);
 		BrowserActions.clickOnElement(btnContinueReviewPage, driver, "Continue Button");
