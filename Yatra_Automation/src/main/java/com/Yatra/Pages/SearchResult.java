@@ -561,7 +561,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	@FindBy(xpath = "//div[@class='js-flightRow js-flightItem']//small[@class='fs-sm gray fl ml5 name carrier-name']")
 	private List<WebElement> lstFlightResultGrid;
 
-	@FindBy(css = "a[class='under-link fr']")
+	@FindBy(css = "a[class*='under-link fr']")
 	private WebElement lnkResetAll;
 
 	@FindBy(css = "div[class='header-container']")
@@ -806,6 +806,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 		BrowserActions.clickOnElement(btnBookNowINT, driver, "To click on Book now button.");
 		popUpAppear();
 		return new ReviewPage(driver).get();
+		
+		
 	}
 
 	/**
@@ -3060,6 +3062,8 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	 */
 	public void clickResetAll() throws Exception {
 		Utils.waitForElement(driver, lnkResetAll);
+		BrowserActions.scrollToView(headerLogo, driver);
+		Thread.sleep(2000);
 		BrowserActions.clickOnElement(lnkResetAll, driver, "Click Reset All");
 		Utils.waitForPageLoad(driver);
 		Log.event("Clicked Reset All");
@@ -3454,7 +3458,7 @@ public class SearchResult extends LoadableComponent<SearchResult> {
 	public int getSizeofResult() throws Exception {
 		Utils.waitForPageLoad(driver);
 		List<WebElement> abc = driver.findElements(By.cssSelector(
-				"#resultBoxSlider>div[id='resultList_0']>div[class*='results']>div[class='js-flightRow js-flightItem']>article>div[class='my-res-info full']>ul>li[class='timing']>div[class='end']>span"));
+				"div[class='resultBoxSlider show-result multi-1'] div[ng-repeat='flt in fltSeg | limitFromTo:listLength | index track by $index'] footer[class='row my-res-footer full'] li a"));
 		return abc.size();
 	}
 

@@ -1876,7 +1876,7 @@ public class FlightSearch extends BaseTest {
 
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Validated that Weekly fare Matrix will be available for OW search");
-			BrowserActions.nap(3);
+			BrowserActions.nap(5);
 			Log.assertThat(searchResult.elementLayer.verifyPageElements(Arrays.asList("weeklyStrip"), searchResult),
 					"<b>Actual Result:</b> The Weekly fare Matrix displayed on the SRP page for OW Search",
 					"<b>Actual Result:</b> The Weekly fare Matrix not displayed on the SRP page for OW Search", driver);
@@ -3992,10 +3992,9 @@ public class FlightSearch extends BaseTest {
 			searchResult.selectAirlineInAirlineFilters(AirlinesName);
 			Log.message("5. Successfully Applied Filter On SRP!");
 			int NoOfResults = searchResult.getSizeofResult();
-
+		
 			// step: click 'Book Now' button
 			reviewPage = searchResult.selectAirlineBookNowInOW("DOM", "All", "");
-			// reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("6. Successfully clicked 'Book Now'!");
 
 			// step: click 'Change Flight' Link
@@ -4056,6 +4055,7 @@ public class FlightSearch extends BaseTest {
 			// step: click 'Book Now' button
 			reviewPage = searchResult.clickOnBookNowINT();
 			Log.message("5. Successfully clicked 'Book Now'!");
+			
 
 			// step: click 'Change Flight' Link
 			reviewPage.clickOnChangeFlight();

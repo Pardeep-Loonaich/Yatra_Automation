@@ -17,12 +17,12 @@
 					 <exclude name="TC_Yatra_Flight_087"></exclude>
 					 <exclude name="TC_Yatra_Flight_092"></exclude>
 					 <exclude name="TC_Yatra_Flight_096"></exclude>
-					 <!--<include name="TC_Yatra_Flight_154"></include>
+					<!-- <include name="TC_Yatra_Flight_154"></include>
 					 <include name="TC_Yatra_Flight_154"></include> 
 					 <include name="TC_Yatra_Flight_166"></include> 
 					 <include name="TC_Yatra_Flight_109"></include> 
 					 <include name="TC_Yatra_Flight_162"></include>
-					 <include name="TC_Yatra_Flight_096"></include>-->
+					 <include name="TC_Yatra_Flight_096"></include> -->
 				</methods>  
 			</class>
 		</classes>

@@ -88,7 +88,7 @@ public class FlightPricing extends BaseTest {
 
 			// clicked on book now button
 			Thread.sleep(2000);
-			reviewPage = searchResult.clickOnBookNowInOneWay(1);
+			reviewPage = searchResult.clickOnBookNowInOneWay(2);
 			Log.message("5.Clicked on 'Book Now' button in Search Result Page");
 
 			Log.message("<br>");
