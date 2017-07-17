@@ -155,7 +155,7 @@ public class PaymentTest extends BaseTest {
 					"<b>Actual Result:</b> Successfully navigated on paymentPage.",
 					"<b>Actual Result:</b> Unable to navigated on paymentPage.", driver);
 			Thread.sleep(1000);
-			paymentPage.verifyCancelEcash();
+			
 			Log.message(". Clicked on Cancel ecash.");
 
 			String initialEcash1 = paymentPage.eCashAmount();
@@ -303,7 +303,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 			Thread.sleep(1000);
 			paymentPage.cancelCreditCardDetails();
 
@@ -440,7 +440,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected '" + paymentType + "' as mode of Payment");
@@ -568,7 +568,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			//
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected '" + paymentType + "' as mode of Payment");
@@ -796,8 +796,6 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("10. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
-
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("11. Selected '" + paymentType + "' as mode of Payment");
 
@@ -914,7 +912,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -1025,7 +1023,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -1135,8 +1133,6 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
-
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
 
@@ -1245,8 +1241,6 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
-
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
 
@@ -1254,7 +1248,6 @@ public class PaymentTest extends BaseTest {
 			Log.message("11. Clicked on 'Pay Now' for making payment.");
 
 			Utils.waitForPageLoad(driver);
-
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected " + paymentType + " Page.");
 			Log.assertThat(driver.getCurrentUrl().contains(URL),
@@ -1357,7 +1350,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
 
@@ -1468,7 +1461,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -1583,7 +1576,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -1698,7 +1691,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -1816,7 +1809,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 			paymentPage.cancelCreditCardDetails();
 
 			paymentPage.selectPaymentType(paymentType);
@@ -2028,7 +2021,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 			BrowserActions.nap(6);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify all payment methods are showing in Payment Page.");
@@ -2123,7 +2116,7 @@ public class PaymentTest extends BaseTest {
 					"<b>Actual Result:</b> Successfully navigated on paymentPage.",
 					"<b>Actual Result:</b> Unable to navigated on paymentPage.", driver);
 			BrowserActions.nap(3);
-			paymentPage.verifyCancelEcash();
+			
 
 			String initialTotalAmount1 = paymentPage.getTextFromTotalAmount();
 			int initialTotalAmount = Integer.parseInt(initialTotalAmount1);
@@ -2262,9 +2255,6 @@ public class PaymentTest extends BaseTest {
 			int initialTotalAmount = Integer.parseInt(initialTotalAmount1);
 			Log.message("  Initial Total Amount:" + initialTotalAmount);
 
-			BrowserActions.nap(12);
-			paymentPage.verifyCancelEcash();
-
 			String initialEcash1 = paymentPage.eCashAmount();
 			int initialEcash = Integer.parseInt(initialEcash1);
 			Log.message("  Initial eCash Amount in payment module before applying eCash:" + initialEcash);
@@ -2388,7 +2378,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 			BrowserActions.nap(6);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify Earn Ecash amount is showing on Payment Page.");
@@ -2478,7 +2468,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			int totalAmt = paymentPage.calculatingAmountToPay();
 			Log.message(" The total amount we get from the Fare module after adding: " + totalAmt);
@@ -2678,7 +2668,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify flight details is showing on top.");
@@ -2770,7 +2760,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify flight details is showing on top.");
@@ -2862,7 +2852,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify booking progress bar should display on Paymentpage.");
@@ -2953,7 +2943,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message(
@@ -3045,7 +3035,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 			BrowserActions.nap(20);
 			Log.message("<br>");
 			Log.message(
@@ -3136,7 +3126,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			Utils.waitForPageLoad(driver);
 			reviewPage = paymentPage.clickOnEditLink();
@@ -3232,7 +3222,6 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
 			Thread.sleep(2000);
 			paymentPage.cancelCreditCardDetails();
 
@@ -3247,7 +3236,8 @@ public class PaymentTest extends BaseTest {
 
 			paymentPage.clickOnPayNow();
 			Log.message("13. Clicked on 'PayNow' button on Payment Page.");
-
+			
+			BrowserActions.nap(20);
 			Utils.waitForPageLoad(driver);
 			Log.assertThat(driver.getCurrentUrl().contains("hdfcbank"),
 					"<b>Actual Result:</b> Successfully navigated back on Bank Page.",
@@ -3255,7 +3245,7 @@ public class PaymentTest extends BaseTest {
 
 			paymentPage.cancelHdfcPayment(browser);
 			Log.message("14. Clicked on Cancel button.");
-			//driver.navigate().back();
+			
 			driver.navigate().back();
 			driver.navigate().refresh();
 			Log.message("15. Navigating back to 'Yatra' page.");
@@ -3265,8 +3255,6 @@ public class PaymentTest extends BaseTest {
 				travellerPage = reviewPage.clickOnContinue();
 				paymentPage = travellerPage.clickOnContinue();
 			}
-
-			
 
 			BrowserActions.nap(20);
 			Utils.waitForPageLoad(driver);
@@ -3284,7 +3272,6 @@ public class PaymentTest extends BaseTest {
 					"<b>Actual Result:</b> Saved credit card details are not showing in credit card option.", driver);
 
 			Utils.waitForPageLoad(driver);
-
 			paymentPage.cancelCreditCardDetails();
 			Log.message("16. Deleted stored card details.");
 			BrowserActions.nap(20);
@@ -3380,7 +3367,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -3531,8 +3518,6 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
-
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
 
@@ -3541,8 +3526,8 @@ public class PaymentTest extends BaseTest {
 
 			paymentPage.clickOnPayNow();
 			Log.message("12. Clicked on 'Pay Now' for making payment.");
+			
 			Utils.waitForPageLoad(driver);
-
 			Log.message("<br>");
 			Log.message("<b>Expected Result:</b> Verify user is navigated to selected " + paymentType + " Page.");
 			Log.assertThat(paymentPage.elementLayer.verifyPageElements(Arrays.asList("logoOxyGenWallet"), paymentPage),
@@ -3642,7 +3627,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -3751,7 +3736,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -3863,7 +3848,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -3975,7 +3960,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -4089,7 +4074,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -4204,7 +4189,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -4320,7 +4305,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -4432,7 +4417,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -4546,7 +4531,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -4659,7 +4644,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -4778,7 +4763,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -4897,7 +4882,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -5015,7 +5000,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -5134,7 +5119,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -5253,7 +5238,7 @@ public class PaymentTest extends BaseTest {
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
 
-			paymentPage.verifyCancelEcash();
+			
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
@@ -5372,8 +5357,6 @@ public class PaymentTest extends BaseTest {
 
 			paymentPage = travellerPage.clickOnContinue();
 			Log.message("9. Clicked on Continue button on Travellers Page.");
-
-			paymentPage.verifyCancelEcash();
 
 			paymentPage.selectPaymentType(paymentType);
 			Log.message("10. Selected " + paymentType + " as mode of Payment");
