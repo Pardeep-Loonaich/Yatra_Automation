@@ -16,4 +16,7 @@
     .stacktrace {white-space: pre-wrap;}    
     td[class='bugid'] {width: 8%}
     td[class='comments'] {width: 20%}
+    
+    
+    
 </style>
